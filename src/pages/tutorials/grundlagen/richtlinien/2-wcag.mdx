@@ -1,0 +1,133 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Richtlinien für die Zugänglichkeit von Webinhalten (WCAG)'
+pubDate: 2023-04-07
+---
+
+## Überblick über die WCAG
+
+Die Zugänglichkeitsrichtlinien für Web-Inhalte (WCAG) 2.1 - veröffentlicht vom World Wide Web
+Consortium (W3C) im Jahr 2018 - gelten international als die maßgebliche Quelle für
+Zugänglichkeitsrichtlinien im Web. Die Vorgängerversion der Richtlinien, WCAG 2.0, die
+ursprünglich im Jahr 2008 veröffentlicht wurde, wurde 2012 von der Internationalen Standardisierungsorganisation (ISO)
+als Norm angenommen (ISO/IEC 40500:2012). Die WCAG-Richtlinien sind technologieunabhängig,
+was bedeutet, dass die Autoren beabsichtigten, die Richtlinien auf alle aktuellen und zukünftigen Webtechnologien anzuwenden:
+HTML, PDF, Java, Flash, Silverlight, Videoplayer und so weiter.
+
+## Level A, AA und AAA
+
+Jedes Erfolgskriterium wird entweder als Level A, Level AA oder Level AAA bezeichnet, wobei sich Level A auf den niedrigsten
+Grad der Konformität (das Minimum) und Level AAA auf den höchsten Grad der Konformität (das Maximum) bezieht. Die meisten
+Organisationen legen AA als internen Standard fest, weil er sowohl erreichbar als auch sinnvoll ist, ohne die Entwickler zu
+sehr zu belasten. Im Hinblick auf die tatsächliche Zugänglichkeit ist es jedoch wichtig zu beachten, dass alle Erfolgskriterien,
+selbst auf Level AAA, zumindest für einige Menschen mit Behinderungen notwendig sind, so dass es unklug wäre, die Level
+AAA-Elemente völlig zu ignorieren.
+
+In den meisten Fällen wird eine Organisation die Level AA als Mindestziel für die Barrierefreiheit festlegen, sei es aufgrund
+einer gesetzlichen Vorschrift oder einfach aufgrund der Tatsache, dass die meisten Experten für Barrierefreiheit den Level AA
+als angemessene Erwartung ansehen, die ein Gleichgewicht zwischen Barrierefreiheit und dem für die Umsetzung der Richtlinien
+erforderlichen Aufwand herstellt.
+
+## Die 4 Hauptprinzipien
+
+Die wichtigsten Zugänglichkeitsprinzipien, die in den WCAG genannt werden, sind:
+
+- Wahrnehmbar: Die Informationen und die Komponenten der Benutzeroberfläche müssen für die Benutzer auf eine Weise dargestellt
+  werden, die sie wahrnehmen können. [Stellen Sie sicher, dass die Inhalte für blinde und/oder gehörlose Menschen zugänglich sind.]
+
+- Bedienbar: Die Komponenten der Benutzeroberfläche und die Navigation müssen bedienbar sein.
+  [Stellen Sie sicher, dass alle Funktionen über die Tastatur zugänglich sind, nicht nur über die Maus.]
+
+- Nachvollziehbar: Informationen und die Bedienung der Benutzeroberfläche müssen verständlich sein.
+
+- Robust: Die Inhalte müssen so robust sein, dass sie von einer Vielzahl von Benutzer-Agenten, einschließlich assistiver
+  Technologien, zuverlässig interpretiert werden können.
+
+## Die 13 Leitlinien
+
+Unterhalb der vier Hauptprinzipien gibt es insgesamt 13 Leitlinien.
+
+- Wahrnehmbar
+
+  - Bieten Sie Textalternativen für alle nicht-textlichen Inhalte an, so dass diese in andere Formen
+    umgewandelt werden können, die die Menschen benötigen, z. B. Großdruck, Braille, Sprache, Symbole oder einfachere Sprache.
+
+  - Bieten Sie Alternativen für zeitbasierte Medien.
+
+  - Erstellen Sie Inhalte, die auf unterschiedliche Weise präsentiert werden können (z. B. einfacheres Layout),
+    ohne dass Informationen oder Struktur verloren gehen.
+
+  - Erleichtern Sie es den Nutzern, Inhalte zu sehen und zu hören, einschließlich der Trennung von Vorder- und Hintergrund.
+
+- Bedienbar
+
+  - Stellen Sie alle Funktionen über eine Tastatur zur Verfügung.
+
+  - Geben Sie den Nutzern genügend Zeit, die Inhalte zu lesen und zu nutzen.
+
+  - Gestalten Sie den Inhalt nicht auf eine Weise, die bekanntermaßen Anfälle auslöst.
+
+  - Bieten Sie den Nutzern Möglichkeiten zur Navigation, zum Auffinden von Inhalten und zur Bestimmung ihres Standortes.
+
+  - Erleichtern Sie den Benutzern die Bedienung der Funktionen durch verschiedene Eingaben über die Tastatur hinaus.
+
+- Nachvollziehbar
+
+  - Machen Sie den Textinhalt lesbar und verständlich.
+
+  - Sie sorgen dafür, dass Webseiten auf vorhersehbare Weise erscheinen und funktionieren.
+
+  - Den Nutzern helfen, Fehler zu vermeiden und zu korrigieren.
+
+- Robust
+
+  - Maximale Kompatibilität mit aktuellen und zukünftigen Benutzer-Agenten, einschließlich unterstützender Technologien.
+
+Dreizehn Leitlinien sind gar nicht so viele, die man lernen muss. Die Dinge werden allerdings etwas komplizierter, denn unter
+jeder Leitlinie befindet sich eine Liste von Erfolgskriterien.
+
+## Erfolgskriterien und Konformitätsstufen
+
+Die Erfolgskriterien sind die Regeln oder Checklistenpunkte, auf denen die Leitlinien beruhen. Wie der Name schon sagt,
+haben Sie die Richtlinie erfolgreich erfüllt, wenn Sie die Kriterien erfüllen, und der betreffende Teil des Webinhalts wird
+für Menschen mit Behinderungen zugänglich sein.
+
+Jede Leitlinie hat mindestens ein Erfolgskriterium. Leitlinie 1.1 hat zum Beispiel nur ein Erfolgskriterium: 1.1.1. Die meisten
+Leitlinien haben mehrere Erfolgskriterien. Die Auflistung aller Erfolgskriterien würde diese Seite mehr als nötig in die Länge
+ziehen, weshalb wir darauf verzichten. Die vollständige Liste der Erfolgskriterien finden Sie in der offiziellen
+WCAG 2.1-Spezifikation.
+
+## "Ausreichende Techniken" und "Beratende Techniken"
+
+Viele der Erfolgskriterien sind zumindest größtenteils selbsterklärend, aber einige von ihnen sind etwas zweideutig, so dass
+es in der Dokumentation eine zusätzliche Ebene gibt, auf der Techniken zur Erreichung der Erfolgskriterien aufgeführt sind.
+Wenn Sie alle "ausreichenden Techniken" erfüllen, haben Sie das Erfolgskriterium bestanden. Bei den "beratenden Techniken" handelt
+es sich im Grunde um eine Liste guter Ideen oder bewährter Praktiken, die jedoch nicht in gleichem Maße wie die "ausreichenden
+Techniken" als entscheidend für die Zugänglichkeit angesehen werden.
+
+Es gibt Techniken für HTML, CSS, SMIL, client-seitiges Scripting, server-seitiges Scripting, Flash, PDF, Silverlight und ARIA.
+Sie würden die entsprechenden Techniken für die von Ihnen verwendeten Technologien verwenden.
+
+In den ursprünglichen Richtlinien, WCAG 1.0, wurde nicht zwischen Richtlinien und Techniken unterschieden, oder zumindest war
+die Unterscheidung nicht so klar. In den WCAG wurde die Absicht verfolgt, die technologiespezifischen Techniken vollständig von
+den Richtlinien und Erfolgskriterien zu trennen, um die Wahrscheinlichkeit zu verringern, dass die Richtlinien selbst veraltet
+werden, wenn sich die Technologien weiterentwickeln und verändern.
+
+## Die offizielle Dokumentation
+
+Die amtliche Dokumentation können, vor allem am Anfang, ziemlich abschreckend wirken. Die Formulierungen sind recht präzise
+und technisch, und es ist nicht immer klar, warum die Dinge so formuliert sind, wie sie sind. Dennoch ist es gut zu wissen,
+wo die offiziellen Dokumente zu finden sind, und einige Zeit damit zu verbringen, sie durchzusehen, denn sie sind die offizielle
+Quelle.
+
+- WCAG 2.1
+
+  - Webseite: <a href="https://www.w3.org/TR/WCAG21/" target="_blank">WCAG 2.1 Specification</a>
+  - Webseite: <a href="https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/" target="_blank">What's New in WCAG 2.1</a>
+  - Webseite: <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank">WCAG 2.1 Quick Reference</a>
+
+- WCAG 2.0
+
+  - Webseite: <a href="http://www.w3.org/WAI/intro/wcag.php" target="_blank">WCAG 2.0 Overview</a>
+  - Webseite: <a href="http://www.w3.org/TR/WCAG20/" target="_blank">WCAG 2.0 Specification</a>
+  - Webseite: <a href="http://www.w3.org/WAI/WCAG20/quickref/" target="_blank">How to Meet WCAG 2.0 (Customizable Quick Reference)</a>

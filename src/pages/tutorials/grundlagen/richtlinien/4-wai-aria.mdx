@@ -1,0 +1,68 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'WAI-ARIA (Barrierefreie Rich-Internet-Anwendungen) 1.0'
+pubDate: 2023-04-07
+---
+
+## Übersicht
+
+WAI-ARIA - oder kurz ARIA - ist eine relativ neue Erfindung, die dazu beitragen soll,
+die Lücken zwischen den Zugänglichkeitsfunktionen von HTML und den realen Zugänglichkeitsanforderungen
+der heutigen robusten, dynamischen Webanwendungen, insbesondere im Hinblick auf JavaScript, zu schließen.
+ARIA ermöglicht es Entwicklern, den Namen, die Rolle, den Zustand und die Eigenschaft von HTML-Elementen
+sowohl in statischen als auch in dynamischen Inhalten anzugeben. ARIA ist keine völlig neue Sprache. Es
+ist ein Zusatz zur HTML-Syntax. Um beispielsweise einem HTML-Element die Rolle "Navigation" zuzuweisen,
+geben Sie es einfach als Attribut ein.
+
+### Beispiel
+
+Um die Navigationsrolle mit ARIA zu benennen:
+
+```html
+<div role="navigation"></div>
+```
+
+So fügen Sie die Eigenschaft aria-haspopup mit ARIA:
+
+```html
+<div aria-haspopup="true"></div>
+```
+
+Andere ARIA-Attribute folgen einer ähnlichen Syntax.
+
+## ARIA-Funktionen
+
+ARIA ist fast ausschließlich für Benutzer von Bildschirmlesegeräten (und für Benutzer von Spracherkennungssystemen und
+einige reine Tastaturbenutzer) gedacht, da das Markup ausgeblendet wird und ARIA es den Benutzern von Bildschirmlesegeräten
+ermöglicht, zu wissen, was visuell auf dem Bildschirm passiert. ARIA kann Screenreader-Benutzern dabei helfen, die folgenden
+Dinge zu erkennen:
+
+- Wenn ein Link ein Popup-Fenster öffnet
+- Wenn ein Objekt (wie ein Ordnersymbol) erweiterbar ist
+- Wenn ein Objekt gerade aufgeklappt oder zugeklappt ist
+- Wenn sich etwas auf der Seite geändert hat oder aktualisiert wurde (über "Live-Regionen")
+- Um welche Art von Objekt oder Widget es sich handelt, zum Beispiel:
+  - ein Tab Panel
+  - ein Tab
+  - ein Slider
+  - ein Warnhinweis-Dialog
+  - ein Tooltip
+  - ein Menü
+  - ein Menüpunkt
+  - eine hierarchische Baumstruktur
+  - und einige andere vordefinierte Rollen
+
+Dieser Überblick kratzt kaum an der Oberfläche dessen, was ARIA leisten kann. ARIA ist in erster Linie für Webentwickler
+und Programmierer gedacht, da die Implementierung von ARIA normalerweise JavaScript-Kenntnisse erfordert. Das Erlernen von
+ARIA kann aufgrund der Komplexität der Programmierlogik und der Feinheiten, mit denen sichergestellt wird, dass ARIA-Widgets
+in verschiedenen Browsern und Screenreadern gut funktionieren, auch eine ganze Menge Zeit in Anspruch nehmen.
+
+- Webseite: <a href="http://www.w3.org/WAI/intro/aria.php" target="_blank">WAI-ARIA Overview opens</a>
+- Webseite: <a href="http://www.w3.org/TR/wai-aria/" target="_blank">WAI-ARIA 1.1</a>
+- Webseite: <a href="https://www.w3.org/TR/wai-aria-practices-1.1/" target="_blank">WAI-ARIA Authoring Practices 1.1</a>
+
+## WAI-ARIA-Erstellungspraktiken 1.1
+
+Eine der besten Anlaufstellen, um zu erfahren, wie man ARIA implementiert, ist die Dokumentation WAI-ARIA Authoring Practices 1.1.
+Sie gilt als offizieller Leitfaden für die Struktur und die Methoden von ARIA-Widgets, einschließlich Tastaturverhalten, Markup,
+Interaktionsmuster und so weiter.
