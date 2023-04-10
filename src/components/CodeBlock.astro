@@ -1,0 +1,42 @@
+---
+import { Prism } from '@astrojs/prism'
+import '../styles/prism-dark.css'
+
+const { code, lang, filename } = Astro.props
+
+const hasLang = !!lang
+const hasFileName = !!filename
+
+const showHeader = hasLang || hasFileName
+---
+
+<figure class="code-block">
+  {
+    showHeader && (
+      <figcaption class="header">
+        {hasFileName && <span class="filename">{filename}</span>}
+        {hasLang && <span class="lang">{lang}</span>}
+      </figcaption>
+    )
+  }
+
+  <Prism code={code} lang={lang} />
+</figure>
+
+<style>
+  .code-block {
+    margin: 1.5rem 0;
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0.5rem;
+    font-family: monospace;
+    background: hsl(220, 13%, 18%);
+    color: hsl(220, 14%, 71%);
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    border-bottom: 1px solid hsl(220, 14%, 71%);
+  }
+</style>
