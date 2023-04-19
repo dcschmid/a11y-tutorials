@@ -11,7 +11,10 @@
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
   },
   "dependencies": {
-    "astro": "^2.2.1"
+    "astro": "^2.2.1",
+    "astro-compress": "^1.1.35",
+    "astro-compressor": "^0.4.0",
+    "astro-critters": "^1.1.31"
   },
   "devDependencies": {
     "@astro-community/astro-embed-youtube": "^0.2.2",

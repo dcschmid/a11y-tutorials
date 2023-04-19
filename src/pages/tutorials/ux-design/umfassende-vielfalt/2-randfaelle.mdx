@@ -1,0 +1,104 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Untersuchung der Randfälle'
+pubDate: 2023-04-11
+---
+
+## Gestaltung für die statistische Normalverteilung der Nutzer
+
+Wenn du immer für den "typischen" oder "statistisch normalen" Nutzer entwickelst, verpasst du die Chance, Lösungen zu
+entwickeln, die noch mehr Menschen erreichen. Bevor wir zu weit gehen, lass uns über die eigentliche Bedeutung des Wortes
+"normal" sprechen. Der Begriff "normal" wird in der Mathematik als Fachbegriff verwendet und bezieht sich auf die statistische
+Wahrscheinlichkeit. Er beschreibt die Wahrscheinlichkeit, dass ein Mitglied einer bestimmten Population Merkmale aufweist,
+die dem mathematischen Durchschnitt der Gesamtpopulation entsprechen. Sie wird visuell durch eine grafische Kurve dargestellt,
+die oft als "Glockenkurve" bezeichnet wird, weil die Form einer Glocke mit einer abgerundeten Oberseite und ausgestellten
+Rändern an der Unterseite ähnelt. Du kannst dir die Kurve auch als einen Hügel vorstellen, der sich aus dem Boden erhebt,
+sich nach oben zur Spitze des runden Hügels wölbt, dann nach unten abfällt und schließlich wieder sanft in den Boden eintaucht.
+
+![Glockenkurve](/images/umfassende-vielfalt/bell-curve.png)
+
+Wenn du dein Design auf die Nutzerinnen und Nutzer ausrichtest, die in der Mitte der Normalkurve liegen (statistisch gesehen
+würden wir sagen, plus/minus eine Standardabweichung vom Mittelwert), würdest du die Bedürfnisse von 68 % der Nutzerinnen und
+Nutzer erfüllen. Das ist eine beachtliche Mehrheit. Du denkst vielleicht, dass das gut genug ist. Für die Mehrheit deiner
+Nutzer/innen ist es in der Tat gut genug. Aber für 32 % deiner Nutzer/innen ist es nicht gut genug.
+
+## Entwurf für die Grenzfälle
+
+Was wäre, wenn du einen anderen Ansatz wählst und stattdessen zwei Zielnutzer identifizierst: einen mit zwei Standardabweichungen
+links vom Mittelwert und einen mit zwei Standardabweichungen rechts vom Mittelwert? Auf diese Weise würdest du die Bedürfnisse von
+zwei sehr unterschiedlichen Menschen erfüllen, und dein Design müsste den Mittelweg zwischen ihnen berücksichtigen. Am Ende würdest
+du die Bedürfnisse von 95 % bis 99,7 % der Nutzer/innen befriedigen.
+
+![Glockenkurve Grenzfälle](/images/umfassende-vielfalt/bell-curve-edge-cases.png)
+
+Das Design für die "Edge Cases" erfordert mehr Geschick und Planung als das Design nur für den normalen Nutzer. Für eine größere
+Anzahl von Menschen sind auch die Vorteile größer.
+
+Wir werden uns diese Herausforderung zu Herzen nehmen und uns die Aufgabe stellen, Videospiele für Menschen an zwei sehr
+unterschiedlichen Punkten des Fähigkeitsspektrums zu entwickeln:
+
+- Menschen, die blind sind
+- Menschen mit eingeschränkter Mobilität
+
+## Herausforderung: Videospiele für Menschen, die blind sind
+
+Stell dir vor, du bekommst die Aufgabe, Online-Videospiele für Menschen zu entwerfen, die völlig blind sind. Sie können den
+Bildschirm überhaupt nicht sehen, also musst du ihn auch nicht gut aussehen lassen. Genau genommen brauchst du überhaupt keine
+grafische Benutzeroberfläche.
+
+Eingabe: Normalerweise verwenden blinde Menschen Tastaturen, um Informationen in den Computer einzugeben. Bei Videospielen hast
+du einen gewissen Spielraum für zusätzliche Kreativität. Gibt es Möglichkeiten, andere Eingabegeräte wie eine Maus, einen Joystick,
+einen Game-Controller, ein Bewegungserkennungsgerät, ein Spracherkennungsgerät usw. für blinde Menschen nutzbar zu machen?
+
+Ausgabe: Sie werden ein Bildschirmlesegerät benutzen, um die Ausgabe des Spiels zu hören. Sie werden auch den Ton des Spiels selbst
+hören können. Da sie den Bildschirm nicht sehen können, muss alles über Audio oder, wenn du kreativ bist, vielleicht über taktiles
+Feedback verfügbar sein.
+
+### Ein paar Fragen zum Nachdenken:
+
+- Wie würdest du diese Herausforderung angehen?
+
+- Welche Annahmen müsst ihr über Bord werfen, damit dieses Projekt ein Erfolg wird?
+
+- Welche Arten von Interaktionen wären für blinde Menschen leicht zu realisieren? Welche Arten von Interaktionen wären am schwierigsten?
+
+- Gibt es Interaktionen, die unmöglich sind?
+
+- Wenn du ein Videospiel in erster Linie für blinde Menschen entwickelst, würde es dann auch für sehende Menschen funktionieren?
+
+## Herausforderung: Videospiele für Menschen mit eingeschränkter Mobilität
+
+Betrachten wir nun eine andere Gruppe von Menschen: Menschen, die ihre Hände nicht gut genug gebrauchen können, um
+normale Videospiel-Interfaces zu benutzen. Vielleicht können sie ihre Hände überhaupt nicht benutzen, vielleicht haben
+sie ein Zittern in den Händen, das ihre Präzision einschränkt, oder vielleicht fehlt es ihnen an Griffkraft und der Fähigkeit,
+sich schnell zu bewegen. Es gibt viele Variationen der menschlichen Mobilität.
+
+Eingabe: Es gibt eine Vielzahl von Eingabemethoden für Menschen mit motorischen Behinderungen. Hier sind ein paar davon:
+
+- Eye-Gaze-Tracking-Geräte, die es den Nutzern ermöglichen, mit ihren Augen zu zeigen und auszuwählen
+
+- Ein-Schalter-Geräte, die es den Nutzern ermöglichen, eine einzige Taste zu drücken, um mit einer Bildschirmtastatur und
+  Bildschirmmenüs mit kontextabhängigen Optionen zu interagieren
+
+- Sip-and-Puff-Geräte, die es ermöglichen, eine Bildschirmtastatur und Bildschirmmenüs mit kontextsensitiven Optionen mit
+  dem Atem zu steuern
+
+- Spracherkennungssoftware, die es den Nutzern ermöglicht, Elemente auf dem Bildschirm (anhand ihrer Bezeichnung oder ID)
+  auszuwählen und mit ihnen über kontextabhängige Menüs und Befehle zu interagieren
+
+- Ein Mundstick (ein Stock mit Gummispitzen an beiden Enden) zum Tippen und zur Verwendung einer Trackball-Maus
+
+Ausgabe: Unter der Annahme, dass die Person nicht mehrfach behindert ist, würde die Ausgabe die visuelle und akustische Ausgabe
+sein, die Menschen mit Seh- und Hörvermögen erwarten würden. Für diesen Anwendungsfall gibt es keine besonderen Überlegungen zur
+Ausgabe.
+
+### Ein paar Fragen zum Nachdenken:
+
+- Wie viele Überschneidungen gibt es zwischen den Bedürfnissen einer blinden Person und einer Person mit eingeschränkter Mobilität
+  beim Spielen von Videospielen?
+
+- Wenn du die Herausforderung für eine Gruppe vollständig löst, wie relevant sind diese Lösungen dann für die andere Gruppe?
+
+- Wie groß sind die Überschneidungen, wenn du die Herausforderungen nur für diese beiden Anwendungsfälle löst und Nutzer ohne
+  Behinderungen völlig außer Acht lässt? Decken diese beiden Anwendungsfälle alle Bedürfnisse ab, oder brauchst du einen
+  dritten Anwendungsfall für Menschen ohne Behinderung?

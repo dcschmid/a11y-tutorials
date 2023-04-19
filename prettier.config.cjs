@@ -10,6 +10,12 @@ module.exports = {
       options: {
         parser: 'astro'
       }
+    },
+    {
+      files: ['*.mdx', '*.md'],
+      options: {
+        printWidth: 100
+      }
     }
   ]
 }

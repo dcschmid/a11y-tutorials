@@ -1,0 +1,456 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Blind: Eine audio-strukturelle UX'
+pubDate: 2023-04-13
+---
+
+Zunächst einmal das Offensichtliche: Menschen, die blind sind, verlassen sich nicht auf die visuelle Gestaltung einer
+Benutzeroberfläche. Nicht jeder, der als blind eingestuft wird, ist komplett blind. Manche Menschen können Dinge wie helle und
+dunkle Bereiche wahrnehmen, aber im Grunde genommen ist die visuelle Oberfläche für Blinde nicht der wichtigste Teil einer
+Benutzeroberfläche.
+
+Blinde Menschen hören Screenreadern zu, die Webseiten laut vorlesen, aber es geht nicht nur darum, sich eine Webseite von Anfang
+bis Ende anzuhören. Screenreader-Nutzer haben viele Möglichkeiten, durch den Inhalt zu navigieren. Eine der gängigsten Methoden
+ist die Navigation nach Art des Elements (Orientierungspunkte, Überschriften, Formularelemente, Links, Bilder, Listen usw.).
+
+Interaktive Komponenten - wie Formularelemente und benutzerdefinierte JavaScript-Widgets - erfordern ausgefeiltere Methoden zur
+Darstellung der semantischen Informationen für Screenreader-Nutzer. Die wichtigsten Konzepte bestehen darin, den Namen, die Rolle
+und die Werte/Eigenschaften jedes Elements darzustellen und die Werte entsprechend zu aktualisieren, wenn sie sich ändern (z. B.
+einen Bereich als eingeklappt oder erweitert markieren).
+
+## Audio-strukturelle Seite UX
+
+### Bildschirmleser schaffen ein audio-strukturelles Erlebnis
+
+Menschen, die blind sind, benutzen Bildschirmlesegeräte, um sich den Inhalt anzuhören. Dabei handelt es sich um eine synthetische
+Stimme, die Text in Sprache umwandelt. Es ist möglich, eine Webseite aufzurufen und sich vom Bildschirmleser die ganze Seite von
+Anfang bis Ende vorlesen zu lassen, aber das macht kaum jemand. Wenn du das tust, musst du dir jedes Mal den gesamten Inhalt oben
+auf der Seite anhören - einschließlich der Marke, der Hauptnavigation (die viele Links enthalten kann) und anderer Funktionen wie
+Suche, Anmeldung usw. - bevor du zum Hauptinhalt kommst. Sobald du beim Hauptinhalt angekommen bist, musst du ihn dir komplett
+anhören. Die weniger interessanten Teile kannst du nicht einfach überfliegen. Und dann müsstest du dir auch noch alle Links und
+Informationen in der Fußzeile anhören.
+
+Es wäre reine Zeitverschwendung, sich jedes Mal alles auf jeder Webseite anzuhören.
+
+Und nicht nur das: Wenn du mit der Webseite interagieren willst - z. B. ein Formular ausfüllen und abschicken, ein eingeklapptes
+Menü aufklappen oder auf einen Link klicken - musst du den Screenreader anhalten und die Tastatur benutzen, um die entsprechenden
+Aufgaben auszuführen.
+
+Woher weißt du als blinde/r Nutzer/in, wann du zu einem Link, einer Texteingabe oder einer Schaltfläche kommst? Die Antwort ist,
+dass der Bildschirmleser es dir sagt (er sagt "Link" oder "Texteingabe" oder "Schaltfläche", wenn er die Elemente vorliest). Das
+Bildschirmlesegerät weiß, was die Elemente sind, weil sie von der Barrierefreiheit-API des Browsers und des Betriebssystems
+dargestellt werden.
+
+#### Beispiel: Das visuelle Layout versus die semantische Struktur der Wikipedia-Startseite
+
+Der folgende Screenshot zeigt den oberen Bereich der Wikipedia-Startseite (Stand: Februar 2017).
+
+![Wikipedia Startseite](/images/affordanzen/wikipedia-annotated-off.png)
+
+![Wikipedia Startseite Kommentiert](/images/affordanzen/wikipedia-annotated.png)
+
+Mit dem obigen Diagramm kommen wir der Art und Weise näher, wie ein Screenreader-Nutzer die Webseite erlebt, aber es ist immer
+noch nicht ganz richtig, denn es ist immer noch eine visuelle Darstellung. Entfernen wir die visuelle Darstellung von der Seite
+und listen wir die wichtigsten semantischen Elemente der Seite auf, so wie es viele Screenreadernutzer tun, wenn sie auf die
+Seite kommen:
+
+Eine audio-strukturelle "Ansicht" des oberen Teils der Wikipedia-Seite:
+
+- Landmarks (0 total)
+
+  - No landmarks available.
+
+- Headings (1 total)
+
+  - Level 1: "Wikipedia The Free Encyclopedia"
+
+- Form elements (4 total)
+
+  - Text input: "Search"
+
+  - Select list: "English"
+
+  - Button: no label is provided
+
+  - Button: Read Wikipedia in your language
+
+- Images (2 total)
+
+  - "Wikipedia"
+
+  - "Wikipedia logo"
+
+- Links (11 total, in this part of the page)
+
+  - "Wikipedia"
+
+  - "English 5 323 000+ articles"
+
+  - "日本語 1 044 000+ 記事"
+
+  - "Deutsch 2 016 000+ Artikel"
+
+  - "Español 1 306 000+ artículos"
+
+  - "Русский 1 363 000+ статей"
+
+  - "Français 1 829 000+ articles"
+
+  - "Italiano 1 323 000+ voci"
+
+  - "中文 918 000+ 條目"
+
+  - "Português 951 000+ artigos"
+
+  - "Polski 1 201 000+ haseł"
+
+- Lists (0 total, in this part of the page)
+
+  - No lists available.
+
+Jetzt haben wir ein viel besseres Gefühl dafür, was Screenreader-Nutzer erleben.
+
+Einige Bildschirmlesegeräte zeigen die Anzahl bestimmter Elemente an, sobald die Seite geladen ist. JAWS zum Beispiel liest
+normalerweise den Seitentitel vor und sagt dann etwas wie "Die Seite hat 4 Bereiche, 12 Überschriften und 78 Links" (die "Bereiche"
+sind die Orientierungspunkte). Ohne etwas anderes tun zu müssen, als die Seite aufzurufen, haben JAWS-Benutzer bereits ein
+grundlegendes Gefühl dafür, wie die Seite aufgebaut ist.
+
+Wenn JAWS-Benutzer eine Liste dieser Arten von Elementen oder Listen anderer Arten von Elementen hören möchten, können sie das tun,
+indem sie Einfügen + F3 drücken, wodurch der unten gezeigte Dialog erscheint:
+
+![Oberfläche von JAWS](/images/affordanzen/jaws-elements-list.png)
+
+Die Elementeliste in JAWS ermöglicht es den Benutzern, Elemente aller folgenden Arten aufzulisten:
+
+- Anker (Links)
+
+- Block-Zitate
+
+- Buttons
+
+- Kontrollkästchen
+
+- Steuerelemente (auswählbare ARIA-Widget-Steuerelemente, z. B. Tabs in einer Tablist)
+
+- Unterteilungen
+
+- Bearbeitungsfelder (Texteingaben)
+
+- Formularfelder
+
+- Rahmen
+
+- Grafiken
+
+- Überschriften
+
+- Links
+
+- Listenelemente
+
+- Listen
+
+- Objekte
+
+- Absätze
+
+- Placemarker
+
+- Optionsschaltflächen
+
+- Tabellen
+
+Auffallend ist, dass in dieser Liste keine Orientierungspunkte (oder "Regionen", wie JAWS sie nennt) aufgeführt sind, aber die
+Benutzer können mit JAWS durch die Orientierungspunkte navigieren, indem sie die R-Taste drücken, oder sie können die Liste der
+Orientierungspunkte mit der Tastenkombination Einfügen + Strg + R aufrufen. Andere Bildschirmlesegeräte wie NVDA und VoiceOver
+ermöglichen es den Nutzern ebenfalls, die Orientierungspunkte aufzulisten.
+
+Auch wenn der Nutzer die Elemente nicht in Listen wie dieser auflistet, die nach Art des Elements kategorisiert sind, informiert
+das Bildschirmlesegerät den Nutzer über die semantische Bedeutung, wenn er bei den Elementen ankommt. Es sagt zum Beispiel:
+"Überschrift Stufe 1, Grafik: Wikipedia The Free Encyclopedia".
+
+##### Audio-strukturelle Probleme auf der Wikipedia-Startseite
+
+Du hast vielleicht einige Probleme mit der audio-strukturellen Ansicht der Wikipedia-Seite (siehe oben) bemerkt.
+
+- Orientierungspunkte: Es gibt keine Orientierungspunkte auf der Seite. Die nützlichsten Orientierungspunkte sind
+  `<header>, <nav>, <main> und <footer>`. Dieses Design hat keine davon. Screenreader-Nutzer können nicht direkt zu diesen
+  Abschnitten navigieren, weil sie in der semantischen Struktur nicht gekennzeichnet sind.
+
+- Formularelemente: Die Suchschaltfläche hat keine Beschriftung, sodass der Screenreader nur "Schaltfläche" sagen kann,
+  was nicht sehr nützlich ist.
+
+- Linktext: Der Linktext enthält sowohl den Namen der Sprache (z. B. Englisch) als auch die Anzahl der Artikel (5.323.000+).
+  Leider werden die Zahlen mit Leerzeichen in der Mitte geschrieben, anstatt mit Kommas (in der amerikanischen Schreibweise) oder
+  Punkten (wie in den meisten anderen Regionen der Welt). Die Leerzeichen unterteilen die Zahl. Anstatt "fünf Millionen
+  dreihundertdreiundzwanzigtausend" zu sagen, wie es sich gehört, heißt es in Wirklichkeit "fünf dreihundertdreiundzwanzig null
+  null null". Der Versuch, mit der numerischen Notation schick zu sein, unterbricht die korrekte Aussprache der Zahlen für
+  Screenreader-Nutzer.
+
+- Listen: In diesem Teil der Wikipedia-Startseite gibt es keine Listen. Die Liste der Sprachen am oberen Rand der Seite könnte als
+  Liste gestaltet werden. Wenn sie als Liste gestaltet wäre, würde der Screenreader "Liste mit zehn Einträgen" sagen, was dem
+  Benutzer hilft, die Menge des Inhalts in der Liste zu verstehen. (Um fair zu sein, der Teil der Seite unter dem Screenshot oben
+  enthält Listen, die in diesem Screenshot nicht sichtbar sind).
+
+### Beispiel: Eine Wikipedia-Artikelseite
+
+Die audio-strukturelle Erfahrung auf einer Artikelseite in Wikipedia unterscheidet sich von der Erfahrung auf der
+Wikipedia-Startseite, weil die semantische Struktur ganz anders ist. Die Seite ist der Wikipedia-Artikel über Barrierefreiheit
+im Internet. Diesmal zeigen wir zuerst die Gesamtansicht der Audio-Struktur:
+
+#### Die audio-strukturelle "Ansicht" eines Wikipedia-Artikels
+
+- Landmarks (13 total)
+
+  - Main landmark
+
+  - Navigation landmark: "Personal tools"
+
+  - Navigation landmark: "Namespaces"
+
+  - Navigation landmark: "Views"
+
+  - Search landmark
+
+  - Banner (header) landmark
+
+  - Navigation landmark: "Navigation"
+
+  - Navigation landmark: "Tools"
+
+  - Navigation landmark: "Interaction"
+
+  - Navigation landmark: "Print/export"
+
+  - Navigation landmark: "Other projects"
+
+  - Navigation landmark: "Languages"
+
+  - Content Info (footer) landmark
+
+- Headings (43 total)
+
+  - Level 1: "Web Accessibility"
+
+        - Level 2: "Contents "
+
+        - Level 2: "Assistive technologies used for web browsing [ edit ]"
+
+        - Level 2: "Guidelines on accessible web design [ edit ]"
+
+          - Level 3: "Web Content Accessibility Guidelines [ edit ]"
+
+          - Level 3: "Criticism of WAI guidelines [ edit ]"
+
+          - Level 3: "Other guidelines [ edit ]"
+
+            - Level 4: "Canada [ edit ]"
+
+            - Level 4: "Philippines [ edit ]"
+
+            - ....
+
+- Form elements (4 total)
+
+  - Button: "hide"
+
+  - Search text field: "Search Wikipedia"
+
+  - Button: "Go"
+
+- Button:
+
+  - "Language settings Images (4 total)"
+
+  - "Handicapped accessible sign.svg"
+
+  - "Category"
+
+  - "Wikimedia Foundation"
+
+  - "Powered by MediaWiki"
+
+- Links (441 total)
+
+  - "Navigation"
+
+  - "Search"
+
+  - "Wikipedia"
+
+  - ... and many more links (truncated here for brevity)
+
+- Lists (41 total top-level lists: 39 bulleted lists and 2 numbered lists; 53 total lists including sub-lists)
+
+Kannst du aus dieser audio-strukturellen Ansicht erkennen, was auf der Seite steht? Dies ist die Hauptansicht der Seite aus der
+Sicht eines Bildschirmlesers. Alle anderen visuellen Aspekte sind für Screenreader-Nutzer irrelevant. Je mehr du in der semantischen
+Struktur denkst, desto erfolgreicher wirst du sein, wenn es darum geht, ein gutes Benutzererlebnis für Bildschirmleser zu schaffen.
+
+##### Eine audio-strukturelle Analyse der Wikipedia-Artikelseite
+
+Orientierungspunkte: Im Gegensatz zur Wikipedia-Startseite hat das Design der Wikipedia-Artikelseiten viele Orientierungspunkte:
+
+- ein Hauptelement (`<main> oder <div role="main">`)
+
+- 9 Navigationen (`<nav> oder <div role="nav">`), jeweils mit Namen, damit die Nutzer sie voneinander unterscheiden können.
+
+- eine Suche (`<div role="search">`)
+
+- ein Banner/Header (`<header> oder <div role="banner">`)
+
+- ein Footer/Inhaltsinfo (`<footer> oder <div role="contentinfo"`).
+
+Die Liste der verfügbaren Orientierungspunkte ist ziemlich gut, auch wenn 9 Navigationspunkte ein wenig übertrieben sind.
+Normalerweise ist es am besten, die Anzahl der Orientierungspunkte auf eine relativ kurze Liste zu beschränken, denn ein Teil
+des Sinns von Orientierungspunkten ist es, Dinge schneller und einfacher zu finden. Je mehr Orientierungspunkte es gibt, desto
+weniger tragen sie dazu bei, dass alles schneller und einfacher geht.
+
+Überschriften: Die Überschriftenstruktur ist sehr gut. Es gibt ein paar Überschriften in der Vorlage, gefolgt von einer
+guten hierarchischen Struktur im Artikel selbst, mit ein paar Überschriften in der Fußzeile. Das Einzige, was vielleicht
+ein bisschen verwirrend ist, ist das "[ edit ]" am Ende der Überschriften im Hauptartikel. Das ist ein Link, mit dem man
+den Text in diesem Abschnitt des Inhalts bearbeiten kann. Der Link befindet sich in der Überschrift selbst. Das ist kein
+Problem, wirklich nicht. Es ist nur etwas gewöhnungsbedürftig.
+
+Formularelemente: Die Formularelemente haben akzeptable Bezeichnungen.
+
+Bilder: Das erste Bild in der Liste ist ein Dateiname ("Handicapped accessible sign.svg"), was bedeutet, dass das Bild keinen
+Alt-Text hat. Screenreader verwenden normalerweise den Dateinamen, wenn kein Alt-Text verfügbar ist. In diesem Fall hatten wir
+Glück: Der Dateiname ist für Menschen lesbar und leicht verständlich. Hätte der Dateiname aber z. B. img0298.svg gelautet,
+wüssten wir nicht, was das Bild aussagen soll.
+
+Links: Die Liste der Links ist extrem lang. Das ist kein Problem. Ein Problem ist jedoch, dass mehrere Links genau denselben
+Text haben: "[anzeigen]". Wenn du so durch die Liste der Links navigierst, ist es unmöglich, diese Links voneinander zu unterscheiden.
+
+Listen: Es gibt eine Menge Listen auf dieser Seite, viele davon sind Unterlisten in einer Hierarchie. Einige davon sind mit der
+Navigation verbunden. Andere gehören zum Inhalt. Die Tatsache, dass sie als echte Listen (`<ul> und <ol>`) gekennzeichnet sind,
+ist eine gute Sache.
+
+## Wie sieht die ideale audio-strukturelle Benutzererfahrung für eine Seite aus?
+
+Wie solltest du an die Aufgabe herangehen, ein gutes audio-strukturelles Nutzererlebnis zu gestalten? Gibt es so etwas wie eine
+ideale audio-strukturelle UX?
+
+Jede Website ist anders, und jedes Seitendesign ist anders, aber es gibt einige Dinge, die du als Ausgangspunkt im Auge behalten
+solltest.
+
+### Ideale Orientierungspunkte
+
+Eine theoretische Liste der idealen Orientierungspunkte könnte etwa so aussehen:
+
+- `<header> (oder <div role="banner">)`
+
+  - `<nav> (oder <div role="navigation">)`
+
+  - `<div role="search">`
+
+- `<main> (oder <div role="main">)`
+
+- `<footer> (oder <div role="contentinfo">)`
+
+Das ist alles, was du wirklich brauchst. Die Liste der Orientierungspunkte ist recht kurz, und das ist auch gut so. Denk daran,
+dass der Zweck von Orientierungspunkten darin besteht, das Auffinden von Teilen einer Webseite zu erleichtern und den Nutzern
+etwas Zeit zu sparen. Wenn die Liste der Orientierungspunkte zu lang ist, verbringen die Nutzer/innen genauso viel Zeit mit der
+Suche nach Dingen in den Orientierungspunkten wie auf der Seite selbst.
+
+In den meisten Fällen willst du nur eine Kopfzeile, eine Suche, eine Haupt- und eine Fußzeile. Du kannst mehrere Navigationsbereiche
+haben, aber es ist oft am besten, sich auf die Hauptnavigation zu beschränken. Wenn du mehrere Navigationsbereiche einrichtest,
+gib ihnen mit aria-label eindeutige Namen (z.B. `<nav aria-label="Produktkategorien">`
+
+### Ideale Überschriften
+
+- Die ideale Überschriftenstruktur beginnt mit einer Überschrift der Ebene 1 (`<h1>`) innerhalb des Hauptinhalts
+  `(<main> oder <div role="main">).`
+
+- Wenn möglich, sollte es nur eine Überschriftsebene 1 geben, obwohl das keine absolute Regel ist. Auch ein Dialog sollte
+  mit einer Überschrift der Ebene 1 beginnen, denn ein Dialog ist im Grunde eine eigenständige Ansicht, fast wie eine Mini-Webseite.
+
+- Jeder größere Inhaltsbereich sollte durch eine Überschrift dargestellt werden.
+
+- Die Überschriftenebenen sollten eine logische hierarchische Gliederung des Inhalts auf der Seite bilden.
+
+- Überschriften sollten keine Ebenen überspringen (ein untergeordnetes Element einer Überschrift der Ebene 2 sollte z. B.
+  eine Überschrift der Ebene 3 sein, nicht eine Überschrift der Ebene 5).
+
+### Ideale Formelemente
+
+Aus semantischer Sicht ist das Wichtigste, dass alle Formularelemente korrekt beschriftet werden müssen (`<label>`). Es gibt
+noch viele andere Aspekte der Barrierefreiheit von Formularen, aber die anderen Techniken kommen eher bei der Interaktion mit
+dem Formular als bei der Auflistung der Formularelemente zum Tragen.
+
+### Ideale Bilder
+
+Der Alt-Text wird in der Liste der Bilder angezeigt. Deshalb solltest du erstens sicherstellen, dass das Bild einen Alt-Text hat,
+und zweitens, dass der Alt-Text von guter Qualität ist. Er muss genau, kurz und bündig sein und den Zweck des Bildes aussagekräftig
+beschreiben.
+
+### Ideale Links
+
+- Das Wichtigste ist, dass jeder Link einen gültigen Namen für die Barrierefreiheit haben muss. Der barrierefreie Name kann aus
+  normalem Text, dem Alt-Text eines Bildes innerhalb des Links oder einem Label (über aria-label oder aria-labelledby) bestehen.
+
+- Der Linktext sollte auch den Zweck oder das Ziel des Links angemessen vermitteln.
+
+- Der Linktext sollte, wenn möglich, aus dem Kontext gerissen einen Sinn ergeben und eindeutig sein, damit die Nutzerinnen und
+  Nutzer zwischen den Links unterscheiden können, wenn sie alle Links auf der Seite auflisten.
+
+- Füge so viele Links ein, wie du brauchst. Wikipedia-Artikelseiten neigen dazu, mehr Links zu haben als durchschnittliche
+  Webseiten, aber die Links sind angemessen, und es ist nicht falsch, viele Links zu haben, auch wenn es zugegebenermaßen lange
+  dauert, durch sie alle zu navigieren.
+
+### Ideale Listen
+
+- Das Wichtigste ist, dass du die richtige Listenauszeichnung (`<ul>, <ol> oder <dl>`) verwendest, wenn du eine Liste präsentierst.
+
+- Achte außerdem darauf, dass du für jede Situation die richtige Art von Liste verwendest.
+
+- Verwende so viele Listen, wie du brauchst.
+
+## Audiostrukturelle Interaktion UX
+
+Screenreader-Benutzer verwenden in der Regel ihre Tastatur, um mit Elementen zu interagieren (nicht die Maus). Alles muss über die
+Tastatur zugänglich sein.
+
+Während die Nutzer/innen mit der Tastatur mit Elementen interagieren, hören sie auf das Feedback ihres Screenreaders. Die wichtigsten
+Arten von Rückmeldungen, an denen sie interessiert sind, sind folgende:
+
+- Name: Der Name oder die Bezeichnung für das Element. Bildschirmlesegeräte sagen den Namen der meisten semantischen Elemente an,
+  wenn der Nutzer sie auflistet, anvisiert oder durchliest.
+
+- Beschreibung: Zusätzliche Informationen über das Element (über aria-describedby). Screenreader sagen die Beschreibung (falls
+  vorhanden) normalerweise nach dem Namen des Elements an.
+
+- Rolle: Kennzeichnung der Art des Elements, mit dem sie interagieren (z. B. ein Textfeld, ein Registerkarten-Widget, eine
+  Baumansicht, eine Schaltfläche, ein Link, eine Grafik, ein Dialog usw.). Bildschirmlesegeräte zeigen die Rolle der meisten semantischen Elemente an.
+
+- Wert:
+
+  - Eigenschaften: Eigenschaften von Elementen, wie aria-valuemax (bei Dingen wie Schiebereglern), aria-controls, aria-owns, etc.
+
+  - Zustände: Veränderbare Bedingungen für ein Element, wie z. B. aria-selected=true/false, aria-checked=true/false,
+    aria-hidden=true/false, usw. In den meisten Fällen lesen Screenreader die Zustandsänderung automatisch, wenn der Nutzer
+    eine Funktion aktiviert. Zum Beispiel sagt ein Screenreader "erweitert", wenn der Nutzer eine Schaltfläche aktiviert, die von
+    aria-expanded="false" auf aria-expanded="true" wechselt. Es sind kein JavaScript und keine Live-Regionen erforderlich, damit
+    ein Screenreader die Statusänderung anzeigt.
+
+- "Live"-Ankündigungen: Updates
+
+### Live-Events
+
+Live-Events sind für blinde Menschen von Natur aus problematisch. Live-Untertitel auf Videos sind nicht hilfreich, egal, in welchem
+Format sie vorliegen. Bei professionellen Fernsehübertragungen sind die Live-Untertitel in der Regel als visuelles Element in das
+Video eingebettet und enthalten keinen Text, den ein Bildschirmleser lesen kann. Selbst wenn ein textbasiertes Format verwendet
+wird, gibt es die gleichen Probleme wie bei voraufgezeichneten Multimedia-Inhalten: Es gibt keine einfache Möglichkeit, auf die
+Untertitel zuzugreifen.
+
+Mögliche Lösung 1: kontinuierliche AJAX-Updates. Eine Möglichkeit, nützliche Texte für Live-Veranstaltungen zu senden, besteht darin,
+den Text mithilfe von AJAX in Echtzeit direkt in das Dokument zu stellen. Der Nutzer kann den Text dann mit normalen
+Screenreader-Befehlen lesen, sobald er eintrifft. Der Nachteil dieses Ansatzes ist, dass der Nutzer möglicherweise das Ende des
+Textes erreicht und dann ein neuer Text über der aktuellen Position des Nutzers im Dokument eingefügt wird. In diesem Fall müsste
+der Nutzer den Text rückwärts durchlaufen, um den neuen Text zu finden. Das kann dauern und es ist verwirrend, den Ausgangspunkt
+zu finden, vor allem, wenn die Textpassage lang ist oder wenn mehrere Aktualisierungen stattgefunden haben. Die kontinuierliche
+AJAX-Methode kann funktionieren, ist aber nicht die benutzerfreundlichste.
+
+Mögliche Lösung 2: eine Schaltfläche "Mehr Live-Text laden". Es wäre benutzerfreundlicher, taubblinden Nutzern mit einer einfachen
+Schaltfläche die Kontrolle darüber zu geben, wann der Inhalt geladen werden soll. Wenn die Nutzer die Schaltfläche aktivieren, wäre
+es wahrscheinlich am besten, den Fokus auf den Container des neuen Textes zu legen. Der Container müsste auf tabindex="-1" gesetzt
+werden, um den Fokus erfolgreich zu erhalten.

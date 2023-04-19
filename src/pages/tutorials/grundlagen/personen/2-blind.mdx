@@ -83,113 +83,99 @@ Die Standardgeschwindigkeit für Bildschirmlesegeräte ist viel langsamer, in ei
   <tbody>
     <tr>
       <td data-label="Design-Überlegungen">
-        Alle Inhalte müssen in Textform oder über ein Textäquivalent (z. B.
-        Alt-Text für Bilder oder andere Nicht-Text-Objekte) dargestellt werden.
+        Alle Inhalte müssen in Textform oder über ein Textäquivalent (z. B. Alt-Text für Bilder oder
+        andere Nicht-Text-Objekte) dargestellt werden.
       </td>
       <td data-label="Warum?">
-        Bildschirmlesegeräte können Nicht-Text-Inhalte (z. B. Bilder) nicht
-        direkt lesen, aber sie können den von Ihnen bereitgestellten Alt-Text
-        lesen.
+        Bildschirmlesegeräte können Nicht-Text-Inhalte (z. B. Bilder) nicht direkt lesen, aber sie
+        können den von Ihnen bereitgestellten Alt-Text lesen.
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Informationen dürfen nicht allein durch visuelle Attribute vermittelt
-        werden (z. B. Farbe, räumliche Anordnung, Textstärke, Hervorhebung des
-        Hintergrunds usw.).
+        Informationen dürfen nicht allein durch visuelle Attribute vermittelt werden (z. B. Farbe,
+        räumliche Anordnung, Textstärke, Hervorhebung des Hintergrunds usw.).
       </td>
       <td data-label="Warum?">
-        Nicht alle visuellen Informationen sind für Bildschirmleser verfügbar.
-        Selbst die visuellen Attribute, die einigen Bildschirmlesern zur
-        Verfügung stehen, wie z. B. die Textfarbe, werden normalerweise nicht
-        standardmäßig angezeigt.
+        Nicht alle visuellen Informationen sind für Bildschirmleser verfügbar. Selbst die visuellen
+        Attribute, die einigen Bildschirmlesern zur Verfügung stehen, wie z. B. die Textfarbe,
+        werden normalerweise nicht standardmäßig angezeigt.
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar sein
-        (Hinweis: Testen Sie unbedingt mit eingeschaltetem Bildschirmlesegerät,
-        da es bei eingeschaltetem Bildschirmlesegerät feine Unterschiede im
-        Tastaturverhalten gibt).
+        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar sein (Hinweis: Testen Sie
+        unbedingt mit eingeschaltetem Bildschirmlesegerät, da es bei eingeschaltetem
+        Bildschirmlesegerät feine Unterschiede im Tastaturverhalten gibt).
       </td>
       <td data-label="Warum?">
-        Auch wenn die meisten blinden Benutzer eine Maus oder ein Trackpad
-        benutzen können, nützt ihnen das nicht viel, weil sie nicht sehen
-        können, wo sich der Mauszeiger befindet. Für sie ist es effektiver, über
-        die Tastatur zu navigieren.
+        Auch wenn die meisten blinden Benutzer eine Maus oder ein Trackpad benutzen können, nützt
+        ihnen das nicht viel, weil sie nicht sehen können, wo sich der Mauszeiger befindet. Für sie
+        ist es effektiver, über die Tastatur zu navigieren.
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Der Inhalt muss eine gut strukturierte und semantische Markierung
-        verwenden (Überschriften, Orientierungspunkte, Tabellen, Listen usw.).
+        Der Inhalt muss eine gut strukturierte und semantische Markierung verwenden (Überschriften,
+        Orientierungspunkte, Tabellen, Listen usw.).
       </td>
       <td data-label="Warum?">
-        Benutzer von Bildschirmlesegeräten rufen häufig Listen mit
-        Überschriften, Orientierungspunkten und anderen semantischen Elementen
-        auf, um zu verstehen, was auf der Seite steht. Sie können auch anhand
-        dieser Elemente navigieren (z. B. direkt zum wichtigsten Inhaltspunkt
-        oder zu einer bestimmten Überschrift springen).
+        Benutzer von Bildschirmlesegeräten rufen häufig Listen mit Überschriften,
+        Orientierungspunkten und anderen semantischen Elementen auf, um zu verstehen, was auf der
+        Seite steht. Sie können auch anhand dieser Elemente navigieren (z. B. direkt zum wichtigsten
+        Inhaltspunkt oder zu einer bestimmten Überschrift springen).
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Alle benutzerdefinierten Steuerelemente (z. B. Schaltflächen zum Auf-
-        und Zuklappen, Lautstärkeregler für Mediaplayer, Dialoge usw.) müssen
-        den richtigen Namen/Label, die richtige Rolle (entweder mit HTML oder
-        mit ARIA) und den richtigen Wert haben und den Wert ändern, wenn dies
-        angemessen ist (z. B. ändert sich aria-expanded="false" in
+        Alle benutzerdefinierten Steuerelemente (z. B. Schaltflächen zum Auf- und Zuklappen,
+        Lautstärkeregler für Mediaplayer, Dialoge usw.) müssen den richtigen Namen/Label, die
+        richtige Rolle (entweder mit HTML oder mit ARIA) und den richtigen Wert haben und den Wert
+        ändern, wenn dies angemessen ist (z. B. ändert sich aria-expanded="false" in
         aria-expanded="true", nachdem die Schaltfläche aktiviert wurde).
       </td>
       <td data-label="Warum?">
-        Im Gegensatz zu nativen HTML-Elementen haben benutzerdefinierte
-        Steuerelemente von Haus aus keine semantischen Teile, so dass
-        Bildschirmlesegeräte den Benutzern nicht sagen können, was das Widget
-        ist, und die Benutzer nicht über die Eigenschaften des Widgets
-        informieren können, es sei denn, Sie stellen diese Informationen über
-        ARIA-Namen, Rollen, Zustände und Eigenschaften bereit.
+        Im Gegensatz zu nativen HTML-Elementen haben benutzerdefinierte Steuerelemente von Haus aus
+        keine semantischen Teile, so dass Bildschirmlesegeräte den Benutzern nicht sagen können, was
+        das Widget ist, und die Benutzer nicht über die Eigenschaften des Widgets informieren
+        können, es sei denn, Sie stellen diese Informationen über ARIA-Namen, Rollen, Zustände und
+        Eigenschaften bereit.
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Die Nutzer müssen nach jeder Aktion sofort eine Rückmeldung über ihren
-        Screenreader erhalten. Stille nach dem Aktivieren einer Funktion ist
-        immer schlecht!
+        Die Nutzer müssen nach jeder Aktion sofort eine Rückmeldung über ihren Screenreader
+        erhalten. Stille nach dem Aktivieren einer Funktion ist immer schlecht!
       </td>
       <td data-label="Warum?">
-        Beispiele für Rückmeldungen: Erweitertes/geklapptes Gebiet, Änderung des
-        Werts eines Steuerelements (z. B. eines Schiebereglers,
-        erfolgreiche/nicht erfolgreiche Übermittlung eines Formulars,
-        Benachrichtigung, dass eine neue "Seite" in einseitigen Anwendungen
-        geladen wurde usw.).
+        Beispiele für Rückmeldungen: Erweitertes/geklapptes Gebiet, Änderung des Werts eines
+        Steuerelements (z. B. eines Schiebereglers, erfolgreiche/nicht erfolgreiche Übermittlung
+        eines Formulars, Benachrichtigung, dass eine neue "Seite" in einseitigen Anwendungen geladen
+        wurde usw.).
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Videos benötigen Audiodeskriptionen (zusätzliche Erläuterungen zu
-        visuellen Inhalten), wenn die ursprüngliche Tonspur des Videos (Dialoge,
-        Geräusche, Erläuterungen) nicht alles erklärt, was eine blinde Person
-        wissen muss, um das Video zu verstehen.
+        Videos benötigen Audiodeskriptionen (zusätzliche Erläuterungen zu visuellen Inhalten), wenn
+        die ursprüngliche Tonspur des Videos (Dialoge, Geräusche, Erläuterungen) nicht alles
+        erklärt, was eine blinde Person wissen muss, um das Video zu verstehen.
       </td>
       <td data-label="Warum?">
-        Blinde Benutzer können die Dialoge, Erzählungen und andere Töne in
-        Videos hören, aber sie können die visuellen Teile eines Videos nicht
-        sehen. Wenn also die visuellen Teile wichtige Informationen vermitteln,
-        müssen diese Teile laut beschrieben werden, damit blinde Benutzer sie
-        verstehen können.
+        Blinde Benutzer können die Dialoge, Erzählungen und andere Töne in Videos hören, aber sie
+        können die visuellen Teile eines Videos nicht sehen. Wenn also die visuellen Teile wichtige
+        Informationen vermitteln, müssen diese Teile laut beschrieben werden, damit blinde Benutzer
+        sie verstehen können.
       </td>
     </tr>
     <tr>
       <td data-label="Design-Überlegungen">
-        Auf mobilen Geräten: Alle Funktionen erfordern eine Klick-Aktion.
-        Benutzerdefinierte Wischaktionen auf Webseiten funktionieren nicht, wenn
-        der Bildschirmleser aktiviert ist.
+        Auf mobilen Geräten: Alle Funktionen erfordern eine Klick-Aktion. Benutzerdefinierte
+        Wischaktionen auf Webseiten funktionieren nicht, wenn der Bildschirmleser aktiviert ist.
       </td>
       <td data-label="Warum?">
-        Wenn ein blinder Benutzer eines Bildschirmlesegeräts ein mobiles Gerät
-        benutzt, werden von der Bildschirmlesesoftware Wischaktionen verwendet.
-        Alle Funktionen (Steuerelemente, Widgets) auf einer mobilen Webseite
-        erfordern einen Klick, um überhaupt zu funktionieren.
+        Wenn ein blinder Benutzer eines Bildschirmlesegeräts ein mobiles Gerät benutzt, werden von
+        der Bildschirmlesesoftware Wischaktionen verwendet. Alle Funktionen (Steuerelemente,
+        Widgets) auf einer mobilen Webseite erfordern einen Klick, um überhaupt zu funktionieren.
       </td>
     </tr>
   </tbody>

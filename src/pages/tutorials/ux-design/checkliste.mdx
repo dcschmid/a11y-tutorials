@@ -1,0 +1,122 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Grundlegende Checkliste für Barrierefreiheit im Web für Designer'
+pubDate: 2023-04-19
+---
+
+Diese Checkliste ist der Startpunkt für eine barrierefreie Gestaltung, nicht der Endpunkt. Hier werden einige der wichtigsten Konzepte
+hervorgehoben. Fordere dich selbst dazu auf, über das Minimum hinauszudenken und Designs zu entwerfen, die Menschen mit Behinderungen
+tatsächlich gefallen, die sie als nützlich empfinden und die gut zu ihren Bedürfnissen passen.
+
+## Seiten-Titel
+
+- Beschreibt der Seitentitel (der Browser-Titel für die Seite; nicht die Hauptinhaltsüberschrift oder `<h1>`) das Thema oder den Zweck
+  der Seite?
+
+## Überschriften
+
+- Ist jeder Text, der wie eine Überschrift aussieht und funktioniert, als Überschrift gekennzeichnet?
+
+- Sind die Überschriftsebenen so gewählt, dass sie die richtige hierarchische Reihenfolge im Inhalt vermitteln, und nicht wegen ihrer
+  optischen Gestaltung?
+
+## Navigation
+
+- Gibt es eine Methode, um die sich wiederholende Navigation zu überspringen und zum Hauptinhalt zu gelangen? Zwei der wichtigsten
+  Techniken sind die Bereitstellung von HTML/ARIA-Landmarken (z. B. Kopfzeile, Navigation, Hauptteil, Fußzeile) und Links zum Überspringen
+  der Navigation.
+
+- Ist die Reihenfolge, in der der Inhalt gelesen wird und der Fokus liegt, logisch und intuitiv, wie es die Code-Reihenfolge vorgibt?
+
+## Links
+
+- Beschreibt der Linktext eindeutig den Zweck oder das Ziel des Links?
+
+## Farbe/Kontrast
+
+- Werden Informationen durch andere Mittel als nur durch Farben vermittelt? Zum Beispiel, wenn du Farbe und Text verwendest, um anzuzeigen,
+  dass ein Formularfeld einen Fehler enthält, oder wenn du Farben mit Text verwendest, um Diagrammkategorien zu kennzeichnen.
+
+- Hat der gesamte Text einen Farbkontrast von mindestens 4,5 zu 1 (3 zu 1 bei großem Text)?
+
+- Unterscheidet sich Linktext von Nicht-Linktext durch mehr als nur die Farbe?
+
+- Stehen aktionsfähige Elemente klar und deutlich im Mittelpunkt, wenn Nicht-Maus-Nutzer mit der Tabulatortaste oder dem Pfeil darauf zeigen?
+
+- Haben alle Nicht-Text-Elemente (Komponenten der Benutzeroberfläche und grafische Objekte), die für den Zugang zum Inhalt und dessen
+  Verständnis wichtig sind, einen ausreichenden Farbkontrast von mindestens 3 zu 1?
+
+## Vergrößerung und Responsive Design
+
+- Kann ein/e sehbehinderte/r Nutzer/in den Inhalt des Browsers auf jedem Gerät, einschließlich Desktop und Handy, vergrößern oder zoomen?
+
+- Ist das Design für alle Zoomstufen optimiert? Vereinfache das Design so weit wie möglich und vermeide horizontales Scrollen.
+
+- Kann ein/e Nutzer/in die Website mit seinem/ihrem Gerät in seiner/ihrer bevorzugten Ausrichtung (Quer-/Hochformat) nutzen?
+
+## Bilder
+
+- Bietet der alternative Text für informative Bilder dieselben Informationen wie das Bild?
+
+- Weist der alternative Text für Bilder, die eine Aktion auslösen können, wie z. B. ein Bildlink, eine Schaltfläche oder ein
+  Bildkartenbereich, eindeutig auf den Zweck des Links oder der Schaltfläche hin?
+
+- Werden komplexe Bilder oder Infografiken vollständig im Seiteninhalt und mit einer kurzen alternativen Textbeschreibung erklärt?
+
+- Sind dekorative Bilder so gekennzeichnet, dass kein Alternativtext erforderlich ist?
+
+- Wird einfacher Text anstelle von in Bildern eingebettetem Text verwendet? (Es gibt Ausnahmen wie Text in Logos und dekorative Textbilder)
+
+## Tabellen
+
+- Wenn die Seite eine Datentabelle enthält, hat die Tabelle eine Überschrift (Name/Titel), und sind die Spalten und/oder Zeilen im Markup
+  richtig gekennzeichnet?
+
+- Werden komplexe Tabellen vereinfacht, um den Bedarf an zusammengesetzten Spalten- oder Zeilenköpfen zu minimieren oder zu eliminieren?
+
+## Formulare
+
+- Haben alle Formularfelder eine Beschriftung, die immer sichtbar ist?
+
+- Sind alle Formularbeschriftungen ausreichend beschreibend und aufschlussreich? Sind alle Informationen, die der Nutzer zum Ausfüllen
+  des Formulars benötigt, auf der Seite verfügbar?
+
+- Befinden sich alle Formularbeschriftungen und -anweisungen in unmittelbarer Nähe des jeweiligen Formularelements, so dass die Benutzer
+  (auch Benutzer mit Bildschirmvergrößerung) das Formularelement leicht mit der Beschriftung und/oder den Anweisungen in Verbindung bringen
+  können?
+
+- Befinden sich alle Steuerelemente in unmittelbarer Nähe zu dem Inhalt, den sie steuern? Befinden sich zum Beispiel die Schaltflächen
+  "Bearbeiten" und "Löschen" neben dem Inhalt, den sie ändern?
+
+- Bieten Fehlermeldungen genügend Informationen, damit die Nutzer/innen ihren Fehler korrigieren können?
+
+- Sind die Formulare so geschrieben, dass sie mit Autofill verwendet werden können?
+
+## Dynamischer Inhalt
+
+- Werden die Nutzerinnen und Nutzer auf Inhalte aufmerksam gemacht, die dynamisch auf einer Seite eingefügt werden, oder kommt der neue
+  Inhalt direkt nach dem Element, das ihn hervorgerufen hat, in der logischen Lesereihenfolge / Tab-Reihenfolge der Seite?
+
+- Folgen alle Interaktionen über die Tastatur und den Touchscreen den erwarteten Mustern, damit die Nutzer wissen, wie sie mit allen Widgets
+  auf der Seite interagieren können?
+
+- Achte bei allen Interaktionen auf eine Rückmeldung über Erfolg und Misserfolg. Wenn Nutzer/innen skriptgesteuerte Funktionen
+  (Schaltflächen, Formulareingaben usw.) aktivieren, müssen sie wissen, ob die Aktion erfolgreich war oder nicht, und zwar durch eine
+  Erfolgs-/Fehlermeldung, die offensichtliche Aktivierung einer Funktion (z. B. ein Video wird abgespielt, nachdem der/die Nutzer/in die
+  Schaltfläche "Abspielen" betätigt hat) usw. Das Feedback muss für sehende Nutzer/innen, Bildschirmleser/innen und alle anderen
+  Nutzerkategorien verfügbar sein.
+
+## Benutzerdefinierte Widgets
+
+- Verwendet das Design, wann immer möglich, Standard-HTML-Widgets (Links, Schaltflächen, Formularelemente, Steuerelemente usw.)? Native
+  Widgets haben integrierte Funktionen für Barrierefreiheit. Benutzerdefinierte Widgets sind es nicht.
+
+- Wenn du benutzerdefinierte Widgets hast, wurden sie mit voller Tastaturunterstützung erstellt und entsprechen sie den
+  WAI-ARIA-Authoring-Praktiken?
+
+## Touch-Geräte
+
+- Ist die Größe der Hauptlinks und Schaltflächen groß genug und weit genug voneinander entfernt, um sie leicht mit einem Finger zu aktivieren?
+
+- Gibt es eine alternative Möglichkeit, benutzerdefinierte Wischaktionen oder Gesten zu aktivieren? Wenn ein Bildschirmlesegerät auf einem
+  Touch-Gerät aktiviert wird, setzt es alle benutzerdefinierten Wischaktionen und Gesten außer Kraft.

@@ -1,0 +1,57 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Barrierefreiheit als Mindestziel definieren'
+pubDate: 2023-04-10
+---
+
+## Übersicht
+
+Das Minimalziel sollte es sein, eine Website für Menschen zugänglich oder verfügbar zu machen. Ja, wir wollen, dass die Menschen
+Zugang haben, aber wir wollen auch, dass sie ein gutes Erlebnis haben. Sie sollen die Website als benutzerfreundlich, intuitiv,
+überzeugend und angenehm empfinden.
+
+## Die Stärken und Grenzen von Leitlinien
+
+Richtlinien - wie die WCAG 2.1 - spielen eine wertvolle Rolle bei der Unterstützung von Webdesign- und Entwicklungsteams bei der Erstellung barrierefreier Inhalte. Sie sind die zentrale Grundlage für Techniken, die uns ein gemeinsames Vokabular für die Diskussion und Erstellung von Lösungen für die Barrierefreiheit bieten. Man kann nicht wirklich von einer barrierefreien Website sprechen, wenn das Design nicht den Grundprinzipien der Barrierefreiheit entspricht.
+
+Aber kann der umgekehrte Fall zutreffen? Kann man ein Design erstellen, das die Zugänglichkeitsrichtlinien vollständig erfüllt, aber nicht vollständig zugänglich ist? Die Antwort lautet: Ja, das kann vorkommen. Allerdings ist das Risiko, dass eine Website, die den Leitlinien entspricht, in hohem Maße unzugänglich ist, recht gering. Dennoch sollte man darauf hinweisen, dass die Leitlinien nicht jeden einzelnen Aspekt der Barrierefreiheit abdecken. Tatsächlich wurden die Leitlinien mit dem Ziel verfasst, objektiv überprüfbar zu sein, was bedeutet, dass alle subjektiven Aspekte der Zugänglichkeit absichtlich aus den Leitlinien ausgeklammert wurden.
+
+Die Kategorie der Behinderung, die in den aktuellen Leitlinien am meisten vernachlässigt wird, sind kognitive Behinderungen, da viele der Messungen des Zugangs zu kognitiven Behinderungen ein gewisses Maß an subjektiver Beurteilung beinhalten.
+
+### Objektive Leitlinien für die Barrierefreiheit
+
+Viele Aspekte der Barrierefreiheit sind objektiv überprüfbar. Hier sind ein paar Beispiele:
+
+- Alle Bilder müssen ein Alt-Attribut haben.
+- Alle Formulareingabeelemente müssen eine Beschriftung haben.
+- Die Kopfzellen einer Datentabelle müssen mit `<th>` als Kopfzellen gekennzeichnet werden.
+- Die Seite muss einen Titel haben.
+- Farbe kann nicht als einziges visuelles Mittel zur Vermittlung von Informationen verwendet werden.
+
+Diese Dinge sind mit einem objektiven Standard leicht überprüfbar. Die Webseite erfüllt diese Kriterien entweder oder nicht. Jede Person mit einer Ausbildung in Barrierefreiheit kann genau beurteilen, ob eine Seite diese Kriterien erfüllt oder nicht, und es ist möglich, Software-Algorithmen zu schreiben, um einige (wenn auch nicht alle) der objektiven Kriterien zu überprüfen.
+
+### Subjektive Barrierefreiheit Leitlinien
+
+Zu den bewährten Praktiken für die Barrierefreiheit, die nicht so leicht zu testen sind, gehören Dinge wie:
+
+- Verwenden Sie visuelle Anhaltspunkte, um die Aufmerksamkeit des Benutzers auf den Hauptzweck der Webseite zu lenken. (Dies ist ein wichtiger Grundsatz des Nachrichten- und Interaktionsdesigns, insbesondere für Benutzer mit kognitiven Behinderungen, aber wie kann man messen, inwieweit die Aufmerksamkeit des Benutzers fokussiert ist?)
+- Achten Sie darauf, dass die Schriftart gut lesbar ist. (Wie definieren Sie "leicht"? An welchem Punkt ziehen Sie die Grenze, um eine Schriftart als leicht lesbar und eine andere als nicht leicht lesbar zu bezeichnen, und welche Kriterien würden Sie bei dieser Beurteilung zugrunde legen?)
+- Minimieren Sie die kognitiven Fähigkeiten, die zur Nutzung der Webseite erforderlich sind. (Wie messen Sie den Grad der kognitiven Fähigkeiten, die für die Erledigung einer Aufgabe erforderlich sind? An welchem Punkt würden Sie die Grenze ziehen und sagen, dass eine bestimmte Aufgabe zu viel kognitive Fähigkeiten erfordert?)
+
+Viele der subjektiven Kriterien gehen in Bereiche über, die viele eher der Benutzerfreundlichkeit als der reinen Barrierefreiheit zurechnen würden, aber in Wahrheit gibt es viele Überschneidungen zwischen Barrierefreiheit und Benutzerfreundlichkeit. Was ist, wenn eine Website technisch "zugänglich" ist (gemäß den Leitlinien), aber in hohem Maße unbrauchbar ist? Kann man dann wirklich sagen, dass eine solche Website zugänglich ist? Sie mag vielleicht einer begrenzten Definition von Barrierefreiheit entsprechen, aber sie würde nicht die eigentliche Absicht der Barrierefreiheit erfüllen, nämlich dass Menschen mit Behinderungen die Website nutzen können.
+
+### Ideen, die in den Leitlinien hätten enthalten sein sollen
+
+Die WCAG 2.0 wurde 2008 als offizielle Empfehlung verabschiedet. Wir hatten viel Zeit, um die Anwendung der Leitlinien zu üben und ihre Schwächen zu entdecken. Außerdem hat sich seither in der Welt der Technologie eine Menge getan. Was wir gelernt haben, ist, dass es drei Hauptkategorien gibt, in denen die WCAG 2.0 verbessert werden können. In der Tat hat das W3C Arbeitsgruppen eingesetzt, die jeden der folgenden Bereiche überprüfen sollen:
+
+- Kognitive Behinderungen (siehe die W3C-Dokumente: <a href="https://w3c.github.io/coga/gap-analysis/" target="_blank">Cognitive Accessibility Roadmap and Gap Analysis</a>
+  und <a href="https://w3c.github.io/coga/user-research/" target="_blank">Cognitive Accessibility User Research</a>)
+- Sehschwäche (siehe das W3C-Dokument: <a href="https://www.w3.org/TR/2016/WD-low-vision-needs-20160317/" target="_blank">Accessibility Requirements for People with Low vision</a>)
+- Mobile und Touch-Geräte (siehe die W3C-Dokumente: <a href="http://w3c.github.io/Mobile-A11y-TF-Note/" target="_blank">Mobile Accessibility: How WCAG 2.0 and Other W3C/WAI Guidelines Apply to Mobile</a>
+  und <a href="https://www.w3.org/WAI/GL/mobile-a11y-tf/wiki/New_WCAG_2.0_Techniques" target="_blank">Proposed New WCAG 2.0 Techniques for Mobile</a>)
+
+Die WCAG 2.1 (die 2018 zu einer offiziellen Empfehlung wurde) hat viele dieser Lücken in der Barrierefreiheit der WCAG 2.0 mit 17 neuen Erfolgskriterien geschlossen. Es gibt jedoch immer Raum für Verbesserungen, insbesondere im Zuge des technologischen Fortschritts, so dass künftige Versionen der WCAG weiterhin Probleme der Barrierefreiheit und Lösungen aufzeigen werden.
+
+## Über die Leitlinien hinausgehen
+
+Während Sie sich den Herausforderungen der Barrierefreiheit stellen, fordern wir Sie auf, die bestmöglichen Erfahrungen für Menschen mit Behinderungen zu schaffen. So wichtig die Einhaltung von Vorschriften auch ist, sie ist das absolute Minimum. Das Ziel, die Dinge so zu gestalten, dass sie "gut genug" für die Einhaltung der Vorschriften sind, ist nicht immer gut genug für echte Menschen. Überschreiten Sie die Grenzen, um Erlebnisse zu schaffen, die Menschen mit Behinderungen tatsächlich genießen, und nicht nur Erlebnisse, die sie lediglich tolerieren.

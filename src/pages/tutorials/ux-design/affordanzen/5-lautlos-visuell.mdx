@@ -1,0 +1,103 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Taub: Eine stille visuelle UX'
+pubDate: 2023-04-12
+---
+
+## Multimedia
+
+Die größte Herausforderung bei der Barrierefreiheit für gehörlose Menschen sind Video- und Audioinhalte. Die meisten Videos im
+Internet sind nicht mit Untertiteln versehen, sodass sie für Menschen, die den Ton nicht hören können, unzugänglich sind. Die Lösung
+liegt auf der Hand: Biete synchronisierte Untertitel an. Das Modul in dieser Reihe über Audio, Video, Animationen und Bewegung
+behandelt die Richtlinien und Techniken für Untertitel im Detail. Ein paar Highlights aus diesen Materialien sind erwähnenswert:
+
+- Biete die Untertitel als separate, synchronisierte Dateien an: In den meisten Fällen solltest du die Untertitel nicht in das
+  Video einbetten (d. h. als offene Untertitel, die für alle sichtbar sind). In der Regel ist es am besten, die Untertitel als
+  separate Dateien bereitzustellen, die mit dem Video synchronisiert sind. Es ist zwar nicht falsch, die Untertitel in das Video
+  einzubauen - und es kann sogar sinnvoll sein, wenn du zeigen willst, wie wichtig Untertitel sind -, aber für die Nutzerinnen
+  und Nutzer ist es flexibler, wenn die Untertitel vom Video getrennt sind. Sie können die Untertitel ein- oder ausschalten und,
+  je nach Einstellung, auch Farben, Größe und Schriftart anpassen.
+
+- Biete Untertitel in verschiedenen Formaten an: Um möglichst vielen Browsern gerecht zu werden, solltest du die Untertitel in
+  verschiedenen Formaten anbieten.
+
+- Biete WebVTT-Untertitel an: Eines der vielseitigsten Untertitelformate ist WebVTT, weil die Nutzer/innen ihre Präferenzen für
+  Farben, Größe und Schriftart auf Betriebssystemebene festlegen können und Browser, die WebVTT-Anpassungen unterstützen, diese
+  Einstellungen für alle Videos, die der/die Nutzer/in abspielt, übernehmen.
+
+- Biete Optionen zur Anpassung von Untertiteln im Media Player an: Nicht alle Browser unterstützen die Anpassung von WebVTT.
+  Gib den Nutzern daher die Möglichkeit, die Einstellungen für die Untertitel im Media Player selbst anzupassen. Sorge dafür,
+  dass die Einstellungen leicht zu finden und anzupassen sind. Die wichtigsten Optionen sind Textfarbe, Hintergrundfarbe,
+  Textgröße und Schriftart. Du könntest auch Optionen für die Platzierung der Untertitel anbieten (über dem Video, unter dem
+  Video, über dem Video eingeblendet usw.). Wichtig: Wenn möglich, speichere die Einstellungen der Nutzer/innen für die Untertitel,
+  damit sie nicht bei jedem Video die Einstellungen neu vornehmen müssen.
+
+## Live-Events
+
+Live-Veranstaltungen erfordern Untertitel. Für Live-Untertitel braucht man einen professionellen Übersetzer. Theoretisch könnte
+auch ein sehr gutes Spracherkennungssystem diese Aufgabe übernehmen, aber wenn die Qualität des Tons nicht gut kontrolliert wird,
+ist ein automatisches System nicht gut genug.
+
+Es gibt zwei Möglichkeiten, um Untertitel für Live-Veranstaltungen bereitzustellen:
+
+- Verwende ein professionelles Übertragungssystem, um die Untertitel in Echtzeit in das Video selbst einzubetten.
+
+- Verwende AJAX, um synchronisierte Untertitel mit einem Live-Video bereitzustellen. Diese Option kann schwierig einzurichten sein.
+  Die Live-Untertitel werden aufgrund der Verzögerung bei der Transkription der Wörter nie vollständig mit dem Live-Video
+  synchronisiert sein. Eine Möglichkeit, dies zu umgehen, ist das Experimentieren mit einer Verzögerung in der Videoübertragung.
+  Je nach der Geschwindigkeit des Transkribierers und anderen Variablen kannst du das Video um 10 bis 30 Sekunden verzögern, um zu
+  versuchen, die Untertitel nahezu synchron mit dem Video anzuzeigen. Die Untertitel können im Media Player selbst oder direkt unter
+  dem Media Player angezeigt werden.
+
+## Gebärdensprache
+
+Für viele gehörlose Menschen ist die Gebärdensprache ihre erste Sprache und vielleicht immer noch ihre fließendste Sprache.
+Inhalte in Gebärdensprache sind für manche Gehörlose nützlicher als Textinhalte. Das gilt besonders für Videoinhalte. Untertitel
+erscheinen und verschwinden schnell wieder vom Bildschirm und lassen den Menschen nicht genug Zeit, sie zu lesen, wenn das
+Verständnis der Schriftsprache nicht zu ihren Stärken gehört.
+
+Es gibt einige Möglichkeiten, Gebärdensprachdolmetscher/innen für Videos bereitzustellen:
+
+- Binde einen Gebärdensprachdolmetscher in das Originalvideo ein, der neben dem Sprecher steht oder sitzt.
+
+- Verwende die Bild-in-Bild-Technologie (PiP), um den Gebärdensprachdolmetscher in einer Ecke des Videos oder an der Seite zu zeigen.
+
+- Du kannst die Gebärdensprachdolmetschung ein- oder ausschalten und die Dolmetschung als separates Video neben dem Originalvideo
+  abspielen, synchronisiert mit dem Originalvideo.
+
+## Möglichkeiten für Innovationen für gehörlose Nutzer
+
+Hier sind ein paar Ideen für Projekte, die für gehörlose Nutzerinnen und Nutzer einen Unterschied machen könnten:
+
+- Automatische Untertitelung durch Sprache-zu-Text-Technologie: Automatische Untertitel werden nützlich sein, wenn die automatische
+  Sprache-zu-Text-Erkennung ausgereift ist. Die Technologie ist bereits respektabel, aber in vielen Situationen noch nicht genau
+  genug. Die Verbesserung der Text-zu-Sprache-Software wird Gehörlosen eine Welt voller Möglichkeiten eröffnen. Abgesehen von der
+  Barrierefreiheit im Internet, kannst du dir vorstellen, wie sich eine mobile App auswirkt, mit der Gehörlose ihre täglichen
+  Gespräche von der gesprochenen Sprache in Text übersetzen können. Die Person könnte per Text oder noch besser per
+  Gebärdensprache-zu-Text oder Gebärdensprache-zu-Sprache-Technologie antworten.
+
+- Umwandlung von Text in Gebärdensprache: Verbessere die Sprachübersetzungssoftware für die Umwandlung von geschriebenem Text in
+  Avatar-basierte Gebärdensprache. Die Umwandlung ist eine echte Sprachumwandlung, denn Gebärdensprachen sind nicht einfach nur
+  wortwörtliche Versionen von mündlichen Sprachen. Die Amerikanische Gebärdensprache (ASL) basiert zum Beispiel auf der
+  französischen Grammatik, hat aber dennoch ihre eigene Syntax.
+
+- Erkennung von Gebärdensprache: Die Umwandlung von Gebärden durch einen Menschen in Text ist eine viel schwierigere Herausforderung
+  als die Umwandlung von Text in Gebärdensprache, aber eine solche Technologie wäre äußerst nützlich, besonders für Menschen, deren
+  fließendste Sprache die Gebärdensprache ist.
+
+- Füge Optionen für Gebärdensprache zu Medienplayern hinzu: Die meisten Mediaplayer verfügen nicht über die Option, die
+  Gebärdensprachdolmetschung einzuschalten. Selbst wenn die Gebärdensprachdolmetschung verfügbar ist, unterstützen die meisten
+  Media Player keine separate Gebärdensprachspur, sodass die Gebärdensprache dauerhaft zum Originalvideo oder zu einer Kopie des
+  Videos hinzugefügt werden muss. Die Erstellung separater Versionen des Originalvideos ist für die Nutzer/innen kein Problem,
+  kann aber bei der Videoproduktion problematisch sein, vor allem, wenn du nicht das Urheberrecht für das Video besitzt. Wenn du
+  einen Mediaplayer mit einer Gebärdensprachoption erstellst, kannst du ein separates Video nur mit der Gebärdensprachinterpretation
+  erstellen. Dieses Video kann über einem Teil des Hauptvideos, neben dem Video oder über oder unter dem Video platziert werden.
+  Es kann so groß wie nötig gemacht werden, damit die Gebärdensprache leicht zu verstehen ist, und du musst das ursprüngliche Video
+  überhaupt nicht anfassen.
+
+- Finde Wege, um das Hinzufügen von Gebärdensprache kostengünstiger zu machen: Das Hinzufügen von Gebärdensprache zu Videos ist
+  zeitaufwändig und potenziell kostspielig. Es gibt keine fertige Lösung, um den Zeitaufwand für die Produktion von
+  Gebärdensprachvideos zu senken - und es ist wahrscheinlich keine gute Idee, die Arbeit von Gebärdensprachdolmetscher/innen zu
+  unterbieten, indem man sie unter Druck setzt, zu einem reduzierten Satz oder kostenlos zu arbeiten - aber es gibt wahrscheinlich
+  Möglichkeiten, die Verfügbarkeit von Videos mit Gebärdensprachdolmetschung aus einer geschäftlichen oder unternehmerischen
+  Perspektive zu erhöhen.
