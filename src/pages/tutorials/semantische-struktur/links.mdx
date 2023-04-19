@@ -1,0 +1,737 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Links'
+pubDate: 2023-04-20
+---
+
+Screenreader kündigen Links an und lesen dann den Linktext. Du musst nichts Besonderes tun, damit das funktioniert. Es gibt jedoch ein
+paar Best Practices, die du bei Links beachten solltest.
+
+## Links richtig benennen
+
+### Links müssen semantisch als solche gekennzeichnet sein.
+
+Links müssen im Markup semantisch als Links gekennzeichnet sein. Mit anderen Worten: Sie müssen innerhalb eines `<a>`-Elements stehen und
+einen gültigen href-Wert haben.
+
+#### Gutes Beispiel: Ein mit `<a>` markierter Link mit einem gültigen href-Wert
+
+```html
+<a href="https://deque.com">Deque Systems</a>
+```
+
+#### Gutes Beispiel: Ein Link, der mit role="link" und tabindex="0" markiert ist
+
+Bei der Nachrüstung von altem Markup kann die ARIA role="link" eine nützliche Methode sein, um dem Markup Link-Semantik hinzuzufügen,
+ohne zu riskieren, dass Stile, die mit dem alten Markup verbunden sind, zerstört werden. Beachte, dass es besser ist, echte HTML-Links
+(`<a>`) zu verwenden, wenn du neues Markup erstellst, aber das Endergebnis ist für Screenreader-Nutzer so oder so identisch, solange:
+
+- der ARIA-Link wird in der natürlichen Tab-Reihenfolge mit tabindex="0" platziert UND
+
+- das zugehörige JavaScript ermöglicht es dem Benutzer, den Link entweder mit einem Klick oder der Eingabetaste zu aktivieren
+  (beide Event-Handler müssen vorhanden sein).
+
+```html
+<span role="link" tabindex="0" data-href="https://deque.com">Deque Systems</span>
+```
+
+Hinweis: Das data-href-Attribut im obigen Beispiel ist nicht erforderlich. Es ist nur eine von vielen Möglichkeiten, die JavaScript
+nutzen kann, um ein Ziel für den Link anzugeben.
+
+#### Schlechtes Beispiel: Ein gefälschter "Link", erstellt mit einem `<span>`-Element und JavaScript
+
+Das folgende Element wurde so gestaltet, dass es wie ein Link aussieht. Es funktioniert mit einem Mausklick, aber nicht mit der Tastatur.
+Genauso wichtig ist, dass Screenreader ihn nicht als Link erkennen:
+
+```html
+<script>
+  function openInNewTab(url) {
+    var win = window.open(url, '_blank')
+    win.focus()
+  }
+</script>
+
+<span class="fakeLink" onclick="openInNewTab('http://www.deque.com');">Deque Systems</span>
+```
+
+Es reicht nicht aus, ein `<span>`-Element mit JavaScript anklickbar zu machen, denn es gibt keine Möglichkeit für Screenreader zu erkennen,
+dass ein anklickbares `<span>` ein Link ist. Wenn Screenreader-Benutzer also versuchen, von Link zu Link zu navigieren, oder wenn sie die
+Liste der Links im Screenreader aufrufen, werden die falschen `<span>`-Links überhaupt nicht angezeigt.
+
+### ARIA role="link" kann verwendet werden, um Link-Semantik zu bieten
+
+Wenn es unbedingt notwendig ist (was fast nie der Fall ist), kann ein `<span>`-Element als gültiger Link funktionieren - auch für
+Screenreader-Nutzer - wenn die folgenden Bedingungen erfüllt sind:
+
+- Füge role="link" hinzu, damit Screenreader sie als Link erkennen.
+
+- Füge tabindex="0" hinzu, damit er mit der Tastatur fokussierbar ist.
+
+- Stelle sicher, dass das JavaScript sowohl den Mausklick als auch die Eingabetaste zulässt, um den Link zu aktivieren.
+
+Es ist fast immer besser - und einfacher - native HTML-Elemente zu verwenden, als Rollen, zusätzliche Attribute und zusätzliches JavaScript
+hinzuzufügen, damit etwas wie eine Funktion wirkt, die bereits in nativem HTML existiert.
+
+### Links und Buttons sollten entsprechend ihrer Funktion semantisch bezeichnet werden.
+
+Hier sind die wichtigsten Unterscheidungsmerkmale zwischen Links und Schaltflächen:
+
+- Links führen die Nutzer/innen zu verschiedenen Orten (entweder zu einer anderen Seite oder zu einem anderen Ort auf derselben Seite);
+
+- Buttons aktivieren skriptgesteuerte Funktionen (z. B. einen Dialog anzeigen, ein eingeklapptes Menü erweitern, die Schrift fett
+  machen usw.), normalerweise auf derselben Seite, aber eine Schaltfläche kann auch Formulardaten übermitteln.
+
+#### Screenreader-Nutzer werden darüber informiert, ob etwas eine Schaltfläche oder ein Link ist
+
+Screenreader sagen immer "Link" vor Links und "Button" vor Buttons, damit Screenreader-Nutzer immer wissen, was was ist, zumindest was
+das Markup angeht. Webentwickler gehen mit dieser Unterscheidung manchmal nicht so streng um, indem sie Links mit schaltflächenähnlichen
+Funktionen ausstatten oder Schaltflächen so gestalten, dass sie den Nutzer wie Links zu einem Ziel führen. Das Problem bei diesem laxen
+Ansatz ist, dass ein Screenreader-Nutzer, der einen Link finden will, die Liste der Links aufruft und den Link nirgends findet, weil er
+im Markup als Schaltfläche bezeichnet wurde oder umgekehrt. Diese Art der Verwechslung von Schaltflächen und Links kann für
+Screenreader-Nutzer frustrierend sein.
+
+## Linktext
+
+### Ein Link muss einen programmatisch bestimmbaren Text haben, der durch den Algorithmus zur Berechnung des zugänglichen Namens bestimmt wird.
+
+Einem Link muss ein textbasierter Name zugeordnet sein, damit Bildschirmlesegeräte den Benutzern etwas vorlesen können. Wenn einem Link
+kein Name zugeordnet ist, lesen die meisten Bildschirmlesegeräte das Linkziel in der href-Datei vor, um den Benutzern einen Hinweis auf
+den Zweck des Links zu geben.
+
+Der Name einer Verknüpfung wird wie folgt berechnet (in der Reihenfolge, in der Screenreader ihn vorlesen):
+
+- aria-labelledby
+
+- aria-label
+
+- Text, der zwischen dem öffnenden `<a>` und dem schließenden `</a>` Element enthalten ist (einschließlich Alt-Text bei Bildern)
+
+- title-Attribut (beachte, dass dies als letztes Mittel für Screenreader gilt, um etwas zu finden; es sollte nicht als primäre Technik für #
+  die Benennung von Links betrachtet werden)
+
+Auch wenn der native Text des Links bei der Namensberechnung an dritter Stelle steht, sollte er das erste sein, was du bei der
+Erstellung des Linktextes berücksichtigst. Andere Methoden sind für komplexere Situationen gedacht.
+
+#### Gutes Beispiel: Linktext innerhalb des `<a>`-Elements
+
+Der Linktext muss von einem Bildschirmlesegerät erkannt werden können, darf keine doppelte Bezeichnung haben und muss fokussierbar sein.
+Durch die Verwendung des richtigen HTML-Elements für Links, dem `<a>`, wird sichergestellt, dass jeder Link einen zugänglichen Namen hat.
+
+```html
+<p><a href="https://dequeuniversity.com/contact/">Contact Us</a></p>
+<p><a href="https://dequeuniversity.com/resources/">Examples & Resources</a></p>
+```
+
+#### Gutes Beispiel: Linktext aus dem alt-Attribut des img-Elements
+
+Die Verwendung des alt-Attributs des img-Elements stellt sicher, dass der Zweck des Links klar ist und dass der Text für Bildschirmleser
+sichtbar ist.
+
+```html
+<p>
+  <a href="https://dequeuniversity.com/curriculum/">
+    <img src="info.png" alt="Web accessibility curriculum" />
+  </a>
+</p>
+<p>
+  <a href="http://www.deque.com">
+    <img width="93" height="33" alt="Deque Systems" src="deque_logo.png" />
+  </a>
+</p>
+```
+
+#### Gutes Beispiel: Verwendung von aria-label, um den nativen Linktext zu überschreiben
+
+Die Verwendung des Attributs aria-label ermöglicht es, einen Link mit erkennbarem Text zu versehen, wo dies sonst nicht möglich wäre.
+Dieses Beispiel zeigt die Verwendung von aria-label bei mehreren "Teaser"-Nachrichten auf der Seite. Jeder Link hat den gleichen
+allgemeinen "Weiterlesen..."-Text und das aria-label ermöglicht es, die einzelnen Links voneinander zu unterscheiden.
+
+```html
+<p>
+  The National Museum of African American History and Culture was established in 2003 by an Act of
+  Congress, making it the 19th Smithsonian Institution museum.
+  <a
+    href="https://www.si.edu/Museums/african-american-history-and-culture-museum"
+    aria-label="Read more about the National Museum of
+      African American History and Culture">
+    Read more...
+  </a>
+</p>
+<p>
+  The National Air and Space Museum, Steven F. Udvar-Hazy Center displays hundreds of aviation and
+  space artifacts that are too large to exhibit in the museum on the National Mall in Washington,
+  D.C.
+  <a
+    href="https://www.si.edu/Museums/air-and-space-museum-udvar-hazy-center"
+    aria-label="Read more about the Steven F. Udvar-Hazy Center">
+    Read more...
+  </a>
+</p>
+<p>
+  The National Museum of American History is devoted to the scientific, cultural, social,
+  technological, and political development of the United States.
+  <a
+    href="https://www.si.edu/Museums/american-history-museum"
+    aria-label="Read more about the National Museum of American History">
+    Read more...
+  </a>
+</p>
+```
+
+#### Gutes Beispiel: Zusätzlicher Linktext mit verstecktem Text
+
+Manchmal kann es sinnvoll sein, in einem Link zusätzliche Informationen für Screenreader-Nutzer in Form von verstecktem Text bereitzustellen.
+Der Text wird per CSS mit der Clip-Methode ausgeblendet.
+
+```html
+<head>
+  <title>Museum Information</title>
+  <style>
+    .visually-hidden {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      border: 0;
+      height: 1px; margin: -1px;
+      overflow: hidden;
+      padding: 0
+      width: 1px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    The National Museum of American History is devoted to the scientific, cultural, social,
+    technological, and political development of the United States.
+    <a href="https://www.si.edu/Museums/american-history-museum">
+      Read more
+      <span class="visually-hidden"> about the National Museum of American History </span>...
+    </a>
+  </p>
+</body>
+```
+
+#### Gutes Beispiel: Verwendung von aria-label zur Bereitstellung von Linktext für Hintergrundbilder
+
+Eine gängige Technik zur Erstellung von Links zu sozialen Medien ist die Verwendung von Hintergrundbildern, die den Links zugeordnet
+werden. Diese Technik sieht für sehende Nutzer gut aus, aber die Links haben keinen zugänglichen Namen, wenn nicht eine andere Technik
+angewendet wird. In diesem Beispiel versieht aria-label den Link mit einem Text, den Screenreader den Nutzern mitteilen können.
+
+```html
+<a
+  href="https://www.facebook.com/dequesystems/"
+  class="facebook"
+  aria-label="Deque's Facebook page"></a>
+```
+
+### Der Zweck eines jeden Links sollte allein aus dem Linktext ersichtlich sein.
+
+Screenreader-Benutzer hören sich Links oft ohne Kontext an, entweder indem sie durch die Links navigieren oder indem sie einen
+Tastaturbefehl verwenden, um alle Links auf der Seite aufzulisten. Die beste Methode ist, sicherzustellen, dass alle Links auch
+ohne Kontext Sinn ergeben.
+
+<table>
+  <thead>
+    <tr>
+      <th>Schlechter Linktext</th>
+      <th>Guter Linktext</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Schlechter Linktext">Click here</td>
+      <td data-label="Guter Linktext">Computer configuration options</td>
+    </tr>
+    <tr>
+      <td data-label="Schlechter Linktext">Here</td>
+      <td data-label="Guter Linktext">an article about bees on the Smithsonian web site</td>
+    </tr>
+    <tr>
+      <td data-label="Schlechter Linktext">Read more</td>
+      <td data-label="Guter Linktext">Read more about gaming memes</td>
+    </tr>
+    <tr>
+      <td data-label="Schlechter Linktext">More</td>
+      <td data-label="Guter Linktext">More about the scientific method</td>
+    </tr>
+  </tbody>
+</table>
+
+#### Gutes Beispiel: Link-Text macht aus dem Kontext heraus Sinn
+
+Hier findest du empfohlene Beispiele für Linktexte.
+
+```html
+<p>Learn more about <a href="/products.html">our products</a>.</p>
+<p>
+  Read a fascinating article about the
+  <a href="http://tinyurl.com/c3z77jt">resident microbes in the human body</a>.
+</p>
+<p>
+  Our <a href="surpassed.html">second quarter earnings</a> have surpassed investor expectations.
+</p>
+```
+
+#### Schlechtes Beispiel: Nicht-beschreibender Linktext
+
+Bei den angezeigten Links wird der Zweck des Links nicht im Linktext angegeben, so dass es für Screenreader-Nutzer schwieriger ist,
+zu verstehen, wohin der Link führt, wenn sie eine Liste der Links außerhalb ihres Kontexts auf der Seite hören.
+
+```html
+<p>Learn more about our products <a href="/products.html">here</a>.</p>
+<p>To read a fascinating article about the resident microbes in the human body
+  <a href="http://tinyurl.com/c3z77jt">click here</a>. </p>
+<p>Our second quarter earnings have surpassed investor expectations.
+  <a href="surpassed.html">More...</span></a></p>
+```
+
+### Der Linktext sollte die Rolle ("Link") nicht wiederholen.
+
+Screenreader sagen "Link" und lesen dann den Linktext. Es ist also nicht nötig, das Wort "Link" in den Linktext aufzunehmen.
+
+### Merkmale wie Beschriftungen, Namen und Textalternativen für Inhalte, die auf mehreren Webseiten die gleiche Funktion haben, müssen einheitlich gekennzeichnet werden.
+
+#### Schlechtes Beispiel: Links auf dieselbe Seite mit unterschiedlichem Linktext
+
+Diese beiden Links führen zum selben Ort, haben aber unterschiedliche Linktexte.
+
+```html
+<p><a href="contact.html">Our Company</a></p>
+<p><a href="contact.html">Contact Us</a></p>
+```
+
+#### Schlechtes Beispiel: Links zu verschiedenen Seiten mit demselben Linktext
+
+Diese beiden Links führen zu unterschiedlichen Orten, haben aber denselben Linktext.
+
+```html
+<p><a href="contact.html">Contact Us</a></p>
+<p><a href="directory.html">Contact Us</a></p>
+```
+
+## Links zu externen Seiten, neue Fenster, Dateien
+
+### Ein Link, der sich in einem neuen Fenster oder Tab öffnet, sollte darauf hinweisen, dass er sich in einem neuen Fenster oder Tab öffnet.
+
+Für die Nutzer kann es hilfreich sein, zu wissen, wann ein Link ein neues Fenster öffnet. Ein Texthinweis (z. B. "öffnet in einem neuen
+Fenster") oder ein Symbol mit entsprechendem Alt-Text sind zwei der gängigsten Möglichkeiten, dies anzuzeigen. Achte darauf, dass der
+Hinweis sowohl für sehende als auch für blinde Nutzer/innen von Bildschirmlesegeräten verfügbar ist.
+
+#### Schlechtes Beispiel: Kein Hinweis, dass der Link in einem neuen Fenster oder Tab geöffnet wird
+
+Der Link gibt keinen Hinweis darauf, dass er in einem neuen Fenster geöffnet wird.
+
+```html
+<p>
+  <a href="https://dequeuniversity.com" target="_blank">Schulung</a>
+</p>
+```
+
+#### Gutes Beispiel: Bild mit Alt-Text, der angibt, dass der Link in einem neuen Fenster geöffnet wird
+
+Dieses Beispiel zeigt die Verwendung eines Bildes mit alt. Sehende Nutzer sehen ein Symbol, das anzeigt, dass der Link in einem neuen
+Fenster geöffnet wird. Blinde Nutzer hören den Alt-Text, der dasselbe anzeigt.
+
+```html
+<p>
+  <a href="https://dequeuniversity.com" target="_blank"
+    >Deque training
+    <img src="newWindow.png" alt="opens new window" width="16" height="16" />
+  </a>
+</p>
+```
+
+#### Gutes Beispiel: CSS und ARIA verwenden, um anzuzeigen, dass ein Link in einem neuen Fenster geöffnet wird
+
+Dieses Beispiel zeigt eine andere Methode, um darauf hinzuweisen, dass ein Link in einem neuen Fenster geöffnet wird. Sehende Nutzer sehen
+ein Symbol, das anzeigt, dass der Link in einem neuen Fenster geöffnet wird, und blinde Nutzer hören einen Text, der dasselbe anzeigt.
+
+```html
+<p>
+  <a
+    aria-describedby="a11y-message--new-window"
+    class="icon--new-window"
+    href="https://dequeuniversity.com"
+    target="_blank"
+    >Deque training</a
+  >
+</p>
+. .
+<span aria-hidden="true" class="visually-hidden" id="a11y-message--new-window">
+  (opens new window)</span
+>
+```
+
+Im obigen Code kann die Klasse icon--new-window am Anker-Tag verwendet werden, um ein Icon per CSS (Glyphen-Icon) nach dem Linktext
+einzufügen. Das `<span>` mit id="a11y-message--new-window" stellt den Text "öffnet ein neues Fenster" als einzelne Instanz auf der Seite
+bereit, die sowohl visuell mit der CSS-Clip-Methode als auch von Screenreadern mit aria-hidden="true" ausgeblendet wird.
+Eine oft übersehene Tatsache: aria-describedby und aria-labelledby WOLLEN auf Inhalte zugreifen, die sich in einem mit aria-hidden="true"
+versteckten Container befinden. In diesem Fall bedeutet das für uns, dass ein Bildschirmlesegerät die Meldung "Öffnet ein neues Fenster"
+lesen kann, wenn der Tastaturfokus auf den Link gelegt wird, aber es verhindert, dass Bildschirmlesegeräte-Nutzer die Meldung "Öffnet ein
+neues Fenster" sehen, während sie die Seite durchsuchen.
+
+Der Vorteil dieses Ansatzes gegenüber der Einbindung eines Bildes mit Alt-Text innerhalb des Ankers ist, dass es effizienter ist, als für
+jeden Link, der ein neues Fenster öffnet, ein Bild zu laden. Der Nachteil ist, dass der Text "Öffnet ein neues Fenster" im Browsemodus
+nicht von NVDA oder JAWS gelesen wird, sondern nur, wenn der Nutzer mit der Tabulatortaste auf den Link geht.
+
+### Ein Link zu einer Datei oder einem Ziel in einem alternativen oder nicht webbasierten Format sollte den Datei- oder Zieltyp angeben.
+
+Für die Nutzer kann es hilfreich sein zu wissen, wenn ein Link eine Datei öffnet oder zu einem Ziel in einem anderen Format als dem Internet
+führt, z. B. ein Word-Dokument, PDF-Dokument, Photoshop-Dokument usw. Eine Textangabe (z. B. "PDF-Dokument") oder ein Symbol mit
+entsprechendem Alt-Text sind zwei der gängigsten Möglichkeiten, dies anzuzeigen. Achte darauf, dass der Hinweis sowohl für sehende Nutzer
+als auch für blinde Nutzer von Bildschirmlesegeräten verfügbar ist.
+
+#### Gutes Beispiel: Link-Zieldateityp im Linktext angegeben
+
+Ein Artikel mit mehreren Dateiversionen kann Links zu diesen anderen Versionen haben, die mit ihrem Dateityp gekennzeichnet sind.
+
+```html
+<ul>
+  <li>
+    <a href="https://dequeuniversity.com/screenreaders/survival-guide">
+      Screen Reader Survival Guide
+    </a>
+  </li>
+  <li>
+    <a href="https://dequeuniversity.com/assets/pdf/screenreaders/survival-guide.pdf">
+      PDF version of the Screen Reader Survival Guide
+    </a>
+  </li>
+</ul>
+```
+
+#### Gutes Beispiel: Link-Ziel-Dateityp im Alt-Text des Bildes angegeben
+
+Der Alt-Text des Bildes in diesem Beispiel identifiziert das Linkziel als PDF-Datei.
+
+```html
+<a href="https://dequeuniversity.com/assets/pdf/screenreaders/survival-guide.pdf">
+  View the Screen Reader Survival Guide
+  <img src="pdf.png" alt="PDF document" width="16" height="16" />
+</a>
+```
+
+### Ein Link zu einer externen Website DARF darauf hinweisen, dass er zu einer externen Website führt.
+
+Für die Nutzer kann es hilfreich sein zu wissen, wenn ein Link sie von der aktuellen Website zu einer anderen Website führt. Ein
+Texthinweis (z. B. "Link führt zu einer externen Website") oder ein Symbol mit entsprechendem Alt-Text sind zwei der gängigsten
+Möglichkeiten, dies anzuzeigen. Achte darauf, dass der Hinweis sowohl für sehende als auch für blinde Nutzer/innen von
+Bildschirmlesegeräten verfügbar ist.
+
+#### Gutes Beispiel: Textangabe, dass der Link zu einer externen Website führt
+
+Der Link in diesem Beispiel enthält einen Texthinweis am Ende des Links, der darauf hinweist, dass er zu einer externen Website führt.
+
+```html
+<p><a href="http://www.google.com/">Google (link leads to external site)</a></p>
+```
+
+#### Schlechtes Beispiel: Kein Hinweis, dass der Link zu einer externen Website führt
+
+Obwohl der Link zu einer externen Seite führt, gibt es keinen eindeutigen Hinweis darauf, dass er das tut.
+
+```html
+<p><a href="http://www.google.com/">Google</a></p>
+```
+
+## Visuell vom Text unterscheidbar
+
+### Links müssen sich visuell vom umgebenden Text abheben.
+
+Sehende Nutzer müssen in der Lage sein, den Unterschied zwischen Linktext innerhalb eines Absatzes oder eines anderen Textblocks und dem
+umgebenden Text visuell zu erkennen. Wenn sie den Unterschied nicht erkennen können, wissen sie nicht, welche Elemente anklickbar sind,
+und verpassen möglicherweise wichtige Links. Es besteht keine Notwendigkeit, die Standardgestaltung zu ändern, um die Best Practices für
+Barrierefreiheit zu erfüllen.
+
+Die Farbe allein darf nicht verwendet werden, um Links vom umgebenden Text zu unterscheiden, es sei denn, der Farbkontrast zwischen dem
+Link und dem umgebenden Text beträgt mindestens 3:1 und eine zusätzliche Unterscheidung wird vorgenommen, wenn der Link mit dem Mauszeiger
+bewegt wird oder den Fokus erhält.
+
+Es gibt einige gängige Methoden, um zwischen Links und Text zu unterscheiden:
+
+- Andere Farbe plus Unterstreichung: Dies ist das Standard-Styling in Browsern.
+
+- Eine andere Farbe und eine Unterstreichung der Links nur bei Hover und Fokus: Manche Designer mögen das Aussehen von unterstrichenen
+  Links nicht, also entfernen sie die Unterstreichung aus der Gestaltung. Das Entfernen der Unterstreichung wird für Links im
+  Hauptinhaltsbereich eines Dokuments nicht empfohlen, da Menschen mit Sehschwäche die Farbe des Textes nicht von der Farbe der Links
+  unterscheiden können, bevor sie mit der Maus darüber fahren oder mit der Tastatur zu ihnen wechseln. Dennoch kann diese Technik zulässig
+  sein (auch wenn davon abgeraten wird), wenn das Kontrastverhältnis zwischen dem verlinkten Text und dem nicht verlinkten Text mindestens
+  3:1 beträgt und die Unterstreichung sowohl beim Tastaturfokus (wenn die Nutzer/innen mit der Tabulatortaste auf den Link klicken) als auch
+  beim Hover (wenn die Nutzer/innen mit der Maus über den Link fahren) sichtbar wird.
+
+- Unterschiedliche Hintergrundfarbe bei Hover und Fokus: Diese Technik kann in Kombination mit dem Hinzufügen einer Unterstreichung bei
+  Hover und Fokus verwendet werden.
+
+- Füge eine Kontur oder einen Rahmen hinzu, wenn du den Mauszeiger bewegst und fokussierst: Diese Technik kann in Kombination mit dem
+  Hinzufügen einer Unterstreichung und/oder einer Änderung der Hintergrundfarbe bei Hover und Fokus verwendet werden.
+
+- Platzierung in einem Navigationsmenü: Sehende Nutzer verstehen, dass es sich um anklickbare Menüpunkte handelt, wenn das Menü selbst so
+  gestaltet ist, dass es offensichtlich ein Navigationsmenü ist. Diese Methode ist etwas schwierig zu definieren, denn es gibt viele
+  Möglichkeiten, ein Navigationsmenü zu gestalten, die alle wie ein Navigationsmenü aussehen können. Die Kurzfassung lautet: Wenn es wie
+  ein Navigationsmenü aussieht, heben sich die Links ausreichend vom umgebenden Text ab, und es ist nicht nötig, die Links zu unterstreichen.
+
+#### Gutes Beispiel: Visuell erkennbare Verbindung
+
+This hyperlink to the <a href="#"  target="_blank">module introduction page</a> is easily distinguishable visually from the surrounding text because of the underline and color change.
+
+## Visuelle Fokusanzeige
+
+### Alle fokussierbaren Elemente müssen eine visuelle Fokusanzeige haben, wenn sie fokussiert sind.
+
+Browser zeigen in der Regel an, welches Element im Fokus ist, indem sie es entweder mit einer gepunkteten Linie (wie in Edge, Internet
+Explorer und Firefox) oder einer durchgehenden farbigen Linie (wie in Chrome und Safari) umreißen. Die gepunktete Linie ist etwas schwer
+zu erkennen, vor allem für Menschen mit Sehschwäche, aber solange der Standard-Fokusindikator des Browsers beibehalten wird, wird die
+visuelle Gestaltung im Allgemeinen als ausreichend angesehen, um die Richtlinien zu erfüllen, zumindest was die minimale Einhaltung angeht.
+
+#### Schlechtes Beispiel: Der visuelle Fokusindikator wurde entfernt
+
+Sehende Tastaturbenutzer müssen sehen, wo der Tastaturfokus liegt. Wenn du den sichtbaren Fokusindikator mit outline:none entfernst und ihn
+nicht durch einen anderen Stil ersetzt, wissen sehende Tastaturbenutzer nicht, welcher Link den Fokus hat, was die Nutzung der Webseite
+extrem erschwert.
+
+```html
+<style>
+  a:focus {
+    outline: none;
+  }
+</style>
+```
+
+### Fokussierbare Elemente sollten verbesserte visuelle Fokusindikatoren haben.
+
+Auch wenn dies in der Regel nicht erforderlich ist, um die Mindestanforderungen der Richtlinien zu erfüllen, können Nutzer mit
+Sehschwäche von verbesserten visuellen Fokusindikatoren auf Links, Schaltflächen, Formularelementen und anderen fokussierbaren
+Elementen profitieren. Zu den Verbesserungen können eine andere Hintergrundfarbe, eine andere Schriftfarbe, eine Umrandung oder ein
+Rahmen gehören.
+
+Bei der Erstellung von verbesserten visuellen Fokusindikatoren solltest du alle folgenden Punkte berücksichtigen:
+
+- links — a:focus {}
+
+- buttons — button:focus {}
+
+- inputs — beachte, dass ein einziger Stil für alle Eingaben ausreichen kann, je nach Design (e.g. input:focus {}, aber die Stile können auch für einzelne Eingänge festgelegt werden:
+
+  - text inputs — input[type=text]:focus {}
+
+  - image inputs — input[type=image]:focus {}
+
+  - submit buttons — input[type=submit]:focus {}
+
+  - radio buttons — input[type=radio]:focus {}
+
+  - All other input types
+
+- checkboxes — input[type=checkbox]:focus {}
+
+- drop-down selection inputs — select:focus {}
+
+- textarea fields — textarea:focus {}
+
+- ARIA controls:
+
+  - ARIA links — [role=link]:focus {}
+
+  - ARIA buttons — [role=button]:focus {}
+
+  - ARIA inputs — [role=radio], [role=checkbox], etc.
+
+  - ARIA tabs — [role=tab]:focus {}
+
+  - All other focusable custom ARIA controls
+
+- All other focusable items
+
+#### Gutes Beispiel: Der visuelle Fokusindikator wurde verbessert
+
+Eine Möglichkeit, den visuellen Fokusindikator zu verbessern, ist das Hinzufügen einer Hintergrundfarbe und eines auffälligeren Umrisses.
+
+```html
+<style>
+  a:focus {
+    outline: 2px solid #8cc63f;
+    background-color: #fdf6e7;
+  }
+</style>
+```
+
+Jede Website hat ihren eigenen Stil und ihre eigene visuelle Ästhetik, sodass die Farben und das Styling des obigen Beispiels möglicherweise
+angepasst werden müssen.
+
+## Navigieren in Links mit Bildschirmlesern
+
+### Navigiere durch alle fokussierbaren Elemente
+
+Die Tabulatortaste: Die wohl gebräuchlichste Methode, um durch die Links auf der Seite zu navigieren, ist die Tabulatortaste (oder
+Umschalttaste + Tabulator, um rückwärts zu gehen), wodurch der Fokus auf jedem fokussierbaren Element landet, egal ob es sich um einen
+Link, eine Schaltfläche, ein Formularelement oder ein benutzerdefiniertes Steuerelement handelt. Wenn du dich nur für Links interessierst,
+ist das nicht die beste Methode, aber sie funktioniert, wenn du ein paar zusätzliche Tastenanschläge in Kauf nimmst, um an den anderen
+fokussierbaren Elementen vorbeizukommen.
+
+### Alle Links auflisten
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Einfügen + F7 (um die Elementliste anzuzeigen), dann wähle Links</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Strg + Option + U (um den Rotor zu öffnen), dann benutze die Pfeile nach links oder rechts,
+        um Links auszuwählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+#### Beispiel
+
+Mit der Taste Einfügen + F7 in JAWS kannst du eine Liste mit allen Links auf der Seite aufrufen.
+
+![Alle Links auflisten in JAWS](/images/semantische-struktur/jaws-list-of-links.png)
+
+Die Benutzer können wählen, ob sie alle Links, nur besuchte Links oder nur nicht besuchte Links sehen möchten. Diese Liste kann
+in der Reihenfolge sortiert werden, in der sie auf der Seite erscheinen, "In Tab Order", wie JAWS sagt, oder die Liste kann
+alphabetisch sortiert werden.
+
+![Alle Links auflisten in JAWS 2](/images/semantische-struktur/jaws-list-of-links-alpha.png)
+
+### Navigiere von einem Link zum nächsten
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">K</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">K</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl + L</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Benutze den Rotor, um Links auszuwählen (drehe zwei Finger auf dem Bildschirm nach links
+        oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Links auswählen
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Navigiere nur durch nicht besuchte Links
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">U</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">U</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+### Nur durch besuchte Links navigieren
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">V</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">V</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl + V</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>

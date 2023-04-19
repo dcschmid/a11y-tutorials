@@ -1,0 +1,252 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Listen'
+pubDate: 2023-04-21
+---
+
+Wenn Screenreader auf eine Liste stoßen, sagen sie an, dass es sich um eine Liste handelt, und sie sagen an, wie viele Elemente in der
+Liste enthalten sind. Das hilft blinden Nutzern dabei, ein Gefühl dafür zu bekommen, was die Dinge sind (Listen) und wie groß sie sind
+(die Anzahl der Elemente) - Dinge, die sehende Nutzer schon beim Anschauen der Listen erkennen. Indem wir Listen die richtige Semantik
+geben, können wir blinden Nutzern eine gleichwertige Erfahrung bieten.
+
+## Semantisches Markup für Listen
+
+### Listen müssen unter Verwendung des entsprechenden semantischen Markups erstellt werden.
+
+Es gibt drei Haupttypen von Listen in HTML:
+
+- Ungeordnete Listen (`<ul>`) werden als Aufzählungslisten von Listenelementen (`<li>`) dargestellt. Ungeordnete Listen sollten verwendet
+  werden, wenn eine Reihe von Elementen in beliebiger Reihenfolge angeordnet werden kann.
+
+- Geordnete Listen (`<ol>`) werden als nummerierte Listen von Listenelementen (`<li>`) dargestellt. Geordnete Listen sollten verwendet werden,
+  wenn die Listenelemente in einer bestimmten Reihenfolge angeordnet werden müssen.
+
+- Definitionslisten (oder Beschreibungslisten in HTML5) (`<dl>`) werden als gepaarte Begriffe (`<dt>`) und Definitionen (`<dd>`) dargestellt.
+  Definitions-/Beschreibungslisten werden verwendet, um einen Begriff mit seiner Definition oder einen Namen mit einem Wert zu verbinden.
+
+Bildschirmlesegeräte benachrichtigen die Nutzer, wenn sie zu einer Liste kommen, und teilen ihnen mit, wie viele Elemente sich in einer
+Liste befinden. So wissen die Zuhörer, was sie gerade hören und was sie erwarten können.
+
+Wenn du eine Liste nicht als echte Liste kennzeichnest - z. B. wenn du eine Tabelle verwendest, um eine falsche Liste zu erstellen, oder
+wenn du das `<br>`-Element verwendest, um eine falsche Liste zu erstellen - können Bildschirmlesegeräte die Zuhörer nicht darüber informieren,
+dass sie eine Liste hören, und sie können ihnen nicht mitteilen, wie viele Elemente in der Liste enthalten sind.
+
+#### Gutes Beispiel: Eine ungeordnete Liste mit korrektem Markup
+
+Hier ist eine ungeordnete Liste, die das richtige semantische Markup verwendet:
+
+```html
+<p>These are a few of my favorite things</p>
+<ul>
+  <li>Raindrops on roses</li>
+  <li>Whiskers on kittens</li>
+  <li>Bright copper kettles</li>
+  <li>Warm woolen mittens</li>
+  <li>Brown paper packages tied up with strings</li>
+  <li>Cream colored ponies</li>
+  <li>Crisp apple strudels</li>
+  <li>Doorbells and sleigh bells</li>
+  <li>Schnitzel with noodles</li>
+  <li>Wild geese that fly with the moon on their wings</li>
+  <li>Girls in white dresses with blue satin sashes</li>
+  <li>Snowflakes that stay on my nose and eyelashes</li>
+  <li>Silver white winters that melt into springs</li>
+</ul>
+```
+
+Hör dir an, wie VoiceOver diese Liste in Safari auf einem Mac vorliest:
+
+<audio controls>
+  <source src="/audio/list-voiceover.ogg" type="audio/ogg" />
+  <source src="/audio/list-voiceover.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+VoiceOver liest die Liste wie folgt vor:
+
+These are a few of my favorite things.
+
+List 13 items.
+
+Bullet, Raindrops on roses.
+
+Bullet, Whiskers on kittens.
+
+Bullet, Bright copper kettles.
+
+Bullet, Warm woolen mittens.
+
+Bullet, Brown paper packages tied up with strings.
+
+Bullet, Cream colored ponies.
+
+Bullet, Crisp apple strudels.
+
+Bullet, Doorbells and sleigh bells.
+
+Bullet, Schnitzel with noodles.
+
+Bullet, Wild geese that fly with the moon on their wings.
+
+Bullet, Girls in white dresses with blue satin sashes.
+
+Bullet, Snowflakes that stay on my nose and eyelashes.
+
+Bullet, Silver white winters that melt into springs
+
+Hör dir an, wie JAWS diese Liste im Internet Explorer unter Windows vorliest:
+
+<audio controls>
+  <source src="/audio/list-jaws.ogg" type="audio/ogg" />
+  <source src="/audio/list-jaws.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+JAWS liest den Inhalt fast genauso vor wie VoiceOver. Der größte Unterschied (abgesehen von der anders klingenden Stimme) ist,
+dass JAWS am Ende der Liste "Listenende" ankündigt. (Aus irgendeinem Grund macht JAWS auch in der Mitte der Liste eine Pause, als
+ob es Luft holen wollte, aber das ist für die Gesamtbedeutung nicht besonders wichtig).
+
+#### Schlechtes Beispiel: Falsche Liste mit Unterbrechungselementen (`<br>`) erstellt
+
+Obwohl Bildschirmlesegeräte den gesamten Text in der gefälschten Liste unten lesen können, wird blinden Nutzern nicht gesagt, dass
+es sich um eine Liste handelt, sodass sie keine semantischen Hinweise erhalten.
+
+```html
+<p>These are a few of my favorite things:</p>
+<p>
+  Raindrops on roses<br />
+  Whiskers on kittens<br />
+  Bright copper kettles<br />
+  Warm woolen mittens<br />
+  Brown paper packages tied up with strings<br />
+  Cream colored ponies<br />
+  Crisp apple strudels<br />
+  Doorbells and sleigh bells<br />
+  Schnitzel with noodles<br />
+  Wild geese that fly with the moon on their wings<br />
+  Girls in white dresses with blue satin sashes<br />
+  Snowflakes that stay on my nose and eyelashes<br />
+  Silver white winters that melt into springs
+</p>
+```
+
+## Navigieren in Listen mit Bildschirmlesern
+
+### Methode 1: Alle Listen anzeigen
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Einfügen + Steuerung + L</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 2: Navigiere von einer Liste zur nächsten
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">L</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">L</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl + X</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Verwende den Rotor, um Listen auszuwählen (drehe zwei Finger auf dem Bildschirm nach links
+        oder rechts), und wische dann mit einem Finger nach unten. Hinweis: Möglicherweise musst du
+        deine VoiceOver-Einstellungen ändern, damit die Listen mit dieser Geste verfügbar sind. Um
+        die Einstellungen zu ändern, gehe zu Einstellungen > Allgemein > Eingabehilfen > VoiceOver >
+        Rotor.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Listen auswählen
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 3: Von einem Listenelement zum nächsten navigieren
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">I</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">I</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>

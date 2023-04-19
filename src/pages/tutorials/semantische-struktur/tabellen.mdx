@@ -1,0 +1,1287 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Tabellen'
+pubDate: 2023-04-20
+---
+
+Benutzer von Bildschirmlesegeräten können in Tabellen fast wie in Tabellenkalkulationen navigieren, indem sie von einer Zelle zur
+anderen in jede Richtung gehen. Wenn die Tabelle richtig beschriftet ist, liest das Bildschirmlesegerät zusätzlich zu den Daten in
+der Tabellenzelle auch die Tabellenüberschrift vor, so dass blinde Nutzer/innen verstehen können, wo sie sich im Kontext der Tabelle
+befinden.
+
+Wenn Tabellen nicht richtig gekennzeichnet sind, werden Bildschirmleser wahrscheinlich Schwierigkeiten haben, die Datenbeziehungen
+zu verstehen.
+
+## Semantisches Markup für tabellarische Daten
+
+### Tabellarische Daten sollten in einer `<table>` dargestellt werden.
+
+Screenreader-Nutzer können in Datentabellen von Zelle zu Zelle navigieren, und zwar in mehreren Richtungen (nach oben, unten, rechts,
+links), ähnlich wie in einer Tabellenkalkulation. Während sie sich von Zelle zu Zelle bewegen, lesen Screenreader die zugehörigen
+Kopfzeilen (wenn die Tabelle unter Berücksichtigung der Barrierefreiheit erstellt wurde). Dank dieser Struktur und der einfachen
+Navigation mit Bildschirmlesegeräten eignen sich Tabellen sehr gut für tabellarische Daten.
+
+#### Erstelle keine falschen Tabellen
+
+Die Verwendung von Tabellen hat einen Nachteil: Sie werden auf mobilen Geräten nicht immer besonders gut angezeigt. Dieser Nachteil
+hat Entwickler dazu veranlasst, nach alternativen Möglichkeiten zu suchen, tabellarische Daten darzustellen. Vielen dieser Techniken
+ist gemeinsam, dass sie `<div>`-Elemente und CSS verwenden, um das Aussehen von Tabellen nachzubilden, ohne die zugrunde liegende
+semantische Struktur zu verwenden.
+
+Das Problem dabei ist, dass Screenreader die semantische Bedeutung und Struktur für blinde Nutzer nicht mehr erkennen können. Auch
+die Möglichkeit, in Tabellenzellen multidirektional zu navigieren, wird dadurch unterbrochen. Da sowohl die Semantik als auch die
+Navigation unterbrochen sind, können die Nutzer/innen die gefälschte Tabelle nur der Reihe nach durchgehen - in der Reihenfolge, in
+der die Elemente im DOM erscheinen.
+
+Es gibt viele Techniken, mit denen Tabellen auf mobilen Geräten besser funktionieren, aber nur wenige davon sind ideal. Wenn du die
+verschiedenen Ansätze auswertest, wähle nach Möglichkeit eine Technik, die die semantische Datenstruktur einer echten Tabelle
+beibehält, zumindest in der Desktop-Ansicht. Manchmal ist es notwendig, in der mobilen Ansicht zu einem anderen Format zu wechseln
+(z. B. eine Liste mit Beschriftungen).
+
+## Beschriftung/Name der Tabelle
+
+### Datentabellen sollten eine programmatisch zugewiesene Überschrift oder einen Namen haben.
+
+Bildschirmlesegeräte lesen die Beschriftung oder den Namen der Tabelle, wenn die Nutzer zu der Tabelle navigieren, damit sie wissen,
+worum es in der Tabelle geht. Das caption-Element ist die einfachste Möglichkeit, einer Tabelle einen Namen zu geben. Es ist auch
+möglich, aria-label oder aria-labelledby zu verwenden.
+
+Auf einer Seite mit mehreren Tabellen können Screenreader-Nutzer eine Liste aller Tabellen auf der Webseite aufrufen, in der die
+Überschriften (z. B. "Ergebnisse des ersten Quartals") und die Tabellengröße (z. B. "3 Spalten, 4 Zeilen") angezeigt werden. Hier
+ist eine Tabellenliste, die mit dem VoiceOver Screenreader angezeigt wird:
+
+![Eine Tabellenliste, die mit dem VoiceOver Screenreader angezeigt wird](/images/semantische-struktur/table-captions-voiceover.png)
+
+Hier ist die gleiche Liste von Tabellen, wie sie mit dem JAWS Screenreader angezeigt wird:
+
+![Eine Tabellenliste, die mit dem JAWS Screenreader angezeigt wird](/images/semantische-struktur/table-captions-jaws.png)
+
+Wenn du die Beschriftungen weglässt, sind alle Tabellen im obigen Beispiel ununterscheidbar, weil sie alle die gleiche Größe haben.
+
+![Eine Tabellenliste, die mit dem VoiceOver Screenreader ohne Captions angezeigt wird](/images/semantische-struktur/table-captions-voiceover-missing.png)
+
+Selbst wenn die Tabellen unterschiedlich groß wären, wäre es schwer zu erkennen, worum es in den Tabellen geht, wenn sie keine
+Beschriftungen haben.
+
+#### Gutes Beispiel: Tabelle mit `<caption>` Element
+
+Der Name/die Überschrift ("Ergebnisse des 1. Quartals") der unten stehenden Tabelle wird über das `<caption>`-Element programmatisch
+mit der Tabelle verknüpft, sodass sie für Bildschirmleser verfügbar ist.
+
+```html
+<table>
+  <caption>
+    1st Quarter Results
+  </caption>
+  <thead>
+    <tr>
+      <td>&nbsp;</td>
+      <th scope="col">Goal</th>
+      <th scope="col">Actual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">January</th>
+      <td>$200,000</td>
+      <td>$150,000</td>
+    </tr>
+    <tr>
+      <th scope="row">February</th>
+      <td>$200,000</td>
+      <td>$240,000</td>
+    </tr>
+    <tr>
+      <th scope="row">March</th>
+      <td>$200,000</td>
+      <td>$370,000</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Eine alternative Methode mit aria-label (beachte, dass der Text im aria-label-Attribut für sehende Nutzer unsichtbar ist):
+
+```html
+<table aria-label="Second quarter Results"></table>
+```
+
+Diese Methode bietet ebenfalls eine unsichtbare Beschriftung, verwendet aber natives HTML und CSS statt ARIA:
+
+Hinweis: Wenn du die Klasse visually-hidden direkt auf dem `<caption>`-Tag platzierst, liest der NVDA-Bildschirmleser die Tabelle
+mit einer falschen Anzahl von Zeilen.
+
+```html
+<table>
+  <caption>
+    <span class="visually-hidden">1st Quarter Results</span>
+  </caption>
+</table>
+```
+
+Eine andere Methode, die aria-labelledby verwendet:
+
+```html
+<h3 id="tableCaption">Third Quarter Results</h3>
+<table aria-labelledby="tableCaption"></table>
+```
+
+Eine Variante dieser Methode ist, den Namen in eine `<figcaption>` zu setzen und ihn über aria-labelledby mit der Tabelle zu
+verknüpfen:
+
+```html
+<figure>
+  <table aria-labelledby="figCaption">
+    <!-- the rest of the table goes here -->
+  </table>
+  <figcaption id="figCaption">Fourth Quarter Results</figcaption>
+</figure>
+```
+
+#### Schlechtes Beispiel: Tabelle mit falscher Beschriftung
+
+Die Tabelle hat keine Überschrift, sondern eine Zeile, die sich über alle Spalten erstreckt und einen Text für die
+Tabellenüberschrift enthält. Screenreader behandeln diese übergreifende Zelle nicht als den Namen der Tabelle, sodass sie in
+Tabellenlisten nicht richtig angezeigt wird. Für Screenreader ist die Organisation der Tabelle aufgrund der übergreifenden Zelle
+anfangs etwas schwer zu verstehen.
+
+```html
+<table>
+  <tr>
+    <th colspan="3">Revenue Goals</th>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <th scope="col">Goal</th>
+    <th scope="col">Actual</th>
+  </tr>
+  <tr>
+    <th scope="row">January</th>
+    <td>$200,000</td>
+    <td>$150,000</td>
+  </tr>
+  <tr>
+    <th scope="row">February</th>
+    <td>$200,000</td>
+    <td>$240,000</td>
+  </tr>
+  <tr>
+    <th scope="row">March</th>
+    <td>$200,000</td>
+    <td>$370,000</td>
+  </tr>
+</table>
+```
+
+Ein ähnliches Problem tritt auf, wenn der Name der Tabelle nicht programmatisch mit der Tabelle verknüpft ist:
+
+```html
+<h3>Revenue Goals</h3>
+<table>
+  <!-- the rest of the table goes here -->
+</table>
+```
+
+Der Text sieht für sehende Nutzer wie eine Tabellenüberschrift aus, wird aber von Screenreadern nicht als solche erkannt.
+
+### Der Name/die Überschrift einer Datentabelle sollte die Identität oder den Zweck der Tabelle genau, aussagekräftig und prägnant beschreiben.
+
+Der Zweck der Beschriftung oder des Namens ist es, dass die Nutzer die Tabelle identifizieren und/oder den Zweck der Tabelle verstehen
+können, daher sollte die Beschriftung oder der Name sinnvoll sein. Einfach nur "Tabelle 1" zu sagen, wäre zum Beispiel nicht hilfreich.
+Eine Alternative wäre "Tabelle 1: Ergebnisse des ersten Quartals".
+
+### Der Name/die Überschrift jeder Datentabelle sollte im Zusammenhang mit anderen Tabellen auf derselben Seite eindeutig sein.
+
+Wenn sich auf einer Seite zwei oder mehr Tabellen mit der gleichen Überschrift oder dem gleichen Namen befinden, können
+Screenreader-Nutzer die Tabellen nicht unterscheiden, wenn sie die Liste aller Tabellen auf der Seite aufrufen.
+
+## Tabellenüberschriften
+
+### Tabellenüberschriften müssen mit `<th>` gekennzeichnet werden.
+
+Screenreader können nur erkennen, ob eine Tabellenzelle eine Kopfzeile ist, wenn sie mit `<th>` markiert ist. Andernfalls gehen
+Bildschirmleser davon aus, dass die Tabelle nur der visuellen Formatierung dient und lesen die Kopfzeileninformationen nicht wie
+gewünscht.
+
+Wenn sich die Kopfzellen in der ersten Zeile befinden, gehen Bildschirmleser davon aus, dass sie sich auf die darunter liegenden
+Spalten beziehen mit anderen Worten, es gibt ein implizites scope="col". Es ist trotzdem eine gute Idee, den Bereich explizit zu
+machen, indem du einen der folgenden Bereiche hinzufügst: col, row, colgroup oder rowgroup.
+
+### Der Kopftext der Datentabelle muss die Kategorie der entsprechenden Datenzellen genau beschreiben.
+
+Wenn der Text in der Kopfzeile ungenau ist (z. B. "Spalte 2") oder fremde Informationen enthält (z. B. Links, Schaltflächen oder
+zusätzliche Beschreibungen, die nicht dem Namen der Spalte entsprechen), kann er für Bildschirmleser verwirrend sein. Am besten ist
+es, den Text in der Kopfzeile genau und einfach zu halten.
+
+## Einfache Kopfzeilen-Assoziationen
+
+### Die Datenzellen der Tabelle müssen mit den entsprechenden Kopfzellen verbunden sein.
+
+Das Attribut scope stellt eine explizite Verbindung zwischen der Tabellenkopfzelle und den entsprechenden Datenzellen her. Für
+einfache Zuordnungen stehen die Optionen scope="col" für Spaltenüberschriften und scope="row" für Zeilenüberschriften zur Verfügung.
+
+#### Gutes Beispiel: Tabelle: Einfache Zeilen- und Spaltenüberschriften
+
+Diese Tabelle zeigt einfache Zeilen- und Spaltenüberschriften.
+
+In der Tabelle unten enthält die erste Zeile Überschriften, die für die entsprechenden Spalten darunter gelten, und die erste Spalte
+enthält Überschriften, die für die entsprechenden Zeilen gelten.
+
+<table class="data">
+  <caption>
+    <strong>Greensprings Running Club Personal Bests</strong>
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+
+  </tbody>
+</table>
+
+Jede Überschrift wird entweder mit `<th scope="col"> oder <th scope="row">` markiert.
+
+```html
+<table class="data">
+  <caption>
+    <strong>Greensprings Running Club Personal Bests</strong>
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## Gruppierte Kopfzeilenzuordnungen
+
+### Die Überschriften der Datengruppen einer Tabelle müssen mit den entsprechenden Datenzellengruppen verknüpft werden.
+
+Wenn du Tabellenkopfzellen zusammenführst, musst du eine Kopfzeile als für mehrere Zeilen oder Spalten entsprechend kennzeichnen.
+Am einfachsten ist es, scope="rowgroup" oder scope="colgroup" zu verwenden. Screenreader lesen die mehreren Überschriften, wenn
+sie durch die Tabellen navigieren.
+
+Hinweis: Screenreader-Nutzer finden Tabellenkopfgruppen manchmal etwas verwirrend, selbst wenn sie perfekt markiert sind. Wenn
+möglich, erstelle einfachere Tabellen, die keine verbundenen Zellen oder Kopfzeilengruppen benötigen.
+
+#### Gutes Beispiel: scope="colgroup" angewendet auf Spaltengruppenüberschriften
+
+Diese Tabelle hat mehrere Ebenen von Spaltenüberschriften.
+
+<table class="data complex">
+  <caption>Table with colgroup</caption>
+  <thead>
+    <tr>
+      <td rowspan="2">&nbsp;</td>
+      <th colspan="3" scope="colgroup">
+        Females
+      </th>
+      <th colspan="3" scope="colgroup">
+        Males
+      </th>
+    </tr>
+    <tr>
+      <th scope="col">Mary</th>
+      <th scope="col">Betsy</th>
+      <th scope="col">Joanne</th>
+      <th scope="col">Matt</th>
+      <th scope="col">Todd</th>
+      <th scope="col">Jake</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1 mile</th>
+      <td>8:32</td>
+      <td>7:43</td>
+      <td>9:51</td>
+      <td>7:55</td>
+      <td>7:01</td>
+      <td>7:51</td>
+    </tr>
+    <tr>
+      <th scope="row">5 km</th>
+      <td>28:04</td>
+      <td>26:47</td>
+      <td>38:15</td>
+      <td>27:27</td>
+      <td>24:21</td>
+      <td>24:31</td>
+    </tr>
+    <tr>
+      <th scope="row">10 km</th>
+      <td>1:01:16</td>
+      <td>55:38</td>
+      <td>1:56:01</td>
+      <td>57:04</td>
+      <td>50:35</td>
+      <td>50:45</td>
+    </tr>
+  </tbody>
+</table>
+
+Der Quellcode für diese Tabelle ist unten abgebildet:
+
+```html
+<table class="data complex">
+  <caption>
+    Table with colgroup
+  </caption>
+  <thead>
+    <tr>
+      <td rowspan="2">&nbsp;</td>
+      <th colspan="3" scope="colgroup">Females</th>
+      <th colspan="3" scope="colgroup">Males</th>
+    </tr>
+    <tr>
+      <th scope="col">Mary</th>
+      <th scope="col">Betsy</th>
+      <th scope="col">Joanne</th>
+      <th scope="col">Matt</th>
+      <th scope="col">Todd</th>
+      <th scope="col">Jake</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1 mile</th>
+      <td>8:32</td>
+      <td>7:43</td>
+      <td>9:51</td>
+      <td>7:55</td>
+      <td>7:01</td>
+      <td>7:51</td>
+    </tr>
+    <tr>
+      <th scope="row">5 km</th>
+      <td>28:04</td>
+      <td>26:47</td>
+      <td>38:15</td>
+      <td>27:27</td>
+      <td>24:21</td>
+      <td>24:31</td>
+    </tr>
+    <tr>
+      <th scope="row">10 km</th>
+      <td>1:01:16</td>
+      <td>55:38</td>
+      <td>1:56:01</td>
+      <td>57:04</td>
+      <td>50:35</td>
+      <td>50:45</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+#### Gutes Beispiel: scope="rowgroup" angewandt auf Gruppenkopf
+
+Dieselbe Tabelle kann anders ausgerichtet werden, so dass die Kopfzeilengruppen an der Seite als Zeilengruppen und nicht als
+Spaltengruppen erscheinen.
+
+Die sechs Zeilenüberschriften in dieser Tabelle sind in zwei Kategorien eingeteilt: männlich und weiblich.
+
+<table class="data complex">
+  <caption>Table with rowgroup</caption>
+  <thead>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" scope="rowgroup">
+        Females
+      </th>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+    <tr>
+      <th scope="row">Joanne</th>
+      <td>9:51</td>
+      <td>38:15</td>
+      <td>1:56:01</td>
+    </tr>
+    <tr>
+      <th rowspan="3" scope="rowgroup">
+        Males
+      </th>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+    <tr>
+      <th scope="row">Jake</th>
+      <td>7:51</td>
+      <td>24:31</td>
+      <td>50:45</td>
+    </tr>
+  </tbody>
+</table>
+
+Der Quellcode für diese Tabelle ist unten abgebildet:
+
+```html
+<table class="data complex">
+  <caption>
+    Table with rowgroup
+  </caption>
+  <thead>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" scope="rowgroup">Females</th>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+    <tr>
+      <th scope="row">Joanne</th>
+      <td>9:51</td>
+      <td>38:15</td>
+      <td>1:56:01</td>
+    </tr>
+    <tr>
+      <th rowspan="3" scope="rowgroup">Males</th>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+    <tr>
+      <th scope="row">Jake</th>
+      <td>7:51</td>
+      <td>24:31</td>
+      <td>50:45</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Hinweis: Die Unterstützung von Bildschirmlesegeräten für scope="rowgroup" war in der Vergangenheit schlechter als für
+scope="colgroup". Für eine optimale Zugänglichkeit, insbesondere im Hinblick auf die Abwärtskompatibilität, ist es daher am besten,
+die Tabelle in einer Konfiguration auszurichten, die scope="colgroup" zulässt und scope="rowgroup" nicht erfordert.
+
+## Komplexe Kopfzeilen-Assoziationen
+
+### Header/Daten-Verknüpfungen, die nicht mit `<th>` und scope bezeichnet werden können, müssen mit headers plus id bezeichnet werden
+
+Tabellen mit einer komplexen Struktur - in denen Datenzellen zusammengeführt werden oder es mehr als zwei Ebenen von Kopfzeilen für
+eine bestimmte Dimension gibt - erfordern eine andere Technik als das einfache Markieren der Kopfzellen mit einem Bereich von col,
+row, colgroup oder rowgroup. Jede Datenzelle muss mit Hilfe von headers und id explizit mit der entsprechenden Kopfzelle verknüpft
+werden.
+
+Warnung:
+Komplexe Tabellenstrukturen mit unregelmäßigen Spalten- oder Zeilenbezeichnungen sind für Benutzer von Bildschirmlesegeräten schwer zu
+verstehen und zu navigieren, selbst wenn das gesamte Markup "perfekt" für die Einhaltung der Barrierefreiheit ist. Es ist viel besser,
+eine einfache Tabelle ohne übergreifende Zellen zu erstellen, als eine verwirrende, komplexe Tabelle, die technisch gesehen die
+Zugänglichkeitsrichtlinien erfüllt.
+
+Einige Screenreader, vor allem auf mobilen Geräten, unterstützen keine barrierefreien komplexen Tabellenauszeichnungen. Alte Versionen von
+VoiceOver für OS X (bis Mac OS X 10.10.2) unterstützten ebenfalls keine komplexen Tabellen.
+
+#### Gutes Beispiel: Tabelle: Komplexe Überschriften & ID
+
+Die unten gezeigte Tabellenstruktur ist komplizierter als empfohlen, kann aber mit dem richtigen Markup die Richtlinien für
+Barrierefreiheit erfüllen.
+
+<table class="complexexample">
+  <caption>New Employee Orientation Schedule</caption>
+  <tbody>
+    <tr>
+      <th rowspan="2" id="date">
+        Date
+      </th>
+      <th colspan="2" id="schedule">
+        Schedule
+      </th>
+      <th rowspan="2" id="location">
+        Location
+      </th>
+      <th colspan="2" rowspan="2" id="topics1">
+        Topics
+      </th>
+    </tr>
+    <tr>
+      <th id="start">Start</th>
+      <th id="end">End</th>
+    </tr>
+    <tr>
+      <th id="monday" rowspan="5">
+        Monday, June 1
+      </th>
+      <td headers="schedule start monday">9:00 a.m.</td>
+      <td headers="schedule end monday">10:30 a.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">Introduction to Company: Vision and Mission</td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">10:30 a.m.</td>
+      <td headers="schedule end monday">12:00 p.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">HR Policies Review</td>
+    </tr>
+    <tr>
+      <td headers="schedule monday" colspan="5">
+        <strong>
+          <em>Lunch from 12:00 p.m. to 1:00 p.m.</em>
+        </strong>
+      </td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">1:00 p.m.</td>
+      <td headers="schedule end monday">2:30 p.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">Overview of Benefits</td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">3:00 p.m.</td>
+      <td headers="schedule end monday">4:30 p.m.</td>
+      <td headers="location monday">RH 005</td>
+      <td headers="topics1 monday">Health and Safety Procedures</td>
+    </tr>
+  </tbody>
+</table>
+
+Hinweis: IDs können nicht mit Ziffern beginnen. Sie müssen mit Buchstaben beginnen.
+
+```html
+<table class="complexexample">
+  <caption>
+    New Employee Orientation Schedule
+  </caption>
+  <tbody>
+    <tr>
+      <th rowspan="2" id="date">Date</th>
+      <th colspan="2" id="schedule">Schedule</th>
+      <th rowspan="2" id="location">Location</th>
+      <th colspan="2" rowspan="2" id="topics1">Topics</th>
+    </tr>
+    <tr>
+      <th id="start">Start</th>
+      <th id="end">End</th>
+    </tr>
+    <tr>
+      <th id="monday" rowspan="5">Monday, June 1</th>
+      <td headers="schedule start monday">9:00 a.m.</td>
+      <td headers="schedule end monday">10:30 a.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">Introduction to Company: Vision and Mission</td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">10:30 a.m.</td>
+      <td headers="schedule end monday">12:00 p.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">HR Policies Review</td>
+    </tr>
+    <tr>
+      <td headers="schedule monday" colspan="5">
+        <strong><em> Lunch from 12:00 p.m. to 1:00 p.m. </em></strong>
+      </td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">1:00 p.m.</td>
+      <td headers="schedule end monday">2:30 p.m.</td>
+      <td headers="location monday">RH 001</td>
+      <td headers="topics1 monday">Overview of Benefits</td>
+    </tr>
+    <tr>
+      <td headers="schedule start monday">3:00 p.m.</td>
+      <td headers="schedule end monday">4:30 p.m.</td>
+      <td headers="location monday">RH 005</td>
+      <td headers="topics1 monday">Health and Safety Procedures</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Hinweis: Alte Versionen von VoiceOver unterstützten die Methode id + headers nicht
+
+Bis Mac OS X 10.10.2 unterstützte VoiceOver nicht die Möglichkeit, Tabellenüberschriften mit der Methode id + headers zu lesen. Einige
+Versionen lasen sogar die falschen Kopfzeilen mit den Datenzellen. Glücklicherweise liest die aktuelle Version von VoiceOver die Daten-
+und Kopfzeilen-Zuordnungen korrekt.
+
+## Verschachtelte oder geteilte Tabellen
+
+### Datentabellenköpfe und Datenverknüpfungen müssen nicht in verschachtelten, zusammengeführten oder getrennten Tabellen referenziert werden.
+
+Verschachtelte Datentabellen sind Datentabellen, die innerhalb anderer Datentabellen existieren. Verschachtelte Datentabellen
+beeinträchtigen die Zugänglichkeit der Datendarstellung als Ganzes und machen es unmöglich, die Daten- und Kopfzeilenzellen mit einer
+der Standardmethoden richtig zuzuordnen. Die scope-Methode wird nicht richtig funktionieren, ebenso wenig wie die id + headers-Methode.
+Wenn du die Regeln wirklich beugen willst, könntest du aria-labelledby verwenden, aber das wäre ein komplizierter Weg, um eine schlecht
+gestaltete Tabelle zu kompensieren.
+
+#### Schlechtes Beispiel: Verschachtelte Datentabellen
+
+Das sieht aus wie eine einzige Tabelle, aber in Wirklichkeit sind es insgesamt vier Tabellen, die versuchen, eine einzige komplexe
+Datentabelle zu erstellen.
+
+<table class="data">
+  <caption>Greensprings Running Club Personal Bests</caption>
+  <tr>
+    <td>&nbsp;</td>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <td style="width:60px;">&nbsp;</td>
+          <th style="width:60px">1 mile</th>
+          <th style="width:60px">5km</th>
+          <th style="width:60px">10km</th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>Females</th>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <th style="width:60px;">Mary</th>
+          <td style="width:60px">8:32</td>
+          <td style="width:60px">28:04</td>
+          <td style="width:60px">1:01:16</td>
+        </tr>
+        <tr>
+          <th style="width:60px;">Betsy</th>
+          <td>7:43</td>
+          <td>26:47</td>
+          <td>55:38</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>Males</th>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <th style="width:60px;">Matt</th>
+          <td style="width:60px">7:55</td>
+          <td style="width:60px">27:29</td>
+          <td style="width:60px">57:04</td>
+        </tr>
+        <tr>
+          <th style="width:60px;">Todd</th>
+          <td>7:01</td>
+          <td>24:21</td>
+          <td>50:35</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+Bildschirmlesegeräte können die Datenzellen nicht richtig mit den Kopfzeilenzellen in dieser Tabelle verknüpfen, weil die Kopfzeilen einer
+Tabelle nicht mit den Datenzellen einer anderen Tabelle verknüpft werden können.
+
+```html
+<table class="data">
+  <caption>
+    Greensprings Running Club Personal Bests
+  </caption>
+  <tr>
+    <td>&nbsp;</td>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <td style="width:60px;">&nbsp;</td>
+          <th style="width:60px">1 mile</th>
+          <th style="width:60px">5km</th>
+          <th style="width:60px">10km</th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>Females</th>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <th style="width:60px;">Mary</th>
+          <td style="width:60px">8:32</td>
+          <td style="width:60px">28:04</td>
+          <td style="width:60px">1:01:16</td>
+        </tr>
+        <tr>
+          <th style="width:60px;">Betsy</th>
+          <td>7:43</td>
+          <td>26:47</td>
+          <td>55:38</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>Males</th>
+    <td style="padding:0">
+      <table style="margin:0;padding:0">
+        <tr>
+          <th style="width:60px;">Matt</th>
+          <td style="width:60px">7:55</td>
+          <td style="width:60px">27:29</td>
+          <td style="width:60px">57:04</td>
+        </tr>
+        <tr>
+          <th style="width:60px;">Todd</th>
+          <td>7:01</td>
+          <td>24:21</td>
+          <td>50:35</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+```
+
+## Tabelle Zusammenfassung
+
+#### Für Datentabellen kann eine Zusammenfassung erstellt werden.
+
+Eine Tabellenzusammenfassung ist nicht erforderlich. Im Idealfall ist die Tabelle so einfach und übersichtlich, dass sie sich allein
+durch die Überschriften und die Datenstruktur von selbst erklärt. Trotzdem kann es manchmal hilfreich sein, eine kurze Zusammenfassung der
+wichtigsten Punkte der Tabelle zu geben, um Datentrends, Datenformate und/oder andere Aspekte der Tabelle zu verstehen, die die Tabelle für
+Screenreader-Nutzer verständlicher machen.
+
+Zusammenfassungen sollten kurz und prägnant sein: in der Regel ein oder zwei Sätze, bei komplexeren Tabellen aber auch länger. Es gibt
+verschiedene Möglichkeiten, Tabellenzusammenfassungen zu präsentieren:
+
+- Füge die Zusammenfassung in den Absatz vor oder nach der Tabelle ein (mit aria-describedby)
+
+- Füge die Zusammenfassung in die `<caption>` der Tabelle ein, solange die Zusammenfassung kurz ist.
+
+- Setze die Tabelle in eine `<figure>` und füge den Titel und die Zusammenfassung in die `<figcaption>` ein.
+
+- Schreibe die Zusammenfassung in das Attribut summary (für HTML-Versionen vor HTML5)
+
+##### Gutes Beispiel: Methode 1: Füge die Zusammenfassung in den Absatz vor oder nach der Tabelle ein (mit aria-describedby)
+
+Jeder kann auf die Tabellenzusammenfassung zugreifen, wenn sie in einem normalen Absatz platziert ist. Wenn du das Attribut aria-describedby
+hinzufügst, können Screenreader den Absatz explizit mit der Tabelle verknüpfen.
+
+```html
+<p id="table-description">
+  This table lists the members of the Greensprings Running Club and their personal best times in
+  various race distances. The first column lists the runners and the first row lists the race
+  distances.
+</p>
+
+<table aria-describedby="table-description">
+  <caption>
+    Greensprings Running Club Personal Bests
+  </caption>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">1 mile</th>
+    <th scope="col">5 km</th>
+    <th scope="col">10 km</th>
+  </tr>
+  <tr>
+    <th scope="row">Mary</th>
+    <td>8:32</td>
+    <td>28:04</td>
+    <td>1:01:16</td>
+  </tr>
+  <tr>
+    <th scope="row">Betsy</th>
+    <td>7:43</td>
+    <td>26:47</td>
+    <td>55:38</td>
+  </tr>
+  <tr>
+    <th scope="row">Matt</th>
+    <td>7:55</td>
+    <td>27:29</td>
+    <td>57:04</td>
+  </tr>
+  <tr>
+    <th scope="row">Todd</th>
+    <td>7:01</td>
+    <td>24:21</td>
+    <td>50:35</td>
+  </tr>
+</table>
+```
+
+Alternativ kannst du eine Zusammenfassung erstellen, die nur für Screenreader-Nutzer verfügbar ist, indem du den Beschreibungstext mit
+CSS abschneidest.
+
+```html
+<p id="table-description" class="visually-hidden">
+  This table lists the members of the Greensprings Running Club and their personal best times in
+  various race distances. The first column lists the runners and the first row lists the race
+  distances.
+</p>
+```
+
+#### Gutes Beispiel: Methode 2: Füge die Zusammenfassung in die `<caption>` der Tabelle ein, solange die Zusammenfassung kurz ist
+
+Diese Methode ist nur geeignet, wenn die Zusammenfassung kurz ist.
+
+Dieses Beispiel ist wahrscheinlich etwas länger als ideal für eine `<caption>`, und der erklärende Text geht über den Zweck des
+`<caption>`-Tags hinaus, aber diese Methode kann trotzdem funktionieren und ist wahrscheinlich besser, als den erklärenden Text gar
+nicht einzufügen.
+
+```html
+<table>
+  <caption>
+    Greensprings Running Club Personal Bests<br />
+    (The first column lists the runners and the first row lists the race distances)
+  </caption>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">1 mile</th>
+    <th scope="col">5 km</th>
+    <th scope="col">10 km</th>
+  </tr>
+  <tr>
+    <th scope="row">Mary</th>
+    <td>8:32</td>
+    <td>28:04</td>
+    <td>1:01:16</td>
+  </tr>
+  <tr>
+    <th scope="row">Betsy</th>
+    <td>7:43</td>
+    <td>26:47</td>
+    <td>55:38</td>
+  </tr>
+  <tr>
+    <th scope="row">Matt</th>
+    <td>7:55</td>
+    <td>27:29</td>
+    <td>57:04</td>
+  </tr>
+  <tr>
+    <th scope="row">Todd</th>
+    <td>7:01</td>
+    <td>24:21</td>
+    <td>50:35</td>
+  </tr>
+</table>
+```
+
+#### Gutes Beispiel: Methode 3: Füge die Zusammenfassung in eine `<figcaption>` ein
+
+In diesem Beispiel ist die Zusammenfassung zusammen mit dem Titel in der `<figcaption>` enthalten:
+
+```html
+<figure>
+  <figcaption id="table_figcaption">
+    Greensprings Running Club Personal Bests<br />
+    (The first column lists the runners and the first row lists the race distances)
+  </figcaption>
+
+  <table aria-labelledby="table_figcaption">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+    <tr>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+    <tr>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+  </table>
+
+  <figure></figure>
+</figure>
+```
+
+#### Gutes Beispiel: Methode 3: Setze zumindest die Zusammenfassung in dieselbe `<figure>` wie die Tabelle.
+
+In diesem Beispiel wird die Zusammenfassung in einem Absatz nach der `<figcaption>` eingefügt:
+
+```html
+<figure>
+  <figcaption>Greensprings Running Club Personal Bests</figcaption>
+  <p>(The first column lists the runners and the first row lists the race distances)</p>
+
+  <table>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+    <tr>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+    <tr>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+  </table>
+</figure>
+```
+
+#### Gutes Beispiel: Methode 4: Lege die Zusammenfassung in das summary Attribut
+
+Hinweis: Das Attribut summary ist in HTML 5 veraltet. Daher ist diese Methode für Seiten mit HTML 5 nicht geeignet, kann aber für Seiten
+mit XHTML
+oder früheren HTML-Versionen funktionieren.
+
+Wie das `<caption>`-Element kann auch das Attribut summary verwendet werden, um die Organisation einer Tabelle zu verdeutlichen oder eine
+kurze Zusammenfassung des Tabelleninhalts zu geben. Es sollte nicht die Informationen im `<caption>`-Element wiederholen, sondern diese
+ergänzen. Die Zusammenfassung ist auf dem Bildschirm nicht sichtbar, wird aber von Screenreadern nach der Beschriftung gelesen.
+
+Für unsere Beispieltabelle könnten wir das Attribut summary verwenden, um dem Benutzer eines Bildschirmlesegeräts eine Beschreibung zu
+geben, wie die Tabelle aufgebaut ist.
+
+```html
+<table
+  summary="This table lists the members of the
+Greensprings Running Club and their personal best times
+in various race distances. The first column lists the
+runners and the first row lists the race distances.">
+  <caption>
+    Greensprings Running Club Personal Bests
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">1 mile</th>
+      <th scope="col">5 km</th>
+      <th scope="col">10 km</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Mary</th>
+      <td>8:32</td>
+      <td>28:04</td>
+      <td>1:01:16</td>
+    </tr>
+    <tr>
+      <th scope="row">Betsy</th>
+      <td>7:43</td>
+      <td>26:47</td>
+      <td>55:38</td>
+    </tr>
+    <tr>
+      <th scope="row">Matt</th>
+      <td>7:55</td>
+      <td>27:29</td>
+      <td>57:04</td>
+    </tr>
+    <tr>
+      <th scope="row">Todd</th>
+      <td>7:01</td>
+      <td>24:21</td>
+      <td>50:35</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Eine Zusammenfassung der Datentabelle, falls vorhanden, sollte die Tabelle für Bildschirmleser verständlicher machen.
+
+Wenn eine Zusammenfassung vorhanden ist, sollte sie Screenreadernutzern helfen, die Informationen oder die Organisation der Tabelle
+besser zu verstehen. Biete keine Zusammenfassung zum Zweck des Keyword Stuffing (für die Suchmaschinenoptimierung) und keine übermäßig
+lange Zusammenfassung an. Halte sie kurz, präzise und aussagekräftig.
+
+## Layout-Tabellen
+
+### Tabellen sollten nicht für ein rein visuelles (nicht datenbezogenes) Layout verwendet werden.
+
+Von der Verwendung von Tabellen für das visuelle Layout und nicht für Datentabellen wird abgeraten, sie ist aber nach den
+Zugänglichkeitsrichtlinien technisch zulässig. Die Verwendung von Layout-Tabellen hat keine schwerwiegenden Folgen für die
+Barrierefreiheit, aber Tabellen wurden aus Sicht der semantischen Struktur für Datenraster entwickelt, daher ist es besser, sie nur
+für diesen Zweck zu verwenden. Außerdem ist CSS eine robustere Methode, um visuelle Layouts für das moderne Web zu gestalten.
+
+Wenn eine Layout-Tabelle verwendet werden muss, sollte dem `<table>`-Element role="presentation" hinzugefügt werden, um sicherzustellen,
+dass Screenreader den Inhalt von Layout-Tabellen als Text und nicht als Tabelle lesen (und damit die semantische Tabellenauszeichnung
+ignorieren) und sie wie div- oder `<p>`-Elemente behandeln.
+
+### Layouttabellen müssen keine Datentabellenauszeichnung enthalten.
+
+Wenn eine Tabelle ausschließlich für visuelle Layoutzwecke verwendet wird, solltest du keine der Kopfzeilenauszeichnungen für
+Datentabellen einfügen, da Bildschirmlesegeräte die Benutzer darüber informieren, dass eine Tabelle vorhanden ist, und die Benutzer
+erwarten, dass die Tabelle tabellarische Daten darstellt, was bei Layouttabellen nicht der Fall ist.
+
+Insbesondere dürfen Layout-Tabellen nicht enthalten:
+
+- Das `<caption>` Element
+
+- Das Attribut `<summary>`
+
+- Das `<th>`-Element
+
+- Das scope-Attribut
+
+- Das headers-Attribut
+
+## Navigieren in Tabellen mit Screen Readern
+
+### Wie Screenreader Tabellen lesen
+
+Die Software des Bildschirmlesegeräts teilt dem Nutzer mit, dass es eine Tabelle gibt und wie viele Spalten und Zeilen sie hat, z. B.
+"Tabelle mit 4 Spalten und 5 Zeilen".
+
+Daraufhin kann der/die Nutzer/in entscheiden, ob er/sie den Bildschirmleser alle Zellen im normalen Modus durchlesen lassen will oder
+ob er/sie Zelle für Zelle navigieren will (manchmal auch als "Tabellennavigationsmodus" bezeichnet). Im normalen Modus beginnt das
+Lesegerät in der oberen linken Zelle der ersten Zeile und liest die gesamte Zeile vor, dann geht es zur nächsten Zeile und liest sie
+von links nach rechts und so weiter. Im Tabellennavigationsmodus kann der Nutzer in jede beliebige Richtung navigieren, indem er die
+entsprechende Tastenkombination im Bildschirmlesegerät verwendet.
+
+### Methode 1: Liste mit allen Tabellen anzeigen
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">
+        Einfügen + F3 (zum Öffnen der Elementeliste), dann Tabellen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts
+        Tabellen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 2: Von einer Tabelle zur nächsten navigieren
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">T</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">T</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">T</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl + T</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Benutze den Rotor, um Tabellen auszuwählen (drehe zwei Finger auf dem Bildschirm nach links
+        oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Tabellen auswählen
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 3: Zwischen Zellen innerhalb einer Tabelle navigieren
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nach oben/unten/links/rechts wischen</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nach links/rechts wischen und durch Berührung erkunden</td>
+    </tr>
+  </tbody>
+</table>

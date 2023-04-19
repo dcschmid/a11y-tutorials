@@ -1,0 +1,317 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Weitere semantische Elemente'
+pubDate: 2023-04-21
+---
+
+Es gibt noch weitere semantische Elemente in HTML, die im Prinzip eine semantische Bedeutung für Screenreader-Nutzer vermitteln
+könnten. Leider unterstützen Screenreader nicht alle semantischen Elemente - vor allem die weniger verbreiteten -, so dass blinde
+Nutzerinnen und Nutzer nicht von ihnen profitieren können, selbst wenn du sie korrekt in deinem Markup verwendest.
+
+In diesem Abschnitt erfährst du, welche Arten von semantischem Markup du für die Vermittlung von Informationen nutzen kannst und
+welche nicht, abgesehen von den bereits in diesem Modul behandelten.
+
+## `<strong>` und `<em>`
+
+### Kritische Schwerpunkte im Text sollten durch visuelle Gestaltung vermittelt werden.
+
+Manchmal möchtest du Text hervorheben. Optisch kannst du mit Fett- oder Kursivdruck Akzente setzen. In HTML gibt es sogar semantische
+Elemente, die genau für diesen Zweck geschaffen wurden: `<em>` für Hervorhebung (kursiv) und `<strong>` für starke Hervorhebung (fett).
+
+### Kritische Schwerpunkte im Text sollten in einem textbasierten Format vermittelt werden.
+
+Leider ignorieren alle großen Bildschirmlesegeräte sowohl das `<em>`- als auch das `<strong>`-Element, zumindest in ihrer
+Standardkonfiguration. Bei einigen (aber nicht allen) Screenreadern können die Benutzer die Einstellungen so ändern, dass die `<em>`-
+und `<strong>`-Elemente vom Screenreader erkannt werden. Wenn die Nutzer den richtigen Screenreader haben und wenn sie so schlau sind,
+dass sie wissen, dass es diese Einstellung gibt, und wenn sie die Einstellung ändern, werden sie von `<em>` und `<strong>` profitieren,
+aber darauf kannst du dich bei der großen Mehrheit der Nutzer nicht verlassen.
+
+Wenn du Text hervorheben musst - wenn die Hervorhebung entscheidend für das Verständnis des Textes ist - dann musst du einen anderen
+Weg finden, um ihn hervorzuheben.
+
+Hinweis: Wenn die Hervorhebung nicht entscheidend für das Verständnis des Inhalts ist, muss nicht sichergestellt werden, dass die
+Hervorhebung für Bildschirmleser zugänglich ist. Wenn der Inhalt auch ohne die Betonung verständlich ist, kannst du es als optional
+betrachten, einen Weg zu finden, die Betonung zugänglich zu machen. Bildschirmleser sind daran gewöhnt, dass Dinge nicht
+hervorgehoben werden. Es stimmt zwar, dass sie auf diese Weise manchmal Nuancen übersehen, aber wenn die Hauptaussage immer noch
+verständlich ist, kann das akzeptabel sein, auch wenn es nicht ideal ist.
+
+Für die Zeiten, in denen es notwendig ist, den Schwerpunkt zugänglich zu machen, gibt es ein paar verschiedene Möglichkeiten.
+
+#### Gutes Beispiel: Option 1: Sichtbaren Text hinzufügen
+
+Dies ist die einfachste Technik. Du kannst Wörter wie "Wichtig" oder "Achtung" in deinen Text einfügen, um sicherzustellen, dass der
+Inhalt hervorgehoben wird.
+
+```html
+<p>Important: You cannot undo. Your file will be permanently deleted.</p>
+```
+
+#### Gutes Beispiel: Option 2: Unsichtbaren Text hinzufügen
+
+Wenn die Hervorhebung bereits visuell vermittelt wird (z. B. durch fett oder kursiv gedruckten Text), ist es nicht nötig, zusätzlichen
+Text zu schreiben, um die Hervorhebung zu betonen, aber die meisten Screenreader-Nutzer profitieren nicht von der visuellen
+Gestaltung. Du kannst die CSS-Clip-Methode verwenden, um den Text auszublenden.
+
+```html
+<!doctype html>
+<head>
+<title>Hidden text emphasis</title>
+<style>
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<p><span class="visually-hidden">Important:</span>
+You cannot undo. Your file will be permanently deleted.</p>
+</body>
+</html>
+```
+
+#### Gutes Beispiel: Option 3: Ein Bild mit passendem Alt-Text hinzufügen
+
+Eine andere Technik ist das Hinzufügen eines Bildes, normalerweise ein Symbol wie ein Ausrufezeichen, Fragezeichen, Warnsymbol usw.
+Sehende Nutzer profitieren von dem Bild selbst. Blinde Nutzer profitieren von dem Alt-Text.
+
+```html
+<img src="warning.png" alt="Warning">
+    You cannot undo. Your file will be permanently deleted.</p>
+```
+
+## `<blockquote>` und `<q>`
+
+### Das Element `<blockquote>` sollte verwendet werden, um lange Zitate (auf Blockebene) zu kennzeichnen.
+
+Die meisten Bildschirmleseprogramme kündigen das Blockquote-Element an. Du kannst es also bedenkenlos verwenden und davon ausgehen,
+dass blinde Nutzerinnen und Nutzer wissen, dass der Inhalt innerhalb eines Blockquote-Elements ein Zitat ist.
+
+### Das `<blockquote>`-Element sollte nicht nur zur visuellen Gestaltung verwendet werden.
+
+Das visuelle Styling von `<blockquote>` ist links eingerückt. Es mag verlockend sein, `<blockquote>` nur wegen des visuellen
+Einrückungseffekts zu verwenden, aber das vermittelt Screenreadernutzern die falschen Informationen, wenn die Informationen darin
+kein Zitat sind.
+
+### Das `<q>`-Element (für Inline-Zitate) sollte nicht als einzige Möglichkeit verwendet werden, Zitate zu kennzeichnen.
+
+Obwohl das `<q>`-Element erfunden wurde, um Inline-Zitate in einer semantisch angemessenen Art und Weise zu kennzeichnen, die von
+Screenreadern verwendet werden kann, ignorieren die meisten Screenreader dieses Element vollständig, so dass es im Moment am besten
+ist, einfach Anführungszeichen (" und ') zu verwenden.
+
+## `<code>, <pre>`
+
+### Code sollte mit dem `<code>`-Element markiert und so gestaltet werden, dass er sich von Text ohne Code unterscheidet.
+
+Für sehende Benutzer ist es von Vorteil, wenn sie anhand der visuellen Gestaltung erkennen können, wann Code verwendet wird, damit
+sie zwischen Fachbegriffen und normaler Prosa unterscheiden können. Das `<code>`-Element wird standardmäßig mit einer einzeiligen
+Schriftart, oft Courier oder Courier New, gestaltet.
+
+#### Gutes Beispiel: Das `<code>`-Element wird verwendet, um Code zu markieren
+
+```html
+<code
+  ><img src="vegan-desserts.jpg" alt="A delicious array of vegan desserts" width="500" height="100"
+/></code>
+```
+
+### Screen Readers und das Code-Element
+
+Bildschirmlesegeräte unterstützen das `<code>`-Element nicht. Im Prinzip könnten auch blinde Nutzer davon profitieren, den
+Unterschied zwischen Code und Prosa zu kennen, aber Screenreader ignorieren das `<code>`-Element komplett. Obwohl das `<code>`-Element
+also semantisch korrekt ist, profitieren Nutzer von Screenreadern nicht davon, zumindest bei den aktuellen Screenreadern.
+
+### Code-Blöcke sollten mit dem `<pre>`-Element formatiert werden.
+
+Die Verwendung des `<pre>`-Elements um Codeblöcke hilft sehenden Benutzern, den Code vom umgebenden Text zu unterscheiden. Der Text
+wird genau so vorformatiert, wie er im Quelltext steht, einschließlich der Leerzeichen (HTML erlaubt nur ein Leerzeichen im normalen
+Markup). Das `<pre>`-Element dient nur der visuellen Formatierung und ist daher semantisch nicht von Bedeutung. Wenn der vorformatierte
+Text Code enthält, ist es sinnvoll, den inneren Text in ein `<code>`-Element zu verpacken.
+
+#### Gutes Beispiel: Vorformatierter Text, der als Code markiert ist
+
+```html
+<pre><code><style>
+h1 {
+  font-size: 130%;
+  font-weight: bold;
+  padding: 2px;
+  margin: 10px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+</style></code></pre>
+```
+
+## Durchstreichen/Löschen und Einfügen
+
+### Durchgestrichener Text sollte mit dem `<del>`-Element markiert werden.
+
+Das semantisch korrekte Element, um gelöschten Text zu markieren, ist das `<del>`-Element. Optisch ist der Standardstil für eingefügten
+Text eine durchgestrichene Linie in der Mitte des Textes.
+
+Bildschirmlesegeräte unterstützen das `<del>`-Element nicht. Sie lesen den Text, aber benachrichtigen den Benutzer nicht, dass der
+Text gelöscht wurde.
+
+### Kritischer durchgestrichener Text muss mit einer textbasierten Methode ergänzt werden, um die Bedeutung des Durchstreichens zu vermitteln.
+
+#### Gutes Beispiel: Versteckter Text wird verwendet, um eingefügten Text zu vermitteln
+
+Im folgenden Angebot wurde der ursprüngliche Preis ($100) zum Streichen markiert. Der neue Preis ($75) wurde zum Einfügen markiert.
+Zusammen mit dem versteckten Text heißt es: "Preis reduziert! War $100 jetzt $75!"
+
+```html
+<head>
+<title>Sample web page>
+<style>
+  .visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0
+  width: 1px;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<p>Price reduced!
+  <del>
+  <span class="visually-hidden">Was</span>
+    $100
+  </del>
+  <ins>
+  <span class="visually-hidden">now</span>
+    $75!
+  </ins>
+</p>
+</body>
+```
+
+### Text, der eingefügt werden soll, sollte mit dem `<ins>`-Element markiert werden.
+
+Das semantisch korrekte Element zur Kennzeichnung von eingefügtem Text (normalerweise in juristischen Dokumenten) ist das
+`<ins>`-Element. Optisch ist der Standardstil für eingefügten Text eine Unterstreichung unter dem Text.
+
+Bildschirmlesegeräte unterstützen das `<ins>`-Element nicht. Sie lesen den Text, aber benachrichtigen den Benutzer nicht, dass der
+Text eingefügt wurde.
+
+### Kritischer Text, der zum Einfügen bestimmt ist, muss durch eine textbasierte Methode ergänzt werden, um die Bedeutung des Einfügens zu vermitteln.
+
+#### Gutes Beispiel: Versteckter Text wird verwendet, um eingefügten Text zu vermitteln
+
+Im folgenden Zitat wurde das Wort "nichts" gestrichen und das Wort "irgendetwas" eingefügt, um es zu ersetzen. Optisch ist der
+gelöschte Text durchgestrichen und der eingefügte Text unterstrichen. Es gibt versteckten Text, um die Bedeutung für
+Screenreader-Nutzer zu verdeutlichen.
+
+```html
+<head>
+<title>Sample web page>
+<style>
+  .visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0
+  width: 1px;
+}
+</style>
+</head>
+<body>
+<p>If you can't say something nice, don't say
+  <del>
+  <span class="visually-hidden">begin deleted text</span>
+    nothing
+  <span class="visually-hidden">end deleted text</span>
+  </del>
+  <ins>
+  <span class="visually-hidden">begin inserted text</span>
+    anything
+  <span class="visually-hidden">end inserted text</span>
+  </ins>
+  at all.</p>
+</body>
+```
+
+## Hervorheben (`<mark>`)
+
+### Hervorgehobener Text sollte mit dem Element `<mark>` markiert werden.
+
+Sehende Nutzer profitieren davon, dass wichtige Passagen hervorgehoben werden, wenn dies für den Kontext des Textes angemessen ist.
+Das semantisch korrekte Element ist das `<mark>`-Element. In der Standardeinstellung der Browser wird der Text mit einer gelben
+Hintergrundfarbe hervorgehoben. Das visuelle Styling kann über css angepasst werden.
+
+#### Gutes Beispiel: Das `<mark>`-Element wird verwendet, um wichtigen Text hervorzuheben
+
+```html
+<p>All informative images <mark>require</mark> valid, meaningful alternative text.</p>
+```
+
+### Screenreader und Markierungselement
+
+Auch wenn das `<mark>`-Element semantisch korrekt ist, benachrichtigen die aktuellen Bildschirmlesegeräte die Benutzer nicht über das
+Vorhandensein eines `<mark>`-Elements, so dass es für Benutzer von Bildschirmlesegeräten keinen Nutzen bringt (auch wenn sehende
+Benutzer aufgrund der visuellen Hervorhebung durch die Hintergrundfarbe immer noch davon profitieren). Trotzdem ist das `<mark>`-Element
+immer noch die beste Wahl, weil dieses Tag den beabsichtigten Zweck erfüllt (etwas als hervorgehoben zu markieren).
+
+### Kritisch hervorgehobener Text sollte durch eine textbasierte Methode ergänzt werden, um die Bedeutung der Hervorhebung zu vermitteln.
+
+In den meisten Fällen kann die Hervorhebung als visuelle Aufwertung betrachtet werden, die Screenreader-Nutzer nicht wahrnehmen müssen.
+Wenn jedoch die Bedeutung des Textes ohne die visuelle Hervorhebung verloren geht, musst du die Hervorhebung mit einem Text ergänzen,
+auf den Screenreader zugreifen können, da Screenreader die Benutzer nicht über die CSS-Hervorhebung oder das `<mark>`-Element
+informieren.
+
+Das `<mark>`-Element sollte eigentlich ausreichen, da es ein semantisches Element ist, aber wenn die Leser über die Hervorhebung
+Bescheid wissen müssen, musst du eine Umgehungslösung finden. Eine Möglichkeit besteht darin, am Anfang und am Ende jedes
+hervorgehobenen Abschnitts Text einzufügen, der optisch verborgen ist.
+
+#### Gutes Beispiel: Versteckter Text zur Hervorhebung von Screenreadernutzern
+
+Beachte, dass diese Technik sehr sparsam eingesetzt werden sollte, und zwar nur dann, wenn die Bedeutung verloren gehen würde, wenn
+die Nutzer nicht auf die Hervorhebung hingewiesen werden.
+
+Beachte auch, dass sehbehinderte Nutzer die Formatvorlagen außer Kraft setzen können, daher muss eine visuelle Textmethode vorhanden
+sein. In diesem Beispiel erklärt ein Satz unter dem hervorgehobenen Text, welches Wort hervorgehoben ist. Zugegebenermaßen ist diese
+Methode ziemlich überflüssig und klobig, daher ist es vielleicht am besten, wenn du einfach keinen Text erstellst, der hervorgehoben
+werden muss, um ihn zu verstehen.
+
+```html
+<head>
+  <title>Sample web page</title>
+  <style>
+      .visually-hidden {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      border: 0;
+      height: 1px; margin: -1px;
+      overflow: hidden;
+      padding: 0
+      width: 1px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <p>The verb is highlighted in the sentence below:</p>
+  <p>
+    The woman
+    <mark>
+      <span class="visually-hidden">begin highlight</span>
+      threw
+      <span class="visually-hidden">end highlight</span>
+    </mark>
+    the Frisbee.
+  </p>
+  <p>(The verb is "threw.")</p>
+</body>
+```

@@ -1,0 +1,358 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Navigation innerhalb von Seiten'
+pubDate: 2023-04-20
+---
+
+Bei Screenreadern sind die meisten semantischen Elemente (Orientierungspunkte, Überschriften, Listen, Links, Bilder, Tabellen,
+Iframes usw.) mit Tastenkombinationen navigierbar. Je mehr du also auf die semantische Struktur achtest, desto leichter können
+Screenreadernutzer auf der Seite navigieren.
+
+Dennoch gibt es einige Dinge, für die es noch keine gute semantische Entsprechung in HTML gibt. Es gibt z. B. keine native
+Möglichkeit, Nutzern in einer paginierten Ansicht von Suchergebnissen zu sagen: "Du bist hier". In diesem Abschnitt werden einige
+Möglichkeiten erklärt, wie man das erreichen kann.
+
+Außerdem haben sehende Tastaturbenutzer/innen keinen Zugang zu allen Tastenkombinationen in Screenreadern, so dass es für sehende
+Tastaturbenutzer/innen nur sehr wenige Möglichkeiten gibt, innerhalb von Seiten zu navigieren. Ein Link zum Überspringen der
+Navigation ist eine Möglichkeit, die helfen kann.
+
+## Navigationslinks überspringen
+
+### Ein "Skip"-Link mit Tastaturfunktion sollte vorhanden sein, damit Tastaturbenutzer direkt zum Hauptinhalt navigieren können.
+
+In einem typischen Layout steht der Hauptinhalt einer Webseite selten an erster Stelle. Bevor die Nutzer zum Hauptinhalt gelangen,
+müssen sie Funktionen wie das Logo und das Branding der Website, die Website-Suche, das Login-Widget und die Hauptnavigation
+überspringen. In manchen Fällen erscheint auch eine zweite Navigationsebene vor dem Hauptinhalt. Der obere Teil einer Webseite kann
+ziemlich lang sein. Wenn du die Möglichkeit hast, alle Funktionen am Anfang einer Webseite zu überspringen, sparst du
+Tastaturanschläge für Tastaturbenutzer.
+
+#### Gutes Beispiel: Skip Nav Link
+
+Der Link "Navigation überspringen" ermöglicht es Screenreadernutzern, direkt auf den Hauptinhalt der Seite zuzugreifen, ohne
+wiederholt die Navigation auf jeder Seite zu durchlaufen.
+
+```html
+<div id="skipnav"><a href="#mainContent">Skip navigation</a></div>
+
+<!-- the header, navigation, etc. go here -->
+
+<main id="mainContent" tabindex="-1">
+  <!-- the main content goes here -->
+</main>
+```
+
+Bei einigen Browsern, wie z. B. Safari, muss das Linkziel entweder von Haus aus fokussierbar sein (z. B. ein Link, eine Schaltfläche
+oder ein Formularelement) oder einen Tabindex-Wert haben, um korrekt zu funktionieren. Wenn der Link nicht fokussierbar ist und
+keinen Tabindex-Wert hat, scrollt der Viewport an die entsprechende Stelle, aber wenn der Nutzer die Tabulatortaste drückt, springt
+der Fokus wieder nach oben zum nächsten Link nach dem "Skip Navigation"-Link, obwohl er zum nächsten Link nach dem Ziel springen
+sollte. Dieses Verhalten macht den Zweck der "Skip Navigation"-Links zunichte. Wenn du dem Ziel tabindex="-1" zuweist, wird dieses
+Verhalten behoben (und die natürliche Tabulatorreihenfolge des Inhalts auf der Seite wird nicht beeinträchtigt, da ein tabindex-Wert
+von -1 das Element aus der natürlichen Tabulatorreihenfolge heraushält).
+
+#### Schlechtes Beispiel: Kein Link zum Überspringen vorhanden
+
+Der Screenshot unten zeigt eine Website, wie sie normalerweise für visuelle Nutzer/innen erscheint. Der Hauptinhaltsbereich ist
+visuell offensichtlich und befindet sich ganz oben auf der Seite. Für visuelle Nutzer ist es einfach, die Navigation mit den Augen
+zu übergehen und den Rest zu ignorieren.
+
+![Kein Link zum Überspringen vorhanden](/images/semantische-struktur/ski-nav-styles.png)
+
+Wenn die Stile ausgeschaltet sind, wird die Länge des oberen Abschnitts vor dem Hauptinhalt jedoch deutlicher. Vor dem Beginn des
+Hauptinhalts gibt es etwa 76 Links und 5 Eingabefelder für Formulare. Zugegeben, einige dieser Links und Funktionen sind mit
+JavaScript versteckt, so dass die Nutzer/innen nicht alle sehen können, aber selbst wenn wir das berücksichtigen, gibt es hier
+immer noch eine Menge Funktionen. Wenn du all diese Funktionen überspringst, um zum Hauptinhalt zu gelangen, kann das für blinde
+Nutzer von Bildschirmlesegeräten, für Nutzer von Bildschirmvergrößerungsgeräten mit geringem Sehvermögen und für sehende Nutzer
+von Tastaturen eine Belastung sein.
+
+Hinweis: Wenn die Stile ausgeschaltet sind, werden die Links in einer linearen Abfolge dargestellt, ähnlich wie ein Bildschirmlesegerät
+sie vorliest, daher ist dieser Screenshot sehr hoch.
+
+![Styles ausgeschaltet](/images/semantische-struktur/skip-nav-long.png)
+
+### Der "Skip Link" sollte das erste fokussierbare Element auf der Seite sein.
+
+Ein Link zum Überspringen der Navigation sollte ganz am Anfang des Dokuments, direkt nach dem einleitenden `<body>`-Tag, platziert
+werden, um es den Nutzern zu ermöglichen, eine sich wiederholende Navigation, wie z. B. globale Navigationsmenüs, zu überspringen.
+Er sollte auf die ID am oder kurz vor dem Beginn des Hauptinhalts der Seite verweisen. Oft ist das geeignete Ziel das `<h1>` am
+Anfang des Hauptinhalts. Den Link "Navigation überspringen" weiter unten auf der Seite zu platzieren, würde seinen Zweck verfehlen.
+
+#### Gutes Beispiel: Setze den Link "Navigation überspringen" zuerst
+
+Der Link zum Überspringen ist der erste Link auf der Seite im Beispiel unten.
+
+```html
+<body>
+  <div id="skipnav"><a href="#mainContent">Skip navigation</a></div>
+
+  <!-- header, navigation, etc. go here -->
+
+  <main id="mainContent" tabindex="-1">
+    <h1>Content starts here</h1>
+    <!-- all other content in the main landmark goes here -->
+  </main>
+</body>
+```
+
+### Ein Skip-Link muss entweder immer sichtbar sein oder bei Tastaturfokus sichtbar sein.
+
+#### Option 1: Den Link immer sichtbar machen
+
+Die zugänglichste - aber wahrscheinlich auch die unbeliebteste - Art, einen Link zum Überspringen der Navigation in ein Design
+einzubauen, ist, ihn immer sichtbar zu machen. So können alle Nutzerinnen und Nutzer, ob sehend oder blind, die Vorteile von
+"Skip Navigation"-Links nutzen.
+
+#### Option 2: Den Link bei Tastaturfokus sichtbar machen
+
+Designer mögen das Aussehen von sichtbaren "Navigation überspringen"-Links nicht und verstecken sie deshalb vor sehenden Nutzern.
+Das kann akzeptabel sein, solange der Link sichtbar wird, wenn er den Fokus der Tastatur erhält. Der Link kann mit der
+CSS-Clip-Technik standardmäßig ausgeblendet werden und dann sichtbar gemacht werden, indem der CSS-Clip entfernt wird, wenn der
+Link den Fokus erhält.
+
+Verwende NICHT display:none, um "Skip Navigation"-Links auszublenden, denn dann sind sie für Tastaturbenutzer, einschließlich
+Screenreader, nicht verfügbar.
+
+#### Gutes Beispiel: Anzeigen beim Fokus
+
+```html
+<head>
+  <title>Museum Information</title>
+  <style>
+    #skipnav a {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      border: 0;
+      height: 1px; margin: -1px;
+      overflow: hidden;
+      padding: 0
+      width: 1px;
+      white-space: nowrap;
+    }
+    #skipnav a:focus {
+      clip:auto;
+      left:0;
+      top:0;
+      width:100%;
+      height:auto;
+      margin:0;
+      padding:10px 0;
+      background:#fdf6e7;
+      border:2px solid #990000;
+      border-left:none;
+      border-right:none;
+      text-align:center;
+      font-weight:bold;
+      color:#990000;
+    }
+  </style>
+</head>
+<body>
+  <div id="skipnav"><a href="#mainContent">Skip navigation</a></div>
+  <!-- document banner, navigation, etc. -->
+  <main id="mainContent" tabindex="-1">
+    <h1>Link will take users to this location.</h1>
+    <!-- other content in the main content -->
+  </main>
+  <!-- other content on the web page -->
+</body>
+```
+
+## Inhaltsverzeichnis
+
+### Ein Inhaltsverzeichnis für die Seite kann am Anfang des Inhalts oder in der Kopfzeile enthalten sein.
+
+Ein Inhaltsverzeichnis hilft sowohl bei der Verständlichkeit als auch bei der Navigation.
+
+#### Ein Inhaltsverzeichnis erhöht die Verständlichkeit
+
+Ein Inhaltsverzeichnis oben auf einer Seite oder in der Kopfzeile kann den Nutzern helfen, sich schnell einen Überblick über den
+Inhalt der Seite zu verschaffen, ohne nach unten scrollen und den Inhalt lesen oder die Überschriften überfliegen zu müssen. Das
+Inhaltsverzeichnis fungiert quasi als Zusammenfassung der Hauptgedanken der Seite und ermöglicht es den Nutzern, die Hauptgedanken
+des Inhalts in der Vorschau zu sehen und zu verstehen, bevor sie ihn lesen.
+
+#### Ein Inhaltsverzeichnis verbessert die Navigation
+
+Das Inhaltsverzeichnis ermöglicht es den Nutzern, schnell zu den einzelnen Abschnitten auf der Seite zu navigieren. Das ist vor
+allem für Tastaturbenutzer von Vorteil, zu denen sowohl sehende Menschen mit motorischen Einschränkungen als auch blinde Menschen
+gehören. Sehende Tastaturbenutzer/innen profitieren am meisten davon, denn im Gegensatz zu blinden Benutzer/innen haben sehende
+Tastaturbenutzer/innen keinen Zugang zu den vielen Tastenkombinationen, die in Screenreadern verfügbar sind, wie z. B. die
+Möglichkeit, nach Überschriften zu navigieren.
+
+### Wenn ein Inhaltsverzeichnis für die Seite enthalten ist, sollte es die Überschriftenstruktur der Seite widerspiegeln.
+
+In den meisten Fällen ist der logischste Text für das Inhaltsverzeichnis einer Seite die Überschriftenstruktur der Seite selbst.
+Das Ausrichten der Überschriften und des Inhaltsverzeichnisses hilft, die Seitenstruktur einheitlich und übersichtlich zu halten.
+
+In manchen Fällen ist es sinnvoll, alle Überschriften auf allen Ebenen aufzunehmen. In anderen Fällen ist es sinnvoller, nur die
+Hauptüberschriften der Seite aufzunehmen. Wenn du alle Überschriften in das Inhaltsverzeichnis aufnimmst, ist es zwar vollständiger,
+aber das Inhaltsverzeichnis wird dadurch auch länger, du musst also abwägen.
+
+## Lesereihenfolge und Tabulator/Fokus-Reihenfolge
+
+### Die DOM-Reihenfolge bestimmt die Lesereihenfolge und Tab
+
+Wenn Screenreader-Benutzer linear durch den Inhalt navigieren, wird die Reihenfolge, in der sie den Inhalt hören, durch die
+Reihenfolge im Document Object Model (DOM) bestimmt, das im Wesentlichen der Quellcode ist, nachdem der Browser ihn geparst und
+alle relevanten JavaScript ausgeführt hat. Das scheint intuitiv zu sein, aber es gibt einige Dinge, auf die du achten solltest:
+
+- CSS-Positionierungstechniken - wie float:left, float:right, position:absolute, position:relative, position:fixed, margin,
+  padding usw. - können das visuelle Layout auf eine Weise verändern, die nicht der Lesereihenfolge im DOM entspricht.
+
+- Das dynamische Einfügen von Inhalten über JavaScript oder AJAX kann Dinge an einer unerwarteten Stelle platzieren, z. B. über
+  dem aktuellen Fokus des Nutzers. Eine blinde Person bemerkt möglicherweise nicht, dass dem Dokument neue Inhalte hinzugefügt wurden,
+  vor allem wenn sie diesen Bereich der Seite bereits besucht hat. Es gibt keinen offensichtlichen Grund für eine blinde Person,
+  zurück zu navigieren, nur um herauszufinden, ob in einem Bereich, den sie bereits besucht hat, etwas hinzugefügt oder geändert wurde.
+
+### Die Lesereihenfolge muss logisch und intuitiv sein.
+
+Wenn die Lesereihenfolge unlogisch oder unintuitiv ist, ergibt der Inhalt keinen Sinn oder ist schwer zu verstehen.
+
+Screenreader ignorieren das gesamte CSS-Layout deines Webdesigns. Das Ausschalten der Stylesheets ist eine Möglichkeit, die
+Lesereihenfolge statischer Inhalte zu überprüfen. Wenn der Inhalt auf diese Weise von der visuellen Gestaltung befreit wird, ist
+es in etwa so, wie ein Screenreader ihn "sieht".
+
+### Die Navigationsreihenfolge der fokussierbaren Elemente muss logisch und intuitiv sein.
+
+Wenn Tastaturbenutzer mit der Tabulatortaste durch die fokussierbaren Elemente (Schaltflächen, Links, Formularelemente,
+benutzerdefinierte Steuerelemente usw.) gehen, muss die Reihenfolge sinnvoll sein, damit sie nicht verwirrt werden.
+
+Wenn ein Tastaturbenutzer - egal ob sehend oder blind - die Tabulatortaste benutzt, um durch alle fokussierbaren Elemente (Links,
+Schaltflächen, Formularelemente usw.) zu gehen, beginnt der Browser mit den fokussierbaren Elementen am Anfang und geht linear durch
+alle fokussierbaren Elemente, bis er das Ende erreicht. Der Browser ignoriert alle visuellen Formatierungen - Spalten, schwebende
+Elemente, Ränder, Polsterung, Positionierung usw. - und achtet auf die grundlegende Reihenfolge, in der die Dinge im DOM erscheinen.
+
+### tabindex von positiven Werten sollte nicht verwendet werden.
+
+Es ist möglich, die Tabulatorreihenfolge fokussierbarer Elemente mit tabindex anzupassen, indem du numerische Werte wie 1, 2, 3 usw.
+einstellst, aber das kann zu erheblichen Problemen für Tastaturbenutzer führen.
+
+- Es kommt zu einer Diskrepanz zwischen der Tabulatorreihenfolge und der Lesereihenfolge, was zu Verwirrung führt, wenn du die
+  Seite mit der Tastatur bedienst
+
+- Sie entfernt die Elemente aus ihrer natürlichen Tabulatorreihenfolge und setzt sie stattdessen an die erste Stelle in der
+  Tabulatorreihenfolge. Alles, was einen Tabindex-Wert von 1 oder höher hat, kommt vor allen anderen fokussierbaren Elementen.
+  Wenn zum Beispiel nur ein einziges Element auf der Seite einen Tabindex hat und dieser auf 9000 gesetzt ist, wird dieses Element
+  das erste sein, auf das ein Benutzer mit der Tabulatortaste zugreift, auch wenn die Zahl sehr groß ist. Wenn der Tabulator von
+  dem Element mit tabindex="9000" weggeht, geht der Fokus zum ersten fokussierbaren Element im DOM. Wenn der Benutzer weiter durch
+  die Webseite tabbelt, kommt er schließlich an die Stelle, an der sich das Element mit tabindex="9000" befindet, und erwartet,
+  dass er zu diesem Element tabben kann, was aber nicht möglich ist, weil die Position des Elements im DOM nicht der
+  Tabulatorreihenfolge des Elements entspricht. Der Benutzer hätte bereits vorher mit der Tabulatortaste darauf zugegriffen, also
+  überspringt der Browser dieses Element. Das ist verwirrend für den Nutzer - vor allem für sehende Tastaturbenutzer - wenn das
+  passiert.
+
+## Ein-Tasten-Kurzbefehle
+
+### Wenn eine Ein-Zeichen-Tastenkombination existiert, muss mindestens eine der folgenden Bedingungen erfüllt sein: Ein-Zeichen-Tastenkombinationen können ausgeschaltet oder neu zugeordnet werden oder sind nur aktiv, wenn die entsprechende Komponente der Benutzeroberfläche im Fokus ist.
+
+Diese Regel gilt für Groß- und Kleinbuchstaben, Satzzeichen, Zahlen und Symbole.
+
+Nutzer/innen, die mit ihren Geräten per Sprache interagieren, verwenden dafür oft Wörter oder Buchstabenfolgen. Anwendungen und
+Websites, die Tastaturbefehle mit nur einem Buchstaben verwenden, um Funktionen zu aktivieren, können für diese Nutzer/innen
+frustrierend sein oder nicht funktionieren, weil das Diktieren eines Wortes völlig unbeabsichtigte Folgen haben kann. Wenn du die
+Möglichkeit hast, diese Tastenkombinationen abzuschalten, neu zuzuordnen oder ihre Aktivierung einzuschränken, können diese
+Nutzer/innen wieder Funktionen nutzen. Gmail ist ein Beispiel für eine Webanwendung, die Zeichentastenkombinationen verwendet:
+"e" archiviert eine Konversation, "a" antwortet allen und "f" leitet sie weiter.
+
+Außerdem kann es vorkommen, dass ein/e Nutzer/in in seiner/ihrer Mobilität eingeschränkt ist und oft versehentlich auf die Tasten
+der Tastatur drückt. Das Hinzufügen einer zweiten, nicht druckbaren Taste (Strg, Option usw.) hilft diesen Nutzern, unbeabsichtigte
+Tastatureingaben zu vermeiden.
+
+#### Schlechtes Beispiel: Website mit einem einzigen Tastenkürzel
+
+Das folgende Beispiel zeigt eine Webseite mit einem Tastenkürzel. Wenn du die Taste s drückst, wird der Fokus auf die Suchleiste
+gelegt. Das mag im Allgemeinen harmlos erscheinen. Aber stell dir vor, du bist ein Screenreader-Nutzer, der Muskelkrämpfe hat und
+gerade dabei ist, die Seite zu lesen. Du drückst versehentlich die s-Taste und kommst zurück an den Anfang der Seite zur Suchleiste,
+was sehr verwirrend sein kann.
+
+![Website mit einem einzigen Tastenkürzel](/images/semantische-struktur/bad-example-single-key-shortcut.png)
+
+#### Gutes Beispiel: Website mit abschaltbaren Shortcuts
+
+Gmail hat viele Einzeltastenkombinationen, aber im Einstellungsbereich kann ein Nutzer die Auswahl für: Tastaturkürzel aus.
+
+![Website mit abschaltbaren Shortcuts](/images/semantische-struktur/good-example-shortcuts.png)
+
+## Paginierte Ansichten
+
+### Eine paginierte Ansicht sollte eine sichtbare Methode enthalten, um die Nutzer darüber zu informieren, welche Ansicht gerade aktiv/sichtbar ist.
+
+#### Gutes Beispiel: Aktuelle Seitenzahl hervorheben
+
+Die Seitenzahl der aktuellen Seite kann in der Liste der Seitenzahlen optisch hervorgehoben werden, indem die Zahl fett gedruckt, die
+Hintergrundfarbe geändert, ein Umriss um die Zahl gelegt und/oder der Link entfernt wird.
+
+```html
+<head>
+  <title>Search Results for &quot;screen readers&quot;</title>
+  <style>
+    .visually-hidden {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      border: 0;
+      height: 1px; margin: -1px;
+      overflow: hidden;
+      padding: 0
+      width: 1px;
+      white-space: nowrap;
+    }
+    li.current-page {
+      outline: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-navigation">
+    Page
+    <ul>
+      <li><a href="#1">1</a></li>
+      <li><a href="#2">2</a></li>
+      <li class="current-page">
+        <span class="visually-hidden">Current page: </span>
+        3
+      </li>
+      <li><a href="#4">4</a></li>
+    </ul>
+  </div>
+</body>
+```
+
+### Eine paginierte Ansicht sollte eine Methode enthalten, die blinden Nutzern mitteilt, welche Ansicht gerade aktiv/sichtbar ist.
+
+Eine paginierte Ansicht kann z. B. mehrere Seiten mit Suchergebnissen enthalten, eine lange Tabelle, die in mehrere Ansichten
+aufgeteilt wurde, um sie besser verwalten zu können, usw. Bei der paginierten Ansicht kann es sich um ein benutzerdefiniertes
+JavaScript-Widget handeln, das technisch gesehen die ganze Zeit auf derselben Seite bleibt, oder um ein serverseitiges Skript, das
+für jede Ansicht eine andere Seite lädt, oder um eine Kombination dieser Ansätze.
+
+Um blinde Nutzer auf die gerade aktive oder sichtbare Ansicht hinzuweisen, kannst du das Attribut aria-current verwenden, das von
+den meisten Browsern und Screenreadern unterstützt wird.
+
+#### Gutes Beispiel: aria-current
+
+Die derzeit aktive Ansicht wurde mit aria-current gekennzeichnet.
+
+```html
+<div>
+  Page
+  <ul>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#" aria-current="page">3</a></li>
+    <li><a href="#">4</a></li>
+  </ul>
+</div>
+```
+
+#### Schlechtes Beispiel: Seitenzahl nicht programmatisch ermittelbar
+
+Es gibt keinen erkennbaren Hinweis darauf, welche Seitenzahl die aktuelle Seite ist.
+
+```html
+<div>
+  Page
+  <ul>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+  </ul>
+</div>
+```

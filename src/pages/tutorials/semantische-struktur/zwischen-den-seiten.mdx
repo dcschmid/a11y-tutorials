@@ -1,0 +1,190 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Navigation zwischen den Seiten'
+pubDate: 2023-04-20
+---
+
+Navigationsmenüs sollten als solche gekennzeichnet sein (mit `<nav>` oder role="navigation"), und die Anzahl und Reihenfolge der
+Links im Navigationsmenü sollte von einer Seite zur anderen einheitlich sein.
+
+## Navigationslisten
+
+### Eine Navigationsliste sollte mit dem `<nav>`-Element oder role="navigation" gekennzeichnet sein.
+
+Die Hauptnavigationsliste(n) eines Webdesigns - wie z. B. das Hauptnavigationsmenü - sollte(n) als Navigationslandmarken
+gekennzeichnet werden, damit Screenreader-Nutzer sie leicht finden können, wenn sie die Liste der Landmarken aufrufen.
+
+Es ist nicht notwendig und auch nicht wünschenswert, jeden Link als Navigationspunkt zu kennzeichnen. Der Orientierungspunkt sollte
+für die wichtigsten Navigationsbereiche auf der Seite reserviert werden, damit die Liste der Orientierungspunkte nicht zu
+unübersichtlich wird.
+
+#### Gutes Beispiel: Navigationsliste, die mit einem `<nav>`-Element markiert ist
+
+Die Navigationsliste wird von einem `<nav>`-Element umschlossen.
+
+```html
+<nav>
+  <ul>
+    <li><a href="home/">Home</a></li>
+    <li><a href="home/">Products</a></li>
+    <li><a href="home/">Services</a></li>
+  </ul>
+</nav>
+```
+
+#### Gutes Beispiel: Navigationsliste markiert mit role="navigation"
+
+Die Navigationsliste wird von einem `<div>` umschlossen, dem die Rolle der Navigation zugewiesen ist.
+
+Wichtig: Die Rolle der Navigation wird nicht dem `<ul>`-Element zugewiesen, denn das würde die ursprüngliche `<ul>`-Semantik außer
+Kraft setzen und diesem Element die Rolle der ungeordneten Liste nehmen. Indem wir role="navigation" dem Container und nicht dem
+`<ul>`-Element zuweisen, erkennen Screenreader sowohl die Navigationsrolle als auch die ungeordnete Liste, so dass Screenreader
+sagen können: "Liste mit drei Elementen". Wenn wir die Liste ihrer Semantik berauben, haben die Listenelemente nicht das erforderliche
+übergeordnete Element.
+
+```html
+<div role="navigation">
+  <ul>
+    <li><a href="home/">Home</a></li>
+    <li><a href="home/">Products</a></li>
+    <li><a href="home/">Services</a></li>
+  </ul>
+</div>
+```
+
+### Eine Navigationsliste sollte eine sichtbare Methode enthalten, die den Nutzern mitteilt, welche Seite innerhalb der Navigationsliste die derzeit aktive/sichtbare Seite ist.
+
+#### Gutes Beispiel: Aktuelle Seite hervorheben
+
+Die aktuelle Seite wird im Inhaltsverzeichnis durch Stile, die in einer Klasse angewendet werden, visuell sichtbar gemacht.
+
+```html
+<head>
+  <title>Groceries</title>
+  <style>
+    li.current-page {
+      outline: red solid 1px;
+    }
+  </style>
+</head>
+<ul>
+  <li><a href="#">Fruits</a></li>
+  <li><a href="#">Vegetables</a></li>
+  <li><a href="#">Meats</a></li>
+  <li class="current-page">Dairy</li>
+  <li><a href="#">Breads, Pasta, & Cereals</a></li>
+  <li><a href="#">Soups & Canned Goods</a></li>
+  <li><a href="#">Frozen Foods</a></li>
+  <li><a href="#">Desserts</a></li>
+  <li><a href="#">Snack Foods</a></li>
+</ul>
+```
+
+#### Schlechtes Beispiel: Aktuelle Seite unmarkiert
+
+In den Navigationslinks gibt es keinen Hinweis darauf, was die aktuelle Seite ist; alle Links sind gleich gestylt.
+
+```html
+<ul>
+  <li><a href="#">Fruits</a></li>
+  <li><a href="#">Vegetables</a></li>
+  <li><a href="#">Meats</a></li>
+  <li><a href="#">Dairy</a></li>
+  <li><a href="#">Breads, Pasta, & Cereals</a></li>
+  <li><a href="#">Soups & Canned Goods</a></li>
+  <li><a href="#">Frozen Foods</a></li>
+  <li><a href="#">Desserts</a></li>
+  <li><a href="#">Snack Foods</a></li>
+</ul>
+```
+
+### Eine Navigationsliste sollte eine Methode enthalten, die blinden Nutzern mitteilt, welche Seite in der Navigationsliste die gerade aktive/sichtbare Seite ist.
+
+Das Attribut aria-current zeigt Screenreadernutzern das aktuelle Element an, z. B. die sichtbare Seite in einer Navigationsliste.
+Dieses Attribut wird von den meisten Browsern und assistiven Technologien unterstützt.
+
+#### Gutes Beispiel: Aria-current
+
+Die aktuelle Seite wurde mit aria-current="page" gekennzeichnet.
+
+```html
+<ul>
+  <li><a href="#">Fruits</a></li>
+  <li><a href="#">Vegetables</a></li>
+  <li><a href="#">Meats</a></li>
+  <li><a href="#" aria-current="page">Dairy</a></li>
+  <li><a href="#">Breads, Pasta, & Cereals</a></li>
+  <li><a href="#">Soups & Canned Goods</a></li>
+  <li><a href="#">Frozen Foods</a></li>
+  <li><a href="#">Desserts</a></li>
+  <li><a href="#">Snack Foods</a></li>
+</ul>
+```
+
+## Konsistenz (beinhaltet die neue WCAG 2.2 Regel)
+
+### Navigationsmuster, die sich auf Webseiten wiederholen, müssen bei jedem Erscheinen in der gleichen relativen Reihenfolge dargestellt werden und dürfen die Reihenfolge beim Navigieren durch die Website nicht ändern.
+
+Die Nutzer haben es schwer, sich auf einer Website zurechtzufinden, wenn die Anzahl und Reihenfolge der Links im Hauptmenü nicht
+einheitlich ist.
+
+#### Schlechtes Beispiel: Abweichung von der Navigationsanweisung
+
+Zwei Seiten enthalten denselben Satz von Navigationslinks, aber die Links sind unterschiedlich angeordnet.
+
+```html
+<h1>[Page A Title Here]</h1>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#fruits">Fruits</a></li>
+  <li><a href="#vegetables">Vegetables</a></li>
+  <li><a href="#meats">Meats</a></li>
+  <li><a href="#dairy">Dairy</a></li>
+  <li><a href="#breads">Breads, Pasta, & Cereals</a></li>
+  <li><a href="#soups_canned">Soups & Canned Goods</a></li>
+  <li><a href="#frozen">Frozen Foods</a></li>
+  <li><a href="#desserts">Desserts</a></li>
+  <li><a href="#snack">Snack Foods</a></li>
+</ul>
+
+<div>[Page A content here...]</div>
+
+<h1>[Page B Title Here]</h1>
+
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#breads">Breads, Pasta, & Cereals</a></li>
+  <li><a href="#dairy">Dairy</a></li>
+  <li><a href="#desserts">Desserts</a></li>
+  <li><a href="#frozen">Frozen Foods</a></li>
+  <li><a href="#fruits">Fruits</a></li>
+  <li><a href="#meats">Meats</a></li>
+  <li><a href="#snack">Snack Foods</a></li>
+  <li><a href="#soups_canned">Soups & Canned Goods</a></li>
+  <li><a href="#vegetables">Vegetables</a></li>
+</ul>
+
+<div>[Page B content here...]</div>
+```
+
+### Bestimmte Hilfemechanismen, die sich auf mehreren Webseiten wiederholen, müssen in der gleichen relativen Reihenfolge zu anderen Seiteninhalten auftreten, es sei denn, der Nutzer hat eine Änderung veranlasst.
+
+Es ist wichtig, dass die Nutzer/innen bei der Erledigung von Aufgaben leicht Hilfe bekommen können (sofern verfügbar). Wenn du
+sicherstellst, dass die Hilfsmechanismen von Seite zu Seite an der gleichen Stelle zu finden sind, sind sie leicht zu finden.
+
+Die Hilfsmechanismen, die unter diese Regel fallen, sind:
+
+- Kontaktinformationen für Menschen
+
+- Mechanismus des menschlichen Kontakts
+
+- Selbsthilfe-Option
+
+- Ein vollautomatischer Kontaktmechanismus
+
+#### Gutes Beispiel: Schaltfläche "Kontakt" an einheitlicher Stelle
+
+Auf allen Seiten der Deque-Website gibt es in der oberen rechten Ecke einen Link "Kontaktieren Sie uns".
+
+![Schaltfläche "Kontakt" an einheitlicher Stelle](/images/semantische-struktur/contact-us-consistent.png)

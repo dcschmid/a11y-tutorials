@@ -1,0 +1,188 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Sprache'
+pubDate: 2023-04-19
+---
+
+Die meisten Bildschirmlesegeräte können mehrere verschiedene Sprachen lesen. Die Benutzer/innen wählen bei der Installation und
+Konfiguration ihres Bildschirmlesegeräts eine Standardsprache aus. Wenn also im HTML-Dokument keine Sprache angegeben ist, liest
+das Bildschirmlesegerät das Dokument in der Standardsprache des/der Benutzer/in. Nutzer/innen, die nur eine Sprache sprechen,
+werden wahrscheinlich nur in ihrer Muttersprache auf Websites zugreifen, so dass sie keine Probleme mit der Sprache haben werden.
+Nutzer/innen, die mehr als eine Sprache sprechen, wie z. B. viele Frankokanadier/innen, Europäer/innen oder Einwanderer/innen in
+einem neuen Land, werden wahrscheinlich auf Websites in mehr als einer Sprache zugreifen und wollen jede Sprache korrekt vorgelesen
+bekommen, mit dem richtigen Akzent und der richtigen Aussprache.
+
+## Primäre Sprache der Seite
+
+### Die Hauptsprache der Seite muss im `<html>`-Element genau angegeben werden.
+
+Wenn die Sprache nicht angegeben wird oder die Sprachbezeichnung ungenau ist, liest ein Bildschirmlesegerät das Dokument in der
+Standardsprache des Benutzers, was zu einem sehr schlechten Akzent führen kann, wenn die Sprache der Seite nicht mit der
+Standardsprache des Benutzers übereinstimmt. In der Tat kann es sehr schwierig sein, etwas zu verstehen, wenn Screenreader die
+falsche Sprachbibliothek verwenden.
+
+#### Gutes Beispiel: Genaue Identifizierung der Sprache
+
+Die Sprache wird genau in der zweiten Zeile des Codes angegeben.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>I Have a Dream, Excerpt</title>
+  </head>
+  <body>
+    <p>
+      &quot;I say to you today, my friends, so even though we face the difficulties of today and
+      tomorrow, I still have a dream. It is a dream deeply rooted in the American dream.
+    </p>
+    <p>
+      &quot;I have a dream that one day this nation will rise up and live out the true meaning of
+      its creed: 'We hold these truths to be self-evident: that all men are created equal.'&quot;
+    </p>
+  </body>
+</html>
+```
+
+Höre dir an, wie JAWS eine Passage aus Dr. Martin Luther Kings "Ich habe einen Traum"-Rede vorliest:
+
+<audio controls>
+  <source src="/audio/language-doc.ogg" type="audio/ogg" />
+  <source src="/audio/language-doc.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+Beschreibung: JAWS liest den englischen Text richtig.
+
+#### Schlechtes Beispiel: Ungenaue Identifizierung der Sprache
+
+Wenn du die Sprache des Dokuments nicht kennzeichnest und das Bildschirmlesegerät auf eine andere Sprache eingestellt ist - oder
+wenn die Sprachbezeichnung ungenau ist - liest das Bildschirmlesegerät das Dokument mit den falschen Ausspracheregeln vor, so dass
+es fast unmöglich ist, es zu verstehen.
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>I Have a Dream, Excerpt</title>
+  </head>
+  <body>
+    <p>
+      &quot;I say to you today, my friends, so even though we face the difficulties of today and
+      tomorrow, I still have a dream. It is a dream deeply rooted in the American dream.
+    </p>
+    <p>
+      &quot;I have a dream that one day this nation will rise up and live out the true meaning of
+      its creed: 'We hold these truths to be self-evident: that all men are created equal.'&quot;
+    </p>
+  </body>
+</html>
+```
+
+Hör dir an, wie JAWS dieselbe Passage aus derselben Rede vorliest, ohne die im Code angegebene Sprachänderung und mit der
+Standardsprache Spanisch (die englischen Wörter werden mit spanischem Akzent gelesen):
+
+<audio controls>
+  <source src="/audio/language-doc-bad.ogg" type="audio/ogg" />
+  <source src="/audio/language-doc-bad.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+Beschreibung: JAWS liest die englischen Wörter mit einem spanischen Akzent vor, wodurch der Inhalt extrem schwer zu verstehen ist.
+
+### Die Hauptsprache der Seite muss mit einem gültigen Wert im `<html>`-Element angegeben werden.
+
+Die Sprachbezeichnung muss aus einer Standardliste von Sprachcodes stammen, die laut der Spezifikation en (Englisch), fr (Französisch),
+es (Spanisch) und andere umfasst. Alles andere (z. B. lang="English") funktioniert nicht.
+
+Einige Bildschirmleser unterstützen nur Codes mit zwei Buchstaben. Andere Bildschirmleser unterstützen regionale Sprachcodes wie
+en-us (amerikanisches Englisch) oder fr-ca (kanadisches Französisch).
+
+#### Gutes Beispiel: Sprache der Seite mit einem gültigen Wert
+
+Die Hauptsprache der Seite wird im html-Tag angegeben, in diesem Fall ist es Englisch.
+
+```html
+<html lang="en"></html>
+```
+
+#### Schlechtes Beispiel: Fehlender Wert
+
+In diesem Beispiel fehlt das lang-Attribut komplett im `<html>`-Element.
+
+```html
+<!DOCTYPE html>
+<html></html>
+```
+
+#### Schlechtes Beispiel: Ungültiger Wert
+
+Der Wert "anglais" (das französische Wort für "Englisch") ist nicht gültig. Der richtige Wert wäre in diesem Fall lang="en".
+
+```html
+<!DOCTYPE html>
+<html lang="anglais"></html>
+```
+
+## Sprache der Elemente auf der Seite
+
+### Inline-Sprachänderungen müssen mit einem gültigen lang-Attribut gekennzeichnet werden.
+
+Identifiziere jede Änderung der Sprache innerhalb des Dokuments. Das lang-Attribut kann sowohl auf Elemente auf Blockebene (`<div>`,
+`<h1>, <p>, <table>`, etc.) als auch auf Inline-Elemente (`<span>, <a>, <strong>`, etc.) angewendet werden.
+
+#### Gutes Beispiel: Inline-Änderung der Sprache wird korrekt markiert
+
+Im letzten Satz des folgenden Absatzes gibt es eine sprachliche Änderung:
+
+While in Spain, my friend tried to speak Spanish, but she wasn't very good. Everyone kept saying "No comprendo nada de lo que dices."
+
+Das Markup für den obigen Absatz ist unten abgebildet:
+
+```html
+<p>
+  While in Spain, my friend tried to speak Spanish, but she wasn't very good. Everyone kept saying
+  &quot;<span lang="es">No comprendo nada de lo que dices.</span>&quot;
+</p>
+```
+
+Hör zu, wie JAWS diese Inline-Sprachänderung vorliest:
+
+<audio controls>
+  <source src="/audio/language-inline.ogg" type="audio/ogg" />
+  <source src="/audio/language-inline.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+Beschreibung: JAWS liest den ersten Teil des Satzes auf Englisch, schaltet dann auf einen spanischen Akzent um und liest
+den spanischen Satz entsprechend vor.
+
+#### Schlechtes Beispiel: Inline-Änderung der Sprache wird nicht korrekt markiert
+
+Im folgenden Absatz ist die Änderung der Sprache nicht im Markup angegeben, so dass der Screenreader die spanischen Wörter mit
+englischen Ausspracheregeln liest:
+
+While in Spain, my friend tried to speak Spanish, but she wasn't very good. Everyone kept saying "No comprendo nada de lo que dices."
+
+Das Markup für den obigen Absatz ist unten abgebildet (beachte, dass es kein Markup für die Änderung der Sprache gibt):
+
+```html
+<p>
+  While in Spain, my friend tried to speak Spanish, but she wasn't very good. Everyone kept saying
+  &quot;No comprendo nada de lo que dices.&quot;
+</p>
+```
+
+Hör dir an, wie JAWS denselben Satz ohne die im Code angegebene Sprachänderung liest (er liest die Wörter mit einem schlechten
+englischen Akzent):
+
+<audio controls>
+  <source src="/audio/language-inline-bad.ogg" type="audio/ogg" />
+  <source src="/audio/language-inline-bad.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+Beschreibung: JAWS liest die englische Phrase korrekt vor, aber dann liest es die spanische Phrase mit einem englischen Akzent, so
+dass das Spanische wirklich schlecht klingt und schwer zu verstehen ist.

@@ -1,0 +1,488 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Überschriften'
+pubDate: 2023-04-19
+---
+
+## Überschriften helfen bei der Organisation des Inhalts und der Navigation
+
+Überschriften spielen eine wichtige Rolle für die Zugänglichkeit eines Dokuments, egal ob es sich um ein Word-, PDF- oder
+HTML-Dokument handelt. Sie dienen Bildschirmlesern zur Navigation und sorgen für eine klare Struktur des Dokuments, was allen
+Nutzern zugute kommt und das Überfliegen des Inhalts erleichtert. Im Falle von Word-Dokumenten machen es richtig gestylte
+Überschriften außerdem sehr einfach, automatisch ein Inhaltsverzeichnis (TOC) zu erstellen.
+
+## Bonusvorteil: Überschriften verbessern die Suchmaschinenoptimierung
+
+Überschriften verbessern die Suchmaschinenoptimierung (SEO), indem sie die wichtigen Teile der Webseite hervorheben und die
+Aufmerksamkeit auf sie lenken. Achte aber darauf, dass du die Überschriften nicht dazu missbrauchst, um Suchbegriffe in den
+Inhalt einzufügen. Wenn die Überschriften mehr Suchbegriffe als aussagekräftige strukturelle Informationen über eine Seite
+enthalten, sind die Überschriften für Screenreader-Nutzer nicht nützlich und machen den Zweck der Überschriften aus Gründen
+der Barrierefreiheit zunichte.#
+
+## Echte Überschriften
+
+### Text, der visuell oder strukturell als Überschrift fungiert, sollte im Markup als echte Überschrift gekennzeichnet werden.
+
+Bei Überschriften geht es um eine logische Struktur, nicht um visuelle Effekte. Großer fetter Text mag für sehende Benutzer wie
+eine Überschrift aussehen, aber Bildschirmlesegeräte ignorieren die Größe und die Schriftart des Textes, so dass blinde Benutzer
+nicht wissen können, dass ein Satz eine Überschrift ist, es sei denn, er wird im HTML-Code mit `<h1>, <h2>, <h3>, <h4>, <h5> oder <h6>`
+als solche gekennzeichnet. Auch wenn das schlechte Beispiel unten denselben Text enthält und so gestaltet ist, dass es im Browser
+ähnlich aussieht wie die guten Beispiele unten, erzeugen nur die guten Beispiele echte Überschriften, die Screenreader verwenden können.
+
+#### Gutes Beispiel: Echte Überschriften
+
+Die Überschriften in diesem Beispiel sind mit echten Überschriftenelementen (`<h1> und <h2>`) gekennzeichnet
+
+```html
+<h1>Types of Web Accessibility Laws</h1>
+<h2>Civil Rights Laws</h2>
+<h2>Procurement Laws</h2>
+<h2>Industry-Specific Laws</h2>
+```
+
+#### Gutes Beispiel: Echte Überschriften mit ARIA
+
+Bei der Nachrüstung von alten Markierungen kann role="heading" in Kombination mit aria-level eine nützliche Methode sein, um die Semantik
+von Überschriften in Markierungen einzufügen, ohne zu riskieren, dass Stile, die mit den alten Markierungen verknüpft sind, zerstört werden.
+Beachte, dass die Verwendung von echten HTML-Überschriften (`<h1>, <h2>` usw.) bei der Erstellung von neuem Markup vorzuziehen ist, aber das
+Endergebnis ist für Screenreader-Nutzer so oder so identisch.
+
+```html
+<div role="heading" aria-level="1">Screen readers will recognize this as a heading level 1</div>
+```
+
+#### Schlechtes Beispiel: Falsche Überschriften mit Formatvorlagen
+
+Verwende keine Stile, um falsche Überschriften zu erstellen. Die folgenden Sätze sind so gestaltet, dass sie wie echte Überschriften
+aussehen, aber es sind trotzdem ganz normale Absätze, die von Screenreadern nicht als Überschriften erkannt werden.
+
+```html
+<div id="noHeadingExample">
+  <p style="font-weight: bold; font-size: 200%;">Setting the Exposure Manually on a Camera</p>
+  <p>Put text here...</p>
+  <p style="font-weight: bold; font-size: 150%;">Set the ISO</p>
+  <p>Put text here...</p>
+  <p style="font-weight: bold; font-size: 150%;">Choose an aperture</p>
+  <p>Put text here...</p>
+  <p style="font-weight: bold; font-size: 150%;">Choose a shutter speed</p>
+  <p>Put text here...</p>
+</div>
+```
+
+### Text, der visuell oder strukturell nicht als Überschrift fungiert, sollte nicht als Überschrift markiert werden.
+
+Wenn du großen, fettgedruckten Text für nicht-überschriftlichen Text erstellen willst, verwende Stile, um diesen Effekt zu erzielen.
+Wenn du Überschriftenauszeichnungen (`<h1>, <h2>` usw.) für nicht-überschriftlichen Text verwendest, verwirrst du die Benutzer von
+Bildschirmlesegeräten, weil du eine ungenaue strukturelle Gliederung des Seiteninhalts erzeugst.
+
+#### Schlechtes Beispiel: Nicht-überschriftlicher Inhalt, der als Überschrift markiert ist
+
+Im folgenden Beispiel wurde eine Überschrift verwendet, um einen Werbetext hervorzuheben, obwohl der Werbetext nicht als Überschrift
+fungiert (mit anderen Worten, es gibt in der strukturellen Hierarchie der Seite keine Elemente unterhalb dieser Überschrift). Diese
+missbräuchliche Verwendung von Überschriften bricht die strukturelle Hierarchie der Seite auf und erweckt bei Screenreadernutzern den
+falschen Eindruck, dass sich unter dieser Überschrift noch mehr Inhalt befindet, obwohl das in Wirklichkeit nicht der Fall ist.
+
+<h1 style="border: 2px solid #990000 !important;padding: 10px;background-color: #fff7c0;color: #990000;font-weight: bold;font-size:130%;width:#400px;margin:auto;text-align:center;">
+  Special rates good until July 31!
+</h1>
+
+```html
+<h1 class="promotional-item">Special rates good until July 31!</h1>
+```
+
+## Bedeutungsvoller Text
+
+### Überschriften müssen genau und informativ sein.
+
+Überschriften sollten so aussagekräftig sein, dass sie den Nutzern einen guten Eindruck vom Inhalt des jeweiligen Abschnitts vermitteln.
+Wenn Screenreader-Nutzer die Liste der Überschriften aufrufen, hören sie die Ebene der Überschrift sowie den Text innerhalb der Überschrift,
+einschließlich des Alt-Textes für alle Bilder innerhalb der Überschrift.
+
+#### Gutes Beispiel: Beschreibende Überschriften
+
+Ein Artikel, der beschreibt, wie du dich auf Notfälle vorbereiten kannst, könnte folgendermaßen aufgebaut sein.
+
+```html
+<h1>Emergency Preparedness Guide</h1>
+<h2>Know the Risks</h2>
+<h2>Make a Plan</h2>
+<h2>Get an Emergency Kit</h2>
+<h3>Emergency Kit Basic Items</h3>
+<h2>
+  Resources
+  <h2></h2>
+</h2>
+```
+
+#### Schlechtes Beispiel: Allgemeine Überschriften
+
+In diesem Beispiel erklären die Überschriften nur unzureichend, was sich in den einzelnen Abschnitten befindet. Wenn es zum Beispiel
+heißt "Abschnitt 1", ist das zwar richtig, aber für Screenreader-Nutzer nicht sehr hilfreich, wenn sie mit Hilfe der Überschriften
+navigieren.
+
+```html
+<h1>Emergency Preparedness Guide</h1>
+<h2>Section 1</h2>
+<h2>Section 2</h2>
+<h2>Section 3</h2>
+<h3>(a)</h3>
+<h2>Section 4</h2>
+```
+
+### Der Überschriftentext sollte kurz und prägnant sein.
+
+Es gibt keine technische Begrenzung für die Länge einer Überschrift, aber eine Überschrift sollte eine kurze Bezeichnung für den
+Inhaltsbereich unter der Überschrift sein, damit es für die Nutzer/innen einfach ist, die Überschriften zu durchsuchen.
+
+## Gliederung/Hierarchie des Inhalts
+
+### Überschriften sollten eine klare und genaue strukturelle Gliederung der Inhaltsbereiche einer Webseite vermitteln.
+
+Erstelle zuerst die Struktur und gestalte dann die Überschriften so, wie du es für richtig hältst. Denke immer zuerst an die Struktur,
+denn Screenreader und andere Hilfstechnologien achten auf die Struktur, nicht auf das Aussehen und die Bedienung. Wenn die Standardgröße
+der Überschriften zu groß für das Aussehen ist, das du dir vorstellst, kannst du die Größe mit Hilfe von Formatvorlagen ändern, anstatt
+auf eine niedrigere Überschriftenebene zu wechseln.
+
+#### Gutes Beispiel: Überschriften schaffen eine logische Gliederung
+
+Schau dir die Überschriften auf der Webseite an und frage dich, ob du den Hauptgedanken der Webseite verstehen würdest - oder zumindest
+ein Gefühl dafür bekommst, was du auf der Seite lesen würdest - wenn du nur die Überschriften lesen könntest. Wenn die Antwort "Nein"
+lautet, solltest du die Überschriftenstruktur - und möglicherweise auch den Text selbst - überarbeiten, damit sie das widerspiegeln,
+was du auf der Webseite vermitteln willst.
+
+Wenn du eine Webseite über die manuelle Einstellung der Belichtung an einer Kamera erstellst, könntest du die Schritte in einer Gliederung
+zusammenfassen, wie in der Aufzählung unten gezeigt.
+
+- Setting the Exposure Manually on a Camera
+
+  - Set the ISO
+
+  - Choose an aperture
+
+  - Set a shutter speed
+
+Du müsstest die Details zu jedem Punkt in dieser Liste ausfüllen, aber das ist ein ziemlich guter Überblick über die wichtigsten
+Schritte oder Teile des Prozesses, sodass wir diese Listenpunkte als Grundlage für unsere Überschriftenstruktur verwenden können.
+In diesem Beispiel würde der erste Punkt als `<h1>` und die restlichen Punkte als `<h2>` markiert werden:
+
+```html
+<h1>Setting the Exposure Manually on a Camera</h1>
+<p>Put text here...</p>
+<h2>Set the ISO</h2>
+<p>Put text here...</p>
+<h2>Choose an aperture</h2>
+<p>Put text here...</p>
+<h2>Choose a shutter speed</h2>
+<p>Put text here...</p>
+```
+
+### Überschriften sollten keine Hierarchieebenen überspringen.
+
+#### Gutes Beispiel: Überschriften in der richtigen hierarchischen Reihenfolge
+
+Jede Ebene der Überschrift, `<h1>-<h6>`, zeigt die Beziehung von einem Teil des Inhalts zu den anderen Teilen an. Der Inhalt unter einer
+Überschrift steht in einem logischen Zusammenhang mit einer Überschrift darüber. Ähnlich verhält es sich mit dem Inhalt eines `<h2>`-Blocks,
+der logisch mit dem `<h1>`-Block verbunden ist, der ihm vorausgeht. Auf diese Weise kann die Überschriftenstruktur eines Dokuments als
+Methode zur hierarchischen Gliederung des Dokumentinhalts verwendet werden, ähnlich wie eine Gliederung.
+
+```html
+<div class="exampleHeadings">
+  <h1>Setting the Exposure Manually on a Camera</h1>
+  <h2>Setting the ISO</h2>
+  <h3>The effect of ISO on image quality</h3>
+  <p>The higher the ISO, the greater your ability to take photos in low light [...]</p>
+  <h3>High ISO cameras</h3>
+  <p>Cameras with larger sensors are capable of higher ISO values [...]</p>
+  <h2>Choose an aperture</h2>
+  <h3>The effect of aperture on depth of focus</h3>
+  <p>The larger the aperture, the narrower the plane of focus [...]</p>
+  <h3>Vignetting</h3>
+  <p>Vignetting occurs when a lens lets in less light around the edges than in the center [...]</p>
+  <h3>Diffraction</h3>
+  <p>
+    A small aperture can cause the light to diffract, which reduces the sharpness of the image, even
+    though more of the image is in focus [...]
+  </p>
+  <h2>Choose a shutter speed</h2>
+  <h3>Shutter speed limitations for hand-holding a camera</h3>
+  <p>
+    Hand-holding a camera at a slow shutter speed increases the chance of vibration and blur in the
+    final image [...]
+  </p>
+  <h3>Long exposures</h3>
+  <p>Use a tripod when taking long exposures [...]</p>
+</div>
+```
+
+#### Schlechtes Beispiel: Nicht in der richtigen Reihenfolge
+
+In dem folgenden Beispiel gibt es zwei Probleme.
+
+- Erstens beginnt die Gliederung mit zwei `<h3>`-Überschriften und nicht mit `<h1>`, und keine dieser Überschriften ist die Hauptüberschrift
+  für die Webseite. Sie sind Teil der Navigationsstruktur um die Überschrift herum, in der Vorlage.
+
+- Zweitens: Sobald der Inhalt beginnt, springt die Gliederung von Ebene 1 auf Ebene 3, ohne eine Überschrift der Ebene 2 dazwischen.
+
+Es gibt jedoch Situationen, in denen es zulässig ist, eine Überschriftsebene zu überspringen, obwohl es ideal ist, dies nicht zu tun.
+
+```html
+<h3>Quick Links</h3>
+<h3>Photography Tutorials</h3>
+<h1>Setting the Exposure Manually on a Camera</h1>
+<h3>Set the ISO</h3>
+<h4>The effect of ISO on image quality</h4>
+<h4>High ISO cameras</h4>
+<h3>Choose an aperture</h3>
+<h4>The effect of aperture on depth of focus</h4>
+<h4>Vignetting</h4>
+<h4>Diffraction</h4>
+<h3>Choose a shutter speed</h3>
+<h4>Shutter speed limitations for hand-holding a camera</h4>
+<h4>Long exposures</h4>
+```
+
+## Überschrift Level 1 Best Practices
+
+### Der Anfang des Hauptinhalts sollte mit `<h1>` beginnen.
+
+In der Regel ist es am besten, den Hauptinhalt einer Webseite mit einer Überschrift der Ebene 1 (`<h1>`) zu beginnen, ohne weitere
+Überschriften vor dieser Überschrift. Die Unterabschnitte der Seite sollten jeweils als Überschriften der Ebene 2 (`<h2>`) gekennzeichnet
+werden. Wenn es innerhalb der Abschnitte der Ebene 2 Unterabschnitte gibt, sollten diese als Ebene 3 (`<h3>`) gekennzeichnet werden und so
+weiter. Alles, was vor dem Hauptinhalt der Seite steht, sollte wahrscheinlich überhaupt nicht mit Überschriften versehen werden, aber das
+ist keine unumstößliche Regel. Einer der Hauptgründe dafür, dass das `<h1>` am Anfang des Hauptinhalts stehen sollte, ist, dass
+Screenreader-Benutzer mit Hilfe von Tastenkombinationen direkt zum ersten `<h1>` navigieren können, was es ihnen im Prinzip ermöglichen
+sollte, direkt zum Hauptinhalt der Webseite zu springen. Wenn es kein `<h1>` gibt oder wenn das `<h1>` an einer anderen Stelle als am Anfang
+des Hauptinhalts erscheint, müssen sich Screenreader-Nutzer mehr von der Webseite anhören, um die Struktur zu verstehen, und verschwenden
+damit wertvolle Zeit.
+
+Wie bei allen Best-Practice-Empfehlungen gibt es auch hier Ausnahmen, in denen es nicht sinnvoll ist, den Inhalt mit `<h1>` zu beginnen,
+oder wenn es besser ist, andere Überschriften vor den Hauptinhalt zu setzen, aber diese Ausnahmen gelten nicht für die große Mehrheit der
+Webseiten.
+
+### Die meisten Webseiten sollten nur ein`<h1>` haben.
+
+Von wenigen Ausnahmen abgesehen, sollten die meisten Webseiten nur eine Überschrift der Ebene 1 haben, um deutlich zu machen, wo der Anfang
+des Hauptinhalts liegt.
+
+Eine häufige Ausnahme von dieser Best Practice ist, wenn eine Seite ein Modal oder Overlay hat. Das Modal/Overlay ist ein Element, das über
+der Hauptseite angezeigt wird, und die Überschriftenebene des Modaltitels wird oft als `<h1>` markiert. Dies sollte die Nutzer jedoch nicht
+verwirren, denn das Modal und seine Überschrift sollten nicht verfügbar sein, während ein Nutzer mit der Hauptseite interagiert, und die
+Hauptseite sollte nicht verfügbar sein, während ein Nutzer mit dem Modal/Overlay interagiert.
+
+Eine weitere mögliche Ausnahme sind Indexseiten von mehreren Blogartikeln, die auf derselben Seite zusammengefasst sind und bei denen jeder
+Blogartikel auf der Seite mit `<h1>` beginnt. Aber auch dieses Beispiel muss keine Ausnahme von der Regel sein. Die oberste Überschrift
+Ebene 1 könnte der Titel des Blogs sein (z.B. "Pauls Kameratipps"), und jeder Blogartikel auf der Indexseite könnte mit `<h2>` beginnen.
+Wenn die einzelnen Blogartikel aber auch auf eigenen Seiten erscheinen, sollten diese Seiten mit `<h1>` und nicht mit `<h2>` beginnen.
+Realistisch gesehen ist es also sinnvoller, `<h1>` sowohl auf der Seite mit den einzelnen Blogartikeln als auch auf der kombinierten
+Indexseite mit mehreren Artikeln zu verwenden. Auf diese Weise ist es einfacher, das Markup zu pflegen, auch wenn es für die Barrierefreiheit
+nicht ideal ist.
+
+## Navigation von Überschriften mit Screen Readern
+
+Vergiss nicht, dass blinde Nutzer/innen eine Webseite nicht einfach nur ansehen und sofort verstehen können, wie es visuelle Nutzer/innen
+können. Visuelle Nutzer können viele Informationen über das Layout der Seite aufnehmen, ohne den gesamten Inhalt lesen zu müssen. Blinde
+Nutzer haben diesen Luxus nicht. Bildschirmlesegeräte lesen linear, was bedeutet, dass sie sich die gesamte Webseite anhören müssen, es
+sei denn, es gibt eine andere bequeme Möglichkeit, einen "Einblick" in das Layout und die Struktur der Seite zu bekommen. Es hat sich
+herausgestellt, dass Überschriften eine Möglichkeit sind, dies zu tun.
+
+Benutzer von Bildschirmlesegeräten können mit Tastaturkürzeln durch die Überschriftenstruktur eines Dokuments navigieren. Die meisten
+Bildschirmlesegeräte bieten eine Methode an, mit der die meisten oder alle der folgenden Funktionen ausgeführt werden können:
+
+### Methode 1: Methode 1: Liste alle Überschriften auf
+
+Einige Bildschirmleser (wie NVDA) zeigen dies in einer Baumansicht an. Andere (wie VoiceOver) zeigen alle Überschriften in einer flachen
+Liste an, zusammen mit der Nummer der Überschriftsebene.
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Einfügen + F6</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">
+        Einfügen + F7 (zum Öffnen der Elementeliste), dann Überschriften auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts die
+        Überschriften auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Window-Eyes mit IE</td>
+      <td data-label="Befehl">
+        Einfügen + Tab (um die Elementeliste zu öffnen), dann alt + H, um Überschriften auszuwählen
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Beispiel: Überschriftenliste in JAWS
+
+![Überschriftenliste in JAWS](/images/semantische-struktur/headings-jaws.png)
+
+Die Überschriften können der Reihe nach, "In Tab-Reihenfolge", wie JAWS sagt, oder alphabetisch sortiert werden. Die Nutzer können auch
+wählen, ob sie nur Überschriften einer bestimmten Ebene sehen wollen. Screenreader-Nutzer können die Überschriften schnell durchgehen, um
+den Grundriss der Seite zu verstehen, und dann zu dem Abschnitt zurückgehen, der sie am meisten interessiert. Diese Art der Navigation und
+des schnellen Verständnisses einer Webseite ist jedoch nur möglich, wenn die Seite echte Überschriften verwendet und wenn die Überschriften
+eine gute, logische Gliederung des Inhalts ergeben.
+
+#### Beispiel: Überschriftenliste in NVDA
+
+![Überschriftenliste in NVDA](/images/semantische-struktur/nvda-headings-list.png)
+
+NVDA listet die Überschriften in einer Baumansicht auf, mit Unterüberschriften in einer Liste unter jeder Überschrift. Die Listen können
+verkleinert bzw. erweitert werden, indem du die Pfeiltaste nach links oder rechts drückst, wenn eine Überschrift markiert ist, oder indem
+du auf das Minus- oder Pluszeichen neben einer Überschrift klickst.
+
+![Gefilterte Überschriftenliste in NVDA](/images/semantische-struktur/nvda-headings-list-filtered.png)
+
+Die Liste kann so gefiltert werden, dass nur die Überschriften angezeigt werden, die die vom Benutzer angegebene Zeichenfolge enthalten,
+indem er in das Textfeld "Filtern nach:" eingibt.
+
+### Methode 2: Navigiere von einer Rubrik zur nächsten.
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">H</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">H</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Benutze den Rotor, um Überschriften auszuwählen (drehe zwei Finger auf dem Bildschirm nach
+        links oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Überschriften auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl + H</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">H</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Window-Eyes mit IE</td>
+      <td data-label="Befehl">H</td>
+    </tr>
+  </tbody>
+</table>
+
+#### Beispiel: Sequentielles Navigieren durch Überschriften mit JAWS
+
+In der folgenden Audiodatei drückt der Benutzer die Taste "H", während er JAWS mit Chrome, Firefox oder Internet Explorer verwendet, um
+nacheinander durch alle Überschriften auf der Webseite zu navigieren.
+
+<audio controls>
+  <source src="/audio/headings-h.ogg" type="audio/ogg" />
+  <source src="/audio/headings-h.mp3" type="audio/mpeg" />
+  Dein Browser unterstützt das Audio-Element nicht.
+</audio>
+
+JAWS liest den Text der Überschrift, gefolgt von der Ebene der Überschrift. In diesem Beispiel sagt JAWS:
+
+Setting the exposure manually on a camera, heading level 1.
+
+Set the ISO, heading level 2.
+
+The effect of ISO on image quality, heading level 3.
+
+High ISO cameras, heading level 3.
+
+Choose an aperture, heading level 2.
+
+The effect of aperture on depth of focus, heading level 3.
+
+Vignetting, heading level 3.
+
+Diffraction, heading level 3.
+
+Choose a shutter speed, heading level 2.
+
+Shutter speed limitations for hand-holding a camera, heading level 3.
+
+Long exposures, heading level 3.
+
+### Methode 3: Navigiere zu Überschriften einer bestimmten Ebene (z.B. zu allen `<h2>`-Überschriften)
+
+Diese Methode wird nicht so häufig verwendet wie die anderen, aber wenn Nutzer die Überschriften nach Ebenen durchsuchen wollen, können
+sie das in einigen Screenreadern.
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">1-6</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">1-6</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Window-Eyes mit IE</td>
+      <td data-label="Befehl">1-6 dann H</td>
+    </tr>
+  </tbody>
+</table>

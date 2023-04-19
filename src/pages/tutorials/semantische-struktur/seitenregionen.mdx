@@ -1,0 +1,558 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Seitenregionen'
+pubDate: 2023-04-19
+---
+
+Trotz des ganzen Geredes über eine korrekte semantische Struktur für Barrierefreiheit fehlten in HTML bisher einige wichtige
+semantische Marker, wie die Möglichkeit, Abschnitte der Seite als Kopfzeile, Navigation, Hauptinhalt und Fußzeile zu kennzeichnen.
+Mit HTML 5 sind diese Bezeichnungen möglich, indem die neuen Elemente `<header>, <nav>, <main> und <footer>` verwendet werden.
+Ähnliche Funktionen sind mit den ARIA-Attributen role="banner", role="navigation", role="main" und role="contentinfo" möglich.
+
+JAWS, NVDA und VoiceOver unterstützen die Möglichkeit, mithilfe von ARIA-Regionen zu Abschnitten einer Webseite zu navigieren.
+Dies ist eine elegantere Lösung für das Problem, dass Nutzer/innen zum Hauptinhalt der Webseite springen können. Es gibt keine
+sichtbaren Änderungen am Webdesign, so dass es unauffällig und unsichtbar ist. Natürlich ist die Tatsache, dass diese Technik
+unsichtbar ist, für blinde Screenreader-Nutzer/innen gut, aber nicht so gut für sehende Tastaturnutzer/innen oder Nutzer/innen
+von Bildschirmvergrößerungsgeräten mit geringer Sehkraft. In diesem Sinne können HTML 5 Regionen und ARIA Landmarks die
+altmodischen "Skip Navigation"-Links noch nicht ersetzen. Browser haben immer noch keine eingebaute Möglichkeit, Nutzer/innen
+zu benachrichtigen, dass HTML 5-Regionen oder ARIA-Regionen vorhanden sind. Nur Screenreader-Nutzer können sie nutzen.
+
+## Regionen erstellen (HTML5, ARIA)
+
+### Regionen sollten verwendet werden, um vordefinierte Teile des Layouts zu kennzeichnen (`<header>, <nav>, <main>, <footer>`, etc.).
+
+Verwende entweder HTML 5 Landmarks oder ihre ARIA-Entsprechungen, um Abschnitte des Layouts zu markieren, damit sich
+Screenreader-Nutzer leicht im Layout zurechtfinden können.
+
+Regionen werden verwendet, um Abschnitte des gesamten Seitendesigns und -layouts zu kennzeichnen. Überschriften werden verwendet,
+um Abschnitte innerhalb des Inhalts zu kennzeichnen.
+
+### HTML5-Regionen und ihre ARIA-Äquivalente
+
+Die Übereinstimmung von ARIA-Rollen und HTML5-Elementen ist nicht exakt. Die Absichten und Zwecke der beiden Spezifikationen sind
+etwas unterschiedlich, aber die folgende Tabelle zeigt eine vernünftige Interpretation einiger Überschneidungen zwischen HTML5 und
+ARIA.
+
+Generell gilt: Wann immer möglich, ist es besser, native HTML-Elemente zu verwenden als ihre ARIA-Entsprechungen. Allerdings ist
+das Endergebnis für Screenreader-Nutzer/innen im Grunde dasselbe, daher kann beides verwendet werden. Das Hinzufügen von
+ARIA-Rollen zu bestehendem Markup ist manchmal einfacher zu handhaben, da das Hinzufügen neuer HTML-Elemente manchmal das
+visuelle Erscheinungsbild verändern kann (und zusätzliche CSS-Arbeiten erfordert), während dies bei ARIA-Rollen nicht der Fall ist.
+
+<table>
+  <caption>HTML5-Elemente und entsprechende ARIA-Rollen</caption>
+  <thead>
+    <tr>
+      <th>HTML5</th>
+      <th>ARIA Rolle</th>
+      <th>Von den meisten Bildschirmlesern zu den Landmarks gezählt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="HTML5">
+       `<header>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="banner"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<nav>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="navigation"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       n/a
+      </td>
+      <td data-label="ARIA Rolle">
+       role="search"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<main>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="main"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<footer>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="contentinfo"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<aside>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="complementary"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Ja
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<section>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="region"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Gemischte Unterstützung: Die meisten Screenreader listen sie nur auf, wenn sie über aria-label oder aria-labelledby einen
+        Namen erhalten. Wenn jeder Abschnitt eine Überschrift hat, können Screenreader-Benutzer anhand der Überschriften navigieren.
+        Daher ist es in der Regel nicht notwendig, jedem Abschnitt oder jeder Region einen Namen zu geben, und es kann sogar eine
+        schlechte Idee sein, zu viele Regionen auf einer Seite anzugeben, da dies die Fähigkeit des Benutzers verlangsamt,
+        sie alle zu sortieren.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<article>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="article"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Gemischte Unterstützung: JAWS listet es auf, aber andere Bildschirmleser nicht
+      </td>
+    </tr>
+    <tr>
+      <td data-label="HTML5">
+       `<form>`
+      </td>
+      <td data-label="ARIA Rolle">
+       role="form"
+      </td>
+      <td data-label="Von den meisten Bildschirmlesern zu den Landmarks gezählt">
+        Gemischte Unterstützung: Bildschirmleser listen Formulare nur dann auf, wenn sie als role="form" markiert sind
+        (das `<form>`-Element wird in Regionen ignoriert)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Die ARIA-Regionen- und Artikelrollen werden nicht als Regionen betrachtet, obwohl ihre HTML5-Gegenstücke dies tun.
+
+Die nützlichsten davon sind für die meisten Websites Header/Banner, Nav/Navigation, Main und Footer/Contentinfo. Die anderen können
+zwar auch verwendet werden, sind aber auf den meisten Websites nicht so häufig anzutreffen.
+
+## Best Practices für Regionen
+
+### Der gesamte Text sollte in einer Landmark-Region enthalten sein.
+
+#### Gutes Beispiel: Geeignete Regionen verwenden
+
+In diesem Beispiel befinden sich alle Inhalte innerhalb einer Region, und die Regionen werden verwendet, um die verschiedenen
+Arten von Inhalten richtig zu identifizieren.
+
+```html
+<header>
+  <div>This is the header.</div>
+</header>
+<nav>
+  <div>This is the navigation.</div>
+</nav>
+<main>
+  <div>This is the main content.</div>
+  <section>
+    <div>This is a section.</div>
+  </section>
+  <article>
+    <div>This is an article.</div>
+  </article>
+  <aside>
+    <div>This is an aside.</div>
+  </aside>
+</main>
+<footer>
+  <div>This is the footer.</div>
+</footer>
+```
+
+#### Schlechtes Beispiel: Keine Orientierungspunkte verwendet
+
+Es gibt verschiedene Elemente, die in dem Beispiel dargestellt werden, aber keines von ihnen ist in Regionen enthalten.
+
+```html
+<div>This is the header.</div>
+<div>This is the navigation.</div>
+<div>This is the main content.</div>
+<div>This is a section.</div>
+<div>This is an article.</div>
+<div>This is an aside.</div>
+<div>This is the footer.</div>
+```
+
+### Mehrere Instanzen desselben Typs von Regionen sollten durch verschiedene programmatisch bestimmbare Labels (aria-label oder aria-labelledby) unterscheidbar sein.
+
+#### Gutes Beispiel: Regionen desselben Typs werden durch aria-label unterschieden
+
+Jeder Abschnitt hat ein Aria-Label, das angibt, worum es in dem Abschnitt geht.
+
+```html
+<nav aria-label="Main Menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="services.html">Services</a></li>
+  </ul>
+</nav>
+<main>
+  <div>[...other content...]</div>
+    <nav aria-label="Products list">
+      <ul>
+        <li><a href="1.html">Product 1</a></li>
+        <li><a href="2.html">Product 2</a></li>
+        <li><a href="3.html">Product 3</a></li>
+        <li><a href="4.html">Product 4</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div>[...other content...]</div>
+</main>
+<footer>
+  <nav aria-label="Corporate and legal info">
+    <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="copyright.html">Copyright notice</a></li>
+        <li><a href="terms.html">Terms of use</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+    </ul>
+  </nav>
+</section>
+```
+
+#### Schlechtes Beispiel: Undifferenzierte Navigationspunkte
+
+Jeder Navigationspunkt enthält eine eindeutige Art von Navigationsliste, aber die Navigationspunkte sind nicht mit einer
+erkennbaren Bezeichnung versehen.
+
+```html
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="services.html">Services</a></li>
+  </ul>
+</nav>
+<main>
+  <div>[...other content...]</div>
+    <nav>
+      <ul>
+        <li><a href="1.html">Product 1</a></li>
+        <li><a href="2.html">Product 2</a></li>
+        <li><a href="3.html">Product 3</a></li>
+        <li><a href="4.html">Product 4</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div>[...other content...]</div>
+</main>
+<footer>
+  <nav>
+    <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="copyright.html">Copyright notice</a></li>
+        <li><a href="terms.html">Terms of use</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+    </ul>
+  </nav>
+</footer>
+```
+
+### Eine Seite darf nicht mehr als eine Instanz der folgenden Regionen enthalten: banner, main und contentinfo.
+
+#### Gutes Beispiel: Eine Instanz pro Seite für bestimmte Arten von Regionen
+
+Jedes der ARIA-Landmarks role="banner", role="main" und role="contentinfo" wird genau einmal auf Elementen verwendet, die auf der
+Seite eindeutig sind.
+
+Die ARIA-Spezifikation legt fest, dass die Landmarks role="banner", role="main" und role="contentinfo" nur einmal pro Seite verwendet
+werden dürfen. Andere ARIA-Regionen können mehrfach verwendet werden. Interessanterweise erlaubt die HMTL 5-Spezifikation mehrere
+Instanzen der entsprechenden Regionen: `<header>, <main> und <footer>`. Die offizielle Einschränkung gilt nur für ARIA-Regionen.
+Trotzdem ist es in den meisten Webdesigns angemessen, nur ein einziges dieser Regionen zu verwenden, egal ob sie mit ARIA oder
+HTML 5 spezifiziert wurden.
+
+```html
+<div role="banner">Visit Your Local Zoo!</div>
+<div role="main">
+  <h1>The Nature of the Zoo</h1>
+  <article>
+    <h2>In the Zoo: From Wild to Tamed</h2>
+    <p>What you see in the zoo are examples of inborn traits left undeveloped. [...]</p>
+  </article>
+  <article>
+    <h2>Feeding Frenzy: The Impact of Cohabitation</h2>
+    <p>
+      Some animals naturally group together with their own kind, but others stake solitary claim on
+      their territory. Even those that typically live harmoniously together can have bouts with
+      romantic rivals, which can potentially escalate in the more confined setting of a zoo. [...]
+    </p>
+  </article>
+</div>
+<div role="contentinfo">
+  <p>Brought to you by North American Zoo Partnership</p>
+</div>
+```
+
+#### Schlechtes Beispiel: Mehrere Instanzen von banner, main oder contentinfo Regionen
+
+In diesem Beispiel wurden zwei Arten von Orientierungspunkten (`<main>` und role="contentinfo"), die nur einmal verwendet werden
+sollten, mehrfach auf derselben Seite verwendet.
+
+```html
+<header>Visit Your Local Zoo!</header>
+<h1>The Nature of the Zoo</h1>
+<main class="article">
+  <h2>In the Zoo: From Wild to Tamed</h2>
+  <p>What you see in the zoo are examples of inborn traits left undeveloped. [...]</p>
+  <div role="contentinfo">
+    <p>[...information about this article...]</p>
+  </div>
+</main>
+<main class="article">
+  <h2>Feeding Frenzy: The Impact of Cohabitation</h2>
+  <p>
+    Some animals naturally group together with their own kind, but others stake solitary claim on
+    their territory. Even those that typically live harmoniously together can have bouts with
+    romantic rivals, which can potentially escalate in the more confined setting of a zoo. [...]
+  </p>
+  <div role="contentinfo">
+    <p>[...information about this article...]</p>
+  </div>
+</main>
+<footer>
+  <p>Brought to you by North American Zoo Partnership</p>
+</footer>
+```
+
+### Die Gesamtzahl der Regionen sollte so weit minimiert werden, wie es für den Inhalt angemessen ist.
+
+Es gibt keine technische Begrenzung für die Anzahl der Regionen, die du auf einer Seite einbauen kannst, aber einer der
+Hauptzwecke von Regionen ist es, blinden Nutzern das schnelle Auffinden und Navigieren zu dem entsprechenden
+Orientierungspunkt zu ermöglichen, daher solltest du die Gesamtzahl der Regionen relativ gering halten. Wenn du
+das nicht tust, müssen sich Screenreader-Nutzer durch zu viele zusätzliche Informationen wühlen, um das zu finden, wonach sie suchen.
+
+Nur weil du z. B. eine Liste von Links als Navigationspunkt markieren kannst, heißt das nicht, dass du das immer tun solltest.
+Wenn du z. B. nur ein bis drei Navigationspunkte hast (die jeweils mit aria-label oder aria-labelledby gekennzeichnet sind), haben
+die Nutzer kein Problem. Wenn du aber 15 bis 20 Navigationspunkte hast, kann es lange dauern, bis die Nutzer/innen herausfinden,
+wofür alle Navigationslisten da sind und welche die gesuchten Informationen enthält.
+
+## Abwärtskompatibilität
+
+### Regionen sollten abwärtskompatibel gemacht werden.
+
+Wenn du planst, ältere Browser zu unterstützen, die HTML5-Elemente nicht verstehen, musst du einige zusätzliche Schritte
+unternehmen, um sicherzustellen, dass die HTML5-Elemente visuell und im DOM korrekt dargestellt werden.
+
+#### Gutes Beispiel: Regionen auf display:block setzen
+
+Um sicherzustellen, dass die HTML5 Regionen für sehende Nutzer in älteren Browsern richtig angezeigt werden,
+solltest du ihnen im CSS display:block zuweisen. Andernfalls werden sie möglicherweise inline angezeigt, was das Layout der
+Seite zerstören könnte. Du solltest auch die Möglichkeit nutzen, andere HTML 5-Elemente aus Gründen der Abwärtskompatibilität
+auf display:block zu setzen. Beachte, dass du in manchen Fällen einen Grund haben könntest, einige dieser Elemente auf
+display:inline zu setzen.
+
+```html
+<style>
+  /* landmarks */
+  article, aside, footer, header, main, nav, section,
+
+/* other HTML 5 elements that should (probably)
+be set to display:block */
+audio, canvas, datalist, details, figcaption,
+figure, output, progress, summary, video {
+    display: block;
+  }
+</style>
+```
+
+#### Gutes Beispiel: Verwendung von JavaScript zur Behebung von Problemen bei der Darstellung von Regionen im IE 8 und darunter
+
+Aufgrund einiger Rendering-Verhaltensweisen im IE 8 und darunter musst du zunächst eine Instanz jedes nicht erkannten HTML 5-Tags
+erstellen, bevor du ihnen erfolgreich Stile zuweisen kannst. Du könntest dies tun, indem du Dummy-HTML5-Tags im HTML-Dokument
+selbst platzierst, aber das würde zu einigen semantischen Inkonsistenzen führen, wie z. B. der Einführung von zwei `<main>`-Regionen,
+was nicht erlaubt ist und Screenreader-Nutzer verwirren würde, die sich fragen würden, wie eine Seite zwei Hauptregionen haben kann.
+Eine der effektivsten Umgehungen ist die Verwendung von JavaScript, um Instanzen der Tags zu erstellen. Die JavaScript-Tags tauchen
+dann nicht im DOM auf und verwirren die Benutzer von Bildschirmlesegeräten nicht.
+
+Mark Pilgrim hat in seinem Online-Buch Dive into HTML 5 (im Abschnitt über unbekannte Elemente) dieses Problem dokumentiert und diese
+Lösung entwickelt (leider ist die Website nicht mehr verfügbar).
+
+```html
+<!--[if lt IE 9]>
+  <script>
+    var e = (
+      'abbr,article,aside,audio,bdi,canvas,datalist,details,dialog,' +
+      'figcaption,figure,footer,header,keygen,mark,menu,meter,main,nav,output,' +
+      'progress,rp,ruby,rt,section,source,summary,time,track,video,wbr'
+    ).split(',')
+    for (var i = 0; i < e.length; i++) {
+      document.createElement(e[i])
+    }
+  </script>
+<![endif]-->
+```
+
+## Navigieren mit Screen Readern
+
+### Methode 1: Alle Regionen auflisten
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">
+        Einfügen + F3 (um die Elementeliste zu öffnen), dann wähle Regionen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">
+        Einfügen + F7 (um die Elementeliste zu öffnen), dann wähle Landmarken
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Regionen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts die
+        Landmarken auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 2: Navigiere von einer Region zur nächsten
+
+Wenn du eine Tastatur verwendest, benutze die Umschalttaste und den unten aufgeführten Befehl, um rückwärts durch die
+Regionen zu gehen.
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">
+        JAWS 16 und höher: R
+
+        JAWS 15 und niedriger: ; (Semikolon)
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">
+        D
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Benutze den Rotor, um Regionen auszuwählen (drehe zwei Finger auf dem Bildschirm nach links oder rechts), dann
+        wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Regionen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Nicht verfügbar
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">D</td>
+    </tr>
+
+  </tbody>
+</table>
+
+### Methode 3: Navigiere zum Hauptinhaltspunkt
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">Q</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Feststelltaste + N</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,275 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'iFrames'
+pubDate: 2023-04-21
+---
+
+iFrames betten Inhalte von anderen Webseiten ein (die normalerweise auf anderen Websites gehostet werden). Vereinfacht ausgedrückt
+ist ein iFrame so etwas wie ein Fenster in der Mitte einer Webseite, durch das du eine andere Seite sehen kannst. Du schneidest im
+Wesentlichen ein Rechteck der Seite mit dem iFrame aus und legst den Inhalt einer anderen Seite dahinter frei.
+
+iFrames können jede Art von Inhalt enthalten, z. B. Werbung, die von Dritten gehostet wird, Videos, die von YouTube oder Vimeo
+gehostet werden, benutzerdefinierte Widgets, die von Dritten gehostet werden, und so weiter. Manchmal werden iframes nur verwendet,
+um JavaScript zu enthalten, das vor dem Endnutzer verborgen ist.
+
+Aus Sicht der Barrierefreiheit müssen iFrame betitelt werden, damit Screenreader-Nutzer sie finden und zu ihnen navigieren können.
+Es ist auch wichtig zu wissen, dass alle Elemente in den iFrame (wie z. B. Überschriften) für Screenreader zugänglich gemacht und
+im Wesentlichen als Teil der gleichen Gesamtstruktur des Dokuments behandelt werden.
+
+## Frame-Titel
+
+### Der Titel des iFrame muss genau und beschreibend sein.
+
+#### Gutes Beispiel: Aussagekräftiger iFrame-Titel
+
+Der iFrame hat einen Titel, der dem Inhalt entspricht, den er enthält.
+
+```html
+<iframe
+  title="Video: Specify the Language"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/qyjDrUV_el8"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+```
+
+#### Schlechtes Beispiel: Generischer iFrame-Titel
+
+Der Titel "Iframe" beschreibt den Inhalt des iFrame nicht.
+
+```html
+<iframe title="Iframe" src="/assets/html/examples/iframe_with_title/iframe_page.html"> </iframe>
+```
+
+### Frames müssen einen eindeutigen Titel haben (im Kontext der Seite).
+
+#### Gutes Beispiel: Einzigartige Titel für iFrames
+
+Die iFrames der beiden Videos haben eindeutige Titel, damit sie von Screenreadern unterschieden werden können.
+
+```html
+<iframe
+  title="Specify the Language"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/qyjDrUV_el8"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+
+<iframe
+  title="Video of touch screen for the blind in New York City taxis"
+  style="width:640px;height:480px;margin:auto;text-align:center;"
+  src="//www.youtube.com/embed/hM0x0k2Bv3Y"
+  allowfullscreen>
+</iframe>
+```
+
+#### Schlechtes Beispiel: Doppelte Titel für iFrames
+
+Die iFrames für diese beiden Videos haben denselben Titel, so dass es für Screenreader-Nutzer schwierig ist, sie zu unterscheiden,
+ohne das Video abzuspielen.
+
+```html
+<iframe
+  title="YouTube video"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/qyjDrUV_el8"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+
+<iframe
+  title="YouTube video"
+  style="width:640px;height:480px;margin:auto;text-align:center;"
+  src="//www.youtube.com/embed/hM0x0k2Bv3Y"
+  allowfullscreen>
+</iframe>
+```
+
+## Seitentitel innerhalb eines iFrame
+
+### Die Quellseite eines iFrame muss einen gültigen, aussagekräftigen `<title>` haben.
+
+Obwohl die WCAG-Richtlinien das title-Attribut verlangen, liest JAWS stattdessen das `<title>`-Element des eingeschlossenen Dokuments,
+falls vorhanden. Nur wenn das beigefügte Dokument kein `<title>`-Element hat, liest JAWS das Titelattribut des `<iframe>`. Dieses
+Verhalten, bei dem der `<title>` des eingeschlossenen Dokuments Vorrang hat, weicht ein wenig von den Richtlinien ab, aber da alle
+Webseiten ohnehin aussagekräftige `<title>`-Tags haben sollten, sollte es nicht allzu sehr stören, dass JAWS sich in dieser Hinsicht
+anders verhält als die anderen Screenreader. Am besten wäre es, wenn du dem eingeschlossenen Dokument einen `<title>` gibst, der mit
+dem Titelattribut des übergeordneten `<iframe>` übereinstimmt. So wird sichergestellt, dass derselbe Titel von verschiedenen
+Screenreadern gelesen wird.
+
+#### Gutes Beispiel: iFrames mit Titel
+
+Der iFrame hat einen Titel, der für Screenreader-Nutzer erkennbar ist.
+
+```html
+<iframe
+  title="Video: Specify the Language"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/qyjDrUV_el8"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+```
+
+#### Schlechtes Beispiel: iFrame ohne Titel
+
+Der iFrame hat keinen erkennbaren Titel.
+
+```html
+<iframe
+  width="150"
+  height="60"
+  src="https://dequeuniversity.com/assets/html/examples/iframe_with_no_title/iframe_page.html">
+</iframe>
+```
+
+Ohne Titel sagen Bildschirmlesegeräte vielleicht nur "Frame" oder sie geben den Dateinamen oder den Pfad des Frames oder iFrames an.
+Der Screenshot unten zeigt den JAWS-Dialog (Einfügen + F9), der iFrames ohne richtige Titel auflistet. JAWS gibt ihnen eher wenig
+hilfreiche Namen wie "JavaScript" oder die langen, scheinbar zufälligen URLs der Dokumente.
+
+![JAWS-Dialog für iFrames ohne Titel](/images/semantische-struktur/frames_list.png)
+
+## Semantische Struktur über iFrames hinweg
+
+### Bildschirmlesegeräte ermöglichen eine frameübergreifende Navigation von semantischen Elementen.
+
+Screenreader behandeln einen `<iframe>` fast so, als wäre er Teil desselben Dokuments, das ihn enthält. Die Nutzer können auf alle
+Inhalte innerhalb eines `<iframe>` mit denselben Tastenanschlägen zugreifen, die sie auch verwenden würden, wenn sich alle Inhalte im
+selben Dokument befänden. Wenn es zum Beispiel 5 Überschriften im übergeordneten Dokument und 3 Überschriften in einem `<iframe>` gibt,
+listet das Lesegerät alle 8 Überschriften in der Reihenfolge auf, in der sie im DOM auf den Seiten erscheinen. Die Nutzer können auch
+auf Listen, Links, Grafiken, Tabellen, Formulare und andere Elemente innerhalb eines iframe zugreifen.
+
+### Die Überschriftenhierarchie eines iFrame sollte so gestaltet sein, dass sie sich möglichst an die Überschriftenhierarchie des übergeordneten Dokuments anpasst.
+
+Wenn du die Kontrolle über den Inhalt des eingebetteten Dokuments im iFrame hast, ist es am besten, die Überschriftenhierarchie des
+iFrame an die richtige Stelle in der bestehenden Überschriftenhierarchie der übergeordneten Seite zu setzen. Wenn das übergeordnete
+Dokument mit einem einzelnen `<h1>` am Anfang des Inhalts strukturiert ist (dies ist eine empfohlene Best Practice), sollte der
+`<iframe>` dies berücksichtigen und nicht mit einem weiteren `<h1>` beginnen. Das `<iframe>`-Dokument sollte mit `<h2>` beginnen,
+wenn der Inhalt ein direktes Kind der ersten Überschrift auf der Seite ist, oder wenn er ein Kind einer Überschrift der Ebene 2 ist,
+dann sollte die erste Überschrift des iFrame `<h3>` sein usw.
+
+Wenn iFrames Inhalte von Websites Dritter enthalten - was häufig der Fall ist - ist es nicht immer möglich, die
+Überschriftenhierarchie zu kontrollieren. Wegen der fehlenden Kontrolle in solchen Situationen verlangen die Richtlinien nicht
+unbedingt, dass die Überschriftenhierarchien der beiden Dokumente übereinstimmen, aber es wäre trotzdem besser, wenn sie es täten.
+
+## Ausblenden von iFrames, die keinen sinnvollen Inhalt enthalten
+
+### Ausgeblendete Frames oder Frames, die den Nutzern keine Inhalte vermitteln, sollten mit aria-hidden="true" vor assistiven Technologien verborgen werden.
+
+Manchmal ist der Inhalt eines iFrame überhaupt nicht wichtig. Vielleicht enthält er nur JavaScript, oder er dient nur zu dekorativen
+Zwecken. Wenn das der Fall ist, solltest du den Rahmen mit aria-hidden="true" vor Screenreadern ausblenden.
+
+#### Gutes Beispiel: Leerer iFrame mit aria-hidden="true"
+
+Ein iFrame ohne sinnvollen Inhalt ist für Screenreader-Nutzer unsichtbar.
+
+```html
+<iframe
+  title="Intentionally blank"
+  aria-hidden="true"
+  src="http://bit.ly/2cfBoyE"
+  width="120"
+  height="50">
+</iframe>
+```
+
+#### Schlechtes Beispiel: Leerer iFrame mit nicht gesetztem aria-hidden
+
+Der iFrame enthält eine Seite ohne aussagekräftigen Inhalt, der für Screenreader-Nutzer nicht erkennbar sein sollte, aber weil das
+Attribut aria-hidden nicht gesetzt wurde, ist er für Screenreader-Nutzer erkennbar.
+
+```html
+<iframe title="Intentionally blank" src="http://bit.ly/2cfBoyE" width="120" height="50"> </iframe>
+```
+
+## Navigieren in iFrames mit Bildschirmlesern
+
+### Methode 1: Liste aller iFrames anzeigen
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">
+        Einfügen + F3 (zum Öffnen der Elementeliste), dann Rahmen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts Rahmen
+        auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+### Methode 2: Von einem iFrame zum nächsten navigieren
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screen Reader & Browser">Narrator mit Edge</td>
+      <td data-label="Befehl">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">JAWS mit Chrome, Firefox, IE</td>
+      <td data-label="Befehl">M</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">NVDA mit Firefox, Chrome</td>
+      <td data-label="Befehl">M</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (macOS)</td>
+      <td data-label="Befehl">Steuerung + Option + Befehl F</td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">VoiceOver mit Safari (iOS)</td>
+      <td data-label="Befehl">
+        Benutze den Rotor, um Bilder auszuwählen (drehe zwei Finger auf dem Bildschirm nach links
+        oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screen Reader & Browser">Talkback mit Firefox</td>
+      <td data-label="Befehl">
+        Lokales Kontextmenü (nach oben und dann nach rechts wischen), dann Rahmen auswählen
+      </td>
+    </tr>
+  </tbody>
+</table>

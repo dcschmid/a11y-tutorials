@@ -1,0 +1,193 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Seiten Titel'
+pubDate: 2023-04-10
+---
+
+## Der `<title>` der Seite ist das Erste, was Screen Reader-Nutzer wahrnehmen
+
+Der `<titel>` der Seite ist entscheidend, denn er ist das Erste, was ein Screenreader-Nutzer hört. Blinde Nutzer können nicht schnell
+einen Blick auf den Inhalt einer Webseite werfen, um zu sehen, worum es auf der Seite geht, also verlassen sie sich auf den Seitentitel,
+um diese Information zu erhalten. Webseiten ohne Titel verschwenden die Zeit von Bildschirmlesern, weil sie sie zwingen, durch die Webseite
+zu navigieren - vorbei am Hauptmenü und zum Inhalt - um herauszufinden, worum es auf der Seite geht.
+
+### Gutes Beispiel: Webseite mit einem gültigen, aussagekräftigen Titel
+
+In den meisten Browsern wird der Seitentitel über der Seite selbst angezeigt. In Browsern mit Registerkarten wird der Titel in der
+Registerkarte angezeigt, damit du die geöffneten Seiten leicht erkennen und schnell zwischen ihnen wechseln kannst.
+
+![Seitentitel](/images/semantische-struktur/page-title.png)
+
+### Zusatznutzen: Seitentitel verbessern die Suchmaschinen-Optimierung
+
+Suchmaschinen und Website-Suchtools verwenden auch den Seitentitel, wenn sie die Suchergebnisse anzeigen. Wirksame Titel helfen den Nutzern,
+die Suchergebnisse schnell zu durchforsten und den gewünschten Inhalt zu finden. In diesem Sinne sind gute Seitentitel neben der
+Barrierefreiheit ein wichtiger Bestandteil der Suchmaschinenoptimierung (SEO).
+
+## Titel für jede Seite
+
+### Die Seite `<title>` muss vorhanden sein und Text enthalten.
+
+Screenreader-Nutzer verlassen sich auf den Titel, um schnell die Identität und den Zweck der Seite zu erkennen. Wenn du den Titel
+weglässt, müssen Screenreader-Nutzer die Seite durchsuchen und aus dem Inhalt auf die Identität und den Zweck der Seite schließen, was
+sehr unpraktisch ist.
+
+#### Gutes Beispiel: Ein gültiger Seitentitel
+
+Die Seite hat einen gültigen `<title>` im Dokument `<head>`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Products and Services</title>
+  </head>
+</html>
+```
+
+#### Schlechtes Beispiel: Leerer Seitentitel
+
+Dies ist ein Titel-Tag ohne Titel.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+  </head>
+</html>
+```
+
+#### Schlechtes Beispiel: Fehlender Seitentitel
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+</html>
+```
+
+### Die Seite `<title>` muss aktualisiert werden, wenn sich die Webadresse ändert.
+
+Jedes Mal, wenn sich die Webadresse ändert, sei es durch ein echtes Seitenladeereignis, durch einen AJAX-Aufruf (wie bei
+Single-Page-Anwendungen) oder durch ein JavaScript-Ereignis, muss sich der `<title>` der Seite ändern, um den neuen Inhalt
+wiederzugeben. Andernfalls stimmt der Seitentitel nicht mit dem Inhalt überein, was zu Verwirrung führen kann, vor allem,
+wenn der Nutzer über einen Link auf die Seite gelangt, der ihm geschickt oder in einem Lesezeichen gespeichert wurde.
+
+## Aussagekräftiger Seitentitel
+
+### Der `<title>` der Seite muss genau und informativ sein.
+
+Der Seitentitel muss die Identität oder den Zweck der Seite auf eine Art und Weise benennen, die für alle Nutzer nützlich ist,
+vor allem aber für Nutzer von Bildschirmlesegeräten, die sich auf den Titel verlassen, um einen schnellen Eindruck von der Seite
+zu bekommen, ohne sie ansehen zu können.
+
+#### Gutes Beispiel: Aussagekräftiger Seitentitel
+
+```html
+<title>Cleaning Products</title>
+```
+
+#### Schlechtes Beispiel: Standard-Platzhalter Titel
+
+Es wird kein Titel angegeben, sondern nur der Platzhaltertext, der vom Autorentool (z. B. Dreamweaver oder einem Content Management
+System) gesetzt wurde.
+
+```html
+<title>Untitled Document</title>
+```
+
+#### Schlechtes Beispiel: Uninformativer Seitentitel
+
+Das ist ein Titel, der den Inhalt nicht beschreibt.
+
+```html
+<title>Document Content</title>
+```
+
+### Wenn eine Seite das Ergebnis einer Benutzeraktion oder einer skriptgesteuerten Änderung des Kontexts ist, sollte der Text des `<title>` das Ergebnis oder die Änderung des Kontexts für den Benutzer beschreiben.
+
+#### Gutes Beispiel: Titel mit Suchtext
+
+Der Titel enthält den Text der Suche.
+
+```html
+<title>"Warranty" - Search Results</title>
+```
+
+#### Schlechtes Beispiel: Generischer Titel
+
+Der Titel enthält nicht den Text der Suche.
+
+```html
+<title>Document Content</title>
+```
+
+### Der `<title>` sollte kurz und prägnant sein.
+
+Es gibt keine technische Begrenzung für die Länge eines Seitentitels und auch keine formale Beschränkung für die Länge des `<title>`
+in den Zugänglichkeitsrichtlinien, aber es ist die beste Praxis, ihn so kurz wie möglich zu halten, ohne dass er an Genauigkeit oder
+Informativität verliert.
+
+#### Gutes Beispiel: Prägnanter Seitentitel
+
+```html
+<title>Accessibility Services</title>
+```
+
+#### Schlechtes Beispiel: Seitentitel wird für Schlüsselwörter verwendet, statt für einen echten Titel
+
+Wenn du eine Liste von Schlüsselwörtern in einen Seitentitel packst, wird der Titel zu lang. Menschen, die Bildschirmlesegeräte benutzen,
+werden ungeduldig, wenn sie den langen Titel hören, während sie darauf warten, andere wichtige Informationen über die Seite zu erfahren.
+
+```html
+<title>
+  Mortgages Inc. - Mortgage services, best mortgages in New York, low rates, low API, easy
+  financing, variable rates, fixed rate mortgages
+</title>
+```
+
+### Der `<title>` der Seite sollte möglichst eindeutig sein.
+
+Um Verwirrung zu vermeiden - vor allem für Screenreader-Nutzer - ist es am besten, wenn der `<title>` einer Seite innerhalb der Website
+eindeutig ist. Manchmal ist es nicht möglich oder nicht praktikabel, die Einzigartigkeit des `<title>` einer Seite zu überprüfen, aber
+das Ziel ist es, den Seiten Titel zu geben, die eine einfache und genaue Identifizierung ermöglichen.
+
+### Einzigartige Informationen sollten im `<title>` an erster Stelle stehen.
+
+#### Gutes Beispiel: Einzigartige Informationen stehen an erster Stelle
+
+In diesem Beispiel steht der Zweck der Seite an erster Stelle (Hypothekenrechner), gefolgt von der Identität oder Marke der Seite
+(Smallville Credit Union).
+
+```html
+<title>Hypothekenrechner - Smallville Credit Union</title>
+```
+
+#### Schlechtes Beispiel: Einzigartige Informationen werden nicht an erster Stelle platziert
+
+In diesem Beispiel steht der Zweck der Seite (Hypothekenrechner) an letzter Stelle, was bedeutet, dass Screenreader-Nutzer länger
+brauchen, um ihn zu erkennen.
+
+```html
+<title>Smallville Credit Union - Hypothekenrechner</title>
+```
+
+Websites, bei denen die Marke im Titel jeder Seite an erster Stelle steht, machen es schwer, zwischen den Seiten zu unterscheiden,
+wenn sie in einer Reihe von Tabs angezeigt werden. Screenreader-Nutzer finden es auch schwierig, weil sie immer wieder dieselben
+Informationen am Anfang jedes Seitentitels hören müssen, was die Zeit verzögert, die sie brauchen, um herauszufinden, auf welcher
+Seite sie eigentlich sind. Jede Seite auf dem Screenshot unten ist einzigartig, aber Nutzer, die sich die Titel in den Tabs ansehen,
+können nicht erkennen, ob die Seiten unterschiedlich sind oder nicht, weil alle Titel auf die gleiche Weise beginnen und der Tab den
+Rest des Titels abschneidet.
+
+![Eine Gruppe von Tabs in einem Browser, bei der die Seitentitel auf den Tabs alle gleich aussehen.](/images/semantische-struktur/title-unique.png)
+
+### Der `<title>` der Seite sollte mit der Überschrift des Hauptinhalts übereinstimmen (oder dieser sehr ähnlich sein).
+
+Sowohl der Titel (`<title>`) als auch die oberste Überschrift im Hauptinhalt (idealerweise mit `<h1>` gekennzeichnet) dienen im
+Wesentlichen demselben Zweck: der Seite einen Titel zu geben. Aus diesem Grund ist es in der Regel sinnvoll, den Seitentitel und
+die Überschrift mit identischem oder zumindest sehr ähnlichem Text zu versehen. Es gibt einen gewissen Spielraum für leichte
+Abweichungen. Du könntest zum Beispiel die Marke der Website am Ende des Seitentitels einfügen, aber nicht in der Hauptüberschrift
+für den Inhalt. Redundanz ist in diesem Fall eine gute Sache, denn sie ermöglicht es den Nutzern, den Seitentitel zu sehen, egal
+ob sie die Registerkarten in einem Browser ansehen, eine Seite mit einem Bildschirmlesegerät laden (der Titel ist das erste, was
+Bildschirmlesegeräte lesen) oder den Hauptinhalt lesen.
