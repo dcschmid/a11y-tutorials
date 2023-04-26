@@ -1,0 +1,146 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'CSS-generierte Inhalte und versteckte Inhalte'
+pubDate: 2023-04-26
+---
+
+CSS-generierte Inhalte: CSS-generierte Inhalte werden von einigen, aber nicht von allen Screenreadern gelesen. Im Allgemeinen wird
+CSS-generierter Text von den Browsern nicht als vollständig integrierter Teil des DOM behandelt und steht Screenreadern nicht immer über
+die Accessibility-API zur Verfügung, daher sollte CSS-generierter Text mit Vorsicht verwendet werden.
+
+Visuell verborgener Inhalt: Es ist möglich, Text sowohl für sehende Nutzer als auch für Bildschirmleser auszublenden, indem du entweder
+display:none oder visibility:hidden verwendest. Es gibt noch andere Techniken, um Elemente nur für Screenreader oder nur für sehende
+Nutzer/innen zu verbergen. Diese Techniken sollten ebenfalls mit großer Vorsicht eingesetzt werden.
+
+## CSS-generierte Inhalte
+
+### CSS-generierte Inhalte sollten vermieden werden.
+
+CSS-generierte Inhalte werden von NVDA + Firefox, NVDA + Chrome, VoiceOver auf OS X + Safari und VoiceOver auf iOS + Safari unterstützt. Sie
+werden nicht von JAWS + Internet Explorer oder von Narrator + Edge unterstützt. Da es keine universelle Unterstützung gibt, ist es am
+besten, CSS-generierte Inhalte zu vermeiden, vor allem, wenn diese Inhalte sinnvoll sind und nicht nur der Dekoration dienen.
+
+#### Schlechtes Beispiel: Generierte Inhalte
+
+Im folgenden Beispiel wird der Originaltext zwischen einem Präfix und einem Suffix angezeigt, die von CSS generiert wurden. Nur einige
+Bildschirmlesegeräte können den CSS-generierten Inhalt lesen
+
+```css
+span.generated::before {
+  content: 'This is the generated prefix ';
+}
+
+span.generated::after {
+  content: ' and this is the generated suffix';
+}
+```
+
+##### Gutes Beispiel: Beispiel für CSS-generierte Inhalte für Druckzwecke
+
+Es kann sinnvoll sein, CSS-generierte Inhalte für Druckzwecke zu verwenden (was für Screenreader-Nutzer im Grunde irrelevant ist). Im
+folgenden Beispiel wird der href-Wert aus dem `<a>`-Element übernommen und nach dem ursprünglichen Linktext angezeigt, um sicherzustellen,
+dass Menschen, die eine auf Papier gedruckte Webseite lesen, den Link eintippen können, wenn sie das möchten.
+
+```css
+a.generated::after {
+  content: ' ( ' attr(href) ') ';
+}
+```
+
+### Eine Textalternative für informative CSS-generierte Inhalte MUSS bereitgestellt werden und der CSS-generierte Text sollte auf aria-hidden="true" gesetzt werden.
+
+Auch wenn CSS-generierte Inhalte unter den meisten Umständen vermieden werden sollten, gibt es doch einige akzeptable Verwendungsmöglichkeiten
+für sie. Wenn der generierte Inhalt informativ ist, d. h. wenn ein blinder Nutzer über den Inhalt Bescheid wissen muss, muss eine
+Textalternative bereitgestellt werden, um die Einschränkungen der Screenreader von JAWS + Internet Explorer und Narrator + Edge zu
+berücksichtigen. Wenn diese beiden Browser CSS-generierte Inhalte unterstützen würden, wäre es nicht nötig, eine Textalternative
+bereitzustellen.
+
+Es wird etwas komplizierter, weil einige Bildschirmleser CSS-generierte Inhalte unterstützen. Um alle Szenarien zu berücksichtigen, sollten
+Entwickler den generierten Text vor allen Screenreadern mit aria-hidden="true" verbergen und eine Textalternative auf andere Weise
+bereitstellen, z. B. über aria-label, wenn es sich um einen Link, eine Schaltfläche, ein Steuerelement oder ein anderes fokussierbares
+Element handelt. Wenn es sich nicht um ein fokussierbares Element handelt, kann es notwendig sein, eine Technik wie CSS hidden text (mit
+position:absolute; clip:rect(0 0 0 0)) zu verwenden.
+
+### Dekorative oder überflüssige CSS-generierte Inhalte sollten auf aria-hidden="true" gesetzt werden.
+
+Wenn der CSS-generierte Inhalt nur der visuellen Dekoration dient oder mit dem angrenzenden Text überflüssig ist, ist es in der Regel
+sinnvoll, den CSS-generierten Inhalt auf aria-hidden="true" zu setzen, um sicherzustellen, dass Screenreader den unnötigen Text nicht lesen.
+
+## Visuell versteckter Inhalt
+
+### Optisch verborgene und inaktive Inhalte müssen für Screenreader-Nutzer so lange verborgen bleiben, bis diese Inhalte für sehende Nutzer sichtbar und aktiv gemacht werden.
+
+Alle Inhalte oder Oberflächenelemente, die absichtlich vor den Nutzern verborgen werden - wie inaktive Dialoge, zugeklappte Menüs usw. -
+müssen auch vor Screenreadern verborgen werden. Sobald diese Elemente für sehende Nutzer/innen zugänglich gemacht werden - z. B. wenn sie
+eine Schaltfläche aktivieren oder einen Menüpunkt ausklappen - müssen sie auch für Bildschirmlesegeräte-Nutzer/innen zugänglich sein. Das
+Ziel ist es, Bildschirmleser-Nutzern ein gleichwertiges Nutzererlebnis wie sehenden Nutzern zu bieten. Wenn es einen zwingenden Grund gibt,
+Inhalte vor sehenden Nutzern zu verbergen, gibt es in der Regel auch einen zwingenden Grund, diese Inhalte vor blinden Nutzern zu verbergen.
+Und wenn die Inhalte sehenden Nutzern zugänglich gemacht werden, ist es sinnvoll, sie auch blinden Nutzern zugänglich zu machen.
+
+Wenn display:none oder visibility:hidden verwendet wird, werden die Inhalte für Screenreader (und auch für sehende Nutzer) verborgen. Wenn
+du diese Werte in display:block, display:inline oder andere Anzeige- oder Sichtbarkeitsoptionen änderst, werden die Inhalte für
+Bildschirmleser zugänglich gemacht.
+
+### Wenn zusätzlicher Inhalt beim Hover des Mauszeigers oder beim Tastaturfokus ausgelöst wird, muss dieser zusätzliche Inhalt abwählbar, schwebbar und beständig sein.
+
+Mit dieser Regel soll sichergestellt werden, dass Pop-up-Inhalte den Zugriff der Nutzer auf andere Seiteninhalte nicht verhindern und dass
+die Nutzer angemessenen Zugriff auf Pop-up-Inhalte haben. Sie bezieht sich speziell auf Inhalte, die erscheinen, wenn du mit der Maus über
+ein Objekt fährst oder den Tastaturfokus darauf setzt, wie z. B. benutzerdefinierte Tooltips oder Untermenüs in einer Navigationsleiste. Sie
+gilt nicht für modale Dialoge oder Inhalte, die vom User Agent (Webbrowser) gesteuert werden, wie z. B. integrierte Tooltips. Sie gilt auch
+nicht für "Zum Hauptinhalt springen"-Links, die sichtbar werden, wenn sie den Fokus erhalten, denn neben dem Objekt, das den Fokus erhalten
+hat, werden keine neuen Inhalte verfügbar.
+
+Wenn das Popup den Seiteninhalt verdeckt, z. B. ein Untermenü, das sich über die Seite legt, müssen die Nutzer den neuen Inhalt ausblenden
+können, ohne den Maus- oder Tastaturfokus zu bewegen. Dies ist möglich, indem der Inhalt mit der Escape-Taste ausgeblendet wird.
+
+Die Nutzer müssen auch die Möglichkeit haben, mit dem Mauszeiger über den neuen Inhalt zu fahren. Das ist wichtig für Nutzer, die ihren
+Bildschirm vergrößern und über den Pop-up-Inhalt schwenken müssen, sowie für Nutzer, die sich den Inhalt vorlesen lassen, während sie mit
+der Maus darüber fahren.
+
+Schließlich sollte der Inhalt erst verschwinden, wenn die Tastatur oder der Mauszeiger ihn verlässt. Die Nutzer brauchen ausreichend Zeit,
+um den Inhalt zu lesen und zu verarbeiten.
+
+#### Schlechtes Beispiel: Inhalt ist nicht unzulässig
+
+Das Bild unten zeigt ein Menü für einen Online-Shopping-Shop mit dem Abschnitt für Geschenke im Fokus und erweitert. Ein Nutzer kann das
+Menü nicht durch Drücken der Escape-Taste verlassen, sondern muss stattdessen wegklicken. In diesem Fall ist der Inhalt nicht kündbar.
+
+![Inhalt ist nicht unzulässig](/images/visuelles-design/bad-example-not-dismissible.png)
+
+#### Gutes Beispiel: Inhalte sind unzulässig, schwebend und beständig
+
+Dieses Beispiel zeigt ein Menü auf der Website der Deque University mit Online-Kursoptionen. Wenn ein Nutzer mit der Maus darüber fährt,
+erscheint das Menü und bleibt so lange bestehen, bis der Nutzer die Maus wegbewegt (es kann mit der Maus bewegt werden und bleibt bestehen).
+Wenn ein Nutzer mit der Tabulatortaste darauf zugreift und die Menüpunkte durchgeht, kann er einfach die Escape-Taste drücken, um das Menü
+zu verlassen (es ist abschaltbar).
+
+![Inhalte sind unzulässig, schwebend und beständig](/images/visuelles-design/good-example-content-dismissible-hoverable-persistent.png)
+
+### Wenn eine Komponente der Benutzeroberfläche den Tastaturfokus erhält, muss die Komponente nicht aufgrund des vom Autor erstellten Inhalts vollständig ausgeblendet werden.
+
+Sehende Tastaturbenutzer müssen wissen, welches Element gerade den Fokus hat. Manchmal können jedoch andere vom Autor erstellte Inhalte den
+Fokus überlagern. Zum Beispiel Fußzeilen, Kopfzeilen und nicht-modale Dialoge. Diese Regel verlangt, dass solche Inhalte die Komponente
+nicht vollständig verdecken, auch wenn sie sie teilweise verdecken können. Daher wird zumindest ein Teil des Fokusindikators immer sichtbar
+sein.
+
+Im Idealfall wird das fokussierte Element von nichts überlagert, aber das kann angesichts der Komplexität von responsiven Designs
+kompliziert sein.
+
+#### Schlechtes Beispiel: Sticky Header verdeckt den Inhalt
+
+Auf dieser Website gibt es einen Sticky Header. Wenn der Nutzer durch die fokussierbaren Elemente blättert, können einige von ihnen
+teilweise ausgeblendet werden, wie zum Beispiel die Schaltfläche "Kontakt" in diesem Beispiel.
+
+![Inhalte sind unzulässig, schwebend und beständig](/images/visuelles-design/header-obscures-element.png)
+
+#### Gutes Beispiel: Sticky Footer verdeckt keine Elemente
+
+Dieses Beispiel zeigt eine Website mit einem Sticky Footer. Wenn ein Nutzer durch fokussierbare Elemente blättert, werden diese nicht von
+der Fußzeile verdeckt.
+
+![Inhalte sind unzulässig, schwebend und beständig](/images/visuelles-design/footer-does-not-obscure-element.png)
+
+### Wenn eine Komponente der Benutzeroberfläche den Tastaturfokus erhält, sollte der Fokusindikator nicht (auch nicht teilweise) durch vom Autor erstellte Inhalte verdeckt werden.
+
+Der Best Practice ist im Wesentlichen eine strengere Version der vorherigen Regel, die eine teilweise Behinderung zulässt. Hier ist
+überhaupt keine Behinderung erlaubt.
