@@ -1,0 +1,531 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Lesereihenfolge, Fokusreihenfolge'
+pubDate: 2023-04-24
+---
+
+Die DOM-Reihenfolge bestimmt die Lesereihenfolge und die Tabulator-/Fokus-Reihenfolge. Wenn Screenreader-Benutzer linear durch den
+Inhalt navigieren, wird die Reihenfolge, in der sie den Inhalt hören, durch die Reihenfolge im Document Object Model (DOM) bestimmt,
+das im Wesentlichen der Quellcode ist, nachdem der Browser ihn geparst und alle relevanten JavaScript ausgeführt hat. Das scheint
+intuitiv zu sein, aber es gibt einige Dinge, auf die du achten solltest:
+
+- CSS-Positionierungstechniken - wie float:left, float:right, position:absolute, position:relative, position:fixed, margin, padding
+  usw. - können das visuelle Layout auf eine Weise verändern, die nicht der Lesereihenfolge im DOM entspricht.
+
+- Das dynamische Einfügen von Inhalten über JavaScript oder AJAX kann Dinge an einer unerwarteten Stelle platzieren, z. B. über dem
+  aktuellen Fokus des Nutzers. Eine blinde Person bemerkt möglicherweise nicht, dass dem Dokument neue Inhalte hinzugefügt wurden,
+  vor allem wenn sie diesen Bereich der Seite bereits besucht hat. Es gibt keinen offensichtlichen Grund für eine blinde Person,
+  zurück zu navigieren, nur um herauszufinden, ob in einem Bereich, den sie bereits besucht hat, etwas hinzugefügt oder geändert
+  wurde.
+
+Hinweis: Screenreader-Benutzer können neben der Tab-Reihenfolge auf vielen anderen Wegen auf einer Seite navigieren. Sie können zum
+Beispiel anhand von Überschriften, Orientierungspunkten, Tabellen, Grafiken, Listen, Links und anderen Elementen navigieren. Trotzdem
+bestimmt das DOM die Reihenfolge dieser Elemente. Deshalb ist es so wichtig, dass die DOM-Reihenfolge stimmt.
+
+## Lesereihenfolge
+
+### Die Lesereihenfolge muss logisch und intuitiv sein.
+
+Wenn die Lesereihenfolge unlogisch oder unintuitiv ist, ergibt der Inhalt keinen Sinn oder ist schwer zu verstehen.
+
+Screenreader ignorieren das gesamte CSS-Layout deines Webdesigns. Das Ausschalten der Stylesheets ist eine Möglichkeit, die
+Lesereihenfolge statischer Inhalte zu überprüfen. Wenn der Inhalt auf diese Weise von der visuellen Gestaltung befreit wird, ist es
+in etwa so, wie ein Screenreader ihn "sieht".
+
+#### Gutes Beispiel: DOM Reihenfolge
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+```html
+<div class="overallContainer">
+  <div class="columnsContainer">
+    <div class="disabilityTypesColumn">
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li>Visual</li>
+        <li>Auditory</li>
+        <li>Motor</li>
+        <li>Cognitive</li>
+        <li>Seizures</li>
+      </ul>
+    </div>
+    <div class="atColumn">
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li>Screen readers</li>
+        <li>Screen enlargers</li>
+        <li>Mouth stick</li>
+        <li>Eye-gaze tracking</li>
+        <li>etc.</li>
+      </ul>
+    </div>
+    <div class="classesColumn">
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li>Web Accessibility Fundamentals</li>
+        <li>HTML/CSS Accessibility</li>
+        <li>Web Accessibility Testing</li>
+        <li>and more!</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerSection">
+    <p><strong>4. </strong>Accessible design is good design.</p>
+  </div>
+</div>
+```
+
+Das CSS für dieses Beispiel ist unten abgebildet:
+
+```css
+.overallContainer {
+  height: 25em;
+  font-size: 1em;
+}
+
+.columnsContainer {
+  display: block;
+  clear: both;
+  margin-bottom: 5px;
+  width: 750px;
+}
+
+.columnsContainer div {
+  float: left;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: 1px dotted gray;
+}
+
+.disabilityTypesColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.atColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.classesColumn {
+  clear: right;
+  background: #fff;
+}
+
+.footerSection {
+  display: block;
+  clear: both;
+  margin-top: 4px;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: 1px dotted gray;
+  background: #fff;
+}
+```
+
+#### Schlechtes Beispiel: Absolute Positionierung
+
+Dieses Beispiel hat das gleiche Aussehen wie das gute Beispiel oben. Da die Spalten jedoch mit absoluter Positionierung erstellt
+wurden und im Quellcode nicht in der richtigen Reihenfolge erscheinen, lesen Screenreader den Inhalt nicht in der beabsichtigten
+Reihenfolge. Ähnliche Probleme können mit CSS float oder mit CSS relative positioning auftreten.
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+```html
+<div class="overallContainer2">
+  <div class="columnsContainer2">
+    <div class="classesColumn2">
+      <!-- The following section is first in the DOM, but it should be third -->
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li>Web Accessibility Fundamentals</li>
+        <li>HTML/CSS Accessibility</li>
+        <li>Web Accessibility Testing</li>
+        <li>and more!</li>
+      </ul>
+    </div>
+    <div class="footerSection2">
+      <!-- The following section is second in the DOM, but it should be fourth -->
+      <p><strong>4. </strong>Accessible design is good design.</p>
+    </div>
+    <div class="disabilityTypesColumn2">
+      <!-- The following section is third in the DOM, but it should be first -->
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li>Visual</li>
+        <li>Auditory</li>
+        <li>Motor</li>
+        <li>Cognitive</li>
+        <li>Seizures</li>
+      </ul>
+    </div>
+    <div class="atColumn2">
+      <!-- The following section is fourth in the DOM, but it should be second -->
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li>Screen readers</li>
+        <li>Screen enlargers</li>
+        <li>Mouth stick</li>
+        <li>Eye-gaze tracking</li>
+        <li>etc.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+Das CSS für dieses Beispiel ist unten abgebildet:
+
+```css
+.overallContainer2 {
+  height: 25em;
+  font-size: 13px;
+}
+
+.columnsContainer2 {
+  position: absolute;
+  height: 25em;
+  width: 750px;
+}
+
+.disabilityTypesColumn2 {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.atColumn2 {
+  position: absolute;
+  left: 230px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.classesColumn2 {
+  position: absolute;
+  left: 450px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.footerSection2 {
+  position: absolute;
+  left: 10px;
+  top: 20em;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+```
+
+## Fokus oder Tabulatorreihenfolge
+
+### Die Navigationsreihenfolge der fokussierbaren Elemente muss logisch und intuitiv sein.
+
+Wenn Tastaturbenutzer mit der Tabulatortaste durch die fokussierbaren Elemente (Schaltflächen, Links, Formularelemente,
+benutzerdefinierte Steuerelemente usw.) gehen, muss die Reihenfolge sinnvoll sein, damit sie nicht verwirrt werden.
+
+Wenn ein Tastaturbenutzer - egal ob sehend oder blind - die Tabulatortaste benutzt, um durch alle fokussierbaren Elemente (Links,
+Schaltflächen, Formularelemente usw.) zu gehen, beginnt der Browser mit den fokussierbaren Elementen am Anfang und geht linear durch
+alle fokussierbaren Elemente, bis er das Ende erreicht. Der Browser ignoriert alle visuellen Formatierungen - Spalten, schwebende
+Elemente, Ränder, Polsterung, Positionierung usw. - und achtet auf die grundlegende Reihenfolge, in der die Dinge im DOM erscheinen.
+
+#### Gutes Beispiel: DOM Reihenfolge
+
+Nachfolgend findest du eine Reihe von Links, die in drei Spalten angeordnet sind, mit einer Fußzeile am unteren Rand.
+
+Probiere die Links aus, um die Reihenfolge der Tabs herauszufinden.
+
+Beispiel
+
+Die Tabulatorreihenfolge entspricht der erwarteten Reihenfolge. Die Tabulatorreihenfolge beginnt in der linken Spalte, dann in der mittleren Spalte, dann in der rechten Spalte und geht dann zur Fußzeile am Ende.
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+```html
+<div class="overallContainer">
+  <div class="columnsContainer">
+    <div class="disabilityTypesColumn">
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li><a href="#">Visual</a></li>
+        <li><a href="#">Auditory</a></li>
+        <li><a href="#">Motor</a></li>
+        <li><a href="#">Cognitive</a></li>
+        <li><a href="#">Seizures</a></li>
+      </ul>
+    </div>
+    <div class="atColumn">
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li><a href="#">Screen readers</a></li>
+        <li><a href="#">Screen enlargers</a></li>
+        <li><a href="#">Mouth stick</a></li>
+        <li><a href="#">Eye-gaze tracking</a></li>
+        <li><a href="#">etc.</a></li>
+      </ul>
+    </div>
+    <div class="classesColumn">
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li><a href="#">Web Accessibility Fundamentals</a></li>
+        <li><a href="#">HTML/CSS Accessibility</a></li>
+        <li><a href="#">Web Accessibility Testing</a></li>
+        <li><a href="#">and more!</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerSection">
+    <p>
+      <a href="#"><strong>4. </strong>Accessible design is good design.</a>
+    </p>
+  </div>
+</div>
+```
+
+Das CSS für dieses Beispiel ist unten abgebildet:
+
+```css
+.overallContainer {
+  height: 25em;
+  font-size: 1em;
+}
+
+.columnsContainer {
+  display: block;
+  clear: both;
+  margin-bottom: 5px;
+  width: 750px;
+}
+
+.columnsContainer div {
+  float: left;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: 1px dotted gray;
+}
+
+.disabilityTypesColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.atColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.classesColumn {
+  clear: right;
+  background: #fff;
+}
+
+.footerSection {
+  display: block;
+  clear: both;
+  margin-top: 4px;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: 1px dotted gray;
+  background: #fff;
+}
+```
+
+#### Schlechtes Beispiel: Absolute Positionierung
+
+Nachfolgend findest du eine Reihe von Links, die in drei Spalten angeordnet sind, mit einer Fußzeile am unteren Rand.
+
+Probiere die Links aus, um die Reihenfolge der Tabs herauszufinden.
+
+Hinweis: Die Links führen nicht zu einem echten Ziel. In diesem Beispiel geht es darum, die Links mit der Tabulatortaste zu öffnen,
+nicht darum, ihnen zu folgen.
+
+Beispiel
+
+Visuelle Nutzer erwarten, dass die Reihenfolge der Registerkarten oben links beginnt (Behinderungsarten), dann die Liste der Links
+in der linken Spalte durchläuft, dann die Links in der mittleren Spalte (Hilfstechnologien), dann die Links in der rechten Spalte
+(Klassen) und dann den Link am Ende ("Barrierefreies Design ist gutes Design").
+
+Leider entspricht die Reihenfolge der Tabs nicht der erwarteten Reihenfolge. Die Tab-Reihenfolge beginnt in der rechten Spalte, geht
+dann zur Fußzeile am Ende, dann zur linken Spalte und dann zur mittleren Spalte. In diesem Beispiel ist die Reihenfolge deshalb so
+durcheinander, weil die absolute CSS-Positionierung verwendet wurde und die Person, die den Inhalt erstellt hat, die Reihenfolge
+im Quellcode nicht an die visuelle Reihenfolge angepasst hat.
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+```html
+<div class="overallContainer2">
+  <div class="columnsContainer2">
+    <div class="classesColumn2">
+      <!-- The following section is first in the DOM, but it should be third -->
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li><a href="#">Web Accessibility Fundamentals</a></li>
+        <li><a href="#">HTML/CSS Accessibility</a></li>
+        <li><a href="#">Web Accessibility Testing</a></li>
+        <li><a href="#">and more!</a></li>
+      </ul>
+    </div>
+    <div class="footerSection2">
+      <!-- The following section is second in the DOM, but it should be fourth -->
+      <p><strong>4. </strong><a href="#">Accessible design is good design.</a></p>
+    </div>
+    <div class="disabilityTypesColumn2">
+      <!-- The following section is third in the DOM, but it should be first -->
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li><a href="#">Visual</a></li>
+        <li><a href="#">Auditory</a></li>
+        <li><a href="#">Motor</a></li>
+        <li><a href="#">Cognitive</a></li>
+        <li><a href="#">Seizures</a></li>
+      </ul>
+    </div>
+    <div class="atColumn2">
+      <!-- The following section is fourth in the DOM, but it should be second -->
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li><a href="#">Screen readers</a></li>
+        <li><a href="#">Screen enlargers</a></li>
+        <li><a href="#">Mouth stick</a></li>
+        <li><a href="#">Eye-gaze tracking</a></li>
+        <li><a href="#">etc.</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+Das CSS für dieses Beispiel ist unten abgebildet:
+
+```css
+.overallContainer2 {
+  height: 25em;
+  font-size: 13px;
+}
+
+.columnsContainer2 {
+  position: absolute;
+  height: 25em;
+  width: 750px;
+}
+
+.disabilityTypesColumn2 {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.atColumn2 {
+  position: absolute;
+  left: 230px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.classesColumn2 {
+  position: absolute;
+  left: 450px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.footerSection2 {
+  position: absolute;
+  left: 10px;
+  top: 20em;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+```
+
+### tabindex von positiven Werten sollte nicht verwendet werden.
+
+Es ist möglich, die Tabulatorreihenfolge fokussierbarer Elemente mit tabindex anzupassen, indem du numerische Werte wie 1, 2, 3 usw.
+einstellst, aber das kann zu erheblichen Problemen für Tastaturbenutzer führen.
+
+- Es kommt zu einer Diskrepanz zwischen der Tabulatorreihenfolge und der Lesereihenfolge, was zu Verwirrung führt, wenn du die
+  Seite mit der Tastatur bedienst
+
+- Sie entfernt die Elemente aus ihrer natürlichen Tabulatorreihenfolge und setzt sie stattdessen an die erste Stelle in der
+  Tabulatorreihenfolge. Alles, was einen Tabindex-Wert von 1 oder höher hat, kommt vor allen anderen fokussierbaren Elementen. Wenn
+  zum Beispiel nur ein einziges Element auf der Seite einen Tabindex hat und dieser auf 9000 gesetzt ist, wird dieses Element das
+  erste sein, auf das ein Benutzer mit der Tabulatortaste zugreift, auch wenn die Zahl sehr groß ist. Wenn der Tabulator von dem
+  Element mit tabindex="9000" weggeht, geht der Fokus zum ersten fokussierbaren Element im DOM. Wenn der Benutzer weiter durch die
+  Webseite tabbelt, kommt er schließlich an die Stelle, an der sich das Element mit tabindex="9000" befindet, und erwartet, dass er
+  zu diesem Element tabben kann, was aber nicht möglich ist, weil die Position des Elements im DOM nicht der Tabulatorreihenfolge des
+  Elements entspricht. Der Benutzer hätte bereits vorher mit der Tabulatortaste darauf zugegriffen, also überspringt der Browser
+  dieses Element. Das ist verwirrend für den Nutzer - vor allem für sehende Tastaturbenutzer - wenn das passiert.
+
+#### Schlechtes Beispiel: Seitendesign mit mehreren Instanzen von tabindex mit positiven Werten
+
+Auf der <a href="https://dequeuniversity.com/demo/mars/" target="_blank">Mars Commuter Demo-Website</a> (die absichtlich so
+gestaltet wurde, dass sie viele Zugänglichkeitsfehler aufweist), haben mehrere Formularsteuerelemente in der rechten Spalte einen
+Tabindex-Wert mit einer positiven Zahl. Wenn der Benutzer die Seite mit der Tabulatortaste aufruft, ist die Reihenfolge der Tabs
+wie folgt:
+
+- das Feld "Von" unter der Überschrift "Buche deine Reise".
+
+- Das Feld "Nach"
+
+- Das Feld "Abreisedatum".
+
+- Das Feld "Uhrzeit
+
+- Ein mysteriöses Objekt, das keine Funktionalität und keinen sichtbaren Fokusindikator hat
+
+- Ein weiteres mysteriöses Objekt
+
+- Dann beginnt die Tabulatorreihenfolge oben links auf dem Bildschirm und setzt sich in einer natürlicheren Tabulatorreihenfolge fort
+
+![Seitendesign mit mehreren Instanzen von tabindex mit positiven Werten](/images/visuelles-design/tab-order.png)
+
+In gewisser Hinsicht macht diese Reihenfolge der Registerkarten Sinn: Wenn der Hauptzweck der Website darin besteht, Reisen zu buchen,
+möchten die Besucher vielleicht gleich zu den Buchungsfunktionen springen. Aber es gibt mehrere Probleme mit diesem Ansatz:
+
+- Der Tabindex ist nicht für alle Elemente im Abschnitt "Reise buchen" gesetzt, so dass der Benutzer an den Anfang der Webseite
+  zurückgeschickt wird, bevor er zu allen Elementen im Formular gehen und das Formular abschicken kann.
+
+- Einige visuell ausgeblendete Objekte befinden sich auf dieser Seite noch in der Tab-Reihenfolge (die "geheimnisvollen"
+  Fokusobjekte), was zu Verwirrung führen kann. Wenn etwas visuell ausgeblendet ist, darf es nicht in der Tab-Reihenfolge sein.
+
+- Wenn der Nutzer die gesamte Seite mit der Tabulatortaste durchläuft, überspringt die Tabulatorreihenfolge die ersten Elemente (das
+  Feld "Von", das Feld "An" usw.), weil diese Elemente am Anfang der Tabulatorreihenfolge stehen. Es ist sehr verwirrend für die
+  Benutzer, wenn sie nicht in ihrer natürlichen Reihenfolge zu den Einträgen wechseln können.
+
+Am besten vermeidest du diese Probleme ganz und gar, indem du überhaupt keinen Tabindex mit positiven Werten einstellst.

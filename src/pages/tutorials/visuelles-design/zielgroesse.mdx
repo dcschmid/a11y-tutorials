@@ -1,0 +1,44 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Zielgröße'
+pubDate: 2023-04-24
+---
+
+## Die Touch-Zielgröße der aktivierbaren Elemente sollte mindestens 44 mal 44 Pixel groß sein und mindestens sechs Pixel inaktiven Raum zwischen benachbarten aktivierbaren Elementen aufweisen.
+
+Kleine Ziele können schwer zu klicken oder zu berühren sein. Das W3C empfiehlt eine Mindestgröße von 44 x 44 px, um sicherzustellen,
+dass die Nutzer sie aktivieren können. Außerdem wird empfohlen, häufig verwendete Ziele größer zu machen. Die Ausnahmen in dieser
+Regel erlauben es, ein Ziel kleiner als 44 px zu machen, wenn ein anderes Ziel, das die gleiche Funktion auf derselben Seite erfüllt,
+die Anforderungen erfüllt, wenn der Nutzer die Größe des Ziels selbst ändern kann, wenn das Ziel inline im Text enthalten ist, wie
+z. B. ein Fußnotenlink, oder wenn das Ziel eine bestimmte Größe haben muss und eine Änderung die Informationen oder die Funktionalität
+beeinträchtigen würde.
+
+### Schlechtes Beispiel: Kleine Zielgröße
+
+Dieser Warenkorb-Button ist nur 40 x 33 Pixel groß und kann schwer zu klicken oder zu berühren sein.
+
+### Gutes Beispiel: Große Zielgröße
+
+Die Schaltfläche zum Verfassen einer E-Mail ist viel größer und es gibt viel inaktiven Platz um sie herum. Es ist viel einfacher,
+darauf zu klicken oder zu tippen, ohne versehentlich ein anderes Ziel zu treffen.
+
+![Große Zielgröße](/images/visuelles-design/good-example-large-target.png)
+
+## Die Größe des Ziels für Zeigereingaben muss mindestens 24 x 24 CSS-Pixel betragen (mit einigen zulässigen Ausnahmen).
+
+Die Zielgröße war bisher nur eine Regel der Stufe AAA, aber jetzt ist sie Teil der Anforderungen der Stufe AA. Diese Regel legt eine
+Mindestgröße fest (24 x 24 Pixel). Wenn möglich, ist es besser, sich an die Mindestgröße der Stufe AAA zu halten (44 x 44 Pixel).
+
+Die zulässigen Ausnahmen für diese Regel sind:
+
+- Abstände: Der Zielabstand beträgt mindestens 24 CSS-Pixel zu jedem benachbarten Ziel;
+
+- Äquivalent: Die Funktion kann durch ein anderes Steuerelement auf derselben Seite erreicht werden, das eine Fläche von mindestens
+  24 mal 24 CSS-Pixeln hat;
+
+- Inline: Das Ziel befindet sich in einem Satz oder Textblock;
+
+- Kontrolle durch den User Agent: Die Größe des Ziels wird vom User-Agent bestimmt und nicht vom Autor geändert;
+
+- Wesentlich: Eine bestimmte Darstellung des Ziels ist für die zu vermittelnde Information unerlässlich oder gesetzlich vorgeschrieben.
+

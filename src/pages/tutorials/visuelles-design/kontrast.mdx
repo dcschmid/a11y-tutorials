@@ -1,0 +1,535 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Kontrast'
+pubDate: 2023-04-22
+---
+
+Zu den häufig übersehenen Problemen bei der Barrierefreiheit gehören die Themen Farbe und Kontrast. Es gibt fast dreimal so viele
+Menschen mit Sehschwäche wie mit völliger Blindheit. Eine Person, die nicht sehen kann, weiß nicht, was sie wählen soll, wenn sie
+angewiesen wird, "mit dem roten Pfeil zum nächsten Bildschirm zu gehen". Jeder zwölfte Mensch hat eine Art von Farbfehlsichtigkeit -
+etwa 8 % der Männer und 0,4 % der Frauen in den USA. Eine Person mit Sehschwäche oder Farbenblindheit ist nicht in der Lage, Text
+vor einem Hintergrund ohne ausreichenden Kontrast zu erkennen.
+
+## Text vor dem Hintergrund
+
+### Kleiner Text (unter 18 Punkt normaler Schrift oder 14 Punkt fetter Schrift) muss ein Kontrastverhältnis von mindestens 4,5 zu 1 zum Hintergrund haben.
+
+Ein ausreichender Farbkontrast zwischen Text und Hintergrund macht Inhalte für Menschen mit Sehschwäche leichter lesbar. Sehbehinderte
+müssen nicht unbedingt kontraststeigernde Hilfsmittel verwenden, wenn der Kontrast zwischen Text und Hintergrund 4,5 zu 1 beträgt.
+Die Regel berücksichtigt auch Menschen mit Farbsehschwächen. Manche Farbfehlsichtigkeiten können sich darauf auswirken, wie helle
+Farben auf jemanden wirken. Daher hilft diese Regel auch sicherzustellen, dass die Farbe nicht die Wahrnehmung der Inhalte auf dem
+Bildschirm beeinträchtigt.
+
+Hintergründe können aus einer Volltonfarbe, einem Muster, einem Farbverlauf, einem Bild, einer Animation, einem Video oder einem
+anderen Element bestehen. Er kann sich auch im Laufe der Zeit ändern, wenn der Nutzer scrollt oder wenn sich die Größe des
+Ansichtsfensters ändert. Der Mindestkontrast sollte unter all diesen Bedingungen diesem Standard entsprechen, es sei denn, der
+schlechte Kontrast ist so kurz (z. B. eine Sekunde oder weniger), dass er das Nutzererlebnis nicht wesentlich beeinträchtigt.
+
+#### Schlechtes Beispiel: Geringer Kontrast zwischen Text und Hintergrund
+
+In diesem Beispiel haben die Farben für die Überschriften "Be Bold", "Countdown" und "Blast Off" nicht genug Kontrast zu dem blauen
+Hintergrund der Webseite.
+
+![Bild als Submit-Button verwendet](/images/visuelles-design/lowcontrastmarscommuter.png)
+
+Die Verstöße in diesem Beispiel sind:
+
+- Die Überschrift Be Bold... hat einen unzureichenden Farbkontrast von 4,31 (Textfarbe: #ff9999, Hintergrundfarbe: #344b6e).
+
+- Die Überschrift Countdown... hat einen unzureichenden Farbkontrast von 1,87 (Textfarbe: #067ab4, Hintergrundfarbe: #344b6e).
+
+- Die Überschrift Blast Off! hat einen unzureichenden Farbkontrast von 2,83 (Textfarbe: #46a546, Hintergrundfarbe: #344b6e).
+
+Die Schriftgröße der Überschriften beträgt 13,5 pt, also müssen sie ein Kontrastverhältnis von 4,5 zu 1 haben.
+
+#### Gutes Beispiel: Höherer Kontrast zwischen Text und Hintergrund
+
+Um den Kontrast zwischen den Überschriften "Be Bold", "Countdown" und "Blast Off" und dem Hintergrund zu erhöhen, wurde der blaue
+Hintergrund abgedunkelt und hellere Farben für die Überschriften "Countdown" und "Blast Off" verwendet.
+
+![Höherer Kontrast zwischen Text und Hintergrund](/images/visuelles-design/highcontrastmarscommuter.png)
+
+Die Kontrastverhältnisse für die Überschriften sind unten aufgeführt.
+
+- Die Überschrift Be Bold... hat ein Kontrastverhältnis von 6,52:1 (Textfarbe: #FF9999, Hintergrundfarbe: #213046).
+
+- Die Überschrift Countdown... hat ein Kontrastverhältnis von 6,51:1 (Textfarbe: #83BDDA, Hintergrundfarbe: #213046).
+
+- Die Überschrift Blast Off! hat ein Kontrastverhältnis von 8,95:1 (Textfarbe: #BADEBA, Hintergrundfarbe: #213046).
+
+### Kleine Texte (unter 18 Punkt normaler Schrift oder 14 Punkt fetter Schrift) müssen ein Kontrastverhältnis von mindestens 7 zu 1 zum Hintergrund haben.
+
+Erwäge, den Farbkontrast über die Mindestanforderungen für mobile Anwendungen hinaus zu erhöhen. Aufgrund der geringeren Größe des
+Ansichtsfensters und der unterschiedlichen Umgebungsbedingungen, in denen die Geräte genutzt werden, macht ein erhöhter Kontrast eine
+App für eine möglichst große Zahl von Nutzern zugänglich. Ein Kontrastverhältnis von 7:1 kann den Kontrastverlust für Menschen mit
+einer Sehkraft von etwa 20/80 oder für Menschen mit Farbfehlsichtigkeit ausgleichen. Diese Nutzer/innen brauchen in der Regel keine
+kontraststeigernden Hilfsmittel, aber sie können Schwierigkeiten haben, einen Kontrast von 4,5:1 zu erkennen, vor allem auf mobilen
+Geräten.
+
+#### Gutes Beispiel: Verbesserter Farbkontrast
+
+Im folgenden Beispiel beträgt das Kontrastverhältnis von Text und Hintergrund des aktiven Menüpunkts 7,75:1 und das Kontrastverhältnis
+von Text und Hintergrund der inaktiven Menüpunkte 12,63:1.
+
+![Verbesserter Farbkontrast](/images/visuelles-design/highcontrastsmalltextmenu.png)
+
+### Großer Text und Bilder von großem Text (mit mindestens 18 Punkt oder 14 Punkt Fettdruck) müssen ein Kontrastverhältnis von mindestens 3 zu 1 zum Hintergrund haben.
+
+In der Regel hat Text in 18 Punkt oder 14 Punkt Fettdruck breitere Striche, was ihn bei einem geringeren Kontrast leichter lesbar
+macht. Daher ist die Kontrastregel für großen Text niedriger.
+
+Die Punktgrößen für diese Regel basieren auf der CSS-Punktgröße. 1 Punkt entspricht also 1,333 CSS-Punkten. Eine 18-Punkt-Schrift
+entspricht also 24 Pixeln und eine 14-Punkt-Schrift 18,5 Pixeln.
+
+Hintergründe können aus einer Volltonfarbe, einem Muster, einem Farbverlauf, einem Bild, einer Animation, einem Video oder einem
+anderen Element bestehen. Er kann sich auch im Laufe der Zeit ändern, wenn der Nutzer scrollt oder wenn sich die Größe des
+Ansichtsfensters ändert. Der Mindestkontrast sollte unter all diesen Bedingungen diesem Standard entsprechen, es sei denn, der
+schlechte Kontrast ist so kurz (z. B. eine Sekunde oder weniger), dass er das Nutzererlebnis nicht wesentlich beeinträchtigt.
+
+#### Schlechtes Beispiel: Großer Text mit geringem Kontrast zum Hintergrund
+
+Der Kontrast zwischen dem großen Text für die Überschrift (18 pt Schriftgröße) und dem Hintergrund beträgt 2,24:1, was für großen
+Text nicht ausreichend ist.
+
+![Großer Text mit geringem Kontrast zum Hintergrund](/images/visuelles-design/lowcontrastlargetext.png)
+
+#### Gutes Beispiel: Großer Text mit hohem Kontrast zum Hintergrund
+
+Die Überschrift in diesem Beispiel hat eine Schriftgröße von 18 pt und der Kontrast zwischen Überschrift und Hintergrund beträgt 7,46:1.
+
+![Großer Text mit hohem Kontrast zum Hintergrund](/images/visuelles-design/highcontrastlargetext.png)
+
+## Nicht-textlicher Kontrast
+
+### Jede visuelle Begrenzung, die den Trefferbereich einer aktiven Benutzerkomponente anzeigt (der Bereich, in dem ein Zeiger das Steuerelement aktivieren kann), muss einen ausreichenden Kontrast von mindestens 3 zu 1 zum angrenzenden Hintergrund haben.
+
+Dieses Erfolgskriterium erweitert einige der Kontrastanforderungen für Text auf Komponenten der Benutzeroberfläche und Nicht-Text-Teile
+von Grafiken (siehe Regel für Grafiken unten). Damit soll sichergestellt werden, dass Nutzer/innen mit Sehschwäche auch Teile des
+Bildschirms wahrnehmen können, die nicht unbedingt Text sind, aber dennoch wichtig für den Zugang zu Inhalten und deren Verständnis.
+Dazu gehören Elemente wie Schaltflächen, Formularelemente, Links und Benutzerkontrollen, die von Skripten erzeugt werden. Wenn
+Schaltflächen und andere Steuerelemente nicht ausreichend kontrastreich sind, können die Nutzer sie möglicherweise nicht vom
+Hintergrund unterscheiden.
+
+Wenn das Aussehen der Komponente jedoch vom User Agent bestimmt und nicht vom Autor geändert wird, gilt diese Kontrastregel nicht.
+
+Hinweis: Dieses Erfolgskriterium setzt nicht voraus, dass eine Komponente eine visuelle Begrenzung hat, die den Trefferbereich anzeigt.
+Wenn aber die visuelle Anzeige der Begrenzung die einzige Möglichkeit ist, die Komponente zu identifizieren, muss sie einen
+ausreichenden Kontrast haben.
+
+#### Schlechtes Beispiel: UI-Komponenten mit schlechtem Kontrast
+
+Das folgende Beispiel zeigt eine Optionsschaltflächengruppe. Die visuelle Grenze, an der ein Benutzer ein Optionsfeld auswählen kann,
+ist eine schwache graue Farbe mit geringem Kontrast zum weißen Hintergrund.
+
+![UI-Komponenten mit schlechtem Kontrast](/images/visuelles-design/bad-example-UI-component-contrast.png)
+
+#### Ein gutes Beispiel: UI-Komponenten mit gutem Kontrast
+
+Das Bild unten zeigt ein einfaches Kontrollkästchen. Die visuelle Begrenzung, die anzeigt, wo ein Nutzer darauf klicken kann, ist
+dunkelgrau und hebt sich deutlich von der weißen Umgebung ab.
+
+![UI-Komponenten mit gutem Kontrast](/images/visuelles-design/good-example-ui-component-contrast.png)
+
+### Der visuelle Zustand einer aktiven Komponente der Benutzeroberfläche muss einen ausreichenden Kontrast von mindestens 3 zu 1 zum angrenzenden Hintergrund haben.
+
+Zu den visuellen Zuständen von Benutzerkomponenten gehören "im Fokus", "ausgewählt", "nicht ausgewählt" und andere.
+
+Benutzeroberflächenkomponenten, die inaktiv sind (d. h. im Moment nicht für Benutzerinteraktionen zur Verfügung stehen), müssen diese
+Kontrastanforderungen nicht erfüllen, d. h. sie können "ausgegraut" sein, wenn sie inaktiv sind.
+
+Auch hier gilt: Wenn der Farbkontrast des Zustands die Standardfarbe ist, die vom User Agent festgelegt und vom Autor nicht geändert
+wurde, ist er ausgenommen.
+
+#### Schlechtes Beispiel: UI-Komponente im Fokus mit schlechtem Kontrast
+
+Das Bild unten zeigt eine Schaltfläche, mit der du in einer Bildergalerie vorwärts blättern kannst. Wenn sie scharf gestellt ist, gibt
+es einen schwachen grauen gepunkteten Umriss, der vor einem mehrfarbigen Hintergrund mit geringem Kontrast schwer zu erkennen ist.
+
+![UI-Komponente im Fokus mit schlechtem Kontrast](/images/visuelles-design/bad-example-in-focus-contrast.png)
+
+#### Gutes Beispiel: UI-Komponente im Fokus mit gutem Kontrast
+
+In diesem Beispiel wird das gleiche Kontrollkästchen wie im vorherigen guten Beispiel verwendet. Wenn es markiert ist, erscheint
+ein blauer Hintergrund mit einem weißen Häkchen, das einen starken Kontrast zum umgebenden Weiß bildet.
+
+![UI-Komponente im Fokus mit gutem Kontrast](/images/visuelles-design/good-example-ui-component-focus-contrast.png)
+
+### Teile von Grafiken (die zum Verständnis des Inhalts erforderlich sind) müssen ein Kontrastverhältnis von mindestens 3 zu 1 zu den angrenzenden Farben haben.
+
+Grafiken, die Informationen vermitteln, müssen auch dieses Mindestkontrastverhältnis für Nicht-Text erfüllen. Dazu gehören Icons, die
+Informationen vermitteln, Linien in Liniendiagrammen und Scheiben in Kreisdiagrammen. Wer zum Beispiel Linien in einem Liniendiagramm
+oder Scheiben in einem Tortendiagramm nicht unterscheiden kann, kann die Informationen nicht interpretieren.
+
+Ausnahmen von dieser Regel gibt es in Fällen, in denen das Ändern der Farbe die Bedeutung verändert. Wenn du zum Beispiel die Farben
+von Flaggen, Fotos und Heatmaps änderst, ändert das die Bedeutung und sie sind daher ausgenommen.
+
+#### Schlechtes Beispiel: Diagramm mit schlechtem Kontrast
+
+Diese Grafik zeigt die Veränderung der Sonnenaufgangszeit im Monat März. Sie enthält viele Nicht-Text-Elemente, die Informationen
+vermitteln, wie z. B. Punkte, die die Sonnenaufgangszeit an verschiedenen Tagen anzeigen, Linien, die das Diagramm kreuzen, um die
+Zeiten anzuzeigen, und eine Linie, die angibt, wann die Sommerzeit begann. In diesem Diagramm erfüllen die Elemente nicht die
+Anforderungen an den Kontrast, so dass manche Nutzer die Informationen im Diagramm nicht erkennen können.
+
+![Diagramm mit schlechtem Kontrast](/images/visuelles-design/chart-poor-contrast.png)
+
+#### Gutes Beispiel: Diagramm mit gutem Kontrast
+
+Hier in der zweiten Grafik wurde der Kontrast für diese Nicht-Text-Elemente erhöht, um die Kontrastanforderungen zu erfüllen.
+
+![Diagramm mit gutem Kontrast](/images/visuelles-design/chart-good-contrast.png)
+
+## Fokus Indikator
+
+### Der Kontrast aller visuellen Fokusindikatoren zum Hintergrund muss mindestens 3 zu 1 betragen.
+
+In manchen Browsern ist das Standarddesign für den visuellen Fokusindikator (der dünne gepunktete Umriss um fokussierte Elemente)
+schwer zu erkennen, vor allem für Nutzer, die schlecht sehen können. Durch die Verbesserung des visuellen Fokusindikators können die
+Nutzer/innen leichter erkennen, welches Element auf einer Webseite unter allen anderen Elementen den Tastaturfokus hat. Die
+Möglichkeit, den visuellen Fokus sofort zu erkennen, erhöht die Effizienz bei der Nutzung und Interaktion mit der Seite.
+
+#### Gutes Beispiel: Taste Fokusanzeige mit ausreichendem Kontrast
+
+In diesem Beispiel ändert sich die Farbe der Schaltfläche, wenn ein Nutzer auf die Schaltfläche tippt. Der Kontrast zwischen der
+Hintergrundfarbe der Schaltfläche im Standardzustand und wenn sie fokussiert ist, ist größer als 3 zu 1. Außerdem ist der Kontrast
+zwischen dem Hintergrund der Schaltfläche und dem Text der Schaltfläche immer größer als 4,5 zu 1.
+
+Die Schaltfläche, wie sie in ihrem Standardzustand erscheint:
+
+<button style="background-color: #0045c4;color: #efefef;border: 2px solid #0045c4;border-radius: 5px;outline: none;">
+  Submit
+</button>
+
+Die Schaltfläche, wie sie erscheint, wenn sie fokussiert ist:
+
+<button style="background-color:#efefef; color:#0045c4; border: 2px solid #0045c4; border-radius: 5px;">
+  Submit
+</button>
+
+#### Gutes Beispiel: Fokusindikator mit ausreichendem Kontrast
+
+In diesem Beispiel erscheint der visuelle Fokusindikator als hellgrauer Hintergrund hinter dem Linktext mit einem roten Balken auf
+der linken Seite des Linktextes. Während der graue Hintergrund allein zu hell ist, um ausreichend zu sein, ist der rote Balken
+größer als 3px mal 3px und bietet einen ausreichenden Kontrast zum weißen Hintergrund.
+
+![Fokusindikator mit ausreichendem Kontrast](/images/visuelles-design/visual-focus-indicator.png)
+
+#### Gutes Beispiel: Fokusindikator mit ausreichendem Kontrast
+
+In diesem Beispiel besteht der visuelle Fokusindikator für den Link aus zwei Teilen: einer 1 px blauen Umrandung um den Link und
+einer dezenten hellgelben Hintergrundfarbe, die die Umrandung ausfüllt. Das helle Gelb vor dem weißen Hintergrund bietet einen
+Kontrast von nur 1,03 zu 1 und ist daher als visueller Fokusindikator nicht ausreichend. Die 1 px blaue Umrandung bietet jedoch
+einen ausreichenden Kontrast von mehr als 4,5 zu 1.
+
+Der Link, wie er im Standardzustand erscheint: <a href="https://deque.com">www.deque.com</a>
+
+Der Link, wie er erscheint, wenn er fokussiert ist: <a style="background-color: #FFFFCC; outline: 1px solid; text-decoration: none;">www.deque.com</a>
+
+#### Schlechtes Beispiel: Fokusindikator mit unzureichendem Kontrast
+
+Die Hintergrundfarbe, die erscheint, wenn der Link fokussiert ist, hat einen Kontrast von 1,03 zu 1 zum Hintergrund, so dass
+sehbehinderte Nutzer sie möglicherweise nicht sehen können.
+
+Der Link, wie er im Standardzustand erscheint: <a href="https://deque.com">www.deque.com </a>
+
+Der Link, wie er erscheint, wenn er fokussiert ist: <a style="background-color: #FFFFCC; outline: none; text-decoration: none;"  href="https://deque.com" target="_blank">www.deque.com</a>
+
+#### Schlechtes Beispiel: Fokusindikator mit unzureichendem Kontrast
+
+In diesem Beispiel bietet der visuelle Fokusindikator für den Link nur einen Kontrast von 1,9 zu 1 und ist daher als visueller
+Fokusindikator nicht ausreichend.
+
+Der Link, wie er im Standardzustand erscheint: <a href="https://deque.com">www.deque.com </a>
+
+Der Link, wie er erscheint, wenn er fokussiert ist: <a style="outline: 1px solid; outline-color: #BBBBBB;background-color:#FFFFFF;text-decoration:none;"  href="https://deque.com" target="_blank">www.deque.com</a>
+
+### Wenn der Tastaturfokusindikator sichtbar ist, muss der gesamte Fokusindikator und/oder ein Bereich des Fokusindikators bestimmte Anforderungen an Größe und Farbkontrast erfüllen.
+
+Der Zweck dieser Regel ist es, ein Mindestmaß an Sichtbarkeit für den Fokusindikator festzulegen. Sehende Tastaturbenutzer sind darauf
+angewiesen zu wissen, wo der Fokus liegt, damit sie effektiv mit den Komponenten der Benutzeroberfläche interagieren können.
+
+Wenn der Tastaturfokusindikator sichtbar ist, ist eine der folgenden Bedingungen erfüllt:
+
+- Der gesamte Fokusindikator erfüllt alle folgenden Punkte:
+
+  - umschließt die Komponente oder Unterkomponente der Benutzeroberfläche, die fokussiert ist, und
+
+  - ein Kontrastverhältnis von mindestens 3:1 zwischen denselben Pixeln im fokussierten und unfokussierten Zustand aufweist und
+
+  - ein Kontrastverhältnis von mindestens 3:1 zu benachbarten Nicht-Fokus-Indikatorfarben hat.
+
+- Ein Bereich des Fokusindikators erfüllt alle folgenden Punkte:
+
+  - mindestens so groß ist wie die Fläche eines 1-CSS-Pixel-dicken Umfangs der unfokussierten Komponente oder Unterkomponente oder
+    mindestens so groß ist wie eine 4-CSS-Pixel-dicke Linie entlang der kürzesten Seite des minimalen Begrenzungsrahmens der
+    unfokussierten Komponente oder Unterkomponente, und
+
+  - ein Kontrastverhältnis von mindestens 3:1 zwischen den gleichen Pixeln im fokussierten und unfokussierten Zustand aufweist und
+
+  - ein Kontrastverhältnis von mindestens 3:1 zu benachbarten Nicht-Fokus-Indikatorfarben hat oder nicht dünner als 2 CSS-Pixel ist.
+
+Ausnahmen:
+
+- Der Fokusindikator wird vom User Agent bestimmt und kann vom Autor nicht angepasst werden, oder
+- Der Fokusindikator und die Hintergrundfarbe des Indikators werden vom Autor nicht verändert.
+
+#### Schlechtes Beispiel: Fokusanzeige mit schlechtem Farbkontrast
+
+In diesem Beispiel wurde der Schärfe-Indikator so erstellt, dass er genau die gleiche Form hat wie das Element im Fokus, in diesem
+Fall ein Stern. Das Dunkelblau des Fokus-Indikators und das Grün des Sterns haben keinen ausreichenden Kontrast, daher erfüllt er
+diese Anforderung nicht: "Der Stern muss ein Kontrastverhältnis von mindestens 3:1 zu den benachbarten Nicht-Fokus-Indikator-Farben
+haben."
+
+Eine einfache Möglichkeit, dieses Problem zu beheben, ist, den Fokusindikator einfach zu einem Rechteck zu machen, das den Stern
+umgibt, weil dann das Blau des Indikators und das Weiß des Hintergrunds einen starken Farbkontrast haben würden.
+
+![Fokusanzeige mit schlechtem Farbkontrast](/images/visuelles-design/star-focus-indicator.png)
+
+#### Gutes Beispiel: Fokusindikator, der alle Kriterien erfüllt
+
+Dieses Beispiel zeigt einen Link der Deque University auf einem dunkelblauen Hintergrund mit einem weißen Rechteck für den Fokus. Er
+erfüllt alle drei Teile des Kriteriums 1, das in der obigen Regel beschrieben ist.
+
+- Sie umschließt die Komponente der Benutzeroberfläche (in diesem Fall einen Link zur Deque University).
+
+- Er hat ein Kontrastverhältnis von 13,34:1 (größer als 3:1) zwischen den gleichen Pixeln im fokussierten und unfokussierten Zustand.
+  Im unscharfen Zustand hat der Schärfe-Indikator die gleiche Farbe wie der Hintergrund, nämlich ein dunkles Blau. Im fokussierten
+  Zustand ist der Indikator weiß. Blau und Weiß haben ein Farbkontrastverhältnis von 13,34:1.
+
+- Er hat ein Kontrastverhältnis von mindestens 3:1 zu den angrenzenden Nicht-Fokus-Indikatorfarben - dem weißen Fokus-Indikator und
+  dem dunkelblauen Hintergrund.
+
+##### Unfokussierter Zustand:
+
+![Unfokussierter Zustand](/images/visuelles-design/unfocused-dqu-link.png)
+
+##### Fokussierter Zustand:
+
+![Fokussierter Zustand](/images/visuelles-design/focused-dqu-link.png)
+
+## Grenzen zwischen UI-Komponenten
+
+### Wenn visuelle Begrenzungen zur Unterscheidung von Bedienelementen verwendet werden, muss der Kontrast der Begrenzungen der Benutzeroberfläche im Vergleich zu den angrenzenden Bereichen mindestens 3 zu 1 betragen, um das Bedienelement von den angrenzenden Bereichen zu unterscheiden.
+
+Menschen mit Sehschwäche und Farbfehlsichtigkeit können die Elemente der Benutzeroberfläche möglicherweise nicht erkennen, wenn sie
+keinen ausreichenden Kontrast zu den angrenzenden Bereichen haben. Es ist wichtig, dass du sehenden Nutzern visuelles Feedback gibst,
+indem du den Kontrast von Benutzeroberflächenelementen und den sie umgebenden Bereichen erhöhst. Wenn der Kontrast von
+Benutzeroberflächenelementen erhöht wird, wird die Interaktion mit diesen Elementen auf dem Bildschirm für diese Nutzer/innen viel
+weniger schwierig.
+
+Hinweis: Wenn du für iOS entwickelst, solltest du immer die Standardfarben von iOS verwenden oder sicherstellen, dass
+benutzerdefinierte Farbkombinationen einen ausreichenden Kontrast haben.
+
+#### Gutes Beispiel: Schaltflächen mit klar definierten Begrenzungen
+
+In diesem Screenshot haben die Schaltflächen klare Grenzen (sie sind einfarbig dunkelblau mit weißem Text, verglichen mit dem weißen
+Hintergrund um sie herum), sodass die klickbaren Bereiche klar definiert sind.
+
+![Schaltflächen mit klar definierten Begrenzungen](/images/visuelles-design/buttonboundaries.png)
+
+#### Schlechtes Beispiel: Schaltflächen werden nicht von Symbolen oder Text unterschieden
+
+Eine Benutzeroberfläche sollte visuell intuitiv sein. Sehende Nutzer sollten in der Lage sein, die Funktionen einer Benutzeroberfläche
+zu verstehen, indem sie sie ansehen und aus ihrem visuellen Design auf ihre Funktion schließen.
+
+Im folgenden Beispiel sieht der Haupttext in der unteren Mitte des Bildschirms wie normaler Text und nicht wie eine Schaltfläche aus,
+aber es stellt sich heraus, dass es tatsächlich eine Schaltfläche ist. Wenn du auf den Text klickst, wird die aktuelle Ansicht
+minimiert. Zum Vergleich: Die Symbole links und rechts des Lautstärkereglers sehen aus, als wären sie anklickbare Schaltflächen,
+sind es aber nicht. Diese Art von Design zwingt die Nutzer dazu, zu erraten, was anklickbar ist und was nicht. Sie müssen sich auf
+Versuch und Irrtum einlassen und entdecken manche Funktionen der Benutzeroberfläche vielleicht nie.
+
+![Schaltflächen werden nicht von Symbolen oder Text unterschieden](/images/visuelles-design/volume_slider_screenshot.png)
+
+#### Schlechtes Beispiel: Texteingabe sieht aus wie nicht editierbarer Text
+
+Im folgenden Beispiel steht in der Mitte der Benutzeroberfläche eine Zahl in sehr großer Schrift, die den Betrag von 315,60 $ angibt.
+Es gibt keine Umrandung um die Zahl herum und auch keinen Hinweis darauf, dass es sich um ein editierbares Textfeld handelt, obwohl es
+editierbar ist. Wer diese Oberfläche zum ersten Mal benutzt, hat keinen Grund zu glauben, dass es sich um eine Texteingabe handelt.
+Sie suchen vielleicht vergeblich nach einer Möglichkeit, die Zahl zu bearbeiten, ohne zu wissen, dass sie einfach darauf klicken
+können, um sie zu bearbeiten, weil es sich um eine Texteingabe handelt. Die Texteingabe sieht aus wie ein nicht editierbarer normaler
+Text.
+
+![Texteingabe sieht aus wie nicht editierbarer Text](/images/visuelles-design/input-no-boundary.png)
+
+## Testen auf ausreichenden Farbkontrast
+
+### Test auf ausreichenden Farbkontrast zwischen Text und Hintergrund
+
+Ob der Farbkontrast bei kleinem Text mindestens 4,5:1 und bei großem Text mindestens 3:1 beträgt, ist oft schwer zu erkennen, wenn man
+sich die Farben nur ansieht. Auch wenn einige kontrastarme Kombinationen manchmal offensichtlich sind (z. B. Dunkelrot gegen Schwarz),
+ist es wichtig, dass du Hilfsmittel verwendest, um festzustellen, ob die von dir verwendeten Farben die Anforderungen an das
+Mindestkontrastverhältnis erfüllen. Die Forschungen und empirischen Erkenntnisse, die zur Berechnung der Kontrastverhältnisse und zur
+Festlegung der Mindestkontrastanforderungen herangezogen wurden, berücksichtigen den Kontrastverlust, den Menschen mit mittlerer
+Sehschwäche oder Farbenblindheit haben können.
+
+### Farbkontrast mit axe testen
+
+Die Accessibility Engine, axe, ist die dritte Generation der Zugänglichkeitsregeln für HTML-basierte Benutzeroberflächen. Es ist ein
+öffentlich verfügbares Testwerkzeug, das keine falsch-positiven Ergebnisse liefert und in allen modernen Webbrowsern funktioniert.
+Da es sich um eine Open-Source-JavaScript-Bibliothek handelt, ist sie in hohem Maße konfigurierbar und kann in bestehende funktionale
+Zugänglichkeitstests integriert werden.
+
+Eine der in axe integrierten Regeln für Barrierefreiheit ist eine Regel für den Farbkontrast. Die Regel für den Farbkontrast in axe
+analysiert den Kontrast und stellt sicher, dass der Kontrast zwischen Vorder- und Hintergrundfarben den Grenzwerten der WCAG 2.1 AA
+für das Kontrastverhältnis entspricht. Wenn also eine Analyse durch axe durchgeführt wird, wird der Farbkontrast automatisch bewertet.
+
+#### Prüfung Kontrast mit axe
+
+Wenn axe Farbkontrastfehler findet, zeigt das Tool an, wie viele Farbkontrastfehler es gibt und wo sich diese Fehler auf einer
+Webseite befinden. Es liefert Informationen über den Fehler, einschließlich des HTML-Codes und des tatsächlichen Kontrastverhältnisses
+des Elements, das die Farbkontrastregel nicht erfüllt.
+
+![axe Farbkontrastfehler](/images/visuelles-design/axetestingcontrast2.png)
+
+![axe Farbkontrastfehler 2](/images/visuelles-design/axetestingcontrastresized.png)
+
+### Werkzeuge für die Farbkontrastanalyse
+
+Die Kontrastverhältnisse bedeuten dir vielleicht noch nicht viel. Mach dir darüber keine Sorgen. Du musst keine Farbkombinationen oder
+Kontrastverhältnisse auswendig lernen. Es gibt viele Tools, die dir helfen, das Kontrastverhältnis deiner Farben zu analysieren und
+dir zu sagen, ob sie den Richtlinien entsprechen oder nicht. Hier sind ein paar von ihnen:
+
+- Tool: <a href="http://www.deque.com/products/axe/" target="_blank">axe</a> - Die Accessibility Engine ist eine quelloffene
+  JavaScript-Regelbibliothek für Barrierefreiheit, die schnell ist, keine falsch-positiven Fehler oder doppelten Ergebnisse liefert
+  und als GitHub-Repository, Browser-Plugin oder Framework-Integration öffentlich verfügbar ist.
+
+- Link: <a href="https://dequeuniversity.com/color-contrast" target="_blank">Deque University Color Contrast Analyzer</a>
+
+- Link: <a href="https://helpx.adobe.com/ca/creative-cloud/adobe-color-accessibility-tools.html" target="_blank">Adobe Color Accessibility Tools</a> -
+  lerne, wie du visuell zugängliche Farbdesigns im Web erstellen kannst.
+
+- Link: <a href="https://www.paciellogroup.com/resources/contrastanalyser/" target="_blank">Colour Contrast Analyser</a> - eine
+  kostenlose Anwendung für Windows und Mac, mit der Tester manuelle Farbkontrastanalysen von Webinhalten und Nicht-HTML-Inhalten
+  (z. B. Dokumentdateien, E-Mails) durchführen und bestimmte visuelle Bedingungen simulieren können
+
+## Windows Hochkontrastmodus
+
+### Windows-Modus "Hoher Kontrast" verwenden
+
+Es gibt mehrere Möglichkeiten, den Windows-Modus "Hoher Kontrast" unter Windows 10 zu aktivieren. Um die Einstellungen für den
+Windows-Modus "Hoher Kontrast" zu öffnen, kannst du:
+
+- Entweder gibst du "Hochkontrasteinstellungen" in das Suchfeld der Taskleiste ein,
+
+  ![axe Farbkontrastfehler 2](/images/visuelles-design/openwindowshighcontrast.png)
+
+- Oder öffne die Einstellungen für die Erleichterung des Zugangs mit der Tastenkombination Windows-Taste + U und wähle "Hoher Kontrast".
+
+Unter den Einstellungen für hohen Kontrast kannst du ein kontrastreiches Thema für dein System auswählen.
+
+![axe Farbkontrastfehler 2](/images/visuelles-design/highcontrastthemes.png)
+
+Wenn du ein Design auf deinen Computer angewendet hast, kannst du den hohen Kontrast jederzeit ein- oder ausschalten, indem du die
+Tastenkombination linke Alt + linke Umschalttaste + Bildschirm drucken drückst. Du kannst den hohen Kontrast auch auf dem
+Windows-Anmeldebildschirm unter Zugriffserleichterungen einschalten.
+
+#### Themes mit hohem Kontrast
+
+In Windows gibt es vier voreingestellte Themes für hohen Kontrast: Hoher Kontrast #1, Hoher Kontrast #2, Hoher Kontrast Schwarz und
+Hoher Kontrast Weiß. Das Theme Hoher Kontrast Schwarz hat einen schwarzen Hintergrund, weißen Text, gelbe Links, hellgrünen
+deaktivierten Text und hebt ausgewählten Text in Türkis und schwarzem Text hervor. High Contrast White hat einen weißen Hintergrund,
+schwarzen Text, blaue Hyperlinks, kastanienbraunen deaktivierten Text und hebt ausgewählten Text mit dunkelblauem Hintergrund und
+weißem Text hervor. Die Themes High Contrast #1 und #2 sind Variationen des Themes High Contrast Black.
+
+Alle Themes können von den Nutzern nach ihren Vorlieben angepasst werden, aber zum Testen können die voreingestellten Theme verwendet
+werden. Am besten testest du mit mindestens einem kontrastreichen schwarzen und einem kontrastreichen weißen Theme, da Text, Links,
+Symbole und andere Elemente in den beiden Themes sehr unterschiedlich aussehen können.
+
+#### Browser-Einstellungen
+
+Je nachdem, welchen Browser du verwendest, kann es sein, dass eine Webseite mit dem Hochkontrastthema angezeigt wird oder nicht. Du
+kannst in den Optionen deines Browsers einstellen, ob er das Hochkontrastthema des Systems verwendet. Bei einigen Browsern ist diese
+Einstellung bereits voreingestellt, bei anderen Browsern musst du diese Option möglicherweise aktivieren.
+
+<table>
+  <thead>
+    <tr>
+      <th>Browser</th>
+      <th>Hochkontrast-Optionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Browser">Edge</td>
+      <td data-label="Hochkontrast-Optionen">
+        Verwendet automatisch das kontrastreiche Theme des Systems
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Browser">Internet Explorer</td>
+      <td data-label="Hochkontrast-Optionen">
+        Standardmäßig wird das kontrastreiche Design des Systems verwendet.
+
+        Die Optionen findest du unter Extras > Internetoptionen > Registerkarte Allgemein > Farben (unter Erscheinungsbild
+        auf der Registerkarte Allgemein) > Aktiviere oder deaktiviere Windows-Farben verwenden
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Browser">Firefox</td>
+      <td data-label="Hochkontrast-Optionen">Öffne Menü > Einstellungen > Registerkarte Allgemein > Sprache und Erscheinungsbild > Farben > Farben verwalten... > Wähle im Dialogfeld "Systemfarben verwenden" und wähle im Dropdown-Menü "Immer" oder "Nur bei kontrastreichen Themen".</td>
+    </tr>
+    <tr>
+      <td data-label="Browser">Chrome</td>
+      <td data-label="Hochkontrast-Optionen">Erkennt, dass du ein Hochkontrast-Theme auf dem Computer verwendest und fordert dich auf, eine Hochkontrast-Erweiterung im Browser zu installieren; es wird nicht das Hochkontrast-Theme vom Computer verwendet</td>
+    </tr>
+
+  </tbody>
+</table>
+
+### Webinhalte wollten alle wichtigen visuellen Informationen im Windows-Hochkontrastmodus beibehalten.
+
+Menschen mit Sehschwäche oder anderen Arten von Sehbehinderungen können Hochkontrasteinstellungen wie den Windows Hochkontrastmodus
+nutzen, um Webseiten zu lesen und mit ihnen zu interagieren. Der Windows-Modus "Hoher Kontrast" überschreibt die ursprünglichen Farben
+entsprechend den Benutzereinstellungen. Wenn der Hochkontrastmodus aktiviert ist, ist es jedoch wichtig zu wissen, wie sich die
+Hochkontrasteinstellungen auf den ursprünglichen Stil einer Webseite auswirken.
+
+Du solltest bedenken, wie das Styling einer Webseite auf Nutzer/innen wirkt, die von den Hochkontrasteinstellungen profitieren.
+Verwende, wann immer es möglich ist, echten Text, da Bilder von Text nicht angepasst werden können und Text, der in
+Hintergrundbildern verwendet wird, für den Nutzer völlig unsichtbar sein kann. Informative Bilder im Hintergrund können ebenfalls
+ausgeblendet werden, also achte darauf, dass du sie nicht mit CSS auf der Seite platzierst. Verlass dich außerdem nicht allein auf
+die Farbe, um Informationen zu vermitteln, denn hohe Kontrasteinstellungen können die Farben auf einer Webseite überlagern. Die
+CSS-Stile einer Webseite sollten nicht verhindern, dass ein Nutzer Inhalte liest und interpretiert, wenn hohe Kontrasteinstellungen
+aktiviert sind.
+
+#### Gutes Beispiel: Webseite im normalen Modus
+
+Nachfolgend siehst du einen Screenshot der MarsCommuter-Webseite mit dem ursprünglichen CSS-Styling. Der Hintergrund ist
+jeansblau und der Text der Absätze ist hellgrau. Die Links in den Überschriften werden durch verschiedene Farben hervorgehoben.
+Die Farbe Gelb wird für Links auf der Webseite verwendet; Bilder der Zahlen "1, 2 und 3" werden verwendet, um den Prozess der
+Planung einer Reise zum Mars zu verdeutlichen; und Listen von Links unter Absätzen werden durch kleine Bildsymbole abgesetzt.
+
+![Webseite im normalen Modus](/images/visuelles-design/lowcontrastmarscommuter-2.png)
+
+#### Gutes Beispiel: Webseite im Hochkontrastmodus von Windows (mit Edge)
+
+In Edge ändern sich die Farben des eigentlichen Textes, der Links und des Hintergrunds, aber die Hintergrundbilder verschwinden nicht.
+
+![Webseite im Hochkontrastmodus von Windows (mit Edge)](/images/visuelles-design/highcontrastinedge.png)
+
+#### Schlechtes Beispiel: Webseite im Hochkontrastmodus von Windows (mit Internet Explorer)
+
+Wenn dieselbe Webseite im Internet Explorer mit dem Windows-Modus "Hoher Kontrast" angezeigt wird, hat der gesamte Text,
+einschließlich der Überschriften, dieselbe Farbe, in diesem Fall ein helles Grün auf schwarzem Hintergrund. Links sind lila,
+und die Bilder für die Zahlen und Linksymbole sind auf der Webseite nicht mehr sichtbar.
+
+![Webseite im Hochkontrastmodus von Windows (mit Internet Explorer)](/images/visuelles-design/windowshighcontrast.png)
+
+Die Bilder sind nicht mehr sichtbar, weil es sich um CSS-Hintergrundbilder und nicht um echte Bilder auf der Seite handelt.
+CSS-Hintergrundbilder können ausgeblendet werden, wenn hohe Kontrasteinstellungen aktiviert sind.
+
+### Das Design muss den Windows-Modus "Hoher Kontrast" nicht außer Kraft setzen.
+
+Die Microsoft-spezifische Medienfunktion -ms-high-contrast und die CSS-Eigenschaft -ms-high-contrast-adjust können die
+Hochkontrastthemen der Benutzer im Internet Explorer außer Kraft setzen. Die CSS-Eigenschaft und die Medienabfragen sollten
+jedoch nie verwendet werden, da sie es dem Benutzer nicht ermöglichen, eine Seite nach seinen Vorlieben anzupassen.
+
+#### Schlechtes Beispiel: CSS überschreibt hohe Kontrasteinstellungen
+
+Im folgenden Screenshot wird das Menü der Deque University in einem kontrastreichen Design im Internet Explorer angezeigt.
+
+![CSS überschreibt hohe Kontrasteinstellungen](/images/visuelles-design/hcmenu.png)
+
+Wenn ein Nutzer den Hochkontrastmodus aktiviert, wird die Medienfunktion-ms-hochkontrast aktiv und die CSS-Eigenschaften unter der
+Medienfunktion überschreiben das Hochkontrastthema. Das Styling der Kopfzeile und des Navigationsmenüs wurde mithilfe der
+Medienfunktion beibehalten, ohne dass der Nutzer die Farben anpassen konnte.
+
+![CSS überschreibt hohe Kontrasteinstellungen 2](/images/visuelles-design/hcmenuoverride.png)

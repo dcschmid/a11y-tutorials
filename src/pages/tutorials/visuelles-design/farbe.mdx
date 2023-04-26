@@ -1,0 +1,490 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Farbe'
+pubDate: 2023-04-22
+---
+
+Farbe ist eine großartige Möglichkeit, die visuelle Attraktivität unserer Webinhalte zu erhöhen, aber wir müssen sicherstellen, dass
+Farbe nicht die einzige Art ist, wie Informationen vermittelt werden. Zu den Informationen gehören in diesem Zusammenhang auch die
+Hervorhebung von Text, die Unterscheidung zwischen visuellen Elementen und die Unterscheidung zwischen interaktiven und statischen
+Elementen. Menschen, die farbenblind sind, eine Sehschwäche haben oder blind sind, müssen ebenfalls Zugang zu Informationen haben,
+die durch Farbe vermittelt werden.
+
+Wir müssen auch bedenken, dass die Farben, die wir für unsere Webinhalte wählen, für manche Menschen sogar hinderlich sein können.
+Manche Menschen empfinden auch Schmerzen, wenn sie helle Lichter oder helle Flächen auf Papier oder Computerbildschirmen sehen. Ganz
+weiße Hintergründe können besonders schwierig sein. Um die Auswirkungen von geringem Kontrast und hellen Bereichen zu beheben, können
+die Nutzer/innen die Farben entweder im Betriebssystem oder im Webbrowser ändern. Um den Bedürfnissen aller gerecht zu werden, müssen
+wir unsere Inhalte so gestalten und entwickeln, dass sie an die individuellen Bedürfnisse angepasst werden können.
+
+Wir raten keineswegs von der Verwendung von Farben im Webdesign ab, aber es ist wichtig, dass wichtige Informationen nicht allein
+durch Farben vermittelt werden, da die Nutzer/innen die Farben nach ihren Bedürfnissen anpassen können. Achte darauf, dass die
+wichtigen Informationen im Text dargestellt werden.
+
+## Farbe, die eine Bedeutung vermittelt
+
+### Jede Information, die durch Farbe vermittelt wird, muss von einer programmatisch bestimmbaren Textalternative begleitet werden.
+
+Wenn Informationen ausschließlich in Farbe vermittelt werden, können Menschen, die farbenblind, sehbehindert oder blind sind, die
+Informationen nicht nutzen oder verstehen. Eine Person, die nicht sehen kann, weiß zum Beispiel nicht, was sie wählen soll, wenn
+sie angewiesen wird, "mit dem roten Pfeil zum nächsten Bildschirm zu gehen", und eine Person mit Sehschwäche oder Farbenblindheit
+kann eine farbcodierte Karte mit Busrouten nicht nutzen, wenn die Routen nur durch Farbe unterschieden werden.
+
+Text ist die Grundlage, auf der alle anderen barrierefreien Inhalte aufgebaut sind. Alles muss in einem Textformat vorliegen -
+entweder als normaler Text oder als Alt-Text -, sonst können Screenreader es nicht lesen. Wenn du etwas auf einer Webseite farblich
+kennzeichnest, musst du die Bedeutung hinter den Farben in einem Textformat vermitteln.
+
+#### Schlechtes Beispiel: Farbige Tabellendaten ohne Textbeschriftung
+
+Die Tabelle verwendet Farben, um Informationen zu vermitteln, ohne dass sie direkt mit Textbeschriftungen verbunden sind.
+
+Hier ist eine Tabelle mit Kursen, die nach Schwierigkeitsgrad farblich gekennzeichnet sind:
+
+<table class="data">
+  <caption>Courses</caption>
+  <thead>
+    <tr>
+      <th scope="col" style="width:200px">
+        Course Title
+      </th>
+      <th scope="col" style="width:85px">
+        Level*
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th=" Course Title">String Theory</td>
+      <td style="background:#b83b3b;" data-th=" Level*">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">Quantum Mechanics</td>
+      <td style="background:#b83b3b;" data-th=" Level*">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">Basic sewing and stitching</td>
+      <td style="background:#ffff00;" data-th=" Level*">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">How to Tie your Shoe</td>
+      <td style="background:#008000;" data-th=" Level*">
+        &nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+\*Rot = Fortgeschrittene, Gelb = Fortgeschrittene, Grün = Anfänger
+
+Sehende Nutzer werden kaum Probleme haben, die Farbkodierung zu verstehen. Aber für Menschen mit Sehschwäche, Farbenblindheit oder
+gar keiner Sehkraft ist das nicht so einfach. Dieses Beispiel lässt sich aber leicht korrigieren. Füge einfach Text hinzu.
+
+#### Gutes Beispiel: Farbige Tabellendaten mit Textbeschriftungen
+
+Die Tabelle verwendet Farben, um Informationen zu vermitteln, mit Textbeschriftungen, die sicherstellen, dass die Bedeutung klar ist.
+
+Das Hinzufügen von Text zu den ansonsten leeren Tabellenzellen gibt Bildschirmlesern etwas zu lesen und hilft Nutzern mit anderen
+Arten von Sehbehinderungen. Außerdem werden so mögliche Unklarheiten beseitigt, was für alle Nutzer/innen gut ist.
+
+<table class="data">
+  <caption>Courses</caption>
+  <thead>
+    <tr>
+      <th scope="col" style="width:200px">
+        Course Title
+      </th>
+      <th scope="col" style="width:85px">
+        Level
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th=" Course Title">String Theory</td>
+      <td style="background:#b83b3b;color:white;text-align:center" data-th=" Level">
+        Advanced
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">Quantum Mechanics</td>
+      <td style="background:#b83b3b;color:white;text-align:center" data-th=" Level">
+        Advanced
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">Basic Sewing and Stitching</td>
+      <td style="background:#ffff00;text-align:center;color:black" data-th=" Level">
+        Intermediate
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" Course Title">How to Tie your Shoe</td>
+      <td style="background:#008000;color:white;text-align:center" data-th=" Level">
+        Beginner
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Hinweis: Im obigen Beispiel ist der Farbkontrast ein weiterer Punkt, der berücksichtigt werden muss. Die rote Standard-Hintergrundfarbe
+(color:red in CSS) bietet nicht genug Kontrast zu weißem oder schwarzem Text, um die Richtlinien für den Farbkontrast zu erfüllen,
+also mussten wir einen etwas dunkleren Rotton verwenden, um die Standards zu erfüllen. Die Farbe Orange ist ebenfalls schwer in
+Designs unterzubringen, wenn sie entweder als Textfarbe oder als Hintergrundfarbe hinter dem Text verwendet wird.
+
+#### Schlechtes Beispiel: Hervorgehobener Formularfeldfehler
+
+Eine Fehlermeldung bezieht sich auf ein hervorgehobenes Feld, anstatt das Feld zu benennen, so dass sie für Screenreader-Nutzer
+nicht verständlich ist.
+
+Sehende Nutzer können die gelbe Hervorhebung und den roten Text im Formular unten sehen, blinde Nutzer jedoch nicht.
+
+<div class="ruleExampleExplanation1">
+    <p
+    style="width:80%;padding:10px;background:#FF6;color:#990000;font-weight:bold;
+    font-size:1.2em;text-align:center;border:4px #990000 double;margin:30px auto 30px auto;">Oops! Please fill out the highlighted field!</p>
+
+<form name="form1" method="post" action="#" style="margin-bottom:30px">
+  <fieldset style="width:80%;padding:10px;margin:auto;border-radius: 10px;border: 1px solid #ccc;">
+    <legend>Customer Information</legend>
+    <p>
+      <label for="fname">
+        <strong>First Name:</strong>
+      </label>
+      <input name="fname" type="text" id="id53_fname" value="Herbert" />
+      <label for="mi">
+        <strong>MI</strong>
+      </label>
+      <input name="mi" type="text" id="id53_mi" size="2" maxlength="1" />
+      <strong>
+        <label for="lname">Last Name:</label>
+      </strong>
+      <input name="lname" type="text" id="id53_lname" value="Grazbittener" />
+    </p>
+    <p>
+      <label for="phone">
+        <strong>Phone:</strong>
+      </label>
+      <input name="phone" type="text" id="id53_phone" value="(123) 456-7890" />
+      <label for="email" style="color:#990000;font-weight:bold;background:#FF6 !important;">
+        Email:
+      </label>
+      <input type="text" name="email" id="id53_email" />
+    </p>
+    <p>
+      <label for="fav">
+        <strong>What is your favorite color?</strong>
+      </label>
+      <input type="text" name="fav" id="id53_fav" />
+    </p>
+  </fieldset>
+</form>
+
+</div>
+
+#### Gutes Beispiel: Hervorgehobener Formularfeldfehler mit erläuterndem Text
+
+Eine Fehlermeldung gibt an, welche Informationen im Formular fehlen und fordert den Benutzer auf, die fehlenden Informationen neben
+dem entsprechenden Feld einzugeben.
+
+Dieses Formular kann durch Hinzufügen zusätzlicher Textinformationen korrigiert werden. Die Fehlermeldung kann zum Beispiel den Namen
+des Feldes enthalten ("Ups! Bitte geben Sie Ihre E-Mail-Adresse ein!"). Außerdem können wir die Meldung direkt neben dem Feld
+deutlicher machen, indem wir den Text "Geben Sie Ihre E-Mail-Adresse ein" hinzufügen. Das beseitigt alle Unklarheiten und macht
+blinden Nutzern klar, welches Feld sie ausfüllen müssen.
+
+<div class="ruleExampleExplanation1">
+
+<p style="width:80%;padding:10px;background:#FF6;color:#990000;font-weight:bold;font-size:1.2em;text-align:center;border:4px #990000 double;margin:30px auto 30px auto;">Oops! Please enter your email!</p>
+<form name="form1" method="post" action="#" style="margin-bottom:30px;">
+  <fieldset style="width:80%;padding:10px;margin:auto;">
+    <legend>Customer Information</legend>
+    <p>
+      <label for="fname2"><strong>First Name:</strong></label>
+      <input name="fname2" type="text" id="id53_fname2" value="Herbert" />
+      <label for="mi2"><strong>MI</strong></label>
+      <input name="mi2" type="text" id="id53_mi2" size="2" maxlength="1" />
+      <strong>
+        <label for="lname2">Last Name:</label>
+        </strong>
+      <input name="lname2" type="text" id="id53_lname2" value="Grazbittener" />
+    </p>
+    <p>
+      <label for="phone2"><strong>Phone:</strong></label>
+      <input name="phone2" type="text" id="id53_phone2" value="(123) 456-7890" />
+      <label for="email2" style="color:#990000;font-weight:bold;background:#FF6;">Enter your Email: </label>
+      <input type="text" name="email2" id="id53_email2" />
+    </p>
+    <p>
+      <label for="fav2"><strong>What is your favorite color?</strong></label>
+      <input type="text" name="fav2" id="id53_fav2" />
+    </p>
+  </fieldset>
+</form>
+</div>
+
+### Die Textalternative für Informationen, die durch Farbe vermittelt werden, muss die gleichen Informationen ohne Farbe genau wiedergeben.
+
+#### Schlechtes Beispiel: Farbcodierte Informationen, die nicht durch alternativen Text kommuniziert werden
+
+Der alternative Text enthält nicht alle Informationen, die durch die Farbe vermittelt werden.
+Der alternative Text, der für das Bild des Balkendiagramms unten bereitgestellt wird, enthält nicht die Informationen, die durch die
+Farbe im Balkendiagramm vermittelt werden.
+
+![Bar chart depicting Unit Sales in the first 6 months of 2016.Monthly sales that fell below target of 6700 are shown in red.](/images/visuelles-design/barchart.png)
+
+```html
+<img
+  src="barchart.png"
+  alt="Bar chart depicting Unit Sales in the first 6 months of 2016.
+Monthly sales that fell below target of 6700 are shown in red." />
+```
+
+#### Gutes Beispiel: Gleichwertige Informationen durch Farbe und alternativen Text bereitstellen
+
+Der alternative Text vermittelt alle relevanten Details des Diagramms, einschließlich einer gleichwertigen Beschreibung für die
+Informationen, die nur durch die Farbe vermittelt werden.
+
+Der alternative Text für das Balkendiagramm vermittelt alle relevanten Details des Diagramms, einschließlich einer gleichwertigen
+Beschreibung für die Informationen, die durch die Farbe vermittelt werden.
+
+![Bar chart depicting Unit Sales in the first 6 months of 2016. January 6200, February 9900, March 2500, April 8950, May 10,100, June 4150. Sales that fell below target of 6700 occurred in January, March and June.](/images/visuelles-design/barchart.png)
+
+```html
+<img
+  src="barchart.png"
+  alt="Bar chart depicting Unit Sales in the first 6 months of 2016.
+January 6200, February 9900, March 2500, April 8950, May 10,100, June 4150.
+Sales that fell below target of 6700 occurred in January, March and June." />
+```
+
+### Jede Information, die durch Farbe vermittelt wird, muss von einer sichtbaren Alternative (Text, Bild usw.) begleitet werden, deren Bedeutung nicht von der Farbe abhängt.
+
+Da Farben für Menschen, die farbenblind sind oder wenig Kontrast sehen, und für andere Menschen, die die Bildschirmfarben an ihre
+Bedürfnisse anpassen, ähnlich aussehen können, ist es wichtig, dass die Farbe nicht als einziges Mittel zur Kommunikation oder
+Unterscheidung von Informationen verwendet wird.
+
+#### Schlechtes Beispiel: Diagramm mit farbbasierter Legende
+
+In diesem Kuchendiagramm sind die Abschnitte des Kuchens hellblau, orange, hellgrau, gold und dann wieder blau, grün, ein weiterer
+Blauton und dann dunklere Schattierungen der bereits verwendeten Farben. Die Beschriftungen befinden sich an der Seite, ohne dass
+eine direkte visuelle Verbindung zwischen den Beschriftungen und den entsprechenden Abschnitten des Kreisdiagramms besteht. Für
+Menschen, die schlecht sehen oder farbenblind sind, kann es schwierig sein, einige Abschnitte von anderen Abschnitten zu unterscheiden.
+Selbst Menschen mit perfekter Sehkraft oder korrigierter Sehkraft haben möglicherweise Schwierigkeiten, das Diagramm zu interpretieren.
+
+![Diagramm mit farbbasierter Legende](/images/visuelles-design/originalchart2.png)
+
+#### Gutes Beispiel: Farbbasierte Tabelle mit zusätzlichen Textbeschriftungen
+
+Um sicherzustellen, dass sehende und sehbehinderte Menschen ein farbiges Kreisdiagramm verstehen können, ist es wichtig, die
+visuellen Beschriftungen mit den entsprechenden visuellen Daten zu verbinden. Die Beschriftungen sollten sein:
+
+- Unmissverständlich
+
+- Neben den Daten, die sie darstellen
+
+Wenn die Beschriftungen zu weit von den Datenpunkten entfernt sind, fällt es allen schwer, die Beschriftungen mit den Daten in
+Verbindung zu bringen. Vor allem sehbehinderte Menschen haben es schwer, weil die Beschriftung und die Daten nicht gleichzeitig auf
+dem Bildschirm zu sehen sind, weil Bildschirmvergrößerungsprogramme immer nur einen kleinen Teil der Webseite anzeigen. Benutzer von
+Bildschirmvergrößerungsgeräten müssen in ihrem Browser hin und her gehen, um herauszufinden, welches Etikett wohin gehört.
+
+![Farbbasierte Tabelle mit zusätzlichen Textbeschriftungen](/images/visuelles-design/chartwithlabels3.png)
+
+## Farbe zur Unterscheidung von Links und Text
+
+### Farbe allein darf nicht verwendet werden, um Links vom umgebenden Text zu unterscheiden, es sei denn, der Farbkontrast zwischen dem Link und dem umgebenden Text beträgt mindestens 3:1 und eine zusätzliche Unterscheidung (z. B. Unterstreichung, Umrandung usw.) wird vorgenommen, wenn der Link mit dem Mauszeiger bewegt wird oder den Fokus erhält.
+
+Sehende Nutzer müssen in der Lage sein, Links und Text visuell zu unterscheiden. Wenn sie den Unterschied nicht erkennen können,
+wissen sie nicht, welche Elemente anklickbar sind, und verpassen möglicherweise wichtige Links. Es ist nicht nötig, das
+Standard-Styling zu ändern, um die Best Practices für Barrierefreiheit zu erfüllen.
+
+Es gibt ein paar gängige Möglichkeiten, um zwischen Links und Text zu unterscheiden:
+
+### Option 1: Andere Farbe plus Unterstreichung:
+
+Dies ist das Standard-Styling in Browsern.
+
+### Option 2: Andere Farbe und Unterstreichung der Links nur bei Hover und Fokus:
+
+Manche Designer mögen das Aussehen von unterstrichenen Links nicht, also entfernen sie die Unterstreichung aus der Gestaltung. Das
+Entfernen der Unterstreichung wird für Links im Hauptinhaltsbereich eines Dokuments nicht empfohlen, da Menschen mit einer
+Sehschwäche die Farbe des Textes nicht von der Farbe der Links unterscheiden können, bevor sie mit der Maus darüber fahren oder mit
+der Tastatur zu den Links wechseln. Dennoch kann diese Technik zulässig sein (auch wenn davon abgeraten wird), wenn das
+Kontrastverhältnis zwischen dem verlinkten Text und dem nicht verlinkten Text mindestens 3:1 beträgt und die Unterstreichung sowohl
+beim Tastaturfokus (wenn die Nutzer/innen mit der Tabulatortaste auf den Link klicken) als auch beim Hover (wenn die Nutzer/innen
+mit der Maus über den Link fahren) sichtbar wird.
+
+### Option 3: Unterschiedliche Hintergrundfarbe bei Hover und Fokus:
+
+Diese Technik kann in Kombination mit dem Hinzufügen einer Unterstreichung bei Hover und Fokus verwendet werden.
+
+### Option 4: Füge eine Kontur oder einen Rahmen bei Hover und Fokus hinzu:
+
+Diese Technik kann in Kombination mit dem Hinzufügen einer Unterstreichung und/oder einer Änderung der Hintergrundfarbe bei Hover
+und Fokus verwendet werden.
+
+### Option 5: Platzierung in einem Navigationsmenü:
+
+Sehende Nutzer verstehen, dass es sich um anklickbare Menüpunkte handelt, wenn das Menü selbst so gestaltet ist, dass es
+offensichtlich ein Navigationsmenü ist. Diese Methode ist etwas schwierig zu definieren, denn es gibt viele Möglichkeiten, ein
+Navigationsmenü zu gestalten, die alle wie ein Navigationsmenü aussehen können, und Designtrends ändern sich im Laufe der Zeit,
+sodass zukünftige Navigationsmenüs anders aussehen können als die heutigen. Die Kurzfassung lautet: Wenn es wie ein Navigationsmenü
+aussieht, heben sich die Links ausreichend vom umgebenden Text ab, und es ist nicht nötig, die Links zu unterstreichen.
+
+#### Gutes Beispiel: Hyperlink-Text unterstreichen
+
+Im folgenden Satz wird der Hyperlinktext "Deque University" durch Farbe und Unterstreichung vom umgebenden normalen Text
+unterschieden.
+
+<div class="example">
+  <a style="text-decoration: underline;" href="https://dequeuniversity.com">
+    Deque University
+  </a>
+  offers a wealth of web accessibility information delivered through self-paced online learning modules
+  that you can access anywhere and at any time.
+</div>
+
+#### Gutes Beispiel: Hoher Kontrast
+
+Im folgenden Satz übersteigt der Kontrast zwischen dem Hyperlink-Text "Deque University" (der grün ist) und dem umgebenden normalen
+Text (der ein sehr dunkles Grau, fast schwarz ist) ein Kontrastverhältnis von 3:1 und eine zusätzliche Unterscheidung (Umriss- und
+Hintergrundfarbe) wird bereitgestellt, wenn der Link mit dem Mauszeiger bewegt wird oder den Fokus erhält.
+
+<div style="color: #222222;background: white; padding: 1rem;">
+  <a style="text-decoration: none; color: #0E8813;" href="https://dequeuniversity.com">
+    Deque University
+  </a>
+  offers a wealth of web accessibility information delivered through self-paced online learning modules
+  that you can access anywhere and at any time.
+</div>
+
+Hinweis: Auch wenn das obige Beispiel technisch gesehen den Mindestrichtlinien entspricht - wegen des Farbunterschieds und des
+Fokus/Hover-Status - ist es immer noch besser, Text zu unterstreichen, um deutlich zu machen, dass es sich um einen Link handelt, als
+sich nur auf die Farbe zu verlassen, besonders im Hauptinhaltsbereich einer Webseite. Das Entfernen der Unterstreichung kann in einem
+Navigationsmenü akzeptabler sein, solange das Menü so gestaltet ist, dass es wie ein Menü aussieht und nicht wie normaler Text ohne
+Link.
+
+#### Schlechtes Beispiel: Niedriger Kontrast
+
+Im folgenden Satz beträgt der Kontrast zwischen dem Hyperlink-Text "Deque University" (der dunkelblau ist) und dem umgebenden
+normalen Text (der dunkelgrau ist) nur 1,96:1. Ohne einen zusätzlichen visuellen Effekt (Unterstreichung) ist es schwierig, den
+Hyperlink vom normalen Text zu unterscheiden.
+
+<div style="color:#4b4b4b; background: white; padding: 1rem;">
+  <a
+    style="text-decoration: none; color: #120e57;"
+    onclick="newTab('https://dequeuniversity.com')"
+    href="https://dequeuniversity.com">
+    Deque University
+  </a>
+  offers a wealth of web accessibility information delivered through self-paced online learning modules
+  that you can access anywhere and at any time.
+</div>
+
+##### Regulärer Zustand des Links
+
+Der Screenshot des Links in diesem Beispiel zeigt den geringen Kontrast des Links in seinem normalen Zustand. Es ist schwierig,
+den Link von dem normalen Text um ihn herum zu unterscheiden.
+
+![Regulärer Zustand der Verbindung](/images/visuelles-design/lowcontrastlinkregular.png)
+
+##### Hover-Status des Links
+
+Der Link in diesem Beispiel hat einen Hover-Status, der den Nutzern helfen kann, den Link von normalem Text zu unterscheiden. Es ist
+jedoch wichtig, sich nicht nur auf den Hover-Zustand zu verlassen, um Links von normalem Text zu unterscheiden, denn die Nutzer
+sollten in der Lage sein, einen Link auf einer Seite zu erkennen, ohne mit dem Hover über den Link zu fahren oder den Fokus auf den
+Link zu richten.
+
+![Hover-Status des Links](/images/visuelles-design/lowcontrastlinkhover.png)
+
+## Farbe zur Unterscheidung von UI-Komponenten
+
+### Farbe sollte nicht als einzige Methode zur Unterscheidung von UI-Komponenten und/oder dem sie umgebenden Inhalt verwendet werden, es sei denn, der Farbkontrast zwischen den UI-Komponenten und/oder dem sie umgebenden Inhalt beträgt mindestens 3:1.
+
+#### Schlechtes Beispiel: Schaltflächen unterscheiden sich nur durch die Farbe vom einfachen Text
+
+In dem Beispiel unten gibt es vier Textzeilen, jede mit einem Symbol auf der linken Seite. Die ersten beiden sind keine Schaltflächen.
+Die letzten beiden sind Schaltflächen. Die einzige Möglichkeit für visuelle Benutzer, den Unterschied zu erkennen, ist die Farbe des
+Textes und der Symbole. Die blauen Elemente sind Schaltflächen. Die schwarzen Elemente sind nur Text. Der Farbkontrast ist nicht
+hoch genug, um sich allein auf die Farbe zu verlassen. Einigen sehbehinderten Nutzern wird es schwerfallen, zwischen blau und
+schwarz zu unterscheiden.
+
+![Buttons Rely on Color to Distinguish from Basic Text](/images/visuelles-design/buttons-rely-on-color-to-distinguish.png)
+
+Einige der Möglichkeiten, diese Situation visuell zu lösen, sind die folgenden:
+
+- Ändere die Hintergrundfarbe der Schaltflächen
+
+- Füge einen Umriss um die Schaltflächen hinzu
+
+- Füge ein anderes visuelles Styling hinzu, das die Buttons vom Text unterscheidet
+
+#### Gutes Beispiel: Umrandung ergänzt Farbe, um Schaltflächen vom einfachen Text zu unterscheiden
+
+In dem Beispiel unten gibt es vier Textzeilen, jede mit einem Symbol auf der linken Seite. Die ersten beiden sind keine
+Schaltflächen. Die letzten beiden sind Schaltflächen. Die Schaltflächen unterscheiden sich von den Nicht-Schaltflächen durch
+eine andere Farbe und einen Umriss um die Schaltflächen.
+
+![Umrandung ergänzt Farbe, um Schaltflächen vom einfachen Text zu unterscheiden](/images/visuelles-design/button-umrandung.png)
+
+## Anpassbarkeit zulassen
+
+### Sichtbarer Text sollte Standardtext im Markup sein (keine Bilder oder grafischen Versionen von Text), damit der Benutzer Farbe und Kontrast des Textes anpassen kann.
+
+Die Richtlinien für Barrierefreiheit verlangen zwar ein Mindestkontrastverhältnis zwischen Text und Hintergrund, aber manche Menschen
+reagieren empfindlich auf Helligkeit und müssen die Farben ändern. Die Verwendung von echtem Text anstelle von Textbildern ermöglicht
+es den Nutzern, Text- und Hintergrundfarbe und Kontrast anzupassen.
+
+#### Gutes Beispiel: Stilisierter Text ist anpassbar
+
+In diesem Beispiel ist das Wort "Personal" stilisierter Text, so dass es sowohl für Screenreader zugänglich ist als auch für Benutzer,
+die ihre eigenen Style Sheets verwenden, um Schriftarten oder Farben anzupassen.
+
+![Stilisierter Text ist anpassbar](/images/visuelles-design/L5-8.png)
+
+<div
+  style="background:#aa061a;color:white;width:314px;max-height:101px;overflow:hidden;
+text-align:center;font-weight:bold;font-size:50px;
+text-shadow: 5px 5px 5px #620915;"
+  class="center">
+  PERSONAL
+</div>
+
+#### Schlechtes Beispiel: Text im Bild ist nicht anpassbar
+
+In diesem Beispiel sind die drei Links in der Navigationsleiste eigentlich Bilder. Für Benutzer von Bildschirmlesegeräten wäre es
+zwar sinnvoll, alternativen Text für diese Bilder bereitzustellen, aber für Benutzer von Bildschirmlupen oder Benutzer, die ihre
+eigenen Formatvorlagen verwenden, um Schriftarten oder Farben anzupassen, ist dies möglicherweise immer noch unzugänglich.
+
+![Text im Bild ist nicht anpassbar](/images/visuelles-design/L5-8-2.png)
+
+![Text im Bild ist nicht anpassbar - vergrößert](/images/visuelles-design/L5-8-enlarged.jpg)
+
+### Sichtbare UI-Komponenten sollten native Steuerelemente und Funktionen (keine Bilder oder Grafikversionen von Steuerelementen) verwenden, wenn sie verfügbar sind, damit der Benutzer Farbe und Kontrast der Oberfläche anpassen kann.
+
+Die Richtlinien für Barrierefreiheit verlangen zwar ein Mindestkontrastverhältnis zwischen Text und Hintergrund, aber manche Menschen
+reagieren empfindlich auf Helligkeit und müssen die Farben ändern. Die Verwendung von echtem Text anstelle von Textbildern ermöglicht
+es den Nutzern, Text- und Hintergrundfarbe und Kontrast anzupassen.
+
+#### Gutes Beispiel: Stilisierter Text als Submit-Button
+
+Die Schaltfläche unten ist so gestaltet, dass sie dem gewünschten Aussehen entspricht, kann aber von den Nutzern leicht angepasst
+werden, wenn sie Schriftarten oder Farben ändern möchten.
+
+<button
+  type="submit"
+  style="background:#aa061a;color:white;width:max-content;
+overflow:hidden;text-align:center;padding:5px 5px 5px 5px;font-size:20px;
+border-radius:15px">
+  Submit
+</button>
+
+#### Schlechtes Beispiel: Bild als Submit-Button verwendet
+
+Dieser Bild-Button hat zwar einen Alt-Text, aber er lässt sich nicht gut zoomen und erlaubt es den Nutzern nicht, den Text oder die
+Farbe anzupassen. Ein stilisierter Text wäre eine bessere Option.
+
+![Bild als Submit-Button verwendet](/images/visuelles-design/submit-button.png)
