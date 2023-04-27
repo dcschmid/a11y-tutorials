@@ -1,0 +1,182 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Maus-Eingabe'
+pubDate: 2023-04-26
+---
+
+Die meisten Webentwickler berücksichtigen die grundsätzliche Zugänglichkeit mit der Maus, ohne groß darüber nachzudenken. Zumindest
+werden die Funktionen in fast allen Fällen für die Maus verfügbar sein. Einige Dinge, die vielleicht vernachlässigt werden, sind
+Überlegungen für Menschen, die eine Maus zwar benutzen können, aber nur mit eingeschränkter Präzision (z. B. Menschen mit Zittern
+oder Krämpfen), oder für Menschen mit Sehschwäche, die nicht leicht erkennen können, ob sich der Mauszeiger über einem Link oder
+einer Schaltfläche befindet. Wenn du auf die Größe des Klickziels und den visuellen Hover-Indikator achtest, kannst du diesen
+Menschen helfen.
+
+## Größe des Klickziels
+
+### Die Größe des Klickziels sollte groß genug sein, um eine einfache Bedienung mit der Maus zu ermöglichen (auch für Nutzer mit Zittern oder eingeschränkter Fingerfertigkeit), ohne zu riskieren, dass ein benachbarter Link oder Button aktiviert wird.
+
+Die Vergrößerung des Klickziels kann für sehbehinderte Mausbenutzer und für Benutzer mit Zittern oder eingeschränkter Fingerfertigkeit
+von Vorteil sein. Für Menschen mit einer Sehschwäche kann die Vergrößerung des Klickziels helfen, ein Ziel effizienter zu erkennen.
+Wenn ein Zielbereich zu klein ist, erhöht sich die Wahrscheinlichkeit, dass Nutzer/innen das Ziel versehentlich übersehen oder das
+falsche Ziel aktivieren, wenn kleine Ziele dicht beieinander liegen. Größere Zielbereiche können Fehler bei der Benutzerinteraktion
+für Menschen mit motorischen Behinderungen wie z. B. Handzittern oder Menschen, die alternative Mausgeräte wie eine Trackball-Maus
+oder ein Gerät mit einem Schalter verwenden, verhindern.
+
+#### Schlechtes Beispiel: Kleine Zielgröße
+
+In diesem Beispiel ist der Fußnotenverweis in einem Textabsatz einfach eine hochgestellte "1". Nicht nur, dass ein sehender Benutzer
+leicht übersehen kann, dass es sich bei der Fußnotenreferenz um einen Link handelt, auch die Größe des Klickziels ist sehr klein.
+
+<div style="line-height:1.7em;padding:20px;background:white;border:1px #808080 solid;color: #000">
+<p role="heading" aria-level="4" style="font-size:1.5em;">Poodle</p>
+
+<p>Adapted from Wikipedia, the free encyclopedia</p>
+
+<p>
+  ... Ranked second most intelligent dog breed just behind the Border Collie,
+  <sup>
+    <a
+      id="reference_small"
+      href="class/input-methods-wcag-2.2/mouse-input/click-target-size#note_small">
+      1
+    </a>
+  </sup>
+  the poodle is skillful in many dog sports and activities, including agility, obedience, tracking
+  to herding, circus performers or assistance dogs...
+</p>
+
+<p role="heading" aria-level="5" style="font-size:1.2em;">
+  Footnotes:
+</p>
+
+<p><a href="class/input-methods-wcag-2.2/mouse-input/click-target-size#reference_small" style="color: #0166b6;text-decoration-line: underline;cursor: auto;">1</a> "THE INTELLIGENCE OF DOGS". Stanleycoren.com. Retrieved 11 December 2014.</p>
+</div>
+
+#### Gutes Beispiel: Erweitertes Zielgröße
+
+In diesem Beispiel ist der Fußnotenlink in einem Textabsatz eine hochgestellte "1", die von geraden Klammern umgeben ist. Indem du
+die Klammern hinzufügst und sie in den Anker-Tag einfügst, wird die Klickgröße des Links deutlich erhöht.
+
+<div style="line-height:1.7em;padding:20px;background:white;border:1px #808080 solid;color: #000">
+<p role="heading" aria-level="4" style="font-size:1.5em;">Poodle</p>
+
+<p>Adapted from Wikipedia, the free encyclopedia</p>
+
+<p>
+  ... Ranked second most intelligent dog breed just behind the Border Collie,
+  <sup>
+    <a
+      id="reference_exp"
+      href="class/input-methods-wcag-2.2/mouse-input/click-target-size#note_exp">
+      [1]
+    </a>
+  </sup>
+  the poodle is skillful in many dog sports and activities, including agility, obedience, tracking
+  to herding, circus performers or assistance dogs...
+</p>
+
+<p role="heading" aria-level="5" style="font-size:1.2em;">
+  Footnotes:
+</p>
+
+<p><a href="class/input-methods-wcag-2.2/mouse-input/click-target-size#reference_exp" style="color: #0166b6;text-decoration-line: underline;cursor: auto;">[1]</a> "THE INTELLIGENCE OF DOGS". Stanleycoren.com. Retrieved 11 December 2014.</p>
+</div>
+
+## Visueller Hover-Indikator
+
+### Ein verbesserter visueller Hover-Indikator sollte vorhanden sein.
+
+#### Gutes Beispiel: Ein verbesserter visueller Hover-Indikator
+
+Unten siehst du ein Beispiel für einen verbesserten visuellen Hover-Indikator. Wenn der Nutzer mit dem Mauszeiger über den Link fährt,
+hat der visuelle Fokusindikator für den Link zwei Teile: einen 1 px blauen Umriss um den Link und eine dezente hellgelbe
+Hintergrundfarbe, die den Umriss ausfüllt.
+
+Der Link, wie er im Standardzustand erscheint: <a href="www.deque.com" style="text-decoration:underline">Deque</a>
+
+Der Link, wie er erscheint, wenn der Mauszeiger über ihm schwebt: <a href="www.deque.com" style="background-color: #FFFFCC;outline:1px solid;text-decoration:none;color: #000">Deque</a>
+
+Der Link, wie er in der Zoom-Software erscheint:
+
+![Ein verbesserter visueller Hover-Indikator](/images/eingabemethoden/enhanced-hover-focus.png)
+
+### Das Mauszeigersymbol beim Hovern sollte der Art der Aktion entsprechen, die das Element erlaubt.
+
+#### Gutes Beispiel: Der Mauszeiger entspricht dem Elementtyp
+
+Dieses Beispiel zeigt einen Link und einen Button, die beide individuell erstellt wurden, anstatt die nativen `<a>` und `<button>` oder
+`<input>` Elemente zu verwenden. CSS wird verwendet, um den entsprechenden Mauszeiger zu erzeugen.
+
+Wenn der Mauszeiger über den benutzerdefinierten Link unten schwebt, wird der Mauszeiger zum Handzeiger:
+
+<div style="width: 30px">
+  ![Mauszeiger zum Handzeiger](/images/eingabemethoden/cursor-pointer.svg)
+</div>
+
+<span style="text-decoration: underline; cursor: pointer" tabindex="0" role="link">
+  This link is not a native HTML link.
+</span>
+
+Wenn der Mauszeiger über der benutzerdefinierten Schaltfläche unten schwebt, bleibt der Mauszeiger ein Pfeil:
+
+<div style="width: 30px">
+  ![Mauszeiger zum Handzeiger](/images/eingabemethoden/cursor-default.svg)
+</div>
+
+<button
+  style="background: #0045c4;color:#FFF;border:1px solid #0045c4;border-radius:8px;padding:4px 4px;margin:5px 0px;"
+  tabindex="0"
+  role="button">
+  I am a custom button
+</button>
+
+Das CSS für die Mausschwebezustände in diesem Beispiel sieht folgendermaßen aus:
+
+```css
+.fakeLink1:hover {
+  cursor: pointer;
+}
+
+.fakeButton1:hover {
+  cursor: default;
+}
+```
+
+## Zeigeraufhebung
+
+### Für Funktionen, die mit einem Single-Pointer bedient werden können, muss mindestens eine der folgenden Bedingungen erfüllt sein: kein Abwärts-Ereignis, kann abbrechen/rückgängig machen, Aufwärtsumkehr oder wesentlich.
+
+Menschen mit verschiedenen Behinderungen (und auch Menschen ohne) können versehentlich auf Dinge klicken oder tippen. Diese Regel
+soll es Nutzern ermöglichen, versehentliche Aktionen durch mindestens eine der folgenden Maßnahmen zu verhindern oder rückgängig
+zu machen:
+
+- Kein Abwärts-Ereignis: Das Abwärts-Ereignis des Zeigers wird nicht zur Ausführung eines Teils der Funktion verwendet.
+
+- Abbruch oder Rückgängig machen: Die Funktion wird mit dem Aufwärts-Ereignis abgeschlossen und es gibt einen Mechanismus, um die Funktion vor dem Abschluss abzubrechen oder nach dem Abschluss rückgängig zu machen.
+
+- Umkehrung nach oben: Das Up-Ereignis macht das Ergebnis des vorangegangenen Down-Ereignisses rückgängig.
+
+- Wesentlich: Der Abschluss der Funktion im Abwärts-Ereignis ist unerlässlich.
+
+Die bevorzugte und am leichtesten zugängliche Lösung ist hier, die Aktivierung beim Aufwärts-Ereignis vorzunehmen.
+
+Ein Beispiel für eine wichtige Ausnahme ist eine Klaviertastatur auf dem Bildschirm, bei der das Ab-Ereignis die entsprechende Note
+spielt. Andere wichtige Ausnahmen sind Funktionen, die eine Tastatur oder einen Ziffernblock emulieren. Beachte auch, dass diese
+Regel für Webinhalte gilt, die Zeigeraktionen interpretieren (d. h. sie gilt nicht für Aktionen, die für die Bedienung des User
+Agents oder der assistiven Technologie erforderlich sind).
+
+#### Schlechtes Beispiel: Schaltfläche wird beim Abwärts-Ereignis ausgeführt
+
+Dies ist eine Online-Zeitschaltuhr. Wenn du auf die Stopp-Schaltfläche klickst, wird er beim Abwärts-Ereignis ausgeführt. Du musst
+die Schaltfläche erneut anklicken, um den Timer neu zu starten. Die barrierefreie Lösung besteht darin, den Timer zu stoppen, wenn
+der Benutzer die Schaltfläche loslässt.
+
+![Schaltfläche wird beim Abwärts-Ereignis ausgeführt](/images/eingabemethoden/bad-example-button-down-event.png)
+
+#### Gutes Beispiel: Schaltfläche wird bei Aufwärts-Ereignis ausgeführt
+
+Im Folgenden findest du ein Beispiel für die Kursfeedback-Seiten, die du an der Deque University findest. Wenn du versehentlich auf
+die Schaltfläche "Abschicken" klickst, wird das Formular erst abgeschickt, wenn du es loslässt. Wenn du versehentlich darauf klickst
+oder tippst, kannst du die Maus (oder deinen Finger) wegschieben und das Formular wird nicht abgeschickt.
+
+![Schaltfläche wird bei Aufwärts-Ereignis ausgeführt](/images/eingabemethoden/good-example-button-up-event.png)

@@ -1,0 +1,717 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Tastatur-Eingabe'
+pubDate: 2023-04-26
+---
+
+Menschen, die keine Maus benutzen - vielleicht weil sie eine motorische oder visuelle Behinderung haben - benutzen wahrscheinlich
+eine Tastatur, um auf Websites zuzugreifen.
+
+Wenn alle Funktionen über die Tastatur erreicht werden können, können sie auch von einer Vielzahl von Hilfstechnologien und
+Nutzergruppen genutzt werden. Eine Person, die eine Tastatur benutzt, muss nicht nur in der Lage sein, mit den Steuerelementen auf
+einer Seite zu interagieren, sondern auch, Elemente zu finden und sowohl dem programmatischen als auch dem visuellen Fokus zu folgen.
+
+In diesem Kurs unterscheiden wir zwischen programmatischem Fokus und visuellem Fokus. Viele Entwickler verstehen den Fokus als etwas
+rein Programmatisches. Bestimmte Objekte im Document Object Model verfügen über eine Fokus-Methode; daher ist der Fokus streng
+genommen eine programmatische Angelegenheit. Dennoch beziehen wir in dieser und anderen Lektionen die visuelle Anzeige des Fokus
+in unsere Diskussion mit ein, vor allem weil die visuelle Anzeige des Fokus manchmal nicht existiert oder nicht mit dem
+programmatischen Fokus übereinstimmt. Beides hat große Auswirkungen auf die Barrierefreiheit.
+
+## Aktivieren des Tastaturzugriffs auf einem Mac
+
+Die Tastaturbedienbarkeit ist auf einem Mac nicht standardmäßig aktiviert. Deine Testergebnisse für Barrierefreiheit und
+Screenreader sind ungenau, wenn du die Tastaturunterstützung an den folgenden beiden Stellen nicht aktivierst:
+
+- Systemeinstellungen
+
+- Safari-Einstellungen
+
+### Aktiviere die systemweite Barrierefreiheit der Tastatur
+
+Die Standardtastatur auf dem Mac erlaubt es den Nutzern nur, mit der Tabulatortaste auf Formularsteuerelemente (Texteingaben,
+Schaltflächen usw.) zuzugreifen. Um auf Links und andere Elemente zuzugreifen, musst du die Einstellung "Alle Steuerelemente"
+aktivieren:
+
+Systemeinstellungen > Tastatur > Tastaturkürzel > Vollständiger Tastaturzugriff > Alle Steuerelemente
+
+![Aktiviere die systemweite Barrierefreiheit der Tastatur](/images/eingabemethoden/keyboardAllControls.png)
+
+### Safari-Tastaturzugänglichkeit aktivieren
+
+Die Tastaturzugänglichkeit muss auch in Safari separat aktiviert werden.
+
+Safari-Einstellungen > Erweitert > Barrierefreiheit > Drücke die Tabulatortaste, um jedes Element auf einer Webseite zu markieren.
+
+![Safari-Tastaturzugänglichkeit aktivieren](/images/eingabemethoden/safariTabHighlight.png)
+
+## Tab Fokussierbarkeit
+
+### Links, Schaltflächen und interaktive Steuerelemente müssen mit der Tastatur fokussierbar sein.
+
+Tastaturbenutzer navigieren mit der Tabulatortaste durch eine Webseite. Mit der Tabulatortaste wird der Tastaturfokus zu jedem
+fokussierbaren Element auf einer Seite verschoben. Deshalb ist es wichtig, dass alle fokussierbaren Elemente auf der Seite den
+Tastaturfokus erhalten können. Wenn fokussierbare Elemente den Tastaturfokus nicht erhalten, ist es für Tastaturbenutzer/innen
+schwierig und fast unmöglich, diese Elemente auf der Webseite zu aktivieren und mit ihnen zu interagieren.
+
+Die folgenden Elemente - egal, ob es sich um native HTML-Elemente, benutzerdefinierte Versionen nativer Elemente oder vollständig
+benutzerdefinierte Steuerelemente oder Widgets handelt - müssen den Tastaturfokus erhalten:
+
+- Links
+
+- Buttons
+
+- Inputs:
+
+  - text inputs
+
+  - image inputs
+
+  - submit buttons
+
+  - radio buttons
+
+  - checkboxes
+
+  - Alle anderen Eingabearten
+
+  - drop-down selection inputs
+
+  - textarea fields
+
+- ARIA controls:
+
+  - ARIA links
+
+  - ARIA buttons
+
+  - ARIA inputs
+
+  - ARIA tabs
+
+    - Alle anderen fokussierbaren benutzerdefinierten ARIA-Steuerelemente
+
+- Alle anderen fokussierbaren benutzerdefinierten Elemente und Widgets
+
+#### Schlechtes Beispiel: Ein benutzerdefinierter Link, der nicht fokussierbar ist
+
+Links, die mit dem `<a>`-Element erstellt werden, erhalten natürlich den Tastaturfokus. Entwickler können jedoch "unechte" Links
+mit ARIA role="link" erstellen. Wenn ARIA-Links erstellt werden, erhalten sie jedoch nicht den Tastaturfokus wie ein Link, der
+mit dem `<a>`-Tag erstellt wurde.
+
+Im Folgenden findest du ein Beispiel für einen ARIA-Link, der nicht über die Tastatur fokussierbar ist.
+
+```html
+<span role="link" data-href="https://www.deque.com">Deque.com</span>
+```
+
+#### Gutes Beispiel: Ein benutzerdefinierter Link, der fokussierbar ist
+
+Das Hinzufügen der ARIA role="link" zu einem Element kann dieses Element für Screenreader-Nutzer als Link identifizieren, aber es
+macht den Link nicht tastaturfokussierbar. Wenn du tabindex="0" verwendest, wird der Link in der normalen Tabulator-Reihenfolge
+angezeigt und kann über die Tastatur aktiviert werden.
+
+```html
+<span role="link" tabindex="0" data-href="https://www.deque.com">Deque.com</span>
+```
+
+#### Schlechtes Beispiel: Tabs, die nicht fokussierbar sind
+
+Bei benutzerdefinierten Widgets müssen die interaktiven Elemente innerhalb des Widgets über die Tastatur zugänglich sein. Bei einem
+Registerkarten-Widget sollte die aktive Registerkarte mit der Tabulatortaste fokussiert werden können (die anderen sollten mit den
+Pfeiltasten erreichbar sein, nachdem die aktive Registerkarte fokussiert wurde). In diesem schlechten Beispiel ist keine der
+Registerkarten über die Tastatur zugänglich.
+
+```html
+<div>
+  <ul>
+    <!-- the two items below should be
+        set to tabindex="0", but they aren't -->
+    <li role="tab">Tab #1</li>
+    <li role="tab">Tab #2</li>
+  </ul>
+  <div>
+    <div id="tabone" role="tabpanel">
+      <p>This is the tabpanel for Tab #1</p>
+    </div>
+    <div id="tabtwo" role="tabpanel">
+      <p>This is the tabpanel for Tab #2.</p>
+    </div>
+  </div>
+</div>
+```
+
+#### Gutes Beispiel: Registerkarten, die fokussierbar sind
+
+Um die Registerkarten im Tabpanel-Widget für die Tastatur zugänglich zu machen, sollte tabindex="0" zu der aktiven Registerkarte im
+Widget hinzugefügt werden. Die inaktiven Registerkarten sollten mit den Pfeiltasten (nicht mit der Tabulatortaste) erreichbar sein,
+nachdem du den Fokus auf die aktive Registerkarte gelegt hast. Die inaktiven Tabs sollten tabindex="-1" haben. Dadurch wird
+sichergestellt, dass die inaktiven Tabs nicht in der Tab-Reihenfolge stehen, aber für die Fokussierung über JavaScript verfügbar
+sind, wenn die Person die Pfeiltasten benutzt. Wenn die Person im Registerkarten-Widget von Registerkarte zu Registerkarte
+navigiert, wechselt das Skript den Wert für tabindex von -1 (wenn inaktiv) auf 0 (wenn aktiv). Dieses Tastaturmuster, bei dem die
+Tabulatortaste verwendet wird, um den Fokus auf das Widget zu setzen und dann mit den Pfeiltasten innerhalb des Widgets zu
+navigieren, ist das Standard-Tastaturinteraktionsmodell von ARIA.
+
+```html
+<div>
+  <ul role="tablist">
+    <li role="tab" id="tabonelabel" tabindex="0" aria-controls="tabone" aria-selected="true">
+      Tab #1
+    </li>
+    <li role="tab" id="tabtwolabel" tabindex="-1" aria-controls="tabtwo" aria-selected="false">
+      Tab #2
+    </li>
+  </ul>
+  <div>
+    <div role="tabpanel" id="tabone" tabindex="0" aria-labelledby="tabonelabel">
+      <p>This is the tabpanel for Tab #1</p>
+    </div>
+    <div role="tabpanel" id="tabtwo" tabindex="-1" aria-labelledby="tabtwolabel" aria-hidden="true">
+      <p>This is the tabpanel for Tab #2.</p>
+    </div>
+  </div>
+</div>
+```
+
+## Tabulator-Reihenfolge
+
+### Die Navigationsreihenfolge der fokussierbaren Elemente muss logisch und intuitiv sein.
+
+Wenn Tastaturbenutzer mit der Tabulatortaste durch die fokussierbaren Elemente (Schaltflächen, Links, Formularelemente,
+benutzerdefinierte Steuerelemente usw.) gehen, muss die Reihenfolge sinnvoll sein, damit sie nicht verwirrt werden.
+
+Wenn ein Tastaturbenutzer - egal ob sehend oder blind - die Tabulatortaste benutzt, um durch alle fokussierbaren Elemente (Links,
+Schaltflächen, Formularelemente usw.) zu gehen, beginnt der Browser mit den fokussierbaren Elementen am Anfang und geht linear
+durch alle fokussierbaren Elemente, bis er das Ende erreicht. Der Browser ignoriert alle visuellen Formatierungen - Spalten,
+schwebende Elemente, Ränder, Polsterung, Positionierung usw. - und achtet auf die grundlegende Reihenfolge, in der die Dinge im
+DOM erscheinen.
+
+#### Schlechtes Beispiel: Absolute Positionierung
+
+Unten findest du eine Reihe von Links, die in drei Spalten angeordnet sind, mit einer Fußzeile am Ende.
+
+Probiere die Links aus, um die Reihenfolge der Tabs herauszufinden.
+
+Hinweis: Die Links führen nicht zu einem echten Ziel. In diesem Beispiel geht es darum, die Links mit der Tabulatortaste zu öffnen,
+nicht darum, ihnen zu folgen.
+
+Visuelle Nutzer erwarten, dass die Reihenfolge der Registerkarten oben links beginnt (Behinderungsarten), dann die Liste der Links
+in der linken Spalte durchläuft, dann die Links in der mittleren Spalte (Hilfstechnologien), dann die Links in der rechten Spalte
+(Klassen) und dann den Link am Ende ("Barrierefreies Design ist gutes Design").
+
+Leider entspricht die Reihenfolge der Tabs nicht der erwarteten Reihenfolge. Die Tab-Reihenfolge beginnt in der rechten Spalte, geht
+dann zur Fußzeile am Ende, dann zur linken Spalte und dann zur mittleren Spalte. In diesem Beispiel ist die Reihenfolge deshalb so
+durcheinander, weil die absolute CSS-Positionierung verwendet wurde und die Person, die den Inhalt erstellt hat, die Reihenfolge im
+Quellcode nicht an die visuelle Reihenfolge angepasst hat.
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+Beginne mit dem Code:
+
+```html
+<div class="overallContainer2">
+  <div class="columnsContainer2">
+    <div class="classesColumn2">
+      <!-- The following section is first in the DOM, but it should be third -->
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li><a href="#">Web Accessibility Fundamentals</a></li>
+        <li><a href="#">HTML/CSS Accessibility</a></li>
+        <li><a href="#">Web Accessibility Testing</a></li>
+        <li><a href="#">and more!</a></li>
+      </ul>
+    </div>
+    <div class="footerSection2">
+      <!-- The following section is second in the DOM, but it should be fourth -->
+      <p><strong>4. </strong><a href="#">Accessible design is good design.</a></p>
+    </div>
+    <div class="disabilityTypesColumn2">
+      <!-- The following section is third in the DOM, but it should be first -->
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li><a href="#">Visual</a></li>
+        <li><a href="#">Auditory</a></li>
+        <li><a href="#">Motor</a></li>
+        <li><a href="#">Cognitive</a></li>
+        <li><a href="#">Seizures</a></li>
+      </ul>
+    </div>
+    <div class="atColumn2">
+      <!-- The following section is fourth in the DOM, but it should be second -->
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li><a href="#">Screen readers</a></li>
+        <li><a href="#">Screen enlargers</a></li>
+        <li><a href="#">Mouth stick</a></li>
+        <li><a href="#">Eye-gaze tracking</a></li>
+        <li><a href="#">etc.</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+The CSS for this example is shown below:
+
+```css
+.overallContainer2 {
+  height: 25em;
+  font-size: 13px;
+}
+
+.columnsContainer2 {
+  position: absolute;
+  height: 25em;
+  width: 750px;
+}
+
+.disabilityTypesColumn2 {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.atColumn2 {
+  position: absolute;
+  left: 230px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.classesColumn2 {
+  position: absolute;
+  left: 450px;
+  top: 10px;
+  height: 18em;
+  width: 200px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+
+.footerSection2 {
+  position: absolute;
+  left: 10px;
+  top: 20em;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: dotted gray 1px;
+  background: #fff;
+}
+```
+
+#### Gutes Beispiel: DOM Bestellung
+
+Unten findest du eine Reihe von Links, die in drei Spalten angeordnet sind, mit einer Fußzeile am Ende.
+
+Probiere die Links aus, um die Reihenfolge der Tabs herauszufinden.
+
+Die Tabulatorreihenfolge entspricht der erwarteten Reihenfolge. Die Tabulatorreihenfolge beginnt in der linken Spalte, dann in der
+mittleren Spalte, dann in der rechten Spalte und geht dann zur Fußzeile am Ende.
+
+Hier ist der HTML-Quellcode, gefolgt von dem CSS-Code für dieses Beispiel.
+
+```html
+<div class="overallContainer">
+  <div class="columnsContainer">
+    <div class="disabilityTypesColumn">
+      <p><strong>1. Disability Types:</strong></p>
+      <ul>
+        <li><a href="#">Visual</a></li>
+        <li><a href="#">Auditory</a></li>
+        <li><a href="#">Motor</a></li>
+        <li><a href="#">Cognitive</a></li>
+        <li><a href="#">Seizures</a></li>
+      </ul>
+    </div>
+    <div class="atColumn">
+      <p><strong>2. Assistive Technologies: </strong></p>
+      <ul>
+        <li><a href="#">Screen readers</a></li>
+        <li><a href="#">Screen enlargers</a></li>
+        <li><a href="#">Mouth stick</a></li>
+        <li><a href="#">Eye-gaze tracking</a></li>
+        <li><a href="#">etc.</a></li>
+      </ul>
+    </div>
+    <div class="classesColumn">
+      <p><strong>3. Classes:</strong></p>
+      <ul>
+        <li><a href="#">Web Accessibility Fundamentals</a></li>
+        <li><a href="#">HTML/CSS Accessibility</a></li>
+        <li><a href="#">Web Accessibility Testing</a></li>
+        <li><a href="#">and more!</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerSection">
+    <p>
+      <a href="#"><strong>4. </strong>Accessible design is good design.</a>
+    </p>
+  </div>
+</div>
+```
+
+Das CSS für dieses Beispiel ist unten abgebildet:
+
+```css
+.overallContainer {
+  height: 25em;
+  font-size: 1em;
+}
+
+.columnsContainer {
+  display: block;
+  clear: both;
+  margin-bottom: 5px;
+  width: 750px;
+}
+
+.columnsContainer div {
+  float: left;
+  width: 200px;
+  height: 18em;
+  padding: 4px;
+  border: 1px dotted gray;
+}
+
+.disabilityTypesColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.atColumn {
+  margin-right: 4px;
+  background: #fff;
+}
+
+.classesColumn {
+  clear: right;
+  background: #fff;
+}
+
+.footerSection {
+  display: block;
+  clear: both;
+  margin-top: 4px;
+  height: 3em;
+  width: 640px;
+  padding: 4px;
+  border: 1px dotted gray;
+  background: #fff;
+}
+```
+
+### tabindex von positiven Werten sollte nicht verwendet werden.
+
+Es ist möglich, die Tabulatorreihenfolge fokussierbarer Elemente mit tabindex anzupassen, indem du numerische Werte wie 1, 2, 3 usw.
+einstellst, aber das kann zu erheblichen Problemen für Tastaturbenutzer führen.
+
+- Es kommt zu einer Diskrepanz zwischen der Tabulatorreihenfolge und der Lesereihenfolge, was zu Verwirrung führt, wenn du die Seite
+  mit der Tastatur bedienst
+
+- Sie entfernt die Elemente aus ihrer natürlichen Tabulatorreihenfolge und setzt sie stattdessen an die erste Stelle in der
+  Tabulatorreihenfolge. Alles, was einen Tabindex-Wert von 1 oder höher hat, kommt vor allen anderen fokussierbaren Elementen. Wenn
+  z. B. nur ein einziges Element auf der Seite einen Tabindex hat und dieser auf 9000 gesetzt ist, wird dieses Element als erstes
+  angewählt, auch wenn die Zahl sehr groß ist. Wenn der Tabulator von dem Element mit tabindex="9000" weggeht, geht der Fokus zum
+  ersten fokussierbaren Element im DOM. Wenn der Benutzer weiter durch die Webseite tabbelt, kommt er schließlich an die Stelle, an
+  der sich das Element mit tabindex="9000" befindet, und erwartet, dass er zu diesem Element tabben kann, was aber nicht möglich ist,
+  weil die Position des Elements im DOM nicht der Tabulatorreihenfolge des Elements entspricht. Der Benutzer hätte bereits vorher mit
+  der Tabulatortaste darauf zugegriffen, also überspringt der Browser dieses Element. Das ist verwirrend für den Nutzer - vor allem
+  für sehende Tastaturbenutzer - wenn das passiert.
+
+#### Schlechtes Beispiel: Seitendesign mit mehreren Instanzen von tabindex mit positiven Werten
+
+Auf der Mars Commuter Demo-Website (die absichtlich so gestaltet wurde, dass sie viele Zugänglichkeitsfehler aufweist), haben mehrere
+Formularsteuerelemente in der rechten Spalte einen Tabindex-Wert mit einer positiven Zahl. Wenn der Benutzer die Seite mit der
+Tabulatortaste aufruft, ist die Reihenfolge der Tabs wie folgt:
+
+- das Feld "Von" unter der Überschrift "Buche deine Reise".
+
+- Das Feld "Nach"
+
+- Das Feld "Abreisedatum".
+
+- Das Feld "Uhrzeit
+
+- Ein mysteriöses Objekt, das keine Funktionalität und keinen sichtbaren Fokusindikator hat
+
+- Ein weiteres mysteriöses Objekt
+
+- Dann beginnt die Tabulatorreihenfolge oben links auf dem Bildschirm und setzt sich in einer natürlicheren Tabulatorreihenfolge
+  fort
+
+![Seitendesign mit mehreren Instanzen von tabindex mit positiven Werten](/images/eingabemethoden/tab-order-2.png)
+
+In gewisser Hinsicht macht diese Reihenfolge der Registerkarten Sinn: Wenn der Hauptzweck der Website darin besteht, Reisen zu
+buchen, möchten die Besucher vielleicht gleich zu den Buchungsfunktionen springen. Aber es gibt mehrere Probleme mit diesem Ansatz:
+
+- Der Tabindex ist nicht für alle Elemente im Abschnitt "Reise buchen" gesetzt, so dass der Benutzer an den Anfang der Webseite
+  zurückgeschickt wird, bevor er zu allen Elementen im Formular gehen und das Formular abschicken kann.
+
+- Einige visuell ausgeblendete Objekte befinden sich auf dieser Seite noch in der Tab-Reihenfolge (die "geheimnisvollen"
+  Fokusobjekte), was zu Verwirrung führen kann. Wenn etwas visuell ausgeblendet ist, darf es nicht in der Tab-Reihenfolge sein.
+
+- Wenn der Nutzer die gesamte Seite mit der Tabulatortaste durchläuft, überspringt die Tabulatorreihenfolge die ersten Elemente
+  (das Feld "Von", das Feld "An" usw.), weil diese Elemente am Anfang der Tabulatorreihenfolge stehen. Es ist sehr verwirrend für die
+  Benutzer, wenn sie nicht in ihrer natürlichen Reihenfolge zu den Einträgen navigieren können.
+
+Am besten vermeidest du diese Probleme ganz und gar, indem du überhaupt keinen Tabindex mit positiven Werten einstellst.
+
+## Visueller Fokusindikator
+
+### Alle fokussierbaren Elemente müssen eine visuelle Fokusanzeige haben, wenn sie fokussiert sind.
+
+Browser zeigen in der Regel an, welches Element im Fokus ist, indem sie es entweder mit einer gepunkteten Linie (wie in Edge,
+Internet Explorer und Firefox) oder einer durchgehenden farbigen Linie (wie in Chrome und Safari) umreißen. Die gepunktete Linie
+ist etwas schwer zu erkennen, vor allem für Menschen mit Sehschwäche, aber solange der Standard-Fokusindikator des Browsers
+beibehalten wird, wird die visuelle Gestaltung im Allgemeinen als ausreichend angesehen, um die Richtlinien zu erfüllen, zumindest
+was die minimale Einhaltung angeht.
+
+#### Schlechtes Beispiel: Der visuelle Fokusindikator wurde entfernt
+
+Sehende Tastaturbenutzer müssen sehen, wo der Tastaturfokus liegt. Wenn du den sichtbaren Fokusindikator mit outline:none
+entfernst und ihn nicht durch einen anderen Stil ersetzt, wissen sehende Tastaturbenutzer nicht, welcher Link den Fokus hat,
+was die Nutzung der Webseite extrem erschwert.
+
+```html
+<style>
+  a:focus {
+    outline: none;
+  }
+</style>
+```
+
+### Fokussierbare Elemente sollten verbesserte visuelle Fokusindikatoren haben.
+
+Auch wenn dies in der Regel nicht erforderlich ist, um die Mindestanforderungen der Richtlinien zu erfüllen, können Nutzer mit
+Sehschwäche von verbesserten visuellen Fokusindikatoren auf Links, Schaltflächen, Formularelementen und anderen fokussierbaren
+Elementen profitieren. Zu den Verbesserungen können eine andere Hintergrundfarbe, eine andere Schriftfarbe, eine Umrandung oder
+ein Rahmen gehören.
+
+Bei der Erstellung von verbesserten visuellen Fokusindikatoren solltest du alle folgenden Punkte berücksichtigen:
+
+- links — a:focus `{...}`
+
+- buttons — button:focus `{...}`
+
+- inputs — Beachte, dass je nach Design ein einziger Stil für alle Eingaben ausreichen kann (z.B. input:focus `{...}`, aber die
+  Stile können auch für einzelne Eingaben festgelegt werden:
+
+  - text inputs — input[type=text]:focus `{...}`
+
+  - image inputs — input[type=image]:focus `{...}`
+
+  - submit buttons — input[type=submit]:focus `{...}`
+
+  - radio buttons — input[type=radio]:focus `{...}`
+
+  - Alle anderen Eingabearten
+
+- Checkboxen - input[type=checkbox]:focus `{...}`
+
+- Dropdown-Auswahl-Eingaben - select:focus `{...}`
+
+- Textarea-Felder - textarea:focus `{...}`
+
+- ARIA-Steuerelemente:
+
+  - ARIA-Links - [role=link]:focus `{...}`
+
+  - ARIA-Schaltflächen - [role=button]:focus `{...}`
+
+  - ARIA Eingaben - [role=radio], [role=checkbox], etc.
+
+  - ARIA-Registerkarten - [role=tab]:focus `{...}`
+
+  - Alle anderen fokussierbaren benutzerdefinierten ARIA-Steuerelemente
+
+- Alle anderen fokussierbaren Elemente
+
+#### Gutes Beispiel: Der visuelle Fokusindikator wurde verbessert
+
+Eine Möglichkeit, den visuellen Fokusindikator zu verbessern, ist das Hinzufügen einer Hintergrundfarbe und eines auffälligeren
+Umrisses.
+
+```html
+<style>
+  a:focus {
+    outline: 2px solid #8cc63f;
+    background-color: #fdf6e7;
+  }
+</style>
+```
+
+Jede Website hat ihren eigenen Stil und ihre eigene visuelle Ästhetik, sodass die Farben und das Styling des obigen Beispiels
+möglicherweise angepasst werden müssen.
+
+### Der Kontrast aller visuellen Fokusindikatoren zum Hintergrund MUSS mindestens 3 zu 1 betragen.
+
+In manchen Browsern ist das Standarddesign für den visuellen Fokusindikator (der dünne gepunktete Umriss um fokussierte Elemente)
+schwer zu erkennen, vor allem für Nutzer, die schlecht sehen können. Durch die Verbesserung des visuellen Fokusindikators können
+Nutzer/innen leichter erkennen, welches Element auf einer Webseite den Tastaturfokus unter allen anderen Elementen auf der Webseite
+hat. Die Möglichkeit, den visuellen Fokus sofort zu erkennen, erhöht die Effizienz bei der Nutzung und Interaktion mit der Seite.
+
+#### Gutes Beispiel: Taste Fokusanzeige mit ausreichendem Kontrast
+
+In diesem Beispiel ändert sich die Farbe der Schaltfläche, wenn ein Nutzer auf die Schaltfläche tippt. Der Kontrast zwischen der
+Hintergrundfarbe der Schaltfläche im Standardzustand und wenn sie fokussiert ist, ist größer als 3 zu 1. Außerdem ist der Kontrast
+zwischen dem Hintergrund der Schaltfläche und dem Text der Schaltfläche immer größer als 4,5 zu 1.
+
+Die Schaltfläche, wie sie in ihrem Standardzustand erscheint: <button style="background-color: #0045c4;color:#efefef;border:2px solid #0045c4;border-radius: 5px;outline: none;">Submit</button>
+
+Die Schaltfläche, wie sie erscheint, wenn sie fokussiert ist: <button id="button11" style="background-color:#efefef; color:#0045c4; border: 2px solid #0045c4; border-radius: 5px;">Submit</button>
+
+#### Gutes Beispiel: Fokusindikator mit ausreichendem Kontrast
+
+In diesem Beispiel erscheint der visuelle Fokusindikator als hellgrauer Hintergrund hinter dem Linktext mit einem roten Balken auf der
+linken Seite des Linktextes. Während der graue Hintergrund allein zu hell ist, um ausreichend zu sein, ist der rote Balken größer als
+3px mal 3px und bietet einen ausreichenden Kontrast zum weißen Hintergrund.
+
+![Fokusindikator mit ausreichendem Kontrast](/images/eingabemethoden/visual-focus-indicator-2.png)
+
+#### Schlechtes Beispiel: Fokusindikator mit unzureichendem Kontrast
+
+Die Hintergrundfarbe, die erscheint, wenn der Link fokussiert ist, hat einen Kontrast von 1,03 zu 1 zum Hintergrund, so dass
+sehbehinderte Nutzer sie möglicherweise nicht sehen können.
+
+Der Link, wie er in seinem Standardzustand erscheint: <a href="www.deque.com">Deque</a>
+
+Der Link, wie er erscheint, wenn er fokussiert ist: <a style="background-color: #FFFFCC;color: #000; outline: none; text-decoration: none;" href="https://deque.com">Deque</a>
+
+### Visuelle Fokusanzeige und Hochkontrastmodus
+
+Wenn unter Windows der Hochkontrastmodus aktiviert ist, können sich hohe Kontrasteinstellungen auf das Aussehen der visuellen
+Fokusanzeige auswirken.
+
+#### Edge und Internet Explorer
+
+In Edge und Internet Explorer wird im Hochkontrastmodus eine durchgezogene Linie mit der Breite des Umrisses angezeigt, wenn die
+Umrissbreite des visuellen Fokusindikators erhöht und auf die Anzeige einer durchgezogenen Linie eingestellt ist. Wenn das
+Hochkontrastthema jedoch einen schwarzen Hintergrund hat, wird der visuelle Fokusindikator zu einer weißen durchgezogenen Linie.
+Wenn der Hintergrund weiß ist, wird der visuelle Fokusindikator zu einer schwarzen durchgezogenen Linie.
+
+Hinweis: Hintergrundfarben werden unterdrückt
+
+Es empfiehlt sich, einen Rahmen oder eine Umrandung als Teil des erweiterten Fokusindikators zu verwenden, da der Windows-Modus
+"Hoher Kontrast" Rahmen und Umrandungen beibehält, aber Hintergrundfarben unterdrückt.
+
+#### Verbesserte Fokusanzeigen im Hochkontrastmodus
+
+Wenn der Windows-Modus "Hoher Kontrast" ausgeschaltet ist, hat der normale Hover-Effekt auf dem Link im Screenshot unten einen
+hellgelben Hintergrund und einen dunkelblauen Rand:
+
+![Verbesserte Fokusanzeigen im Hochkontrastmodus](/images/eingabemethoden/high-contrast-mode-off.png)
+
+Wenn du Edge im Modus "Hoher Kontrast" mit schwarzem Hintergrund anschaust, ist der Rand weiß, damit er zum umgebenden weißen Text
+mit hohem Kontrast passt, und es gibt keine Hintergrundfarbe (er bleibt schwarz):
+
+![Verbesserte Fokusanzeigen im Hochkontrastmodus 2](/images/eingabemethoden/high-contrast-mode-dark-hover.png)
+
+Wenn du Edge im Modus "Hoher Kontrast" mit weißem Hintergrund anschaust, wird der Rand schwarz, damit er zum umgebenden Text mit
+hohem Kontrast passt, und es gibt keine Hintergrundfarbe (er bleibt weiß):
+
+![Verbesserte Fokusanzeigen im Hochkontrastmodus 3](/images/eingabemethoden/high-contrast-mode-light-hover.png)
+
+Wenn der visuelle Fokusindikator nicht verbessert wird und die Standardeinstellungen für den Fokusindikator in Edge und IE
+verwendet werden, wird der visuelle Fokusindikator als gestrichelte Linie um fokussierbare Elemente angezeigt. Wenn der Hintergrund
+schwarz ist, wird der visuelle Fokusindikator als weißer gestrichelter Umriss angezeigt, und wenn der Hintergrund weiß ist, wird der
+visuelle Fokusindikator zu einem schwarzen gestrichelten Umriss.
+
+### Firefox
+
+In Firefox können die Farben für Links auch dann angepasst werden, wenn der Windows-Modus "Hoher Kontrast" aktiviert ist. Wenn also
+die Einstellungen für hohen Kontrast aktiviert sind, nimmt der visuelle Fokusindikator die gleiche Farbe an wie die Farbe des Links,
+die in den Farboptionen von Firefox ausgewählt wurde. Wenn der visuelle Fokusindikator so verbessert wird, dass er als durchgezogene
+Linie angezeigt wird, wird er als durchgezogene Linie in der gleichen Farbe wie der Link in Firefox angezeigt. Wenn er nicht erweitert
+wurde und die Standardeinstellungen verwendet werden, wird der visuelle Fokusindikator als gestrichelte Linie in der gleichen Farbe
+wie der Link angezeigt. Andere fokussierbare Elemente, die keine Links sind, haben entweder eine schwarze oder weiße durchgezogene
+oder gestrichelte Linie um sich herum, je nachdem, ob der Hintergrund schwarz oder weiß ist oder der Fokus wie in Edge und Internet
+Explorer erweitert wurde.
+
+Wenn in allen drei Browsern der visuelle Fokus deaktiviert ist (`:focus {outline: none;}`), ist auch der visuelle Fokusindikator
+deaktiviert, wenn die Einstellungen für hohen Kontrast aktiviert sind.
+
+## Tastaturfunktionalität
+
+### Die Funktionen müssen über die Tastatur verfügbar sein, es sei denn, die Funktionen können nicht auf bekannte Weise über die Tastatur ausgeführt werden.
+
+Wenn die Funktionalität über eine Tastatur verfügbar ist, können auch blinde Menschen oder Menschen mit alternativen Tastaturen und
+Geräten, die Tastaturen emulieren (Sip-and-Puff-Geräte, Speech-to-Text-Software), Webinhalte nutzen und mit ihnen interagieren. Auch
+Menschen mit Sehschwäche profitieren von der Tastaturfunktionalität, wenn die Verwendung einer Maus schwierig ist.
+
+In der Regel können Funktionen, die mit der Maus verfügbar sind, auch über die Tastatur genutzt werden. Es gibt jedoch einige
+Ausnahmen von dieser Regel. Zum Beispiel erfordern Eingaben, die von der Bewegung des Nutzers abhängen (freihändiges Zeichnen,
+Aquarellmalerei), extrem schwierige Tastendrücke, um die Pfadeingaben auszuführen. Funktionen wie das Ändern der Größe und das
+Zeichnen geometrischer Formen können jedoch über die Tastatur ausgeführt werden, da sie nicht von der Pfadeingabe des Nutzers
+abhängen.
+
+#### Schlechtes Beispiel: Nicht-Standard-Link mit Mausklick-Ereignis
+
+Wenn du mit der Maus auf den Link im nächsten Absatz klickst, öffnet der Browser ein neues Fenster und leitet dich zur Startseite
+von Deque.com weiter. Es ist jedoch nicht möglich, diesen Link mit der Tastatur zu aktivieren.
+
+```html
+<!-- keyboard users cannot tab to this mouse-only link -->
+<p>
+  <span class="fakeLink" data-href="https://deque.com">Mouse-dependent link to Deque.com</span>
+</p>
+```
+
+Der mausabhängige Link oben wurde so gestylt, dass er wie ein echter Link aussieht, indem er blau und unterstrichen ist und der
+Cursor beim Hovern zu einem Zeigestil wird. Tastaturbenutzer können den Link aus zwei Gründen nicht aktivieren:
+
+- Der Link ist nicht tab-fokussierbar
+
+- Der JavaScript-Event-Handler ist onmousedown, und der Code enthält keinen entsprechenden Event-Handler für die Tastatur
+
+Das JavaScript für dieses Beispiel sieht wie folgt aus:
+
+```js
+/* the mousedown event handler is a problem for keyboard users */
+$('.fakeLink').mousedown(function () {
+  var href = $(this).attr('data-href')
+  window.open(href)
+})
+```
+
+Das CSS für dieses Beispiel sieht folgendermaßen aus:
+
+```css
+.fakeLink {
+  color: blue;
+  text-decoration: underline;
+}
+.fakeLink:hover {
+  cursor: pointer;
+}
+```
+
+#### Gutes Beispiel: ARIA Link mit voller Barrierefreiheit
+
+Wichtig: Auch wenn dieses Beispiel zeigt, wie man barrierefreie ARIA-Links erstellt, ist es am besten, stattdessen einen Standard-Link
+zu erstellen, wie zum Beispiel den folgenden:
+
+```html
+<a href="https://deque.com">Deque</a>
+```
+
+In den extrem seltenen Fällen, in denen das nicht möglich ist, kann ein gefälschter Link mit den folgenden Techniken trotzdem so
+codiert werden, dass er vollständig zugänglich ist:
+
+- Füge das ARIA-Attribut role="link" hinzu, damit Screenreader den Text als Link anzeigen können
+
+- Füge tabindex="0" hinzu (um den Link in die natürliche Tabulatorreihenfolge der Tastatur zu bringen)
+
+- Verwende einen Event-Handler, der sowohl die Maus- als auch die Tastaturaktivierung unterstützt, z. B. das jQuery click()-Ereignis.
+  Wenn du nicht jQuery verwendest, musst du eventuell mehrere Event-Handler hinzufügen, z. B. onclick plus onkeydown für die
+  Eingabetaste (Keycode: 90).
