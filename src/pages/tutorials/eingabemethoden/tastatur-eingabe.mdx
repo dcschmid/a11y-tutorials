@@ -715,3 +715,278 @@ codiert werden, dass er vollständig zugänglich ist:
 - Verwende einen Event-Handler, der sowohl die Maus- als auch die Tastaturaktivierung unterstützt, z. B. das jQuery click()-Ereignis.
   Wenn du nicht jQuery verwendest, musst du eventuell mehrere Event-Handler hinzufügen, z. B. onclick plus onkeydown für die
   Eingabetaste (Keycode: 90).
+
+```html
+<p>
+  <span role="link" tabindex="0" data-href="https://deque.com"
+    >Fully accessible ARIA link to Deque.com</span
+  >
+</p>
+```
+
+Das JavaScript für dieses Beispiel, das die ARIA-Rolle als Selektor verwendet, sieht wie folgt aus:
+
+```js
+/* the jQuery click() event can be activated by mouse or keyboard */
+$('[role=link]').click(function () {
+  var href = $(this).attr('data-href')
+  window.open(href)
+})
+/* Note: if you don't want the link to open in a new window,
+use document.location = href;
+instead of window.open(href) */
+```
+
+Das CSS für dieses Beispiel verwendet auch die ARIA-Rolle als Selektor:
+
+```css
+[role='link'] {
+  color: blue;
+  text-decoration: underline;
+}
+
+[role='link']:hover {
+  cursor: pointer;
+}
+```
+
+Aber warte! Bevor du dich zu sehr darüber freust, hier eine wichtige Erinnerung: Nur weil du barrierefreie ARIA-Links erstellen kannst,
+heißt das nicht, dass du das auch tun solltest. Verwende immer, immer, immer echtes natives semantisches Markup, wann immer es möglich ist.
+
+#### Schlechtes Beispiel: Tooltip nur mit der Maus bedienbar
+
+Auf der Mars Commuter Demo-Website (die absichtlich so gestaltet wurde, dass sie viele Fehler
+bei der Barrierefreiheit aufweist), kann der Tooltip für "Mars Elite Pass" nur durch einen Mauszeiger aktiviert werden; er kann nicht über
+die Tastatur aktiviert werden.
+
+![Tooltip nur mit der Maus bedienbar](/images/eingabemethoden/mars-tooltip.png)
+
+#### Gutes Beispiel: Tooltip mit Maus und Tastatur bedienbar
+
+Die Screenshots unten zeigen ein Formularfeld mit einer QuickInfo, die sowohl angezeigt wird, wenn man mit dem Mauszeiger über das Feld
+fährt, als auch, wenn man mit der Tabulatortaste in das Textfeld geht. Screenreader-Benutzer hören die Tooltip-Informationen, wenn der
+Tastaturfokus in das Textfeld gesetzt wird, weil das Textfeld und der Tooltip über aria-describedby programmatisch verknüpft sind. Ein
+funktionierendes Beispiel für einen ähnlichen Tooltip findest du im Modul Custom JavaScript/ARIA Widgets.
+
+Der Screenshot unten zeigt das Formular in seinem Standardzustand.
+
+![Formular in seinem Standardzustand](/images/eingabemethoden/form-tooltip-before.png)
+
+Der nächste Screenshot zeigt den Tooltip "Muss mindestens 8 Zeichen lang sein", der neben dem Textfeld "Kennwort" erscheint, wenn du den
+Mauszeiger über das Feld bewegst.
+
+![Tooltip wird beim Mouse Hover angezeigt](/images/eingabemethoden/form-tooltip-mouse.png)
+
+Der letzte Screenshot zeigt den Tooltip "Muss mindestens 8 Zeichen lang sein", der neben dem Textfeld "Passwort" angezeigt wird, wenn das
+Feld per Tabulator eingegeben wird.
+
+![Beim Tab Focus](/images/eingabemethoden/form-tooltip-kb.png)
+
+#### Schlechtes Beispiel: Steuerung nur mit Maus bedienbar
+
+Auf der Mars Commuter Demo-Website (die absichtlich so gestaltet wurde, dass sie viele Fehler
+bei der Barrierefreiheit aufweist), kann das Steuerelement, mit dem der Benutzer eine weitere Fahrt hinzufügen kann, nur per Mausklick
+aktiviert werden; es kann nicht über die Tastatur aktiviert werden.
+
+Der Screenshot unten zeigt das Steuerelement "Reise hinzufügen", bevor es ausgewählt wird.
+
+![Steuerung nur mit Maus bedienbar](/images/eingabemethoden/mars-addtrip1.png)
+
+Der Screenshot unten zeigt das Steuerelement "Reise hinzufügen", nachdem es ausgewählt wurde und neue Formularfelder eingefügt wurden.
+
+![Steuerung nur mit Maus bedienbar 2](/images/eingabemethoden/mars-addtrip2.png)
+
+#### Gutes Beispiel: Standardkontrollen verwenden
+
+Die Verwendung von Standard-HTML-Formularsteuerelementen und Link-Elementen garantiert die Tastaturbedienung. User Agents stellen die
+Tastaturbedienung von Standardsteuerelementen zur Verfügung und bilden sie zusätzlich auf eine Accessibility-API ab. Die API wird dann von
+assistiven Technologien verwendet, um die notwendigen Informationen zu extrahieren und sie dem Nutzer zuzuordnen.
+
+Zu den Standardsteuerelementen und Links gehören:
+
+- `<a>`
+
+- `<button>`
+
+- `<fieldset>`
+
+- `<input>` (verschiedene Arten, einschließlich, aber nicht beschränkt auf: "text", "checkbox", "radio")
+
+- `<select>`
+
+- `<textarea>`
+
+## Tastatur-Fallen
+
+### Der Tastaturfokus muss nicht in einem bestimmten Seitenelement gesperrt oder gefangen sein, und der Nutzer muss in der Lage sein, zu und von allen navigierbaren Seitenelementen nur mit der Tastatur zu navigieren.
+
+Es ist wichtig sicherzustellen, dass Webinhalte den Tastaturfokus von Nutzern, die sich auf die Tastaturfunktionen verlassen, nicht
+"einfangen". Tastaturfallen können auftreten, wenn Elemente wie benutzerdefinierte Widgets, eingebettete Anwendungen und andere
+Inhaltsformate auf einer Seite vorhanden sind. Wenn es auf einer Webseite eine Tastaturfalle gibt, kann man ihr manchmal nur entgehen,
+indem man entweder die Maus benutzt (was für manche Tastaturbenutzer/innen einfach keine Option ist) oder die Webseite aktualisiert.
+Tastaturfallen können die Interaktion mit Webinhalten für Tastaturbenutzer/innen extrem erschweren.
+
+Es gibt einige Möglichkeiten, wie Tastaturfallen vermieden werden können:
+
+- Vergewissere dich, dass die Möglichkeit, durch einen bestimmten Abschnitt der Webseite zu navigieren (normalerweise die Tabulatortaste),
+  diesen Abschnitt überspringen kann.
+
+- Erstelle einen Tastaturanschlag, um den Abschnitt zu verlassen (du musst den Nutzern Anweisungen dazu geben).
+
+## Fokusmanagement während Interaktionen
+
+### Der Fokus muss absichtlich verschoben oder (über JavaScript) auf das entsprechende Element gesetzt werden, wenn die Aktion des Nutzers eine Änderung des Kontexts oder der Position für eine effektive Tastatur- oder Touch-Interaktion erfordert.
+
+Eine der größten Herausforderungen bei der Erstellung von Rich Web Interfaces mit JavaScript ist die Verwaltung des Fokus, wenn neue Inhalte
+oder Steuerelemente auf der Seite hinzugefügt oder entfernt werden. Immer wenn ein neuer Inhalt auf der Seite erscheint, weil der Nutzer ein
+Steuerelement aufgerufen hat, muss der Interaktionsfluss zirkulär sein, damit der Nutzer zu der Stelle zurückkehrt, an der die Interaktion
+begonnen hat. Normalerweise ist dieser zirkuläre Fluss implizit, d. h., dass Nutzer/innen ohne Behinderungen natürlich dort weitermachen, wo
+sie aufgehört haben. Aus Sicht der Barrierefreiheit erwarten Nutzer/innen mit Behinderungen dieselbe Interaktion und deshalb muss der Fokus
+wieder auf den Punkt gelenkt werden, an dem ihre Interaktion begonnen hat.
+
+Die Präsentation oder Änderung von Inhalten auf dem Bildschirm kann es erforderlich machen, dass der Nutzer mit dem neuen oder geänderten
+Inhalt interagiert oder ihn zumindest zur Kenntnis nimmt. Es ist wichtig, dass der aktualisierte Seiteninhalt deutlich gekennzeichnet ist.
+#So kann der/die Nutzer/in die Änderung nachvollziehen und auch ein/e Tastaturbenutzer/in kann mit den neuen Inhalten interagieren. Wie dies
+geschieht, hängt oft von der Art und Beschaffenheit des Inhalts ab. Ein Beispiel:
+
+- Bei Inhalten, die dem Bildschirm als Reaktion auf ein vom Nutzer ausgelöstes Ereignis hinzugefügt werden, sollte der Fokus auf den neuen
+  Inhalt verschoben werden.
+
+- Bei Inhalten, die als Reaktion auf ein vom Nutzer ausgelöstes Ereignis vom Bildschirm entfernt werden, sollte der Fokus auf die nächste
+  logische Stelle in der Interaktion verschoben werden.
+
+### Der Fokus muss nicht verloren gehen oder an den Anfang der Seite zurückgesetzt werden, außer beim Laden oder Neuladen einer Seite.
+
+Wenn ein Nutzer eine Funktion, z. B. einen Dialog, aktiviert oder deaktiviert, muss der Fokus immer der Aktion folgen. Der Fokus muss in
+das aktivierte Element gehen (z. B. in einen Dialog) und nach der Deaktivierung einer Funktion muss der Fokus entweder zum ursprünglichen
+Steuerelement zurückkehren (z. B. zur Schaltfläche, die den Dialog geöffnet hat) oder an einen anderen logischen Ort gehen, je nach Kontext.
+
+Wenn der Fokus nach der Deaktivierung des Elements, das gerade im Fokus ist, nicht an eine bestimmte Stelle gesetzt wird, geht der Fokus
+verloren und der Fokus kehrt an den Anfang des DOM zurück. Für Tastaturbenutzer ist es frustrierend, wenn sie mit der Tabulatortaste zu
+ihrer ursprünglichen Position zurückkehren müssen. Auch Screenreader-Nutzer können verwirrt sein und sich fragen, ob sie auf einer anderen
+Seite gelandet sind oder ob die Seite neu geladen wurde.
+
+### Wenn der Fokus verschoben oder gesetzt wird, muss das Zielelement einen programmatisch bestimmbaren Text enthalten.
+
+Wenn du den Fokus mit JavaScript an einen bestimmten Teil der Webseite sendest, muss der Container einen programmatisch bestimmbaren Text
+enthalten, den der Screenreader lesen kann. Andernfalls bleibt der Screenreader stumm und die Benutzer wissen nicht, dass etwas passiert
+ist oder dass sich der Fokus überhaupt bewegt hat.
+
+## Das ARIA-Tastatur-Interaktionsmodell
+
+Da sich das Web von einem reinen Dokumentenmodell zu einem interaktiven Anwendungsmodell mit allen Funktionen entwickelt hat, hatten
+JavaScript-Programmierer manchmal Schwierigkeiten, Tastaturinteraktionsmuster zu finden, die für das Web sinnvoll sind. Die Interaktionen
+im Web beschränkten sich in der Regel auf die Verwendung der Tabulatortaste und der Eingabetaste, während die Pfeiltasten nur selten
+verwendet wurden. Im Gegensatz dazu gibt es in Betriebssystemen wie Windows, macOS und Linux ausgefeiltere Tastaturdesignmuster, die die
+gesamte Bandbreite der Tastaturoptionen ausnutzen und die Pfeiltasten sowie Modifikatortasten wie Strg, Alt, Shift, Befehl, Funktionstasten
+(F1, F2, F3 usw.) usw. ausgiebig verwenden.
+
+### ARIA Tastatur Best Practices
+
+ARIA enthält Tastaturinteraktionsmuster, die mehr dem Desktop-Modell entsprechen, um JavaScript-Programmierern mehr Flexibilität zu geben
+und den Nutzern eine konsistentere und effizientere Erfahrung in Desktop- und Webanwendungen zu ermöglichen. Der <a
+href="https://www.w3.org/WAI/ARIA/apg/" target="_blank">ARIA Authoring Practices Guide (APG)</a> enthält empfohlene Tastaturinteraktionsmuster
+für viele der gängigsten Arten von <a href="https://www.w3.org/WAI/ARIA/apg/patterns/" target="_blank">Mustern und Widgets</a> wie Akkordeons,
+Autovervollständigung, modale Dialoge, Menüs, Baumansichten und so weiter.
+
+### Mit der Tabulatortaste zum Widget; mit den Pfeiltasten im Widget
+
+Im Allgemeinen lässt sich das ARIA-Muster so beschreiben: Die Nutzer/innen wechseln mit der Tabulatortaste zum Widget und verwenden dann
+die Pfeiltasten (nicht die Tabulatortaste), um innerhalb des Widgets zu navigieren. Manchmal stehen auch andere Tasten zur Verfügung, z. B.
+Home, End, Page Up, Page Down usw., aber die Pfeiltasten sind die wichtigste Navigationstaste in ARIA-Widgets. Dann können die Nutzer/innen
+das Widget mit einem einzigen Tastendruck verlassen.
+
+Auf diese Weise ersparen uns die ARIA-Entwurfsmuster auch Tastenanschläge: einmal Tabulator, um in das Objekt zu gelangen, und ein zweites
+Mal Tabulator, um es wieder zu verlassen. Das Navigieren innerhalb des Objekts ist optional und erfolgt mit den Pfeiltasten (und manchmal
+auch mit anderen Tasten), aber nur, wenn wir das wollen.
+
+## Tastaturkurzbefehle
+
+### Auf der Seite angegebene Tastenkombinationen und Zugriffstasten müssen nicht mit bestehenden Tastenkombinationen im Browser, im Betriebssystem oder mit unterstützenden Technologien in Konflikt geraten.
+
+Wenn seitenabhängige Tastenkombinationen oder Zugriffstasten für eine Webseite erstellt werden, dürfen diese Tastenkombinationen und
+Zugriffstasten nicht mit den Tastenkombinationen des Browsers oder den Tastenkombinationen von Hilfstechnologien kollidieren.
+
+Wenn ein seitenbezogenes Tastaturkürzel oder eine Zugriffstaste mit einer unterstützenden Technologie wie einem Bildschirmlesegerät
+kollidiert, setzt das Bildschirmlesegerät das Kürzel oder die Zugriffstaste in der Regel außer Kraft, so dass das benutzerdefinierte Kürzel
+für Bildschirmlesegerät-Benutzer nicht verfügbar ist. Wenn sich JAWS und NVDA zum Beispiel im Dokumentenmodus befinden, setzen sie die
+benutzerdefinierte Tastenkombination außer Kraft. Wenn sich diese Bildschirmlesegeräte jedoch im Anwendungsmodus befinden, erlauben sie es
+der Webseite, die Tastaturkürzel festzulegen. Außerdem erlaubt der Formularmodus dieser Bildschirmlesegeräte die Eingabe von Zeichen.
+Daher sind seitenabhängige Tastenkombinationen und Zugriffstasten ein Problem, wenn benutzerdefinierte Tastenkombinationen mit den
+Tastenkombinationen im Dokumentenmodus von JAWS und NVDA in Konflikt geraten. Ähnlich wie bei JAWS und NVDA im Dokumentenmodus sind
+benutzerdefinierte Tastenkombinationen ein Problem, wenn sie mit den Tastenkombinationen im Scanmodus von Narrator in Konflikt geraten.
+
+Wie bei VoiceOver sind widersprüchliche benutzerdefinierte Tastenkombinationen problematisch, wenn der Benutzer des Screenreaders die
+Navigation mit nur einer Taste aktiviert hat.
+
+## Anweisungen für die Tastatur geben
+
+### Wenn für die Verwendung einer Komponente ein benutzerdefiniertes Tastaturverhalten erforderlich ist, müssen Tastaturanweisungen bereitgestellt werden.
+
+Was ist, wenn deine JavaScript-Widgets zu 100 % über die Tastatur bedienbar sind, aber die Leute nicht wissen, wie sie sie benutzen sollen?
+Du könntest sagen: "Ich habe meinen Teil getan. Sie werden es schon herausfinden." Aber es gibt so viele Möglichkeiten, gemeinsame
+interaktive Widgets zu erstellen, dass es für die Nutzer/innen frustrierend sein kann, wenn sie nicht wissen, welches Interaktionsmuster
+du verwendest. Vielleicht hast du aber auch ein neues, einzigartiges, hochmodernes, individuelles Widget entwickelt, mit dem noch niemand
+zuvor interagiert hat. Du hast darauf geachtet, dass alle Interaktionen nicht nur mit der Maus, sondern auch mit der Tastatur möglich sind;
+lass deine Nutzer das wissen!
+
+Denke daran, dass es zwei Hauptgruppen gibt, für die die Tastatur zugänglich ist:
+
+- Sehende Tastaturbenutzer
+
+- Blinde Benutzer von Bildschirmlesegeräten
+
+Entwickler neigen dazu, sehende Tastaturbenutzer zu vergessen, also pass auf, dass du das nicht tust. Halte die Nachricht kurz. Sie
+könnte zum Beispiel so lauten: "Gehe mit der Tabulatortaste zu XXX, benutze die Pfeiltasten nach oben und unten zu YYY und die Pfeiltasten
+nach links und rechts zu ZZZ."
+
+Hier sind einige Möglichkeiten, wie du Tastaturanweisungen geben kannst:
+
+- Schreibe die Anweisungen oberhalb des Widgets, damit sie jeder sehen kann.
+
+- Lass die Anweisungen als Pop-up-Tooltip erscheinen, wenn das Widget den Fokus erhält. Verwende aria-live, um den Text im Tooltip für
+  Screenreader anzuzeigen.
+
+- Lass die Anweisungen als normalen Text erscheinen, wenn das Widget den Fokus erhält. Erwäge, eine Kontur oder eine Hintergrundfarbe
+  hinzuzufügen, um die Aufmerksamkeit von sehenden Nutzern auf den Text zu lenken. Verwende aria-live, um den Text für Bildschirmleser
+  anzukündigen.
+
+Du kannst dir vielleicht auch andere Methoden ausdenken, um den Benutzer über das Tastaturmuster zu informieren. Achte nur darauf, dass
+deine Methoden sowohl für sehende Tastaturbenutzer als auch für blinde Bildschirmlesegerätebenutzer funktionieren.
+
+#### Gutes Beispiel: Tastaturanweisungen für ein benutzerdefiniertes Widget
+
+Der Screenshot unten zeigt ein Beispiel für sichtbare Tastaturanweisungen, die auf der Homepage für das Online-Spiel Mario verfügbar sind:
+
+HOW TO PLAY
+
+Use the arrow keys to move, and Z to jump, avoid most things that move! As you get better, try X for running/attack and S for an alternate
+attack...
+
+![Tastaturanweisungen für ein benutzerdefiniertes Widget](/images/eingabemethoden/instructions-video-game-callout.png)
+
+### ARIA-Widgets, die mehr als nur die Tabulatortaste erfordern, können für die Nutzer verwirrend sein, deshalb darfst du Anweisungen für die Tastatur geben.
+
+Selbst wenn ARIA-Widgets den ARIA-Authoring-Practice-Empfehlungen folgen, kann es sein, dass die Nutzer/innen mit den ARIA-Empfehlungen
+nicht vertraut sind und erwarten, dass sie mit der Tabulatortaste überall auf einer Website navigieren können. Du solltest überlegen, ob
+du Tastaturbenutzern einige Hinweise geben willst, damit sie wissen, wie sie mit deinen ARIA-Widgets, wie z. B. Baumansichten,
+Registerkarten und Datumsauswahlen, umgehen sollen. (Auf der Seite "Das ARIA-Tastaturinteraktionsmodul" findest du eine ausführlichere
+Beschreibung der Tastaturmuster für ARIA-Widgets).
+
+Hinweis:
+Je vertrauter sowohl Nutzer als auch Entwickler mit den ARIA-Tastaturinteraktionsmustern werden, desto geringer wird der Bedarf an
+Anleitungen für Standard-ARIA-Interaktionen.
+
+#### Gutes Beispiel: Tastaturanweisungen für einen ARIA-Tree
+
+Die folgenden Screenshots zeigen ein ARIA-Tree-Widget, das in der Seitennavigation einer Webseite verwendet wird. Der erste Screenshot zeigt
+den Standardzustand des Navigationsbaums. Der zweite Screenshot zeigt die Anweisungen, die über dem Baum erscheinen, wenn der Tastaturfokus
+auf das Baum-Widget gelegt wird.
+
+Der Standardzustand des ARIA-Tree-Widgets:
+
+![Tastaturanweisungen für einen ARIA-Tree](/images/eingabemethoden/aria-instructions-before.png)
+
+Tastaturanweisungen erscheinen über dem Baum-Widget, wenn es den Tastaturfokus erhält:
+
+![Tastaturanweisungen für einen ARIA-Tree 2](/images/eingabemethoden/aria-instructions-after.png)

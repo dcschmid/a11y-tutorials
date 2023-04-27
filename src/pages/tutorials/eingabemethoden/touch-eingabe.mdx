@@ -1,0 +1,267 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Touch-Eingabe'
+pubDate: 2023-04-27
+---
+
+Als die Zugänglichkeitsrichtlinien für Web-Inhalte (WCAG) 2.0 geschrieben wurden, waren Touch-Geräte - und
+mobile Geräte im Allgemeinen - noch nicht so fortschrittlich oder verbreitet wie heute, sodass die Richtlinien in dieser Hinsicht nicht
+so vollständig waren, wie sie sein könnten. Heute haben wir eine bessere Vorstellung davon, was bei der Zugänglichkeit von Touch- und
+Mobilgeräten zu berücksichtigen ist. Die WCAG 2.1 (die 2018 zu einer offiziellen Empfehlung wurde) enthält
+mehr Erfolgskriterien für mobile Geräte. In diesem Kursabschnitt geht es um die Touch-Funktionalität bei ein- und ausgeschaltetem
+Bildschirmlesegerät (zwei sehr unterschiedliche Bedingungen), die Größe des Touch-Ziels und die Fokus-Fallen. In zukünftigen Versionen
+der WCAG wird die Zugänglichkeit von Touch-Geräten eine größere Rolle spielen und stärker in die Richtlinien und Erfolgskriterien
+integriert sein.
+
+## Touch-Funktionalität
+
+### Die Funktionen sollten mit Standard-Touch-Methoden verfügbar sein, es sei denn, die Funktion kann auf bekannte Weise nicht mit einem Touch-Gerät ausgeführt werden.
+
+Tastatur- versus Klick-Ereignisse: Wenn du JavaScript mit Ereignishandlern schreibst, die nur Tastenanschläge verwenden (z. B. die linke und
+rechte Pfeiltaste, die "C"-Taste, die Tabulatortaste oder die Enter-/Return-Taste), ist es wahrscheinlich, dass Nutzer/innen auf
+Touch-Geräten nicht mit deinen gescripteten Inhalten interagieren können. Touch-Geräte sind auf Klick-Ereignisse angewiesen, die im
+Wesentlichen mit Mausklicks vergleichbar sind, um richtig zu funktionieren. Wenn dein Inhalt mit der Maus über Klick-Ereignisse zugänglich
+ist, ist er in der Regel auch für Touch-Geräte zugänglich.
+
+Drag-and-Drop-Ereignisse: Du kannst dich bei kritischen Vorgängen auf Touch-Geräten nicht auf Drag-and-Drop-Funktionen verlassen, denn
+obwohl einige Touch-Geräte Drag-and-Drop-Vorgänge erlauben, tun dies nicht alle. Selbst bei Geräten, die Drag & Drop unterstützen, gibt es
+Unterschiede in der Art und Weise, wie diese Funktion auf verschiedenen Betriebssystemen und Betriebssystemversionen implementiert werden
+muss, was das Skript anfällig und unzuverlässig macht. Wenn du eine Drag&Drop-Funktionalität einrichtest, betrachte sie als optionale
+Erweiterung, die die eigentliche Klickfunktionalität ergänzt.
+
+Skriptgesteuerte Gesten: Du kannst dich auch nicht auf Gestenaktionen auf Webseiten verlassen, da es Unterschiede zwischen den
+Betriebssystemen und Versionen gibt. Einige mobile Geräte unterstützen überhaupt keine Gesten. Die Gestenfunktionalität sollte als
+optionale Erweiterung zur Ergänzung der Klickfunktionalität betrachtet werden.
+
+#### Gutes Beispiel: Native Schaltfläche mit Klick-Aktion
+
+Diese Schaltfläche kann sowohl mit der Maus oder per Touch als auch mit der Tastatur bedient werden. Beachte, dass native Schaltflächen nur
+eine Klickaktion (.click() bei Verwendung von jQuery) für die Maus- und Tastaturfunktionalität benötigen. ARIA-Schaltflächen erfordern
+sowohl einen Click-Event-Handler als auch einen Keyboard-Event-Handler für Enter/Return und die Leertaste.
+
+Der JavaScript-Code für diese Schaltfläche - die nur mit der Eingabetaste funktioniert - ist unten abgebildet:
+
+```javascript
+$('#button-9111').click(function (e) {
+  alert('You activated the native button with a click action!')
+})
+```
+
+Der Code für die Schaltfläche selbst ist unten abgebildet:
+
+```html
+<p><button id="button-9111">Button 9</button></p>
+```
+
+#### Schlechtes Beispiel: Nur Eingabetaste Taste
+
+Diese Schaltfläche kann nur durch einen bestimmten Tastendruck (die Eingabe-/Returntaste) aktiviert werden, wodurch sie für diejenigen,
+die nur den Touch verwenden können, unzugänglich ist.
+
+Der JavaScript-Code für diese Schaltfläche - die nur mit der Eingabetaste funktioniert - ist unten abgebildet:
+
+```javascript
+$('#button-9112').on('keydown', function (e) {
+  if (e.keyCode == '13') {
+    alert('You pressed the ENTER key while focused on the custom button!')
+  }
+})
+```
+
+Der Code für die Schaltfläche selbst ist unten abgebildet:
+
+```html
+<p><span role="button" id="button-9112" tabindex="0">Button 2</span></p>
+```
+
+## Touch-Funktionalität bei eingeschaltetem Screen Reader
+
+### Die Funktionen sollten mit Touch-Methoden (z. B. Klick-Aktionen) verfügbar sein, es sei denn, die Funktionen können nicht auf bekannte Weise mit einem Touch-Gerät ausgeführt werden.
+
+Wenn du ein Bildschirmlesegerät auf einem Touch-Gerät aktivierst, deaktiviert das Bildschirmlesegerät alle geskripteten Gesten auf einer
+Webseite, weil das Bildschirmlesegerät selbst auf Gesten angewiesen ist, um zu funktionieren. Auf iOS-Geräten bewegt sich der Fokus des
+Bildschirmlesegeräts zum nächsten Element, wenn du nach rechts wischst, und zum vorherigen Element, wenn du nach links wischst. Das Wischen
+nach oben und unten auf iOS-Geräten ruft andere Screenreader-Verhaltensweisen auf. Wenn eine Webseite auf Swiping-Aktionen angewiesen ist,
+funktionieren diese Aktionen nicht, wenn das Lesegerät eingeschaltet ist.
+
+TODO: Examples einbauen
+
+## Touch Target Größe
+
+### Die Größe des Klick-/Touch-Ziels muss groß genug sein, um eine einfache Bedienung mit dem Finger zu ermöglichen, ohne zu riskieren, dass ein benachbarter Link oder Button aktiviert wird.
+
+Menschen mit Behinderungen der Fingerfertigkeit und der Motorik werden besonders große Touch-Ziele schätzen. Manche Menschen haben ein
+Zittern der Hände oder unpräzise Handbewegungen. Andere Menschen können ihre Finger überhaupt nicht benutzen und müssen stattdessen andere
+Körperteile wie Knöchel, Ellbogen oder Zehen benutzen.
+
+Einige der Arten von Berührungszielen, die wir berücksichtigen müssen, sind:
+
+- Links
+
+- Menus
+
+- Submit Buttons
+
+- Checkboxes
+
+- Radio buttons
+
+- Text input fields
+
+- Select fields (comboboxes)
+
+- Custom widget controls (media player buttons, for example)
+
+Touch-Ziele sollten auf dem Gerät mindestens 9,6 mm (0,38 Zoll) breit sein. Idealerweise wären sie auch mindestens 9,6 mm hoch, aber das
+kann in manchen Fällen schwieriger zu erreichen sein, besonders bei Inline-Links.
+
+Angesichts der großen Vielfalt an Größen, Auflösungen und Pixeldichten von Mobilgeräten kann es eine Herausforderung sein, 9,6 mm zu messen.
+Es ist hilfreich, das tatsächliche Gerät zu haben, um genaue Messungen vorzunehmen:
+
+- Für native Apps:
+
+  - Auf Geräten mit Standardauflösung solltest du die Breite auf mindestens 44 Pixel (gemäß den Empfehlungen von Apple) oder 48 Pixel
+    (gemäß den Empfehlungen von Google) einstellen. Bei Android ist es am besten, die Größe 48px zu verwenden, da das Android-Layoutraster
+    verwendet wird.
+
+  - Bei Geräten mit doppelter Pixeldichte (z. B. Apple Retina-Bildschirme) solltest du die Breite auf mindestens 88px-96px in Bezug auf
+    die tatsächlichen Bildschirmabmessungen einstellen.
+
+- Auf Webseiten:
+
+  - Setze die Breite im CSS auf mindestens 44px (das 48px-Layoutraster von Android ist im Web weniger relevant, aber es schadet nicht, die
+    Touch-Ziele größer zu machen). Bei Geräten mit Standardauflösung wird die Seite mit 44px dargestellt und bei Geräten mit doppelter
+    Dichte wird der Wert interpoliert und mit dem Äquivalent von 44px dargestellt, auch wenn der tatsächliche Wert 88px beträgt.
+
+Weitere Informationen zur Zielgröße findest du im <a href="https://www.w3.org/WAI/WCAG21/quickref/#target-size" target="_blank">
+Referenzhandbuch How to Meet WCAG</a>
+
+#### Gutes Beispiel: Gutes Sizing
+
+Dies sind Schaltflächen in angemessener Größe, die auf einer Seite für die mobile Nutzung angebracht werden. Sie sind für die meisten Touch-Benutzer leicht zugänglich und gut sichtbar.
+
+Hier sind einige Beispielbuttons, die beide die Mindestgröße für mobile Geräte erfüllen (sieh sie dir auf einem mobilen Gerät an, um die genaueste Größe zu erhalten).
+
+44px Schaltfläche Senden
+
+<input
+  style="display: inline-block;height: 44px !important;width: 44px !important;background-color: #e8fae9;color: #000000;padding:0.5rem"
+  type="submit"
+  name="submit1"
+  class="button"
+  onclick="alert('You clicked on the button measuring 44 x 44')"
+  value="Go"
+/>
+
+48px Schaltfläche Senden
+
+<input
+  style="display: inline-block;height: 48px !important;width: 48px !important;background-color: #e8fae9;color: #000000;padding:0.7rem"
+  type="submit"
+  name="submit1"
+  class="button"
+  onclick="alert('You clicked on the button measuring 48 x 48')"
+  value="Go"
+/>
+
+#### Schlechtes Beispiel: Kleines Ziel berühren
+
+Nutzer mit Zittern oder anderen motorischen Behinderungen werden es schwer finden, auf die folgende Schaltfläche zu klicken, die
+24 x 24 Pixel groß ist:
+
+<input
+  style="background-color: #fcf0f0;height: 24px;width: 24px;padding: 0; color: #000000;"
+  type="submit"
+  name="submit3"
+  class="button"
+  onclick="alert('You clicked on the button measuring 24 x 24')"
+  value="Go"
+/>
+
+#### Schlechtes Beispiel: Visuelles Padding, das nicht Teil des Berührungsziels ist
+
+Die Links unten scheinen einen großen Zielbereich zu haben, aber das ist nicht der Fall. Die Polsterung um den Link herum und die visuelle
+Gestaltung (hellrote Hintergrundfarbe mit roter Umrandung) erwecken den Eindruck, dass die Links groß sind, aber sie sind tatsächlich nicht
+größer als der Text innerhalb des Links. Der Zielbereich ist immer noch kleiner als für mobile Geräte empfohlen.
+
+<ul class="targetLinkBad">
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding:10px 20px;border:1px solid #990000;border-radius: 5px; color: #000">
+    <a style="color: #000" href="javascript:;" onclick="alert('You clicked on link 1')">
+      1
+    </a>
+  </li>
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding:10px 20px;border:1px solid #990000;border-radius: 5px; color: #000">
+    <a style="color: #000" href="javascript:;" onclick="alert('You clicked on link 1')">
+      2
+    </a>
+  </li>
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding:10px 20px;border:1px solid #990000;border-radius: 5px; color: #000">
+    <a style="color: #000" href="javascript:;" onclick="alert('You clicked on link 1')">
+      3
+    </a>
+  </li>
+</ul>
+
+## Fokusfalle
+
+### Der Fokus von Berührungen/Gesten sollte nicht in einem bestimmten Seitenelement gesperrt oder gefangen sein, und der/die Nutzer/in sollte in der Lage sein, mit Standard-Touch-Aktionen oder -Gesten zu und von allen navigierbaren Seitenelementen zu navigieren.
+
+Im Allgemeinen gelten die gleichen Regeln und Techniken für Tastaturfallen auch für Touch-Fokusfallen, aber das Fokusverhalten auf
+Touch-Geräten mit aktivierten Screenreadern kann etwas heikel sein, vor allem wenn JavaScript im Spiel ist.
+
+onblur und onfocus: Wenn ein Skript von einem onblur- oder onfocus-Ereignis abhängt, besteht je nach Struktur des Skripts die Möglichkeit,
+dass das Skript auf einem Touch-Gerät mit eingeschaltetem Bildschirmlesegerät nicht richtig funktioniert, weil der Fokus des
+Bildschirmlesegeräts (das Element, das gerade gelesen und hervorgehoben wird) nicht unbedingt mit dem programmatischen Tastaturfokus
+übereinstimmt. Das Bildschirmlesegerät kann einen Satz, einen Absatz, einen Link oder eine Schaltfläche markieren und lesen, ohne den
+programmatischen Fokus auf diese Elemente zu setzen. Wenn du onblur- oder onfocus-Ereignisse verwendest, solltest du sie gründlich mit
+Touch-Geräten testen, und zwar sowohl bei ausgeschaltetem als auch bei eingeschaltetem Screenreader.
+
+aria-hidden="true": Wenn aria-hidden="true" auf ein Element gesetzt wird, das auf dem Bildschirm sichtbar ist (was fast immer schlecht ist),
+kann sich das negativ auf das Swipe-Verhalten des Screenreaders auswirken und dazu führen, dass der Screenreader den Fokus verliert oder
+den Fokus einfängt.
+
+Off-Screen-Stile: Die Technik des Ausblendens von Elementen außerhalb des Bildschirms (z. B. die absolute Positionierung eines Elements
+weit links außerhalb des sichtbaren Bereichs) kann für mobile Bildschirmlesegeräte Probleme verursachen, auch wenn diese Technik in
+Desktop-Browsern und Bildschirmlesegeräten als relativ sicher gilt. In verschiedenen iOS-Versionen wurden verschiedene Fokusprobleme in
+Bezug auf diese CSS-Technik gemeldet.
+
+Insgesamt ist es nicht vorhersehbar, welche JavaScript-Verhaltensweisen auf Touch-Geräten zu Fokusproblemen führen - und die Fehler sind
+etwas unbeständig, da sie zwischen verschiedenen Versionen unerwartet auftauchen und wieder verschwinden - daher ist es nicht besonders
+produktiv, alle Situationen zu dokumentieren, in denen Tastaturfallen und Fokusprobleme auftreten können. Am besten testest du deine Skripte
+einfach auf mobilen Geräten mit ein- und ausgeschaltetem Bildschirmlesegerät, am besten auf verschiedenen Plattformen und Versionen.
+
+## Zeigergesten
+
+### Alle Funktionen, die Mehrpunkt- oder pfadbasierte Gesten zur Bedienung verwenden, müssen auch mit einem einzelnen Zeiger ohne pfadbasierte Geste bedient werden können, es sei denn, eine Mehrpunkt- oder pfadbasierte Geste ist unerlässlich.
+
+Aus verschiedenen Gründen, wie z. B. Mobilitätsproblemen oder der Verwendung von Hilfstechnologien, sind Nutzer/innen möglicherweise nicht in
+der Lage, komplexe Gesten mit den Fingern oder dem Zeiger auszuführen, um Funktionen auf einer Website oder in einer Anwendung zu
+aktivieren. Diese Gesten können Mehrpunktgesten sein, bei denen der Nutzer mehrere Finger benutzen muss (z. B. Zoom mit zwei Fingern),
+oder pfadbasierte Gesten, bei denen der Nutzer den Finger oder Zeiger in einem bestimmten Pfad bewegen muss (z. B. Wischen).
+
+Mit diesem Kriterium soll sichergestellt werden, dass jede Funktion, die durch eine komplexe Geste aktiviert wird, auch durch andere,
+leichter zugängliche Mittel aktiviert werden kann, wie z. B.:
+
+- Einfachklick, Doppelklick und Klicken-und-Halten
+
+- Einfaches Tippen, doppeltes Tippen und langes Drücken
+
+Ein Beispiel für eine wesentliche Ausnahme wäre das Zeichnen einer Unterschrift auf einem Touchscreen eines mobilen Geräts. Beachte jedoch,
+dass auf nicht-mobilen Geräten ohne Touchscreen Webseiten elektronische Unterschriften verwenden, die dich auffordern, deinen Namen
+einzutippen, anstatt zu unterschreiben, so dass die Zeigergeste dort nicht wesentlich wäre.
+
+#### Schlechtes Beispiel: Pfadbasierte Geste ohne alternative Zeigerbedienung
+
+Das Beispiel unten zeigt eine Bildergalerie für einen zu verkaufenden Drachen. Ein Nutzer eines mobilen Geräts kann zum nächsten Bild
+wischen, aber er kann nicht mit einem einfachen Tippen zum nächsten Bild gehen. Er muss erst auf die Hauptgalerie tippen und dann das
+nächste Bild auswählen.
+
+![Pfadbasierte Geste ohne alternative Zeigerbedienung](/images/eingabemethoden/bad-example-path-based.png)
+
+#### Gutes Beispiel: Ein-Klick oder Ein-Tipp
+
+Dies ist die gleiche Bildergalerie wie oben, aber auf einem Desktop-Computer. In dieser Version enthält die Galerie Schaltflächen zum
+Zurück- und Vorwärtsgehen, mit denen der Nutzer mit einem Klick durch die Galerie blättern kann (oder mit einem Tippen, wenn der Computer
+einen Touchscreen hat).
+
+![Ein-Klick oder Ein-Tipp](/images/eingabemethoden/good-example-single-click-tap.png)
