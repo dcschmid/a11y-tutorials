@@ -1,0 +1,96 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Bewegung, verschwindende Inhalte und Übergänge'
+pubDate: 2023-04-27
+---
+
+Interaktive Elemente, die sich über den Bildschirm bewegen, sind schwer zu bedienen. Animationen und Übergänge zwischen Ereignissen
+können Probleme bei der barrierefreien Eingabe verursachen, wenn sie zu schnell, zu kurz oder zu aufdringlich sind oder wenn sie auf
+andere Weise die Maus-, Tastatur-, Touch- oder Sprachfunktionen beeinträchtigen. Entwickler/innen treffen manchmal Annahmen über
+Nutzer/innen, die nicht gerechtfertigt sind. Sie gehen z. B. davon aus, dass die Nutzer schnell lesen können oder visuell orientiert
+sind. Wenn Inhalte verschwinden, bevor Bildschirmleser sie finden können, wissen die Nutzer/innen gar nicht, dass der Inhalt
+überhaupt da war. Und wenn sich Elemente auf dem Bildschirm bewegen, kann es für Maus- und Touch-Benutzer schwierig sein, die sich
+bewegenden Schaltflächen, Links oder Steuerelemente zu aktivieren.
+
+## Motion Actuation
+
+### Funktionen, die durch die Bewegung des Geräts oder des Nutzers ausgelöst werden können, müssen auch von den Komponenten der Benutzeroberfläche bedient werden können und die Möglichkeit bieten, die Bewegungsaktivierung zu deaktivieren.
+
+Beispiele für Bewegungssteuerung sind das Schütteln deines Telefons oder die Geste in Richtung Kamera, um ein Foto zu machen. Die
+Benutzer müssen die Möglichkeit haben, dieselben Funktionen mit Komponenten der Benutzeroberfläche auszuführen (z. B. den Auslöser
+einer Kamera zu betätigen). Außerdem müssen die Benutzer/innen die Möglichkeit haben, die Bewegungsauslösung zu deaktivieren, damit
+sie sie nicht versehentlich auslösen.
+
+Es gibt Ausnahmen von dieser Regel:
+
+- Die Bewegung wird verwendet, um eine Funktion über eine barrierefreie Schnittstelle zu bedienen (d. h. sie wird sowohl von
+  assistiver Technologie als auch von Funktionen in Browsern und anderen User Agents unterstützt).
+
+- Die Bewegung ist für die Funktion unerlässlich (z. B. bei einem Schrittzähler oder GPS-basierten Anwendungen).
+
+## Verschieben oder Verschwinden von Inhalten
+
+### Der Inhalt darf sich nicht so bewegen, dass interaktive Elemente schwer zu aktivieren sind.
+
+Wenn sich bewegende oder verschwindende Inhalte mit einer hohen Geschwindigkeit animiert werden, ist es für Benutzer von Hilfsmitteln
+schwierig, mit den Inhalten zu interagieren. Benutzer, die nur die Tastatur benutzen, haben möglicherweise Schwierigkeiten, den
+Fokus auf das Element zu setzen oder den Fokus auf das Element zu sehen. Nutzer/innen mit motorischen Einschränkungen, die eine
+Maus oder mausähnliche Geräte verwenden, haben möglicherweise Schwierigkeiten mit dem Timing, das für die Aktivierung des sich
+bewegenden Elements erforderlich ist, und Nutzer/innen von Bildschirmlesegeräten können Inhalte, die zu schnell von der Webseite
+verschwinden, möglicherweise nicht wahrnehmen. Außerdem kann die schnelle Bewegung von Inhalten für bestimmte Nutzer/innen,
+einschließlich Nutzer/innen mit kognitiven Einschränkungen, schwindelerregend oder ablenkend sein. Interaktive Elemente innerhalb
+von Inhalten, die sich bewegen, sollten nicht schwer zu aktivieren sein, und Elemente sollten nicht verschwinden, bevor ein Nutzer
+die Möglichkeit hat, sie zu aktivieren.
+
+#### Schlechtes Beispiel: Ein Link innerhalb eines Marquees
+
+In diesem Beispiel ist es schwierig, den Link zu aktivieren, der sich in der Bildlaufleiste befindet.
+
+TODO: Beispiel
+
+#### Schlechtes Beispiel: Bestätigungsnachricht, die verschwindet
+
+Der Link in diesem Beispiel führt dich auf eine Seite, auf der du, wenn du die Schaltfläche "Dateien löschen" auswählst, bestätigen
+musst, ob du die Dateien löschen willst oder nicht. Aber sobald die Bestätigungsmeldung erscheint, verschwindet sie, bevor du das
+Löschen bestätigen kannst.
+
+TODO: Beispiel
+
+## Übergänge, die die Interaktion beeinflussen
+
+### Übergänge dürfen das Lesen oder die Interaktion nicht stören, es sei denn, die Störung ist kurz.
+
+Animierte Übergänge auf einer Webseite dürfen die Benutzer/innen nicht beim Lesen einer Webseite oder bei der Interaktion mit einer
+Webseite stören. Langsame Übergänge (Übergänge, die länger als 5 Sekunden dauern) auf einer Webseite können Nutzer mit kognitiven
+Einschränkungen ablenken und bei Nutzern, die empfindlich auf Bewegungen reagieren, Schwindelgefühle auslösen. Außerdem kann es
+vorkommen, dass Hilfsmittel wie Bildschirmlesegeräte mit der Darstellung des Webseiteninhalts beginnen, bevor ein langsamer Übergang
+abgeschlossen ist, so dass Nutzer/innen von Bildschirmlesegeräten den im Übergang enthaltenen Inhalt verpassen. Schnelle Übergänge
+(5 Sekunden oder kürzer) können verwendet werden, solange sie das Lesen und die Interaktion auf der Webseite nicht beeinträchtigen.
+
+#### Gutes Beispiel: Schneller Übergang
+
+In diesem Beispiel gibt es eine Benachrichtigung, die in einer halben Sekunde vom oberen Bildschirmrand nach unten gleitet,
+während der Rest der Seite nach unten geschoben wird. Die Geschwindigkeit des Übergangs minimiert die Schwierigkeiten beim Lesen
+oder bei der Interaktion mit der Webseite. Auch die Tatsache, dass die Benachrichtigung relativ klein ist, wirkt sich kaum auf das
+Lesen und die Interaktion aus.
+
+TODO: Beispiel
+
+#### Schlechtes Beispiel: Langsame Übergänge, die das Lesen und die Interaktion auf der Webseite beeinträchtigen
+
+Der Link in diesem Beispiel führt dich zu einer Webseite mit einer Benachrichtigung am oberen Rand der Webseite, die langsam durch
+einen visuellen Übergang aufgedeckt wird, der den Seiteninhalt nach unten schiebt und so die Fähigkeit des Nutzers beeinträchtigt, die
+Webseite zu lesen und mit ihr zu interagieren. Durch die Größe der Benachrichtigung am oberen Rand dauert der Übergang länger, was
+das Problem noch verschlimmert.
+
+TODO: Beispiel
+
+### Die Übergangseffekte sollten so gering wie möglich gehalten werden (um Übelkeit, Schwindel, Ärger usw. zu vermeiden).
+
+Auch wenn schnelle Übergänge auf einer Webseite verwendet werden können, ist es wichtig, sie auf ein Minimum zu beschränken, um zu
+viele Ablenkungen auf einer Webseite zu vermeiden. Außerdem kann die häufige Verwendung von Übergängen bei bewegungsempfindlichen
+Nutzerinnen und Nutzern zu Übelkeit oder Schwindel führen.
+
+### Parallaxen-Effekte sollten auf ein Minimum beschränkt werden, was die Gesamtzahl der Parallaxen-Effekte, die Stärke der Parallaxe in jedem einzelnen Effekt und die Größe des betroffenen Bereichs angeht.
+
+Je mehr Parallaxeneffekte du einbaust und je extremer sie sind, desto größer ist das Risiko, dass du bei Menschen mit Gleichgewichtsstörungen Probleme verursachst.
