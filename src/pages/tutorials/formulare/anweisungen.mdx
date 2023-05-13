@@ -1,0 +1,1178 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Anweisungen & andere hilfreiche Informationen'
+pubDate: 2023-05-06
+---
+
+Eine der einfachsten Möglichkeiten, die Barrierefreiheit von
+Formularen zu erhöhen, besteht darin, den Nutzern zu helfen,
+Fehler zu vermeiden, bevor sie überhaupt passieren. Es ist
+wichtig, dass den Nutzern Anweisungen und andere hilfreiche
+Informationen zur Verfügung gestellt werden, damit sie ein
+Formular erfolgreich online ausfüllen können. In diesem
+Abschnitt werden wir erörtern, wie Anweisungen und hilfreiche
+Daten programmgesteuert für Benutzer/innen mit assistiver
+Technologie und visuell für sehende Benutzer/innen
+bereitgestellt werden können. Alles in allem müssen wir
+Folgendes beachten, wenn es um Anleitungen und andere
+nützliche Informationen für Formulare geht:
+
+- Stelle sicher, dass die Labels und Anweisungen klar und
+  informativ sind.
+
+- Mache Anweisungen und Hinweise für unterstützende
+  Technologien verfügbar.
+
+- Gib die Einschränkungen für Formularfelder klar an.
+
+- Erforderliche Formularfelder klar kennzeichnen.
+
+## Anweisungen für Formulare, Gruppen und Abschnitte
+
+### Anweisungen für Gruppen oder Abschnitte sollten programmatisch mit der Gruppe verknüpft werden.
+
+Wenn du normalen Text in der Mitte eines Formulars einfügst,
+besteht die Gefahr, dass Screenreader-Benutzer ihn nicht hören,
+denn wenn sie nur zu fokussierbaren Elementen navigieren,
+überspringen sie alle nicht fokussierbaren Texte, es sei denn,
+dieser Text ist programmatisch mit einem Gruppen Label oder
+einer Eingabe verbunden.
+
+Obwohl es einen natürlichen Weg gibt, ein Gruppen-Label mit
+`<fieldset>` und `<legend>` zu erstellen, gibt es keinen
+natürlichen Weg, eine Beschreibung zu erstellen, die mit
+einer Gruppe verbunden ist. Das Hinzufügen von aria-describedby
+zum `<fieldset>`- oder `<legend>`-Element funktioniert nicht,
+also müssen wir ein bisschen kreativer werden.
+
+- Option 1: Füge die Anweisungen in die `<legend>` ein. Wenn die
+  Anweisungen kurz sind, ist es einfach und unauffällig, sie in den
+  `<legend>` einzufügen. Manche Bildschirmlesegeräte lesen jedoch
+  den gesamten `<legend>`-Text in jedem Formularfeld. Wenn die
+  Anweisungen also lang sind, kann es lästig sein, sie immer wieder
+  zu wiederholen. In gewisser Weise ist dies semantisch nicht ideal,
+  weil die Anweisungen nicht der Name der Gruppe sind, aber diese
+  Methode funktioniert, also kann sie eine akzeptable Lösung sein.
+
+- Option 2: Verbinde die Anweisungen mit einem der Felder (am
+  besten mit dem ersten Feld) innerhalb der Gruppe, indem du
+  aria-describedby verwendest. Auf diese Weise werden die
+  Gruppenanweisungen nur einmal gelesen und können von
+  Screenreadern nicht übersprungen werden, wenn sie zu
+  fokussierbaren Elementen navigieren.
+
+- Option 3: Setze die Anweisungen vor den Anfang des gesamten
+  Formulars, als normalen Text, der mit nichts verbunden ist, und
+  hoffe, dass Screenreadernutzer sie lesen, bevor sie in den
+  Formularmodus springen. Diese Option umgeht das ganze Problem
+  und legt die Last auf den Nutzer, was nicht ideal ist. Du
+  könntest jedoch argumentieren, dass der Text auf diese Weise
+  für sie verfügbar ist, solange sie das Dokument der Reihe nach
+  durchlesen, was viele Nutzer/innen wahrscheinlich ohnehin tun.
+  Setze den Text nur dann in die Mitte des Formulars, wenn du ihn
+  mit einer der Eingaben verknüpfst. Benutzer von
+  Bildschirmlesegeräten überlesen nicht zugeordneten Text viel eher.
+
+#### Gutes Beispiel: Gruppenanweisungen in `<legend>`
+
+In der Formulargruppe unten wird das Wort "Erforderlich" im `<legend>`
+verwendet, um zu zeigen, dass alles im Formular erforderlich ist.
+Bildschirmlesegeräte lesen den `<legend>`-Text, wenn die Benutzer den
+Fokus auf das erste Element im `<fieldset>` legen.
+
+```html
+<fieldset>
+<legend>Login Information (Required)</legend>
+  <label for="username">Username: </label>
+  <input type="text" id="username"></p>
+  <label for="password">Password: </label>
+  <input type="password" id="password"></p>
+</fieldset>
+```
+
+#### Gutes Beispiel: Mit aria-describedby verbundene Gruppenanweisungen
+
+Das Attribut aria-describedby wird verwendet, um die Anweisungen
+mit dem ersten Kennwortfeld in der folgenden Gruppe zu verknüpfen.
+Wir könnten die Anweisungen auch mit dem zweiten Kennwortfeld verknüpfen,
+da beide als Teil einer Gruppe von Kennwortfeldern betrachtet werden,
+aber in diesem Fall reicht eine Verknüpfung aus.
+
+```html
+<fieldset>
+  <legend>Create Account</legend>
+  <p><label for="username">Username: </label> <input type="text" id="username" /></p>
+  <p id="mustmatch">Password fields must match</p>
+  <p>
+    <label for="password">Password: </label>
+    <input type="password" id="password" aria-describedby="mustmatch" />
+  </p>
+  <p><label for="password2">Re-enter password: </label> <input type="password" id="password2" /></p>
+</fieldset>
+```
+
+#### Schlechtes Beispiel: Gruppenanweisungen in einem Absatz, der nicht mit der Gruppe verbunden ist
+
+Es ist wichtig, dass Anweisungen nicht einfach in einem `<p>`-Element
+platziert werden, ohne eine programmatische Verknüpfung wie aria-describedby
+zu verwenden. Wenn sich Informationen in einem `<p>`-Element oder einem
+anderen nicht fokussierbaren Element befinden, kann der Tabulator-Fokus
+im Formularmodus darüber hinweggehen.
+
+```html
+<fieldset>
+  <legend>Create Account</legend>
+  <p><label for="username">Username: </label> <input type="text" id="username" /></p>
+  <p>Password fields must match</p>
+  <p><label for="password">Password: </label> <input type="password" id="password" /></p>
+  <p>
+    <label for="password2-">Re-enter password: </label> <input type="password" id="password2-" />
+  </p>
+</fieldset>
+```
+
+#### Gutes Beispiel: Anweisungen in Verbindung mit mehreren Formularfeldern
+
+Normalerweise ist es am besten, Anweisungen entweder mit der Gruppe
+oder nur mit einem Formularfeld zu verknüpfen, aber manchmal kann
+es sinnvoll sein, dieselben Anweisungen mit mehreren Formularfeldern
+zu verknüpfen. In diesem Beispiel wird der Satz "darf keine Leerzeichen
+enthalten" sowohl mit dem Benutzernamen als auch mit dem Passwort
+verknüpft. Beachte, dass die vollständigen Anweisungen ("Benutzername
+und Passwort dürfen keine Leerzeichen enthalten") nicht mit jedem Feld
+verknüpft wurden, denn das wäre zu redundant gewesen.
+
+```html
+<fieldset>
+  <legend>Create Account</legend>
+  <p>
+    <strong>Username and password <span id="mustnot">must not contain spaces</span></strong>
+  </p>
+  <p>
+    <label for="username">Username:</label>
+    <input type="text" id="username" aria-describedby="mustnot" />
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" aria-describedby="mustnot" />
+  </p>
+</fieldset>
+```
+
+### Anweisungen für Gruppen oder Abschnitte müssen programmatisch bestimmbar sein.
+
+Wenn Anweisungen für Formulare und Formularabschnitte gegeben werden,
+ist es wichtig, dass echter Text oder Text, der über eine alternative
+Methode verfügbar ist, verwendet wird. Hilfstechnologien wie Screenreader
+müssen in der Lage sein, auf echten Text zuzugreifen, um Informationen
+für Benutzer von Hilfstechnologien darzustellen. Wenn programmatisch
+bestimmbarer Text nicht entweder durch echten Text oder durch Attribute
+wie aria-label, aria-labelledby, aria-describedby oder sogar alt, wenn
+Bilder verwendet werden, zur Verfügung gestellt wird, wäre es für
+unterstützende Technologien fast unmöglich, auf den Text zuzugreifen.
+
+#### Schlechtes Beispiel: Anweisungen in einem Bild ohne Alt-Text
+
+Die Anweisungen in diesem Beispiel werden in einem Bild dargestellt,
+aber ohne echten oder alternativen Text können Benutzer von
+Hilfsmitteln nicht auf die Anweisungen im Formular zugreifen.
+
+```html
+<div class="formborder">
+  <p class="center">
+    <img src="/assets/images/module-forms/forminstructions.png" alt="" width="700" />
+  </p>
+  <label for="fromaccount9088">From Account</label><br />
+  <select id="fromaccount9088">
+    <option value="Select" selected="">Select an account</option>
+    <option value="From checking">Checking account 12345</option>
+    <option value="From savings">Savings account 3483</option></select
+  ><br />
+  <label for="toaccount9088">To Account</label><br />
+  <select id="toaccount9088">
+    <option value="Select" selected="">Select an account</option>
+    <option value="To checking">Checking account 12345</option>
+    <option value="To savings">Savings account 3483</option></select
+  ><br />
+  <label for="amount9088">Amount</label><br />
+  <input id="amount9088" name="amount9088" type="text" /><br />
+</div>
+```
+
+#### Gutes Beispiel: Anweisungen mit echtem Text vor dem Formular
+
+In diesem Beispiel werden die Anweisungen in echtem Text mit einem
+Absatz-Tag vor dem Formular angegeben. Hilfsmittel wie
+Bildschirmlesegeräte können die Anweisungen im normalen Lesemodus
+des Dokuments abrufen.
+
+Hinweis: Um sicherzustellen, dass Bildschirmleser den Text auch im
+Formularmodus hören, wurden die Anweisungen programmatisch mit dem
+ersten Formularelement verknüpft.
+
+```html
+<div class="formborder">
+  <p id="instructions9089">
+    To complete your transfer, choose from the accounts listed below and enter the amount you would
+    like to transfer.
+  </p>
+  <label for="fromaccount9089">From Account</label><br />
+  <select id="fromaccount9089" aria-describedby="instructions9089">
+    <option value="Select" selected="">Select an account</option>
+    <option value="From checking">Checking account 12345</option>
+    <option value="From savings">Savings account 3483</option></select
+  ><br />
+  <label for="toaccount9089">To Account</label><br />
+  <select id="toaccount9089">
+    <option value="Select" selected="">Select an account</option>
+    <option value="To checking">Checking account 12345</option>
+    <option value="To savings">Savings account 3483</option></select
+  ><br />
+  <label for="amount9089">Amount</label><br />
+  <input id="amount9089" name="amount9089" type="text" /><br />
+</div>
+```
+
+### Anweisungen für Gruppen oder Abschnitte müssen sinnvoll sein.
+
+Um den Nutzern beim erfolgreichen Ausfüllen eines Formulars zu
+helfen, müssen die Anweisungen klar, präzise und informativ sein.
+Die Nutzer/innen sollten von vornherein wissen, was genau benötigt
+wird, um das Formular erfolgreich auszufüllen, vor allem wenn es
+bestimmte Erwartungen an die Informationen gibt, die die
+Nutzer/innen in einem Formular angeben.
+
+#### Schlechtes Beispiel: Text, der nicht spezifisch genug ist
+
+Obwohl die Anweisungen programmtechnisch erkennbar sind, sind sie
+zu mehrdeutig und geben nicht an, welche der folgenden Formularfelder
+erforderlich sind. Das ist für jeden Benutzer verwirrend. Die
+Benutzer/innen könnten annehmen, dass alle Informationen erforderlich
+sind, obwohl nur einige wenige Felder wirklich erforderlich sind.
+
+```html
+<div class="formborder">
+  <p><strong>Most fields are required.</strong></p>
+  <fieldset>
+    <legend>Contact Information</legend>
+    <p><label for="name9109">Name: </label> <input type="text" id="name9109" /></p>
+    <p><label for="phone9109">Phone: </label> <input type="text" id="phone9109" /></p>
+    <p><label for="email9109">Email: </label> <input type="text" id="email9109" /></p>
+    <p><label for="address9109">Address: </label> <input type="text" id="address9109" /></p>
+    <p><label for="city9109">City: </label> <input type="text" id="city9109" /></p>
+    <p><label for="state9109">State: </label> <input type="text" id="state9109" /></p>
+    <p><label for="zip9109">Zip: </label> <input type="text" id="zip9109" /></p>
+  </fieldset>
+</div>
+```
+
+### Anweisungen für Gruppen oder Abschnitte müssen sichtbar sein.
+
+Für sehende und sehbehinderte Nutzer/innen müssen die Anweisungen für
+Gruppen und Abschnitte deutlich sichtbar sein. Anweisungen, die nur
+durch aria-describedby dargestellt werden, wären nur für
+Screenreader-Nutzer verfügbar; und Anweisungen, die durch kleinen Text
+dargestellt werden, können für jeden schwer zu sehen sein, besonders
+für Menschen mit geringer Sehkraft.
+
+#### Schlechtes Beispiel: Anweisungen im versteckten Text
+
+In diesem Beispiel werden die Anweisungen mithilfe der CSS-Clip-Methode
+visuell ausgeblendet. Screenreader-Nutzer können die Anweisungen gut
+hören, aber sehende Nutzer sehen sie nicht.
+
+```html
+<div class="visually-hidden" id="desc">Must not contain spaces</div>
+<p>
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" aria-describedby="desc" />
+</p>
+<p>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" aria-describedby="desc" />
+</p>
+```
+
+#### Schlechtes Beispiel: Anweisungen, die zu klein sind
+
+Für einen normalen Benutzer, der keine Bildschirmlupe benutzt, ist
+dieser Text extrem klein und ohne Hilfe praktisch nicht lesbar.
+
+```html
+<div class="formborder">
+  <fieldset>
+    <legend>Contact Information</legend>
+    <p style="font-size: 0.6em;">
+      All of the prior information will not be disclosed to any other sources other than our contact
+      representatives. If any of this information is illicitly accessed, you will receive
+      notification. If you suspect that your information has been breached on our site, or you have
+      any further questions, please contact us at contactinformation@mail.com.
+    </p>
+    <p><label for="name9177">Name: </label> <input type="text" id="name9177" name="name9177" /></p>
+    <p>
+      <label for="phone9177">Phone: </label> <input type="text" name="phone9177" id="phone9177" />
+    </p>
+    <p>
+      <label for="email9177">Email: </label> <input type="text" id="email9177" name="email9177" />
+    </p>
+    <p>
+      <label for="address9177">Address: </label>
+      <input type="text" id="address9177" name="address9177" />
+    </p>
+    <p><label for="city9177">City: </label> <input type="text" id="city9177" name="city9177" /></p>
+    <p>
+      <label for="state9177">State: </label> <input type="text" id="state9177" name="state9177" />
+    </p>
+    <p><label for="zip9177">Zip: </label> <input type="text" id="zip9177" name="zip9177" /></p>
+  </fieldset>
+</div>
+```
+
+### Anweisungen für Gruppen oder Abschnitte sollten visuell neben den gruppierten Elementen stehen.
+
+Wenn die Anweisungen zu weit von den Formulargruppen und -abschnitten
+entfernt sind, können Menschen, die eine Bildschirmvergrößerung
+verwenden, die Informationen übersehen oder müssen ständig hin-
+und herblättern, um die Verbindung zwischen den Formularfeldern und
+ihren Anweisungen herzustellen. Wenn du die Anweisungen in der Nähe
+der Formulargruppen platzierst, können diese Personen leichter durch
+das Formular selbst navigieren.
+
+#### Schlechtes Beispiel: Anweisungen vom Formular getrennt
+
+Die Anweisungen für das Passwort und den Benutzernamen sind deutlich
+vom Formular getrennt und es kann schwierig sein, zu ihnen zurück zu
+navigieren oder sich an sie zu erinnern, weil das Unternehmen zwischen
+den Anweisungen und dem Formular steht.
+
+```html
+<div class="formborder">
+  <p><strong>Password and Username must not contain spaces.</strong></p>
+  <br />
+  <img
+    src="/assets/images/tips/alt-family-beach.jpg"
+    alt="Enjoy a 20% discount on a sun-filled, family-friendly vacation to the Bahamas" />
+  <p>
+    We want you to become a part of our network. You can become a member by just signing up! We
+    offer you special features for just being a part of our group and give you access to extended
+    chances for other offers. Join now to take part in the exclusive benefits we offer to our
+    members.
+  </p>
+
+  <fieldset>
+    <legend>Create Account</legend>
+    <p><label for="username9162">Username:</label> <input type="text" id="username9162" /></p>
+    <p><label for="password9162">Password:</label> <input type="password" id="password9162" /></p>
+  </fieldset>
+</div>
+```
+
+#### Gutes Beispiel: Anweisungen direkt vor einer Gruppe von Formularfeldern
+
+Die Anweisungen stehen visuell in der Nähe der Gruppe von Formularfeldern,
+die sie beschreiben. Die Schlüsselphrase der Anleitung wird außerdem
+mit jedem relevanten Feld durch aria-describedby verbunden.
+
+```html
+<img
+  src="/assets/images/tips/alt-family-beach.jpg"
+  alt="Enjoy a 20% discount on a sun-filled, family-friendly vacation to the Bahamas" />
+<p>
+  We want you to become a part of our network. You can become a member by just signing up! We offer
+  you special features for just being a part of our group and give you access to extended chances
+  for other offers. Join now to take part in the exclusive benefits we offer to our members.
+</p>
+
+<fieldset>
+  <legend>Create Account</legend>
+  <p>
+    <strong>Username and password <span id="mustnot">must not contain spaces</span></strong>
+  </p>
+  <p>
+    <label for="username">Username:</label>
+    <input type="text" id="username" aria-describedby="mustnot" />
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" aria-describedby="mustnot" />
+  </p>
+</fieldset>
+```
+
+### Anweisungen für Gruppen oder Abschnitte sollten im DOM neben den gruppierten Elementen stehen.
+
+Screenreader lesen und interpretieren Inhalte in der Regel so, wie sie im
+DOM dargestellt werden. Wenn du also sicherstellst, dass die Anweisungen in
+der Nähe der Elemente platziert werden, die sie im DOM beschreiben, kann
+das Verwirrung bei Screenreadern verhindern, wenn sie durch das Formular
+navigieren. Wenn es zum Beispiel Anweisungen für das gesamte Formular gibt,
+sollten diese Anweisungen im DOM direkt vor dem Formular selbst stehen. Das
+Gleiche gilt für Gruppen oder Abschnitte innerhalb eines Formulars.
+
+Wenn die Anweisungen visuell an die Elemente angrenzen, die sie beschreiben,
+liegen sie in den meisten Fällen auch im DOM nebeneinander. Aber wenn CSS
+für die visuelle Platzierung verwendet wird, können die Anweisungen im DOM
+von den Elementen getrennt werden, auch wenn sie visuell nebeneinander liegen.
+
+#### Schlechtes Beispiel: Trennung im DOM verursacht durch CSS float
+
+Obwohl die Anweisungen ("Benutzername und Passwort dürfen keine Leerzeichen
+enthalten") visuell in der Nähe der Formularfelder sind, sind sie im DOM
+nicht so nah. Ein ganzer Textabsatz mit einem Bild wurde zwischen den
+Anweisungen und den Formularfeldern eingefügt. Die Trennung wird in diesem
+Fall durch einen CSS-Float verursacht, der die anstößigen Elemente visuell
+zur Seite und vom Formular weg verschiebt, sie aber im DOM an ihrem
+ursprünglichen Platz belässt. Wenn Screenreader-Nutzer dieses Formular im
+Dokumentenmodus durchlesen, hören sie die Anweisungen, gefolgt von dem
+Absatz mit dem nicht zusammenhängenden Text, gefolgt von den Formularfeldern.
+
+```html
+<fieldset>
+  <legend>Create Account</legend>
+  <p>
+    <strong
+      >Username and password<br />
+      <span id="mustnot">must not contain spaces</span></strong
+    >
+  </p>
+  <div id="float">
+    <img
+      src="/assets/images/tips/alt-family-beach.jpg"
+      alt="Enjoy a 20% discount on a sun-filled, family-friendly vacation to the Bahamas" />
+    <p>
+      We want you to become a part of our network. You can become a member by just signing up! We
+      offer you special features for just being a part of our group and give you access to extended
+      chances for other offers. Join now to take part in the exclusive benefits we offer to our
+      members.
+    </p>
+  </div>
+  <p>
+    <label for="username">Username:</label><br />
+    <input type="text" id="username" aria-describedby="mustnot" />
+  </p>
+  <p>
+    <label for="password">Password:</label><br />
+    <input type="password" id="password" aria-describedby="mustnot" />
+  </p>
+</fieldset>
+```
+
+### Wenn die Anweisungen nicht wichtig sind, um den Zweck einer Gruppe oder eines Abschnitts zu verstehen, können die Anweisungen ausgeblendet werden, bis der Nutzer sie anfordert.
+
+Wenn es Anweisungen gibt, die einem Benutzer beim Ausfüllen eines
+Formularabschnitts helfen, aber nicht entscheidend für das erfolgreiche
+Ausfüllen der Formularfelder sind, können die Anweisungen ausgeblendet
+werden, bis der Benutzer sie lesen möchte.
+
+#### Gutes Beispiel: Schaltfläche für nicht wesentliche Anweisungen der Formulargruppe
+
+In dieser Gruppierung gibt es eine Hilfe-Schaltfläche, die den Nutzern
+mitteilt, dass sie bis zu einem beliebigen Geldbetrag überweisen können.
+Da diese Information in den meisten Fällen nicht notwendig ist, ist sie
+nur verfügbar, wenn die Nutzer die Information anfordern.
+
+```html
+<fieldset>
+  <legend>Account Transfer</legend>
+  <p>
+    <button id="form-instructions9973">Help <span class="fa fa-question-circle"></span></button>
+  </p>
+  <p id="alert9973" role="alert"></p>
+  <p>
+    <label for="fromAccount9973">From Account</label><br />
+    <select id="fromAccount9973">
+      <option value="Select From" selected="">Select an account</option>
+      <option value="From checking">Checking account 12345</option>
+      <option value="From savings">Savings account 3483</option>
+    </select>
+  </p>
+  <p>
+    <label for="toAccount9973">To Account</label><br />
+    <select id="toAccount9973">
+      <option value="Select To" selected="">Select an account</option>
+      <option value="To Checking">Checking account 12345</option>
+      <option value="To savings">Savings account 3483</option>
+    </select>
+  </p>
+  <p>
+    <label for="amount9973">Amount</label><br />
+    <input id="amount9973" name="amount9973" type="text" />
+  </p>
+</fieldset>
+```
+
+### Anweisungen für Gruppen oder Abschnitte müssen sich nicht nur auf Verweise auf sensorische Merkmale stützen.
+
+Sich auf sensorische Merkmale zu verlassen, um Anweisungen für
+Formulargruppen und -abschnitte zu geben, kann dazu führen, dass
+Benutzer vom Erhalt dieser Anweisungen ausgeschlossen werden.
+Wenn du dich zum Beispiel nur auf die Farbe verlässt, um
+Anweisungen zu übermitteln, werden blinde und farbenblinde Nutzer
+sowie einige Nutzer mit Sehschwäche ausgeschlossen. Wenn du dich
+jedoch nur auf programmatische Assoziationen wie "aria-labelledby"
+oder "aria-describedby" verlässt, werden sehende Nutzer/innen
+oder Nutzer/innen, die keinen Screenreader verwenden,
+ausgeschlossen. Die Anleitungen sollten sowohl für Nutzer/innen
+von Hilfstechnologien als auch für Nutzer/innen, die keine
+Hilfstechnologien verwenden, zugänglich sein.
+
+#### Schlechtes Beispiel: Sich auf Farben verlassen, um Anweisungen zu vermitteln
+
+Dieses Formular verwendet nur Farbe, um erforderliche von
+optionalen Feldern zu unterscheiden. Das macht das Formular
+unzugänglich für Farbenblinde, Sehbehinderte und Blinde.
+
+```html
+<div class="formborder">
+  <p>Red = Required. Green = Optional</p>
+  <fieldset>
+    <legend>Contact Information</legend>
+    <p class="required">
+      <label for="name9175">Name: </label> <input type="text" id="name9175" name="name9175" />
+    </p>
+    <p class="not-required">
+      <label for="phone9175">Phone: </label> <input type="text" name="phone9175" id="phone9175" />
+    </p>
+    <p class="required">
+      <label for="email9175">Email: </label> <input type="text" id="email9175" name="email9175" />
+    </p>
+    <p class="not-required">
+      <label for="address9175">Address: </label>
+      <input type="text" id="address9175" name="address9175" />
+    </p>
+    <p class="not-required">
+      <label for="city9175">City: </label> <input type="text" id="city9175" name="city9175" />
+    </p>
+    <p class="not-required">
+      <label for="state9175">State: </label> <input type="text" id="state9175" name="state9175" />
+    </p>
+    <p class="not-required">
+      <label for="zip9175">Zip: </label> <input type="text" id="zip9175" name="zip9175" />
+    </p>
+  </fieldset>
+</div>
+```
+
+## Anweisungen für Eingaben
+
+Um die Anweisungen für einzelne Formulareingaben zugänglich
+zu machen, müssen die Anweisungen aus erkennbarem Text
+bestehen, der programmatisch mit der jeweiligen Eingabe
+verknüpft ist. Außerdem sollten die Anweisungen für sehende
+Nutzer/innen sichtbar sein und für Nutzer/innen mit Sehschwäche
+in unmittelbarer Nähe der Eingabefelder. Die Anweisungen müssen
+so spezifisch und aussagekräftig sein, dass die Nutzer/innen
+wissen, was sie tun müssen, um die Formularfelder auszufüllen;
+und die Anweisungen dürfen sich nicht nur auf sensorische
+Merkmale wie Sehen oder Hören verlassen, da sie Nutzer/innen
+mit sensorischen Behinderungen ausschließen könnten.
+
+### Anweisungen für ein Element müssen programmatisch mit dem Element verknüpft werden.
+
+Wenn es spezielle Anweisungen für die Eingabe von Informationen
+in eine bestimmte Formulareingabe oder spezielle Anweisungen für
+Schaltflächen oder Steuerelemente gibt, müssen die Anweisungen
+programmatisch mit der entsprechenden Eingabe oder dem
+Steuerelement verknüpft werden. Technisch gesehen kann dies
+zwar durch die Angabe von Anweisungen innerhalb des
+`<label>`-Elements geschehen, aber wenn es um die Semantik geht,
+ist die Verwendung des Attributs aria-describedby der beste
+Weg, um Anweisungen zuzuordnen.
+
+#### Gutes Beispiel: Anweisungen durch aria-describedby verfügbar machen
+
+Die Verwendung von aria-describedby ermöglicht eine programmatische
+Zuordnung der Anweisungen zu den Eingaben, ohne unübersichtliche
+CSS-Stile zu verwenden.
+
+```html
+<p>
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" aria-describedby="input-instructions" />
+  <span id="input-instructions">(Must be a valid email address)</span>
+</p>
+```
+
+#### Schlechtes Beispiel: Anweisungen, die nicht mit dem `<input>` verbunden sind
+
+Wenn die Anweisungen nicht mit dem `<input>` verknüpft sind,
+können Screenreader-Benutzer die Anweisungen übersehen, wenn
+sie durch das Formular navigieren. Am besten stellst du
+sicher, dass die Anweisungen programmatisch mit einer Methode
+wie aria-describedby verknüpft werden.
+
+```html
+<p>
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email">
+  <span>(Must be a valid email address)</p>
+</p>
+```
+
+### Anweisungen für ein Element müssen als programmatisch bestimmbarer Text verfügbar sein.
+
+Für Formulareingaben muss Text bereitgestellt werden, auf
+den assistive Technologien zugreifen können. Ohne
+programmatisch erfassbaren Text können Hilfsmittel wie
+Bildschirmlesegeräte den Nutzern keine Informationen
+anzeigen. Der einfachste Weg, programmatisch bestimmbaren
+Text bereitzustellen, ist, den Text in das `<label>` einzubinden,
+aber programmatisch bestimmbarer Text kann auch durch
+ARIA-Attribute wie aria-label und aria-labelledby
+bereitgestellt werden.
+
+#### Schlechtes Beispiel: Icon-Schriftart ohne Text in der Beschreibung
+
+Das zulässige Dateiformat (Microsoft Word) wird durch eine
+Icon-Schriftart angegeben, die das Word-Logo zeigt, aber es
+gibt keinen alternativen Text für die Icon-Schriftart, so
+dass Screenreader-Nutzer nichts hören, obwohl die
+Icon-Schriftart ordnungsgemäß mit der Eingabe verbunden ist.
+
+```html
+<p>
+  <label for="upload">Upload file</label>
+  <span class="far fa-file-word fa-lg" id="desc"></span>:
+  <input type="file" id="upload" aria-describedby="desc" />
+</p>
+```
+
+#### Gutes Beispiel: Icon-Schriftart mit Text in der Beschreibung
+
+Text ("im MS Word-Format") wird als Ergänzung zur
+Symbolschrift hinzugefügt, um sicherzustellen, dass die
+Bedeutung des Symbols klar ist. Der Text kann von
+Screenreadern programmatisch ermittelt werden und ist
+für sehende Nutzer sichtbar.
+
+```html
+<p>
+  <label for="upload">Upload file</label>
+  <span id="desc">in MS Word format</span> <span class="far fa-file-word fa-lg"></span>:
+  <input type="file" id="upload" aria-describedby="desc" />
+</p>
+```
+
+### Anweisungen für ein Element müssen sinnvoll sein.
+
+Wenn ein Formularfeld ein bestimmtes Format oder
+andere spezifische Anweisungen erfordert, kann es
+helfen, Fehler zu vermeiden, bevor sie passieren.
+Im folgenden Beispiel ist die Angabe des richtigen
+Formats für das Datum entscheidend für die korrekte
+Übermittlung der angeforderten Informationen. Wenn
+du dieses notwendige Detail nicht angibst, erhöht
+sich die Wahrscheinlichkeit, dass dem Nutzer ein
+Fehler unterläuft.
+
+#### Gutes Beispiel: Anweisungen für Formularfelder
+
+Die Anweisungen, die für die Formulareingabe zur
+Verfügung gestellt werden, sagen den Nutzern, wie
+sie das Datum im Eingabefeld formatieren sollen.
+
+```html
+<form>
+  <label for="date">Date: </label>
+  <input type="text" name="date" id="date" aria-describedby="dateinstructions" />
+  <span id="dateinstructions">Enter date as MM/YYYY.</span>
+</form>
+```
+
+#### Schlechtes Beispiel: Unzureichende Anweisungen
+
+In den Anweisungen für das Datum ist nicht angegeben,
+welches Format das Datum haben muss, um das Formular
+richtig auszufüllen.
+
+```html
+<form>
+  <label for="date">Date: </label>
+  <input type="text" name="date" id="date" aria-describedby="dateinstructions" />
+  <span id="dateinstructions">Enter a valid date format.</span>
+</form>
+```
+
+### Anweisungen für ein Element müssen sichtbar sein.
+
+Neben der Anforderung, dass die Anweisungen programmatisch
+mit den entsprechenden Eingaben verknüpft sein müssen,
+dürfen wir nicht vergessen, dass die Anweisungen auch für
+sehende Nutzer sichtbar sein müssen. Das ist wichtig, weil
+Anweisungen für Nutzer von Hilfstechnologien mit Techniken
+wie ARIA oder Clipped Text programmiert werden können, ohne
+dass sie unbedingt auf dem Bildschirm sichtbar sind. Um das
+Formular effektiv auszufüllen, dürfen sehende Nutzerinnen
+und Nutzer nicht von den Anweisungen ausgeschlossen werden,
+die für einzelne Formularelemente bereitgestellt werden.
+
+#### Schlechtes Beispiel: Anweisungen sind nur für Screenreader-Nutzer über aria-label verfügbar
+
+Im folgenden Beispiel hören Screenreader-Nutzer die
+Anweisungen zum Passwortfeld, aber sehende Nutzer sehen
+die Anweisungen nicht.
+
+```html
+<p>
+  <label for="new-pwd">New password:</label>
+  <input
+    type="password"
+    id="new-pwd"
+    aria-label="New password, must contain at least 8 characters
+    including both letters and numerals" />
+</p>
+```
+
+#### Schlechtes Beispiel: Die Anweisungen unter dem Haupt Label sind zu klein
+
+In diesem Fall ist der Anweisungstext (der besagt "darf
+keine Leerzeichen enthalten") zu klein und der Kontrast
+ist für einige Nutzer mit Sehschwäche zu gering.
+
+```html
+<p>
+  <label for="username9964">Username:</label>
+  <input type="text" name="username9964" id="username9964" />
+  <span class="advisory9964">(must not contain spaces)</span>
+</p>
+```
+
+### Anweisungen für ein Element sollten visuell neben dem Element stehen.
+
+Wenn die Labels, Anweisungen oder Hinweise zu weit von
+den entsprechenden Formularfeldern entfernt sind, können
+Personen, die eine Bildschirmvergrößerung verwenden, sie
+möglicherweise nicht sehen, da die Bildschirmvergrößerung
+den sichtbaren Bereich des Bildschirms verkleinert.
+
+#### Schlechtes Beispiel: Anweisungen zu weit von der Formularsteuerung entfernt
+
+In diesem Formular sind das Label und die Eingabe links
+und die Anweisungen rechts angeordnet, sodass ein großer
+visueller Abstand zwischen den beiden besteht. Für
+Screenreader-Nutzer ist das kein Problem, weil die
+Anweisungen mit der Eingabe verbunden sind. Nur
+sehende Nutzerinnen und Nutzer werden ein Problem haben.
+
+In diesem Formular sind das Label und die Eingabe links
+und die Anweisungen rechts angeordnet, so dass ein großer
+visueller Abstand zwischen den beiden besteht. Für
+Bildschirmleser ist das kein Problem, weil die Anweisungen
+mit der Eingabe verbunden sind. Nur sehende Nutzerinnen
+und Nutzer werden ein Problem haben.
+
+```html
+<form method="post" action="class/archive/html-css1/etc/form-submit">
+  <p>
+    <label for="account_number_9094">Account number: </label>
+    <input
+      type="text"
+      name="account_number_9094"
+      id="account_number_9094"
+      aria-describedby="account_number_desc_9094" />
+    <span class="floatright" id="account_number_desc_9094">No spaces or dashes</span>
+  </p>
+  <p>
+    <label for="date_9094">Today's Date:</label>
+    <input type="text" name="date_9094" id="date_9094" aria-describedby="date_desc_9094" />
+    <span class="floatright" id="date_desc_9094">Write out full four-digit year</span>
+  </p>
+</form>
+```
+
+### Anweisungen für ein Element sollten im DOM neben dem Element liegen.
+
+Wie bereits auf der vorherigen Seite erwähnt, geben
+Screenreader Informationen aus dem DOM an die Nutzer
+weiter. Daher ist es sinnvoll, dass spezifische
+Anweisungen für Formularfelder in der Nähe der
+Formularfelder selbst platziert werden, damit
+Screenreader-Nutzer diese Informationen leicht
+erkennen können.
+
+#### Gutes Beispiel: Anweisungen, die einer Formulareingabe vorausgehen
+
+Wenn du die Anweisungen unmittelbar vor einer Eingabe
+anbringst, kannst du sicherstellen, dass die Anweisungen
+gelesen werden, bevor der Nutzer die Eingabe vornimmt.
+Das ist besonders nützlich, wenn der Nutzer nacheinander
+durch den Inhalt der Seite navigiert. In diesem Fall
+werden die Anweisungen auch mit der Eingabe verknüpft,
+indem aria-describedby verwendet wird, um sicherzustellen,
+dass Benutzer, die mit der Tabulatortaste durch die
+Formularfelder navigieren, die Anweisungen auch hören
+(andernfalls würden sie die Anweisungen mit der
+Tabulatortaste überspringen, auch wenn die Anweisungen
+direkt vor dem Feld stehen).
+
+```html
+<form>
+  <p id="instructions">
+    <strong
+      >Create a password that is at least 8 characters long and includes both letters and
+      numbers.</strong
+    >
+  </p>
+  <label for="password">Password: </label>
+  <input type="password" name="password" id="password" aria-describedby="instructions" />
+</form>
+```
+
+#### Schlechtes Beispiel: Anweisungen weit von der Eingabe entfernt
+
+Die Anweisungen für die Passworteingabe im Beispiel unten
+befinden sich nach mehreren weiteren Texteingabefeldern,
+wodurch die Anweisungen mit Screenreadern nur schwer zu
+finden sind (und auch für sehende Benutzer schwierig).
+Erschwerend kommt hinzu, dass die Anweisungen nicht
+über aria-describedby mit der Eingabe verknüpft sind.
+
+```html
+<fieldset>
+  <legend>Registration</legend>
+  <label for="username">Username: </label> <input type="text" id="username" />
+  <label for="password">Password: </label> <input type="password" id="password" />
+  <label for="name">Name: </label> <input type="text" id="name" />
+  <label for="phone">Phone: </label> <input type="text" id="phone" />
+  <label for="email">Email: </label> <input type="text" id="email" />
+  <label for="address">Address: </label> <input type="text" id="_address" />
+  <label for="city">City: </label> <input type="text" id="city" />
+  <label for="state">State: </label> <input type="text" id="state" />
+  <label for="id85_zip">Zip: </label> <input type="text" id="zip" />
+  <p>
+    <strong
+      >Create a password that is at least 8 characters long and includes both letters and
+      numbers.</strong
+    >
+  </p>
+</fieldset>
+```
+
+### Wenn die Anweisungen für ein Element nicht kritisch sind, können die Anweisungen ausgeblendet werden, bis der Benutzer sie anfordert.
+
+Wenn du den Nutzern hilfreiche Anweisungen zum Ausfüllen
+eines Formulars zur Verfügung stellen möchtest, die
+Anweisungen aber nicht unbedingt erforderlich sind, um
+das Eingabefeld auszufüllen, kannst du diese Informationen
+ausblenden.
+
+#### Gutes Beispiel: Schaltfläche für hilfreiche Anweisungen
+
+In dem Beispiel unten dient das Fragezeichen-Symbol als
+universelles Symbol für "Hilfe" oder "mehr Informationen".
+Die Nutzer können das Symbol auswählen, um die Popup-Meldung
+aufzurufen. In diesem Fall wurde als Aria-Label-Text
+"Passwort-Anweisungen" gewählt. In diesem speziellen Fall
+müssen die Anweisungen nicht programmatisch mit dem
+Eingabefeld verknüpft werden, da die Schaltfläche fokussierbar
+ist und im DOM vor dem Eingabefeld steht - im natürlichen
+Fluss des Formulars. Am besten ist es, die Schaltfläche vor
+der Eingabe zu platzieren, damit Menschen, die Screenreader
+verwenden, wissen, dass zusätzliche Hilfe verfügbar ist.
+
+```html
+<p>
+  <label for="id88_password1">Password </label
+  ><button aria-label="Password instructions" id="password-instructions">
+    <img src="images/reference/question-mark-icon-16.png" alt="Passwordinstructions" />
+  </button>
+  <input type="password" name="id88_password1" id="id88_password1" />
+</p>
+<p>
+  <label for="id88_password1">Password </label>
+  <a id="popup-anchor" href="#"
+    ><img
+      src="images/reference/question-mark-icon-16.png"
+      alt="Password instructions"
+      width="16"
+      height="16"
+  /></a>
+  <input type="text" name="password1" id="password1" />
+</p>
+```
+
+### Anweisungen für ein Element müssen sich nicht nur auf Verweise auf sensorische Merkmale stützen.
+
+Wenn man sich bei der Bereitstellung von Anweisungen auf
+sensorische Merkmale wie die visuelle Position, die Form
+und den Klang verlässt, können einige Nutzer vom Zugang
+zu diesen Anweisungen ausgeschlossen werden. Wenn zum
+Beispiel eine andere Textfarbe verwendet wird, um darauf
+hinzuweisen, dass ein Feld ausgefüllt werden muss, können
+blinde, farbenblinde und sehbehinderte Nutzer diese
+Informationen nicht abrufen. Wenn also Anweisungen gegeben
+werden, sollten sie klar und deutlich sein und sich nicht
+ausschließlich auf sensorische Merkmale stützen, die andere
+Nutzer/innen ausschließen könnten.
+
+#### Schlechtes Beispiel: Farbe verwenden, um ein Pflichtfeld anzuzeigen
+
+Die Labels für die Felder "Name" und "E-Mail" sind dunkelrot,
+um darauf hinzuweisen, dass die Felder erforderlich sind. Wenn
+du dich jedoch nur auf die Farbe verlässt, um diese Informationen
+zu vermitteln, werden blinde und farbenblinde Nutzer sowie
+einige Nutzer mit Sehschwäche ausgeschlossen.
+
+```html
+<div class="formborder">
+  <p>Fields marked with red labels are required</p>
+  <p>
+    <label for="name9900" style="color: #C00000;">Name: </label>
+    <input type="text" name="namel9900" id="name9900" />
+  </p>
+  <p>
+    <label for="email9900" style="color: #C00000;">Email: </label>
+    <input type="text" name="email9900" id="email9900" />
+  </p>
+  <p>
+    <label for="phone9900" style="color: #C00000;">Phone: </label>
+    <input type="text" name="phone9900" id="phone9900" />
+  </p>
+</div>
+```
+
+## Erforderliche Felder
+
+Die eindeutige Kennzeichnung von Pflichtfeldern hilft,
+Benutzerfehler zu vermeiden, und verringert die Wahrscheinlichkeit,
+dass Benutzer es versäumen, alle notwendigen Felder in einem
+Formular auszufüllen. Die allgemeinen Anforderungen für die
+Kennzeichnung von Pflichtfeldern sind:
+
+- Der Indikator aria-required="true" sollte bei der Eingabe gesetzt werden.
+
+- Ein zusätzlicher sichtbarer Indikator sollte für sehende Nutzer verfügbar sein.
+
+### Erforderliche Felder sollten programmatisch als solche gekennzeichnet werden.
+
+aria-required="true": Das Setzen von aria-required="true" für
+eine Eingabe ist ein eindeutiger Weg, um das Feld als erforderlich
+zu kennzeichnen. Screenreader sagen "erforderlich", nachdem sie das
+Label der Eingabe gelesen haben. Dieses Attribut ist jedoch unsichtbar,
+also musst du es mit einer anderen Methode ergänzen, die sehende Nutzer
+sehen können.
+
+HTML 5 erforderlich: Das HTML 5 required-Attribut hört sich für
+Screenreader-Nutzer genauso an - sie hören "required" nach dem Label
+der Eingabe - aber das HTML 5-Attribut fügt ein Browser-Verhalten
+hinzu (in Browsern, die es unterstützen): Es verhindert, dass die Nutzer
+das Formular abschicken, wenn es Fehler gibt. Theoretisch kann das eine
+gute Sache sein, aber nicht alle Browser unterstützen es und es nimmt
+dir etwas von deiner Freiheit, das Verhalten bei Fehlern zu gestalten,
+also verwende dieses Attribut sehr vorsichtig. Außerdem ist es unsichtbar;
+sehende Nutzer können es nicht sehen.
+
+#### Gutes Beispiel: Erforderliche Felder durch aria-required="true" gekennzeichnet
+
+Dieses Feld wird mit dem Attribut aria-required="true" als erforderlich gekennzeichnet.
+
+```html
+<p>Fields with asterisks (*) are required.</p>
+<p>
+  <label for="firstname">First Name:*</label>
+  <input id="firstname" name="firstname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="lastname">Last Name:*</label>
+  <input id="lastname" name="lastname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="age">Age:</label>
+  <input id="age" name="age" type="text" />
+</p>
+```
+
+### Erforderliche Felder sollten einen visuellen Hinweis darauf haben, dass das Feld erforderlich ist.
+
+Auch hier ist es am besten, zu verhindern, dass die Nutzer beim
+Ausfüllen eines Formulars Fehler machen. Zusätzlich zur
+programmgesteuerten Kennzeichnung von Pflichtfeldern sollten auch
+sehende Nutzer/innen darauf hingewiesen werden, damit sie wissen,
+welche Felder ausgefüllt werden müssen.
+
+#### Gutes Beispiel: Mit Sternchen gekennzeichnete Pflichtfelder
+
+Sternchen sind eine visuelle Methode zur Kennzeichnung von
+Pflichtfeldern. Die meisten Screenreader sagen "Stern", wenn sie
+das Sternchen lesen. Das Sternchen ist für Screenreader-Nutzer
+etwas überflüssig, weil der Screenreader aufgrund des Attributs
+aria-required="true" auch "required" sagt, aber das ist eine
+kleine Unannehmlichkeit.
+
+```html
+<p>Fields with asterisks (*) are required.</p>
+<p>
+  <label for="firstname">First Name: *</label>
+  <input id="firstname" name="firstname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="lastname">Last Name: *</label>
+  <input id="lastname" name="lastname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="age">Age:</label>
+  <input id="age" name="age" type="text" />
+</p>
+```
+
+#### Gutes Beispiel: Erforderliche Felder sind durch Schriftsymbole gekennzeichnet
+
+Diese Methode ist fast identisch mit der Methode, Sternchen als
+Text einzugeben - das visuelle Ergebnis ist fast dasselbe -,
+aber die Sternchen sind in diesem Beispiel Schriftsymbole. Die
+Schriftsymbole werden von Screenreadern nicht gelesen, was
+einerseits ein Vorteil ist, weil Screenreadernutzer das Wort
+"required" aufgrund des Attributs aria-required="true" bereits
+hören. Aber es ist auch ein Nachteil, weil Screenreader-Nutzer
+die Anweisungen am Anfang des Formulars hören können, die besagen,
+dass Felder mit Sternchen erforderlich sind, aber sie hören keine
+Sternchen. Diese Unstimmigkeit ist zwar etwas verwirrend, aber nur
+ein kleiner Nachteil, wenn man bedenkt, dass sie trotzdem darauf
+hingewiesen werden, dass die Felder erforderlich sind.
+
+```html
+<p>Fields with asterisks (*) are required.</p>
+<p>
+  <label for="firstname">First Name: <span class="fa fa-asterisk"></span></label>
+  <input id="firstname" name="firstname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="lastname">Last Name: <span class="fa fa-asterisk"></span></label>
+  <input id="lastname" name="lastname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="age">Age:</label>
+  <input id="age" name="age" type="text" />
+</p>
+```
+
+#### Gutes Beispiel: Erforderliche Felder durch Text in einem Label gekennzeichnet
+
+Der Text in einem Label ist sichtbar (gut für sehende Benutzer)
+und für Bildschirmleser verfügbar (überflüssig, wenn
+aria-required="true" eingestellt ist, was der Fall sein sollte).
+Die Redundanz für Screenreader-Nutzer ist etwas ärgerlich, aber
+nicht schlimm.
+
+```html
+<p>
+  <label for="firstname">First Name (required):</label>
+  <input id="firstname" name="firstname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="lastname">Last Name (required):</label>
+  <input id="lastname" name="lastname" type="text" aria-required="true" />
+</p>
+<p>
+  <label for="age">Age:</label>
+  <input id="age" name="age" type="text" />
+</p>
+```
+
+### Der Formularvalidierungsprozess muss eine Fehlermeldung enthalten, die erklärt, dass ein Feld erforderlich ist, wenn das Feld im Ausgangszustand des Formulars nicht sowohl visuell als auch programmatisch als erforderlich gekennzeichnet ist.
+
+Wenn im Ausgangszustand des Formulars die erforderlichen Felder nicht
+programmatisch und visuell gekennzeichnet sind, muss diese Information
+nach dem Versuch, das Formular abzuschicken, durch eine Fehlermeldung
+übermittelt werden. Es ist wichtig, dass die Fehlermeldungen
+programmatisch mit den entsprechenden Pflichtfeldern verknüpft werden,
+damit die Nutzer/innen von Hilfsmitteln nicht nach den Fehlern im
+Formular suchen müssen. Es ist auch empfehlenswert, sehenden Nutzern
+einen visuellen Hinweis auf Fehler zu geben, damit sie die fehlerhaften
+Felder schnell erkennen können.
+
+#### Gutes Beispiel: Fehler visuell und programmatisch erkennen
+
+In den Eingabefeldern unten wird die Fehlermeldung durch aria-describedby
+programmatisch zugeordnet. Ein sehender Benutzer kann die Meldung sehen
+und ein Screenreader-Benutzer kann hören, dass das Datum erforderlich ist.
+
+```html
+<p>
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username" value="User name" />
+</p>
+<p class="error">
+  <label for="expire">Expiration:</label>
+  <input
+    type="text"
+    name="expire"
+    id="expire"
+    aria-required="true"
+    aria-invalid="true"
+    aria-describedby="expDesc" />
+  <span id="expDesc">Error: Date is required.</span>
+</p>
+```
+
+#### Gutes Beispiel: Fehlerzusammenfassung
+
+In diesem Beispiel wird eine Zusammenfassung erstellt, die den
+Nutzern mitteilt, wie viele Fehler im Formular enthalten sind,
+und dann erklärt, um welche Art von Fehler es sich handelt.
+Zusätzlich zum Link zum ersten Fehler werden aria-required und
+aria-invalid verwendet, um den Nutzern programmatisch mitzuteilen,
+dass die Felder erforderlich sind und dass ihre Eingaben ungültig sind.
+
+```html
+<div class="alert">
+  <p><strong>Error:</strong> There are 2 fields with problems in this form:</p>
+  <ol>
+    <li><strong>First Name</strong> cannot be blank</li>
+    <li><strong>Last Name</strong> cannot be blank</li>
+  </ol>
+  <a href="#fname" id="errorSummaryLink">Go to the first field with an error to fix it</a>.
+</div>
+
+<label for="fname">First Name:</label><br />
+<input type="text" id="fname" aria-required="true" aria-invalid="true" />
+<label for="lname">Last Name:</label><br />
+<input type="text" id="lname" aria-required="true" aria-invalid="true" />
+```
+
+## Eingabe Zweck
+
+### Der Zweck für jedes gemeinsame Eingabefeld, das personenbezogene Daten einer Person erfasst, muss programmatisch auf der Grundlage der Liste der 53 Eingabezwecke für Benutzerschnittstellenkomponenten festgelegt werden.
+
+Dieses Erfolgskriterium zielt darauf ab, programmgesteuert zusätzliche
+Informationen über Formulareingaben (z. B. Adresse, Telefonnummer und
+Passwortfelder) bereitzustellen, damit die Informationen auf verschiedenen
+Modalitäten ausgegeben werden können. Assistive Technologien können diese
+Informationen nutzen, um dem Nutzer auf verschiedene Weise zu helfen,
+z. B. beim automatischen Ausfüllen von Formularen, beim Ausfüllen von
+Benutzernamen und Passwörtern und bei der Verknüpfung von
+benutzerdefinierten Symbolen mit Formularelementen für Nutzer, die lieber
+Bilder zur Kommunikation verwenden.
+
+Das W3C stellt eine vollständige Liste von Eingaben zur Verfügung, die
+unter dieses Kriterium fallen. Sie basiert auf den Eingabezwecken in
+HTML 5.2 Autofill, sodass die Verwendung von HTML 5.2 Autofill eine gute
+Möglichkeit ist, dieses Erfolgskriterium zu erfüllen. Dieses
+Erfolgskriterium gilt nur für Texteingaben, bei denen Informationen über
+den Nutzer selbst abgefragt werden. Es gilt nicht für Texteingaben, bei
+denen Informationen über andere Personen als den/die Nutzer/in abgefragt
+werden, und es gilt auch nicht für Eingaben, die nicht aus Text bestehen.
+Das Erfolgskriterium 1.3.6 "Identifiziere den Zweck" ist Stufe AAA und
+baut auf dieser Anforderung auf.
+
+#### Gutes Beispiel: Formular mit Autofill
+
+Das Bild unten zeigt den Anmeldebildschirm der Deque University, der
+mit dem HTML-Autocomplete-Attribut erstellt wurde. Wenn ein Nutzer beginnt,
+seine E-Mail und sein Passwort einzugeben, kann er sie schnell automatisch
+ausfüllen, wenn er sie zuvor gespeichert hat.
+
+![Formular mit Autofill](/images/formulare/good-example-login-autofill.png)
+
+```html
+<input
+  class="loginPassword"
+  type="password"
+  id="loginPassword"
+  name="password"
+  aria-required="true"
+  autocomplete="current-password"
+  required="required"
+  oninvalid="this.setCustomValidity('Enter password to login')"
+  oninput="this.setCustomValidity('')" />
+```

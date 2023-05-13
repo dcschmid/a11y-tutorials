@@ -1,0 +1,604 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Gruppen Labels'
+pubDate: 2023-05-03
+---
+
+Es gibt Fälle, in denen eine Gruppe zusammengehöriger Formularfelder nicht nur ihre
+individuellen Labels, sondern auch ein Gruppen-Label benötigt, um den notwendigen
+Kontext für die Felder zu liefern. Ein typisches Beispiel ist eine Gruppe von
+Optionsfeldern, die jeweils ein eigenes Label haben und unter einem Gruppen-Label
+oder einer Frage zusammengefasst sind.
+
+Die Konzepte, die die Barrierefreiheit von Gruppen-Labels gewährleisten, ähneln
+den Konzepten, die für die Labels einzelner Formularfelder gelten:
+
+- Gruppen-Labels müssen aussagekräftig sein, d.h. sie müssen den Zweck der Felder,
+  die sie bezeichnen, klar erklären.
+
+- Gruppen-Labels müssen programmatisch mit der Gruppe von Feldern verknüpft sein,
+  die sie bezeichnen.
+
+- Gruppen-Labels müssen jederzeit sichtbar sein.
+
+- Gruppenlabels müssen sich in unmittelbarer Nähe zu der Gruppe von Feldern
+  befinden, die sie kennzeichnen.
+
+## Semantische Gruppen Labels
+
+### Gruppen-Labels müssen programmatisch mit der Gruppe verknüpft werden, wenn die einzelnen Labels für jedes Element in der Gruppe allein nicht ausreichen.
+
+Wenn eine Gruppe zusammengehöriger Formularfelder ein gemeinsames Label hat,
+müssen die Gruppe und das zugehörige Label semantisch ausgedrückt werden, damit
+Menschen, die einen Screenreader verwenden, die Beziehung zwischen den Formularfeldern,
+ihren individuellen Labels und ihrem Gruppen-Label verstehen können.
+
+Die Gruppierung von Steuerelementen ist vor allem für zusammengehörige Optionsfelder
+und Kontrollkästchen wichtig. Die Verknüpfung eines Labels mit einem einzelnen
+Optionsfeld oder Kontrollkästchen ist notwendig, reicht aber nicht aus. Die Tatsache,
+dass ein Optionsfeld das Label "Ja" oder "Nein" hat, ist nicht hilfreich, wenn der
+Benutzer nicht weiß, welche Frage er damit beantwortet. Während eine Person, die den
+Bildschirm sehen kann, die Beziehung zwischen dem Label einer Gruppe und den
+zugehörigen Optionsfeldern erkennen kann, versteht ein Screenreader-Benutzer diese
+Beziehung möglicherweise nicht, wenn sie nicht semantisch ausgedrückt wird. Dasselbe
+Konzept lässt sich auch auf andere Gruppen von Formularfeldern anwenden, z. B. auf
+die Gruppierung von Feldern für die Postanschrift und die Rechnungsanschrift.
+
+Zusammengehörige Formularfelder können mit HTML- oder ARIA-Techniken programmatisch
+gruppiert werden:
+
+- Die HTML-Lösung besteht darin, ein `<fieldset>` zu verwenden, um die Formularfelder
+  semantisch zu gruppieren, und ein `<legend>`, um ein semantisches Label für die Gruppe
+  bereitzustellen.
+
+- Die ARIA-Lösung besteht in der semantischen Gruppierung von Feldern innerhalb einer
+  Gruppenregion und der Bereitstellung eines semantischen Labels für die Gruppe mit dem
+  Attribut aria-labelledby.
+
+#### Gutes Beispiel: Verwandte Formularelemente mit `<fieldset>` und `<legend>` gruppieren
+
+Das `<fieldset>`-Tag gruppiert Formularelemente visuell, indem es einen Rahmen um sie
+herum setzt. Es gruppiert sie auch programmatisch, indem es das `<legend>` als Label
+für die Gruppe verwendet, so dass Screenreader das Label lesen können, wenn die
+Benutzer die Gruppe erreichen.
+
+Einige Screenreader, wie JAWS und VoiceOver, lesen den `<legend>` Text mit jedem
+Feld innerhalb des `<fieldset>`. Die meisten Screenreader lesen den `<legend>` Text
+zuerst. VoiceOver liest zuerst das Label des Formularfeldes und dann den `<legend>`-Text.
+Das klingt verkehrt, aber das liegt nicht in der Hand des Entwicklers, und
+VoiceOver-Nutzer sind es gewohnt, das so zu hören.
+
+```html
+<form>
+  <fieldset>
+    <legend>Contact Information</legend>
+    <p><label for="name6044">Name: </label> <input type="text" id="name6044" /></p>
+    <p><label for="phone6044">Phone: </label> <input type="text" id="phone6044" /></p>
+    <p><label for="email6044">Email: </label> <input type="text" id="email6044" /></p>
+    <p><label for="address6044">Address: </label> <input type="text" id="address6044" /></p>
+    <p><label for="city6044">City: </label> <input type="text" id="city6044" /></p>
+    <p><label for="state6044">State: </label> <input type="text" id="state6044" /></p>
+    <p><label for="zip6044">Zip: </label> <input type="text" id="zip6044" /></p>
+  </fieldset>
+</form>
+```
+
+#### Gutes Beispiel: Zusammengehörige Formularelemente mit ARIA gruppieren
+
+ARIA kann auch verwendet werden, um eine Reihe zusammengehöriger Formularfelder zu
+gruppieren und ihnen programmatisch ein Label zuzuordnen. Die zusammengehörigen
+Formularfelder werden in einem Container platziert, z. B. einem `<div>`. Der Container
+erhält die ARIA-Rolle "group" und ein aria-labelledby-Attribut, das auf eine ID des
+Labels der Gruppe verweist. Bei dieser ARIA-Technik wird kein Umriss um die
+gruppierten Felder gelegt.
+
+Hinweis: VoiceOver unterstützt role="group" noch nicht als Möglichkeit, eine
+Gruppe von Formularelementen zu labeln. Aus diesem Grund werden `<fieldset>` und
+`<legend>` weiterhin gegenüber role="group" bevorzugt.
+
+```html
+<p id="grouplabel9961">Contact Information</p>
+<div role="group" aria-labelledby="grouplabel9961">
+  <p><label for="name">Name: </label> <input type="text" id="name" /></p>
+  <p><label for="phone">Phone: </label> <input type="text" id="phone" /></p>
+  <p><label for="email">Email: </label> <input type="text" id="email" /></p>
+  <p><label for="address">Address: </label> <input type="text" id="address" /></p>
+  <p><label for="city">City: </label> <input type="text" id="city" /></p>
+  <p><label for="state">State: </label> <input type="text" id="state" /></p>
+  <p><label for="zip">Zip: </label> <input type="text" id="zip" /></p>
+</div>
+```
+
+#### Gutes Beispiel: Zusammengehörige Formularelemente mit verschachtelten `<fieldset>`-Elementen gruppieren
+
+Verschachtelte `<fieldset>`-Elemente sind erlaubt, um Gruppen innerhalb von
+Gruppen zu erstellen.
+
+Hinweis: Einige ältere Versionen von Bildschirmlesegeräten lasen bei jedem
+Feld innerhalb von verschachtelten `<fieldset>`-Elementen sowohl das äußere
+`<legend>` als auch das innere `<legend>`, was die Erfahrung sehr überflüssig
+machte. Moderne Screenreader haben die Benutzerfreundlichkeit verbessert.
+Sie lesen nur den inneren `<legend>`-Text, wenn ein Feld in einem verschachtelten
+`<fieldset>`-Element enthalten ist.
+
+```html
+<fieldset>
+  <legend>Contact Information</legend>
+  <p><label for="name6045">Name: </label><input type="text" id="name6045" /></p>
+  <p><label for="phone6045">Phone: </label><input type="text" id="phone6045" /></p>
+  <p><label for="email6045">Email: </label><input type="text" id="email6045" /></p>
+  <p><label for="address6045">Address: </label><input type="text" id="address6045" /></p>
+  <p><label for="city6045">City: </label><input type="text" id="city6045" /></p>
+  <p><label for="state6045">State: </label><input type="text" id="state6045" /></p>
+  <p><label for="zip6045">Zip: </label><input type="text" id="zip6045" /></p>
+  <div class="mode-radio">
+    <fieldset>
+      <legend>Preferred mode of communication:</legend>
+      <p>
+        <input type="radio" name="mode" id="mode-phone6045" />
+        <label for="mode-phone6045">Phone</label><br />
+        <input type="radio" name="mode" id="mode-email6045" />
+        <label for="mode-email6045">Email</label>
+      </p>
+    </fieldset>
+  </div>
+</fieldset>
+```
+
+#### Schlechtes Beispiel: Falsche Gruppierung
+
+Diese Gruppe von Eingaben wird durch einen CSS-Rahmen und ein Gruppen-Label
+sichtbar gruppiert. Es gibt jedoch keine tatsächliche programmatische Verknüpfung,
+so dass Screenreader nicht in der Lage sind, die visuell sichtbare Beziehung
+zwischen Gruppierung und Label zu vermitteln.
+
+Der HTML-Code:
+
+```html
+<div class="group1">
+  <span><strong>What is your preferred method of contact?</strong></span>
+  <div>
+    <input type="radio" name="contact" value="email" id="email9017" />
+    <label for="email9017">Email</label><br />
+    <input type="radio" name="contact" value="phone" id="phone9017" />
+    <label for="phone9017">Phone</label><br />
+    <input type="radio" name="contact" value="mail" id="mail9017" />
+    <label for="mail9017">Mail</label>
+  </div>
+</div>
+```
+
+Der CSS-Code:
+
+```css
+.group1 {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+}
+```
+
+### Die Label der Gruppen müssen programmatisch festgelegt werden.
+
+Weder die HTML-Spezifikationen noch die WCAG verlangen, dass jedes `<fieldset>`
+eine `<legend>` hat. Wenn ein `<fieldset>` jedoch zur Gruppierung von Labels verwendet
+wird, ist in der Praxis in der Regel ein Gruppen-Label erforderlich, um die
+Gruppierung zu beschreiben. Bei Optionsfeldern und gruppierten Kontrollkästchen
+ist zum Beispiel (fast) immer ein Label erforderlich, um ihren Zweck zu beschreiben.
+
+Wenn eine Gruppenbeschriftung erforderlich ist, um die Gruppe von Feldern angemessen
+zu beschreiben, muss sie mit Hilfe eines `<legend>` (oder aria-labelledby bei
+Verwendung der ARIA-Technik) programmatisch mit der Gruppierung verknüpft werden.
+
+#### Schlechtes Beispiel: Gruppierung ohne Labels
+
+Obwohl diese Felder durch `<fieldset>`- und `<legend>`-Tags gruppiert sind, hat das
+Bild im `<legend>`-Tag keinen alternativen Text, um einen erkennbaren Namen für
+Bildschirmleser zu bieten.
+
+```html
+<div>
+  <fieldset>
+    <legend><img src="assets/images/module-forms/maddress.png" /></legend>
+    <p><label for="mailaddress9014">Address: </label> <input type="text" id="mailaddress9014" /></p>
+    <p><label for="mailcity9014">City: </label> <input type="text" id="mailcity9014" /></p>
+    <p><label for="mailstate9014">State: </label> <input type="text" id="mailstate9014" /></p>
+    <p><label for="mailzip9014">Zip: </label> <input type="text" id="mailzip9014" /></p>
+  </fieldset>
+</div>
+<div>
+  <fieldset>
+    <legend><img src="assets/images/module-forms/baddress.png" /></legend>
+    <p><label for="billaddress9014">Address: </label> <input type="text" id="billaddress9014" /></p>
+    <p><label for="billcity9014">City: </label> <input type="text" id="billcity9014" /></p>
+    <p><label for="billstate9014">State: </label> <input type="text" id="billstate9014" /></p>
+    <p><label for="billzip9014">Zip: </label> <input type="text" id="billzip9014" /></p>
+  </fieldset>
+</div>
+```
+
+## Aussagekräftige Gruppen Labels
+
+### Die Label der Gruppen müssen aussagekräftig sein.
+
+Um den Nutzern beim erfolgreichen Ausfüllen eines Formulars zu helfen,
+sollten die Labels klar und informativ sein. Die Nutzer/innen sollten von
+vornherein genau wissen, was nötig ist, um das Formular erfolgreich auszufüllen.
+
+#### Gutes Beispiel: Aussagekräftiger Legendentext
+
+Die folgenden Felder sind in vier `<fieldset>`-Elemente mit `<legend>`-Elementen
+unterteilt, die sowohl die Schrittnummer als auch die zu erfassenden Informationen
+enthalten.
+
+```html
+<fieldset>
+  <legend>Step 1: Pick Your Car</legend>
+  <input type="radio" id="porsche9996" name="car" /> <label for="porsche9996">Porsche 911</label>
+  <input type="radio" id="mustang9996" name="car" /> <label for="mustang9996">Ford Mustang</label>
+  <input type="radio" id="nissan9996" name="car" /> <label for="nissan9996">Nissan 370Z</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 2: Pick Your Exterior Color</legend>
+  <input type="radio" id="red9996" name="ecolor" /> <label for="red9996">Red</label>
+  <input type="radio" id="silver9996" name="ecolor" /> <label for="silver9996">Silver</label>
+  <input type="radio" id="black9996" name="ecolor" /> <label for="black9996">Black</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 3: Pick Your Interior Color</legend>
+  <input type="radio" id="gray9996" name="icolor" /> <label for="gray9996">Light Gray</label>
+  <input type="radio" id="camel9996" name="icolor" /> <label for="camel9996">Camel</label>
+  <input type="radio" id="char9996" name="icolor" /> <label for="char9996">Charcoal</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 4: Pick Your Delivery Timeframe</legend>
+  <input type="radio" id="short9996" name="delivery" /> <label for="short9996">2-4 weeks</label>
+  <input type="radio" id="medium9996" name="delivery" /> <label for="medium9996">1-2 months</label>
+  <input type="radio" id="long9996" name="delivery" /> <label for="long9996">3-6 months</label>
+</fieldset>
+```
+
+#### Schlechtes Beispiel: Zweideutiger Legenden-Text
+
+Die folgenden Felder sind in vier `<fieldset>`-Elemente mit `<legend>`-Elementen
+unterteilt. Der Legendentext gibt die Schrittnummer an, aber nicht die Informationen,
+die gesammelt werden. Es ist möglich, dass der Nutzer die Art der benötigten
+Informationen herausfinden kann oder auch nicht.
+
+```html
+<fieldset>
+  <legend>Step 1</legend>
+  <input type="radio" id="porsche9997" name="car2" />
+  <label for="porsche9997">Porsche 911</label>
+  <input type="radio" id="mustang9997" name="car2" />
+  <label for="mustang9997">Ford Mustang</label>
+  <input type="radio" id="nissan9997" name="car2" />
+  <label for="nissan9997">Nissan 370Z</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 2</legend>
+  <input type="radio" id="red9997" name="ecolor2" />
+  <label for="red9997">Red</label>
+  <input type="radio" id="silver9997" name="ecolor2" />
+  <label for="silver9997">Silver</label>
+  <input type="radio" id="black9997" name="ecolor2" />
+  <label for="black9997">Black</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 3</legend>
+  <input type="radio" id="gray9997" name="icolor2" />
+  <label for="gray9997">Light Gray</label>
+  <input type="radio" id="camel9997" name="icolor2" />
+  <label for="camel9997">Camel</label>
+  <input type="radio" id="char9997" name="icolor2" />
+  <label for="char9997">Charcoal</label>
+</fieldset>
+
+<fieldset>
+  <legend>Step 4</legend>
+  <input type="radio" id="short9997" name="delivery2" />
+  <label for="short9997">2-4 weeks</label>
+  <input type="radio" id="medium9997" name="delivery2" />
+  <label for="medium9997">1-2 months</label>
+  <input type="radio" id="long9997" name="delivery2" />
+  <label for="long9997">3-6 months</label>
+</fieldset>
+```
+
+### Gruppen-Labels müssen sich nicht nur auf sensorische Merkmale beziehen.
+
+Wenn du dich bei der Beschriftung von Steuerelementen auf sensorische Merkmale verlässt,
+wie z. B. Form, Größe, visuelle Position, Ausrichtung oder Geräusche, kann das dazu
+führen, dass die Benutzer die Labels nicht verstehen. Wenn du zum Beispiel davon
+ausgehst, dass jeder die Form, die Farbe oder die Symbolik eines Steuerelements sehen
+kann, werden blinde, farbenblinde und sehbehinderte Nutzerinnen und Nutzer ausgeschlossen.
+Einige Dinge solltest du bedenken:
+
+- Wenn in einem Label für ein Formularsteuerelement Farbe verwendet wird, stelle sicher,
+  dass es einen nicht-farbigen Unterscheidungsfaktor wie Text oder ein leicht erkennbares
+  Symbol oder Icon gibt.
+
+- Der Farbkontrast von Text und Symbolen oder Icons, die als Label verwendet werden, muss
+  den Mindestanforderungen an das Farbkontrastverhältnis entsprechen.
+
+- Alle Informationen, die durch ein Label auf einem Formular visuell vermittelt werden,
+  müssen für Benutzer von Hilfsmitteln programmatisch bereitgestellt werden.
+
+#### Schlechtes Beispiel: Form Labels verlassen sich auf sensorische Merkmale
+
+Das untenstehende Formular setzt voraus, dass der Nutzer die Farben Rot, Grün und
+Blau sehen kann, um sein Essen richtig auszuwählen. Farbenblinde Nutzer können
+möglicherweise nicht zwischen rotem und grünem Text unterscheiden, und Menschen, die
+Bildschirmlesegeräte verwenden, haben keine Möglichkeit, die Farbe der einzelnen Labels
+zu erkennen.
+
+```html
+<fieldset>
+  <legend>
+    To make your meal, choose one appetizer (in green), one main course (in red), and one dessert
+    (in blue) from the options below.
+  </legend>
+  <input type="checkbox" name="meal" value="shrimp" id="shrimp" />
+  <label for="shrimp" style="color: green">Shrimp cocktail</label><br />
+  <input type="checkbox" name="meal" value="potato" id="potato" />
+  <label for="potato" style="color: green">Loaded potato skins</label><br />
+  <input type="checkbox" name="meal" value="pizza" id="pizza" />
+  <label for="pizza" style="color: green">Flat bread pizza</label><br />
+  <input type="checkbox" name="meal" value="wings" id="wings" />
+  <label for="wings" style="color: red">Buffalo chicken wings</label><br />
+  <input type="checkbox" name="meal" value="tuna" id="tuna" />
+  <label for="tuna" style="color: red">Seared tuna with mixed greens</label><br />
+  <input type="checkbox" name="meal" value="pasta" id="pasta" />
+  <label for="pasta" style="color: red">Pasta primevera</label><br />
+  <input type="checkbox" name="meal" value="cheese" id="cheese" />
+  <label for="cheese" style="color: blue">Cheese plate</label><br />
+  <input type="checkbox" name="meal" value="torte" id="torte" />
+  <label for="torte" style="color: blue">Chocolate torte</label><br />
+  <input type="checkbox" name="meal" value="fruit" id="fruit" />
+  <label for="fruit" style="color: blue">Fresh fruit and ice cream</label><br />
+</fieldset>
+```
+
+#### Gutes Beispiel: Form Labels verlassen sich nicht allein auf die Farbe
+
+Das Formular unten ist nicht darauf angewiesen, dass der Nutzer die Farben Rot,
+Grün und Blau sieht, um sein Essen richtig auszuwählen, denn die verschiedenen
+Gerichte sind jeweils mit einem `<fieldset>` und `<legend>` gruppiert, die die
+notwendigen semantischen Informationen liefern.
+
+```html
+<fieldset>
+  <legend>
+    To make your meal, choose one appetizer, one main course, and one dessert from the options
+    below.
+  </legend>
+  <fieldset>
+    <legend>Appetizers</legend>
+    <input type="checkbox" name="meal" value="shrimp" id="shrimp1" />
+    <label for="shrimp1" style="color: green">Shrimp cocktail</label><br />
+    <input type="checkbox" name="meal" value="potato" id="potato1" />
+    <label for="potato1" style="color: green">Loaded potato skins</label><br />
+    <input type="checkbox" name="meal" value="pizza" id="pizza1" />
+    <label for="pizza1" style="color: green">Flat bread pizza</label>
+  </fieldset>
+  <fieldset>
+    <legend>Main Courses</legend>
+    <input type="checkbox" name="meal" value="wings" id="wings1" />
+    <label for="wings1" style="color: red">Buffalo chicken wings</label><br />
+    <input type="checkbox" name="meal" value="tuna" id="tuna1" />
+    <label for="tuna1" style="color: red">Seared tuna with mixed greens</label><br />
+    <input type="checkbox" name="meal" value="pasta" id="pasta1" />
+    <label for="pasta1" style="color: red">Pasta primevera</label>
+  </fieldset>
+  <fieldset>
+    <legend>Desserts</legend>
+    <input type="checkbox" name="meal" value="cheese" id="cheese1" />
+    <label for="cheese1" style="color: blue">Cheese plate</label><br />
+    <input type="checkbox" name="meal" value="torte" id="torte1" />
+    <label for="torte1" style="color: blue">Chocolate torte</label><br />
+    <input type="checkbox" name="meal" value="fruit" id="fruit1" />
+    <label for="fruit1" style="color: blue">Fresh fruit and ice cream</label>
+  </fieldset>
+</fieldset>
+```
+
+## Nähe von Gruppen-Labels
+
+### Gruppen-Labels sollten visuell neben den gruppierten Elementen liegen.
+
+Wenn Gruppen-Labels zu weit von den zugehörigen Formularfeldern entfernt sind,
+können Personen, die eine Bildschirmvergrößerung verwenden, sie nur schwer
+finden oder müssen vor und zurück oder nach oben und unten scrollen, um die
+Verbindung zwischen Formularfeldern und ihrem Gruppen-Label herzustellen.
+
+#### Schlechtes Beispiel: Eingaben und Label der Gruppe liegen optisch nicht nahe beieinander
+
+In diesem Beispiel stört das große Bild die Beziehung zwischen der Legende
+der Gruppe und den Kontrollkästchen optisch.
+
+```html
+<fieldset>
+  <legend>Choose your top three favorite holidays:</legend>
+  <p><img src="assets/images/module-forms/fireworks.png" height="196" width="625" alt="" /></p>
+  <input type="checkbox" name="holiday" id="memorial9142" value="Memorial" />
+  <label for="memorial9142">Memorial Day</label><br />
+  <input type="checkbox" name="holiday" id="july9142" value="July" />
+  <label for="july9142">4th of July</label><br />
+  <input type="checkbox" name="holiday" id="labor9142" value="Labor" />
+  <label for="labor9142">Labor Day</label><br />
+  <input type="checkbox" name="holiday" id="halloween9142" value="" />
+  <label for="halloween9142">Halloween</label><br />
+  <input type="checkbox" name="holiday" id="thanks9142" value="" />
+  <label for="thanks9142">Thanksgiving</label><br />
+</fieldset>
+```
+
+#### Gutes Beispiel: Eingaben und Label der Gruppe liegen visuell nahe beieinander
+
+In diesem Beispiel erscheint das große Bild vor der Formularfeldgruppe und
+beeinträchtigt nicht die Beziehung zwischen der Legende und den Kontrollkästchen
+der Gruppe.
+
+```html
+<p><img src="assets/images/module-forms/fireworks.png" height="196" width="625" alt="" /></p>
+<fieldset>
+  <legend>Choose your top three favorite holidays:</legend>
+  <input type="checkbox" name="holiday" id="memorial9134" value="Memorial" />
+  <label for="memorial9134">Memorial Day</label><br />
+  <input type="checkbox" name="holiday" id="july9134" value="July" />
+  <label for="july9134">4th of July</label><br />
+  <input type="checkbox" name="holiday" id="labor9134" value="Labor" />
+  <label for="labor9134">Labor Day</label><br />
+  <input type="checkbox" name="holiday" id="halloween9134" value="" />
+  <label for="halloween9134">Halloween</label><br />
+  <input type="checkbox" name="holiday" id="thanks9134" value="" />
+  <label for="thanks9134">Thanksgiving</label><br />
+</fieldset>
+```
+
+### Gruppen-Labels sollten im DOM neben den gruppierten Elementen liegen.
+
+Wenn Bildschirmlesegeräte eine Seite im Browsemodus lesen, lesen sie
+die Informationen in der Reihenfolge, in der sie im DOM erscheinen.
+Wenn Gruppen-Labels und die zugehörigen Formularfelder im DOM nicht
+nebeneinander liegen, können Screenreader-Nutzer beim Durchblättern
+einer Seite Probleme haben, das Gruppen-Label und die Formularfelder
+zuzuordnen.
+
+#### Schlechtes Beispiel: Inputs und Group Label sind im DOM nicht geschlossen
+
+Das folgende Formular verwendet ein `<fieldset>` und `<legend>`, um die
+Kontrollkästchen zu gruppieren und ein Label für die Gruppe zu erstellen.
+Wenn ein Screenreader-Benutzer mit der Tabulatortaste durch die Felder
+blättert, werden das zugehörige Label der Gruppe und die Feldbeschriftungen
+wie erwartet gelesen. Wenn ein Screenreader-Benutzer jedoch mit den
+Pfeiltasten durch den Inhalt blättert, stößt er auf die 5 Bilder, die
+zwischen dem `<legend>` und den Kontrollkästchen platziert sind, und
+unterbricht so den Fluss des zugehörigen Inhalts.
+
+```html
+<fieldset>
+  <legend>Choose your top three favorite holidays:</legend>
+  <p>
+    <img src="memorial-sm.png" height="130" width="130" alt="Memorial Day" />
+    <img src="fireworks-sm.png" height="130" width="130" alt="4th of July Fireworks" />
+    <img src="bbq-sm.png" height="130" width="130" alt="Labor Day BBQ" />
+    <img src="halloween-sm.png" height="130" width="130" alt="Halloween Pumpkin" />
+    <img src="thanksgiving-sm.png" height="130" width="130" alt="Thanksgiving Turkey" />
+  </p>
+  <input type="checkbox" name="holiday" id="memorial9129" value="Memorial" />
+  <label for="memorial9129">Memorial Day</label><br />
+  <input type="checkbox" name="holiday" id="july9129" value="July" />
+  <label for="july9129">4th of July</label><br />
+  <input type="checkbox" name="holiday" id="labor9129" value="Labor" />
+  <label for="labor9129">Labor Day</label><br />
+  <input type="checkbox" name="holiday" id="halloween9129" value="Halloween" />
+  <label for="halloween9129">Halloween</label><br />
+  <input type="checkbox" name="holiday" id="thanks9129" value="Thanksgiving" />
+  <label for="thanks9129">Thanksgiving</label><br />
+</fieldset>
+```
+
+## Sichtbarkeit von Gruppen-Labels
+
+### Die Label der Gruppen müssen sichtbar sein.
+
+Sichtbare Labels kommen allen Nutzern zugute. Wenn Formularfelder keine
+aussagekräftigen Labels oder Gruppenlabels haben, die für alle
+Nutzer/innen jederzeit sichtbar sind, müssen die Nutzer/innen den Zweck
+der Formularfelder möglicherweise erraten oder ableiten.
+
+#### Schlechtes Beispiel: Versteckter Legendentext
+
+Diese Formulargruppierung verwendet das `<legend>`-Element korrekt, um
+das Label der Gruppe für Screenreader zu vermitteln. Die Legende ist
+jedoch NUR für Screenreader verfügbar, da sie mit CSS als beschnittener
+Text gestaltet ist, der auf dem Bildschirm nicht sichtbar ist. Wenn der
+Legendentext so wichtig ist, dass er für Screenreader-Nutzer zur
+Verfügung gestellt werden muss, sollte er für alle Nutzer bereitgestellt
+werden.
+
+```html
+<form class="labelformat1">
+  <fieldset class="fieldsetformat9968">
+    <legend class="visually-hidden">Contact Information</legend>
+    <p>
+      <label for="name9968">Name: </label>
+      <input type="text" id="name9968" />
+    </p>
+    <p>
+      <label for="phone9968">Phone: </label>
+      <input type="text" id="phone9968" />
+    </p>
+    <p>
+      <label for="email9968">Email: </label>
+      <input type="text" id="email9968" />
+    </p>
+    <p>
+      <label for="address9968">Address: </label>
+      <input type="text" id="address9968" />
+    </p>
+    <p>
+      <label for="city9968">City: </label>
+      <input type="text" id="city9968" />
+    </p>
+    <p>
+      <label for="state9968">State: </label>
+      <input type="text" id="state9968" />
+    </p>
+    <p>
+      <label for="zip9968">Zip: </label>
+      <input type="text" id="zip9968" />
+    </p>
+  </fieldset>
+</form>
+```
+
+#### Schlechtes Beispiel: Legende mit schlechtem Farbkontrast
+
+Diese Formulargruppierung verwendet das `<legend>`-Element korrekt,
+um das Label der Gruppe für Screenreader zu vermitteln. Allerdings
+beträgt das Farbkontrastverhältnis des Legendentextes zum Hintergrund
+der Legende nur 2,6 zu 1, was weit unter dem erforderlichen
+Kontrastverhältnis von 4,5 zu 1 für normalen Text liegt.
+
+```html
+<form class="labelformat1">
+  <fieldset class="fieldsetformat9081">
+    <legend class="legendformat9081">Contact Information</legend>
+    <p>
+      <label for="id85_name3">Name: </label>
+      <input type="text" id="id85_name3" />
+    </p>
+    <p>
+      <label for="id85_phone3">Phone: </label>
+      <input type="text" id="id85_phone3" />
+    </p>
+    <p>
+      <label for="id85_email3">Email: </label>
+      <input type="text" id="id85_email3" />
+    </p>
+    <p>
+      <label for="id85_address3">Address: </label>
+      <input type="text" id="id85_address3" />
+    </p>
+    <p>
+      <label for="id85_city3">City: </label>
+      <input type="text" id="id85_city3" />
+    </p>
+    <p>
+      <label for="id85_state3">State: </label>
+      <input type="text" id="id85_state3" />
+    </p>
+    <p>
+      <label for="id85_zip3">Zip: </label>
+      <input type="text" id="id85_zip3" />
+    </p>
+  </fieldset>
+</form>
+```

@@ -1,0 +1,277 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Formulare mit Screenreadern verwenden'
+pubDate: 2023-05-11
+---
+
+Bildschirmlesegeräte haben verschiedene Modi zum Lesen von Webseiten. Es gibt den normalen
+Lesemodus (oder Dokumentenmodus), den Formularmodus, den Anwendungsmodus und den virtuellen
+Cursormodus. Jeder Modus hat einen bestimmten Zweck, und in der Regel kannst du dich immer
+nur in einem Modus befinden. Der Grund für die verschiedenen Modi ist, dass sie es den Nutzern
+ermöglichen, eine bestimmte Anzahl von Operationen auszuführen, die für die Art des Inhalts,
+auf den sie zugreifen, oder für die Art der Interaktion, an der sie beteiligt sind, geeignet
+sind. In diesem Abschnitt gehen wir darauf ein, wie Screenreader mit Formularen interagieren
+und welche Unterschiede es zwischen dem allgemeinen Lesemodus (Dokumentenmodus) und dem
+Formularmodus gibt.
+
+## Tastaturbefehle
+
+<table>
+  <caption>Gemeinsame Tastaturbefehle für Bildschirmleser bei Formularen</caption>
+  <thead>
+    <tr>
+      <th>Aufgabe</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Aufgabe">Navigiere durch fokussierbare Elemente</td>
+      <td data-label="Befehl">Tabulator (oder Shift + Tabulator, um rückwärts zu gehen)</td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Aktiviere eine Schaltfläche</td>
+      <td data-label="Befehl">Eingabe oder Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Wähle ein Kontrollkästchen</td>
+      <td data-label="Befehl">
+        Gehe mit der Tabulatortaste auf das Kontrollkästchen und drücke dann die Leertaste
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Wähle eine Optionsschaltfläche</td>
+      <td data-label="Befehl">
+        Gehe mit der Tabulatortaste zur Gruppe der Optionsfelder, wähle mit den Pfeiltasten eines
+        davon aus und drücke dann die Leertaste
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Wähle ein Element in einer `<select>`-Dropdown-Liste</td>
+      <td data-label="Befehl">
+        Gehe mit der Tabulatortaste zum Feld `<select>`, drücke Alt/Option + Pfeil nach unten, um
+        die Liste zu öffnen, wähle mit dem Pfeil nach unten/oben ein Element aus und drücke dann Enter.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>Screen Reader Tastaturbefehle für Formulare</caption>
+  <thead>
+    <tr>
+      <th>Aufgabe</th>
+      <th>JAWS</th>
+      <th>NVDA</th>
+      <th>Narrator</th>
+      <th>VoiceOver</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Aufgabe">Modi umschalten</td>
+      <td data-label="JAWS">
+        Formularmodus: (Ein) (Automatisch, wenn im Formularelement), (Aus) Numpad Plus
+      </td>
+      <td data-label="NVDA">Zum Blättern/Fokusmodus oder Formularmodus: Einfügen + Leertaste</td>
+      <td data-label="Narrator">Scan-Modus: Feststelltaste + Leertaste</td>
+      <td data-label="VoiceOver">Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Zu einem Formular navigieren</td>
+      <td data-label="JAWS">Drücke im Dokumentenmodus F</td>
+      <td data-label="NVDA">Drücke im Dokumentenmodus F</td>
+      <td data-label="Narrator">Drücke im Scan-Modus F</td>
+      <td data-label="VoiceOver">VO + Befehl + J</td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">Zum nächsten Formularelement navigieren</td>
+      <td data-label="JAWS">F (oder Shift + F, um rückwärts zu gehen)</td>
+      <td data-label="NVDA">F (oder Shift + F, um rückwärts zu gehen)</td>
+      <td data-label="Narrator">F (oder Shift + F, um rückwärts zu gehen)</td>
+      <td data-label="VoiceOver">
+        VO + Befehl + J (oder Shift + VO + Befehl + J, um rückwärts zu gehen)
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Aufgabe">List all form elements</td>
+      <td data-label="JAWS">Einfügen + F5</td>
+      <td data-label="NVDA">Einfügen + F7, dann Alt + F</td>
+      <td data-label="Narrator">
+        Feststelltaste + [F5 oder F6], dann Tabulator (zweimal) zur Dropdown-Liste Scoping und wähle
+        Formularfelder
+      </td>
+      <td data-label="VoiceOver">
+        VO + U, dann Links/Rechts-Pfeil, bis du die Liste Formularsteuerung erreichst
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Bildschirmleser-Modi
+
+Die meisten Bildschirmleser haben verschiedene Modi, die für unterschiedliche Situationen
+gelten. Die zwei wichtigsten Kategorien von Umständen sind:
+
+- Seitennavigation: Wenn der/die Nutzer/in im Dokument navigieren muss, stehen ihm/ihr alle
+  möglichen Tastenkombinationen für eine Vielzahl von Aufgaben zur Verfügung (z. B. H für
+  Überschriften, G für Grafiken, T für Tabellen, usw.). Dieser Seitennavigationsmodus wird
+  auch als Scanmodus (in Narrator), Blätternmodus oder Dokumentenmodus bezeichnet.
+
+- Eingabe oder Interaktion: Bei der Interaktion mit einem Element - z. B. bei der Eingabe in
+  ein Textfeld oder innerhalb eines benutzerdefinierten JavaScript-Widgets - wäre es schlecht,
+  wenn die H-Taste zur nächsten Überschrift führen würde, daher unterdrücken Screenreader unter
+  diesen Umständen die Tastenanschläge zur Seitennavigation. Dieser Interaktionsmodus hat einige
+  Variationen und Namen, darunter Formularmodus, Fokusmodus und Anwendungsmodus.
+
+Im Folgenden werden wir die Unterschiede zwischen der Seitennavigation im Dokumentenmodus und der
+Interaktion von Bildschirmlesern mit Formularen im Formularmodus untersuchen.
+
+### Formular Modus
+
+In einem Textfeld eines Formulars möchten die Benutzer/innen Text in das Formularfeld eingeben können.
+Screenreader müssen alle Tastenkombinationen, die mit Buchstaben und Zahlen verbunden sind, deaktivieren,
+damit die Benutzer Text eingeben können. Wenn du zum Beispiel JAWS verwendest, führt dich die Taste H
+normalerweise zur nächsten Überschrift. Aber wenn du ein Formularfeld eingibst, willst du nicht zur
+nächsten Überschrift gehen. Um das zu ermöglichen, schaltet JAWS automatisch vom Dokument- in den
+Formularmodus um und deaktiviert die normalen Tastaturkürzel, damit du die Buchstaben und Zahlen
+eingeben kannst.
+
+Wenn du im Formularmodus in ein Textfeld eingibst, spricht das Bildschirmlesegerät den eingegebenen
+Buchstaben (z. B. "H") vor und ermöglicht die Eingabe des Zeichens.
+
+Bildschirmlesegeräte schalten in der Regel automatisch in den Formularmodus um, sobald du den Fokus auf
+ein Formularfeld setzt, indem du mit der Tabulatortaste hineinfährst. Der Formularmodus wird nicht aktiviert,
+wenn du den Inhalt eines Formulars im normalen Lesemodus oder im Dokumentmodus durchliest. Mit anderen Worten:
+Das `<form>`-Tag selbst löst den Formularmodus nicht aus. Um den Formularmodus auszulösen, musst du den
+Tastaturfokus auf ein Formularfeld setzen (ein `<input>`, ein `<select>`, ein `<textarea>`, ein
+Optionsfeld usw.).
+
+Bei einigen Bildschirmlesegeräten können die Benutzer/innen manuell zwischen dem Formular- und dem
+Dokumentenmodus umschalten. Bei NVDA zum Beispiel lautet die Tastenkombination Einfügen + Leertaste.
+
+#### Nur fokussierbare Elemente - und ihre zugehörigen Labels oder Beschreibungen - werden beim Tabbing in Formularen gelesen.
+
+Wenn du dich in einem Formular befindest, verwenden die meisten Nutzer die Tabulatortaste, um zwischen
+fokussierbaren Elementen zu navigieren. Wenn du mit der Tabulatortaste navigierst, landet der Fokus nicht
+auf nicht fokussierbarem Text, z. B. auf Absätzen, Spannelementen, Überschriften, Div-Elementen usw. Da der
+Fokus nicht auf nicht fokussierbarem Text landet, können die Benutzer den Text im Formular, der nicht
+fokussierbar ist, komplett überspringen. Dazu gehören Formularanweisungen, Formatierungshinweise und
+Überschriften, um Abschnitte des Formulars zu gruppieren. Die Benutzer/innen können zwar immer in den
+Lesemodus wechseln, um diese Dinge zu hören, aber die Wahrscheinlichkeit, dass sie das tun, sobald sie
+sich im Formular befinden, ist sehr gering. Du kannst dich nicht darauf verlassen, dass sie jemals nicht
+fokussierbaren Text in einem Formular hören werden.
+
+Die gute Nachricht ist, dass Bildschirmlesegeräte innerhalb von Formularen Folgendes lesen können:
+
+- Formular-Labels mit dem `<label>`-Tag.
+
+- Formular-Labels mit dem Attribut aria-label.
+
+- Formular-Labels mit dem Attribut aria-labelledby.
+
+- Text, der mit Formularfeldern verbunden ist, die das Attribut aria-describedby verwenden
+  (allerdings gibt es bei VoiceOver auf dem Mac eine lange Verzögerung, bevor dieser Text gelesen wird).
+
+- Der Text im `<legend>` des `<fieldset>`.
+
+- Der Text innerhalb von Links.
+
+- Der Text in jedem Element mit tabindex="0".
+
+### Dokument/Durchsuchen/Scan-Modus
+
+#### Text lesen
+
+Im Dokumentenmodus oder Lesemodus können Bildschirmleser-Benutzer/innen Text lesen, nach
+Wörtern navigieren, nach Zeichen navigieren, um die Schreibweise von Wörtern zu hören, und
+so weiter. Dies ist der Standardmodus der meisten Bildschirmlesegeräte.
+
+#### Navigieren nach semantischen Elementen
+
+Wenn Nutzerinnen und Nutzer durch semantische Elemente navigieren wollen - wie Überschriften,
+Orientierungspunkte, Tabellen, Grafiken, Listen, Links usw. - können sie die Tastenkombinationen
+des Bildschirmlesegeräts verwenden, um vorwärts oder rückwärts durch diese Elemente zu gehen.
+
+- In JAWS und NVDA ist der Dokumenten- oder Lesemodus derselbe Modus, in dem sie nach semantischen
+  Elementen navigieren können.
+
+- In Narrator müssen die Nutzer in den "Scan-Modus" wechseln (durch Drücken von Feststelltaste + Leertaste),
+  um nach semantischen Elementen zu navigieren.
+
+- Bei VoiceOver für macOS ist es nicht nötig, den Modus zu wechseln, denn VoiceOver hat nicht dasselbe Konzept
+  von Modi wie andere Bildschirmleser.
+
+### Andere Modi
+
+Es gibt noch andere Arten von Modi, die Screenreader verwenden, um durch Online-Inhalte zu navigieren.
+Diese Seite hebt nur diese anderen Modi hervor. Mehr über diese verschiedenen Modi erfährst du in Modul
+2: Verwendung von Screen Readern.
+
+#### Fokus-Modus
+
+Der Fokusmodus in Bildschirmlesegeräten ist ein Modus, der es Nutzern nur erlaubt, zu fokussierbaren
+Elementen zu navigieren. Die Benutzer können die Tastenkombinationen des Bildschirmlesegeräts nicht
+verwenden, um zu semantischen Elementen (Überschriften, Orientierungspunkte, Tabellen, Links usw.)
+zu navigieren. Der Formularmodus ist eine Art Fokusmodus für Bildschirmlesegeräte, bei dem die
+Benutzer/innen mit der Tabulatortaste zu Formularelementen navigieren und bestimmte Tastenkombinationen
+deaktiviert sind, damit die Benutzer/innen mit dem Formular interagieren können. Bei Bildschirmlesegeräten
+wie NVDA und JAWS können die Nutzer zwischen dem Fokusmodus und dem Dokument- oder Lesemodus wechseln.
+Bildschirmlesegeräte schalten automatisch in den Fokusmodus um, wenn sie sich in Anwendungsbereichen
+befinden.
+
+#### Anwendungsmodus
+
+AnwendungsmodusEntwickler können den Anwendungsmodus aufrufen, indem sie einem JavaScript-Widget die
+Rolle="Anwendung" zuweisen. Der Zweck des Anwendungsmodus ist es, Webentwicklern die Möglichkeit zu
+geben, alle Tastaturfunktionen zu implementieren, die sie benötigen, um die Anwendung zum Laufen zu
+bringen. Der Anwendungsmodus deaktiviert fast alle regulären Tastenkombinationen des Screenreaders
+und gibt den Webentwicklern eine weiße Weste. Screenreader-Nutzer können also keine Tastaturkürzel
+verwenden, die ihnen normalerweise zur Verfügung stehen, wie z. B. "H", um durch Überschriften zu
+navigieren. Entwickler können neue Tastenkombinationen erstellen und Tastaturtechniken für den Zugriff
+und die Nutzung der Anwendung selbst implementieren, wenn sie wollen. Da der Anwendungsmodus das normale
+Verhalten und die Optionen von Screenreadern außer Kraft setzt, sollte er nur sparsam und nur für
+bestimmte Widgets und Teile von Widgets verwendet werden, die über eigene Tastaturhandler verfügen.
+
+#### Tabellenmodus
+
+Bildschirmlesegeräte ermöglichen es den Nutzern, in jeder Richtung durch Tabellen zu navigieren:
+rechts, unten, links und oben. Wenn du die richtigen Tasten drückst, kannst du ähnlich wie in einer
+Tabellenkalkulation durch die Zellen navigieren. Alle Windows-Bildschirmleser verwenden
+Strg + Alt + Pfeiltasten für die Tabellennavigation; unter macOS sind es Strg + Option + Pfeiltasten.
+
+### Umschalten der Modi in Bildschirmlesegeräten
+
+Einige Screenreader können zwischen verschiedenen Modi umschalten. In der folgenden Tabelle sind die
+Tastenkombinationen aufgeführt, mit denen gängige Bildschirmlesegeräte zwischen den Modi Dokumentmodus
+und Formularmodus wechseln.
+
+<table>
+  <caption>Umschalten der Modi in Bildschirmlesegeräten</caption>
+  <thead>
+    <tr>
+      <th>Screenreader</th>
+      <th>Methode zum Umschalten der Modi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Screenreader">Narrator</td>
+      <td data-label="Methode zum Umschalten der Modi">
+        Feststelltaste + Leertaste (schaltet den Scan-Modus ein oder aus)
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screenreader">NVDA</td>
+      <td data-label="Methode zum Umschalten der Modi">
+        Einfügen + Leertaste (schaltet zwischen Dokumentmodus und Fokusmodus um)
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Screenreader">VoiceOver für macOS</td>
+      <td data-label="Methode zum Umschalten der Modi">
+        Keine Notwendigkeit, den Modus zu wechseln
+      </td>
+    </tr>
+  </tbody>
+</table>

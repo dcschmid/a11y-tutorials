@@ -1,0 +1,479 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Formularvalidierung'
+pubDate: 2023-05-09
+---
+
+Trotz der besten Anweisungen der Welt werden in Formularen immer wieder Fehler
+gemacht. Ein wichtiger Aspekt der Barrierefreiheit eines Formulars ist, wie mit
+den Fehlern umgegangen wird. Einige der WCAG 2.1 Richtlinien konzentrieren sich
+speziell auf die Effektivität der Warnung der Nutzer/innen vor Fehlern und die
+Unterstützung bei deren Behebung. Einige Dinge, die bei der Formularvalidierung
+auf der Grundlage der Richtlinien zu beachten sind, sind:
+
+- Informiere die Nutzer über Eingabefehler, die eine Formularvalidierung verhindern,
+  oder lass sie wissen, ob die Formularübermittlung erfolgreich war. Wenn ein
+  Screenreader-Nutzer bei einem Fehler keine nützliche Rückmeldung von seiner
+  assistiven Technologie erhält, ist das eine wirklich schlechte Erfahrung. Ähnlich
+  verhält es sich, wenn sehende Nutzer/innen nicht sehen können, welche Fehler im
+  Formular gemacht wurden.
+
+- Bewahre so viele korrekte Informationen wie möglich auf.
+
+- Zeige Fehlermeldungen im Kontext an, damit sie schnell gelöst werden können.
+
+- Gib den Nutzern genug Informationen, damit sie wissen, wie sie die Fehler beheben
+  können. Fehlerwarnungen müssen:
+
+  - klar formuliert sein
+
+  - Geben Sie umsetzbare Feedback-Botschaften
+
+  - Sie lenken die Aufmerksamkeit und den Fokus auf ihre Botschaft
+
+  - Sie müssen sich deutlich von den Formulareingaben unterscheiden
+
+  - Vollständig zugänglich sein
+
+## Fehlervermeidung
+
+Das Ziel ist es, Formulare so zu gestalten, dass sie selbsterklärend sind, damit
+die Benutzer keine Fehler machen. Wir haben schon viele Techniken besprochen, die
+helfen, Fehler zu vermeiden. Hier ist eine kurze Liste von Techniken:
+
+- Labels: Stelle sicher, dass alle Formularelemente genau beschriftet und für alle
+  Nutzer/innen zugänglich sind.
+
+- Anweisungen: Wenn das Label nicht ausreicht, um den Zweck einer Eingabe zu beschreiben,
+  gib zusätzliche Anweisungen.
+
+- Eingebaute Beschränkungen für Eingaben: Erlaube gegebenenfalls nur bestimmte Eingaben,
+  z. B. nur Ziffern, wenn du eine Postleitzahl eingibst. Um die Optionen noch weiter
+  einzuschränken, kannst du sie als Datenwerte in `<select>`-Listen, Optionsfeldern,
+  Kontrollkästchen oder einem anderen festen Format vordefinieren.
+
+- Eingeschränkte Schritt-für-Schritt-Ansichten: Wenn es unterschiedliche Wege durch eine
+  Interaktion gibt, ist es normalerweise keine gute Idee, alle Möglichkeiten gleichzeitig
+  zu zeigen. Das kann für die Nutzer/innen verwirrend und für die Programmierlogik schwierig
+  sein, um sicherzustellen, dass alle Möglichkeiten und Fehlerzustände berücksichtigt werden.
+  Erlaube den Nutzern, eine Auswahl zu treffen, und zeige dann nur die sich daraus ergebenden
+  Möglichkeiten für diesen Pfad an.
+
+- Konventionelle Entwurfsmuster: Je vertrauter deine Nutzer/innen mit den Methoden sind, die
+  du in deinem Design verwendest, desto leichter werden sie verstehen, was sie tun sollen.
+  Dazu gehört, dass du so oft wie möglich herkömmliche Formulareingaben verwendest und
+  benutzerdefinierte Widgets nur bei Bedarf einsetzt.
+
+- Visuelles Design, das die Aufmerksamkeit der Nutzer lenkt: Achte darauf, dass sich Labels
+  und Anweisungen in der Nähe der jeweiligen Eingaben befinden. Reduziere Ablenkungen in der
+  visuellen Gestaltung. Verwende visuelle Hinweise, um die Nutzer/innen zum korrekten
+  Ausfüllen des Formulars anzuleiten. Mache Fehlermeldungen und Bestätigungsmeldungen visuell
+  deutlich.
+
+- Bestätigung vor dem Absenden: Fasse zusammen, was passieren wird, wenn der/die Nutzer/in
+  das Formular absendet, BEVOR das Formular abgeschickt wird. Bitte den Nutzer, zu bestätigen,
+  dass die Informationen korrekt sind. Das ist besonders wichtig, wenn die Aktionen nicht
+  rückgängig zu machen sind.
+
+- Bestätigung nach dem Absenden: Fasse das Ergebnis auf dem Bildschirm zusammen, nachdem das
+  Formular abgeschickt wurde, damit die Nutzer ihre Aktion noch einmal überprüfen können.
+
+- Umkehrbare Aktionen: Wann immer möglich, solltest du den Nutzern die Möglichkeit geben,
+  Aktionen rückgängig zu machen, um den vorherigen Zustand wiederherzustellen. In manchen
+  Fällen kann es von Vorteil sein, mehrere frühere Aktionen zu speichern, damit die Nutzer/innen
+  zu einem von mehreren früheren Zuständen zurückkehren können. Umkehrbare Aktionen können durch
+  eine "Rückgängig"-Funktion, durch eine Möglichkeit, den Kundendienst zu kontaktieren, oder
+  durch eine andere Methode zur Fehlerkorrektur erreicht werden.
+
+- E-Mail-Bestätigung: Sende gegebenenfalls eine E-Mail-Bestätigung an die Nutzer/innen als
+  zusätzliche Sicherheitsprüfung, damit sie sicher sein können, dass die Aktion wie vorgesehen
+  funktioniert hat.
+
+## Entwurfsmuster 1: Fehler-/Erfolgsübersicht
+
+Eine Möglichkeit, wie du den Nutzern nach dem Absenden des Formulars eine Rückmeldung
+geben kannst, ist die Anzeige einer Zusammenfassung am oberen Rand mit der Nachricht
+(entweder eine Erfolgsmeldung oder eine Fehlermeldung).
+
+### Gutes Beispiel: Formular mit Validierungsergebnissen am oberen Rand
+
+Im folgenden Beispiel wird die Fehler- oder Erfolgsbestätigung über dem Formular
+angezeigt, nachdem das Formular abgeschickt wurde.
+
+- So machst du die Fehlermeldung sichtbar: Sende das Formular mit einem oder
+  mehreren leeren Feldern oder mit einer ungültigen Antwort ab.
+
+- So gibst du die Erfolgsmeldung aus: Fülle das Formular aus und sende es ab.
+
+TODO: Example
+
+### Details zur Implementierung
+
+- Ungültige Felder auf aria-invalid="true" setzen
+
+- Fokus auf Fehler-/Erfolgsmeldung setzen
+
+- Stelle sicher, dass der Container für Fehler- und Erfolgsmeldungen auf
+  tabindex="-1" gesetzt ist. Andernfalls kann der Fokus nicht erfolgreich gesetzt werden.
+
+- Gib eine Anzahl von Fehlern an, damit die Benutzer ein Gefühl für das Ausmaß
+  des Problems bekommen.
+
+- Stelle sicher, dass Fehlermeldungen mit Formularfeldern über aria-describedby
+  verknüpft werden, damit Screenreader-Nutzer wissen, wie sie das Problem beheben
+  können.
+
+- Sicherstellen, dass Fehlermeldungen sichtbar sind, damit sehende Nutzer wissen,
+  wie sie die Probleme beheben können
+
+- Achte darauf, dass Fehlermeldungen neben den Eingaben stehen, damit Benutzer mit
+  Bildschirmvergrößerung leicht erkennen können, welche Meldungen zu welchen Feldern
+  gehören.
+
+#### Wenn das Absenden des Formulars dazu führt, dass eine neue Seite geladen wird (oder dieselbe Seite neu geladen wird):
+
+- Stelle sicher, dass der `<title>` der Seite den Status der Fehler- oder
+  Erfolgsbestätigung wiedergibt. Der Titel könnte etwa so lauten: "Es gab 3 Fehler
+  im Formular" oder "Erfolg! Dein Konto wurde erstellt." Der `<title>` der Seite ist
+  das erste, was Screenreader-Nutzer hören, wenn die Seite geladen wird, und ist
+  daher der schnellste Weg, ihnen eine Rückmeldung über den Status des Formulars zu
+  geben.
+
+- Biete eine schnelle Möglichkeit, die Statusmeldung zu erreichen. Einige Optionen
+  sind:
+
+  - Biete einen "Zum Hauptinhalt springen"-Link an, der die Nutzer zur Nachricht
+    führt.
+
+  - Verschiebe den Fokus auf die Bestätigungsmeldung, nachdem die Seite geladen
+    wurde.
+
+    WICHTIG: Du musst warten, bis die Seite vollständig geladen ist, und dann eine
+    JavaScript-Zeitüberschreitung von 1 bis 2 Sekunden einstellen, damit der virtuelle
+    Puffer des Bildschirmlesegeräts die Seite verarbeiten kann, und dann JavaScript
+    verwenden, um den Fokus auf die Bestätigungsmeldung zu setzen. Wenn du den Fokus
+    sofort nach dem Laden der Seite an die Nachricht sendest, kann der Fokus zwar
+    erfolgreich gesetzt werden, aber die Bildschirmleser sagen nichts, weil sie noch
+    keine Zeit hatten, um festzustellen, was auf der Seite steht.
+
+## Entwurfsmuster 2: Den Fokus auf den ersten Fehler richten
+
+Eine andere Möglichkeit, wie die Ergebnisse der Formularvalidierung den Nutzern helfen
+können, Fehler zu beheben, besteht darin, den Fokus nach dem Absenden auf das erste
+fehlerhafte Feld zu lenken. Auf diese Weise muss der Nutzer nicht nach dem ersten Fehler
+suchen, sondern kann von diesem aus durch das Formular navigieren, um andere Fehler im
+Formular zu korrigieren.
+
+### Den Fokus auf das erste Feld mit einem Fehler senden
+
+Im folgenden Beispiel wird der Fokus auf das erste Feld mit einem Fehler verschoben und
+ein Tooltip wird angezeigt, der den Benutzer anweist, wie er den Fehler im Formularfeld
+beheben kann.
+
+TODO: Example
+
+### Details zur Implementierung
+
+Hinweis: Viele davon sind ähnlich oder identisch mit den Implementierungsdetails für
+Entwurfsmuster 1: Fehler-/Erfolgsübersicht.
+
+- Setze ungültige Felder auf aria-invalid="true".
+
+- Verschiebe den Fokus auf das erste Feld mit einem Fehler.
+
+- Stelle sicher, dass Fehlermeldungen mit Formularfeldern mit aria-describedby verknüpft
+  werden, damit Screenreadernutzer wissen, wie sie das Problem beheben können.
+
+- Sorge dafür, dass Fehlermeldungen sichtbar sind, damit sehende Nutzer wissen, wie sie
+  die Probleme beheben können. In diesem Beispiel ist ein Fehlersymbol jederzeit sichtbar,
+  aber die Fehlererklärung ist nur sichtbar, wenn der Nutzer den Fokus auf das fehlerhafte
+  Feld richtet oder mit der Maus darüber fährt. Eine Tooltip-Meldung mit der Fehlererklärung
+  wird eingeblendet. Vorteil: Sauberere Oberfläche. Nachteil: Die Nutzer/innen wissen nicht
+  auf einen Blick, wie sie den Fehler beheben können (aber sie wissen es, wenn sie den Fokus
+  auf das Feld richten oder den Mauszeiger über die Eingabe bewegen).
+
+- Achte darauf, dass Fehlermeldungen neben den Eingaben stehen, damit Benutzer mit
+  Bildschirmvergrößerung leicht erkennen können, welche Meldungen zu welchen Feldern gehören.
+  In diesem Beispiel befindet sich das Symbol direkt links neben der Eingabe. Der Tooltip
+  erscheint direkt rechts daneben. Eine Positionierung der QuickInfo unter der Eingabe oder
+  in der Nähe des Symbols wäre für Benutzer von Bildschirmlupen wahrscheinlich effektiver,
+  vor allem auf kleinen Bildschirmen, aber dieses Layout kann auch auf großen Bildschirmen
+  akzeptabel sein. Die Stile in diesem Beispiel sind so eingestellt, dass die QuickInfos auf
+  Bildschirmen mit geringerer Auflösung oder beim Zoomen im Browser unterhalb der Eingabe
+  erscheinen.
+
+### Wenn das Absenden des Formulars dazu führt, dass eine neue Seite geladen wird (oder dieselbe Seite neu geladen wird):
+
+- Stelle sicher, dass der `<title>` der Seite den Status der Fehler- oder Erfolgsbestätigung
+  wiedergibt. Der Titel könnte etwa so lauten: "Es gab 3 Fehler im Formular" oder "Erfolg!
+  Dein Konto wurde erstellt." Der `<title>` der Seite ist das erste, was Screenreader-Nutzer
+  hören, wenn die Seite geladen wird, und ist daher der schnellste Weg, ihnen eine Rückmeldung
+  über den Status des Formulars zu geben.
+
+- Verschiebe den Fokus auf die Bestätigungsmeldung, nachdem die Seite geladen wurde.
+
+  WICHTIG: Du musst warten, bis die Seite vollständig geladen ist, und dann eine
+  JavaScript-Zeitüberschreitung von 1 bis 2 Sekunden einstellen, damit der virtuelle Puffer
+  des Bildschirmlesegeräts die Seite verarbeiten kann, und dann JavaScript verwenden, um
+  den Fokus auf die Bestätigungsmeldung zu setzen. Wenn du den Fokus sofort nach dem Laden
+  der Seite an die Nachricht sendest, kann der Fokus zwar erfolgreich gesetzt werden, aber
+  die Bildschirmleser sagen nichts, weil sie noch keine Zeit hatten, um festzustellen, was
+  auf der Seite steht.
+
+## Entwurfsmuster 3: Inline-(Echtzeit-)Validierung
+
+Die Inline-Validierung (in Echtzeit) kann verwendet werden, um den Nutzern mitzuteilen, ob
+sie ein Formularfeld korrekt ausfüllen oder nicht.
+
+### Gutes Beispiel: Passwortstärke-Prüfer
+
+In diesem Beispiel wird die Kennwortqualitätsanzeige live aktualisiert, während der Nutzer
+das Kennwort eingibt. Der Indikator wechselt die Farbe von rot über orange zu gelb und grün,
+und der Text auf dem Bildschirm lautet "Inakzeptabel", "Schlecht", "Ok", "Gut" oder "Großartig".
+Eine ARIA-Live-Region kündigt Änderungen des Passwortqualitätsstatus an, aber nur, wenn der
+Nutzer nicht tippt. Wenn ein Nutzer etwas tippt und dann 2 Sekunden wartet, bevor er etwas
+anderes tippt, wird die ARIA-Ansage aktiviert. Wenn der Nutzer schneller tippt, wird keine
+Ansage gemacht. Das ist ein Kompromiss, der übermäßig ausführliche Meldungen verhindert, aber
+trotzdem ein Live-Feedback liefert.
+
+TODO: Example
+
+### Details zur Implementierung
+
+#### Aria-live Ankündigungen
+
+Wenn du aria-live für Echtzeit-Durchsagen verwendest, ist es wichtig, dass die Nutzer nicht
+ständig aria-live-Durchsagen hören, vor allem nicht nach jedem Tastendruck. Das kann die
+Audioausgabe eines Bildschirmlesegeräts für die Nutzer stören. Das Modell im Beispiel auf
+dieser Seite stellt einen Timer ein, der wartet, bis der Nutzer 2 Sekunden lang nicht tippt
+und dann die Ansage macht.
+
+Auch der Versuch, aria-live bei Unschärfe zu verwenden (beim Verlassen eines Feldes, wenn
+ein Fehler auftritt), ist fast immer genauso schlecht, weil das Bildschirmlesegerät zur
+gleichen Zeit mit dem Lesen des nächsten Elements beginnt, das gerade im Fokus ist - es
+gibt also zwei konkurrierende Ereignisse. Die aria-live-Ankündigung wird diesen Wettbewerb
+wahrscheinlich verlieren, so dass die Benutzer die Ankündigung nicht hören werden.
+
+#### Screen Reader Benutzer
+
+Für blinde Nutzer/innen und andere Screenreader-Nutzer/innen ist es akzeptabel, zu warten,
+bis der/die Nutzer/in das Formular abschickt, um zu erfahren, dass es Fehler gibt. Es stimmt
+zwar, dass sehende Nutzer/innen die Fehler früher sehen, aber die Usability-Probleme bei der
+Validierung in Echtzeit sind in den meisten Fällen zu groß, als dass
+Screenreader-Nutzer/innen das versuchen würden.
+
+Viele Nutzer von Bildschirmlesegeräten erkunden ein Formular zuerst, bevor sie es ausfüllen.
+Wenn sie ein Formular erkunden, setzen sie vielleicht den Tastaturfokus in ein Formularfeld
+und verlassen dann das Formular, was ein Verwischungsereignis auslösen kann. Wenn das Formular
+viele Validierungsauslöser hat, die mit Unschärfeereignissen verknüpft sind, kann ein
+Screenreader-Benutzer sie alle auslösen. Das hat zur Folge, dass das Formular voller
+Validierungsfehler ist, bevor der Nutzer das Formular ausgefüllt hat. Wenn er das Formular
+erneut ausfüllt, kann er auf alle diese Fehler stoßen. In den meisten Fällen ist das einfach
+nur ärgerlich. Wenn das Formular jedoch einen Kontextwechsel auslöst oder andere dynamische
+Reaktionen auf Unschärfeereignisse hat, kann die Erkundung des Formulars für die Benutzer/innen
+noch größere Probleme verursachen.
+
+## Überlegungen zur Fehleridentifizierung
+
+### Fehlerrückmeldungen sollten sofort nach dem Absenden des Formulars (oder nach einem gleichwertigen Ereignis, wenn es kein Ereignis zum Absenden des Formulars gibt) zur Verfügung gestellt werden.
+
+Wenn Nutzer ein Formular abschicken und bei der Eingabe Fehler auftreten, sollten sie sofort
+nach dem Abschicken des Formulars auf diese Fehler hingewiesen werden. Wenn Fehler nicht
+sofort erkannt werden, brechen Nutzer/innen das Ausfüllen des Formulars möglicherweise ganz
+ab, vor allem Nutzer/innen von Bildschirmlesegeräten. Wenn Screenreader-Nutzer Fehler nicht
+sofort erkennen können, könnte der Eindruck entstehen, dass das Formular kaputt ist oder nicht
+funktioniert. Design Pattern 1, Design Pattern 2 und Design Pattern 3 in diesem Abschnitt
+zeigen Wege auf, wie Fehler sowohl für sehende als auch für nicht sehende Nutzer sofort
+erkannt werden können.
+
+### Fehlerrückmeldungen sollten programmatisch mit dem entsprechenden Element verknüpft werden.
+
+In Formularen sind Fehler vorprogrammiert, selbst wenn detaillierte und spezifische Anweisungen
+gegeben werden. Wenn sie dennoch auftreten, vor allem bei bestimmten Eingaben, müssen die Nutzer
+auf diese Fehler aufmerksam gemacht werden. Es ist besonders wichtig, dass Benutzer/innen von
+Hilfsmitteln auf die Fehlermeldungen zugreifen können, wenn Fehler bei bestimmten Formulareingaben
+auftreten. Wenn Fehlermeldungen programmtechnisch mit den entsprechenden Eingabefeldern verknüpft
+werden, können Nutzer von Hilfstechnologien auf diese Informationen zugreifen und den Fehler beheben.
+
+#### Gutes Beispiel: Fehlermeldung programmatisch assoziiert
+
+Für die Eingabe unten wird aria-describedby verwendet, um die Fehlermeldung programmatisch mit
+dem Eingabefeld zu verknüpfen.
+
+```html
+<div class="formborder">
+  <div class="error">
+    <span class="fa fa-exclamation-triangle" role="img" aria-label="Error: "></span>
+    <span id="errorMsg">Please Enter a Name for This Contact Person</span>
+  </div>
+  <p>
+    <label for="name">Name: </label><br />
+    <input type="text" name="name" id="name" aria-invalid="true" aria-describedby="errorMsg" />
+  </p>
+</div>
+```
+
+### Fehlerrückmeldungen müssen programmatisch bestimmbar sein.
+
+Damit assistive Technologien wie Screenreader auf Fehlermeldungen zugreifen können, müssen
+Fehlermeldungen entweder als echter Text verfasst werden oder der Text muss über eine
+Alternative wie alt, aria-label, aria-labelledby und aria-describedby bereitgestellt werden.
+Ohne programmatisch bestimmbaren Text wäre es für unterstützende Technologien nahezu unmöglich,
+Fehlermeldungen für die Nutzerinnen und Nutzer darzustellen.
+
+#### Schlechtes Beispiel: Fehlermeldung ohne programmatisch bestimmbarem Text
+
+Obwohl ein Symbol in Form eines Ausrufezeichens in einem Dreieck visuell auf einen Fehler im
+Eingabefeld hinweist, gibt es keinen programmatisch erkennbaren Text, an dem Benutzer von
+assistiver Technologie erkennen können, dass ein Fehler im Feld vorliegt.
+
+```html
+<span class="fa fa-exclamation-triangle"></span><label for="name"> Name: </label><br />
+<input type="text" name="name" id="name" aria-invalid="true" />
+```
+
+#### Gutes Beispiel: Programmatisch bestimmbarer Text für Fehler
+
+In diesem Beispiel wird aria-label auf dem Symbol verwendet, um Nutzern von Hilfstechnologien
+Informationen über den Fehler bei der Eingabe zu geben.
+
+```html
+<span class="fa fa-exclamation-triangle"></span> <label for="name">Name:</label><br />
+<input type="text" name="name" id="name" aria-invalid="true" aria-describedby="errorMsg" /><br />
+<span id="errorMsg" class="errorMsg">Error: Please enter a name"</span>
+```
+
+### Fehlerrückmeldungen müssen sinnvoll sein.
+
+Wenn den Nutzern Fehlermeldungen angezeigt werden, sollten sie klar und präzise sein und
+Informationen enthalten, die es den Nutzern ermöglichen, den Fehler richtig zu beheben.
+Gib den Nutzern in den Fehlermeldungen Korrekturhinweise für bestimmte Formulareingaben,
+Schaltflächen oder andere Steuerelemente.
+
+#### Gutes Beispiel: Klare und umsetzbare Informationen zu erkannten Fehlern
+
+Dieses Beispiel zeigt eine Fehlermeldung, die ein Pflichtfeld identifiziert, das leer
+gelassen wurde.
+
+```html
+<div class="alert error">
+  <p id="errorMessage" class="center"><strong>Error:</strong> Email Address cannot be blank.</p>
+</div>
+<p>
+  <label for="email">Email Address:</label>
+  <input type="text" name="email" id="email" aria-invalid="true" aria-describedby="errorMessage" />
+</p>
+```
+
+#### Schlechtes Beispiel: Unklare Fehlermeldung
+
+Die Fehlermeldung in diesem Beispiel enthält nicht genügend Details, damit die Benutzer den Fehler
+im Formularfeld korrigieren können.
+
+```html
+<div class="alert error">
+  <p id="errorMessage" class="center"><strong>An error occurred</strong></p>
+</div>
+<label for="email">Email Address: </label>
+<input type="text" name="email" id="email" aria-invalid="true" aria-describedby="errorMessage" />
+```
+
+### Fehlerrückmeldungen müssen sichtbar sein.
+
+Nutzer, die sehen können, müssen auch eine Rückmeldung erhalten, wenn sie bei bestimmten
+Formulareingaben Fehler machen. Deshalb ist es nicht nur wichtig, dass Fehler programmtechnisch
+mit bestimmten Formulareingaben verknüpft werden, sondern auch visuelle Hinweise auf Fehler.
+Wenn du visuelle Hinweise gibst, musst du sicherstellen, dass sehende Nutzer/innen wissen, was
+der Fehler ist und wie sie ihn beheben können.
+
+#### Schlechtes Beispiel: Fehlermeldung nur für Screen Reader Benutzer verfügbar
+
+Obwohl sehende Benutzer einen roten Umriss sehen können, der anzeigt, dass in dem Formularfeld
+ein Fehler aufgetreten ist, können sie nicht sehen, was mit dem Formularfeld nicht stimmt. Die
+Fehlermeldung wird Screenreadernutzern nur über aria-label angezeigt.
+
+```html
+<label for="date">Date: </label>
+<input
+  type="text"
+  name="date"
+  id="date"
+  aria-invalid="true"
+  aria-label="Error: Please enter the date as MM/YYYY" />
+```
+
+## Überlegungen zur Erfolgsbestätigung
+
+### Rückmeldungen zur Erfolgsbestätigung sollten programmatisch bestimmbar sein.
+
+Damit assistive Technologien wie Bildschirmlesegeräte mit den Meldungen interagieren und sie
+wiedergeben können, müssen die Meldungen aus programmatisch bestimmbarem Text bestehen: entweder
+aus echtem Text oder aus Text, der über Alternativen wie alt, aria-label, aria-labelledby und
+aria-describedby verfügbar ist. Genau wie bei Fehlermeldungen müssen auch Erfolgsmeldungen für
+Benutzer/innen von Hilfsmitteln verfügbar sein.
+
+#### Gutes Beispiel: Programmatisch bestimmbare Texte für Erfolgsmeldungen
+
+In diesem Beispiel wird aria-label verwendet, um eine Textalternative für das Häkchensymbol
+bereitzustellen, und Absatztext wird verwendet, um mitzuteilen, dass das Formular erfolgreich
+eingereicht wurde.
+
+```html
+<div class="success">
+  <p><span class="fa fa-check fa-4x" aria-label="Success"></span></p>
+  <p>Your form has been successfully submitted.</p>
+</div>
+```
+
+### Das Feedback zur Erfolgsbestätigung sollte sinnvoll sein.
+
+Genau wie bei Fehlermeldungen sollten auch Erfolgsmeldungen klar, präzise und informativ sein.
+Es ist hilfreich, den Nutzern genau mitzuteilen, was bei ihrer Übermittlung erfolgreich war
+(z. B. Wurde das Formular erfolgreich übermittelt? Wurden ihre Dateien gelöscht? Wurden die
+Präferenzen gespeichert?). Sei in den Erfolgsmeldungen explizit, damit die Nutzer/innen nicht
+raten müssen, was erfolgreich gemacht wurde.
+
+#### Gutes Beispiel: Aussagekräftige Erfolgsmeldung
+
+Wenn du in diesem Beispiel auf die Schaltfläche "Meine Einstellungen speichern" klickst, wird
+eine Nachricht angezeigt, die dir mitteilt, dass deine Einstellungen gespeichert wurden.
+
+TODO: Example
+
+#### Schlechtes Beispiel: Erfolgsmeldung, die nicht informativ ist
+
+Wenn du in diesem Beispiel "Meine Einstellungen speichern" auswählst, steht in der
+Bestätigungsmeldung "Einstellungen", was nicht eindeutig ist. Die Nutzer/innen können davon
+ausgehen, dass die Einstellungen gespeichert wurden, aber es ist besser, dies ausdrücklich
+zu sagen, als sie raten zu lassen.
+
+TODO: Example
+
+### Das Feedback zur Erfolgsbestätigung muss sichtbar sein.
+
+Sehende Benutzer müssen sehen können, ob sie nach der Interaktion mit einem Formular oder
+Formularsteuerelementen erfolgreich waren. Zusätzlich zur Bereitstellung von programmatisch
+bestimmbarem Text für Erfolgsmeldungen sollte ein visueller Indikator für sehende Benutzer
+oder Benutzer, die zwar sehen, aber keine Hilfsmittel verwenden, die eine Interaktion mit
+programmatisch bestimmbarem Text erfordern, um mit Webinhalten zu interagieren, bereitgestellt
+werden.
+
+#### Schlechtes Beispiel: Versteckte aria-live-Inhalte nutzen, um Erfolge zu verkünden
+
+Eine aria-live-Region kann verwendet werden, um Ankündigungen in Echtzeit zu machen und
+Screenreadern ein unmittelbares Feedback zu geben. Wenn Inhalte in einen leeren aria-live-Container
+eingefügt werden, werden diese Inhalte für Screenreader-Nutzer angekündigt. Wenn diese Regionen
+jedoch visuell ausgeblendet sind, werden sie nur für Screenreader-Nutzer/innen sichtbar. Die
+Informationen, die in eine visuell ausgeblendete Live-Region eingefügt werden, können von sehenden
+Nutzern nicht gesehen werden. Während es manchmal sinnvoll sein kann, Inhalte nur für Screenreader
+verfügbar zu machen, sollten Inhalte wie Erfolgsmeldungen generell nicht vor sehenden Nutzern
+verborgen werden.
+
+Im folgenden Rohcode wird eine Erfolgsmeldung in einen Aria-Live-Bereich eingefügt, aber der Container
+hat die Klasse "visually-hidden", die die Meldung vor sehenden Benutzern verbirgt.
+
+```html
+<div id="aria-live" aria-live="assertive" class="visually-hidden">
+  Your preferences have been saved.
+</div>
+```

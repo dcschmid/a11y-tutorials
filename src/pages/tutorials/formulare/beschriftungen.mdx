@@ -1,0 +1,880 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Beschriftungen'
+pubDate: 2023-04-28
+---
+
+Alle Formulareingaben und Steuerelemente müssen eine Beschriftung haben - eine
+Beschriftung, die für alle Benutzer verständlich ist, egal ob sie die Seite sehen
+können oder nicht. In diesem Abschnitt werden wir die wichtigen Attribute
+besprechen, die dafür sorgen, dass Formularbeschriftungen zugänglich sind:
+
+- Beschriftungen müssen aussagekräftig sein, d.h. sie müssen den Zweck des
+  Feldes eindeutig erklären.
+
+- Beschriftungen müssen programmatisch mit ihrem Steuerelement verbunden sein.
+
+- Beschriftungen müssen jederzeit sichtbar sein.
+
+- Beschriftungen müssen sich in unmittelbarer Nähe zu ihrem Steuerelement befinden.
+
+## Semantische Bezeichnungen
+
+### Labels müssen programmatisch mit den entsprechenden Elementen verknüpft werden
+
+Jede Formulareingabe und jedes Steuerelement braucht eine Bezeichnung, auch bekannt
+als"zugänglicher Name". Die Beschriftung muss programmatisch mit der Eingabe verknüpft
+werden, um jede Zweideutigkeit auszuschließen. Es gibt verschiedene Möglichkeiten,
+Beschriftungen zu erstellen. In den meisten Fällen ist es am besten, das
+HTML-Element `<label>` zu verwenden, denn dafür wurde es entwickelt. Es wird am
+meisten unterstützt und hat den zusätzlichen Vorteil, dass Mausbenutzer entweder
+auf die Eingabe oder auf die Beschriftung klicken können, um den Fokus auf die
+Eingabe zu legen, wodurch die Klickzielgröße erhöht wird. Ein größeres Klickziel
+ist hilfreich für Nutzer mit Zittern oder anderen Schwierigkeiten bei der Feinmotorik
+und für mobile Nutzer, vor allem wenn das Klickziel sehr klein ist, wie z. B. bei
+einem einzelnen Optionsfeld.
+
+Es gibt eine Hierarchie von Methoden, um einen zugänglichen Namen für eine
+Eingabe zu vergeben:
+
+- aria-labelledby - Wenn es ein aria-labelledby-Attribut gibt, verwenden assistive
+  Technologien den zugehörigen Text (der durch die ID referenziert wird) als
+  barrierefreien Namen. Obwohl der aria-labelledby-Text auf dem Bildschirm sichtbar
+  ist (es sei denn, er wird absichtlich per CSS ausgeblendet), wird der Fokus beim
+  Anklicken des aria-labelledby-Textes nicht auf die zugehörige Formulareingabe
+  gesetzt, so dass er in dieser Hinsicht eine schlechtere Wahl ist und nur verwendet
+  werden sollte, wenn `<label>` nicht funktioniert.
+
+- aria-label - Der aria-label-Text wird als zugänglicher Name verwendet, wenn es
+  keine aria-labelledby-Referenz gibt. Beachte, dass der aria-label-Text völlig
+  unsichtbar ist. Er ist nur für Benutzer von Bildschirmlesegeräten nützlich und
+  ist daher in den meisten Fällen nicht sinnvoll.
+
+- `<label>` (empfohlene Methode für die meisten Fälle) - Dies wird als zugänglicher
+  Name verwendet, wenn es keinen aria-label-Text oder aria-labelledby-Referenz gibt.
+
+- title-Attribut - Das title-Attribut ist in der Regel für zusätzliche, unwichtige
+  Informationen gedacht, daher wird die Verwendung des Titels als Hauptmethode, um
+  einer Eingabe einen zugänglichen Namen zu geben, im Allgemeinen nicht empfohlen.
+  Außerdem ist das title-Attribut unsichtbar. Es fügt einen Tooltip hinzu, wenn die
+  Maus bewegt wird, was für Mausbenutzer/innen nützlich sein kann.
+
+- placeholder - Platzhaltertext ist technisch erlaubt, um einen zugänglichen Namen
+  bereitzustellen, aber es wird dringend davon abgeraten, weil 1) er verschwindet,
+  sobald die Benutzer mit der Eingabe beginnen, 2) das Standard-Styling die
+  Kontrastregeln nicht erfüllt und 3) die beabsichtigte Verwendung von Platzhaltertext
+  für zusätzliche, unwichtige Informationen ist.
+
+  Bildschirmlesegeräte sind auf genaue Beschriftungen angewiesen, um den Benutzern
+  den Zweck der Formulareingabe zu vermitteln. Wenn eine Eingabe keine programmatisch
+  zugewiesene Beschriftung hat, aber einen angrenzenden Text, gehen einige Screenreader
+  (insbesondere JAWS und VoiceOver) davon aus, dass der angrenzende Text die Beschriftung
+  sein soll, auch wenn er nicht als solche gekennzeichnet ist. In den meisten Fällen
+  liegen die Screenreader richtig, aber manchmal auch nicht.
+
+#### Gutes Beispiel: Explizite Labels
+
+Diese Formulareingaben sind explizit mit Bezeichnungen versehen. Explizite Beschriftungen
+machen die Zuordnung für unterstützende Technologien eindeutig.
+
+Hinweis: Dies ist die empfohlene Methode für die meisten Fälle.
+
+TODO: Example
+
+```html
+<p>
+  <label for="fname_a">First Name:</label>
+  <input type="text" name="fname_a" id="fname_a" />
+</p>
+<p>
+  <label for="lname_a">Last Name:</label>
+  <input type="text" name="lname_a" id="lname_a" />
+</p>
+```
+
+#### Gutes Beispiel: Implizite Labels
+
+Eine implizite Assoziation wird erstellt, indem das Formular-Steuerelement innerhalb
+des Label-Elements platziert wird.
+
+```html
+<p>
+  <label>First Name: <input type="text" name="fname1" /></label>
+</p>
+<p>
+  <label>Last Name: <input type="text" name="lname1" /></label>
+</p>
+```
+
+#### Gutes Beispiel: aria-labelledby für eine Texteingabe
+
+Dieses Textfeld bietet eine für Bildschirmleser zugängliche Beschriftung, indem es
+das Attribut aria-labelledby für die Eingabe verwendet, um auf die ID des `<span>`
+um den sichtbaren Text "Nickname" zu verweisen.
+
+Wenn du versuchst, auf den aria-labelledby-Text zu klicken, wirst du feststellen,
+dass der Fokus nicht in das Textfeld gesetzt wird, wie es im Beispiel der expliziten
+Beschriftung der Fall ist. Diese Methode sollte nur verwendet werden, wenn `<label>`
+nicht funktioniert.
+
+```html
+<p><span id="Nickname">Nickname:</span> <input type="text" aria-labelledby="Nickname" /></p>
+```
+
+#### Gutes Beispiel: aria-label für eine Texteingabe
+
+Dieses Beispiel zeigt ein Sucheingabefeld, das aria-label verwendet, um eine
+Beschriftung für Bildschirmleser bereitzustellen, da es keine sichtbare Beschriftung
+gibt. Das Suchfeld ist durch die Suchschaltfläche daneben sichtbar gekennzeichnet.
+Dies ist einer der wenigen Fälle, in denen es zulässig ist, kein sichtbares Label
+für ein Formularfeld zu haben.
+
+```html
+<p><input type="text" aria-label="search" /> <input type="submit" value="Search" /></p>
+```
+
+#### Gutes Beispiel: title-Attribut für eine Texteingabe
+
+In diesem Beispiel wird das title-Attribut als Screenreader-zugängliche Beschriftung
+für das Textfeld verwendet. Das title-Attribut ist für sehende Nutzer unsichtbar,
+führt aber dazu, dass ein Tooltip erscheint, wenn der Nutzer mit der Maus über
+die Texteingabe fährt, was als Vorteil für die Barrierefreiheit angesehen werden
+kann. Beachte, dass der Tooltip nicht erscheint, wenn der Nutzer mit der Tastatur
+auf die Eingabe fokussiert, daher ist der Nutzen des Tooltips des Titelattributs
+nur auf Mausnutzer beschränkt.
+
+```html
+<p><input type="text" title="search" /> <input type="submit" value="Search" /></p>
+```
+
+### Beschriftungen müssen als programmatisch bestimmbarer Text verfügbar sein
+
+Es reicht nicht aus, nur ein Label zu haben. Die Beschriftung muss einen programmatisch
+bestimmbaren Text enthalten, der von unterstützenden Technologien gelesen werden
+kann. Eine leere Beschriftung ist genauso schlecht, wie gar keine Beschriftung zu
+haben. Es kann sogar noch schlimmer sein, denn die Bildschirmlesegeräte, die versuchen,
+die Beschriftung zu erraten, wenn keine Beschriftung angegeben ist, werden es gar
+nicht erst versuchen, wenn eine Beschriftung richtig angegeben ist. Und wenn die
+richtig angegebene Beschriftung keinen Text enthält, kann die Hilfstechnologie dem
+Benutzer nichts vermitteln.
+
+#### Schlechtes Beispiel: Icons als Beschriftungen ohne alternativen Text
+
+In diesem Beispiel werden Symbolschriften verwendet, um zu zeigen, welche Dateiformate
+die Benutzer auswählen können. Ohne programmatisch bestimmbaren Text können unterstützende
+Technologien wie Bildschirmlesegeräte jedoch nicht vermitteln, welche Dateitypen
+zur Auswahl stehen.
+
+```html
+<fieldset>
+  <legend>Choose a file format</legend>
+  <p>
+    <input type="radio" id="word" name="format9966" />
+    <label for="word"><span class="far fa-file-word fa-2x"></span></label>
+  </p>
+  <p>
+    <input type="radio" id="excel" name="format9966" />
+    <label for="excel"><span class="far fa-file-excel fa-2x"></span></label>
+  </p>
+  <p>
+    <input type="radio" id="pdf" name="format9966" />
+    <label for="pdf"><span class="far fa-file-pdf fa-2x"></span></label>
+  </p>
+  <p>
+    <input type="radio" id="plain" name="format9966" />
+    <label for="plain"><span class="far fa-file fa-2x"></span></label>
+  </p>
+</fieldset>
+```
+
+#### Gutes Beispiel: Icons plus Text als Beschriftung
+
+Mit dem `<label>`-Element wird programmatisch bestimmbarer Text bereitgestellt,
+um Nutzern von Hilfstechnologien zu vermitteln, welche Dateiformate sie auswählen
+können.
+
+```html
+<fieldset>
+  <legend>Choose a file format</legend>
+  <p>
+    <input type="radio" id="word1" name="format9965" />
+    <label for="word1"><span class="far fa-file-word fa-2x"></span> Word</label>
+  </p>
+  <p>
+    <input type="radio" id="excel1" name="format9965" />
+    <label for="excel1"><span class="far fa-file-excel fa-2x"></span> Excel</label>
+  </p>
+  <p>
+    <input type="radio" id="pdf1" name="format9965" />
+    <label for="pdf1"><span class="far fa-file-pdf fa-2x"></span> PDF</label>
+  </p>
+  <p>
+    <input type="radio" id="plain1" name="format9965" />
+    <label for="plain1"><span class="far fa-file fa-2x"></span> Plain text</label>
+  </p>
+</fieldset>
+```
+
+#### Schlechtes Beispiel: Bild ohne Alt-Text wird als Beschriftung verwendet
+
+In diesem schlechten Beispiel sieht es optisch so aus, als hätte diese Eingabe
+eine Textbeschriftung, weil in der Grafik Text steht, der "Suche" sagt, und es
+gibt sogar ein richtiges `<label>`-Element um das Bild herum, aber es gibt keinen
+programmatisch bestimmbaren Text in der Beschriftung für diese Texteingabe, weil
+das Bild im `<label>`-Element keinen Alttext hat.
+
+```html
+<p>
+  <label for="fa-search-no-alt">
+    <img src="label-search.png" width="74" height="16" />
+  </label>
+  <input type="text" id="fa-search-no-alt" />
+</p>
+```
+
+#### Gutes Beispiel: Bild mit Alt-Text als Beschriftung verwendet
+
+Der Alt-Text wird von unterstützenden Technologien als Beschriftung für diese
+Texteingabe gelesen.
+
+```html
+<p>
+  <label for="fa-search-alt">
+    <img src="label-search.png" alt="Search" width="74" height="16" />
+  </label>
+  <input type="text" id="fa-search-alt" />
+</p>
+```
+
+Warnung: Auch wenn dies ein gutes Beispiel für eine programmatisch bestimmbare
+Beschriftung ist, ist es in der Regel keine gute Praxis, Text in Bilder einzubauen,
+weil Bildtext in der Vergrößerung nicht so scharf wie echter Text aussieht und
+weil die Benutzer die Farbe des Textes in Bildern nicht anpassen können, was
+schlecht für Benutzer mit Sehschwäche ist, die möglicherweise individuelle
+Farbschemata benötigen.
+
+## Aussagekräftiger Labeltext
+
+### Labels müssen sinnvoll sein
+
+Um den Nutzern zu helfen, ein Formular erfolgreich auszufüllen, solltest du klare,
+informative, genaue und aussagekräftige Beschriftungen verwenden. Die Nutzer
+sollten von vornherein genau wissen, was sie brauchen, um das Formular erfolgreich
+ausfüllen zu können.
+
+#### Gutes Beispiel: Beschreibendes Label
+
+Dieses Textfeld hat eine Beschriftung, die ausdrücklich beschreibt, welche
+Informationen in dem Feld erwartet werden. Zusätzlich zur Beschriftung "Name"
+wird der Benutzer darüber informiert, dass sowohl der "Vor- als auch der Nachname"
+erwartet werden.
+
+```html
+<label for="name">Name (First and Last):</label> <input type="text" name="name" id="name" />
+```
+
+#### Schlechtes Beispiel: Zweideutiges Label
+
+In dem schlechten Beispiel unten sind die beiden Kontrollkästchen einfach mit
+"Abonnieren" beschriftet. Über beiden befinden sich Bilder, die sehenden Nutzern
+eine Vorstellung davon geben, wofür das Abonnement ist, aber diese Bilder haben
+keinen Alt-Text, und die Bilder sind nicht programmatisch mit den Kontrollkästchen
+verknüpft, so dass Screenreader-Nutzer beim Durchblättern des Formulars nur
+"Abonnieren" als Label hören.
+
+```html
+<p style="float:left;margin:0;">
+  <img src="assets/images/module-forms/magazine-people.png" width="100" height="133" /><br />
+  <input type="checkbox" id="people9999" /> <label for="people9999">Subscribe</label>
+</p>
+<p style="float:right;margin:0;">
+  <img src="assets/images/module-forms/magazine-time.png" width="100" height="133" /><br />
+  <input type="checkbox" id="time9999" /> <label for="time9999">Subscribe</label>
+</p>
+```
+
+### Labels müssen sich nicht nur auf sensorische Merkmale beziehen
+
+Wenn du dich bei der Beschriftung von Steuerelementen auf sensorische Merkmale verlässt,
+kann das dazu führen, dass die Benutzer die Labels nicht verstehen. Wenn man zum
+Beispiel davon ausgeht, dass jeder die Form, Farbe oder Ikonografie eines Steuerelements
+sehen kann, werden blinde, farbenblinde und sehbehinderte Benutzer ausgeschlossen.
+Einige Dinge solltest du bedenken:
+
+- Wenn in einem Label für ein Formularsteuerelement Farbe verwendet wird, stelle
+  sicher, dass es einen nicht-farbigen Unterscheidungsfaktor wie Text oder ein
+  leicht erkennbares Symbol oder Icon gibt.
+
+- Der Farbkontrast von Text und Symbolen oder Icons, die als Label verwendet werden,
+  muss den Mindestanforderungen an das Farbkontrastverhältnis entsprechen.
+
+- Alle Informationen, die durch ein Label auf einem Formular visuell vermittelt
+  werden, müssen für Benutzer von Hilfsmitteln programmatisch bereitgestellt werden.
+
+#### Schlechtes Beispiel: Das aria-label ist nicht informativ
+
+In dem folgenden Beispiel folgt auf ein Textfeld und sein Label eine kleine blaue
+Schaltfläche mit dem Buchstaben "i". Optisch ist es offensichtlich, dass die
+Schaltfläche zusätzliche Informationen über das Textfeld liefert. Das Aria-Label
+für die Schaltfläche lautet jedoch einfach "Schaltfläche", was für einen
+Screenreader-Nutzer überhaupt nicht informativ ist.
+
+```html
+<label for="hue">Favorite hue:</label> <input type="text" id="hue" />
+<button aria-label="button" id="hueButtonBad">
+  <span class="fa fa-info-circle"></span>
+</button>
+```
+
+#### Gutes Beispiel: Das aria-label ist informativ
+
+In dem folgenden Beispiel folgt auf ein Textfeld und sein Label eine kleine blaue
+Schaltfläche mit dem Buchstaben "i". Optisch ist zu erkennen, dass die Schaltfläche
+zusätzliche Informationen über das Textfeld liefert. Das Aria-Label für die Schaltfläche,
+"Was bedeutet 'Farbton'?",liefert ein beschreibendes Label für Screenreader-Nutzer.
+
+```html
+<label for="hue2">Favorite hue:</label> <input type="text" id="hue2" />
+<button aria-label="What does 'hue' mean?" id="hueButtonGood">
+  <span class="fa fa-info-circle"></span>
+</button>
+```
+
+#### Schlechtes Beispiel: Das aria-label ist nicht informativ #2
+
+Im folgenden Beispiel folgt auf ein Ankreuzfeld und sein Label eine kleine blaue
+Schaltfläche mit einem Fragezeichen. Optisch ist es offensichtlich, dass die
+Schaltfläche zusätzliche Informationen über das Kontrollkästchen liefert. Das
+Aria-Label für die Schaltfläche lautet jedoch einfach "Fragezeichen", was für
+einen Screenreader-Nutzer nicht informativ ist.
+
+```html
+<input type="checkbox" name="dirigible" id="dirigible1" />
+<label for="dirigible1">I have never flown in a dirigible</label>
+<button aria-label="question mark" id="questionButtonBad">
+  <span class="fa fa-question-circle"></span>
+</button>
+```
+
+#### Gutes Beispiel: Das aria-label ist informativ #2
+
+Im folgenden Beispiel folgt auf ein Ankreuzfeld und sein Label eine kleine blaue
+Schaltfläche mit einem Fragezeichen. Optisch ist zu erkennen, dass die Schaltfläche
+zusätzliche Informationen über das Ankreuzfeld liefert. Das Aria-Label für die
+Schaltfläche, "Was ist ein Luftschiff?", bietet auch ein beschreibendes Label für
+Screenreader-Nutzer.
+
+```html
+<input type="checkbox" name="dirigible" id="dirigible2" />
+<label for="dirigible2">I have never flown in a dirigible</label>
+<button aria-label="What is a dirigible?" id="questionButtonGood">
+  <span class="fa fa-question-circle"></span>
+</button>
+```
+
+## Icons als Labels
+
+### Icons können als visuelle Labels (ohne visuellen Text) verwendet werden, wenn die Bedeutung des Icons visuell offensichtlich ist und wenn ein programmatisch assoziiertes semantisches Label für assistive Technologien verfügbar ist
+
+#### Gutes Beispiel: Die Bedeutung eines Symbols, das als visuelles Label verwendet wird, ist selbsterklärend
+
+Auf der Schaltfläche befindet sich das Bild einer Lupe. Es gibt keinen Text auf
+dem Bildschirm, der erklärt, was die Lupe bedeutet, aber da sie sich auf einer
+Schaltfläche neben einer Texteingabe befindet, erwarten die Nutzer, dass die
+Schaltfläche eine Suche ausführt. Der einzige Grund, warum dies akzeptabel ist,
+ist, dass die Lupe zu einer weithin akzeptierten und akzeptierten visuellen
+Konvention geworden ist. Die Menschen verstehen sie, weil sie üblich ist. Wäre
+sie unüblich, wären die Nutzer verwirrt.
+
+```html
+<p class="center">
+  <input type="text" aria-label="Search" />
+  <button id="search-button" aria-label="Search">
+    <span class="fa fa-search"></span>
+  </button>
+</p>
+```
+
+#### Schlechtes Beispiel: Die Bedeutung eines Symbols, das als visuelles Label verwendet wird, ist nicht selbsterklärend
+
+Auf der Schaltfläche ist ein teilweise gefüllter Glaskolben abgebildet - die Art
+von Kolben, die bei chemischen Experimenten verwendet wird - ohne einen Text auf
+dem Bildschirm, der erklärt, was der Kolben bedeutet. Sehende Benutzer werden den
+Zweck der Schaltfläche nicht verstehen. Die Schaltfläche hat zwar einen Aria-Label-Wert,
+der besagt: "Chemische Formel für Vitamin C anzeigen", aber der Aria-Label-Text ist
+für sehende Nutzerinnen und Nutzer verborgen und nur für Nutzerinnen und Nutzer von
+assistiven Technologien verfügbar.
+
+```html
+<button id="flask-button" aria-label="Show chemical formula for Vitamin C">
+  <span class="fa fa-flask fa-2x"></span>
+</button>
+```
+
+## Platzhaltertext als Labels
+
+### Platzhaltertext darf nicht als einzige Methode zur Bereitstellung eines Labels für eine Texteingabe verwendet werden.
+
+Viele Designer sind versucht, Platzhaltertext als Ersatz für ein richtiges Label
+zu verwenden. Normalerweise ist der Platzhaltertext im Formularfeld sichtbar,
+bis das Formularelement den Maus- oder Tastaturfokus erhält - oder bis der Benutzer
+beginnt, in das Feld einzugeben - dann verschwindet der Platzhaltertext, um Platz
+für die Eingabe des Benutzers zu schaffen.
+
+Wenn der Platzhaltertext verwendet wird, um wichtige Formatierungsinformationen
+zu übermitteln, z. B. ob in einem Datumsfeld eine zwei- oder vierstellige Jahreszahl
+eingegeben werden soll, müssen die Benutzer die bereits im Feld enthaltenen
+Informationen löschen, um den Platzhaltertext wieder zu sehen. Wenn
+ein/e Nutzer/in ein Formular vor dem Absenden überprüfen möchte, kann er/sie
+außerdem nur schwer sicherstellen, dass er/sie die richtigen Informationen in
+die richtigen Felder eingegeben hat, wenn nach dem Verschwinden des Platzhaltertextes
+keine sichtbaren Labels mehr vorhanden sind.
+
+Die Unterstützung von Bildschirmlesegeräten für Platzhaltertext wurde verbessert
+und alle wichtigen Bildschirmlesegeräte lesen den Platzhaltertext als Label,
+wenn das Textfeld leer ist. Sobald der Text eingegeben wurde, variieren die
+Ergebnisse je nach Bildschirmleser. Derzeit lesen sowohl NVDA als auch JAWS
+den Platzhaltertext als Label für das Feld, auch wenn bereits Text in das Feld
+eingegeben wurde. VoiceOver hingegen liest den Platzhaltertext nicht als Label,
+nachdem der Text eingegeben wurde.
+
+Kurz gesagt: Platzhaltertext ist keine ausreichende Technik für die
+Bereitstellung eines Labels oder von Hinweisinformationen.
+
+#### Schlechtes Beispiel: Regulärer Platzhalter als Label verwendet
+
+Die Textfelder unten haben einen Platzhaltertext, der innerhalb des Textfeldes
+angezeigt wird. Der Text ist grau und entspricht in der Standardeinstellung nicht
+den Richtlinien für den Farbkontrast. Der Platzhaltertext verschwindet, sobald der
+Nutzer mit der Eingabe in das Feld beginnt. Das erschwert es den Nutzern, zu
+überprüfen, ob sie den richtigen Text in das richtige Feld eingegeben haben.
+
+```html
+<p>
+  <input type="text" placeholder="Last Name" /> ,
+  <input type="text" placeholder="First Name" />
+  <input type="text" placeholder="Middle Name" />
+</p>
+```
+
+#### Gutes Beispiel: Persistentes Label, das wie ein Platzhalter aussieht
+
+Das folgende Beispiel zeigt eine Lösung, bei der das programmatisch zugeordnete Label des Feldes als
+Platzhaltertext angezeigt wird. Wenn das Eingabeelement den Fokus erhält, wird das Label mit CSS an
+den oberen Rand der Eingabe verschoben. Wenn der Fokus das Feld verlässt und sich Zeichen im Eingabefeld
+befinden, bleibt das Label am oberen Rand der Eingabe, andernfalls erscheint es wieder als Platzhalter.
+Das Label des Feldes ist immer visuell auf dem Bildschirm zu sehen, entweder als Platzhalter oder am oberen
+Rand des Textfeldes. Das Attribut "Platzhalter" wird bei diesem Ansatz nicht wirklich verwendet.
+
+TODO: Beispiel
+
+## Sichtbarkeit der Labels
+
+### Die Labels müssen sichtbar sein.
+
+Sichtbare Labels kommen allen Nutzern zugute. Wenn Formularfelder keine aussagekräftigen und
+für alle Nutzer/innen jederzeit sichtbaren Labels haben, müssen die Nutzer/innen möglicherweise
+raten oder schlussfolgern, was in die Felder gehört. Das passiert oft, wenn nur Platzhaltertext zur
+visuellen Beschriftung von Textfeldern verwendet wird oder Dropdown-Listen mit der ersten Auswahl
+beschriftet werden.
+
+#### Gutes Beispiel: Visuelle Formulareingabe mit Verwendung von aria-label
+
+Dieses Formular verwendet ein klares visuelles Label für seine Eingaben, das sehende Nutzer
+verstehen können. Durch die Verwendung des unsichtbaren Aria-Labels, das nicht sehenden
+Nutzern bei bestimmten Angaben hilft, die für sehende Nutzer nicht notwendig sind, bleibt
+die Verständlichkeit erhalten.
+
+```html
+<p>
+  <label for="ssn1">Social Security Number:</label>
+  <input
+    type="text"
+    size="3"
+    maxlength="3"
+    id="ssn1"
+    aria-label="Social Security Number first three digits" />
+  - <input type="text" size="2" maxlength="2" aria-label="middle two digits" /> -
+  <input type="text" size="4" maxlength="4" aria-label="last four digits" />
+</p>
+```
+
+#### Schlechtes Beispiel: Ungeeignete Verwendung von aria-label und Platzhalter
+
+Im untenstehenden Formular wird aria-label verwendet, um ein barrierefreies Label für
+Screenreader-Nutzer bereitzustellen. Sehende Benutzer/innen verlieren jedoch das Label,
+sobald sie Informationen in das Feld eingeben, da das einzige sichtbare Label als Platzhalter
+verwendet wird. Das macht es schwierig zu überprüfen, ob die richtigen Informationen in
+die einzelnen Felder eingegeben wurden, bevor das Formular abgeschickt wird.
+
+```html
+<p><input type="text" placeholder="Account Number" aria-label="Account Number" /></p>
+<p><input type="text" placeholder="User ID" aria-label="User ID" /></p>
+<p><input type="password" placeholder="Password" aria-label="Password" /></p>
+```
+
+### Bei Benutzeroberflächenkomponenten mit Labels, die Text oder Bilder von Text enthalten, muss der Name den Text enthalten, der visuell dargestellt wird.
+
+Das Label für ein Steuerelement, das ein Nutzer auf einer Seite sieht, muss mit dem
+barrierefreien Namen dieses Steuerelements übereinstimmen, der von der Unterstützungstechnologie
+erkannt wird. Wenn diese Namen nicht übereinstimmen, kann es für Nutzer, die ihren Bildschirm
+per Sprache steuern, schwierig sein, die Bedienelemente auf dem Bildschirm zu aktivieren.
+
+Assistive Technologien konstruieren barrierefreie Namen mithilfe eines Algorithmus, der
+verschiedene Informationen über das Element zusammenfügt. Dazu gehören der Text, der auf
+dem Element erscheint, alle Formular-Labels und alle aria-label- oder aria-labelledby-Attribute.
+In den meisten Fällen ist das Scheitern dieses Erfolgskriteriums mit dem Scheitern eines
+anderen Erfolgskriteriums verbunden, aber es gibt ein paar Dinge, die du beachten solltest:
+
+- Du solltest es vermeiden, Text in einem Bild zu verwenden. Wenn du aber Text in einem Bild
+  als Schaltfläche verwendest, achte darauf, dass der Alt-Text zum Bildtext passt.
+
+- aria-label und aria-labelledby setzen andere Informationen über das Element außer Kraft,
+  wenn die assistive Technologie einen barrierefreien Namen erstellt. Das bedeutet, dass das
+  Hinzufügen eines aria-label dem Namen keine zusätzlichen Informationen hinzufügt, sondern die
+  anderen Informationen einfach ersetzt. Es ist wichtig sicherzustellen, dass die Attribute aria-label
+  oder aria-labelledby das enthalten, was der Nutzer sieht, denn diese Attribute werden zum gesamten
+  zugänglichen Namen.
+
+#### Schlechtes Beispiel: Sichtbares Label stimmt nicht mit dem Namen der Barrierefreiheit überein
+
+Unten siehst du eine Schaltfläche zum Löschen eines Formulars (beachte, dass sie in diesem
+Beispiel nicht funktioniert). Das sichtbare Label auf der Schaltfläche lautet "Formular löschen",
+aber der Name des HTML-Attributs lautet "zurücksetzen". Wenn ein Benutzer, der eine
+Spracherkennungssoftware für die Interaktion mit seinem Computer verwendet, versucht, "Formular
+löschen" zu sagen, wird die Schaltfläche nicht aktiviert.
+
+```html
+<p><input type="reset" name="reset" value="Clear Form" /></p>
+```
+
+#### Gutes Beispiel: Sichtbares Label entspricht dem Namen in Barrierefreiheit
+
+Hier noch einmal der Submit-Button auf der Deque-Kurs-Feedback-Seite. Das sichtbare
+Label der Schaltfläche ist Submit und entspricht dem Namen des HTML-Attributs - submit.
+
+![Sichtbares Label entspricht dem Namen in Barrierefreiheit](/images/formulare/good-example-label-match-accessible-name.png)
+
+```html
+<p><input type="submit" name="submit" value="Submit" /></p>
+```
+
+## Nähe der Labels zu den Bedienelementen
+
+### Ein Label sollte visuell neben dem entsprechenden Element liegen.
+
+Wenn die Labels zu weit von den entsprechenden Formularfeldern entfernt sind, können
+Personen, die eine Bildschirmvergrößerung verwenden, sie nur schwer finden oder müssen
+immer wieder vor- und zurückblättern, um die Verbindung zwischen den Formularfeldern
+und ihren Labels herzustellen.
+
+#### Gutes Beispiel: Die Nähe der Labels
+
+Diese Labels befinden sich in unmittelbarer Nähe zu den entsprechenden Feldern,
+damit der/die Nutzer/in genau weiß, was er/sie in das jeweilige Feld eintragen muss.
+
+```html
+<p>
+  <label for="fname_a">First Name:</label>
+  <input type="text" name="fname_a" id="fname_a" />
+</p>
+<p>
+  <label for="lname_a">Last Name:</label>
+  <input type="text" name="lname_a" id="lname_a" />
+</p>
+```
+
+#### Schlechtes Beispiel: Unzureichende Annäherung
+
+In diesem Beispiel ist das Label linksbündig, während das Eingabefeld in
+der Mitte des Bildschirms steht. Dadurch entsteht eine große weiße Lücke
+zwischen den beiden Feldern. Das kann es schwierig machen, zu erkennen,
+welches Label zu welchem Feld gehört, vor allem für Personen, die eine
+Bildschirmvergrößerung verwenden, da das Label und das Feld bei der
+Vergrößerung des Bildschirms möglicherweise nicht gleichzeitig zu sehen sind.
+
+```html
+<div>
+  <div class="labelleft">Username:</div>
+  <div class="center"><input type="text" name="usrname" id="usrname" /></div>
+</div>
+```
+
+### Ein Label sollte im DOM an das entsprechende Element angrenzen.
+
+Wenn Bildschirmlesegeräte eine Seite im Browsemodus lesen, lesen sie die
+Informationen in der Reihenfolge, in der sie im DOM erscheinen. Wenn
+Formularfelder und ihre Labels im DOM nicht nebeneinander liegen, kann
+es passieren, dass Screenreader-Nutzer beim Durchblättern einer Seite
+Felder und Labels falsch zuordnen.
+
+#### Gutes Beispiel: Eingabe neben dem Label
+
+In diesem Formular stehen die Labels in der DOM-Reihenfolge direkt
+neben den entsprechenden Eingabefeldern.
+
+```html
+<p>
+  <label for="fname_a">First Name:</label>
+  <input type="text" name="fname_a" id="fname_a" />
+</p>
+<p>
+  <label for="lname_a">Last Name:</label>
+  <input type="text" name="lname_a" id="lname_a" />
+</p>
+```
+
+#### Schlechtes Beispiel: Label und Eingabe in einer Layout-Tabelle
+
+Das folgende Formular wird mit einer Layout-Tabelle formatiert. Die
+Eingabefelder und Labels sind mit den Elementen `<label>` und for und id
+richtig zugeordnet. Wenn ein Screenreader-Benutzer mit der Tabulatortaste
+durch die Felder blättert, wird das zugehörige Label gelesen. Wenn ein
+Screenreader-Benutzer jedoch mit den Pfeiltasten durch den Inhalt blättert,
+liest der Screenreader: "Vorname, zweiter Vorname, Nachname, bearbeiten,
+bearbeiten, bearbeiten"
+
+```html
+<table role="presentation">
+  <tr>
+    <td><label for="firstname">First Name</label></td>
+    <td><label for="middlename">Middle Name</label></td>
+    <td><label for="lastname">Last Name</label></td>
+  </tr>
+  <tr>
+    <td><input type="text" id="firstname" name="firstn" size="20" /></td>
+    <td><input type="text" id="middlename" name="middlen" size="20" /></td>
+    <td><input type="text" id="lastname" name="lastn" size="20" /></td>
+  </tr>
+</table>
+```
+
+## Mehrere Labels für ein Feld
+
+### Wenn mehrere Labels für ein Element verwendet werden, muss jedes Label programmatisch mit dem entsprechenden Element verknüpft werden.
+
+Manchmal ist es notwendig, mehr als ein Label mit einem Formularfeld zu
+verknüpfen. Das Problem ist, dass ein `<label>` und ein Formularelement in
+einer Eins-zu-Eins-Beziehung stehen müssen: Das `<label>`-Element kann nur
+mit einem Formularelement verknüpft werden und ein Formularelement kann
+nur mit einem `<label>` verknüpft werden. In diesem Fall ist aria-labelledby
+ein nützliches Werkzeug, um mehrere Labels mit einem einzigen Feld zu verknüpfen.
+
+Ein klassisches Beispiel dafür, dass du einem Feld mehrere Labels zuordnen
+möchtest, ist, wenn ein Formular innerhalb einer Tabelle formatiert ist und
+die Formularfelder durch die Zeilen- und Spaltenüberschriften der Tabelle
+beschriftet werden. Leider können Screenreader Tabellenüberschriften nicht
+automatisch auf Formularelemente anwenden, sodass du eine andere Methode
+verwenden musst. An dieser Stelle wird aria-labelledby sehr nützlich.
+
+#### Gutes Beispiel: Einem Formularelement mehrere Labels zuweisen
+
+In der folgenden Tabelle muss jedes Formularelement von mehr als einer
+Tabellenüberschrift beschriftet werden, und jede Tabellenüberschrift muss
+Labels für mehr als ein Formularelement enthalten. Das erste Kontrollkästchen
+entspricht zum Beispiel "Jetzt" und "Lebensmittelmarken". Screenreader-Benutzer
+müssen diese beiden Labels hören, wenn sie mit der Tabulatortaste auf dieses
+Kästchen klicken. Die Überschrift "Jetzt" gilt auch für die beiden anderen
+Kästchen in derselben Spalte, und die Überschrift "Lebensmittelmarken" gilt
+für die beiden anderen Formularelemente in dieser Zeile.
+
+Der erste Schritt, um ein tabellenbasiertes Formular barrierefrei zu gestalten,
+besteht darin, die Tabelle selbst zugänglich zu machen, indem du die entsprechenden
+Zeilen- und/oder Spaltenüberschriften anwendest. Sobald das entsprechende
+Tabellenmarkup vorhanden ist, kannst du aria-labelledby verwenden, um die
+Tabellenüberschriften als Labels für die Formularelemente zu verwenden.
+
+Um mehrere Überschriften mit einem Formularelement zu verknüpfen, gibst du die
+ID jeder Überschrift durch ein Leerzeichen getrennt ein. Um zum Beispiel ein
+Formularelement mit zwei Einträgen mit id="now" und id="foodstamps" zu
+verknüpfen, musst du Folgendes eingeben:
+
+```html
+aria-labelledby="now foodstamps"
+```
+
+In komplexeren Tabellen ist es möglich, drei oder mehr Labels mit
+einem Formularelement zu verknüpfen (die jeweils durch ein Leerzeichen
+im Attribut aria-labelledby getrennt sind), aber eine solche Komplexität
+ist im Hinblick auf die allgemeine Benutzerfreundlichkeit wahrscheinlich
+keine gute Idee. Der vollständige Quellcode für die Tabelle lautet wie folgt:
+
+```html
+<table>
+  <caption>
+    Edit Program Information
+  </caption>
+  <tr>
+    <th scope="col"><span id="program">Program</span></th>
+    <th scope="col"><span id="now">Now</span></th>
+    <th scope="col"><span id="past">Past</span></th>
+    <th scope="col"><span id="date">Date</span></th>
+  </tr>
+  <tr>
+    <th scope="row"><span id="foodstamps">Food stamps</span></th>
+    <td><input type="checkbox" name="checkbox" aria-labelledby="now foodstamps" /></td>
+    <td><input type="checkbox" name="checkbox2" aria-labelledby="past foodstamps" /></td>
+    <td><input type="text" name="textfield" aria-labelledby="date foodstamps" /></td>
+  </tr>
+  <tr>
+    <th scope="row"><span id="tca">TCA</span></th>
+    <td><input type="checkbox" name="checkbox3" aria-labelledby="now tca" /></td>
+    <td><input type="checkbox" name="checkbox4" aria-labelledby="past tca" /></td>
+    <td><input type="text" name="textfield2" aria-labelledby="date tca" /></td>
+  </tr>
+  <tr>
+    <th scope="row"><span id="medical">Medical</span></th>
+    <td><input type="checkbox" name="checkbox5" aria-labelledby="now medical" /></td>
+    <td><input type="checkbox" name="checkbox6" aria-labelledby="past medical" /></td>
+    <td><input type="text" name="textfield3" aria-labelledby="date medical" /></td>
+  </tr>
+</table>
+```
+
+WICHTIG: Beachte, dass die Tabellenüberschriften/Labels in `<span>`-Tags stehen und dass
+die id im `<span>`-Tag und nicht im `<th>`-Tag steht. Wenn du die id in den `<th>`-Tag einfügst,
+können manche Screenreader die Labels nicht richtig lesen, wenn du mit der Tabulatortaste
+durch die Formularelemente gehst.
+
+## Ein Label für mehrere Felder
+
+### Wenn ein Label für mehrere Elemente verwendet wird, muss das Label programmatisch mit jedem der entsprechenden Elemente verknüpft werden.
+
+Einige Formulare sind so gestaltet, dass die Datenfelder in mehrere Teile
+aufgeteilt sind, z. B. eine Telefonnummer, eine Sozialversicherungsnummer oder
+eine erweiterte Postleitzahl.
+
+Es gibt vier Haupttechniken für die Bereitstellung von Labels unter
+diesen Umständen:
+
+- Kombiniere die Felder miteinander, damit du nicht jedes Feld einzeln beschriften musst.
+
+- Verwende Text außerhalb des Bildschirms mit CSS, um versteckte Labels zu erstellen.
+  Diese Technik verwendet das traditionelle `<label>`-Tag und ist sehr robust, aber vielleicht
+  weniger elegant als die aria-label-Technik.
+
+- Verwende aria-label, um versteckte Labels zu erstellen. Wenn du dies tust,
+  solltest du wahrscheinlich auch ein herkömmliches `<label>` für das erste Feld
+  verwenden, damit die Benutzer auf den Text klicken können, um den Fokus auf
+  das Formularfeld zu setzen.
+
+- Verwende ein `<fieldset>` für das sichtbare Label und versteckten Text für die
+  anderen Labels.
+
+#### Gutes Beispiel: Mehrere Felder mit nur einem sichtbaren Label - Kombiniere die Felder miteinander
+
+Eine Möglichkeit, mit mehreren zusammenhängenden Feldern umzugehen, besteht darin,
+die Felder einfach zu kombinieren und nur ein Label zu verwenden.
+
+```html
+<label for="ssn6">Social Security Number:</label> <input type="text" id="ssn6" />
+```
+
+#### Gutes Beispiel: Mehrere Felder mit nur einem sichtbaren Label - Verwendung von Text außerhalb des Bildschirms mit CSS
+
+Dieses Beispiel zeigt, wie einzelne Felder mit Text aus dem Off-Screen beschriftet
+werden können, der mit CSS so gestaltet ist, dass er optisch ausgeblendet wird.
+
+```html
+<label for="ssn1b"
+  >Social Security Number <span class="offscreen">first three digits</span>:
+</label>
+<input type="text" size="3" maxlength="3" id="ssn1b" /> -
+<label for="ssn2b" class="offscreen">Second two digits:</label>
+<input type="text" size="2" maxlength="2" id="ssn2b" /> -
+<label for="ssn3b" class="offscreen">Last four digits:</label>
+<input type="text" size="4" maxlength="4" id="ssn3b" />
+```
+
+Ein paar Anmerkungen zu dieser Methode:
+
+- Diese Methode ist abwärtskompatibler als die Methode mit aria-label. Wenn
+  du also versuchst, ältere Browser und ältere Screenreader zu unterstützen, ist
+  dies die beste Methode.
+
+- Sie hat außerdem den Vorteil, dass keiner der Screenreader die Labels
+  wiederholt, so dass sie in allen Screenreadern perfekt klingt.
+
+#### Gutes Beispiel: Mehrere Felder mit nur einem sichtbaren Label - aria-label verwenden
+
+Dieses Formular hat Datenfelder, die in mehrere Teile aufgeteilt sind, mit einem
+aria-label-Attribut, das jedes Feld beschreibt.
+
+```html
+<p>
+  <label for="ssn1">Social Security Number:</label>
+  <input
+    type="text"
+    size="3"
+    maxlength="3"
+    id="ssn1"
+    aria-label="Social Security Number first three digits" />
+  - <input type="text" size="2" maxlength="2" aria-label="middle two digits" /> -
+  <input type="text" size="4" maxlength="4" aria-label="last four digits" />
+</p>
+<p>
+  <label for="phone1">Phone:</label>
+  (<input type="text" size="3" maxlength="3" id="phone1" aria-label="Phone Number area code" />)
+  <input type="text" size="3" maxlength="3" aria-label="second three digits" /> -
+  <input type="text" size="4" maxlength="4" aria-label="last four digits" />
+</p>
+<p>
+  <label for="zip">Zip:</label>
+  <input type="text" size="5" maxlength="5" id="zip" aria-label="Zip code" /> -
+  <input type="text" size="4" maxlength="4" aria-label="extended zip code" />
+</p>
+```
+
+Sieh dir den Code oben genau an. Es gibt ein paar Dinge, auf die du hinweisen solltest:
+
+- Das erste Feld verwendet ein normales `<label>`-Tag (mit id und for). Der Grund für die
+  Verwendung des regulären `<label>`-Tags ist, dass das Text-Label anklickbar ist, so dass der
+  Fokus in das erste Formularfeld der Gruppe geht, wenn du auf den Text klickst. Das hilft
+  Menschen, die aufgrund eines Zitterns oder anderer Erkrankungen über eine geringere
+  Handfertigkeit verfügen.
+
+- Das erste Feld hat neben dem `<label>`-Tag auch einen aria-label-Wert. Warum beides? Weil wir
+  angeben wollen, dass dieses Feld nur für die ersten drei Ziffern bestimmt ist. Wenn wir
+  nur das Label "Sozialversicherungsnummer" verwenden würden, wüsste die blinde Person nicht,
+  dass das Feld nur für drei Ziffern gedacht ist, also würde sie versuchen, die vollständige
+  Sozialversicherungsnummer einzugeben, was für dieses Feld falsch wäre.
+
+- Lesen Bildschirmlesegeräte sowohl das `<label>`-Tag als auch den aria-label-Wert? JAWS und
+  NVDA lesen nur den Wert von aria-label. VoiceOver liest beides, was zwar nicht ideal ist,
+  aber kein Grund zur Beunruhigung darstellt.
+
+#### Gutes Beispiel: Mehrere Felder mit nur einem sichtbaren Label - Verwende ein `<fieldset>`
+
+Dieses Formular verwendet ein `<fieldset>` und versteckte Labels (stattdessen könnte auch aria-label
+verwendet werden).
+
+```html
+<fieldset>
+  <legend>Social Security Number</legend>
+  <label for="ssn10" class="offscreen">First three digits</label>
+  <input type="text" size="3" maxlength="3" id="ssn10" /> -
+  <label for="ssn20" class="offscreen">Second two digits:</label>
+  <input type="text" size="2" maxlength="2" id="ssn20" /> -
+  <label for="ssn30" class="offscreen">Last four digits:</label>
+  <input type="text" size="4" maxlength="4" id="ssn30" />
+</fieldset>
+```
+
+Hinweise zu dieser Methode:
+
+- Das funktioniert in allen Screenreadern gut und ist sehr rückwärtskompatibel.
+
+- Ein Nachteil ist, dass `<fieldset>`-Elemente und `<legend>`-Elemente im Vergleich
+  zu normalem Text schwierig zu gestalten sind. Manche Designer bevorzugen daher
+  die anderen Methoden, die etwas mehr CSS-Flexibilität bieten. Moderne Browser
+  ermöglichen es Designern, den `<fieldset>`-Rahmen auszuschalten und die `<legend>`
+  links von den Feldern zu positionieren. Es erfordert nur mehr Aufwand. Ältere Browser
+  sind beim Styling weniger flexibel.
+
+- Ein weiterer Nachteil ist, dass einige Bildschirmlesegeräte (JAWS) den `<legend>`
+  Text bei jedem Feld innerhalb des `<fieldset>` wiederholen. In diesem Beispiel hören
+  die Benutzer "Sozialversicherungsnummer" zusammen mit den Labels für die drei
+  Formularfelder. Das kann lästig sein, ist aber auch kein Hindernis, es sei denn,
+  das `<legend>` ist sehr lang. Die Nutzer können auch die Tabulatortaste drücken, um zum
+  nächsten Feld zu gehen, damit sie nicht die ganze `<legend>` noch einmal hören müssen,
+  oder die Strg-Taste drücken, damit der Screenreader aufhört zu sprechen.

@@ -1,0 +1,291 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Dynamische Formulare und benutzerdefinierte Widgets'
+pubDate: 2023-05-09
+---
+
+Native Standard-HTML-Formularelemente sind leicht zugänglich zu
+machen (mit entsprechenden Labels, Beschreibungen, Anweisungen,
+Styling usw.). Die Barrierefreiheit wird umso schwieriger, je
+komplizierter und innovativer das Webdesign wird und je mehr es
+von den Standard-Formularelementen und -Designs abweicht. Die
+gute Nachricht ist, dass es immer noch möglich ist, dynamische
+Formulare und benutzerdefinierte Formularelemente barrierefrei
+zu gestalten, wenn du es richtig machst. In diesem Abschnitt
+werden einige der häufigsten Herausforderungen beim Design und
+Lösungen für innovative Formulare beschrieben.
+
+## Progressive Formular-Updates
+
+Manchmal musst du Informationen Schritt für Schritt sammeln,
+wobei das Ergebnis des ersten Schritts die Optionen für den
+nächsten Schritt bestimmt. Du kannst diese Art der Interaktion
+barrierefrei gestalten, indem du ein paar Best Practices befolgst:
+
+- Ändere zukünftige Optionen, nicht vergangene Optionen:
+  Screenreader-Nutzer/innen erleben Webinhalte linearer als sehende
+  Nutzer/innen. Wenn ein Screenreader-Nutzer bereits einen Teil des
+  Formulars besucht hat, wird er wahrscheinlich nicht zurückgehen, nur
+  um herauszufinden, ob sich etwas geändert hat. Sorge dafür, dass
+  dynamische Änderungen weiter unten im DOM stattfinden und nicht weiter
+  oben im DOM.
+
+- Erlaube den Nutzern, frühere Auswahlen zu ändern: In manchen Fällen
+  möchten die Nutzer/innen im Verlauf der Interaktion zurückgehen. Biete
+  eine einfache Möglichkeit, dies zu tun.
+
+- Erwäge, die Barrierefreiheit auf jeweils einen Schritt zu beschränken:
+  Mehrere Schritte gleichzeitig auf dem Bildschirm zu haben, kann
+  überwältigend und verwirrend sein. Manchmal kann es sinnvoll sein,
+  frühere Optionen auf dem Bildschirm sichtbar und bearbeitbar zu lassen,
+  während der/die Nutzer/in vorwärts geht. In anderen Fällen ist es am
+  besten, den Auswahlmechanismus für frühere Optionen zu deaktivieren und
+  stattdessen eine Zusammenfassung der vorherigen Auswahlmöglichkeiten
+  anzuzeigen (solange es eine Möglichkeit gibt, die vorherigen
+  Auswahlmöglichkeiten zu bearbeiten).
+
+- Nummeriere die Schritte: Die Nutzer/innen schätzen es, wenn sie wissen,
+  wie viele Schritte es insgesamt im Prozess gibt und bei welchem Schritt
+  sie sich gerade befinden.
+
+- Verwalte den Tastaturfokus: Verwalte den Fokus bei jedem Schritt des Weges.
+  Je nachdem, wie die Interaktion aufgebaut ist, musst du den Fokus nicht immer
+  auf die neuen Elemente setzen, aber wenn das Element, das gerade im Fokus ist,
+  irgendwann verschwindet, musst du den Fokus irgendwo setzen, vorzugsweise auf
+  den nächsten logischen Schritt im Prozess, entweder auf das nächste relevante
+  Formularelement, eine relevante Überschrift (mit tabindex="-1") oder auf einen
+  Container (mit tabindex="-1"). Achte darauf, dass du sowohl den Vorwärts- als
+  auch den Rückwärtspfad durch die Interaktion berücksichtigst.
+
+- Erwäge eine kurze Zusammenfassung der Auswahlmöglichkeiten: Es kann mühsam sein,
+  in einem langen Formular zurückzublicken oder in einem Schritt-für-Schritt-Formular
+  zurückzugehen. Eine prägnante Zusammenfassung kann das Ergebnis leichter
+  verständlich machen. Es kann auch sinnvoll sein, die Zusammenfassung programmatisch
+  mit einer abschließenden "Submit"-Schaltfläche zu verknüpfen, vor allem wenn die
+  Zusammenfassung vor der Schaltfläche im DOM erscheint, wie im folgenden Code gezeigt:
+
+  ```html
+  <div id="summary">Summary goes here ...</div>
+  <button aria-describedby="summary">Submit</button>
+  ```
+
+#### Gutes Beispiel: Verlaufsform
+
+Im folgenden Beispiel wird ein Schritt-für-Schritt-Design verwendet, bei dem immer
+nur ein Schritt auf dem Bildschirm sichtbar ist. Die Schritte sind nummeriert
+("Schritt 1 von 4" usw.), und der Fokus wird sowohl vorwärts als auch rückwärts
+gesteuert (der Fokus wird auf die ausgewählte Schaltfläche gesetzt, falls zutreffend,
+oder auf die erste Optionsschaltfläche in der Gruppe). Auf dem Bildschirm wird eine
+Zusammenfassung der Auswahlmöglichkeiten angezeigt, die programmgesteuert mit der
+letzten Schaltfläche "Kaufen" verknüpft wird, damit Screenreader-Nutzer davon
+profitieren können.
+
+TODO: Example
+
+https://dequeuniversity.com/assets/html/module-forms/progressive/good/index.html
+
+Hinweis: Dieses Beispiel könnte so abgeändert werden, dass die vergangenen Auswahlen
+auf dem Bildschirm bearbeitet werden können. Barrierefreiheit ist in beiden Fällen
+möglich, solange der gesamte Prozess entsprechend den oben genannten Punkten gestaltet
+wird.
+
+## Änderungen im Kontext
+
+Es kann verwirrend und desorientierend für die Nutzer sein, wenn eine Nutzeraktion
+automatisch einen Kontextwechsel auslöst, den der Nutzer nicht erwartet hat. Ein
+Kontextwechsel ist definiert als eine Änderung in:
+
+- Der User Agent (z. B. wenn Links oder Schaltflächen den Nutzer dazu bringen,
+  den Webbrowser zu verlassen und automatisch eine andere Anwendung zu öffnen).
+
+- Das Ansichtsfenster (z. B. wenn der Bildschirm nach unten oder oben gescrollt
+  wird oder wenn Elemente die zuvor sichtbaren Elemente visuell ersetzen, verdecken
+  oder ihre Position verändern oder wenn ein neues Fenster geöffnet wird)
+
+- Der Fokus (z. B. wenn der Tastaturfokus auf ein anderes Element gesetzt wird)
+
+- Der Inhalt (z. B. wenn sich die Bedeutung der Seite wesentlich ändert oder wenn
+  Elemente auf der Seite neu angeordnet werden)
+
+Keine dieser Arten von skriptgesteuerten Aktionen ist von vornherein schlecht. Die
+Gefahr für die Barrierefreiheit besteht darin, dass sie automatisch ablaufen, ohne
+dass der Nutzer die Aktionen ausdrücklich anfordert. Die Nutzer sollten eine
+Schaltfläche drücken oder eine andere ähnliche Aktion ausführen können, um eine
+Änderung des Kontexts anzufordern, anstatt dass die Webseite davon ausgeht, dass der
+Nutzer den Kontext aufgrund von Aktionen ändern möchte, die aus Sicht des
+Nutzererlebnisses mehrdeutig sind, wie z. B. das Überfahren eines Elements mit der
+Maus, das Fokussieren eines Elements mit der Tastatur oder das Ändern des Werts einer
+Formulareingabe. In den meisten Fällen wäre es falsch, davon auszugehen, dass der/die
+Nutzer/in seine/ihre Entscheidung auf der Grundlage einer dieser Interaktionen getroffen
+hat.
+
+### Das Fokussieren eines Elements muss nicht automatisch einen Kontextwechsel auslösen, es sei denn, der/die Nutzer/in wurde vorher angemessen informiert.
+
+Ein skriptgesteuertes Verhalten an ein Fokus-Ereignis zu knüpfen, kann für Benutzer
+aller Art verwirrend sein, vor allem aber für Benutzer von Bildschirmlesegeräten,
+denen es schwerfallen kann, herauszufinden, was passiert ist. Tastaturbenutzer müssen
+die Freiheit haben, in Formularen zu navigieren, ohne dass Ereignisse ausgelöst werden,
+nur weil sie auf ein Formularfeld fokussieren.
+
+#### Schlechtes Beispiel: Durch Fokus ausgelöster Dialog
+
+In diesem schlechten Beispiel wird unerwartet ein Dialog ausgelöst, wenn der Benutzer
+den Fokus auf die Texteingabe richtet, und der Benutzer wird gezwungen, damit zu
+interagieren.
+
+TODO: Example
+
+https://dequeuniversity.com/assets/html/module-forms/context/bad/focus/index.html
+
+### Die Änderung des Wertes eines Elements muss nicht automatisch eine Änderung des Kontexts auslösen, es sei denn, der Nutzer wird vorher angemessen informiert.
+
+Hinweis: Änderungen des Kontexts sind zulässig, wenn du eine Schaltfläche
+"Abschicken" (oder eine ähnliche Schaltfläche) aktivierst, da in diesem Fall
+davon ausgegangen wird, dass der Nutzer mit dem Erkunden, Eingeben oder
+Auswählen von Optionen fertig und bereit ist, fortzufahren.
+
+#### Schlechtes Beispiel: Navigation ausgelöst durch Änderung im Auswahlfeld
+
+In diesem schlechten Beispiel wird eine `<select>`-Liste für die Navigation
+verwendet. Die Seite ändert sich, sobald der Nutzer eine der Optionen in der
+Liste auswählt. Leider kann es für Tastaturbenutzer auf Windows-Rechnern
+schwierig sein, die richtige Option auszuwählen, denn wenn sie die Pfeiltaste
+nach unten benutzen, wird das Änderungsereignis ausgelöst, sobald das erste
+Element ausgewählt ist, auch wenn das nicht die vom Benutzer gewünschte Option
+ist.
+
+Hinweis 1: Die Tastenkombination alt + Pfeil nach unten ist ein Workaround für
+dieses Problem, aber nicht alle Nutzer kennen diese Tastenkombination.
+
+Hinweis 1: Bei Browsern unter macOS gibt es dieses Problem nicht, da die
+Pfeil-nach-unten-Taste die gesamte Liste aufklappt, sodass die Nutzer/innen die
+Optionen durchgehen können, ohne sie auszuwählen.
+
+TODO: Example
+
+https://dequeuniversity.com/assets/html/module-forms/context/bad/change/index.html
+
+#### Schlechtes Beispiel: Automatisches Verschieben des Fokus auf das nächste Feld
+
+Dieses Formular hat drei Felder, die alle zu einer Telefonnummer gehören. Das
+Formular geht automatisch zum nächsten Feld über, wenn jedes Feld ausgefüllt ist.
+
+In diesem Beispiel bewegt sich der Fokus vom aktuellen Feld weg, sobald der Benutzer
+eine bestimmte Anzahl von Zeichen eingibt. Obwohl diese Art von Skript dazu gedacht
+ist, den Nutzern Tastenanschläge zu ersparen, werden die Nutzer nicht darüber informiert,
+dass dieses Verhalten eintritt, so dass sie die Zeichen eingeben und dann die
+Tabulatortaste drücken, ohne zu bemerken, dass der Fokus bereits in das nächste Feld
+verschoben wurde. Sie müssen dann zum vorherigen Feld zurückgehen.
+
+Ein automatisches Weiterleitungsskript wie dieses kann auf einer Seite, die häufig
+besucht wird, von Vorteil sein, aber das Problem ist, dass nicht alle Nutzer/innen die
+Seite häufig besuchen. Häufige Nutzer werden dieses Skript hilfreich und zeitsparend
+finden. Alle anderen werden von seinem Verhalten überrascht sein.
+
+```html
+<p>
+  <label for="phoneAuto1">Phone:</label> (
+  <input
+    type="text"
+    name="areaCode2"
+    size="4"
+    maxlength="3"
+    id="phoneAuto1"
+    aria-label="phone number area code" />
+  )
+  <input
+    type="text"
+    name="firstThree"
+    size="4"
+    maxlength="3"
+    id="phoneAuto2"
+    aria-label="first three digits" />
+  -
+  <input
+    type="text"
+    name="lastFour"
+    size="4"
+    maxlength="4"
+    id="phoneAuto3"
+    aria-label="last four digits" />
+</p>
+```
+
+### Wenn du mit der Maus über ein Element fährst, muss dies nicht automatisch einen Kontextwechsel auslösen, es sei denn, der/die Nutzer/in wurde vorher angemessen informiert.
+
+Ein Kontextwechsel als Ergebnis einer Mausbewegung ist eine ziemlich drastische Art,
+auf Mausbewegungen zu reagieren. Sie ist sehr unerwartet und verwirrend für die Nutzer.
+
+#### Schlechtes Beispiel: Dialog durch Hover ausgelöst
+
+In diesem schlechten Beispiel wird ein Dialog ausgelöst, wenn der Benutzer die Maus über
+den Bereich am oberen Rand der Seite bewegt. Auch wenn der Dialog so kodiert ist, dass
+er barrierefrei ist, ist es keine gute Praxis, ihn beim Überfahren mit der Maus auszulösen.
+
+TODO: Example
+
+https://dequeuniversity.com/assets/html/module-forms/context/bad/hover/index.html
+
+## Benutzerdefinierte Formulareingaben
+
+Das Modul "Benutzerdefinierte JavaScript/ARIA-Widgets" behandelt benutzerdefinierte
+JavaScript-Widgets im Detail, daher werden wir in diesem Modul nur einige der wichtigsten
+Punkte vorstellen, die bei der Erstellung benutzerdefinierter Formularelemente zu beachten
+sind
+
+### Native HTML-Formularelemente sollten wann immer möglich verwendet werden.
+
+Native HTML-Formularelemente sind von Natur aus zugänglich. Du musst kein JavaScript
+verwenden, damit sie für Tastaturbenutzer/innen, Bildschirmleser/innen oder andere
+Benutzer/innen korrekt funktionieren. Native HTML-Formularelemente funktionieren einfach.
+
+Und nicht nur das: Die Nutzer/innen sind bereits mit nativen HTML-Formularelementen vertraut.
+Du musst keine Anweisungen geben oder dich um die Benutzeroberfläche kümmern. Es gibt
+keine Lernkurve.
+
+### Benutzerdefinierte Formularelemente sollten sich so weit wie möglich wie native HTML-Formularelemente verhalten.
+
+Wenn du dich entscheidest, ein benutzerdefiniertes Formularelement zu erstellen, solltest
+du es so weit wie möglich an die nativen HTML-Formularelemente anlehnen, einschließlich des
+Tastaturverhaltens (z. B. werden Kontrollkästchen mit der Leertaste aktiviert/deaktiviert,
+Optionsfelder werden mit der Pfeiltaste ausgewählt usw.). Wenn du eine benutzerdefinierte
+Version eines bereits vorhandenen Elements erstellst - z. B. eine Texteingabe, ein
+Kontrollkästchen, ein Optionsfeld oder eine Textarea - erwarten die Nutzer, dass es genauso
+funktioniert wie das ursprüngliche Element. Achte genau auf das Tastaturverhalten und kopiere
+die Funktionalität genau.
+
+Wenn du ein innovatives Formularelement entwirfst, das nicht ganz so aussieht wie ein natives
+HTML-Formularelement, ist es trotzdem eine gute Idee, sich an nativen HTML-Formularelementen zu
+orientieren. Denke an den Anwendungsfall der Tastaturbenutzer. Achte darauf, dass alle
+Schaltflächen sowohl mit der Eingabetaste als auch mit der Leertaste funktionieren. Achte darauf,
+dass die Pfeiltasten dort verwendet werden können, wo die Nutzer sie erwarten.
+
+### Benutzerdefinierte Formularelemente müssen geeignete Namen, Rollen und Werte haben.
+
+Die ARIA-Spezifikation und die ARIA-Authoring Practices erklären, wie du ARIA (Accessible
+Rich Internet Applications) effektiv nutzen kannst, um eigene Widgets zu erstellen. Namen,
+Rollen und Werte sind zentrale Konzepte von ARIA.
+
+#### Name
+
+Das Label des Elements (z. B. "Lautstärkeregler", "Datumsauswahl" oder "Absenden"), das in
+ARIA oft über aria-label oder aria-labelledby zugewiesen wird.
+
+#### Rolle
+
+Der funktionale Zweck des Elements; die ARIA-Spezifikation definiert eine Liste von Rollen,
+die in einem neuen Fenster geöffnet werden können (z. B. "Dialog" oder "Menü" oder "Tabpanel").
+
+#### Wert
+
+Die Attribute oder der aktuelle Zustand eines Elements (z. B. aria-selected="true" oder
+aria-expanded="false" oder aria-required="true"). Die Werte müssen bei Bedarf aktualisiert
+werden (z. B. aria-expanded="false" in aria-expanded="true" ändern).
+
+### Aktualisierungen und Zustandsänderungen, die nicht über HTML- oder ARIA-Methoden kommuniziert werden können, sollten über ARIA-Live-Nachrichten kommuniziert werden.
+
+Screenreader verstehen nicht, was benutzerdefinierte Widgets sind oder wie sie sich verhalten
+sollen. Wenn sich also ein benutzerdefinierter Wert ändert, musst du diese Änderung den
+Screenreadern über eine ARIA-Live-Region mitteilen, (Live-Ankündigungen können Dinge wie
+"Tabelle sortiert nach Name, aufsteigend" oder "Ergebnisse gefiltert nach Beliebtheit" usw.
+enthalten). Screenreader-Nutzer hören die Ankündigung.
