@@ -1,0 +1,1188 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Bild-Alt-Text'
+pubDate: 2023-05-13
+---
+
+## Bewährte Praktiken für alternativen Text
+
+In diesem Abschnitt geht es darum, wie du die Barrierefreiheit bei verschiedenen Arten von Bildern
+berücksichtigen kannst, z. B. bei informativen Bildern, dekorativen Bildern, komplexen Bildern und
+Animationen. Ein guter Alternativtext ist:
+
+- Programmatisch bestimmbar (Screenreader können auf den Alternativtext zugreifen)
+
+- Aussagekräftig (der alternative Text beschreibt genau den Zweck des Bildes oder die Absicht des
+  Autors bei der Verwendung des Bildes).
+
+- Prägnant (der Alternativtext umfasst nicht mehr als 150 Zeichen und ist vorzugsweise viel kürzer)
+
+Wenn das Bild rein dekorativ oder überflüssig ist, ist es am besten, eine Technik zu verwenden, um das
+Bild vor Screenreadern zu verbergen (z. B. alt=""). Es ist wichtig zu wissen, dass die alt=""-Technik nur
+in HTML-Inhalten funktioniert und nicht in Office-Dateien wie Word-Dokumenten oder PowerPoint-Folien
+verwendet werden kann. In diesen Programmen gibt es derzeit keine Möglichkeit, ein Bild als rein dekorativ
+zu kennzeichnen, daher benötigen alle Bilder/Grafiken eine alternative Textbeschreibung.
+
+Wenn das Bild viele wichtige Informationen vermittelt, muss eine zusätzliche lange Beschreibung zusammen mit
+dem Bild eingefügt werden.
+
+Das übergeordnete Ziel ist es, blinden Menschen ein ähnliches Erlebnis zu bieten wie sehenden Menschen oder
+ihnen zumindest so nahe wie möglich zu kommen, ohne sie mit langen Textbeschreibungen zu überfordern.
+
+## Informative Bilder
+
+### Bilder, die Inhalte vermitteln, müssen einen programmatisch bestimmbaren Alternativtext haben.
+
+Bildschirmlesegeräte können Bilder nicht einfach direkt lesen oder interpretieren. Sie können nur den
+vom Autor bereitgestellten Alternativtext lesen. Um eine programmatisch bestimmbare Textalternative für
+ein Bild bereitzustellen, müssen Autoren das alt-Attribut des img-Elements verwenden.
+
+#### Gutes Beispiel: Bild mit programmatisch bestimmbarem Alt-Text
+
+Dieses Bild hat einen erkennbaren Alt-Text. Bildschirmleser würden sagen: "Grafik, A Singer model antique
+sewing machine".
+
+![A Singer model antique sewing machine](/images/bilder/sewing_machine_singer.jpg)
+
+```html
+<img
+  src="sewing_machine_singer.jpg"
+  width="686"
+  height="518"
+  alt="A Singer model antique sewing machine" />
+```
+
+#### Schlechtes Beispiel: Bild ohne programmatisch festlegbaren Alt-Text
+
+Dieses Bild hat keinen erkennbaren Alt-Text. Die meisten Bildschirmlesegeräte würden den Dateinamen des
+Bildes lesen - in einem Versuch, etwas zu lesen - also würde es so klingen: "graphic sewmach2 dot J P G.",
+was in diesem Fall nicht sehr hilfreich ist.
+
+![](/images/bilder/sewing_machine_singer-2.jpg)
+
+```html
+<img src="sewmach2.jpg" width="686" height="518" />
+```
+
+### Der alternative Text für informative Bilder MUSS aussagekräftig sein (er muss den Zweck des Bildes und die Absicht des Autors auf eine Art und Weise vermitteln, die für diejenigen nützlich ist, die das Bild nicht sehen können).
+
+Der Zweck des Alt-Textes ist es, eine Beschreibung des Bildes für blinde Menschen bereitzustellen. Der
+Alt-Text muss einen angemessenen Ersatz dafür bieten, dass man das Bild nicht sehen kann. Der alternative
+Text sollte den Zweck des Bildes klar darstellen, damit der Nutzer so einfach wie möglich versteht, warum
+das Bild da ist und was es darstellt. In diesem Modul werden spezifische Ansätze für Alternativtexte je
+nach Verwendung eines Bildes besprochen, aber bei der Erstellung von Alternativtexten solltest du Folgendes
+beachten: Alternativtexte sollten die Absicht, den Zweck und die Bedeutung des Bildes auf eine Art und Weise
+deutlich machen, die als echte Alternative für das Bild dient.
+
+Bei der Entscheidung, was in die Alternative aufgenommen werden soll, ist es oft eine gute Idee, die folgenden
+Fragen zu berücksichtigen:
+
+- Warum ist dieser Nicht-Text-Inhalt hier?
+
+- Welche Informationen enthält er?
+
+- Welchen Zweck erfüllt er?
+
+- Wenn ich den Nicht-Text-Inhalt nicht verwenden könnte, welche Wörter würde ich dann verwenden, um dieselbe
+  Information oder Funktion zu vermitteln?
+
+#### Gutes Beispiel: Informatives Bild mit aussagekräftigem Allzweck-Alttext
+
+Der Alt-Text des Bildes beschreibt die Szene, die auf dem Bild dargestellt ist. Dieser Alt-Text ist im
+allgemeinen Sinne angemessen, kann aber für eine speziellere Verwendung desselben Bildes unpassend sein.
+
+![The sun setting over the Pacific Ocean, with a silhouette of a flying seagull in the foreground](/images/bilder/sunset.jpg)
+
+```html
+<img
+  src="sunset.jpg"
+  width="700"
+  height="466"
+  alt="The sun setting over the Pacific Ocean,
+with a silhouette of a flying seagull in the foreground" />
+```
+
+#### Gutes Beispiel: Alternativer Text für einen speziellen Zweck eines Bildes
+
+In diesem Beispiel hat der Zweck des Bildes nichts mit Stränden, Sonnenuntergängen oder Möwen zu tun, auch
+wenn all diese Dinge auf dem Foto zu sehen sind. Die Absicht des Autors bei diesem Bild ist es, fotografische
+Belichtungstechniken zu erörtern und zu zeigen, wie die Einstellung der Kamera für einen Bereich des Motivs
+dazu führt, dass ein anderer Bereich des Motivs unterbelichtet wird. Es wäre unangemessen, nur zu beschreiben,
+was auf dem Bild zu sehen ist. Der Alt-Text muss beschreiben, warum der Autor das Bild aufgenommen hat.
+Der Alt-Text muss den Zweck und die Absicht des Autors in diesem Zusammenhang beschreiben, was nicht dasselbe
+ist wie eine allgemeine Beschreibung dessen, was auf dem Bild zu sehen ist.
+
+![The camera was set to properly expose the sunset in this beach scene, resulting in underexposure of the land and flying seagull in the foreground, turning them black](/images/bilder/sunset.jpg)
+
+```html
+<img
+  src="sunset.jpg"
+  width="700"
+  height="466"
+  alt="The camera was set to properly expose the sunset in this beach scene,
+   resulting in underexposure of the land and flying seagull in the foreground,
+   turning them black" />
+```
+
+#### Gutes Beispiel: Informatives Bild: Logo
+
+Der Alt-Text beschreibt den Zweck des Bildes - nämlich die Identifizierung der Marke - und nicht sein Aussehen.
+
+![Deque University](/images/bilder/dequeUniversityShieldMedium.png)
+
+```html
+<img src="dequeUniversityShield.png" alt="Deque University" width="245" height="158" />
+```
+
+Unter bestimmten Umständen kann es sinnvoll sein, dieses Bild als Logo zu kennzeichnen. Der Alt-Text könnte
+z.B. alt="Logo der Deque University" lauten. In der Regel reicht es jedoch aus, die Marke zu identifizieren.
+Das hängt von der beabsichtigten Botschaft des Autors ab.
+
+#### Schlechtes Beispiel: Bild ohne aussagekräftigen Alt-Text
+
+Der Alt-Text dieses Bildes ist nicht beschreibend genug für das Bild. Er lautet: "An ink stamp", womit
+die wichtige Information, die der Text im Bild vermittelt, weggelassen wird: "Final Notice".
+
+![An ink stamp](/images/bilder/stamp_final_notice.png)
+
+```html
+<img src="stamp_final_notice.png" width="640" height="452" alt="An ink stamp" />
+```
+
+#### Schlechtes Beispiel: Informatives Bild mit leerem Alt-Text
+
+Dieses Bild hat einen leeren Alt-Text, was bedeutet, dass Screenreader das Bild komplett ignorieren
+und die Nutzer nicht wissen, dass das Bild überhaupt vorhanden ist. Ein leerer Alt-Text kann bei rein
+dekorativen oder überflüssigen Bildern akzeptabel sein, bei informativen Bildern ist er jedoch nicht
+akzeptabel.
+
+![](/images/bilder/stamp_final_notice.png)
+
+```html
+<img src="stamp_final_notice.png" width="640" height="452" alt="" />
+```
+
+### Der alternative Text sollte keine Wörter enthalten, die das Element als Grafik oder Bild identifizieren.
+
+Bildschirmlesegeräte sagen "Bild" oder "Grafik" an, wenn sie den Alternativtext für ein img lesen;
+daher ist es in den meisten Fällen überflüssig, "Bild von" oder "Grafik von" oder "Foto von" in den
+Alternativtext aufzunehmen. Nur wenn es wichtig ist, zu vermitteln, dass es sich bei einem Bild um ein
+Foto oder eine Illustration handelt, sollten diese Wörter in den Alternativtext aufgenommen werden.
+
+#### Schlechtes Beispiel: Bild mit unangemessenen Wörtern in Alt
+
+Dieses Bild enthält die Worte "Ein Foto von" im Alt-Text. Bildschirmleser würden sagen: "Grafik,
+A photo of a Singer model antique sewing machine".
+
+!A photo of a Singer model antique sewing machine](/images/bilder/sewing_machine_singer.jpg)
+
+```html
+<img
+  src="sewing_machine_singer.jpg"
+  width="686"
+  height="518"
+  alt="A photo of a Singer model antique sewing machine" />
+```
+
+### Die Länge des Alternativtextes für informative Bilder sollte kurz sein (nicht mehr als 150 Zeichen).
+
+Es gibt weder eine technische noch eine politische Beschränkung für die Länge des Alt-Textes, aber
+der Alt-Text ist aus mehreren Gründen nicht so nützlich wie der normale Text:
+
+- Screenreader-Nutzer können nicht dort weitermachen, wo sie aufgehört haben, wenn sie mitten im Lesen
+  von Alt-Text eine Pause machen.
+
+- Screenreader-Nutzer können nicht durch den Text navigieren (z. B. nach Wort, Zeichen usw.).
+
+- Einige ältere Screenreader lesen den Alt-Text nicht in voller Länge.
+
+Du musst nicht wortwörtlich alles über das Bild in quälenden Details beschreiben. Das wäre viel zu viel
+Information, und niemand würde sich eine so ausführliche Beschreibung anhören wollen. Es heißt, ein Bild
+sagt mehr als tausend Worte, aber der Alt-Text sollte nicht einmal annähernd so lang sein wie tausend Worte.
+Der alternative Text über das alt-Attribut sollte immer kurz sein. Der Ratschlag, sich kurz zu fassen,
+scheint dem Ratschlag, beschreibend zu sein, zu widersprechen, und in gewisser Weise stimmt das auch. Es
+kann schwierig sein, sich kurz und beschreibend zu fassen. Bei komplexen Bildern ist es manchmal sogar
+unmöglich. Bei den meisten Bildern ist es in der Regel recht einfach, sich kurz und informativ zu fassen.
+
+Denke an Alt-Text wie an Tweets:
+Eine gute Faustregel ist, an den Alt-Text so zu denken wie an Twitter-Tweets. Wenn dein Alt-Text nicht
+länger ist als ein Twitter-Tweet - und der hat ein Limit von 140 Zeichen -, ist das kein Problem. Wenn du
+etwas länger bist, wird sich wahrscheinlich niemand beschweren, wenn du bis zu 150 Zeichen oder so lang bist,
+aber wenn du sehr viel länger bist, werden sich die Leute fragen, ob du wirklich verstehst, wie der Alt-Text
+verwendet werden sollte.
+
+#### Gutes Beispiel: Prägnanter Alt-Text: Informatives Bild
+
+Der Alt-Text beschreibt kurz und knapp den Zweck des Bildes.
+
+![A herd of elephants walking alongside a stream in the African Bush](/images/bilder/herdofelephants-2.jpg)
+
+```html
+<img
+  src="herdofelephants.png"
+  width="600"
+  alt="A herd of elephants walking alongside a stream in the African Bush" />
+```
+
+#### Schlechtes Beispiel: Bild mit übermäßigem Alt-Text
+
+Dieses Bild hat einen sehr langen Alt-Text, der stattdessen als Ergänzung zu einem kürzeren
+Alt-Text platziert werden sollte.
+
+![In this photograph, four elephants and two calves are walking on dry land next to a stream of water. In the foreground, down in the bottom right corner, is a part of a bush. The reflection of the herd of elephants can be seen in the water. Behind the elephants are thickets that stretch for miles and miles. The thickets then give way to the mountains set in the background.](/images/bilder/herdofelephants-2.jpg)
+
+```html
+<img
+  src="herdofelephants.png"
+  width="600"
+  alt="In this photograph, four elephants and two calves are walking on dry land
+    next to a stream of water. In the foreground, down in the bottom right corner,
+    is a part of a bush. The reflection of the herd of elephants can be seen in the water.
+    Behind the elephants are thickets that stretch for miles and miles.
+    The thickets then give way to the mountains set in the background." />
+```
+
+## Dekorative oder redundante Bilder
+
+### Bilder, die keinen Inhalt vermitteln, dekorativ sind oder einen Inhalt überflüssig machen, der bereits im Text vermittelt wird, müssen mit einem alternativen Text (alt=""), einer ARIA role="presentation" oder als CSS-Hintergrund implementiert werden.
+
+Gib "null" alt-Attribute (mit alt="") für Bilder an, die keine Informationen liefern oder keinen alternativen
+Text benötigen, weil das Bild im Seiteninhalt beschrieben wird.
+
+Manche Entwickler lassen das alt-Attribut bei Bildern, die ihrer Meinung nach keine Alternativen benötigen,
+fälschlicherweise ganz weg. Dies ist für Benutzer/innen von Hilfstechnologien nicht hilfreich, da
+Bildschirmlesegeräte oft das Quellattribut (d.h. den Dateinamen) als Alternativtext lesen. Um die Hilfsmittel
+zu veranlassen, ein Bild zu ignorieren, kannst du das Attribut "blank alternative text" verwenden: alt="".
+
+#### Gutes Beispiel: Redundantes Bild mit Null-Alt-Text
+
+In diesem Beispiel sind sowohl der Linktext als auch das Bild im Anker-Tag enthalten. Der Alt-Text des Bildes
+wird leer gelassen (alt=""), weil das Bild keine zusätzlichen Informationen enthält (es ist rein dekorativ).
+
+```html
+<a href="https://dequeuniversity.com">
+  <img src="home-icon.png" width="24" height="25" alt="" />
+  Home Page
+</a>
+```
+
+#### Schlechtes Beispiel: Redundantes Bild mit Alttext, der den angrenzenden Text dupliziert
+
+In diesem Beispiel sind sowohl der Linktext als auch das Bild im Anker-Tag enthalten. Der alt-Text für
+das Bild ist derselbe wie der Link-Text, sodass ein Bildschirmlesegerät "link Home Page Home Page" lesen
+wird. In einem Fall wie diesem, in dem das Bild keine zusätzlichen Informationen liefert (rein dekorativ ist),
+sollte der alt-Text leer bleiben (alt=""). Als Faustregel gilt: Dupliziere keinen Text, der an ein Bild angrenzt,
+im Alt-Text des Bildes.
+
+```html
+<a href="https://dequeuniversity.com">
+  <img src="home-icon.png" width="24" height="25" alt="Home Page" />
+  Home Page
+</a>
+```
+
+## Aktionsfähige Bilder (Links, Buttons, Steuerelemente)
+
+### Alle aussagekräftigen Bilder (z. B. Links, Schaltflächen, Steuerelemente) müssen einen Alternativtext haben.
+
+Achte darauf, dass der Alternativtext für Grafiken, die eine Aktion ermöglichen, das Ziel, den Zweck, die
+Funktion oder die Aktion klar beschreibt. Füge nicht "Link zu" in den Alt-Text ein, da Screenreader das Bild
+als "Link-Grafik" anzeigen, bevor sie den Alt-Text anzeigen.
+
+In den WCAG 2.1 - 1.1.1 heißt es: "Wenn ein Nicht-Text-Inhalt ein Steuerelement ist oder eine Benutzereingabe
+akzeptiert, dann hat er einen Namen, der seinen Zweck beschreibt. Im Falle von Bildern, die als Steuerelemente
+verwendet werden, sollte der alternative Text die Aktion des Steuerelements beschreiben, nicht das Bild selbst.
+
+#### Gutes Beispiel: Ein Bild, das als Link verwendet wird, hat einen nützlichen Alt-Text
+
+Das Bild unten ist ein blauer Kreis mit einem Symbol eines weißen Hauses in der Mitte. Du könntest es so
+detailliert beschreiben, aber in einem Fall wie diesem wäre es angemessener, einfach zu sagen, was das Bild
+macht, nämlich einen Link zur Homepage. Der beste Alt-Text ist einfach "Home" oder "Home Page".
+
+<div style="width: 113px">
+  <a href="#">
+    <img src="/images/bilder/homepage.png" alt="Home" />
+  </a>
+</div>
+
+```html
+<a href="#">
+  <img src="/images/bilder/homepage.png" alt="Home" width="113" />
+</a>
+```
+
+#### Schlechtes Beispiel: Bild, das als Link verwendet wird, hat keinen Alttext
+
+Der gleiche blaue Kreis mit einem weißen Haus wird in diesem Beispiel verwendet, um auf die Homepage zu
+verlinken, aber dem Bild fehlt der Alt-Text.
+
+<div style="width: 113px">
+  <a href="#">
+    <img src="/images/bilder/homepage.png" />
+  </a>
+</div>
+
+```html
+<a href="#"><img src="home.png" width="113" height="113" /></a>
+```
+
+### Der alternative Text für Aktionsbilder muss aussagekräftig sein (und den Zweck oder das Ergebnis der Aktion genau vermitteln).
+
+Bei Actionable Images ist es wichtig, dass der alternative Text den Zweck oder die Funktion des Bildes
+beschreibt. Zum Beispiel beschreibt der alternative Text für ein Bild, das ein Link ist, das Ziel des
+Links und nicht die Form oder andere visuelle Merkmale des Bildes. Der alternative Text für ein Bild,
+bei dem es sich um eine Schaltfläche handelt, beschreibt die Funktion der Schaltfläche (z. B. die
+Schaltfläche "Senden").
+
+### Der alternative Text sollte keine Wörter enthalten, die das Element als Link, Grafik oder Bild identifizieren.
+
+Bildschirmlesegeräte melden "Bild" oder "Grafik", wenn sie den Alternativtext für ein img lesen, und
+sie melden auch "Link", wenn das Bild in einem Anker-Tag enthalten ist. Daher ist es unnötig, Wörter
+wie "Link zu", "Bild von" oder "Grafik von" in den Alternativtext aufzunehmen. Der alternative Text
+sollte das Ziel oder die Aktion des Links beschreiben.
+
+#### Schlechtes Beispiel: Bild mit unangemessenen Wörtern in Alt
+
+Dieses Bild enthält die Worte "Ein Link zu" im Alt-Text. Bildschirmleser würden sagen: "Link,
+Grafik, Ein Link zur Homepage".
+
+<div style="width: 113px">
+  <a href="#">
+    <img src="/images/bilder/homepage.png" alt="A link to the Home page" />
+  </a>
+</div>
+
+```html
+<a href="#"><img src="home.png" width="113" alt="A link to the Home page" /></a>
+```
+
+### Die Länge des alternativen Textes für Aktionsbilder sollte kurz sein (nicht mehr als etwa 150 Zeichen).
+
+Es gibt weder eine technische noch eine politische Beschränkung für die Länge des Alt-Textes,
+aber der Alt-Text ist aus mehreren Gründen nicht so nützlich wie der normale Text:
+
+- Screenreader-Nutzer können nicht dort weitermachen, wo sie aufgehört haben, wenn sie mitten
+  im Lesen von Alt-Text eine Pause machen.
+
+- Screenreader-Nutzer können nicht durch den Text navigieren (z. B. nach Wort, Zeichen usw.).
+
+- Einige ältere Screenreader lesen den Alt-Text nicht in voller Länge.
+
+#### Schlechtes Beispiel: Bild-Link mit längerem Alt-Text als nötig
+
+Der Alt-Text dieses Bild-Links sagt: "Benutze diesen Bild-Link, um zur Startseite zu gelangen",
+aber es wäre besser, einfach den Namen der Seite anzugeben, zu der der Link führt: "Home".
+
+<div style="width: 113px">
+  <a href="#">
+    <img src="/images/bilder/homepage.png" alt="Use this image link to go to the home page" />
+  </a>
+</div>
+
+```html
+<a href="#"><img src="home.png" width="113" alt="Use this image link to go to the home page" /></a>
+```
+
+## Formular Eingaben type="image"
+
+### Formulareingaben mit type="image" müssen einen alternativen Text haben.
+
+Damit alternativer Text für eine Eingabe mit type="image" programmatisch bestimmt werden kann,
+musst du das alt-Attribut für das Eingabeelement verwenden.
+
+#### Gutes Beispiel: Input type="image" mit programmatisch bestimmbarem Alt
+
+Die Eingabetaste in Form eines Bildes hat einen Alt-Text, der die Funktion des Bildes erklärt.
+
+<input type="image" name="submit" src="/images/bilder/submit-button.png" alt="Submit" />
+
+```html
+<input type="image" name="submit" src="/images/bilder/submit-button.png" alt="Submit" />
+```
+
+### Der alternative Text für Formulareingaben mit type="image" muss den Zweck oder das Ergebnis der Eingabeaktion genau wiedergeben.
+
+Der alternative Text für eine Bildeingabe sollte die Funktion der Eingabe beschreiben, nicht
+die visuellen Eigenschaften des Bildes.
+
+#### Schlechtes Beispiel: Eingabe type="image" ohne aussagekräftiges Alt
+
+Die Eingabeschaltfläche in Form eines Bildes hat ein alt, das das Bild beschreibt, nicht die
+Funktion des Bildes.
+
+<input
+  type="image"
+  name="submit"
+  src="/images/bilder/submit-button.png"
+  alt="A red oval with shading to look 3-d and white text."
+/>
+
+```html
+<input
+  type="image"
+  name="submit"
+  src="submit-button.png"
+  alt="A red oval with shading to look 3-d and white text." />
+```
+
+### Die Länge des alternativen Textes für Eingaben mit type="image" sollte kurz sein (nicht mehr als etwa 150 Zeichen).
+
+Hinweis: Es gibt weder eine technische noch eine politische Beschränkung für die Länge des Alt-Textes,
+aber der Alt-Text ist aus mehreren Gründen nicht so nützlich wie der normale Text:
+
+- Screenreader-Nutzer können nicht dort weitermachen, wo sie aufgehört haben, wenn sie mitten im Lesen
+  von Alt-Text eine Pause machen.
+
+- Screenreader-Nutzer können nicht durch den Text navigieren (z. B. nach Wort, Zeichen usw.).
+
+- Einige ältere Screenreader lesen den Alt-Text nicht in voller Länge.
+
+#### Schlechtes Beispiel: Eingabe type="image" mit langer programmatisch bestimmbarer Alt
+
+Der Eingabebutton in Form eines Bildes hat einen Alt-Text, der die Funktion des Bildes beschreibt,
+aber er ist viel länger als nötig.
+
+<input
+  type="image"
+  name="submit"
+  src="/images/bilder/submit-button.png"
+  alt="Submit. Click this button to submit your appointment request."
+/>
+
+```html
+<input
+  type="image"
+  name="submit"
+  src="submit-button.png"
+  alt="Submit. Click this button to submit your appointment request." />
+```
+
+## Animierte Bilder
+
+### Es muss eine Methode vorhanden sein, um aufgezeichnete reine Videoinhalte, die automatisch abgespielt werden und länger als 5 Sekunden dauern, anzuhalten, zu stoppen oder auszublenden.
+
+Visuelle Inhalte, die sich bewegen, können für Menschen mit bestimmten kognitiven Einschränkungen
+problematisch sein, insbesondere für Menschen mit Aufmerksamkeitsstörungen. Sich bewegende Inhalte
+können ablenken und es den Menschen erschweren, sich auf den Inhalt der Webseite zu konzentrieren.
+Die Fünf-Sekunden-Schwelle erregt die Aufmerksamkeit der Menschen, aber nicht lange genug, um sie
+abzulenken oder davon abzuhalten, die Webinhalte zu nutzen und mit ihnen zu interagieren.
+
+### Animierte Bilder müssen nicht mehr als 3 Mal pro Sekunde blinken oder flackern.
+
+Inhalte, die mehr als dreimal pro Sekunde blinken oder flackern, können bei Menschen mit lichtempfindlicher
+Epilepsie oder anderen Arten von lichtempfindlichen Anfallsleiden einen Anfall auslösen. Es ist wichtig,
+dass du keine Inhalte erstellst, die bei deinen Nutzern Anfälle auslösen können.
+
+Das <a href="http://trace.umd.edu/peat" target="_blank">Photosensitive Epilepsy Analysis Tool (PEAT)</a> des
+Trace Center ist eine kostenlose Ressource, die Entwickler/innen herunterladen können, um Anfallsrisiken in
+ihren Webinhalten und ihrer Software zu identifizieren. Wenn du dir bei einem Video oder einer Animation, die
+blinkende oder schnelle Übergänge zwischen hellen und dunklen Hintergrundfarben enthält, unsicher bist, kann
+dieses Tool eine nützliche Überprüfung sein.
+
+## Komplexe Bilder
+
+### Komplexe Bilder müssen mit Alt-Text kurz beschrieben werden UND eine ausführlichere lange Beschreibung haben.
+
+Selbst wenn du visuelle Labels korrekt mit visuellen Daten in einem Diagramm oder einer Grafik verknüpft hast,
+können blinde Nutzer/innen die Grafiken nur dann verstehen, wenn du eine ausführliche Textbeschreibung dazu
+lieferst. Du könntest die gesamte Beschreibung in den Alt-Text einfügen, aber der Alt-Text sollte recht kurz
+sein, nicht mehr als etwa 150 Zeichen. Aus technischer Sicht kann der Alt-Text viel länger als 150 Zeichen sein;
+aus praktischer Sicht ist es jedoch üblich, dass der Alt-Text kurz ist. Wenn 150 Zeichen nicht ausreichen, um
+ein Bild zu beschreiben, musst du eine andere Methode anwenden.
+
+Es gibt mehrere Möglichkeiten, eine lange Beschreibung für Bilder zu erstellen:
+
+- Biete die lange Beschreibung im Kontext des HTML-Dokuments selbst an.
+
+- Biete eine Schaltfläche an, die einen eingeklappten Bereich mit der langen Beschreibung aufklappt.
+
+- Eine Schaltfläche zum Öffnen eines Dialogs, der die lange Beschreibung enthält.
+
+- Biete einen Link zu einer langen Beschreibung auf einer anderen Seite über einen normalen Linktext an.
+
+Unabhängig davon, welche Methode du wählst, musst du immer einen kurzen Alt-Text angeben, der den Hauptzweck oder
+Inhalt des Bildes beschreibt.
+
+#### Gutes Beispiel: Beispiel 1: Gib die lange Beschreibung im Kontext des HTML-Dokuments selbst an
+
+In diesem Beispiel wird die detaillierte Beschreibung unter dem Bild platziert. Der Alt-Text lautet: "Balkendiagramm
+mit Prozentsätzen. Ausführliche Beschreibung unter dem Diagramm." Wir könnten einen längeren Alt-Text schreiben,
+oder du könntest sogar argumentieren, dass wir alt="" verwenden und den Alt-Text leer lassen sollten, aber
+"Balkendiagramm mit Prozentangaben. Ausführliche Beschreibung unterhalb des Diagramms" erklärt gerade genug
+Informationen, ohne dass sie mit dem Titel oder der langen Beschreibung überflüssig werden.
+
+```html
+<img
+  class="border"
+  src="bar-chart.png"
+  width="546"
+  height="330"
+  alt="Bar chart with percentages. Extended description below chart."
+  aria-describedby="description-extended" />
+
+<div id="description-extended">
+  <p>Full long description goes here.</p>
+</div>
+```
+
+#### Gutes Beispiel: Beispiel 2: Biete einen Link zu einer langen Beschreibung über einen normalen Linktext an
+
+In diesem Beispiel wird ein Link mit der Aufschrift "Detaillierte Beschreibung der Grafik" unter dem Bild platziert.
+Sehende Nutzer können den Link sehen und Nutzer von Bildschirmlesegeräten können den Link von ihrem Bildschirmlesegerät
+vorlesen lassen. Niemand wird übergangen, aber bei dieser Methode müssen die Nutzer dem Link folgen, um die detaillierte
+Beschreibung zu sehen.
+
+```html
+<img
+  class="border"
+  src="bar-chart.png"
+  width="546"
+  height="330"
+  alt="Bar chart with percentages. Detailed description below chart." />
+<div class="center">
+  <a href="/assets/html/examples/image_longdesc_separate_page/image_longdesc_separate_page.html"
+    >Detailed description of the chart.</a
+  >
+</div>
+```
+
+### Die lange Beschreibung (oder ein Link oder eine Schaltfläche zum Aufrufen der langen Beschreibung) sollte für sehende Nutzer sichtbar sein.
+
+Einige komplexe Bilder können für sehende Nutzer zu komplex sein. Daher kann es für sehende Nutzer/innen
+von Vorteil sein, wenn sie Zugang zu einer detaillierten Beschreibung eines komplexen Bildes haben. Verbirg
+die lange Beschreibung nicht vor sehenden Nutzern, sondern zeige sie nur den Nutzern von Hilfstechnologien.
+Ein Beispiel dafür ist die Verwendung des alt-Attributs für die lange Beschreibung. Das ist nicht nur schlecht,
+weil es die Beschreibung vor sehenden Nutzern verbirgt, sondern auch, weil der alt-Text, wie bereits erwähnt,
+nicht zu lang sein sollte.
+
+### Die lange Beschreibung sollte programmatisch mit dem Bild verknüpft werden.
+
+Die erweiterte alternative Beschreibung für ein komplexes Bild kann für Screenreader-Nutzer über das Attribut
+aria-describedby zugänglich gemacht werden.
+
+#### Gutes Beispiel: Programmatisch assoziierte erweiterte Textalternative
+
+Die erweiterte Beschreibung des Diagramms befindet sich nicht neben dem Diagramm, sondern wird mit
+aria-describedby programmatisch mit ihm verknüpft.
+
+```html
+<img
+  class="border"
+  src="bar-chart.png"
+  width="546"
+  height="330"
+  alt="Bar chart with percentages"
+  aria-describedby="squirrelchart" />
+
+<h3>The Squirrels</h3>
+<div id="squirrelchart">
+  <p>Last year, Josephine kept track of the number of times ...</p>
+</div>
+```
+
+## Bilder von Text
+
+### Ein Bild muss keinen informativen Text enthalten, wenn eine gleichwertige visuelle Darstellung des Textes mit echtem Text erfolgen kann.
+
+Wo immer möglich, solltest du Text anstelle von Bildern verwenden, es sei denn, das Bild hat
+dekorativen Charakter oder der Text im Bild ist wichtig.
+
+#### Gutes Beispiel: Logo-Text im Bild
+
+Es gibt eine Ausnahme in den WCAG, die die Verwendung von Text in Bildern erlaubt, wenn das Bild
+selbst dekorativen Charakter hat oder der Text im Bild wesentlich ist. Ein typisches Beispiel dafür
+ist ein Firmenlogo. Text in einem Bild ist zulässig, wenn er Teil eines Logos ist. Vergiss nicht,
+einen Alt-Text einzufügen, der den Text im Logo angibt.
+
+```html
+<img src="deque_logo.png" width="165" height="59" alt="Deque" />
+```
+
+Auch wenn Logos oft Text enthalten, sind sie eine zulässige Ausnahme von der Regel, dass du, wo
+immer möglich, echten Text verwenden solltest.
+
+#### Gutes Beispiel: Mit CSS gestylter Text
+
+Text kann oft in CSS stilisiert werden, um den Text in Bildern zu ersetzen.
+
+```html
+<div
+  style="background:#aa061a;color:white;width:314px;max-height:101px;
+   overflow:hidden;text-align:center;font-weight:bold;padding:39px 0;margin:auto;
+   font-size:50px;text-shadow: 5px 5px 5px #620915;">
+  PERSONAL
+</div>
+```
+
+#### Schlechtes Beispiel: Unnötiger Text im Bild
+
+In diesem Beispiel sind die drei Links in der Navigationsleiste eigentlich Bilder. Auch wenn es
+für Benutzer von Bildschirmlesegeräten sinnvoll wäre, diese Bilder mit alternativem Text zu
+versehen, kann es für Benutzer von Bildschirmlupen oder Benutzer, die ihre eigenen Stylesheets
+zur Verbesserung der Barrierefreiheit verwenden, unzugänglich sein. Bildschirmlupen verfügen oft
+über Funktionen, die die Barrierefreiheit durch Farbumkehr und Textglättung verbessern. Diese
+Funktionen funktionieren nicht, wenn sich Text in den Bildern befindet, so dass er bei der
+Vergrößerung nicht klar bleibt.
+
+![Unnötiger Text im Bild](/images/bilder/L5-8.png)
+
+### Bilder müssen keinen informativen Text enthalten, es sei denn, der Text ist unverzichtbar (z. B. ein Logo) oder die Schriftart, Größe, Farbe und der Hintergrund sind anpassbar.
+
+Wenn Bilder, die Text enthalten, mit einer geeigneten alternativen Beschreibung versehen sind,
+ist der Text für Benutzer von Bildschirmlesegeräten zugänglich; Menschen mit Sehschwäche können
+den Text in den Bildern jedoch nicht anpassen, um ihn zu lesen. Es gibt einige Möglichkeiten, wie
+der Text in Bildern als echter Text erhalten bleiben kann, damit er für Benutzer von Hilfsmitteln
+zugänglich ist. Text in einem Bild wie SVG bleibt als echter Text erhalten, d.h. Screenreader-Nutzer
+können darauf zugreifen und Menschen mit Sehschwäche können ihn anpassen.
+
+#### Gutes Beispiel: Anpassbarer Text im SVG-Bild
+
+In diesem Beispiel wird ein Bildschirmlesegerät den Text "Echter Text hier" anzeigen. Da es sich
+um eine SVG-Grafik handelt, kann sie außerdem leicht skaliert werden, was Menschen mit Sehschwäche
+zugutekommt, die die Bildschirmgröße anpassen können. Denk daran, dass der Kontrast zwischen Text
+und Hintergrund ausreichend sein muss.
+
+```html
+<svg width="150" height="150" role="img">
+  <rect width="150" height="150" fill="#0000FF" stroke="#000" stroke-width="1" />
+  <text id="text" x="75" y="85" font-size="1em" text-anchor="middle" fill="#FFFFFF">
+    Real text here
+  </text>
+</svg>
+```
+
+## CSS-Hintergrundbilder
+
+### Rein dekorative oder überflüssige CSS-Bilder dürfen keine Textalternative im HTML-Inhalt haben.
+
+Bilder, die nur zur Dekoration dienen oder bereits im Text neben dem Bild beschrieben sind, müssen
+nicht durch einen Alternativtext beschrieben werden. Dekorative Bilder vermitteln dem Nutzer keine
+nützlichen Informationen, daher ist kein Alt-Text erforderlich. Wenn du die gleichen Informationen
+wie bei den im Text beschriebenen Bildern über den Alt-Text eines Bildes bereitstellst, bekommt ein
+Screenreader-Nutzer die Informationen zweimal zu hören, was die Benutzerfreundlichkeit der Webseite
+beeinträchtigen kann.
+
+#### Gutes Beispiel: Dekoratives Bild hat keinen Text
+
+Das Hintergrundbild fügt der Seite keine Informationen hinzu und muss daher keinen Alt-Text haben.
+
+```html
+<div id="textContainer"><p id="dequeU">Deque University</p></div>
+
+#textContainer { background-image:url("bg-abstract-wide.jpg"); background-repeat:no-repeat;
+float:center; padding:20px; } #dequeU { font: bold 30pt calibri; color:#FFFFFF; text-align: center;
+}
+```
+
+#### Gutes Beispiel: Dekoratives Hintergrundbild ohne alternativen Text
+
+Dies ist ein kleines Hintergrundbild, das mit CSS platziert wurde. Es ist rein dekorativ und muss
+daher keinen entsprechenden Text im HTML-Code enthalten.
+
+```html
+<span class="decorative_icon"></span>
+```
+
+#### Schlechtes Beispiel: Ein dekoratives Bild braucht keinen Text
+
+Das Hintergrundbild fügt der Seite keine Informationen hinzu, daher sollte es keinen Alt-Text haben.
+
+```html
+<div id="textContainer2">
+  <p id="dequeU2">Deque University</p>
+  <p class="visually-hidden">
+    A background image that is dark blue with light, geometric variation.
+  </p>
+</div>
+```
+
+### Der alternative Text für informative oder aktivierbare CSS-Bilder muss als programmatisch bestimmbarer Text im HTML-Inhalt verfügbar sein.
+
+Wann immer es möglich ist, solltest du es vermeiden, informative und angreifbare Bilder in CSS zu
+platzieren. Wenn es jedoch notwendig ist, kannst du informativen und aktionalen CSS-Bildern alternativen
+Text hinzufügen. Die folgenden Beispiele zeigen, wie alternativer Text mit der CSS-Clip-Methode oder mit
+dem Attribut aria-label programmatisch verfügbar gemacht werden kann.
+
+#### Gutes Beispiel: Aktionsfähiges (verlinktes) Hintergrundbild mit alternativem Text über aria-label
+
+Das Facebook-Symbol ist ein Hintergrundbild, aber der Link ist mit einem Aria-Label versehen, das erklärt,
+wofür der Link ist.
+
+```html
+<a href="http://www.facebook.com/dequesystems" class="fb" aria-label="Deque's Facebook page"></a>
+```
+
+#### Gutes Beispiel: Aktionsfähiges (verlinktes) Hintergrundbild mit alternativem Text per CSS-Clip
+
+Das Facebook-Symbol unten ist ein Hyperlink und wird als CSS-Hintergrundbild angezeigt. Da Hintergrundbilder
+kein alt-Attribut verwenden können, ist der Text des Links mit der "Clipped-Methode" optisch ausgeblendet,
+aber für Screenreader-Nutzer verfügbar. Es ist wichtig zu beachten, dass der Text nicht mit visibility:hidden
+oder display:none ausgeblendet wird, da diese Methoden den Text auch vor Screenreadern verbergen.
+
+```html
+<a href="http://www.facebook.com/dequesystems" class="facebook_icon">
+  <span class="visually-hidden">Deque Facebook page</span>
+</a>
+```
+
+Das Markup für das CSS:
+
+```css
+.facebook_icon {
+  background-image: url('facebook.png');
+  height: 29px;
+  width: 29px;
+  background-color: #00274d;
+  display: inline-block;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+```
+
+#### Schlechtes Beispiel: Hintergrundbild mit unnötigem Alternativtext
+
+Dieses dekorative Bild hat einen unnötigen alternativen Text, "dekoratives Symbol". Die Angabe von
+Textbeschreibungen für dekorative Bilder verärgert Screenreader-Nutzer und lenkt vom wichtigen Inhalt
+ab.
+
+```html
+<span class="decorative_icon">
+  <span class="visually-hidden">decorative icon</span>
+</span>
+```
+
+#### Schlechtes Beispiel: Aktionsfähiges (verlinktes) Hintergrundbild ohne alternativen Text
+
+Das Hintergrundbild enthält einen eingebetteten Link zu Facebook, aber es gibt keinen alternativen Text,
+den ein Bildschirmlesegerät an den Nutzer weitergeben kann. Die meisten Bildschirmlesegeräte versuchen,
+dem Nutzer einen Kontext über den Link zu liefern, indem sie einige oder alle href-Inhalte vorlesen.
+Wie du dir vorstellen kannst, sind einige href-Inhalte überhaupt nicht beschreibend für das Ziel.
+
+```html
+<a href="http://www.facebook.com/dequesystems" class="facebook_icon"></a>
+```
+
+#### Schlechtes Beispiel: Hintergrundbild hat versteckten Text mit Sichtbarkeit:Versteckt
+
+Es gibt zwar Text im HTML, der das Hintergrundbild ersetzt, aber das Ausblenden des Textes mit
+visibility:hidden führt dazu, dass der Text auch von Screenreadern ignoriert wird.
+
+```html
+<div class="fb" id="logo">
+  <a href="http://www.facebook.com/dequesystems">
+    <span class="visually-hidden2">Our Facebook page</span>
+  </a>
+</div>
+
+.visually-hidden2 { visibility:hidden; float:left; } .fb {
+background-image:url("assets/images/reference/FB-f-Logo__blue_29.png"); width:29px;
+background-height:29px; background-position:left; padding-left:35px; background-repeat:no-repeat; }
+```
+
+#### Schlechtes Beispiel: Hintergrundbild hat versteckten Text mit display:none
+
+Ähnlich wie bei der Verwendung von visibility:hidden wird der Text mit display:none ausgeblendet,
+sodass er für Screenreader-Nutzer nicht verfügbar ist.
+
+```html
+<div class="fb" id="logo">
+  <a href="http://www.facebook.com/dequesystems">
+    <span class="visually-hidden3">Our Facebook page</span>
+  </a>
+</div>
+
+.visually-hidden3 { display:none; } .fb {
+background-image:url("assets/images/reference/FB-f-Logo__blue_29.png"); width:29px;
+background-height:29px; background-position:left; padding-left:35px; background-repeat:no-repeat; }
+```
+
+### Der alternative Text (im HTML-Inhalt) für informative oder aktivierbare CSS-Bilder muss den Zweck des Bildes angemessen und genau beschreiben.
+
+Wie bei Standardbildern muss der alternative Text für informative und umsetzbare CSS-Bilder die
+Absicht, den Zweck oder die Funktionalität des Bildes beschreiben.
+
+#### Gutes Beispiel: Hintergrundbild hat aussagekräftigen Text
+
+Der alternative Text für das Facebook-Symbol unten erklärt den Zweck des Links hinreichend.
+
+```html
+<div class="fb" id="logo">
+  <a href="http://www.facebook.com/dequesystems" aria-label="Deque's Facebook page"></a>
+</div>
+```
+
+#### Schlechtes Beispiel: Hintergrundbild hat nichtssagenden Text
+
+Der alternative Text für das Facebook-Symbol unten ("Facebook-Symbol") erklärt den Zweck des
+Links (zur Facebook-Seite von Deque zu gehen) nicht angemessen. In diesem Fall ist der Unterschied
+etwas subtiler, denn der alternative Text beschreibt genau, was das Bild ist, aber er beschreibt
+nicht angemessen, warum es da ist oder wohin der Nutzer geht, nachdem er den Link aktiviert hat.
+Wichtig ist, dass der Nutzer nicht auf die Facebook-Startseite oder auf eine Seite geht, die das
+Facebook-Symbol beschreibt, wie es der Text hier impliziert.
+
+```html
+<div class="fb" id="logo">
+  <a href="http://www.facebook.com/dequesystems" aria-label="Facebook icon"></a>
+</div>
+```
+
+## Image Maps
+
+### Der alternative Text für das `<img>` einer client-seitigen Image Map muss als programmatisch bestimmbarer Text verfügbar sein.
+
+Der alternative Text für das img-Element für eine Image Map muss die Image Map als Ganzes beschreiben.
+Durch die Verwendung des alt-Attributs für das img-Element wird eine programmatisch ermittelbare
+Beschreibung des Bildes für Benutzer von Hilfstechnologien bereitgestellt.
+
+#### Gutes Beispiel: Bildkarte mit gutem Alt-Text
+
+In diesem Beispiel haben wir ein großes Bild des Sonnensystems mit jedem Planeten als Flächenform,
+die zu einer anderen Webseite verlinkt. Jeder Bereich hat ein Alt-Attribut mit dem Namen des
+jeweiligen Planeten, und das Bild selbst hat einen Alt-Text.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map1" />
+<map name="Map1">
+  <area
+    shape="rect"
+    coords="115,158,276,192"
+    href="http://en.wikipedia.org/wiki/Mercury_%28planet%29"
+    target="_blank"
+    alt="Mercury" />
+  <area
+    shape="rect"
+    coords="115,193,276,234"
+    href="http://en.wikipedia.org/wiki/Venus"
+    target="_blank"
+    alt="Venus" />
+  <area
+    shape="rect"
+    coords="118,235,273,280"
+    href="http://en.wikipedia.org/wiki/Earth"
+    target="_blank"
+    alt="Earth" />
+  <area
+    shape="rect"
+    coords="119,280,272,323"
+    href="http://en.wikipedia.org/wiki/Mars"
+    target="_blank"
+    alt="Mars" />
+  <area
+    shape="rect"
+    coords="119,324,322,455"
+    href="http://en.wikipedia.org/wiki/Jupiter"
+    target="_blank"
+    alt="Jupiter" />
+  <area
+    shape="rect"
+    coords="118,457,352,605"
+    href="http://en.wikipedia.org/wiki/Saturn"
+    target="_blank"
+    alt="Saturn" />
+  <area
+    shape="rect"
+    coords="119,606,308,666"
+    href="http://en.wikipedia.org/wiki/Uranus"
+    target="_blank"
+    alt="Uranus" />
+  <area
+    shape="rect"
+    coords="117,664,305,732"
+    href="http://en.wikipedia.org/wiki/Neptune"
+    target="_blank"
+    alt="Neptune" />
+</map>
+```
+
+### Der alternative Text für das `<img>`-Element einer clientseitigen Bildzuordnung muss aussagekräftig sein (er muss den Zweck oder die Absicht des Autors auf eine Weise beschreiben, die für Personen, die das Bild nicht sehen können, nützlich ist).
+
+Der alternative Text für das img-Element einer Image Map muss dem Nutzer den Zweck der gesamten
+Image Map beschreiben. Du kannst sogar kurze Anweisungen geben, wie der Nutzer mit der Image Map
+umgehen soll.
+
+#### Gutes Beispiel: Bildkarte mit gutem Alt-Text
+
+Der alternative Text, der für das Hauptbild der Bildkarte bereitgestellt wird, ist sinnvoll.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map" />
+<map name="Map">
+  <!-- the image map <area> elements would go here -->
+</map>
+```
+
+#### Schlechtes Beispiel: Bildkarte mit schlechtem Bild-Alt-Text
+
+In dieser Image Map ist der Alt-Text des Hauptbildes zu vage, um den Zweck des Bildes für
+die Karte zu erklären.
+
+```html
+<img src="solar_system.jpg" alt="Space!" width="472" height="800" usemap="#Map" />
+<map name="Map">
+  <!-- the image map <area> elements would go here -->
+</map>
+```
+
+### Die Länge des alternativen Textes für das `<img>`-Element von clientseitigen Image-Maps sollte kurz sein (nicht mehr als etwa 150 Zeichen).
+
+Es gibt weder eine technische noch eine politische Beschränkung für die Länge des Alt-Textes,
+aber der Alt-Text ist aus mehreren Gründen nicht so nützlich wie der normale Text:
+
+- Screenreader-Nutzer können nicht dort weitermachen, wo sie aufgehört haben, wenn sie
+  mitten im Lesen von Alt-Text eine Pause machen.
+
+- Screenreader-Nutzer können nicht durch den Text navigieren (z. B. nach Wort, Zeichen usw.).
+
+- Einige ältere Screenreader lesen den Alt-Text nicht in voller Länge.
+
+#### Schlechtes Beispiel: Bildkarte mit langem Alt-Text
+
+In der Image Map ist der Alt-Text für das Hauptbild übermäßig beschreibend. Er gibt dem Nutzer
+die notwendigen Informationen und noch mehr.
+
+```html
+<img
+  src="/assets/images/html_css/solar_system.jpg"
+  alt="This is a picture of the Solar System
+   with the planets arranged vertically, and with the sun
+   at the top. The distance of the planets in the illustration is
+   not according to the actual scale of the distance between planets.
+   Each planet is labeled, with a link to the relevant Wikipedia page.
+   Pluto is omitted because it is no longer considered a planet.
+   "
+  width="472"
+  height="800"
+  usemap="#Map" />
+<map name="Map">
+  <!-- the image map <area> elements would go here -->
+</map>
+```
+
+### Der alternative Text für den `<area>` einer clientseitigen Image Map muss als programmatisch bestimmbarer Text verfügbar sein.
+
+Genau wie beim img-Element muss auch für die Flächenelemente innerhalb der Image Map ein alternativer
+Text angegeben werden. Das alt-Attribut des area-Elements liefert den Nutzern eine programmatisch
+bestimmbare Beschreibung für jeden Teil der Image Map.
+
+#### Gutes Beispiel: Bildkarte mit gutem Alt-Text
+
+In diesem Beispiel haben wir ein großes Bild des Sonnensystems mit jedem Planeten als Flächenform,
+die zu einer anderen Webseite verlinkt. Jeder Bereich hat ein Alt-Attribut mit dem Namen des
+jeweiligen Planeten, und das Bild selbst hat einen Alt-Text.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map2" />
+<map name="Map2">
+  <area
+    shape="rect"
+    coords="115,158,276,192"
+    href="http://en.wikipedia.org/wiki/Mercury_%28planet%29"
+    target="_blank"
+    alt="Mercury" />
+  <area
+    shape="rect"
+    coords="115,193,276,234"
+    href="http://en.wikipedia.org/wiki/Venus"
+    target="_blank"
+    alt="Venus" />
+  <area
+    shape="rect"
+    coords="118,235,273,280"
+    href="http://en.wikipedia.org/wiki/Earth"
+    target="_blank"
+    alt="Earth" />
+  <area
+    shape="rect"
+    coords="119,280,272,323"
+    href="http://en.wikipedia.org/wiki/Mars"
+    target="_blank"
+    alt="Mars" />
+  <area
+    shape="rect"
+    coords="119,324,322,455"
+    href="http://en.wikipedia.org/wiki/Jupiter"
+    target="_blank"
+    alt="Jupiter" />
+  <area
+    shape="rect"
+    coords="118,457,352,605"
+    href="http://en.wikipedia.org/wiki/Saturn"
+    target="_blank"
+    alt="Saturn" />
+  <area
+    shape="rect"
+    coords="119,606,308,666"
+    href="http://en.wikipedia.org/wiki/Uranus"
+    target="_blank"
+    alt="Uranus" />
+  <area
+    shape="rect"
+    coords="117,664,305,732"
+    href="http://en.wikipedia.org/wiki/Neptune"
+    target="_blank"
+    alt="Neptune" />
+</map>
+```
+
+### Der alternative Text für das actionable `<area>`-Element einer clientseitigen Image Map muss aussagekräftig sein (er muss den Zweck oder das Ergebnis der Aktion so genau beschreiben, dass er für Menschen, die das Bild nicht sehen können, nützlich ist).
+
+Bei Bereichselementen muss der alternative Text für jeden Bereich die Absicht, den Zweck, das Ziel
+oder die Funktionalität dieses bestimmten Abschnitts der Imagekarte beschreiben.
+
+#### Gutes Beispiel: Bildkarte mit gutem Alt-Text
+
+Die Textalternativen für jeden Bereich der Bildkarte beschreiben genau, was der jeweilige Bereich
+darstellt, einschließlich der Tatsache, dass der Link zu dem entsprechenden Wikipedia-Artikel führt.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map3" />
+<map name="Map3">
+  <area
+    shape="rect"
+    coords="115,158,276,192"
+    href="http://en.wikipedia.org/wiki/Mercury_%28planet%29"
+    target="_blank"
+    alt="Mercury (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="115,193,276,234"
+    href="http://en.wikipedia.org/wiki/Venus"
+    target="_blank"
+    alt="Venus (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="118,235,273,280"
+    href="http://en.wikipedia.org/wiki/Earth"
+    target="_blank"
+    alt="Earth (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="119,280,272,323"
+    href="http://en.wikipedia.org/wiki/Mars"
+    target="_blank"
+    alt="Mars (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="119,324,322,455"
+    href="http://en.wikipedia.org/wiki/Jupiter"
+    target="_blank"
+    alt="Jupiter (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="118,457,352,605"
+    href="http://en.wikipedia.org/wiki/Saturn"
+    target="_blank"
+    alt="Saturn (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="119,606,308,666"
+    href="http://en.wikipedia.org/wiki/Uranus"
+    target="_blank"
+    alt="Uranus (Wikipedia article)" />
+  <area
+    shape="rect"
+    coords="117,664,305,732"
+    href="http://en.wikipedia.org/wiki/Neptune"
+    target="_blank"
+    alt="Neptune (Wikipedia article)" />
+</map>
+```
+
+#### Schlechtes Beispiel: Bildkarte mit schlechtem Alt-Text für die Bereiche
+
+In der Bildkarte hat jeder Bereich einen Alt-Text, aber anstatt den Namen des jeweiligen
+Planeten anzugeben, steht dort die Nummer des Planeten. Dadurch erhält der Nutzer nicht
+genügend Informationen über die einzelnen Gebiete.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map" />
+<map name="Map">
+  <area
+    shape="rect"
+    coords="115,158,276,192"
+    href="http://en.wikipedia.org/wiki/Mercury_%28planet%29"
+    alt="1" />
+  <area shape="rect" coords="115,193,276,234" href="http://en.wikipedia.org/wiki/Venus" alt="2" />
+  <area shape="rect" coords="118,235,273,280" href="http://en.wikipedia.org/wiki/Earth" alt="3" />
+  <area shape="rect" coords="119,280,272,323" href="http://en.wikipedia.org/wiki/Mars" alt="4" />
+  <area shape="rect" coords="119,324,322,455" href="http://en.wikipedia.org/wiki/Jupiter" alt="5" />
+  <area shape="rect" coords="118,457,352,605" href="http://en.wikipedia.org/wiki/Saturn" alt="6" />
+  <area shape="rect" coords="119,606,308,666" href="http://en.wikipedia.org/wiki/Uranus" alt="7" />
+  <area shape="rect" coords="117,664,305,732" href="http://en.wikipedia.org/wiki/Neptune" alt="8" />
+</map>
+```
+
+### Die Länge des alternativen Textes für das `<area>`-Element von client-seitigen Image Maps sollte kurz sein (nicht mehr als 150 Zeichen).
+
+Es gibt weder eine technische noch eine politische Beschränkung für die Länge des Alt-Textes, aber
+der Alt-Text ist aus mehreren Gründen nicht so nützlich wie der normale Text:
+
+- Screenreader-Nutzer können nicht dort weitermachen, wo sie aufgehört haben, wenn sie mitten im
+  Lesen von Alt-Text eine Pause machen.
+
+- Screenreader-Nutzer können nicht durch den Text navigieren (z. B. nach Wort, Zeichen usw.).
+
+- Einige ältere Screenreader lesen den Alt-Text nicht in voller Länge.
+
+#### Schlechtes Beispiel: Bildkarte mit langem Alt-Text für ihre Bereiche
+
+In dieser Bildkarte nennt der Alt-Text für jeden Bereich den dort enthaltenen Planeten. Dann geht es
+weiter mit der Beschreibung der Planeten, was in diesem Fall unnötig ist, weil die Links zu den
+Wikipedia-Artikeln lange Beschreibungen enthalten.
+
+```html
+<img src="solar_system.jpg" alt="Solar System" width="472" height="800" usemap="#Map" />
+<map name="Map">
+  <area
+    shape="rect"
+    coords="115,158,276,192"
+    href="http://en.wikipedia.org/wiki/Mercury_%28planet%29"
+    alt="This is Mercury. It is the closest planet to the sun and very hot." />
+  <area
+    shape="rect"
+    coords="115,193,276,234"
+    href="http://en.wikipedia.org/wiki/Venus"
+    alt="This is Venus, named after a Roman Goddess." />
+  <area
+    shape="rect"
+    coords="118,235,273,280"
+    href="http://en.wikipedia.org/wiki/Earth"
+    alt="This is Earth. We live here." />
+  <area
+    shape="rect"
+    coords="119,280,272,323"
+    href="http://en.wikipedia.org/wiki/Mars"
+    alt="This is Mars. It is known as the red planet." />
+  <area
+    shape="rect"
+    coords="119,324,322,455"
+    href="http://en.wikipedia.org/wiki/Jupiter"
+    alt="This is Jupiter. It is massive and gaseous." />
+  <area
+    shape="rect"
+    coords="118,457,352,605"
+    href="http://en.wikipedia.org/wiki/Saturn"
+    alt="This is Saturn. It has a lot of rings around it." />
+  <area
+    shape="rect"
+    coords="119,606,308,666"
+    href="http://en.wikipedia.org/wiki/Uranus"
+    alt="This is Uranus. It takes 84 years to go around the sun." />
+  <area
+    shape="rect"
+    coords="117,664,305,732"
+    href="http://en.wikipedia.org/wiki/Neptune"
+    alt="This is Neptune. It has an elliptical orbit" />
+</map>
+```
+
+### Serverseitige Image Maps sollten nicht verwendet werden, wenn eine clientseitige Image Map (oder eine andere Methode) dieselbe Funktion erfüllen kann.

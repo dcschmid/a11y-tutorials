@@ -1,0 +1,321 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Icon-Fonts'
+pubDate: 2023-05-16
+---
+
+Mit Icon-Fonts können Webentwickler leichtgewichtige, wiederverwendbare Icons und Bilder in
+ihre Designs einbauen, ohne dass die Seite durch Bilder zusätzlich belastet wird. Icon Fonts
+reagieren auch auf die Farbpräferenzen der Nutzer/innen und sind daher ideal für Nutzer/innen,
+die das Farbschema mit Tools wie dem Windows-Hochkontrastmodus ändern. Wenn du den Text gelb
+und den Hintergrund schwarz färbst, werden die Icon-Schriften genauso gelb wie der Rest des
+Textes.
+
+Icon-Schriften allein sind in der Regel nicht direkt zugänglich. Sie profitieren davon, dass
+ihnen eine semantische Rolle (als Bilder) zugewiesen wird, und sie brauchen aussagekräftigen
+Alternativtext.
+
+## Informative Icon-Schriften
+
+### Informative Icon-Schriften ohne begleitenden sichtbaren Text sollten role="img" zugewiesen werden.
+
+Obwohl Icon-Fonts technisch gesehen Schriftarten sind (wie Text), verhalten sie sich wie Bilder.
+In den meisten Fällen ist es am besten, Icon-Fonts die Rolle="img" zuzuweisen, damit blinde Nutzer
+wissen, dass ein Bild vorhanden ist. Wenn den Icon-Schriften role="img" zugewiesen wird, führen
+Screenreader die Icon-Schrift in der Liste aller Bilder auf der Seite auf und ermöglichen es den
+Nutzern, zu der Icon-Schrift zu navigieren, wenn sie durch Grafiken navigieren (z. B. wenn sie die
+Taste "G" in JAWS, NVDA oder im Scan-Modus in Narrator verwenden).
+
+Die folgenden Beispiele verwenden Icon-Schriften aus der Font Awesome Sammlung.
+
+#### Gutes Beispiel: Icon font assigned role="img"
+
+Wenn du role="img" hinzufügst, erhält das Schriftsymbol die richtige Semantik.
+
+```html
+<p>Have a great day <span class="fa fa-smile-o" role="img" aria-label="Smiley face"></span></p>
+```
+
+#### Schlechtes Beispiel: Schriftsymbol ohne zugewiesene Rolle
+
+Auch wenn dem Schriftsymbol über aria-label ein alternativer Text zugewiesen wird, lesen die
+meisten Screenreader den aria-label-Text überhaupt nicht, da das Element keine semantische Bedeutung hat.
+
+```html
+<p>Have a great day <span class="fa fa-smile-o" aria-label="Smiley face"></span></p>
+<!-- most screen readers will ignore the aria-label text in this example -->
+```
+
+### Informative Icon-Schriften ohne begleitenden sichtbaren Text müssen eine Textalternative haben.
+
+Obwohl es möglich ist, alternativen Text über versteckten Text (mit position:absolute; clip:rect(0 0 0 0))
+hinzuzufügen, ohne role="img" zuzuweisen, ist dies normalerweise nicht die beste Methode, und zwar aus
+drei Hauptgründen:
+
+- Die Symbolschrift wird nicht als Bild erkannt.
+
+- Auf mobilen Geräten ist die sichtbare Icon-Schriftart für Screenreader-Nutzer nicht verfügbar, wenn
+  sie die Methode "Erkunden durch Berühren" verwenden.
+
+- VoiceOver unter OS X fokussiert separat auf die Symbolschrift und dann auf den verborgenen Text, auch
+  wenn die Symbolschrift auf aria-hidden="true" eingestellt ist.
+
+#### Gutes Beispiel: Alternativer Text für Icon-Schriftarten über aria-label (mit role="img")
+
+```html
+<p>
+  Forms of payment accepted:<br />
+  <span class="fa fa-cc-mastercard fa-2x" role="img" aria-label="MasterCard"></span>
+  <span class="fa fa-cc-visa fa-2x" role="img" aria-label="Visa"></span>
+  <span class="fa fa-cc-paypal fa-2x" role="img" aria-label="PayPal"></span>
+</p>
+```
+
+#### Schlechtes Beispiel: Alternativer Text für Icon-Schriften über versteckten CSS-Text
+
+Das folgende Beispiel funktioniert gut mit JAWS und NVDA, aber nicht auf mobilen Geräten oder
+unter OS X mit VoiceOver. Der alternative Text für die Icon-Schriften wird als visuell verborgener
+Text dargestellt, auf den nur Screenreader zugreifen können. Der Text wird mit position:absolute;
+clip:rect(0 0 0 0); ausgeblendet. Die Icon-Schriften selbst sind mit aria-hidden="true" gekennzeichnet,
+um sicherzustellen, dass Screenreader sie nicht falsch aussprechen.
+
+```html
+<p>
+  Forms of payment accepted:<br />
+  <span class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></span>
+  <span class="visually-hidden">MasterCard</span>
+  <span class="fa fa-cc-visa fa-2x" aria-hidden="true"></span>
+  <span class="visually-hidden">Visa</span>
+  <span class="fa fa-cc-paypal fa-2x" aria-hidden="true"></span>
+  <span class="visually-hidden">PayPal</span>
+</p>
+```
+
+### Aktionsfähige Icon-Schriften ohne sichtbaren Text MÜSSEN eine Textalternative haben.
+
+Aktionsfähige Icon-Fonts sind Icon-Fonts, die als Links, Schaltflächen, Steuerelemente oder andere
+Oberflächenelemente verwendet werden, mit denen Benutzer interagieren können.
+
+#### Gutes Beispiel: Verlinkte Symbolschrift mit alternativem Text über aria-label
+
+In diesem Beispiel wird der alternative Text mit dem Attribut aria-label auf die Icon-Schrift gesetzt.
+Screenreader behandeln die Icon-Schriftart als Bild, und der Link übernimmt den barrierefreien Text
+der Icon-Schriftart.
+
+```html
+<p>
+  <a href="#">
+    <span class="fa fa-facebook-official fa-2x" aria-label="Our Facebook page"> </span>
+  </a>
+</p>
+```
+
+#### Gutes Beispiel: Schaltflächen mit Icon-Schriftarten mit Alternativtext über aria-label (und mit role="img")
+
+Die gleichen Prinzipien gelten auch für die Erstellung von Alternativtext für Icon-Schriftarten
+in Schaltflächen.
+
+In diesem Beispiel haben die Icon-Schriften innerhalb der `<button>`-Elemente über das Attribut
+aria-label einen alternativen Text. Die Schaltflächen übernehmen den barrierefreien Namen der
+Icon-Schriftarten.
+
+```html
+<p id="text-editor">
+  <button><span role="img" class="fa fa-bold" aria-label="Bold"></span></button>
+  <button><span role="img" class="fa fa-italic" aria-label="Italic"></span></button>
+  <button><span role="img" class="fa fa-underline" aria-label="Underline"></span></button>
+  <button><span role="img" class="fa fa-indent" aria-label="Indent"></span></button>
+  <button><span role="img" class="fa fa-outdent" aria-label="Outdent"></span></button>
+  <button><span role="img" class="fa fa-link" aria-label="Create link"></span></button>
+  <button><span role="img" class="fa fa-unlink" aria-label="Remove link"></span></button>
+  <button><span role="img" class="fa fa-list" aria-label="Bulleted list"></span></button>
+  <button><span role="img" class="fa fa-list-ol" aria-label="Numbered list"></span></button>
+</p>
+```
+
+#### Gutes Beispiel: Verknüpfte Icon-Schriftart mit alternativem Text auf der Schaltfläche über aria-label
+
+Wenn es für den Screenreader-Nutzer nicht wichtig ist, die Icon-Schrift als Bild zu erkennen,
+kann es akzeptabel sein, den alternativen Text (aria-label oder aria-labelledby) für die
+Icon-Schrift auf dem Link und nicht auf der Icon-Schrift selbst zu platzieren. Die Icon-Schrift
+erscheint dann nicht in der Liste der Bilder, aber der Link enthält einen barrierefreien Text.
+Um sicherzustellen, dass Screenreader die Icon-Schrift nicht falsch aussprechen, wird aria-hidden
+zu ihr hinzugefügt.
+
+Das title-Attribut ist optional. Es fügt einen Popup-Tooltip hinzu, der sehenden Nutzern helfen kann,
+zu verstehen, was das Symbol bedeutet. Einige Screenreader lesen sowohl den aria-label-Text als auch
+den Titeltext, daher sollte diese Technik mit Vorsicht eingesetzt werden.
+
+```html
+<p>
+  Enter your username
+  <button
+    id="usernameExample"
+    aria-label="More info about user name"
+    title="More info about user name">
+    <span class="fa fa-question-circle" aria-hidden="true"> </span>
+  </button>
+</p>
+```
+
+### Der alternative Text für informative Icon-Schriften muss aussagekräftig sein.
+
+#### Schlechtes Beispiel: Der alternative Text beschreibt nicht den Zweck der Symbolschrift
+
+In diesem Beispiel ist die Icon-Schriftart buchstäblich ein Fragezeichen in einem Kreis, aber es wäre
+unangemessen, hier ein Fragezeichen als alternativen Text zu verwenden, denn das würde die Absicht
+nicht vermitteln. Die Absicht ist es, mehr Informationen über den Benutzernamen bereitzustellen, also
+sollte der alternative Text dies widerspiegeln.
+
+```html
+<p>
+  Enter your username
+  <button>
+    <span class="fa fa-question-circle" aria-label="?"></span>
+    <!-- screen readers will literally say
+      "question mark" or "question" -->
+  </button>
+</p>
+```
+
+## Dekorative oder überflüssige Icon-Schriften
+
+### Dekorative oder überflüssige Icon-Schriften sollten auf aria-hidden="true" gesetzt werden.
+
+Wenn eine Icon-Schriftart die Bedeutung des angrenzenden Textes dupliziert, würden Screenreader-Nutzer
+nicht davon profitieren, sowohl den Text als auch den alternativen Text der Icon-Schriftart zu hören,
+daher ist es am besten, die Icon-Schriftart auf aria-hidden="true" zu setzen.
+
+#### Gutes Beispiel: Redundante Icon-Schrift wird von Screenreadern ausgeblendet
+
+In diesem Beispiel sagen die Bildschirmleser "Link Hilfe", was perfekt ist. Sie müssen keinen alternativen
+Text für das Bild hören.
+
+```html
+<p>
+  <a href="#">
+    Help
+    <span class="fa fa-question-circle" aria-hidden="true"></span>
+  </a>
+</p>
+```
+
+#### Schlechtes Beispiel: Der alternative Text wiederholt den sichtbaren Text
+
+In diesem Beispiel sagen Bildschirmlesegeräte "Link Hilfe Grafik Hilfe", was für Leser verwirrend oder
+lästig sein kann, wenn sie das Wort zweimal hören.
+
+```html
+<p>
+  <a href="#">
+    Help
+    <span class="fa fa-question-circle" role="img" aria-label="Help"></span>
+  </a>
+</p>
+```
+
+## SVG als Alternative zu Icon Fonts
+
+### SVG-Symbol Beispiele
+
+SVG-Symbole können einfarbig (wie Icon-Fonts) oder mehrfarbig sein. Die folgende Sammlung von Social
+Media Icons enthält einige einfarbige (Facebook, Pinterest, Twitter, WordPress und YouTube) und einige
+mehrfarbige Icons (alle anderen).
+
+<div style="display: flex; justify-content:space-evenly; width: 100%;">
+<div style="width:20%">![](/images/bilder/flickr.svg)</div>
+<div style="width:20%">![](/images/bilder/facebook.svg)</div>
+<div style="width:20%">![](/images/bilder/instagram.svg)</div>
+<div style="width:20%">![](/images/bilder/pinterest.svg)</div>
+
+</div>
+
+### Vor- und Nachteile von Icon Fonts gegenüber SVG
+
+Aus Sicht der Barrierefreiheit gibt es keine eindeutigen Argumente für Icon Fonts oder SVG. Keiner von
+beiden ist von Natur aus besser als der andere (vorausgesetzt, sie werden in Übereinstimmung mit den
+jeweiligen Best Practices für Barrierefreiheit umgesetzt). Beide haben Stärken und Schwächen in Bezug
+auf die Barrierefreiheit.
+
+<table>
+  <thead>
+    <tr>
+      <th>Nutzen</th>
+      <th>Icon Fonts</th>
+      <th>SVG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Nutzen">
+        Die Icons sind vektorbasiert und werden bei Vergrößerung klar und deutlich dargestellt.
+      </td>
+      <td data-label="Icon Fonts">Ja</td>
+      <td data-label="SVG">Ja</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">
+        Benutzer können die Farben mit Barrierefreiheitsprogrammen wie dem Windows-Hochkontrastmodus
+        anpassen
+      </td>
+      <td data-label="Icon Fonts">Ja</td>
+      <td data-label="SVG">Nein</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">Icons skalieren mit dem Text, wenn nur der Text vergrößert wird</td>
+      <td data-label="Icon Fonts">Ja</td>
+      <td data-label="SVG">Nein</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">Icons funktionieren, wenn Bilder ausgeschaltet sind</td>
+      <td data-label="Icon Fonts">Ja</td>
+      <td data-label="SVG">Nein</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">Icons können mehrere Farben haben</td>
+      <td data-label="Icon Fonts">Nein</td>
+      <td data-label="SVG">Ja</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">
+        Die Symbole behalten ihre ursprüngliche(n) Farbe(n) bei, wenn die Schrift- und
+        Hintergrundfarben in den Benutzereinstellungen geändert werden
+      </td>
+      <td data-label="Icon Fonts">Nein</td>
+      <td data-label="SVG">Ja</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">Icons funktionieren, wenn die Stile ausgeschaltet sind</td>
+      <td data-label="Icon Fonts">Nein</td>
+      <td data-label="SVG">Ja</td>
+    </tr>
+    <tr>
+      <td data-label="Nutzen">
+        Die Icons funktionieren, wenn die Benutzer die Schriftart anpassen (z.B. können Benutzer mit
+        Legasthenie eine legastheniefreundliche Schriftart wählen)
+      </td>
+      <td data-label="Icon Fonts">Nein</td>
+      <td data-label="SVG">Ja</td>
+    </tr>
+  </tbody>
+</table>
+
+Hinweis: Auf die Technik kommt es an!
+
+Die obige Tabelle ist nur dann korrekt, wenn die besten Praktiken für die Barrierefreiheit befolgt werden.
+Wenn Icon-Fonts schlecht implementiert werden oder wenn SVG-Bilder keinen Alternativtext haben, kann beides
+schlecht für die Barrierefreiheit sein.
+
+### Referenzen
+
+- Blog-Artikel: <a href="https://www.filamentgroup.com/lab/bulletproof_icon_fonts.html" target="_blank">Bulletproof Accessible Icon Fonts</a>, von Zach Leatherman at Filament Group
+
+- Blog-Artikel: <a href="https://cloudfour.com/thinks/seriously-dont-use-icon-fonts/" target="_blank">Seriously, Don’t Use Icon Fonts</a>, von Tyler Sticka
+
+- Blog-Artikel: <a href="https://benfrain.com/seriously-use-icon-fonts/" target="_blank">Seriously, Use Icon Fonts</a>, von Ben Frain
+
+- Blog-Artikel: <a href="http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/" target="_blank">Ten reasons we switched from an icon font to SVG</a>, von Ian Feather
+
+- Link: <a href="http://fontawesome.io/" target="_blank">Font Awesome Icon Fonts</a>
+
+- Link: <a href="http://fontawesome.io/accessibility/" target="_blank">Font Awesome Accessibility</a>

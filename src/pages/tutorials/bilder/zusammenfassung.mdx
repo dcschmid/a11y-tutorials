@@ -1,0 +1,247 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Zusammenfassung & Checkliste'
+pubDate: 2023-05-24
+---
+
+## Zusammenfassung
+
+Alle Nicht-Text-Inhalte müssen auf die eine oder andere Weise in einem Textformat dargestellt werden, sei es
+in Form eines Alt-Attributs für ein Bild, einer alternativen Darstellung von Nicht-HTML-Objekten oder innerhalb
+der Methoden der Barrierefreiheit-API von Nicht-HTML-Objekten.
+
+## Checkliste
+
+### Bild-Alt-Text
+
+#### Informative Bilder
+
+- Bilder, die Inhalte vermitteln, müssen einen programmatisch bestimmbaren Alternativtext haben.
+
+- Der Alternativtext für informative Bilder muss aussagekräftig sein (er muss den Zweck des Bildes und die
+  Absicht des Autors auf eine Weise vermitteln, die für diejenigen nützlich ist, die das Bild nicht sehen
+  können).
+
+- Der Alternativtext darf keine Wörter enthalten, die das Element als Grafik oder Bild identifizieren.
+
+- Die Länge des alternativen Textes für informative Bilder sollte kurz sein (nicht mehr als etwa 150 Zeichen).
+
+#### Dekorative oder überflüssige Bilder
+
+- Bilder, die keinen Inhalt vermitteln, dekorativ sind oder einen Inhalt überflüssig machen, der bereits im
+  Text vermittelt wird, müssen mit einem alternativen Text (alt="") versehen, mit ARIA role="presentation" versehen
+  oder als CSS-Hintergrund implementiert werden.
+
+#### Aktionsfähige Bilder
+
+- Alle auslösbaren Bilder (z. B. Links, Schaltflächen, Steuerelemente) müssen einen Alternativtext haben.
+
+- Der alternative Text für Actionable Images muss aussagekräftig sein (und den Zweck oder das Ergebnis der Aktion
+  genau wiedergeben).
+
+- Der alternative Text darf keine Wörter enthalten, die das Element als Link, Grafik oder Bild identifizieren.
+
+- Die Länge des alternativen Textes für Actionable Images sollte kurz sein (nicht mehr als 150 Zeichen).
+
+#### Formulareingaben type="image"
+
+- Formulareingaben mit type="image" müssen einen alternativen Text haben.
+
+- Der alternative Text für Formulareingaben mit type="image" muss den Zweck oder das Ergebnis der Eingabeaktion
+  rgenau wiedergeben.
+
+- Die Länge des alternativen Textes für Eingaben mit type="image" muss kurz sein (nicht mehr als etwa 150 Zeichen).
+
+#### Animierte Bilder
+
+- Es muss eine Methode vorhanden sein, mit der voraufgezeichnete reine Videoinhalte, die automatisch abzuspielen
+  beginnen und länger als 5 Sekunden dauern, angehalten, gestoppt oder ausgeblendet werden können.
+
+- Animierte Bilder müssen nicht mehr als 3 Mal pro Sekunde blinken oder flackern.
+
+#### Komplexe Bilder - Erweiterte Beschreibungen
+
+- Komplexe Bilder müssen mit einem kurzen Alt-Text beschrieben werden und eine ausführlichere Beschreibung haben.
+
+- Die ausführliche Beschreibung (oder ein Link oder eine Schaltfläche zum Aufrufen der ausführlichen Beschreibung)
+  sollte für sehende Nutzer sichtbar sein.
+
+- Die lange Beschreibung sollte programmatisch mit dem Bild verknüpft werden.
+
+#### Bilder mit Text
+
+- Ein Bild muss keinen informativen Text enthalten, wenn eine gleichwertige visuelle Darstellung des Textes mit
+  echtem Text möglich ist.
+
+- Bilder müssen keinen informativen Text enthalten, es sei denn, der Text ist unverzichtbar (z. B. ein Logo) oder die
+  Schriftart, Größe, Farbe und der Hintergrund sind anpassbar.
+
+#### CSS-Hintergrundbilder
+
+- Rein dekorative oder überflüssige CSS-Bilder müssen keine Textalternative im HTML-Inhalt haben.
+
+- Der alternative Text für informative oder umsetzbare CSS-Bilder muss als programmatisch bestimmbarer Text
+  im HTML-Inhalt verfügbar sein.
+
+- Der alternative Text (im HTML-Inhalt) für informative oder umsetzbare CSS-Bilder muss den Zweck des Bildes
+  angemessen und genau beschreiben.
+
+#### Image Maps
+
+- Der alternative Text für das `<img>`-Element einer client-seitigen Image Map muss als programmatisch
+  bestimmbarer Text verfügbar sein.
+
+- Der alternative Text für das `<img>`-Element einer clientseitigen Image Map muss aussagekräftig sein
+  (er muss den Zweck oder die Absicht des Autors auf eine Weise beschreiben, die für Personen nützlich ist, die
+  das Bild nicht sehen können).
+
+- Die Länge des alternativen Textes für das `<img>`-Element von client-seitigen Image Maps sollte kurz
+  sein (nicht mehr als 150 Zeichen).
+
+- Der alternative Text für das `<area>`-Element einer client-seitigen Image Map muss als programmatisch
+  bestimmbarer Text verfügbar sein.
+
+- Der alternative Text für das `<area>`-Element einer Client-seitigen Image Map muss aussagekräftig sein
+  (er muss den Zweck oder das Ergebnis der Aktion so genau beschreiben, dass er auch für Personen nützlich
+  ist, die das Bild nicht sehen können).
+
+- Die Länge des alternativen Textes für das `<area>`-Element von Client-seitigen Image Maps sollte kurz sein
+  (nicht mehr als etwa 150 Zeichen).
+
+- Serverseitige Image Maps sollten nicht verwendet werden, wenn eine clientseitige Image Map (oder eine
+  andere Methode) die gleiche Funktion erfüllen kann.
+
+### SVG
+
+#### SVG als img src
+
+- Alle SVG `<img>`-Elemente sollten auf role="img" gesetzt werden.
+
+- Alle informativen oder handlungsrelevanten SVG `<img>`-Elemente müssen einen aussagekräftigen, prägnanten
+  Alternativtext haben (über alt, aria-label oder aria-labelledby).
+
+#### Inline-SVGs
+
+- Alle `<svg>`-Elemente müssen auf role="img" gesetzt werden.
+
+- Alle informativen oder aktionalen `<svg>`-Elemente müssen einen aussagekräftigen Alternativtext haben
+  (über das `<title>`-Element).
+
+- Der alternative Text (`<title>`) eines `<svg>`-Elements muss über aria-labelledby programmatisch mit dem
+  `<svg>`-Element verknüpft werden.
+
+- Der gesamte Text innerhalb des Bildes, der von einem Screenreader gesprochen werden muss, muss über aria-labelledby
+  mit dem `<svg>`-Element verknüpft werden.
+
+- Die Gesamtzahl der Zeichen des Alt-Textes, der mit dem `<svg>`-Element verknüpft ist, darf 150 Zeichen nicht überschreiten.
+
+#### Eingebettete SVGs
+
+- Ein SVG-Objekt darf nicht über `<object>` oder `<iframe>` eingebettet werden.
+
+#### Komplexer Alternativtext
+
+- Komplexe `<svg>`-Bilder müssen einen aussagekräftigen, prägnanten Alternativtext UND eine ausführlichere lange Beschreibung haben.
+
+- Ein `<desc>`-Element muss verwendet werden, um eine detaillierte Beschreibung eines komplexen `<svg>` zu liefern, wenn sie nicht
+  auf andere Weise bereitgestellt wird.
+
+- Das `<desc>`-Attribut eines `<svg>`-Elements muss programmatisch mit dem `<svg>`-Element verknüpft werden (über aria-labelledby).
+
+- Die Länge aller zugehörigen alternativen Texte (einschließlich `<title>` und `<desc>`) für das `<svg>`-Element sollte kurz sein
+  (nicht mehr als etwa 150 Zeichen).
+
+#### Text in SVGs
+
+- Text innerhalb von `<svg>`-Elementen sollte eliminiert werden oder auf ein Minimum beschränkt sein.
+
+- Alle informativen `<text>`-Elemente innerhalb von `<svg>`-Elementen müssen im Alternativtext des `<svg>`-Elements
+  oder in einer langen Beschreibung referenziert werden.
+
+#### SVG-Farbkontrast
+
+- SVG-Bilder müssen mindestens eine Hintergrundfarbe hinter den wichtigen Teilen des Bildes enthalten.
+
+- SVG-Bilder sollten so gestaltet sein, dass sie mit dem Windows High Contrast Mode kompatibel sind.
+
+#### Animierte SVG-Inhalte
+
+- SVG-Animationen müssen JavaScript und nicht das `<animate>`-Element verwenden.
+
+- SVG-Animationen müssen nicht 3 Mal pro Sekunde oder öfter blinken oder blinken.
+
+- SVG-Animationen müssen nicht länger als 5 Sekunden automatisch abgespielt werden.
+
+- SVG-Animationen müssen es den Nutzern ermöglichen, die Animation anzuhalten.
+
+-SVG-Animationen dürfen den Nutzer nicht vom eigentlichen Zweck des Webinhalts ablenken.
+
+#### Interaktive SVGs
+
+- Interaktive `<svg>`-Objekte müssen vollständig über die Tastatur bedienbar sein.
+
+- Interaktive `<svg>`-Objekte müssen vollständig für Touchscreens zugänglich sein.
+
+- Interaktive `<svg>`-Objekte müssen den jeweiligen Namen, die Rolle und den Wert von Steuerelementen, Ereignissen
+  und semantischen Elementen innerhalb des `<svg>`-Objekts mitteilen.
+
+### Icon-Schriftarten
+
+- Informative Icon-Schriften ohne sichtbaren Text müssen mit role="img" versehen werden.
+
+- Informative Icon-Schriften ohne sichtbaren Text müssen eine Textalternative haben.
+
+- Handlungsfähige Icon-Schriften ohne sichtbaren Text müssen eine Textalternative haben.
+
+- Der alternative Text für informative Icon-Fonts musss aussagekräftig sein.
+
+- Dekorative oder überflüssige Icon-Schriften sollten‚ auf aria-hidden="true" gesetzt werden.
+
+### HTML 5 `<canvas>`
+
+- Wenn `<canvas>`-Elemente zur Darstellung von Grafiken verwendet werden, muss ihnen role="img" zugewiesen werden.
+
+- Alle `<canvas>`-Elemente müssen eine Textalternative haben.
+
+- Der alternative Text für `<canvas>`-Elemente muss sinnvoll sein.
+
+- Alle `<canvas>`-Elemente mit komplexen Bildern müssen eine detaillierte Textalternative haben.
+
+- Alle `<canvas>`-Elemente müssen eine Hintergrundfüllung haben.
+
+- Wenn Text in einer Grafik erforderlich ist, kann es sinnvoller sein, SVG statt `<canvas>` zu verwenden.
+
+- Ein `<canvas>`-Element, das mit der Maus bedient werden kann, muss auch über die Tastatur zugänglich sein.
+
+### Multimedia
+
+- Alle voraufgezeichneten Videos müssen mit synchronisierten Untertiteln versehen werden.
+
+- Voraufgezeichnetes Audio kann mit synchronisierten Untertiteln versehen werden.
+
+- Alle Live-Videos mit Dialogen und/oder Erzählungen müssen mit synchronisierten Untertiteln versehen sein.
+
+- Live-Audio, das hauptsächlich aus Dialogen und/oder Erzählungen besteht, sollte mit synchronisierten Untertiteln versehen sein.
+
+- Voraufgezeichnete Multimediadateien (Video und Audio) müssen mit einer Texttranskription versehen sein.
+
+- Videos müssen Audiobeschreibungen zu wichtigen visuellen Inhalten enthalten, die nicht über den Ton vermittelt werden.
+
+### Plug-ins
+
+Alle `<object>`-Elemente müssen einen alternativen Text haben.
+
+### Dokumente
+
+- Eine HTML-Version von Nicht-HTML-Inhalten soltle den Nutzern zur Verfügung gestellt werden.
+
+- Nicht-HTML-Dokumente müssen die grundlegenden Prinzipien der Barrierefreiheit einhalten.
+
+- PDF-Dateien müssen im getaggten PDF-Format vorliegen.
+
+- EPUB-Dateien müssen den HTML-Zugänglichkeitsgrundsätzen und den Zugänglichkeitsgrundsätzen aller anderen im
+  EPUB-Dokument verwendeten Technologien entsprechen.
+
+- EPUB-Dateien müssen im EPUB 3-Format vorliegen.
+
+- EPUB-Dokumente müssen die zusätzlichen Zugänglichkeitsgrundsätze der EPUB-Zugänglichkeitsspezifikation einhalten.
