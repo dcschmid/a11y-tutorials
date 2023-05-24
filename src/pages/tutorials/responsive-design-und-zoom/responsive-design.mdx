@@ -1,0 +1,1170 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Responsive Design'
+---
+
+Responsive Design wurde in erster Linie erfunden, um sich an die kleinen Bildschirme von Mobilgeräten anzupassen.
+Es hat sich herausgestellt, dass Responsive Design auch für Menschen mit Sehschwäche eine der besten Erfindungen
+überhaupt ist. Wenn Menschen die Zoomfunktion des Browsers nutzen, werden die Webinhalte vergrößert. Wenn er größer
+wird, erreicht er schließlich die gleiche Auflösung wie auf einem Tablet oder Handy. Wenn das Design @media queries
+im CSS enthält, sind die gleichen Abschneidepunkte für mobile Geräte auch für sehbehinderte Nutzerinnen und Nutzer
+voll funktionsfähig, wenn sie in ihren Browsern zoomen. Ein gut durchdachtes responsives Design ist ein idealer Weg,
+um Inhalte für Menschen mit Sehbehinderung besser nutzbar zu machen, auch wenn der Hauptgrund für die Umsetzung eines
+responsiven Designs die Nutzung auf mobilen Geräten ist.
+
+Eines der Ziele des responsiven Designs ist es, sicherzustellen, dass der Text groß genug ist, um ihn auf einem mobilen
+Gerät zu lesen. Das ist nützlich für Menschen mit Sehschwäche, die eine Textvergrößerung benötigen. Ein weiteres Ziel
+ist es, das horizontale Scrollen auf mobilen Geräten zu vermeiden, was wiederum für Menschen mit Sehschwäche nützlich
+ist. Responsive Design und Low Vision Design gehen Hand in Hand.nbschnitt befasst sich mit den Feinheiten der
+Barrierefreiheit von responsiven Designs und Zoomfunktionen.
+
+## Responsive Design ist Low Vision Design
+
+Welche der beiden folgenden Versionen der gleichen Webseite ist für dich leichter zu lesen?
+
+![](/images/responsive-design-und-zoom/iphone6-responsive.png)
+
+![](/images/responsive-design-und-zoom/iphone6-no-responsive.png)
+
+Das erste Beispiel ist viel einfacher zu lesen, oder?
+
+Obwohl beide Beispiele die gleiche Webseite auf dem gleichen Gerät zeigen, enthält das erste Beispiel einen Code,
+mit dem das Design auf die kleinere Bildschirmgröße des Geräts reagieren kann, sodass der Text größer und besser
+lesbar ist. Das zweite Beispiel enthält keinen Code für Responsive Design. Der Text im zweiten Beispiel ist für
+jeden zu klein, um ihn bequem lesen zu können. Du kannst ihn vielleicht lesen, aber es ist keine angenehme Erfahrung.
+
+### Responsive Design ist ein großer Vorteil für Menschen mit Sehschwäche
+
+Ein gutes responsives Design mit funktionalen Unterbrechungspunkten auf allen Geräten (mobil UND Desktop) ist
+eines der effektivsten Dinge, die du tun kannst, um Menschen mit Sehschwäche zu helfen.
+
+Man könnte sogar sagen, dass jeder Mensch eine Sehschwäche hat, wenn es um mobile Geräte geht. Die Bildschirme sind
+so klein, dass der Text nur schwer oder gar nicht zu lesen ist, wenn du versuchst, ein normales Design darauf zu
+platzieren. Jeder braucht ein vergrößertes Design. Wenn du kein responsives Design mit größerem Text erstellst,
+müssen die Nutzerinnen und Nutzer den Text selbst vergrößern.
+
+### Bildschirmlupen
+
+Menschen mit Sehschwäche müssen Bildschirmlupen verwenden, weil sie sonst nicht gut genug sehen können. Sie
+könnten den eingebauten Zoom des Browsers nutzen, aber sie brauchen wahrscheinlich eine umfassendere Lösung,
+die auch das Betriebssystem vergrößert und nicht nur den Browser. Windows, Macs, iPhones und Android-Geräte
+verfügen über integrierte Zoom-Tools für Menschen mit Sehschwäche. Es gibt auch Zoom-Tools von Drittanbietern
+für Desktop-Computer, wie z. B. ZoomText und Magic.
+
+## Responsive Desktop Designs
+
+### Responsive Designs auf Desktop-Geräten nicht deaktivieren
+
+Auch wenn die meisten Menschen bei Responsive Design an ein mobiles Designmerkmal denken, funktioniert es
+genauso gut auf Desktop-Browsern. Gerade bei Desktop-Browsern kann das responsive Design für Menschen mit
+Sehbehinderung die größte Wirkung entfalten. Desktop-Bildschirme haben viel bessere Vergrößerungsmöglichkeiten
+als mobile Bildschirme. Die Wahrheit ist, dass viele Menschen mit Sehschwäche kleine mobile Geräte nicht gut
+genug sehen können, um sie zu lesen, selbst mit Bildschirmvergrößerung. In diesen Fällen sind sie auf einen
+Bildschirmleser angewiesen.
+
+Auf einem Desktop-Computer hingegen können sehbehinderte Nutzer/innen den größeren Bildschirm voll ausnutzen
+und so weit wie nötig heranzoomen. Wenn die Nutzerinnen und Nutzer heranzoomen, wird das Browserfenster im
+Verhältnis zur Größe des Inhalts kleiner, so dass der Browser möglicherweise auf die mobilen Haltepunkte
+umschalten könnte, wenn die Website auf dem Desktop responsiv gestaltet ist. Das wäre eine gute Sache, denn
+das würde bedeuten, dass der Inhalt in ein einspaltiges Design wechselt, mit Textumfluss, um das horizontale
+Scrollen zu reduzieren, und mit einem vereinfachten visuellen Layout, mit dem man leichter arbeiten kann.
+
+Um zu testen, ob eine Website auf einem Desktop-Computer responsive ist, kannst du entweder das Browserfenster
+verkleinern oder die Zoomfunktion deines Browsers nutzen. Bei den meisten Browsern kannst du die Zoomfunktion mit
+Command + Plus (Mac) oder Ctrl + Plus (Windows) aktivieren.
+
+## CSS Media Queries
+
+### Festlegen der Layoutbreite
+
+In Verbindung mit einem Viewport-Meta-Tag können wir mit CSS-Media-Queries Stile erstellen, die auf vielen
+verschiedenen Gerätegrößen funktionieren, angefangen bei den winzigen Bildschirmen von Uhren bis hin zu den
+riesigen Bildschirmen, die von vielen fortgeschrittenen (oder einfach nur wohlhabenden) Desktop-Nutzern
+verwendet werden. Die Grundidee besteht darin, verschiedene Stile für verschiedene Bildschirmgrößen zu erstellen
+und die Medienabfrage zu verwenden, um die Stile an die entsprechenden Gerätegrößen anzupassen.
+
+#### Beispiele für Medienabfragen:
+
+##### Innerhalb desselben Style Sheets
+
+Das folgende Beispiel zeigt drei Sätze von Stilen innerhalb eines einzigen Stylesheets. Ein Satz ist für kleine
+Geräte (z. B. Handys), ein Satz ist für mittelgroße Geräte (z. B. Tablets) und ein Satz ist für große Geräte.
+
+```css
+@media (max-width: 700px) {
+  /* small device styles go here */
+}
+
+@media (max-width: 1060px) {
+  /* medium size device styles go here */
+}
+
+@media (min-width: 1061px) {
+  /* large device styles go here */
+}
+```
+
+##### In CSS-Links
+
+Das folgende Beispiel zeigt dieselben Media Query-Größen, allerdings innerhalb von CSS-Links und nicht im
+selben Stylesheet.
+
+```html
+<link rel="stylesheet" media="(max-width: 700px)" href="small.css" />
+<link rel="stylesheet" media="(max-width: 1060px)" href="medium.css" />
+<link rel="stylesheet" media="(min-width: 1061px)" href="large.css" />
+```
+
+Medienabfragen können mit verschiedenen Arten von Medientypen, logischen Operatoren und anderen Attributen
+kombiniert werden.
+
+### Medientypen
+
+Folgende Medientypen sind für Medienabfragen verfügbar:
+
+#### all
+
+für alle Medientypen und Geräte
+
+#### print
+
+für Drucker
+
+#### screen
+
+für Computerbildschirme, einschließlich Tablets, Telefone usw.
+
+#### speech
+
+für Bildschirmleser
+
+#### embossed
+
+für Brailledrucker
+
+Andere Medientypen sind entweder veraltet oder werden viel seltener verwendet.
+
+### Medienmerkmale
+
+Eine vollständigere Liste der Medienfunktionen, die in Media Queries unterstützt werden, enthält die folgenden:
+
+#### color, min-color, max-color
+
+Die Anzahl der Bits pro Farbkomponente. Bei einem Gerät mit Graustufen wäre sie 0.
+
+#### color-index, min-color-index, max-color-index
+
+Die Anzahl der Farben in der Farbnachschlagetabelle für das Gerät, z.B. 128, 256, etc.
+
+#### aspect-ratio, min-aspect-ratio, max-aspect-ratio
+
+Das Verhältnis des Ansichtsfensters, wobei zuerst die Horizontale und dann die Vertikale aufgeführt wird, z. B. 1/1, 2/1 usw.
+
+#### device-aspect-ratio
+
+Das Verhältnis des Bildschirms, wobei zuerst die Horizontale und dann die Vertikale aufgeführt wird, z. B. 16/9.
+
+#### device-height
+
+Die Höhe des Bildschirms (nicht nur die Höhe des Rendering-Bereichs)
+
+#### device-width
+
+Die Breite des Bildschirms (nicht nur die Breite des Rendering-Bereichs)
+
+#### grid
+
+Ob das Gerät rasterbasiert ist, wie z.B. ein TTY; erlaubte Werte: 1 oder 0
+
+#### height, min-height, max-height
+
+Die Höhe des Rendering-Bereichs (der Bildschirm kann größer sein)
+
+#### monochrome, min-monochrome, max-monochrome
+
+Die Anzahl der Bits pro Pixel
+
+#### orientation
+
+Erlaubte Werte: landscape oder portrait
+
+#### resolution, min-resolution, max-resolution
+
+Die Pixeldichte des Geräts, angegeben in dpi oder ppx
+
+#### scan
+
+Erlaubte Werte: progressive oder interlace
+
+#### width, min-width, max-width
+
+Die Breite des Rendering-Bereichs (der Bildschirm kann größer sein)
+
+### Kombinieren von Medientypen und Merkmalen mit logischen Operatoren
+
+Es ist möglich, mit logischen Operatoren in Kombination mit Medientypen und Funktionen Stile für ganz
+bestimmte Situationen zu erstellen.
+
+#### Beispiele für komplexe Medienabfragen
+
+```css
+@media print and (min-resolution: 300dpi) {
+  ...;
+}
+
+@media all and (max-width: 500), all and (color) {
+  ...;
+}
+
+@media screen and (device-aspect-ratio: 16/9) {
+  ...;
+}
+```
+
+## Breakpoints für die Bildschirmgröße
+
+Media Queries geben dir die Möglichkeit, so viele verschiedene Style Breakpoints zu erstellen, wie du willst.
+Wenn du wirklich wolltest, könntest du eine Reihe von Stilen für jede Smartphone-Größe auf dem Markt, jedes
+Tablet und jeden Bildschirm erstellen. Das wäre ein sehr langes Stylesheet und definitiv ein Overkill.
+
+### Nur einige wenige Breakpoints erstellen
+
+Beschränke deine Breakpoints auf das für dein Design notwendige Minimum. Ein typisches Szenario wäre, Breakpoints
+für drei Bildschirmgrößen zu erstellen: klein (Handys), mittel (Tablets) und groß (Desktops). Wenn dein Design
+flexibel genug ist, kannst du vielleicht sogar mit Haltepunkten für nur zwei Größen auskommen: klein und groß.
+
+### Wo solltest du deine Breakpoints setzen?
+
+Es gibt nicht die eine richtige Antwort darauf, wo du deine Breakpoints setzen solltest. Die Antwort hängt von
+deinem Entwurf ab. Setze deine Breakpoints dort, wo dein Entwurf sie braucht. Es ist hilfreich, die ungefähren
+Größen für die verschiedenen Geräte zu kennen, die du berücksichtigen willst, aber du kannst nicht vorhersagen,
+welche Geräte deine Nutzer/innen haben werden, also achte darauf, dass dein Design eine große Bandbreite an
+Größen berücksichtigt.
+
+<table>
+  <caption>Ungefähre Größenbereiche für Geräte</caption>
+  <thead>
+    <tr>
+      <th>Gerät</th>
+      <th>Größenbereich</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Gerät">Uhren</td>
+      <td data-label="Größenbereich">bis zu ca. 320px</td>
+    </tr>
+    <tr>
+      <td data-label="Gerät">Handys</td>
+      <td data-label="Größenbereich">etwa 320px</td>
+    </tr>
+    <tr>
+      <td data-label="Gerät">Handys (Übergröße)</td>
+      <td data-label="Größenbereich">bis zu etwa 600px</td>
+    </tr>
+    <tr>
+      <td data-label="Gerät">Tablets</td>
+      <td data-label="Größenbereich">etwa 600px - 900px</td>
+    </tr>
+    <tr>
+      <td data-label="Gerät">Desktop & Laptop</td>
+      <td data-label="Größenbereich">normalerweise 1024px und größer</td>
+    </tr>
+  </tbody>
+</table>
+
+### Genaue Device Breakpoints
+
+Für diejenigen, die genauere Zahlen benötigen, gibt es Online-Ressourcen, die die genauen Viewport-Maße
+der verschiedenen Geräte auflisten:
+
+- URL: <a href="https://viewportsizer.com/devices/" target="_blank">Viewport Sizes</a>
+
+### Geräte-Breakpoints emulieren
+
+Niemand kann jede Größe und jede Art von Gerät kaufen, und niemand will das auch nicht. Es gibt einfach
+zu viele Geräte und zu viele Größen, die berücksichtigt werden müssen. Zum Glück kannst du deine Haltepunkte
+mit einigen Viewport-Emulatoren testen.
+
+Hinweis: Viewport-Emulatoren zeigen dir eine genaue Darstellung deiner Media-Queries und Styles. Sie sind
+keine genaue Darstellung der Funktionalität oder der Merkmale des Browsers. Verlasse dich nicht auf diese
+Methoden, um JavaScript, ARIA, Tastaturzugänglichkeit oder andere interaktive Funktionen zu testen.
+
+#### Viewport-Emulator
+
+Der Viewport-Emulator auf http://www.viewportemulator.com und hält, was er zu tun verspricht. Du gibst eine
+Webadresse ein, wählst ein Gerät und die Website wird in der Größe des von dir angegebenen Geräts angezeigt.
+Damit kannst du einen schnellen Test machen.
+
+![](/images/responsive-design-und-zoom/viewport-emulator.png)
+
+#### Der mobile Emulator von Firefox
+
+Firefox hat einen eingebauten Emulator für das mobile Ansichtsfenster, der mit dem Tastenkürzel
+Command + Option + M (Mac) oder Control + Shift + M (Windows) aufgerufen werden kann.
+
+![](/images/responsive-design-und-zoom/firefox-mobile-emulator.png)
+
+![](/images/responsive-design-und-zoom/firefox-mobile-emulator2.png)
+
+#### Der mobile Emulator von Chrome
+
+Der Handy-Emulator von Chrome ist über die Entwicklertools verfügbar: Befehl + Wahl + I (Mac) oder
+Strg + Umschalt + I (Windows). Sobald die Entwicklertools geöffnet sind, klicke auf das Symbol
+"Gerätemodus umschalten".
+
+![](/images/responsive-design-und-zoom/chrome-mobile-emulator.png)
+
+Der Gerätemodus passt die Größe des Ansichtsfensters an eine vorausgefüllte Liste von Geräten an.
+Wenn du die Seite zum ersten Mal öffnest, passt der Gerätemodus die Größe des Ansichtsfensters an
+das iPhone an. Er warnt dich auch, dass du die Seite eventuell aktualisieren musst, um die
+Ergebnisse richtig zu sehen.
+
+![](/images/responsive-design-und-zoom/chrome-mobile-emulator2.png)
+
+Im Gerätemodus kannst du die eigenen Medienabfrage-Haltepunkte des Dokuments überprüfen, indem du
+auf das Medienabfrage-Symbol in der oberen linken Ecke klickst.
+
+![](/images/responsive-design-und-zoom/chrome-mobile-emulator4.png)
+
+Chrome zeigt dann über der Seite Balken an, die die verschiedenen Haltepunkte darstellen. Du
+kannst auf die Haltepunkte klicken, um die Größe des Ansichtsfensters an diese Dimensionen anzupassen.
+
+![](/images/responsive-design-und-zoom/chrome-mobile-emulator3.png)
+
+Der Gerätemodus von Chrome hat noch weitere Funktionen, z. B. die Möglichkeit, die langsameren
+Seitenladegeschwindigkeiten mobiler Netzwerke zu simulieren, und die Möglichkeit, Wischvorgänge
+zu simulieren.
+
+Auch mit diesen zusätzlichen Funktionen kann Chrome die JavaScript-Funktionen oder die Leistung
+nicht simulieren, sodass du diese Aspekte immer noch auf einem echten Mobilgerät testen musst.
+
+## Mobile Bildschirmauflösung
+
+### Mobile Ansichtsfenster sind klein
+
+Mobile Browser haben ein viel kleineres Ansichtsfenster als Desktop-Browser. Das iPhone bis
+einschließlich iPhone 5s hat zum Beispiel einen Viewport von 320 Pixeln, verglichen mit
+Desktop-/Laptop-Monitoren, bei denen der Browser die maximale Breite der viel größeren Bildschirme
+ausfüllen kann. Die verfügbare Breite moderner Desktop-/Laptop-Monitore liegt in der Regel im
+Bereich von 1280px, 1600px, 1920px oder größer. Die tatsächliche Breite des Browsers auf einem
+Desktop-/Laptop-Gerät variiert je nach Präferenz des Nutzers, da das Browserfenster in der Größe
+veränderbar ist, aber der Unterschied zwischen einem kleinen Handy und einem Desktop-/Laptop-Browser
+ist immer noch enorm.
+
+![](/images/responsive-design-und-zoom/viewport-size-apple.png)
+
+### Die tatsächliche Pixelbreite des Geräts
+
+Viele Geräte haben heutzutage besonders hochauflösende Bildschirme, wie z. B. die Retina-Bildschirme
+von Apple. Retina-Bildschirme haben eine doppelt so hohe Pixeldichte wie normale Bildschirme mit den
+gleichen Abmessungen. Retina-Bildschirme haben doppelt so viele Pixel in der Breite und doppelt so
+viele Pixel in der Höhe, so dass insgesamt 4 Retina-Pixel auf 1 normales Pixel kommen. Retina-Geräte
+interpolieren die Werte innerhalb dieser 4 Pixel.
+
+Ein iPhone 6 Plus hat zum Beispiel eine tatsächliche Pixelbreite von 828, aber aufgrund der Interpolation
+können Webdesigner es als ein Gerät mit einer Breite von 414 Pixeln behandeln.
+
+### Die interpolierte CSS-Pixelbreite
+
+Wenn hochauflösende Bildschirme Webseiten in ihrer tatsächlichen Größe anzeigen würden, würden die
+Webseiten nur halb so groß aussehen, wie sie sein sollten. Das würde niemandem gefallen, deshalb
+interpolieren hochauflösende Geräte den Wert, damit die Webseiten normal aussehen. Die Interpolation
+funktioniert gut, vor allem bei Schriftarten und Vektorgrafiken.
+
+#### Bilder auf hochauflösenden Bildschirmen
+
+Die Interpolation funktioniert auch bei Rastergrafiken (PNG, JPG, GIF), aber hochauflösende Bildschirme
+machen die niedrige Auflösung der Originalbilder sichtbar, so dass sie zackiger oder unschärfer aussehen.
+Die doppelte Pixeldichte bedeutet, dass Rastergrafiken auf Retina-Geräten am besten aussehen, wenn sie mit
+der doppelten Auflösung von Grafiken für normale Monitore entworfen und dann von der Webseite auf die
+vorgesehenen Abmessungen angepasst werden.
+
+Wie zu erwarten, wirkt sich die doppelte Auflösung der Bilder auf die Ladezeit der Seite aus, aber sie
+verbessert auch das visuelle Erscheinungsbild und kann besonders für Nutzer/innen mit Sehschwäche von
+Vorteil sein, wenn sie die Bilder vergrößern.
+
+### Die Standard-Anzeigebreite (Shrink-to-Fit)
+
+Um die breiten Designs von Websites, die für Desktop-/Laptop-Bildschirme entwickelt wurden, zu
+berücksichtigen, wird bei mobilen Geräten eine Standard-Anzeigebreite festgelegt, die beim iPhone 980
+Pixel beträgt. Das heißt, wenn der Webentwickler keine gerätespezifischen Viewport-Einstellungen
+vornimmt, rendert das iPhone das Design mit einer Breite von 980 Pixeln und verkleinert es dann,
+damit es in den Viewport des Bildschirms passt.
+
+In den meisten Fällen sieht das Layout der resultierenden Seite so aus wie auf einem Desktop/Laptop,
+was schön ist, aber nach der Verkleinerung ist das Design für die meisten Nutzer zu klein, um es
+zu lesen, sodass sie die Seite vergrößern müssen. Nach dem Zoomen müssen die Nutzer/innen möglicherweise
+sowohl horizontal als auch vertikal streichen oder scrollen. Die gezoomte Seite ist zwar nicht für die
+Abmessungen des Geräts optimiert, aber zumindest ist sie lesbar.
+
+### Breite im Hoch- und Querformat
+
+Um die Sache noch komplizierter zu machen, kann das Gerät im Hochformat vertikal oder im Querformat
+horizontal gehalten werden, wodurch sich die Abmessungen auf unterschiedliche Weise ändern.
+
+### So viele Breiten, die man im Auge behalten muss!
+
+Ja, es gibt eine Menge Breiten, die man auf mobilen Geräten im Auge behalten muss. Es gibt die
+tatsächliche Pixelbreite des Geräts, die interpolierte CSS-Pixelbreite und die Standardanzeigebreite,
+und jede dieser Breiten ändert sich, je nachdem, ob du das Gerät im Hoch- oder Querformat hältst.
+
+Die gute Nachricht ist, dass wir bei der Berechnung des responsiven CSS-Designs die tatsächliche
+Pixelbreite des Geräts und die Standard-Anzeigebreite größtenteils ignorieren können, sodass wir uns
+nur auf die interpolierte CSS-Breite konzentrieren müssen. Einer der Tricks, um dies zu erreichen,
+ist die Angabe des Viewports mit dem Meta-Viewport-Tag, der im Abschnitt "Mobilen Zoom zulassen"
+in diesem Abschnitt besprochen wird.
+
+## Responsive Formulare
+
+### Formulare sollten so umlaufen, dass sie den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, stelle sicher, dass sich auch die Formularfelder anpassen, damit:
+
+- Formularfelder nicht über das Ansichtsfenster hinausragen.
+
+- Formularfelder und ihre Beschriftungen nicht durch viel Leerraum getrennt sind, der es Menschen, die
+  Bildschirmlupen verwenden, erschwert, Beschriftungen und Felder zuzuordnen.
+
+Hinweis: Bei mobilen Designs ist es am besten, wenn sich die Beschriftung über dem Feld und nicht seitlich davon
+befindet, denn wenn du das Feld auswählst, zoomt das Betriebssystem in das Feld hinein und verdrängt den Text
+vom Bildschirm, wenn er sich seitlich befindet.
+
+#### Gutes Beispiel: Formular passt sich an, wenn der Bildschirm schrumpft
+
+Die Felder in diesem Formular passen sich an, wenn der Bildschirm schrumpft.
+
+In der Standardeinstellung sind die Beschriftungen dieses Formulars am linken Rand des Bildschirms ausgerichtet,
+in einer Linie mit den entsprechenden Formularfeldern. Bei einer Breite von mehr als 1000 Pixeln verschieben
+sich die Beschriftungen nach rechts, um den Leerraum zwischen jeder Beschriftung und dem entsprechenden Feld
+zu verringern. Bei einer Breite von 600px und weniger werden die Beschriftungen über die Formularfelder verschoben.
+
+##### Desktop-Version (mit responsiven Funktionen)
+
+Das unten stehende Formular ist für Desktop-Browser und breite Bildschirme ausgelegt. Es wurde auch für kleine
+Bildschirme entworfen. Wenn du das Fenster deines Browsers verkleinerst, wird das Formular in ein kompakteres
+Layout umgewandelt, bei dem die Beschriftungen des Formulars über den zugehörigen Eingaben stehen und nicht links
+von ihnen.
+
+```html
+<form id="rf1">
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_name">Name: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_name" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_address">Address: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_address" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_city">City: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_city" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_state">State: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_state" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_zip">Zip: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_zip" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_phone">Phone: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_phone" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <fieldset>
+      <legend class="legend_label">Type of Phone:</legend>
+      <div class="fieldset_fields">
+        <div>
+          <input type="radio" id="phonetype1" name="email" />
+          <label for="phonetype1">Home</label>
+        </div>
+        <div>
+          <input type="radio" id="phonetype2" name="email" />
+          <label for="phonetype2">Mobile</label>
+        </div>
+        <div>
+          <input type="radio" id="phonetype3" name="email" />
+          <label for="phonetype3">Work</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_email">Email: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_email" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_comments">Comments (optional): </label>
+    </div>
+    <div class="field">
+      <textarea rows="10" id="id85_comments" class="resp"></textarea>
+    </div>
+  </div>
+</form>
+```
+
+##### Kompakte responsive Version
+
+Das gleiche Formular wird unten zum Vergleich in der kompakten responsiven Version gezeigt:
+
+```html
+<form id="rf1a">
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_name">Name: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_name" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_address">Address: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_address" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_city">City: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_city" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_state">State: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_state" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_zip">Zip: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_zip" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_phone">Phone: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_phone" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <fieldset>
+      <legend class="legend_label">Type of Phone:</legend>
+      <div class="fieldset_fields">
+        <div>
+          <input type="radio" id="phonetype1" name="email" />
+          <label for="phonetype1">Home</label>
+        </div>
+        <div>
+          <input type="radio" id="phonetype2" name="email" />
+          <label for="phonetype2">Mobile</label>
+        </div>
+        <div>
+          <input type="radio" id="phonetype3" name="email" />
+          <label for="phonetype3">Work</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_email">Email: </label>
+    </div>
+    <div class="field">
+      <input type="text" id="id85_email" class="resp" />
+    </div>
+  </div>
+
+  <div>
+    <div class="label">
+      <label class="resp" for="id85_comments">Comments (optional): </label>
+    </div>
+    <div class="field">
+      <textarea rows="10" cols="50" id="id85_comments" class="resp"></textarea>
+    </div>
+  </div>
+</form>
+```
+
+#### Schlechtes Beispiel: Die Größe des Formulars wird nicht angepasst
+
+Die Felder in diesem Formular passen sich nicht an, sodass sie den Bildschirm beim Schrumpfen überfüllen.
+
+```html
+<form>
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_name">Name: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_name" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_address">Address: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_address" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_city">City: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_city" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_state">State: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_state" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_zip">Zip: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_zip" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_phone">Phone: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_phone" class="nonresp" />
+    </span>
+  </p>
+
+  <fieldset class="nrfieldset">
+    <legend class="nonresp-legend">Type of Phone:</legend>
+    <span class="nonresp-radio">
+      <div class="radionr">
+        <input type="radio" id="phonetype11" name="email" />
+        <label for="phonetype11">Home</label>
+      </div>
+      <div class="radionr">
+        <input type="radio" id="phonetype21" name="email" />
+        <label for="phonetype21">Mobile</label>
+      </div>
+      <div class="radionr">
+        <input type="radio" id="phonetype31" name="email" />
+        <label for="phonetype31">Work</label>
+      </div>
+    </span>
+  </fieldset>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_email">Email: </label>
+    </span>
+    <span class="fieldnr">
+      <input type="text" id="id8_email" class="nonresp" />
+    </span>
+  </p>
+
+  <p>
+    <span class="labelnr">
+      <label class="nonresp-label" for="id8_comments">Comments (optional): </label>
+    </span>
+    <span class="fieldnr">
+      <textarea rows="10" id="id8_comments" class="nonresp"></textarea>
+    </span>
+  </p>
+</form>
+```
+
+## Responsive Bilder
+
+### Bilder sollten so umlaufen, dass sie den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf des Ansichtsfensters zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du sicherstellen, dass die Größe der Bilder so angepasst
+wird, dass kein horizontales Scrollen erforderlich ist. Dies kann durch verschiedene Methoden erreicht werden:
+
+- der max-width-Stil im CSS
+
+- das srcset-Attribut des `<img>`-Elements
+
+- `<picture>`-Element mit mehreren `<source>`s mit expliziten Medienattributen
+
+#### Gutes Beispiel: Bild Max Breite 100%
+
+Stelle sicher, dass Bilder auf kleinen Bildschirmen sichtbar sind und verhindere horizontales Scrollen mit
+max-width:100%.
+
+Dieser Beispielcode legt die maximale Breite von Bildern fest, wenn sie in Browsern mit einem Viewport von
+bis zu 320 Pixeln Breite angezeigt werden.
+
+```css
+@media (max-width: 320px) {
+  main img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+```
+
+#### Gutes Beispiel: Bild aus srcset ausgewählt
+
+Verwende das Attribut srcset, um eine Kaskade von Bildgrößen für unterschiedlich große Geräte festzulegen.
+
+```html
+<img
+  src="medium.png"
+  srcset="small.png 400w, medium.png 600w, large.png 900w"
+  alt="Wheelchair racers in the Paralympics speed down the track" />
+```
+
+#### Gutes Beispiel: Bildgröße mit dem `<picture>`-Element zuweisen
+
+Das `<picture>`-Element ist eine robuste Funktion und liefert nur das gewünschte Bild an das Gerät.
+
+```html
+<picture>
+  <source media="(min-width: 40em)" srcset="large.png 900w, medium.png 600w, small.png 400w" />
+  <source srcset="small.png" />
+  <img src="medium.png" alt="Wheelchair racers in the Paralympics speed down the track" />
+</picture>
+```
+
+#### Schlechtes Beispiel: Bild mit zugewiesener Größe
+
+Ein Bild mit einer festgelegten Größe und ohne srcset wird nicht an den Bildschirm angepasst und ist auf
+kleinen Geräten möglicherweise größer als der Viewport.
+
+In diesem Beispiel ist das Bild zu breit für den Viewport, was zu einem horizontalen Scrollen führt
+
+![](/images/responsive-design-und-zoom/horizontal-scrolling.png)
+
+## Responsive Objekte und Plugins
+
+### Objekte/Plugins sollten so umlaufen, dass sie den größten Teil der Breite des Viewports ausfüllen, ohne einen horizontalen Viewport-Überlauf zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Objekte
+und Plugins anpasst, damit sie nicht über das Ansichtsfenster hinausgehen.
+
+#### Technik 1: Setze max-width:100% für den Container
+
+Die Techniken zur Erstellung von `<object>`-Elementen und Plugins variieren von `<object>` und Plugin zu Plugin,
+aber eines der grundlegendsten Konzepte ist die Einstellung von max-width:100% für den Container um das `<object>`
+oder Plugin. Wenn das Element eine Größenänderung zulässt, kann es den Container vollständig ausfüllen.
+Flash, Silverlight, SVG und andere Arten von Elementen sind in der Lage, die gesamte Breite des Containers auszufüllen.
+
+#### Technik 2: Verwende Vektorbilder
+
+Verwende im `<object>` oder Plugin selbst, wann immer möglich, vektorbasierte Elemente, um maximale Klarheit
+zu erreichen, wenn die Nutzer/innen heranzoomen.
+
+## Responsive Tabellen
+
+### Tabellen sollten so umbrochen werden, dass sie den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass die Größe der Tabellen entsprechend
+angepasst wird, damit sie nicht horizontal gescrollt werden müssen. Bei Tabellen mit nur wenigen Spalten und wenig
+Text kannst du dies erreichen, indem du die Spaltenbreiten als Prozentsatz der Viewport-Breite definierst und die
+maximale Tabellenbreite mit max-width:100% im Tabellenstil einschränkst. Um größere Tabellen in kleinen
+Ansichtsfenstern, z. B. auf Handys, unterzubringen, muss die Tabelle möglicherweise in eine Spalte umgewandelt und
+neu angeordnet werden.
+
+#### Gutes Beispiel: Tabelle in einzelne Spalte umwandeln
+
+Die Tabelle wird auf eine Spalte umgestellt, wenn sich die Breite des Browsers ändert. So bleibt die Lesbarkeit erhalten
+und das horizontale Scrollen wird überflüssig.
+
+Todo: make an real example
+
+```html
+<table id="rt">
+  <caption>
+    People &amp; Their Cities
+    <br />(Single-Column)
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">City of Birth</th>
+      <th scope="col">Current City</th>
+      <th scope="col">Favorite City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
+      <td data-header="Current City: " data-th=" Current City">Rome</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
+      <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
+      <td data-header="Current City: " data-th=" Current City">Stockholm</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
+      <td data-header="Current City: " data-th=" Current City">London</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
+      <td data-header="Current City: " data-th=" Current City">Boise</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Hier ist ein Screenshot der gleichen Tabelle in einem schmalen Ansichtsfenster (z. B. auf einem Mobiltelefon), der zeigt,
+wie die Tabelle in ein vertikal ausgerichtetes Listenformat umgewandelt wird:
+
+![](/images/responsive-design-und-zoom/table-responsive.png)
+
+Bildbeschreibung: Nachdem die Größe der Tabelle geändert wurde, erstrecken sich die Zeilenköpfe, die sich früher auf der
+linken Seite der Tabelle befanden, über die gesamte Breite der Tabelle, und die Datenspalten werden in einer einzigen
+linearisierten Spalte unter den Zeilenköpfen dargestellt, anstatt in einem Spaltengitter.
+
+Das Styling für die Tabelle ist unten abgebildet. Die Media Query mit dem Parameter max-width ändert die visuelle
+Formatierung, wenn die Breite der Tabelle eine bestimmte Grenze für kleinere Bildschirmgrößen erreicht (in diesem Fall 570px).
+
+```css
+#rt {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-collapse: collapse;
+}
+
+#rt th,
+#rt td {
+  padding: 3px;
+}
+
+#rt th {
+  text-align: left;
+  background-color: #eee;
+  padding: 5px;
+  outline: 1px solid #ccc;
+}
+
+#rt td {
+  padding-left: 5px;
+}
+
+@media (max-width: 570px) {
+  #rt {
+    width: 100%;
+    border: 2px solid #ccc;
+    border-collapse: collapse;
+  }
+
+  #rt th,
+  #rt td {
+    display: block;
+    padding: 3px;
+  }
+
+  #rt td::before {
+    content: attr(data-header);
+    font-weight: bold;
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  #rt th {
+    text-align: left;
+    background-color: #eee;
+    padding: 5px;
+    outline: 1px solid #ccc;
+  }
+
+  #rt th[scope='col'] {
+    display: none;
+  }
+
+  #rt td {
+    padding-left: 5px;
+  }
+}
+```
+
+#### Schlechtes Beispiel: Tabelle hat feste Breite
+
+Die Tabelle hat eine feste Breite. Sie passt sich nicht an, wenn das Fenster schrumpft, sodass die Nutzer
+horizontal scrollen müssen, um sie zu lesen, wenn der Bildschirm zu klein ist.
+
+TODO: make a real example
+
+```html
+<table id="rt3">
+  <caption>
+    People &amp; Their Cities
+    <br />(Single-Column)
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">City of Birth</th>
+      <th scope="col">Current City</th>
+      <th scope="col">Favorite City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
+      <td data-header="Current City: " data-th=" Current City">Rome</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
+      <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
+      <td data-header="Current City: " data-th=" Current City">Stockholm</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
+      <td data-header="Current City: " data-th=" Current City">London</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
+      <td data-header="Current City: " data-th=" Current City">Boise</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Unten ist ein Screenshot der gleichen Tabelle zu sehen, nachdem das Browserfenster auf eine viel
+geringere Breite verkleinert wurde. Der Nutzer muss von Seite zu Seite scrollen, um alle Teile der
+Tabelle zu sehen. Es ist unmöglich, die gesamte Tabelle auf einmal zu sehen.
+
+![](/images/responsive-design-und-zoom/table-horizontal-scrolling.png)
+
+## Responsive Text
+
+### Der Text sollte so umlaufen, dass er den größten Teil der Breite des Ansichtsfensters ausfüllt, ohne einen horizontalen Überlauf des Ansichtsfensters zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der
+Textcontainer ändert, damit sie das Ansichtsfenster nicht überfüllen.
+
+#### Gutes Beispiel: Text fließt neu, wenn sich die Fenstergröße ändert
+
+Der Text unten fließt neu, wenn sich die Größe des Ansichtsfensters ändert.
+
+<div style="width:70%; border:1px solid #808080; padding:4px;">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur sem, id convallis dui. Sed porta dictum libero, non dapibus erat mattis ac. Fusce sed aliquet elit. Suspendisse euismod sagittis augue sit amet porttitor. Morbi et justo ullamcorper, euismod lorem sit amet, vehicula tortor. Nulla sed libero ut lectus consectetur sodales eu ac metus. Sed consequat ac quam eu sollicitudin. Sed ut diam nec arcu sagittis luctus. Aenean volutpat facilisis mi, in rhoncus ligula vehicula eget. Cras cursus lacinia sollicitudin. </p>
+
+<p>
+  Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam
+  sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec
+  aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.
+</p>
+
+<p>Curabitur et libero nec nisi commodo blandit at id lectus. Maecenas sit amet varius risus. Aliquam convallis erat eget scelerisque vestibulum. Integer laoreet ante arcu, quis ultrices lorem interdum eget. Aliquam erat volutpat. Donec non diam sed felis posuere semper et quis sapien. Duis ut volutpat neque. Quisque a diam justo. Maecenas dapibus, neque sit amet tincidunt fringilla, enim purus interdum nisl, eget sagittis tellus sapien a magna. Maecenas non blandit nibh, sed consequat ipsum. In sit amet viverra odio.</p>
+</div>
+
+#### Schlechtes Beispiel: Textspalte hat festgelegte Breite
+
+Der Text unten hat eine festgelegte Breite, sodass er nicht umläuft, wenn sich die Breite des Ansichtsfensters ändert.
+
+<div style="width: 700px; border:1px solid #808080; padding:4px;">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur sem, id convallis dui. Sed porta dictum libero, non dapibus erat mattis ac. Fusce sed aliquet elit. Suspendisse euismod sagittis augue sit amet porttitor. Morbi et justo ullamcorper, euismod lorem sit amet, vehicula tortor. Nulla sed libero ut lectus consectetur sodales eu ac metus. Sed consequat ac quam eu sollicitudin. Sed ut diam nec arcu sagittis luctus. Aenean volutpat facilisis mi, in rhoncus ligula vehicula eget. Cras cursus lacinia sollicitudin. </p>
+
+<p>
+  Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam
+  sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec
+  aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.
+</p>
+
+<p>Curabitur et libero nec nisi commodo blandit at id lectus. Maecenas sit amet varius risus. Aliquam convallis erat eget scelerisque vestibulum. Integer laoreet ante arcu, quis ultrices lorem interdum eget. Aliquam erat volutpat. Donec non diam sed felis posuere semper et quis sapien. Duis ut volutpat neque. Quisque a diam justo. Maecenas dapibus, neque sit amet tincidunt fringilla, enim purus interdum nisl, eget sagittis tellus sapien a magna. Maecenas non blandit nibh, sed consequat ipsum. In sit amet viverra odio.</p>
+</div>
+
+## Responsive UI Komponenten
+
+### UI-Komponenten sollten so umlaufen, dass sie den größten Teil der Breite des Viewports ausfüllen, ohne einen horizontalen Viewport-Überlauf zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du sicherstellen, dass die UI-Komponenten der Seite neu angeordnet
+und in der Größe angepasst werden, um die Lesbarkeit und eine angemessene Klick-/Touch-Zielgröße zu gewährleisten.
+
+#### Gutes Beispiel: UI-Komponenten fließen bei Größenänderung des Fensters neu
+
+Die folgenden Screenshots zeigen, wie sich die UI-Komponenten der Deque-Homepage verändern, wenn sich die Fenstergröße ändert.
+Wenn die Seite von der Desktop-Ansicht zur Handy-Ansicht wechselt, werden das Deque-Logo, der Kontakt-Link, die sozialen
+Symbole und die Schaltfläche "Anmelden" im Kopfbereich an die neue Fenstergröße angepasst.
+
+Desktop-Ansicht von Deque.com:
+
+![](/images/responsive-design-und-zoom/DQhomepage.png)
+
+Telefonische Ansicht von Deque.com:
+
+![](/images/responsive-design-und-zoom/DQhomepagemobile.png)
+
+## Responsives Video
+
+### Videoelemente sollten den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf des Ansichtsfensters zu verursachen.
+
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Videos anpasst,
+damit sie das Ansichtsfenster nicht überfüllen. Eine Methode dafür ist, die maximale Breite des Videos mit dem Stil
+max-width:100% für den Container um das Video herum einzuschränken.
+
+#### Gutes Beispiel: Videoplayer passt die Größe an
+
+Dieser Videoplayer hat drei Größen, abhängig von der Größe des Bildschirms. Wenn sich der Bildschirm verkleinert, wird
+auch das Video verkleinert.
+
+Das Originalvideo, ein TED-Vortrag von Stella Young mit dem Titel "I'm not your inspiration, thank you very much" und
+ist auf der TED-Website verfügbar. Du kannst das Browserfenster auf dieser Seite verkleinern, um die drei Größen selbst zu erleben.
+
+##### Desktop-Ansicht des Videos (der Videoplayer ist groß):
+
+![](/images/responsive-design-und-zoom/video-responsive-desktop.png)
+
+##### Tablet-Ansicht des Videos (der Videoplayer ist mittelgroß):
+
+![](/images/responsive-design-und-zoom/video-responsive-tablet.png)
+
+##### Telefonansicht des Videos (der Videoplayer ist klein, füllt aber die Breite des Bildschirms aus):
+
+![](/images/responsive-design-und-zoom/video-responsive-phone.png)
+
+#### Schlechtes Beispiel: Video Player passt die Größe nicht an
+
+Das Bild unten zeigt ein Video mit einer festen Breite, das nicht auf die Browsergröße reagiert. Die rechte Seite des
+Videos wird abgeschnitten, wenn das Browserfenster verkleinert wird.
+
+![](/images/responsive-design-und-zoom/video-responsive-bad.png)
+
+## Vereinfachung des Inhalts und der UI
+
+### Merkmale des Inhalts können vereinfacht, verkleinert oder eliminiert werden, wenn sie vergrößert oder auf kleinen Bildschirmen angezeigt werden.
+
+Auf kleinen Viewports kann es schwierig oder unmöglich sein, den Inhalt langer oder komplizierter Webseiten gleichzeitig
+auf dem Bildschirm darzustellen. Wenn die Bedeutung oder Verständlichkeit des Inhalts darunter leidet, dass nicht alles
+auf einmal auf dem Bildschirm zu sehen ist, kann es eine gute Idee sein, den Inhalt selbst zu vereinfachen oder Teile des
+Inhalts zu löschen.
+
+Ebenso kann es eine gute Idee sein, dekorative Grafiken oder Stile, die nicht unbedingt notwendig sind, zu reduzieren
+oder zu entfernen.
+
+#### Gutes Beispiel: Inhalt wird bei veränderter Fenstergröße vereinfacht
+
+Die Screenshots unten zeigen, wie der Inhalt der Homepage der Deque University vereinfacht wird, wenn sich die Fenstergröße
+ändert. Wenn die Seite von der Desktop-Ansicht zur Tablet-Ansicht wechselt, wird das dekorative Bild rechts neben dem
+Hauptinhalt der Seite aus der Ansicht entfernt.
+
+Desktop-Ansicht der Deque Universität:
+
+![](/images/responsive-design-und-zoom/DQUdesktop.png)
+
+Tablet-Ansicht der Universität Deque:
+
+![](/images/responsive-design-und-zoom/DQUtablet.png)
+
+### Funktionen der Benutzeroberfläche sollten vereinfacht, verkleinert oder eliminiert werden, wenn sie vergrößert oder auf kleinen Bildschirmen angezeigt werden.
+
+Wenn die Größe des Ansichtsfensters schrumpft, müssen die Komponenten der Benutzeroberfläche möglicherweise verkleinert
+oder sogar entfernt werden, um die Lesbarkeit und eine angemessene Klick-/Touch-Zielgröße der verbleibenden Elemente auf
+dem Bildschirm zu erhalten.
+
+#### Gutes Beispiel: Die Komponenten der Benutzeroberfläche werden vereinfacht, wenn sich die Fenstergröße ändert
+
+Die folgenden Screenshots zeigen, wie die Benutzeroberfläche der Homepage der Deque University vereinfacht wird, wenn
+sich die Fenstergröße ändert. Wenn die Seite von der Desktop- oder Tablet-Ansicht zur Handy-Ansicht wechselt, werden
+die Hauptnavigation, "Kontakt" und "Gehe zu Deque.com" unter einem Hamburger-Menü zusammengefasst.
+
+Desktop-Ansicht der Deque Universität:
+
+![](/images/responsive-design-und-zoom/DQUdesktop.png)
+
+Tablet-Ansicht der Universität Deque:
+
+![](/images/responsive-design-und-zoom/DQUtablet.png)
+
+Handy-Ansicht der Universität Deque:
+
+![](/images/responsive-design-und-zoom/DQUphone.png)

@@ -1,0 +1,267 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Erweiterter Alt-Text und erweiterte Beschreibungen'
+pubDate: 2023-05-14
+---
+
+Es ist nicht immer einfach, einen guten Alt-Text für Bilder zu schreiben. Das Ziel ist es,
+das Bild so zu beschreiben, dass die beabsichtigte Botschaft des Bildes - sein Zweck - für
+blinde Menschen verständlich wird. Es gibt nicht den einen richtigen Alt-Text für ein Bild.
+Es kommt ganz darauf an, was der Autor des Inhalts mit dem Bild in einer bestimmten Situation
+vermitteln will.
+
+## Ein illustratives Bild
+
+Ein Gemälde kann auf viele Arten beschrieben werden, je nachdem, wie der Autor das Bild
+verwenden will. Hier ist das betreffende Gemälde:
+
+![](/images/bilder/advanced-painting700.png)
+
+### Der Alt-Text
+
+Das Bild benötigt einen Alt-Text, auch wenn eine lange Beschreibung angegeben ist. Der
+Alt-Text kann sogar erwähnen, dass eine lange Beschreibung an anderer Stelle verfügbar ist.
+
+Wenn es darum geht, den Nutzern das Gemälde zu zeigen und seine vom Künstler beabsichtigte
+Bedeutung zu beschreiben, ist eine Möglichkeit die unten abgebildete. Denk daran, dass der
+Alt-Text in der Regel kurz sein sollte und die lange Beschreibung den Nutzern leicht zugänglich
+gemacht werden sollte, indem sie auf der Seite oder auf einer separaten Webseite, die über
+einen Link unterhalb des Bildes zugänglich ist, oder in einem Popup-Dialog über eine Schaltfläche
+unterhalb des Bildes oder einer anderen Methode, die leicht zu finden und zugänglich ist,
+platziert wird.
+
+#### Option 1: Kurzer Alt-Text
+
+```html
+alt="A painting by John Gast in 1872 titled American Progress"
+```
+
+#### Option 2: Kurzer Alt-Text, mit einem Verweis auf die lange Beschreibung
+
+```html
+alt="A painting by John Gast in 1872 titled American Progress as described below"
+```
+
+#### Option 3: Ausführlicherer Alt-Text
+
+```html
+alt="A painting by John Gast in 1872 titled American Progress, showing the spirit of America heading
+westward, accompanied by prospectors, farmers, and settlers while Native North Americans and
+creatures of the land move away before her advancements."
+```
+
+Jede der oben genannten Optionen kann akzeptabel sein. Der kurze Alt-Text würde eine leicht auffindbare
+längere Beschreibung erfordern. Der längere Alt-Text könnte für sich alleine stehen, sodass die längere
+Beschreibung möglicherweise optional ist.
+
+### Die lange Beschreibung
+
+Eine lange Beschreibung des Gemäldes ist nur dann erforderlich, wenn die Absicht des Autors mehr
+Ausführlichkeit erfordert, als ein kurzer Alt-Text erlauben würde.
+
+Eine lange Beschreibung kann den Nutzern auf verschiedene Weise zur Verfügung gestellt werden:
+
+- Füge die lange Beschreibung auf der Webseite in einem Absatz unter dem Bild ein.
+
+- Erstelle einen Link zu einer anderen Seite, die die lange Beschreibung enthält. Der Linktext
+  könnte etwa lauten: "Ausführliche Beschreibung des Bildes".
+
+- Erstelle eine Schaltfläche, die einen Dialog aktiviert, der die lange Beschreibung enthält.
+  Auf der Schaltfläche könnte etwas stehen wie "Ausführliche Beschreibung anzeigen".
+
+- Erstelle eine Schaltfläche, die eine lange Beschreibung unterhalb des Bildes einblendet. Die
+  Beschreibung wird zunächst ausgeblendet und wird erst sichtbar, wenn der/die Nutzer/in die
+  Schaltfläche betätigt. Auf der Schaltfläche könnte etwas stehen wie "Ausklappen, um eine detaillierte
+  Beschreibung anzuzeigen".
+
+#### Option 1: Eine objektive lange Beschreibung mit so wenig Interpretation wie möglich
+
+Hinweis: Dieser Ansatz ist sinnvoll, wenn der Autor den Lesern eine eigene Interpretation ermöglichen
+will oder wenn die Aufgabe des Nutzers darin besteht, eine Interpretation zu liefern, wie z. B. bei
+einer Lernbewertung.
+
+An 1872 painting by John Gast titled "American Progress" shows an expansive landscape with the sun rising
+in the upper right corner of the frame, behind faraway industrial East coast cities with their ships,
+bridges, and ports. Dramatic clouds fill the sky. The central landscape is rugged, flat, and open. Tall
+snow-capped mountains frame the painting in the upper left corner, opposite from the industrial cities on
+the right. Three trains on the far right of the painting head westward on separate tracks. White people in
+wagon trains with oxen, in a stagecoach, on horses, and on foot move westward ahead of the trains. Farmers
+plow a field with oxen in the bottom right corner. On the far left side of the painting, bison, Native
+Americans on horseback, dogs, and a bear also head westward. A floating, westward-leaning, larger-than-life
+female angelic figure dominates the center of the painting, with long wavy hair and loose white robes flowing
+in the wind. She carries a book in her hand and lays out telegraph lines in the open land as she flies across
+the scene.
+
+#### Option 2: Eine interpretierende Beschreibung
+
+Hinweis: Dieses Beispiel enthält den gesamten Text des vorherigen Beispiels sowie einige interpretierende
+Ergänzungen am Ende.
+
+An 1872 painting by John Gast titled "American Progress" shows an expansive landscape with the sun rising
+in the upper right corner of the frame, behind faraway industrial East coast cities with their ships, bridges,
+and ports. Dramatic clouds fill the sky. The central landscape is rugged, flat, and open. Tall snow-capped
+mountains frame the painting in the upper left corner, opposite from the industrial cities on the right.
+Three trains on the far right of the painting head westward on separate tracks. White people in wagon trains
+with oxen, in a stagecoach, on horses, and on foot move westward ahead of the trains. Farmers plow a field
+with oxen in the bottom right corner. On the far left side of the painting, bison, Native Americans on
+horseback, dogs, and a bear also head westward. A floating, westward-leaning, larger-than-life female angelic
+figure dominates the center of the painting, with long wavy hair and loose white robes flowing in the wind.
+She carries a book in her hand and lays out telegraph lines in the open land as she flies across the scene.
+
+The main purpose of the painting is to illustrate the political concept of American "Manifest Destiny"
+that became popular after the American Civil War in the mid 1800s. In that era, Americans of European
+descent in particular saw a kind of divine — or at least idealized — role or mission for the United States
+to spread European American culture and technological advances throughout the North American continent.
+Native Americans were often conceptually grouped by the European Americans more with the animals and wild
+lands than with those of European descent. The painting conveys the idea of taming the land and the native
+peoples, and elevates the ideals of accomplishments of European Americans.
+
+On a positive note, the idea of an American "Manifest Destiny" speaks to a spirit of adventure, optimism,
+and progress. On a negative note, the cultural biases and prejudices implicit in the idea of "Manifest Destiny"
+undermine the sovereignty and dignity of native peoples, threaten the environment by granting technology the
+role of dominating nature, and are narrow-minded in their socio-political outlook.
+
+## Ökologie-Diagramm
+
+Das Bild, das in diesem Abschnitt beschrieben wird, ist unten abgebildet:
+
+![](/images/bilder/advanced-ecology.png)
+
+### Der Alt-Text
+
+#### Option 1: Kurzer Alt-Text
+
+Dieser Alt-Text muss durch eine längere Beschreibung ergänzt werden.
+
+```html
+alt="A diagram showing 5 stages in the progression of forest regrowth."
+```
+
+#### Option 2: Ausführlicherer Alt-Text
+
+Je nach Absicht des Autors kann dieser längere Alt-Text alles sein, was erforderlich ist.
+
+```html
+alt="A diagram showing 5 stages in the progression of forest regrowth, from grasses and annual
+plants, to shrubs, to oak trees, to other trees, and to a mature forest"
+```
+
+### Die lange Beschreibung
+
+#### Beispiel: Eine detaillierte lange Beschreibung
+
+Hinweis: Diese Art der wörtlichen Beschreibung ist dann angebracht, wenn der Nutzer aufgefordert
+wird, das Diagramm zu interpretieren, wie es bei einer Lernkontrolle der Fall ist. Unter anderen
+Umständen könnte eine weniger detaillierte Beschreibung angemessen sein.
+
+The diagram shows a cross section of a landscape, with the progression of growth shown left to right.
+There are few plants on the left, with progressively more plants and trees until arriving at the final
+stage on the right, which has the most plant and tree growth. A vertical dashed line in the drawing
+separates each of the stages visually. A legend below shows the types of plants and trees from the
+illustration with text labels (grasses, annual plants, shrubs, oak trees, and other trees). The 5
+stages show the following plants and trees:
+
+- In stage 1, there are grasses and 3 annual plants.
+
+- In stage 2, there are grasses, 2 shrubs, and 3 small oak trees.
+
+- In stage 3 there are 2 shrubs, 2 small-to-medium-size oak trees, and 3 small trees of other kinds.
+
+- In stage 4, there is one medium size oak tree and three trees of other kinds: two medium size, and one small.
+
+- In stage 5, there is one large oak tree and two large trees of other kinds.
+
+The exact number of plants and trees is not meaningful. The illustration is designed to represent
+their relative number in comparison to each other.
+
+## Wegbeschreibung
+
+Karten sind von Natur aus ein visuelles Konzept. Sie sind zweidimensionale räumliche Darstellungen von
+physischen Räumen, oft mit eingebetteten Symbolen und bestimmten Bedeutungen, die mit den Linientypen
+verbunden sind (z. B. Straßen, Gebäude usw.). Karten verfügen über ein ganzes visuelles Vokabular, das
+blinden Menschen nur schwer zu vermitteln ist. Außerdem wird davon ausgegangen, dass die räumlichen
+Beziehungen zwischen den Objekten vom Publikum wahrgenommen werden können.
+
+Es gibt ein weiteres Problem: Karten können für viele verschiedene Zwecke genutzt werden. Eine Person
+kann eine Karte benutzen, um sich einen Überblick über den Grundriss einer Stadt zu verschaffen, um
+den Namen eines Gebäudes zu erfahren, um herauszufinden, wie nah die Orte beieinander liegen, um die
+nächste Bushaltestelle zu finden, um ein Café zu finden oder um den Weg von einem Ort zum anderen zu
+finden. Es gibt keine Möglichkeit vorherzusagen, wie eine Person eine Karte nutzen wird.
+
+Sinnvolle, gut geschriebene Alternativtexte für alle möglichen Verwendungszwecke einer Karte zu
+erstellen, ist praktisch unmöglich. Glücklicherweise kann der Alternativtext für einige Kartenanwendungen
+durch Daten und Algorithmen automatisiert werden, z. B. für die Erstellung von Wegbeschreibungen.
+
+Du fragst dich vielleicht: Warum sollten blinde Menschen überhaupt eine Wegbeschreibung brauchen? Sie
+können nicht sehen, um zu fahren! Die Antwort ist, dass sie zwar nicht selbstständig fahren können, aber
+sie können ihren Fahrern als Navigator dienen oder sie können anderen Menschen die Wegbeschreibung
+beschreiben, damit diese selbst fahren können. Wir sollten nicht vorschnell falsche Schlüsse über
+blinde Menschen ziehen, nur weil die Informationen so visuell orientiert sind.
+
+### Visuelle Wegbeschreibung
+
+Das Beispiel in diesem Abschnitt ist eine Karte, die zeigt, wie man vom Eiffelturm in Paris zur Cite de
+l'Architecture et du Patrimoine fährt, die den Eiffelturm auf der anderen Seite des Flusses überblickt.
+
+![](/images/bilder/map-eiffel-tower.png)
+
+Die visuellen Aspekte der Wegbeschreibung (wo sich die Dinge räumlich und visuell zueinander befinden)
+können theoretisch beschrieben werden, aber das würde wahrscheinlich eine intelligente Beschreibung durch
+einen Menschen erfordern, der weiß, wie die Wegbeschreibung verwendet wird und welche Arten von visuellen
+Informationen für blinde Nutzer beschrieben werden müssen. Bei einer allgemeinen Kartenanwendung wie Bing
+lässt sich nicht vorhersagen, wonach ein Nutzer suchen wird. Daher ist es unpraktisch, jede mögliche Suche
+mit intelligenten Beschreibungen der visuellen Informationen zu versehen.
+
+Auch wenn wir nicht in der Lage sind, für alle möglichen Verwendungszwecke einer Karte Alternativtexte
+bereitzustellen, sollten wir nicht vergessen, dass sehbehinderte und farbenblinde Nutzer von guten
+Farbkontrasten und einer anpassbaren Farbauswahl profitieren.
+
+### Text Wegbeschreibung
+
+Wenn ein Nutzer in Bing eine Anfrage für diese Wegbeschreibung eingibt, wird die visuelle Darstellung
+des Weges auf der Karte selbst angezeigt. Die Wegbeschreibung wird in einer Seitenleiste auf der linken
+Seite angezeigt. Eine Druckversion dieser Wegbeschreibung ist ebenfalls verfügbar. Die Wegbeschreibung
+in Bing ist in einem textbasierten Format verfügbar. Ein Screenshot dieses druckerfreundlichen Layouts
+ist unten zu sehen:
+
+![](/images/bilder/map-print.png)
+
+Eine vereinfachte Version des Textes ist unten aufgeführt:
+
+- Depart Avenue Gustave Eiffel toward Avenue Anatole France / Champ de Mars (0.1 km)
+
+- Road name changes to Avenue Silvestre de Sacy 0.1 km)
+
+- Turn left onto Avenue de la Bourdonnais (0.2 km)
+
+- Turn left onto Quai Branly (37 m)
+
+- Keep left to stay on Quai Branly (0.2 km)
+
+- Turn right onto Pont d'Iéna (0.2 km)
+
+- Keep straight onto Place de Varsovie (97 m)
+
+- Turn right onto Avenue des Nations-Unies (0.2 km)
+
+- Road name changes to Boulevard Delessert (0.2 km)
+
+- At roundabout, take 1st exit onto Rue Vineuse (82 m)
+
+- Road name changes to Rue Benjamin Franklin (0.3 km)
+
+- Turn right onto Avenue Paul Doumer (54 m)
+
+- Keep straight onto Place du Trocadéro et du 11 Novembre (95 m)
+
+- Keep straight onto Avenue du Président Wilson (25 m)
+
+- Arrive at Avenue du Président Wilson on the right. The last intersection is Place du
+  Trocadéro et du 11 Novembre. If you reach Avenue Albert de Mun, you've gone too far
+
+Unter der Voraussetzung, dass die Oberfläche der Kartenanwendung vollständig barrierefrei ist,
+sind Textanweisungen wie im obigen Beispiel ein effektiver Weg, um Kartenanweisungen für
+Screenreader-Nutzer zugänglich zu machen.
+
+Das Grundkonzept, ein visuelles Erlebnis (Karten) in ein anderes Format (eine Liste) umzuwandeln,
+gilt auch für andere Arten von visuellen Informationen.

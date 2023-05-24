@@ -1,0 +1,113 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Click/Touch Zielgröße'
+---
+
+## Die Größe des Klick-/Touch-Ziels muss groß genug sein, um eine einfache Bedienung mit dem Finger zu ermöglichen, ohne zu riskieren, dass ein benachbarter Link oder Button aktiviert wird.
+
+Menschen mit Behinderungen der Fingerfertigkeit und der Motorik werden besonders große Touch-Ziele schätzen.
+Manche Menschen haben ein Zittern der Hände oder unpräzise Handbewegungen. Andere Menschen können ihre Finger
+überhaupt nicht benutzen und müssen stattdessen andere Körperteile wie Knöchel, Ellbogen oder Zehen benutzen.
+
+Einige der Arten von Berührungszielen, die wir berücksichtigen müssen, sind:
+
+- Links
+
+- Menüs
+
+- Absenden-Schaltflächen
+- Kontrollkästchen
+- Radio-Schaltflächen
+- Text-Eingabefelder
+- Auswahlfelder (Comboboxen)
+- Benutzerdefinierte Widget-Steuerelemente (z. B. Schaltflächen für Media Player)
+
+Touch-Ziele sollten auf dem Gerät mindestens 9,6mm (0,38 Zoll) breit sein. Idealerweise wären sie auch
+mindestens 9,6mm hoch, aber das kann in manchen Fällen schwieriger zu erreichen sein, besonders bei
+Inline-Links.
+
+Angesichts der großen Vielfalt an Größen, Auflösungen und Pixeldichten von Mobilgeräten kann es eine
+Herausforderung sein, 9,6mm zu messen. Es ist hilfreich, das tatsächliche Gerät zu haben, um genaue
+Messungen vorzunehmen:
+
+- Für native Apps:
+
+  - Auf Geräten mit Standardauflösung solltest du die Breite auf mindestens 44 Pixel (gemäß den Empfehlungen
+    von Apple) oder 48 Pixel (gemäß den Empfehlungen von Google) einstellen. Bei Android ist es am besten, die
+    Größe 48px zu verwenden, da Android ein Layout-Gitter hat.
+
+  - Auf Geräten mit doppelter Pixeldichte (z. B. Apple Retina-Bildschirme) solltest du die Breite auf mindestens
+    88px-96px in Bezug auf die tatsächlichen Bildschirmabmessungen einstellen.
+
+- Auf Webseiten:
+
+  - Setze die Breite im CSS auf mindestens 44px (das 48px-Layoutraster von Android ist im Web weniger relevant,
+    aber es schadet nicht, Touch-Ziele größer zu machen). Bei Geräten mit Standardauflösung wird sie mit 44px
+    dargestellt und bei Geräten mit doppelter Dichte wird der Wert interpoliert und mit dem Äquivalent von 44px
+    dargestellt, auch wenn der tatsächliche Wert 88px beträgt
+
+Weitere Informationen zur Zielgröße findest du im Referenzhandbuch <a target="_blank" 
+href="https://www.w3.org/WAI/WCAG21/quickref/#target-size">How to Meet WCAG</a>.
+
+### Gutes Beispiel: Gutes Sizing
+
+Dies sind Buttons in angemessener Größe Schaltflächen, die auf einer Seite für die mobile Nutzung angebracht
+werden. Sie sind leicht zugänglich für die meisten Touch-Benutzer leicht erreichbar und gut sichtbar.
+
+Hier sind einige Beispiel Schaltflächen, die beide den Best Practices für mobile Geräte in der Mindestgröße
+entsprechen. Geräte entsprechen (schaue sie dir auf einem mobilen Gerät an, um die beste Größe zu erhalten).
+
+<div class="ruleExampleExplanation1">
+
+<p>44px Submit Button</p>
+<input
+  style="display: inline-block;height: 44px !important;width: 44px !important; background-color: #e8fae9; color: #000"
+  type="submit"
+  name="submit1"
+  class="button"
+  onclick="alert('You clicked on the button measuring 44 x 44')"
+  value="Go"
+/>
+
+<p>48px Submit Button</p>
+<input style="display: inline-block;height: 48px !important;width: 48px !important;background-color: #e8fae9; color: #000" type="submit" name="submit2" class="button2" onclick="alert('You clicked on the button measuring 48 x 48')" value="Go" />
+</div>
+
+### Schlechtes Beispiel: Kleines Angriffsziel
+
+Nutzer mit Zittern oder anderen motorischen Behinderungen werden es schwer finden, auf die folgende Schaltfläche
+zu klicken, die 24 x 24 Pixel groß ist:
+
+<input
+  style="background-color: #fcf0f0; height: 24px; width: 24px;color:#000"
+  type="submit"
+  name="submit3"
+  class="button"
+  onclick="alert('You clicked on the button measuring 24 x 24')"
+  value="Go"
+/>
+
+### Schlechtes Beispiel: Visuelles Padding, das nicht Teil des Berührungsziels ist
+
+Die Links unten scheinen einen großen Zielbereich zu haben, aber das ist nicht der Fall. Die Polsterung um den
+Link herum und die visuelle Gestaltung (hellrote Hintergrundfarbe mit roter Umrandung) erwecken den Eindruck,
+dass die Links groß sind, aber sie sind tatsächlich nicht größer als der Text innerhalb des Links. Der
+Zielbereich ist immer noch kleiner als für mobile Geräte empfohlen.
+
+<ul style="margin: 0;padding: 0;list-style-type: none;">
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding: 10px 20px;border: 1px solid #990000;border-radius: 5px;">
+    <a style="color:#000" href="javascript:;" onclick="alert('You clicked on link 1')">
+      1
+    </a>
+  </li>
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding: 10px 20px;border: 1px solid #990000;border-radius: 5px;">
+    <a style="color:#000" href="javascript:;" onclick="alert('You clicked on link 2')">
+      2
+    </a>
+  </li>
+  <li style="margin: 2px;padding: 0;list-style-type: none;display: inline-block;background-color: #fcf0f0;padding: 10px 20px;border: 1px solid #990000;border-radius: 5px;">
+    <a style="color:#000" href="javascript:;" onclick="alert('You clicked on link 3')">
+      3
+    </a>
+  </li>
+</ul>

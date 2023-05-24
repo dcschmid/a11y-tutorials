@@ -1,0 +1,36 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Ausrichtung'
+---
+
+## Inhalte müssen ihre Ansicht und Bedienung nicht auf eine einzige Bildschirmausrichtung, wie Hoch- oder Querformat, beschränken, es sei denn, eine bestimmte Bildschirmausrichtung ist unerlässlich.
+
+Es ist wichtig, den Nutzern die Möglichkeit zu geben, ihre Display Ausrichtung zu wählen. Zum Beispiel könnte ein Rollstuhlfahrer
+sein Gerät oder jemand mit einer Behinderung, die seine Hand- oder Armbewegung beeinträchtigt die Hand- oder Armbewegung
+einschränkt, könnte Schwierigkeiten beim Drehen des Bildschirm zu drehen.
+
+Ausnahmen von dieser Regel gibt es in Fällen, in denen eine bestimmte Orientierung wichtig ist. Zum Beispiel kann eine
+Bankanwendung zur Einreichung eines einen Scheck einzureichen, kann das Querformat erforderlich sein, um ein Foto des
+Schecks zu machen.
+
+### Schlechtes Beispiel: Gesperrte Bildschirmausrichtung
+
+![](/images/responsive-design-und-zoom/orientation-bad-example-1.png)
+
+![](/images/responsive-design-und-zoom/orientation-bad-example-2.png)
+
+```js
+setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+```
+
+Das schlechte Beispiel verwendet setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT), wodurch der Bildschirm
+im Hochformat gesperrt wird. Wenn das Telefon seitlich gedreht wird, wird die App-Oberfläche für diejenigen, die das
+Querformat verwenden, unlesbar oder unbrauchbar.
+
+#### Gutes Beispiel: Responsive Bildschirmausrichtung
+
+![](/images/responsive-design-und-zoom/orientation-good-example-1.png)
+
+![](/images/responsive-design-und-zoom/orientation-good-example-2.png)
+
+Das gute Beispiel verwendet keinen Code für die Bildschirmausrichtung, da native Android-Apps standardmäßig auf Querformat-Layouts reagieren.

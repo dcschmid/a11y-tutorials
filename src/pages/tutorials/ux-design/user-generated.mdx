@@ -1,0 +1,440 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Die Herausforderung von nutzergenerierten Inhalten'
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube'
+
+Wenn du deine Plattform für nutzergenerierte Inhalte öffnest (z. B. soziale
+Medien, Blog-Kommentare usw.), wirst du überall unzugängliche Inhalte haben.
+Das ist ganz klar. Die meisten Menschen wissen nichts über Barrierefreiheit,
+und selbst wenn sie etwas darüber wissen, sind sie in der Regel zu faul, sich
+darum zu kümmern. Was ist zu tun?
+
+Hier sind die wichtigsten Strategien, die du anwenden kannst:
+
+- Automatisiere Korrekturen der Barrierefreiheit: Entwickle ausgeklügelte
+  Algorithmen, um unzugängliche Inhalte auf intelligente Weise zu korrigieren,
+  ohne die Menschen zu belasten, die die Inhalte hinzufügen. So aufregend diese
+  Option auch klingt, sie erfordert in der Regel künstliche Intelligenz, um gut
+  zu funktionieren, und ist in den meisten Fällen unpraktisch und unzuverlässig.
+  Selbst die besten Lösungen können nicht die Gedanken der Inhaltsersteller/innen
+  lesen, so dass das Endergebnis immer von geringerer Qualität sein wird als
+  Barrierefreiheit, die von Menschen vermittelt wird.
+
+- Schränke die Art der Inhalte ein, die Nutzer/innen veröffentlichen können:
+  Wenn du die Optionen auf vorgefertigte barrierefreie Vorlagen beschränkst, ist
+  die Zahl der Fehler in der Barrierefreiheit zwar geringer, aber die Plattform
+  selbst ist für die Nutzer/innen weniger leistungsfähig.
+
+- Fordere die Nutzer/innen während des Erstellungsprozesses auf, barrierefreie
+  Inhalte zu erstellen und leite sie dabei an: Weisen Sie auf Barrierefreiheit und
+  Instruktionen hin und zeigen Sie Fehler an, wenn Barrierefreiheitsmerkmale
+  fehlen, bevor Sie den Inhalt veröffentlichen.
+
+- Biete Hilfsprogramme an, um vorhandene Inhalte auf Barrierefreiheit zu prüfen
+  und zu korrigieren: Biete für bereits veröffentlichte Inhalte Möglichkeiten zur
+  Überprüfung und Behebung von Fehlern in der Barrierefreiheit.
+
+- Mache das Autorentool selbst zugänglich: Sorge dafür, dass Menschen mit
+  Behinderungen deine Autorenplattform nutzen können.
+
+Alle Optionen in der obigen Liste werden in den <a href="https://www.w3.org/TR/ATAG20/"
+target="_blank">Barrierefreiheits-Richtlinien für Autorentools 2.0</a>
+behandelt. In diesem Abschnitt wird jeder dieser Ansätze näherbetrachtet.
+
+## Nutzung der Richtlinien für Barrierefreiheit im Autorentool
+
+Viele Entwickler/innen sehen ihre Webanwendungen nicht als Autorentools an, auch
+wenn sie über integrierte Autorenfunktionen verfügen. Wenn sie sich der
+Barrierefreiheit bewusst sind, denken sie an die <a href="https://www.w3.org/TR/WCAG21/"
+target="_blank">Web Content Accessibility Guidelines(WCAG)</a> und haben
+vielleicht noch nicht einmal von den <a href="https://www.w3.org/TR/ATAG20/"
+target="_blank"> Authoring Tool Accessibility Guidelines (ATAG)</a>
+gehört, geschweige denn gedacht, dass diese Richtlinien gelten. Aber sie gelten,
+wenn deine Anwendung Benutzereingaben zulässt, die im Web veröffentlicht werden
+können. Beispiele dafür sind:
+
+- Content-Management-Systeme und Blog-Autorensysteme
+
+- Benutzer-Kommentarfunktionen (Foren, Diskussionen, Blog-Kommentare usw.)
+
+- Funktionen für Produktbewertungen und -rezensionen
+
+- Soziale Medienplattformen
+
+- Funktionen zur Überprüfung von Dokumenten und zur Zusammenarbeit
+
+- Alles, was zu Nutzereingaben einlädt und diese veröffentlicht
+
+Insgesamt ist die ATAG 2.0 in zwei Abschnitte unterteilt:
+
+- Mache die Benutzeroberfläche des Autorentools zugänglich.
+
+- Unterstütze die Produktion von Inhalten mit Barrierefreiheit.
+
+Der Abschnitt über die Barrierefreiheit der Benutzeroberfläche des Autorentools
+ist größtenteils eine Zusammenfassung wichtiger Punkte der WCAG 2.0, daher
+werden wir diesen Abschnitt hier nicht weiter analysieren. Stattdessen werden
+wir die Punkte besprechen, die die Produktion von barrierefreien Inhalten unterstützen.
+
+### Vollautomatische Prozesse produzieren barrierefreie Inhalte
+
+#### Sicherstellen, dass automatisch erstellte Inhalte zugänglich sind
+
+Baue eine Bibliothek mit barrierefreien Vorlagen und Methoden auf, die bereits
+barrierefrei ist, damit sich die Nutzer keine Gedanken über die Barrierefreiheit
+der Ausgabe machen müssen, wenn sie diese vorgefertigten Vorlagen und Methoden
+verwenden. Überprüfe sie gründlich auf Barrierefreiheit, damit du nichts mehr
+ändern musst, wenn die Autoren sie verwenden.
+
+#### Sicherstellen, dass die Informationen zur Barrierefreiheit erhalten bleiben
+
+Achte darauf, dass deine Inhaltsfilter nicht die Barrierefreiheit löschen, die
+die Autoren selbst hinzugefügt haben. Entweder du gehst weniger streng mit den
+Inhalten um oder du fügst intelligente Algorithmen hinzu, die Barrierefreiheit
+erkennen und erhalten. Die erste Option ist bei weitem einfacher, kann aber zu
+Sicherheitsbedenken führen. Die zweite Option ist viel aufwändiger, aber
+potenziell sicherer.
+
+### Autoren werden bei der Erstellung barrierefreier Inhalte unterstützt
+
+#### Sicherstellen, dass barrierefreie Content-Produktion möglich ist
+
+Es gibt zwei Hauptansätze, um diese Leitlinie zu erfüllen:
+
+- Erstelle Autoren-Widgets, die alle Funktionen für die Barrierefreiheit enthalten.
+
+- Erlaube den Autoren, die Ausgabe anzupassen (z. B. den HTML-Quelltext zu bearbeiten).
+
+Autoren die Möglichkeit zu geben, den HTML-Quelltext zu bearbeiten, ist eine
+gute Lösung für alle Situationen, aber realistisch betrachtet kannst du nicht
+erwarten, dass kaum jemand diese Möglichkeit nutzt, wenn die Mehrheit der Autoren
+keine Techniker sind. Du musst die Barrierefreiheit in die Autoren-Widgets selbst
+einbauen. Hier sind einige Beispiele:
+
+- Ein Widget zum Hinzufügen von Bildern, das es den Nutzern ermöglicht, einen
+  Alt-Text anzugeben.
+
+- Ein Widget zum Erstellen von HTML-Tabellen, mit dem die Benutzer/innen eine
+  `<caption>`, Tabellenüberschriften und den Bereich für diese Überschriften
+  angeben können.
+
+- Ein Widget, mit dem Überschriften angegeben werden können (und das sicherstellt,
+  dass der resultierende Code tatsächlich aus Überschriften besteht und nicht aus
+  Absätzen oder `<div>`-Elementen, die so gestylt sind, dass sie wie Überschriften
+  aussehen).
+
+#### Leitfaden für Autoren zur Erstellung von Inhalten mit Barrierefreiheit
+
+Wenn wir das Beispiel eines Widgets zur Erstellung von HTML-Tabellen heranziehen,
+sollten die Methoden zur Angabe einer `<caption>`, der Tabellenüberschriften und
+des Geltungsbereichs für diese Überschriften leicht zu finden und zu verwenden sein.
+Die visuelle Schnittstelle könnte eine grafische Darstellung einer Tabelle enthalten,
+die zeigt, wo diese Funktionen hingehören. Sie kann textliche Instruktionen enthalten,
+die erklären, was die Funktionen sind und warum sie wichtig sind. Sie könnte auch
+eine assistentenähnliche Oberfläche enthalten, die Schritt für Schritt durch den
+Prozess führt. Es gibt viele Möglichkeiten, dies zu tun.
+
+#### Unterstützung von Autoren bei nicht-textuellen Alternativinhalten
+
+Für den Anfang sollten Autoren in der Lage sein, einem einzelnen Bild einen Alt-Text
+für eine Verwendung hinzuzufügen. Aber du kannst noch mehr tun. Bilder und Medien,
+die an mehreren Stellen wiederverwendet werden können, sollten Barrierefreiheit-Attribute
+haben, die ebenfalls wiederverwendet werden können. Der Alt-Text eines Bildes in
+einer Bildbibliothek oder -sammlung sollte mit diesem Bild verbunden bleiben.
+Autoren sollten in der Lage sein, das Bild mit dem vorhandenen Alt-Text einzufügen,
+ohne ihn zu verändern. Du kannst ihnen auch die Möglichkeit geben, den Alt-Text zu
+bearbeiten, damit er besser in den neuen Kontext passt, ohne den ursprünglichen
+Alt-Text in der Bildbibliothek zu verändern.
+
+#### Autoren mit barrierefreien Vorlagen unterstützen
+
+- Biete fertige Vorlagen für Barrierefreiheit an, die Autoren verwenden können.
+
+- Erlaube den Autoren, ihre eigenen wiederverwendbaren, barrierefreien Vorlagen
+  zu erstellen, und weise sie dabei auf die wichtigsten Merkmale der Barrierefreiheit
+  hin.
+
+- Warne die Nutzer/innen vor unzugänglichen vorgefertigten Vorlagen im System
+  und ermutige sie, die barrierefreien Vorlagen zu verwenden.
+
+#### Unterstützung von Autoren bei der Barrierefreiheit von vorverfassten Inhalten
+
+Für Inhalte gelten die gleichen Überlegungen wie für Vorlagen (siehe oben):
+
+- Verfüge über vorgefertigte barrierefreie Inhalte, die Autoren nutzen können.
+
+- Erlaube den Autoren, ihre eigenen wiederverwendbaren barrierefreien Inhalte zu
+  erstellen, und weise sie dabei auf die wichtigsten Merkmale der Barrierefreiheit
+  hin.
+
+- Warne die Nutzer/innen vor unzugänglichen vorbereiteten Inhalten im System und
+  ermutige sie, die zugänglichen Inhalte zu verwenden.
+
+### Autoren werden unterstützt, Barrierefreiheit bestehender Inhalte zu verbessern
+
+Diese Kategorie bezieht sich auf die Erstellung von Werkzeugen, die Autoren helfen,
+Inhalte nachträglich zu verbessern, nachdem sie erstellt wurden.
+
+#### Unterstützung der Autoren bei der Prüfung auf Barrierefreiheit
+
+Ein Autorentool kann ein Dienstprogramm wie einen "Accessibility Checker"
+bereitstellen, um bestehende Inhalte auf Barrierefreiheit zu prüfen. Ein solches
+Prüfprogramm hat jedoch seine Grenzen. Es kann die Überprüfung durch einen
+sachkundigen Menschen nicht ersetzen, aber es kann zumindest einige Arten von
+Fehlern aufspüren und kann besonders für Neulinge in der Barrierefreiheit hilfreich
+sein.
+
+#### Autoren bei der Behebung von Problemen mit der Barrierefreiheit unterstützen
+
+Die Unterstützung der Nutzer bei der Behebung von Problemen kann folgendermaßen erfolgen:
+
+- Bereitstellung allgemeiner Informationen über die Arten von Fehlern in der
+  Barrierefreiheit, entweder als Referenz oder als Feedback zu spezifischen
+  Fehlern, die mit einem "Accessibility Checker"-Tool gefunden wurden.
+
+- Erstellung von assistentenähnlichen Tools, die Autoren bei der Behebung
+  bestimmter Fehler unterstützen.
+
+### Autorentools fördern und integrieren ihre Funktionen für Barrierefreiheit
+
+#### Sicherstellung der Verfügbarkeit barrierefreier Content-Erstellungsfunktionen
+
+- Baue Barrierefreiheit so weit wie möglich in den natürlichen Fluss des
+  Erstellungsprozesses ein, anstatt sie zu verstecken oder sie wie aufgesetzte
+  Extras wirken zu lassen, die nicht wirklich dazugehören.
+
+- Barrierefreiheit sollte gut sichtbar sein.
+
+- Zwinge die Nutzer nicht dazu, Barrierefreiheit zu aktivieren. Sie sollten
+  standardmäßig aktiviert sein.
+
+- Wenn Barrierefreiheit ausgeschaltet werden kann, warne die Nutzer/innen, wenn
+  diese Funktionen deaktiviert sind, und mache es einfach, sie wieder zu aktivieren.
+
+#### Sicherstellen, dass die Dokumentation barrierefreie Content-Produktion fördert
+
+Hilfefunktionen - auch solche, die sich nicht ausdrücklich mit Barrierefreiheit
+befassen - sollten gute barrierefreie Techniken vorleben. Instruktionen für das
+Hinzufügen eines Bildes sollten zum Beispiel den Wert des Alt-Textes zeigen,
+auch wenn es in dem Artikel nicht um Alt-Text an sich geht. Achte bei der Prüfung
+der Beispiele auf alles, was versehentlich schlechte Techniken für die
+Barrierefreiheit darstellt.
+
+## Automatisierte Lösungen
+
+Die Traumlösung für die Barrierefreiheit, die wir alle gerne hätten, ist eine
+automatische Funktion, die unzugängliche Inhalte auf magische Weise in
+zugängliche Inhalte umwandelt. Wie realistisch ist diese Vorstellung? Die gute
+Nachricht ist, dass in einigen Bereichen bereits erhebliche Fortschritte erzielt
+wurden. Die schlechte Nachricht ist, dass wir in anderen Bereichen noch einen
+weiten Weg vor uns haben, und es wird nie vollständig möglich sein, ohne die
+Gedanken der Autorin oder des Autors lesen zu können, denn einige Funktionen
+der Barrierefreiheit hängen von der Absicht ab, nicht nur von technischen Methoden.
+
+### Skype Übersetzer
+
+Skype Translator wurde ursprünglich entwickelt, um Menschen zu helfen, sich in
+verschiedenen Sprachen zu unterhalten. Die Spracherkennungssoftware wandelt die
+Sprache in Text um und konvertiert den Text dann von einer Sprache in eine andere.
+Erst später wurde das Potenzial für gehörlose Nutzer/innen voll ausgeschöpft. Mit
+dieser Anwendung können Gehörlose jetzt in Echtzeit mit hörenden Menschen kommunizieren.
+
+<YouTube id='spqqcJf5e5Q' />
+
+### Automatische Bildunterschriften für YouTube-Videos
+
+Automatische Bildunterschriften gibt es auf YouTube schon seit Jahren. Dabei
+werden Spracherkennungsalgorithmen auf die Audiospur des Videos angewendet und
+das Ergebnis dann mit dem Video synchronisiert. Die Qualität der Technologie hat
+sich stetig verbessert, so dass einige Videos eine außergewöhnlich hohe Genauigkeit
+bei der automatischen Bildunterschrift aufweisen, allerdings nur unter bestimmten
+Bedingungen:
+
+- Die Stimme (Erzählung und/oder Dialog) muss klar sein.
+
+- Die allgemeine Tonqualität muss gut sein.
+
+- Es darf keine Überschneidungen geben.
+
+- Es darf keine nennenswerten Störungen durch Hintergrundgeräusche oder Musik geben.
+
+- Die Akzente der Sprecher/innen müssen den YouTube-Algorithmen vertraut sein.
+
+Trotz der Ungenauigkeiten ist die Technologie für automatische Bildunterschriften
+sehr vielversprechend. Wenn es den Algorithmen gelingt, schlechte Audioqualität
+oder sich überschneidende Stimmen genauso gut zu entschlüsseln wie Menschen, kann
+jedes Video im Internet so gut mit Bildunterschriften versehen werden, dass auch
+Gehörlose alles Nötige aus den Videos herausholen können, ohne dass die Autoren
+der Inhalte überhaupt etwas tun müssen. So weit sind wir noch nicht, aber wir
+sind auf dem Weg dorthin.
+
+#### Audio-Beschreibungen
+
+Automatische Bildunterschriften sind nicht die Lösung für alles. Videos brauchen
+immer noch Audiobeschreibungen, damit blinde Menschen sie verstehen können.
+Audiodeskriptionen sind gesprochene Beschreibungen der visuellen Aspekte von
+Videos, die durch das Hören des Tons allein nicht verstanden werden können.
+Beispiele dafür sind: Wörter, die auf eine Tafel geschrieben sind und nicht laut
+vorgelesen werden, wichtige Gesichtsausdrücke, körperliche Aktionen (wie das
+Werfen eines Balls oder Tanzen), usw. Es ist schwer vorstellbar, dass eine
+automatische Audiodeskriptionsfunktion tatsächlich funktioniert oder nützlich
+ist, aber vielleicht ist es nach einigen Jahren des Experimentierens mit
+künstlicher Intelligenz möglich.
+
+### Automatischer Alt-Text bei Facebook-Bildern
+
+Im April 2016 hat Facebook angekündigt, dass es unter bestimmten Umständen
+automatisch Alt-Text zu Bildern hinzufügt. Die Funktion wurde zuerst auf der
+iOS-Plattform eingeführt, dann auf der regulären Website und auf Android. In der
+Facebook-Pressemitteilung und dem <a href="http://newsroom.fb.com/news/2016/04/using-artificial-intelligence-to-help-blind-people-see-facebook/"
+target="_blank">Video über automatische Alt-Texte</a>, findest du weitere
+Informationen zu dieser Ankündigung.
+
+Die Funktion ist erstaunlich gut, wenn auch mit Einschränkungen. Facebook ist
+vorsichtig, wenn es darum geht, wie viel über ein Bild gesagt oder vermutet wird,
+und stellt jeder Beschreibung den Satz "Bild kann enthalten" voran. Hier sind ein
+paar aktuelle Beispiele:
+
+#### Auto-alt-text Beispiel 1
+
+![Image may contain: fruit and food](/images/user-generated/fruit.png)
+
+Der von Facebook bereitgestellte automatische Text:
+
+"Bild kann enthalten: Obst und Lebensmittel".
+
+Ein vollständigerer, von Menschen geschriebener Alt-Text könnte etwa so lauten:
+
+"Verschiedene Apfelsorten (Fuji, Granny Smith und andere) auf einem Tisch im
+Vordergrund, mit Tüten voller Orangen und Clementinen im Hintergrund."
+
+#### Auto-alt-text Beispiel 2
+
+![Image may contain: 1 person, smiling, night](/images/user-generated/paul.png)
+
+Der von Facebook bereitgestellte automatische Text:
+
+"Bild kann enthalten: 1 Person, lächelnd, Nacht."
+
+Ein vollständigerer, von Menschen geschriebener Alt-Text könnte etwa so lauten:
+
+"Ein Porträt eines Mannes in einem dunklen Mantel, der nachts im Atrium eines
+großen modernen Gebäudes lächelt; im Hintergrund hängen glitzernde Banner von
+der Decke und lila Lichter beleuchten die Stützen der hohen Glaswände des Atriums."
+
+Wir könnten sogar noch einen Schritt weiter gehen und die Person auf dem Foto
+identifizieren. Facebook verwendet bereits eine Gesichtserkennungstechnologie
+und hat die Person auf dem Foto korrekt identifiziert, aber Facebook hat
+beschlossen, die Identität der Person nicht im Alt-Text zu erwähnen, da es
+Bedenken bezüglich des Datenschutzes gibt.
+
+#### Auto-alt-text Beispiel 3
+
+![Cover photo of event Red Dress Ball with the Eric Felten Jazz Orchestra - Feb 11"](/images/user-generated/felten.png)
+
+Die Struktur dieses speziellen Beitrags war kein normales `<img>`-Element. Es
+handelte sich um einen Link mit einem per CSS erstellten Hintergrundbild. Der
+Link hatte keinen sichtbaren Text auf dem Bildschirm (abgesehen von dem Text im
+Hintergrundbild), also bestand die Lösung von Facebook darin, den alternativen
+Text als Aria-Label-Attribut zum Link hinzuzufügen.
+
+Der von Facebook bereitgestellte Text für das automatische Label:
+
+"Titelfoto der Veranstaltung Red Dress Ball mit dem Eric Felten Jazz
+Orchestra - 11. Februar".
+
+In diesem Fall hat Facebook keine Bilderkennung verwendet, um den alternativen
+Text abzuleiten. Stattdessen wurde einfach der Name der Veranstaltung verwendet,
+was in diesem Fall eine ziemlich gute Lösung ist. Das Bild selbst enthält zwar
+mehr Text als der Name der Veranstaltung (es erklärt, wo die Veranstaltung stattfindet,
+wann der Unterricht beginnt, wann getanzt wird, wie viel es kostet und einige
+andere Details), und diese Informationen müssten irgendwo anders in einem Textformat
+zur Verfügung gestellt werden, aber der Link macht zumindest Sinn, wenn Screen
+Reader ihn lesen. Hoffentlich werden alle anderen Informationen auf der Seite
+mit den Veranstaltungsdetails erklärt, denn sonst sind sie nicht verfügbar.
+
+#### Die inhärenten Grenzen automatisierter Alt-Texte
+
+Wie die obigen Beispiele zeigen, sind die Algorithmen von Facebook zwar ziemlich
+ausgeklügelt, aber sie geben trotzdem keine vollständige Beschreibung des Bildes
+im wörtlichen Sinne wieder, die beschreibt, was auf dem Bild zu sehen ist. Noch
+wichtiger ist jedoch, dass es nicht den einen richtigen Alt-Text für Bilder gibt.
+
+- Wenn der Zweck des Bildes mit den Äpfeln und Orangen darin besteht, die
+  verschiedenen Apfelsorten zu zeigen, die in einem Geschäft erhältlich sind
+  (Fuji, Granny Smith usw.), muss der Alt-Text diesen Zweck vermitteln. Die Orangen
+  sind in diesem Fall irrelevant und brauchen nicht einmal erwähnt zu werden.
+
+- Dasselbe Bild könnte auch verwendet werden, um zu sagen: "Hey, schau mal, was
+  ich heute im Laden gekauft habe: Obst! Ich versuche, mich gesünder zu ernähren,
+  und das ist der Beweis dafür!" Wenn das der Fall ist, ist die Art der Äpfel
+  irrelevant, aber die Tatsache, dass es viel Obst (und keine fettigen Lebensmittel)
+  gibt, ist das, was der Alt-Text vermitteln muss
+
+Trotzdem kann auch ein begrenzter, unspezifischer Alt-Text besser sein als gar
+kein Alt-Text.
+
+#### Fehlt: Die Möglichkeit, benutzerdefinierte Alt-Texte zu Titelbildern hinzuzufügen
+
+Derzeit gibt es keine Möglichkeit, einem Titelbild in Facebook einen eigenen
+Alt-Text hinzuzufügen. Das ist ein großes Versäumnis. Es bräuchte nicht viel, um
+ein Feld für den Alt-Text in die Schnittstelle zum Hochladen/Bearbeiten von Bildern
+einzufügen. Facebook erlaubt zwar Bildbeschreibungen, die auf dem Bildschirm
+sichtbar sind und denselben Zweck erfüllen können, aber das Beschreibungsfeld wird
+nur selten genutzt. Die gute Nachricht ist, dass Facebook einen benutzerdefinierten
+Alt-Text für ein Foto in einem Beitrag zulässt, auch wenn die Methode, ihn
+hinzuzufügen, nicht offensichtlich ist.
+
+#### Unzureichende Bildbeschreibung
+
+Die meisten Leute gehen davon aus, dass das Beschreibungsfeld dazu da ist, Dinge
+zu erklären, die auf dem Bild noch nicht ersichtlich sind. Mit anderen Worten:
+Sie gehen davon aus, dass jeder das Bild sehen kann, und beschreiben es deshalb
+nicht so, wie es eine blinde Person braucht.
+
+![Image may contain: fruit and food](/images/user-generated/fruit.png)
+
+Beschreibung durch den Nutzer:
+
+"Schau mal, was ich gekauft habe!"
+
+Diese Art der Beschreibung ist für eine blinde Person völlig unzureichend.
+
+Das Hinzufügen eines Alt-Text-Feldes mit einer Instruktion, wie man es richtig
+benutzt, könnte die Situation verbessern.
+
+### Die Zukunft der automatisierten Barrierefreiheit
+
+Abgesehen von der Spracherkennung für Chats und Videos oder automatisierten
+Alt-Texten, wo könnten wir noch automatisierte Lösungen für die Barrierefreiheit
+sehen? Hier sind ein paar Ideen:
+
+- Automatische Tabellenstruktur: Software, die die Tabellenstruktur auch dann
+  erkennt, wenn die Tabelle nicht entsprechend gekennzeichnet ist, und bei Bedarf
+  Tabellenüberschriften anbringen kann.
+
+- Automatisierte Beschriftung von Formularen: JAWS und VoiceOver stellen bereits
+  intelligente Vermutungen über die Labels für Formularfelder an, die keine Labels
+  haben. Diese Logik könnte erweitert und verbessert werden.
+
+- Automatisierte ARIA-Widget-Korrektur: Die Software könnte erkennen, welche Art
+  von Widget der Autor erstellen wollte und es dann korrigieren.
+
+- Automatisierte Kontrastkorrektur: Algorithmen könnten den Kontrast im laufenden
+  Betrieb anpassen oder während des Erstellungsprozesses Warnungen ausgeben.
+
+- und so weiter...
+
+Es ist wichtig zu wissen, dass automatisierte Lösungen an mindestens zwei Stellen
+eingesetzt werden können:
+
+- Während des Erstellungsprozesses
+
+- Auf das Endergebnis
+
+Facebook könnte den Alt-Text zu einem Bild hinzufügen und den Autor dann fragen:
+"Ist das ein guter Alt-Text? Wenn nicht, schreibe bitte eine genauere
+Bildbeschreibung." Damit würde die Verantwortung wieder bei den Autoren der
+Inhalte liegen, wo sie hingehört.

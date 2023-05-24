@@ -1,0 +1,141 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Animationen und Bewegungsabläufe'
+---
+
+Jede Bewegung auf einer Webseite - z. B. eine Animation, ein Hintergrundvideo, Parallaxen-Effekte oder Übergänge - kann die Barrierefreiheit auf verschiedene Weise beeinträchtigen. Menschen mit Gleichgewichtsstörungen kann schwindelig werden, wenn die Bewegung auf der Seite zu überwältigend für sie ist. Menschen mit Aufmerksamkeitsstörungen können übermäßig abgelenkt werden. Und wenn es Ton gibt, kann es für Menschen mit Bildschirmlesegeräten schwierig sein, ihren eigenen Bildschirmleser über den Videoton zu hören. In diesem Abschnitt werden diese Arten von Problemen besprochen.
+
+"Gleichgewichtsstörung" ist ein Begriff, der vielen Menschen nicht geläufig ist. Vestibularstörungen umfassen eine breite Kategorie von Erkrankungen, die das Gleichgewicht einer Person beeinträchtigen. Die Symptome können von gelegentlichen, leichten Gleichgewichtsproblemen bis hin zu schweren Fällen reichen, die das Gehen, Baden oder andere tägliche Aktivitäten behindern. Die Symptome können konstant auftreten oder durch visuelle Reize ausgelöst werden, die den Anschein erwecken, dass man sich bewegt oder das Gleichgewicht verliert - wie z. B. Hintergrundbewegungen auf einer Webseite.
+
+## Parallax-Effekte
+
+Parallaxen-Effekte beziehen sich auf geskriptete visuelle Elemente, die auf Benutzeraktionen - wie Scrollen oder Bewegen der Maus - reagieren und bewirken, dass sich einige Elemente auf der Seite anders bewegen als andere Elemente auf der Seite. Ein Hintergrundbild kann sich z. B. langsamer bewegen als der darüber liegende Text. Oder das Hintergrundbild bleibt völlig statisch und unbewegt, während der Text darüber scrollt.
+
+Der visuelle Effekt ist beeindruckend, vor allem weil er etwas unerwartet und neuartig ist, aber er hat auch einige Nachteile. Menschen, die anfällig für Übelkeit sind oder unter Schwindel oder Gleichgewichtsstörungen leiden, können diese negativen Symptome beim Betrachten von Parallaxeneffekten spüren.
+
+### Parallaxen-Effekte sollten auf ein Minimum reduziert werden, was die Gesamtzahl der Parallaxen-Effekte, die Stärke der Parallaxe in jedem einzelnen Effekt und die Größe des betroffenen Bereichs angeht.
+
+Je mehr Parallaxeneffekte du einbaust und je extremer sie sind, desto größer ist das Risiko, dass du bei Menschen mit Gleichgewichtsstörungen Probleme verursachst.
+
+#### Schlechtes Beispiel: Parallaxen-Effekt auf dem Home-Bildschirm eines iPhones
+
+Bei einigen mobilen Geräten mit Bewegungserkennungstechnologie sind Parallaxen-Effekte im Betriebssystem integriert. Auf dem iPhone bewegt sich das Hintergrundbild des Startbildschirms nach oben und unten oder zur Seite, wenn die Person das Gerät neigt. Die Symbole bleiben an ihrem Platz (obwohl einige Symbole Teile haben, die sich im Einklang mit dem Hintergrund leicht bewegen). Der visuelle Effekt ist eine dreidimensionale Tiefe und aktive Bewegung. Das ist trendy, aber einige Leute haben sich beschwert, als diese Funktion aufkam. Apple hat das Betriebssystem so aktualisiert, dass man diese Funktion deaktivieren kann.
+
+Um die Parallaxen-Effekte auf dem iPhone zu deaktivieren, ge
+
+TODO: Example Video einbauen
+
+#### Schlechtes Beispiel: Webseite mit mehreren großen signifikanten Parallaxen-Effekten
+
+Die Parallaxen-Effekte in dem Beispiel unten nehmen den gesamten Bildschirm ein, was schon ein bisschen riskant ist, um damit zu beginnen. Es gibt mehrere Beispiele für verschiedene Arten von Parallaxen-Effekten auf der Seite. In einigen Fällen scrollen die großen Bilder langsamer nach oben als der Text. In einem Fall rutscht das Bild nach links. Außerdem gibt es Ein- und Ausblendeffekte für den Text und die Bilder. Insgesamt ist der Effekt zwar optisch ansprechend, aber die Kombination aus so vielen großen und unterschiedlichen Effekten kann bei manchen Menschen Schwindel oder Übelkeit auslösen.
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/parallax/bad1.html" target="_blank">Gehe zu der schlechten Webseite Parallaxe Beispiel</a>
+
+### Alle Inhalte und Funktionen innerhalb von Parallaxen-Scrolling-Inhalten müssen über die Tastatur zugänglich sein.
+
+Tastaturbenutzer müssen in der Lage sein, auf die verborgenen Bereiche eines Parallaxen-Scrolling-Bereichs zuzugreifen und alle Funktionen der Webseite zu nutzen. Wenn der Bildlauf per Skript auf Mausereignisse reagiert oder wenn der verborgene Inhalt im CSS auf display: none gesetzt ist, können Tastaturbenutzer/innen möglicherweise nicht auf die verborgenen Teile des Inhalts zugreifen.
+
+### Der Kontrast des Textes gegen alle Teile eines sich bewegenden Hintergrunds muss mindestens 4,5 zu 1 für kleinen Text oder 3 zu 1 für großen oder fetten Text betragen.
+
+Der Text muss immer vor dem Hintergrund lesbar sein und die WCAG-Kontrastrichtlinien von 4,5 zu 1 für kleinen Text oder 3 zu 1 für großen oder fetten Text erfüllen. Wenn sich Text über Hintergrundbilder bewegt, können einige Teile des Bildes dunkler sein als andere. Wenn es Stellen gibt, an denen der Text über kontrastarmen Bereichen des Hintergrunds erscheint, wäre es am besten, eine einfarbige Hintergrundfarbe hinter dem Text zu platzieren, um sicherzustellen, dass der Kontrast in allen Situationen gut ist.
+
+#### Schlechtes Beispiel: Schlechter Kontrast des Textes vor einigen Teilen des Hintergrunds
+
+Im Screenshot unten steht weißer Text über einem Bild, das eine Mischung aus sehr dunklen und sehr hellen Hintergrundfarben hat. Das Hintergrundbild ist statisch. Der Text bewegt sich. Wenn der weiße Text über den hellen Hintergrund rollt, ist er schwer oder gar nicht zu lesen. Der Text kann an anderen Stellen des Bildlaufs lesbar sein, aber er muss immer und an allen Stellen des Bildlaufs lesbar sein.
+
+![](/images/multimedia/parallax-contrast-bad.png)
+
+#### Gutes Beispiel: Einfarbige Hintergrundfarbe
+
+Im Screenshot unten wurde eine dunkle Hintergrundfarbe hinter dem weißen Text platziert, damit es keine Rolle spielt, wo sich der Text beim Scrollen über das Bild befindet. Der Text ist immer gut lesbar und hat einen ausreichenden Kontrast.
+
+![](/images/multimedia/parallax-contrast-good.png)
+
+### Parallaxes Scrollen kann die Benutzerfreundlichkeit beeinträchtigen.
+
+Nicht jeder versteht, wie man Parallax-Scrolling-Oberflächen nutzt. Wenn Menschen zum ersten Mal eine Seite mit parallaxem Scrolling sehen, merken sie vielleicht gar nicht, dass sie scrollen müssen, vor allem, wenn das Bild oder die erste "Folie" den gesamten Bildschirm einnimmt. Es kann sein, dass sie die Seite verlassen und denken, es gäbe nichts mehr zu sehen.
+
+Ähnlich verhält es sich, wenn die Parallaxen-Scroll-Funktion ein großes Bild enthält, das völlig statisch ist und über dem sich der Text bewegt.
+
+#### Schlechtes Beispiel: Großes statisches Bild auf einer parallax scrollenden Seite
+
+In diesem Beispiel nimmt das Hintergrundbild den gesamten Bildschirm ein. Wenn der Nutzer zu scrollen beginnt, scheint zunächst nichts zu passieren, weil der überlagernde Text eingeblendet wird und nicht nach oben oder unten scrollt. Es kann sein, dass der Nutzer zu scrollen beginnt, aber nicht weit genug scrollt, um zu erkennen, dass es zusätzliche Inhalte gibt, und deshalb die Seite vorzeitig verlässt.
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/parallax/bad2.html" target="_blank">Gehe zur Seite mit dem schlechten statischen Parallaxen-Effekt</a>
+
+### Parallaxe scrollende Seiten können die SEO negativ beeinflussen
+
+Je nachdem, wie die Seiten erstellt werden, können sich Parallaxen-Designs negativ auf die Suchmaschinenoptimierung (SEO) auswirken, vor allem wenn der Inhalt zunächst mit Methoden wie display: none ausgeblendet wird. Es gibt Möglichkeiten, die negativen Auswirkungen auf die Suchmaschinenoptimierung zu vermeiden, aber es lohnt sich, auf diesen potenziellen Nachteil hinzuweisen.
+
+## Hintergrundvideos und Animationen
+
+### Wichtige Inhalte müssen nicht durch Hintergrundvideos und Animationen vermittelt werden, es sei denn, die Nutzer/innen haben die volle Kontrolle über die Wiedergabe und vollen Zugang zu allen erforderlichen Bildunterschriften, Transkriptionen und Audiobeschreibungen.
+
+Die allgemeine Idee von Hintergrundvideos ist es, eine optisch ansprechende und etwas unerwartete Aufwertung des Webinhalts zu bieten. Das Hintergrundvideo sollte als zusätzliche Information betrachtet werden, nicht als kritische Information. Wenn wichtige Informationen nur im Hintergrundvideo vermittelt werden, muss das Video vollständig barrierefrei sein, d. h. mit Bildunterschriften, einer Abschrift und Audiobeschreibungen, wenn das Video für Blinde nicht vollständig verständlich ist, wenn sie sich das Originalvideo anhören.
+
+### Es muss eine Methode vorhanden sein, um Hintergrundvideos oder -animationen, die automatisch abgespielt werden und 5 Sekunden oder länger dauern, anzuhalten, zu stoppen oder auszublenden.
+
+Am besten ist es, wenn keine Inhalte automatisch abgespielt werden, wenn die Seite geladen wird. Am besten ist es, wenn du den Nutzern die volle Kontrolle über die Start- und Stoppzeit von bewegten Inhalten oder Audioinhalten gibst. Als Kompromiss erlaubt die WCAG AA, dass Videos bis zu 5 Sekunden lang automatisch abgespielt werden, aber wenn der Inhalt länger als 5 Sekunden abgespielt wird, muss ein Mechanismus zum Anhalten, Stoppen oder Ausblenden des Inhalts vorhanden sein.
+
+### Es sollte eine Methode zum Anhalten und Neustarten von Hintergrundvideos und -animationen geben.
+
+Jedes Mal, wenn ein Video oder eine Animation abgespielt wird, sollten die Nutzer die Möglichkeit haben, die Wiedergabe anzuhalten und neu zu starten. Die WCAG AA erlauben zwar, dass Videos 5 Sekunden lang abgespielt werden können, ohne dass eine Pausenfunktion erforderlich ist, aber die beste Praxis ist immer noch, unter allen Umständen eine Pausentaste einzubauen.
+
+#### Schlechtes Beispiel: Hintergrundvideo ohne Pausentaste
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/background-video/bad2.html" target="_blank">Gehe zu dem schlechten Beispiel eines Hintergrundvideos ohne Pausenfunktion</a>
+
+#### Gutes Beispiel: Hintergrundvideo mit Pausentaste
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/background-video/good2.html" target="_blank">Hier ein gutes Beispiel für ein Hintergrundvideo mit einer Pausenfunktion</a>
+
+### Der Kontrast zwischen Text und Hintergrundvideos und -animationen muss mindestens 4,5 zu 1 für kleinen Text oder 3 zu 1 für großen oder fetten Text betragen.
+
+#### Schlechtes Beispiel: Hintergrundvideo mit kontrastarmem Text in einigen Frames
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/background-video/bad.html" target="_blank">Gehe zu dem schlechten Beispiel für kontrastarmen Text über einem Hintergrundvideo</a>
+
+#### Gutes Beispiel: Hintergrundvideo mit kontrastreichem Text-Overlay
+
+<a href="https://media.dequeuniversity.com/courses/generic/web-multimedia-animations-and-motion/2.0/en/html/background-video/good1.html" target="_blank">Gehe zu dem guten Beispiel für kontrastreichen Text über einem Hintergrundvideo</a>
+
+### Bewegungen in Hintergrundvideos und Animationen sollten minimal sein.
+
+Jede Bewegung auf einer Webseite zieht die visuelle Aufmerksamkeit des Nutzers auf sich. Das kann eine gute Sache sein, wenn du versuchst, die Aufmerksamkeit des Nutzers auf etwas zu lenken, aber ein Hintergrundvideo oder eine Animation ist per Definition als Hintergrundinhalt gedacht. Sie sollen nicht im Mittelpunkt der Aufmerksamkeit stehen. Deshalb sollte jede Bewegung im Video minimal und unauffällig sein.
+
+Nutzern mit Aufmerksamkeitsdefiziten kann es besonders schwer fallen, sich auf den Hauptinhalt zu konzentrieren, wenn das Video zu hektisch oder ablenkend ist.
+
+### Hintergrundvideos und -animationen dürfen keine Töne enthalten.
+
+Wenn du Töne in ein Hintergrundvideo oder eine Animation einfügst, zwingt der Ton die Nutzer/innen dazu, zuzuhören, was die Absicht, das Video oder die Animation in den Hintergrund zu stellen, zunichte macht. Benutzer von Bildschirmlesegeräten sind mit der Tatsache konfrontiert, dass ihr Bildschirmlesegerät mit ihnen spricht UND ein Video gleichzeitig Geräusche von sich gibt, was verwirrend und störend sein kann. Wenn das Video zu laut ist, kann es sogar den Ton des Bildschirmlesers übertönen. Bildschirmleser/innen können nicht sehen, wo das Video läuft, also müssen sie nach den Bedienelementen des Videoplayers suchen, um den Ton auszuschalten, falls es überhaupt welche gibt. Es kann lange dauern, bis er die Bedienelemente findet. In der Zwischenzeit ist der Nutzer frustriert und hat ein schlechtes Erlebnis auf der Webseite.
+
+Wenn du Töne einbaust, ist es am besten, das Video ganz normal mit allen Bedienelementen und Barrierefreiheitsmerkmalen zur Verfügung zu stellen und es nicht so einzurichten, dass es automatisch abgespielt wird.
+
+## Animationen von Interaktionen
+
+### Ein/e Nutzer/in sollte die Möglichkeit haben, die durch Interaktion ausgelöste Bewegungsanimation zu deaktivieren, es sei denn, die Animation ist für die Funktionalität oder die zu vermittelnden Informationen unerlässlich.
+
+Bei manchen Menschen können die Seitenanimationen negative Auswirkungen haben. Zum Beispiel können Menschen mit Gleichgewichtsstörungen (Innenohrstörungen) Übelkeit, Schwindel oder Kopfschmerzen bekommen, wenn sich der Bildschirm übermäßig bewegt. Die Möglichkeit, diese Animationen abzuschalten, würde das Erlebnis der Nutzer/innen verbessern.
+
+Zu den Animationen, die unter dieses Erfolgskriterium fallen, gehören Parallaxen-Effekte beim Scrollen, bei denen sich der Vorder- und Hintergrund der Seite mit unterschiedlicher Geschwindigkeit oder in unterschiedliche Richtungen bewegen, sowie Animationen, die durch Klicks des Nutzers ausgelöst werden.
+
+Es gibt Ausnahmen von dieser Regel: Animationen, die für die Funktionalität oder die zu vermittelnden Informationen unerlässlich sind. So gilt zum Beispiel das einfache Scrollen der Seite als wesentliche Funktion und ist von dieser Anforderung ausgenommen. Ein weiteres Beispiel sind Webseiten, bei denen Animationen Teil des Zwecks der Seite sind. Das sind z. B. Online-Plattformen zur Erstellung von Foliendokumenten mit Übergängen zwischen den Folien, oder wenn die Nutzer/innen die Animationen selbst erstellen.
+
+Du kannst die Möglichkeit bieten, unwesentliche Animationen auf verschiedene Arten abzuschalten:
+
+- Platziere eine Schaltfläche/einen Schalter auf der Webseite, mit der/dem die Nutzer/innen die Animationen deaktivieren können.
+
+- Verwende die CSS-Medienabfrage "prefers-reduced-motion" (diese Option wird nur begrenzt, aber zunehmend, unterstützt). Nutzer/innen können in ihrem Betriebssystem (nicht in ihrem Webbrowser) eine Präferenz für reduzierte Bewegungen festlegen, die Webbrowser dann auf Webseiten anzeigen können. Ab April 2019 wird die Medienabfrage "prefers-reduced-motion" in Safari auf dem Desktop und auf dem Handy sowie in Firefox auf dem Desktop unterstützt und ist in der Beta-Version von Chrome 74 enthalten.
+
+#### Schlechtes Beispiel: Parallax Scrolling
+
+Dieser Artikel auf der SquareSpace-Website bietet eine weitere <a href="https://support.squarespace.com/hc/en-us/articles/205815488-Parallax-scrolling" target="_blank">Demonstration des Parallaxen-Scrolling-Effekts</a> auf einer Website-Vorlage.
+
+#### Gutes Beispiel: Bewegung reduzieren oder ausschalten
+
+Da die Browserunterstützung für die Medienabfrage "prefers-reduced-motion" unvollständig ist, können Webdesigner/innen, die Funktionen wie das parallaxe Scrollen auf ihrer Website nutzen möchten, einen Schalter auf der Webseite einrichten, mit dem die Nutzer/innen das parallaxe Scrollen zugunsten des normalen Scrollens deaktivieren können. Achte aber darauf, dass dies nicht den Zugriff auf Inhalte verhindert, die nicht mehr gescrollt werden können.
+
+Auf vielen Smartphones gibt es eine Funktion, mit der die Bewegung reduziert oder ausgeschaltet werden kann. Auf diesem Android-Telefon kannst du zum Beispiel unter Einstellungen > Barrierefreiheit > Sichtbarkeitsverbesserungen den Schalter für "Animationen entfernen" aktivieren.
+
+![](/images/multimedia/good-example-remove-animations.png)
+

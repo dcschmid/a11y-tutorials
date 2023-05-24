@@ -1,0 +1,827 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'SVG'
+pubDate: 2023-05-14
+---
+
+Skalierbare Vektorgrafiken (SVG) bieten eine Reihe von Funktionen, die die Barrierefreiheit von
+Grafiken im Internet verbessern. Sie sind vor allem für blinde oder sehbehinderte Menschen von
+Vorteil, die Hilfsmittel verwenden können, oder für andere, die farbenblind sind. Der zusätzliche
+Vorteil der Barrierefreiheit von SVG besteht darin, dass sie auch die Nutzbarkeit von Inhalten für
+Menschen ohne Behinderungen verbessern können, z. B. für diejenigen, die mit mobilen Geräten oder
+anderen nicht-traditionellen Geräten (z. B. Tablets) auf das Internet zugreifen.
+
+In diesem Abschnitt geht es nur um die Barrierefreiheit von SVG. Es ist nicht beabsichtigt, die
+verschiedenen Optionen zur Erstellung und Umsetzung von Scalable Vector Graphics im Detail zu erläutern.
+Eine sehr umfassende Ressource, <a href="https://css-tricks.com/mega-list-svg-information/" target="_blank">A
+Compendium of SVG Information</a>, bietet Details zu allem, von der grundlegenden Implementierung bis hin
+zu Farbverläufen, Animationen und allerlei anderen Leckereien.
+
+## Was sind skalierbare Vektorgrafiken?
+
+SVG sind zweidimensionale, vektorbasierte Grafiken, die im XML-Format definiert sind. Sie können mit einem
+Texteditor erstellt und bearbeitet werden, werden aber eher mit Grafikbearbeitungsprogrammen wie Adobe
+Illustrator oder Inkscape erstellt. SVG ist eigentlich eine eigene Sprache, ähnlich wie HTML, und wurde
+erstmals 1999 vom W3C eingeführt. Leider wurde SVG bis zu diesem Zeitpunkt noch nicht in großem Umfang für
+die Grafikentwicklung genutzt, weil es von den Browsern nicht unterstützt wurde. Heute wird SVG jedoch
+von den meisten modernen Browsern unterstützt, auch wenn es Unterschiede bei der Interpretation durch
+verschiedene Arten von Bildschirmlesegeräten geben kann. Außerdem ist zu beachten, dass der Internet
+Explorer keine Animationen unterstützt.
+
+Mit SVG können drei Arten von grafischen Objekten erstellt werden, darunter Vektorformen, wie Pfade
+mit geraden Linien oder Kurven. Außerdem können auch Bilder und Text erstellt werden. SVG kann auch
+interaktiv und dynamisch sein, entweder deklarativ durch Einbettung der Animation inline oder alternativ
+durch Skripting.
+
+SVG-Objekte sind auflösungsunabhängig, d. h. sie sehen auf einem kleinen, mobilen Gerät genauso gut aus
+wie auf einem Desktop-PC mit einem 24-Zoll-Monitor. Das ist wichtig für Menschen mit Sehschwäche und für
+diejenigen, die Hilfsmittel mit einer sehr niedrigen Auflösung verwenden. Da das Bild nach mathematischen
+Grundsätzen erstellt wird, lässt es sich außerdem nahtlos skalieren, egal ob es vergrößert oder verkleinert
+wird, was SVG zu einer optimalen Lösung für responsives Design macht.
+
+## Rastergrafik versus Vektorgrafik
+
+### Vektorbilder behalten ihre Klarheit, wenn sie vergrößert werden
+
+Ein Rasterbild, das auch als Bitmap bezeichnet wird, besteht aus einer Reihe von Punkten oder
+Pixeln, wobei jedem Pixel ein anderer Farbwert zugeordnet ist. Vektorbilder hingegen bestehen aus
+geometrischen Grundformen wie Linien, Punkten oder Kurven, deren Beziehung auf mathematischen
+Gleichungen beruht. Daher lassen sich Vektorbilder unabhängig vom Zoomfaktor oder der Auflösung gut
+skalieren. Das Bild bleibt klar und unversehrt.
+
+Leider werden Rasterbilder "verpixelt", wenn sie vergrößert werden, und können oft unscharf oder
+verzerrt werden. Die Pixel werden gestreckt oder geschrumpft, je nachdem, was auf das Bild angewendet
+wird. Dennoch haben Rasterbilder ihre Berechtigung, denn sie sind das beste Format für komplexe Bilder
+wie Fotos. Vektorbilder hingegen eignen sich am besten für einfache Zeichnungen wie Strichzeichnungen,
+Logos, Diagramme und Schaubilder oder Text.
+
+Die folgenden zwei Beispiele zeigen, wie sich die Vergrößerung von Bildern in einem Browser auswirkt:
+
+#### Beispiel - Bilder in normaler Größe
+
+Das erste Beispiel zeigt zwei Versionen des Logos für die Software Amaze von Deque. Das erste Bild
+(links) ist eine SVG-Version, während das zweite eine PNG-Version des Logos ist. Auf einem
+Nicht-Retina-Display sehen beide Bilder identisch aus, und auch die Schärfe und Klarheit sind ungefähr
+gleich.
+
+<div style="display: flex; justify-content:space-evenly; width: 100%; background: #fff">
+![](/images/bilder/amaze-logo-small.svg)
+
+![](/images/bilder/amaze_snippet.PNG)
+
+</div>
+
+Ein weiterer wichtiger Unterschied zwischen Vektor- und Rasterbildern ist die Dateigröße. Da
+es sich bei SVGs im Wesentlichen um Text handelt, können einzelne Dateien gezippt werden, was
+in der Regel zu einer geringeren Dateigröße führt als bei einer Rasterversion der gleichen Grafik.
+Das gilt vor allem dann, wenn sich der Verwendungszweck auf einfache Zeichnungen beschränkt, wie
+sie im vorherigen Abschnitt beschrieben wurden. Wenn das Bild animiert werden soll, ist der
+zusätzliche Einfluss auf die Dateigröße von Rasterbildern erheblich. Mit SVG können jedoch einzelne
+Komponenten der Grafik zur Laufzeit mit JavaScript und CSS animiert werden.
+
+#### Dateitypen von Rasterbildern:
+
+- .jpg
+
+- .gif
+
+- .png
+
+- .tiff
+
+- .psd
+
+#### Dateitypen von Vektorbildern:
+
+- ai, .ait, .art (Adobe Illustrator)
+
+- .cdr, .cdrw, .cdt (Corel Draw)
+
+- .dlg, .do (Digital Live Graph)
+
+- .odg (Open Office)
+
+## SVG als img src
+
+Es gibt mehrere Möglichkeiten, ein SVG in eine Webseite einzubetten:
+
+- Verwende das `<img>`-Tag und referenziere die SVG-Datei als Quelle (z. B.
+  `<img src="SVGFile.svg" alt="some alt text">`).
+
+- Binde die SVG direkt (inline) in deinen bestehenden HTML-Code ein, indem du das
+  `<svg>`-Element verwendest.
+
+- Binde das SVG in einen `<iframe>` oder `<embed>` Tag ein oder referenziere es als
+  Datenattribut über ein `<object>`.
+
+Aus Sicht der Barrierefreiheit sind die zuverlässigsten Methoden die Nummern 1 und 2:
+die Verwendung des `<img>`-Tags oder das Einbetten der SVG in den HTML-Code mit dem
+`<svg>`-Element. Die Verwendung von `<iframe>`- oder `<object>`-Elementen wird von
+assistiven Technologien nur sehr schlecht unterstützt.
+
+Für einfache, unkomplizierte Bilder ist die Verwendung des `<img>`-Tags und der Verweis auf
+die SVG-Datei als Quelle eine unkomplizierte Methode. Die Vorteile dieser Methode sind:
+
+- Die HTML-Dateigröße wird kleiner sein als beim Einbetten des `<svg>`-Elements inline.
+
+- Das Bild kann vom Browser zwischengespeichert werden.
+
+- Wenn du das SVG an mehreren Stellen verwendest, macht eine einzige Bilddatei die
+  Pflege einfacher.
+
+Es gibt ein paar Nachteile bei dieser Methode:
+
+- JavaScript und CSS können nicht auf den `<svg>`-Inhalt angewendet werden, um Bilder zu animieren oder
+  zu manipulieren.
+
+- Die SVG-Quelle ist nicht direkt im DOM verfügbar und kann weniger vorhersehbare Ergebnisse für
+  assistive Technologien liefern, wenn das Bild komplex ist.
+
+### Beispiel - Verweis auf die SVG in der src eines img
+
+```html
+<img src="somesvg.svg" />
+```
+
+### Alle SVG `<img>`-Elemente sollten auf role="img" gesetzt werden.
+
+Um sicherzustellen, dass möglichst viele Hilfstechnologien das SVG als Bild erkennen,
+füge dem `<img`>-Element role="img" hinzu.
+
+#### Gutes Beispiel: Hinzufügen von role="img" zum `<img>`.
+
+```html
+<img src="somesvg.svg" role="img" />
+```
+
+### Alle SVG `<img>` Elemente müssen einen aussagekräftigen, prägnanten Alternativtext haben (über alt, aria-label oder aria-labelledby).
+
+Wenn du ein SVG-Element über ein `<img>`-Element hinzufügst, ist es wichtig, einen prägnanten,
+aussagekräftigen Alternativtext über die Attribute alt, aria-label oder aria-labelledby innerhalb
+des `<img>`-Elements hinzuzufügen. Der Inhalt des alternativen Textes wird genauso bestimmt wie bei
+jedem `<img>`-Element, d.h. der Zweck oder die Bedeutung des Elements sollte durch den alternativen
+Text beschrieben werden.
+
+#### Gutes Beispiel: Die Verwendung von alt, um alternativen Text bereitzustellen.
+
+```html
+<img src="somesvg.svg" role="img" alt="a concise description of the image" />
+```
+
+#### Gutes Beispiel: Die Verwendung von aria-label, um alternativen Text bereitzustellen.
+
+```html
+<img src="somesvg.svg" role="img" aria-label="a concise description of the image" />
+```
+
+#### Gutes Beispiel: Die Verwendung von aria-labelledby, um alternativen Text bereitzustellen.
+
+```html
+<p id="caption1">This is a caption above an image</p>
+<img src="somesvg.svg" role="img" aria-labelledby="caption1" />
+```
+
+## Inline SVGs
+
+Ein großer Vorteil der Einbettung des `<svg>`-Elements in HTML, anstatt das `<img>`-Tag zu verwenden
+und die SVG-Datei als Quelle zu referenzieren, ist, dass JavaScript und CSS auf den `<svg>`-Inhalt
+angewendet werden können, um das Bild zu animieren oder zu manipulieren.
+
+Diese Methode hat ein paar Nachteile:
+
+- Auch wenn es SVG-Bilder schon seit vielen Jahren gibt, ist die Unterstützung durch Hilfstechnologien
+  nicht einheitlich. Die unten aufgeführten Regeln bieten die beste Erfahrung für eine Vielzahl
+  von Hilfstechnologien.
+
+- Der mehr eingebettete Code führt auch zu einer höheren Dateigröße.
+
+- Das Inline-SVG kann nicht zwischengespeichert werden.
+
+- Wenn das Bild an mehreren Stellen verwendet wird, wird die Pflege des Inline-SVG-Codes komplizierter.
+
+#### Beispiel - SVG inline einbetten
+
+```html
+<html>
+  <body>
+    <svg></svg>
+  </body>
+</html>
+```
+
+### Alle `<svg>`-Elemente müssen auf role="img" gesetzt werden.
+
+Um sicherzustellen, dass möglichst viele Hilfstechnologien das SVG als Bild erkennen,
+füge dem `<svg>`-Element role="img" hinzu.
+
+#### Gutes Beispiel: Hinzufügen von role="img" zur `<svg>`.
+
+```html
+<svg role="img"></svg>
+```
+
+### Alle informativen oder handlungsfähigen `<svg>`-Elemente müssen einen aussagekräftigen Alternativtext haben (über das `<title>`-Element).
+
+Wenn du ein SVG-Element inline einfügst, ist es wichtig, einen prägnanten, aussagekräftigen
+Alternativtext über das `<title>`-Element der `<svg>` hinzuzufügen. Der Inhalt des alternativen Textes
+wird auf die gleiche Weise bestimmt wie bei einem regulären Bild, nämlich in dem Sinne, dass er den
+Zweck oder die Bedeutung des Bildes beschreiben muss.
+
+Der `<title>` muss das erste Kind des übergeordneten Elements sein. Das ist wichtig, weil ein
+`<svg>`-Element mehrere Titel haben kann, je nachdem, ob es mehrere Container (oder Gruppierungen) von
+grafischen Elementen enthält.
+
+#### Gutes Beispiel: Beispiel 1 - Verwendung des `<title>` als Ersatz für alternativen Text.
+
+Im folgenden Beispiel enthält der `<title>` den gleichen Text wie die Überschrift des Diagramms und dient als
+prägnante Textalternative für das Bild.
+
+```html
+<svg role="img">
+  <title>Total Widgets Purchased during 2016</title>
+</svg>
+```
+
+#### Gutes Beispiel: Beispiel #2 - Verwendung des `<title>` als Äquivalent für alternativen Text.
+
+```html
+<svg width="200" height="163" role="img">
+  <title>I am text in a circle</title>
+  <circle cx="81" cy="85" r="75" fill="#00a" stroke="#000" stroke-width="1" />
+  <text id="text" x="81" y="85" font-size="8px" text-anchor="middle" fill="#fff">
+    I am text in a circle
+  </text>
+</svg>
+```
+
+### Der alternative Text (`<title>`) eines `<svg>`-Elements muss über aria-labelledby programmatisch mit dem `<svg>`-Element verknüpft werden.
+
+Während ein `<title>` das Äquivalent zu alternativem Text für SVG darstellt, ist es leider so,
+dass nicht alle Browser diese Informationen über die Accessible API zur Verfügung stellen.
+Außerdem machen nicht alle Screenreader davon Gebrauch. Die Zugänglichkeit für Screenreader
+kann jedoch drastisch erhöht werden, indem man einfach das Attribut aria-labelledby in den
+`<svg>`-Tag einfügt und es dann direkt mit dem `<title>` verknüpft. Die meisten modernen Browser
+unterstützen ARIA in vollem Umfang. Durch das Hinzufügen des aria-labelledby-Attributs werden
+die Browser, die die Informationen derzeit nicht nativ über den `<title>` anzeigen, die
+Informationen nun auf der Grundlage des ARIA-Attributs nutzen.
+
+#### Gutes Beispiel: Die Verwendung von aria-labelledby, um das `<title>`-Element in den Browsern sichtbar zu machen.
+
+Im folgenden Beispiel enthält der `<title>` denselben Text wie die Überschrift des Diagramms. Der ID-Wert
+des `<title>` wird dann von dem aria-labelledby auf dem `<svg>`-Element referenziert.
+
+```html
+<svg role="img" aria-labelledby="widgetSales">
+  <title id="widgetSales">Total Widgets Purchased during 2016</title>
+</svg>
+```
+
+### Der gesamte Text innerhalb des Bildes, der von einem Screenreader gesprochen werden muss, muss mit dem `<svg>`-Element mit aria-labelledby verknüpft werden.
+
+Wenn ein SVG Text enthält, der von einem Screenreader gesprochen werden muss und nicht bereits in
+den `<title>`- oder `<desc>`-Elementen enthalten ist, muss er mit dem `<svg>`-Element mittels
+aria-labelledby verknüpft werden.
+
+#### Gutes Beispiel: Die Verwendung von aria-labelledby, um Text mit dem `<svg>`-Element zu verknüpfen.
+
+In der folgenden Abbildung werden der `<title>`, `<desc>` und jeder notwendige Textteil, der Monat
+und die Anzahl der verkauften Einheiten, im Attribut aria-labelledby referenziert.
+
+```html
+<svg
+  role="img"
+  <!--
+  note
+  that
+  aria-labelledby
+  references
+  the
+  IDs
+  of
+  elements.
+  Screen
+  readers
+  read
+  the
+  text
+  inside
+  those
+  elements,
+  not
+  the
+  IDs
+  themselves,
+  which
+  are
+  used
+  only
+  to
+  identify
+  the
+  elements.
+  -->
+  aria-labelledby="title desc jan feb mar apr may jun jul aug sep oct nov dec">
+  <title id="title">Total Widgets Purchased during 2016</title>
+  <desc id="desc">
+    The graph displays the total number of widgets purchased from The ABC Store during 2016,
+    displayed by month.
+  </desc>
+  ... (a section of markup was omitted here for brevity)
+  <g id="jan" class="bar labels x-labels">
+    <rect x="25" y="195" width="33" height="45" fill="#111"></rect>
+    <text x="32" y="260" fill="#000">Jan.</text>
+    <text x="33" y="220" fill="#fff">45</text>
+  </g>
+  <g id="feb" class="bar labels x-labels">
+    <rect x="62" y="160" width="33" height="80" fill="#111"></rect>
+    <text x="70" y="260" fill="#000">Feb.</text>
+    <text x="71" y="220" fill="#fff">80</text>
+  </g>
+  <g id="mar" class="bar labels x-labels">
+    <rect x="99" y="140" width="33" height="100" fill="#111"></rect>
+    <text x="107" y="260" fill="#000">Mar.</text>
+    <text x="103" y="220" fill="#fff">100</text>
+  </g>
+  ... (partial code sample)
+</svg>
+```
+
+### Die Gesamtzahl der Zeichen des mit dem `<svg>`-Element verbundenen Alt-Textes sollte 150 Zeichen nicht überschreiten.
+
+Wie bereits erwähnt, gibt es weder eine technische noch eine politische Beschränkung für die
+Länge des alternativen Textes, aber der alternative SVG-Text ist aus mehreren Gründen nicht
+so gut geeignet wie normaler Text:
+
+- Bildschirmlesegeräte lesen den gesamten Text auf einmal, und die Nutzer können nicht an der
+  Stelle weitermachen, an der sie aufgehört haben, wenn sie mitten im Lesen des alternativen
+  Textes eine Pause machen.
+
+- Bildschirmleser können nicht durch den Text navigieren (z. B. nach Wörtern, Zeichen usw.).
+
+Der Text, der mit dem SVG verknüpft ist, einschließlich `<title>`, `<desc>` und jedem notwendigen
+Textteil, sollte nicht länger als 150 Zeichen sein. Wenn mehr Text benötigt wird, solltest du
+eine der Techniken für komplexe Bilder verwenden, die den Inhalt für alle Benutzer zugänglich macht:
+
+- Im Kontext des HTML-Dokuments selbst.
+
+- Mit einer Schaltfläche, die einen eingeklappten Bereich aufklappt, der die Langbeschreibung enthält.
+
+- Mit einer Schaltfläche zum Öffnen eines Dialogs, der die Langbeschreibung enthält.
+
+- Mit einem Link zu einer langen Beschreibung über einen normalen Linktext.
+
+## Eingebettete SVGs
+
+### Ein SVG-Objekt darf nicht über `<object>` oder `<iframe>` eingebettet werden.
+
+Es gibt mehrere Möglichkeiten, ein SVG in eine Webseite einzubetten:
+
+- Verwende das `<img>`-Tag und referenziere die SVG-Datei als Quelle
+  (z. B. `<img src="SVGFile.svg" alt="some alt text">`).
+
+- Binde die SVG direkt (inline) in deinen bestehenden HTML-Code ein, indem du das
+  `<svg>`-Element verwendest.
+
+- Binde das SVG in einen `<iframe>` oder `<embed>` Tag ein oder referenziere es als
+  Datenattribut über ein `<object>`.
+
+Aus Sicht der Barrierefreiheit sind die verlässlichsten Methoden Nr. 1 und Nr. 2: die
+Verwendung des `<img>`-Tags oder das Einbetten der SVG in den HTML-Code mithilfe des
+`<svg>`-Elements.
+
+Hinweis: Da die Ergebnisse der Verwendung von `<iframe>`- oder `<object>`-Elementen von
+assistiven Technologien nur sehr schlecht unterstützt werden, ist die Wahrscheinlichkeit
+hoch, dass diese Methoden zu einem Bild führen, das für assistive Technologien nicht
+zugänglich ist.
+
+## Komplexer alternativer Text
+
+### Komplexe `<svg>`-Bilder müssen einen aussagekräftigen, prägnanten Alternativtext haben und eine ausführlichere lange Beschreibung haben.
+
+Selbst wenn du visuelle Labels korrekt mit visuellen Daten in einem Diagramm oder einer
+Grafik verknüpft hast, können blinde Nutzer die Grafiken nur dann verstehen, wenn du eine
+ausführliche Textbeschreibung dazu lieferst. Du könntest die gesamte Beschreibung in den
+kurzen Alternativtext einfügen, aber der sollte kurz sein, nicht mehr als etwa 150 Zeichen
+oder so. Wenn 150 Zeichen oder so nicht ausreichen, um ein Bild zu beschreiben, musst du
+eine andere Methode verwenden.
+
+Es gibt mehrere Möglichkeiten, eine lange Beschreibung für SVG-Bilder zu erstellen:
+
+- Biete die lange Beschreibung im Kontext des HTML-Dokuments selbst an.
+
+- Biete eine Schaltfläche an, die einen eingeklappten Bereich mit der langen Beschreibung aufklappt.
+
+- Eine Schaltfläche zum Öffnen eines Dialogs, der die lange Beschreibung enthält.
+
+- Biete einen Link zu einer langen Beschreibung auf einer anderen Seite über einen normalen Linktext an.
+
+- Über das `<desc>`-Attribut innerhalb des `<svg>`-Elements.
+
+Idealerweise sollte die lange Beschreibung sowohl für sehende als auch für nicht sehende Nutzer
+verfügbar sein; daher sind die oben genannten Optionen #1 - #4 stark zu bevorzugen
+
+### Ein `<desc>`-Element muss verwendet werden, um eine detaillierte Beschreibung einer komplexen `<svg>` zu liefern, wenn sie nicht auf andere Weise bereitgestellt wird.
+
+Neben dem `<title>`, der im Wesentlichen als alternativer Text für das Bild dient, bietet das
+`<desc>`-Element eine Möglichkeit, die Grafik ausführlich zu beschreiben. Für einfache Bilder
+reicht der Alt-Text des `<title>`-Elements wahrscheinlich aus. Für komplexere Strukturen kann
+jedoch das `<desc>`-Attribut verwendet werden, mit dem die detaillierte Beschreibung Teil des
+Bildes selbst wird.
+
+Hinweis: Das `<desc>`-Element steht nur Bildschirmlesern zur Verfügung und ist daher nicht die
+bevorzugte Methode, um eine detaillierte Beschreibung für ein SVG-Bild bereitzustellen.
+
+#### Gutes Beispiel: Das `<desc>`-Element verwenden, um detaillierte Beschreibungen hinzuzufügen.
+
+In diesem Beispiel liefert das `<desc>`-Element mehr Kontext über den Inhalt des Diagramms.
+
+```html
+<svg role="img">
+  <title>Total Widgets Purchased during 2016</title>
+  <desc>
+    The graph displays the total number of widgets purchased from The ABC Store during 2016,
+    displayed by month.
+  </desc>
+</svg>
+```
+
+### Das `<desc>`-Attribut eines `<svg>`-Elements muss programmatisch mit dem `<svg>`-Element verbunden werden (über aria-labelledby).
+
+Während `<desc>` die Möglichkeit bietet, eine detaillierte Beschreibung eines SVG-Bildes für
+Hilfstechnologien bereitzustellen, ist es leider so, dass nicht alle Browser diese Informationen
+über die Accessible API bereitstellen. Außerdem machen nicht alle Screenreader davon Gebrauch.
+Die Zugänglichkeit für Screenreader kann jedoch drastisch erhöht werden, indem man einfach das
+Attribut aria-labelledby in den `<svg>`-Tag einfügt und es direkt mit der ID des `<desc>`-Elements
+verknüpft. Die meisten modernen Browser unterstützen ARIA in vollem Umfang. Durch das Hinzufügen
+des aria-labelledby-Attributs werden die Browser, die die Informationen derzeit nicht über das
+`<desc>`-Element anzeigen, die Informationen nun auf der Grundlage des ARIA-Attributs nutzen.
+
+#### Gutes Beispiel: Die Verwendung von aria-labelledby, um Informationen für Browser sichtbar zu machen.
+
+```html
+<svg role="img" aria-labelledby="widgetSales widgetSalesDescription">
+  <title id="widgetSales">Total Widgets Purchased during 2016</title>
+  <desc id="widgetSalesDescription">The graph displays the total number of widgets...</desc>
+</svg>
+```
+
+### Die Länge aller zugehörigen alternativen Texte (einschließlich `<title>` und `<desc>`) für das `<svg>`-Element sollte kurz sein (nicht mehr als etwa 150 Zeichen).
+
+Da sowohl der Name als auch die Beschreibung eines `<svg>`-Objekts mit aria-labelledby referenziert
+werden müssen (aufgrund der schlechten Screenreader-Unterstützung für aria-describedby bei
+`<svg>`-Objekten), ist die Gesamtzahl der Zeichen im Alternativtext die Kombination aller Dinge, auf
+die das Attribut aria-labelledby verweist, einschließlich der Elemente `<title>` und `<desc>`. Wenn
+das `<title>`-Element 100 Zeichen und das `<desc>`-Element 200 Zeichen enthält, beträgt die Gesamtzahl
+der Zeichen im Alternativtext 300, also das Doppelte der empfohlenen Höchstzahl.
+
+Wie bereits erwähnt, gibt es weder eine technische noch eine politische Beschränkung für die Länge
+des alternativen Textes, aber der alternative Text ist aus mehreren Gründen nicht so gut zu gebrauchen
+wie der normale Text:
+
+- Bildschirmlesegeräte lesen den gesamten Text auf einmal, und die Nutzer können nicht an der Stelle
+  weitermachen, an der sie aufgehört haben, wenn sie mitten im Lesen des alternativen Textes eine
+  Pause machen.
+
+- Bildschirmleser können nicht durch den Text navigieren (z. B. nach Wörtern, Zeichen usw.).
+
+Wenn mehr Text erforderlich ist, um das Bild aussagekräftig zu beschreiben, solltest du eine
+der folgenden Techniken für komplexe Bilder verwenden, die den Inhalt für alle Nutzer/innen
+zugänglich macht:
+
+- Biete die lange Beschreibung im Kontext des HTML-Dokuments selbst an.
+
+- Biete eine Schaltfläche an, die einen eingeklappten Bereich mit der
+  langen Beschreibung aufklappt.
+
+- Eine Schaltfläche zum Öffnen eines Dialogs, der die lange Beschreibung
+  enthält.
+
+- Biete einen Link zu einer langen Beschreibung auf einer anderen Seite über
+  einen normalen Linktext an.
+
+## Text in SVGs
+
+### Text innerhalb von `<svg>`-Elementen sollte eliminiert werden oder auf ein Minimum beschränkt werden.
+
+Die gute Nachricht über Text in `<svg>`-Elementen ist, dass er aufgrund des Vektorformats
+von SVG-Bildern auch bei Vergrößerung klar und deutlich lesbar bleibt, was für Menschen
+mit Sehschwäche von Vorteil ist. Die schlechte Nachricht ist, dass Screenreader bei der
+Verwendung als alternativer Text alle `<text>`-Elemente als eine einzige fortlaufende Textkette
+behandeln, was verwirrend sein kann, wenn die `<text>`-Elemente dazu gedacht sind, einzelne
+Teile des Bildes zu kennzeichnen, oder wenn sie nicht zusammen als eine einzige Textkette
+gelesen werden sollen.
+
+Es wird empfohlen, die Textmenge in einem `<svg>`-Element auf das Wesentliche zu beschränken
+oder ganz zu streichen. Wenn möglich, platziere den Text außerhalb des `<svg>`-Elements,
+im normalen Fluss des HTML-Dokuments.
+
+### Alle informativen `<text>`-Elemente innerhalb von `<svg>`-Elementen müssen im alternativen Text des `<svg>`-Elements oder in einer langen Beschreibung referenziert werden.
+
+Wenn du einem `<svg>`-Element weder `<title>` noch role="img" hinzufügst, ignorieren einige
+Screenreader die Tatsache, dass es sich um ein `<svg>`-Element handelt und lesen stattdessen
+nur den Text darin. Das hört sich gut an und ist es in gewisser Weise auch, aber es hat
+auch seine Nachteile. Das Verhalten von Bildschirmlesegeräten ist bei den verschiedenen
+Marken nicht einheitlich, sodass das Endergebnis auf diese Weise nicht durchgängig zugänglich
+ist. Außerdem ist das `<title>`-Element zwar eine Voraussetzung, wird aber nicht von allen
+Screenreadern erkannt, wenn du nicht auch role="img" hinzufügst. Sobald du sowohl `<title>` als
+auch role="img" hinzufügst, ändert sich das Verhalten von Screenreadern. Anstatt das
+`<text>`-Element als Text zu behandeln, behandeln Screenreader das `<svg>`-Element als Bild
+und ignorieren das `<text>`-Element darin.
+
+Im Grunde genommen gibt es Nachteile, egal was du tust. Solange Screenreader nicht
+einheitlicher mit `<svg>`-Elementen umgehen, wird empfohlen, sicherzustellen, dass der
+gesamte informative Text innerhalb des `<svg>`-Elements über aria-labelledby referenziert
+wird.
+
+Beachte: Wenn ein Teil des Textes im `<svg>`-Element als Teil des alternativen Textes keinen
+Sinn machen würde, referenziere ihn nicht über aria-labelledby.
+
+#### Gutes Beispiel: Das `<text>`-Element in einem `<svg>`-Element wird durch aria-labelledby referenziert
+
+Im folgenden Beispiel wird der Text im `<text>`-Element durch das aria-labelledby-Attribut
+als Teil des Alt-Textes referenziert, zusammen mit dem Text im `<title>`-Element.
+
+```html
+<svg width="200" height="163" role="img" aria-labelledby="circle-alt svg-text">
+  <title id="circle-alt">A dark blue circle with text inside</title>
+  <circle cx="81" cy="85" r="75" fill="#00a" stroke="#000" stroke-width="1" />
+  <text id="svg-text" x="81" y="85" font-size="14px" text-anchor="middle" fill="#fff">
+    I am text in a circle
+  </text>
+</svg>
+```
+
+## SVG Farbkontrast
+
+### SVG-Bilder müssen mindestens eine Hintergrundfarbe hinter den wichtigen Teilen des Bildes haben.
+
+Wenn für ein SVG-Bild keine Hintergrundfarbe festgelegt wurde, ändert sich die Hintergrundfarbe
+des Bildes selbst, wenn der Benutzer in den Windows-Modus "Hoher Kontrast" wechselt. Das kann für
+ein bestimmtes Bild ein Problem sein oder auch nicht, aber wenn große Teile des SVG-Bildes
+transparent sind und wenn sie von einer bestimmten Hintergrundfarbe auf der Webseite abhängen,
+um korrekt auszusehen, wird das SVG-Bild wahrscheinlich schwer zu erkennen sein, wenn sich die
+Hintergrundfarbe ändert.
+
+Hinweis: Es ist nicht notwendig, das Hintergrundrechteck eines SVG-Bildes vollständig auszufüllen.
+Teile des SVG-Bildes können transparent bleiben, solange es keine transparenten Teile innerhalb
+des SVG-Bildes gibt, die dazu führen würden, dass das Bild schwer zu verstehen wäre, wenn sich
+diese Farben ändern würden. Wenn z. B. davon ausgegangen wird, dass die Hintergrundfarbe der Seite
+weiß ist, und Teile des SVG-Bildes nur deshalb weiß sind, weil die Farbe der Webseite durchscheint,
+werden diese Teile des Bildes schwarz, wenn der Benutzer in den Windows-Modus "Hoher Kontrast" mit
+schwarzem Hintergrund wechselt.
+
+Die Hintergrundfüllung kann eine beliebige Form haben, solange sie die wichtigen Teile des Bildes
+ausfüllt.
+
+#### Gutes Beispiel: Hintergrundfarbe hinter schwarzem Text gesetzt
+
+In diesem Beispiel hat der Text (auf dem "SVG mit eingestellter Hintergrundfarbe" steht) eine
+hellblaue Hintergrundfarbe hinter sich. Egal, welche Farbe die Webseite hinter dem Bild hat, der
+Text im SVG-Bild ist immer noch lesbar.
+
+SVG-Bild vor einem weißen Hintergrund (der Text ist vollständig lesbar):
+
+```html
+<div style="background-color:#fff;padding:50px 0;border:1px solid grey;width:80%;margin:auto;">
+  <svg
+    width="500"
+    height="40"
+    viewBox="0 0 500 40"
+    aria-labelledby="bg-set"
+    role="img"
+    style="width:500px;margin:auto;display:block;max-width:100%;">
+    <tite id="bg-set">SVG with background color set</tite>
+    <rect x="1" y="0" width="498" height="38" fill="#dcf1ff" fill-opacity="1"></rect>
+    <text x="20" y="32" font-family="Verdana" font-size="30" fill="#232323">
+      SVG with background color set
+    </text>
+  </svg>
+</div>
+```
+
+SVG-Bild vor schwarzem Hintergrund, das eine der möglichen Einstellungen im Windows-Modus "Hoher Kontrast" simuliert (der Text ist noch gut lesbar):
+
+```html
+<div style="background-color:#000;padding:50px 0;border:1px solid grey;width:80%;margin:auto;">
+  <svg
+    width="500"
+    height="40"
+    viewBox="0 0 500 40"
+    aria-labelledby="bg-set2"
+    role="img"
+    style="width:500px;margin:auto;display:block;max-width:100%;">
+    <tite id="bg-set2">SVG with background color set</tite>
+    <rect x="1" y="0" width="498" height="38" fill="#dcf1ff" fill-opacity="1"></rect>
+    <text x="20" y="32" font-family="Verdana" font-size="30" fill="#232323">
+      SVG with background color set
+    </text>
+  </svg>
+</div>
+```
+
+Die hellblaue Hintergrundfarbe ist im SVG-Bild immer vorhanden, sodass der Text unter
+allen Umständen visuell lesbar ist.
+
+#### Schlechtes Beispiel: Keine Hintergrundfarbe hinter schwarzem Text eingestellt
+
+SVG-Bild vor weißem Hintergrund (der Text ist vollständig lesbar, aber nur, weil die
+Hintergrundfarbe der Webseite eine helle Farbe ist):
+
+```html
+<div style="background-color:#fff;padding:50px 0;border:1px solid grey;width:80%;margin:auto;">
+  <svg
+    width="500"
+    height="40"
+    viewBox="0 0 500 40"
+    aria-labelledby="bg-not-set"
+    role="img"
+    style="width:500px;margin:auto;display:block;max-width:100%;">
+    <tite id="bg-not-set">SVG with no background color</tite>
+    <text x="20" y="32" font-family="Verdana" font-size="30" fill="#232323">
+      SVG with no background color
+    </text>
+  </svg>
+</div>
+```
+
+SVG-Bild vor schwarzem Hintergrund, das eine der möglichen Einstellungen im
+Windows-Modus "Hoher Kontrast" simuliert (der Text, der fast so schwarz ist wie
+der Hintergrund, verschwindet praktisch vor dem Hintergrund):
+
+```html
+<div style="background-color:#000;padding:50px 0;border:1px solid grey;width:80%;margin:auto;">
+  <svg
+    width="500"
+    height="40"
+    viewBox="0 0 500 40"
+    aria-labelledby="bg-not-set2"
+    role="img"
+    style="width:500px;margin:auto;display:block;max-width:100%;">
+    <tite id="bg-not-set2">SVG with no background color</tite>
+    <text x="20" y="32" font-family="Verdana" font-size="30" fill="#232323">
+      SVG with no background color
+    </text>
+  </svg>
+</div>
+```
+
+### SVG-Bilder sollten so gestaltet sein, dass sie mit dem Windows High Contrast Mode kompatibel sind.
+
+SVG-Bilder behalten ihre Farben bei, wenn der Benutzer in den Windows-Modus "Hoher Kontrast" wechselt.
+
+Einige SVG-Bilder sehen im Modus "Hoher Kontrast" von Windows natürlich gut aus, so dass es nicht nötig
+ist, spezielle Stile für sie zu erstellen. In anderen Fällen haben SVG-Bilder nicht den richtigen Kontrast
+im Vergleich zum Hintergrund. Das ist vor allem dann der Fall, wenn CSS zur Gestaltung von SVG-Bildkomponenten
+verwendet wird. Der Windows-Modus "Hoher Kontrast" setzt die CSS-Farben außer Kraft, was das Aussehen des
+Bildes (und der gesamten Seite um das Bild herum) drastisch verändern kann.
+
+Wenn das SVG-Bild im Windows High Contrast Mode problematisch ist, besteht eine Lösung darin, zu erkennen,
+wann der Windows High Contrast Mode verwendet wird, und das Styling des SVG-Bildes entsprechend anzupassen.
+Es gibt zwei grundlegende Methoden, um den Windows-Hochkontrastmodus zu erkennen:
+
+- Eigene CSS-Medienabfragen verwenden (nur Edge und Internet Explorer)
+
+- JavaScript verwenden, um vom Nutzer initiierte Farbänderungen zu erkennen (die Änderungen können
+  auf Browser- oder Betriebssystemebene erfolgen)
+
+Bei anderen Browsern als Edge und Internet Explorer sind JavaScript-Tests erforderlich. Diese
+Methode kann robuster sein als die oben erwähnte Medienerkennungsmethode und kann andere
+kontrastreiche Software oder benutzerspezifische Stile berücksichtigen.
+
+Skript zur Erkennung des Windows Hochkontrastmodus:
+
+- Link: <a href="http://jsfiddle.net/karlgroves/XR8Su/6/" target="_blank">Windows High Contrast Mode detection script by Hans Hillen</a>
+
+- Link: <a href="http://hanshillen.github.io/HCMDS/hcmode_detection.html" target="_blank">Explanation of the script's methods and philosophy</a>
+
+#### Gutes Beispiel: Medienabfragen für gängige Windows-Themen im Hochkontrastmodus
+
+Diese Methode funktioniert in Edge und Internet Explorer, aber nicht in anderen Browsern.
+
+```css
+/* Styles for all high contrast modes: */
+@media screen and (-ms-high-contrast: active) {
+}
+
+/* Styles for the Windows "High Contrast Black" theme: */
+@media screen and (-ms-high-contrast: white-on-black) {
+}
+
+/* Styles for the windows "High Contrast White" theme: */
+@media screen and (-ms-high-contrast: black-on-white) {
+}
+```
+
+## Animierte SVG-Inhalte
+
+### SVG-Animationen sollten JavaScript verwenden und nicht das `<animate>`-Element.
+
+Es gibt verschiedene Möglichkeiten, Animationen in SVG zu realisieren, je nach Komplexität des
+Bildes selbst und dem gewünschten Animationseffekt. Die akzeptablen Methoden sind entweder
+deklarativ, mit der Synchronized Multimedia Integration Language (SMIL) oder Cascading Style Sheets
+(CSS), oder durch JavaScript DOM-Manipulation. Die Animation kann so einfach sein wie die Änderung
+von Stilen oder Farben oder komplexer mit Geometrieänderungen, Transformationen oder dem Ein- und
+Ausblenden verschiedener Abschnitte des SVG-Dokuments.
+
+Mit SMIL lassen sich sowohl einfache als auch relativ komplexe Animationen von SVGs ohne CSS oder
+JavaScript erstellen, allerdings mit einem großen Nachteil. Der Internet Explorer bietet keine
+Unterstützung für SMIL. Der Silberstreif am Horizont, wenn du das so sehen willst, ist, dass der
+Internet Explorer zwar die Animation nicht rendert, aber den endgültigen Zustand des Bildes wiedergibt.
+Solange die anderen Methoden zur Erstellung einer barrierefreien SVG befolgt werden, sollte dies aus
+Sicht der Barrierefreiheit kein Problem darstellen.
+
+Im folgenden SVG-Beispiel wird ein einfaches, 200 x 200 Pixel großes, einfarbiges blaues Quadrat
+erstellt. Ein Animationseffekt wurde auf deklarative Weise hinzugefügt, indem das `<animate>`-Element
+in das `<svg>`-Dokument eingebettet wurde.
+
+Hinweis: SMIL-Animationen wurden aus den SVG 2-Spezifikationen entfernt, funktionieren aber weiterhin
+in SVG 1.1-Benutzeragenten. Es wurde ein neuer Ansatz für elementbasierte Animationen gewählt. Weitere
+Informationen zum aktuellen Stand der SVG-Animation findest du im Abschnitt SVG/Animation auf dem W3C Wiki.
+
+#### Schlechtes Beispiel: Einfache Animation unter Verwendung des veralteten `<animate>`-Elements.
+
+Der einfache Animationseffekt in diesem Beispiel baut das Quadrat von oben nach unten auf, und zwar über
+eine Dauer von 5 Sekunden. Der Quellcode wird vor dem eigentlichen svg-Dokument angezeigt.
+
+Eine bessere Möglichkeit, denselben Effekt zu erzielen, wäre, das `<svg>` Markup mit JavaScript zu
+manipulieren.
+
+```html
+<svg>
+  <title>A blue square with an animation effect that reveals the square, top down.</title>
+  <rect width="200" height="200" fill="blue">
+  <animate attributeName="height" from="0" to="200" dur="5s">
+  </rect>
+</svg>
+```
+
+### SVG-Animationen müssen nicht 3 Mal pro Sekunde oder öfter blinken oder blinken.
+
+Blinzelnde oder blinkende Inhalte können bei manchen Menschen einen Krampfanfall auslösen.
+
+### SVG-Animationen müssen nicht länger als 5 Sekunden automatisch abgespielt werden.
+
+Am besten ist es, wenn die Animation gar nicht abgespielt wird, bis der Nutzer sie aktiviert.
+Als Kompromiss erlauben die WCAG 2.1 Richtlinien, dass die Animation bis zu 5 Sekunden lang
+automatisch abgespielt wird.
+
+### SVG-Animationen müssen es den Nutzern ermöglichen, die Animation zu pausieren.
+
+Eine Animation, die nicht angehalten werden kann, kann sehr ablenkend sein, vor allem für
+Menschen mit Aufmerksamkeitsdefiziten oder bestimmten kognitiven Behinderungen.
+
+### SVG-Animationen dürfen den Nutzer nicht vom eigentlichen Zweck des Webinhalts ablenken.
+
+Denk daran: Nur weil du etwas technisch tun kannst, heißt das nicht unbedingt, dass du es
+auch tun solltest. Generell sollte die Animation einem bestimmten Zweck dienen und nicht einfach
+nur Bewegung in eine statische Seite bringen.
+
+## Interaktive SVGs
+
+### Interaktive `<svg>`-Objekte müssen vollständig mit der Tastatur bedient werden können.
+
+Was es bedeutet, vollständig tastaturzugänglich zu sein, zeigt sich unter anderem in den
+folgenden Punkten:
+
+- Alle Links, Schaltflächen und Steuerelemente müssen mit der Tastatur fokussierbar sein
+  und von Tastaturbenutzern verwendet werden können.
+
+- Alle fokussierbaren Elemente müssen eine sichtbare Fokusanzeige haben.
+
+- Das Skript muss den Fokus beim Aktivieren, Deaktivieren und/oder Beenden von Funktionen
+  (wie Dialoge, Menüs usw.) verwalten; der Fokus muss zur richtigen Zeit an die richtige Stelle
+  gesendet werden.
+
+- Das `<svg>`-Objekt darf den Tastaturfokus nicht einfangen.
+
+- Die Tabulator-Reihenfolge (oder die Reihenfolge der Pfeiltasten, falls zutreffend) muss
+  logisch sein.
+
+- Alle fokussierbaren Elemente müssen auf dem Bildschirm sichtbar sein (oder sichtbar werden, wenn
+  der Fokus auf ihnen liegt).
+
+### Interaktive `<svg>`-Objekte müssen vollständig Touchscreen-zugänglich sein.
+
+Zu den Highlights, die die Barrierefreiheit von Touchscreens ausmachen, gehören:
+
+- Alle Aktionen, die nur mit der Maus ausgeführt werden, haben eine entsprechende Aktion für die
+  Berührung.
+
+- Alle Aktionen, die nur mit der Tastatur ausgeführt werden, haben eine gleichwertige Aktion für
+  die Berührung.
+
+- Alle gestenabhängigen Aktionen haben eine äquivalente nicht-gestenabhängige Methode, um das
+  gleiche Ergebnis zu erzielen (diese Regel gibt es, weil Screenreader in den meisten Fällen
+  seitenabhängige Gesten außer Kraft setzen und deaktivieren; eine Klick-Aktion ist für Touchscreens
+  am besten geeignet).
+
+### Interaktive `<svg>`-Objekte müssen den jeweiligen Namen, die Rolle und den Wert von Steuerelementen, Ereignissen und semantischen Elementen innerhalb des `<svg>`-Objekts mitteilen.
+
+Im Wesentlichen müssen interaktive `<svg>`-Objekte die gleichen Prinzipien der Barrierefreiheit
+einhalten, die auch für die Verwendung von benutzerdefinierten ARIA-Widgets gelten. Tatsächlich
+kann ein interaktives `<svg>`-Objekt als benutzerdefiniertes ARIA-Widget kodiert werden. Elemente
+in ARIA-Widgets können mit Funktionen wie Schaltfläche, Kontrollkästchen, Registerkarte und
+anderen versehen werden.
+
+Allerdings ist die Unterstützung für interaktives SVG, selbst wenn es mit ARIA kombiniert wird,
+manchmal lückenhaft und muss vor der Veröffentlichung gründlich mit Screenreadern getestet werden.

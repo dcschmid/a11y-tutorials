@@ -1,0 +1,260 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Multimedia, Objekte und Dokumente'
+pubDate: 2023-05-23
+---
+
+Jede Art von Inhalt, für den ein Browser-Plugin eines Drittanbieters oder eine externe Anwendung erforderlich ist,
+stellt eine besondere Herausforderung für die Barrierefreiheit dar.
+
+Im einfachsten Fall kann es sein, dass der/die Nutzer/in das Plug-in oder die Anwendung gar nicht hat, so dass der
+Inhalt für ihn/sie nicht zugänglich ist. Am besten ist es, den Nutzern, die nicht über die erforderliche Software
+verfügen, eine alternative Version in HTML zur Verfügung zu stellen. Bei einfachen Textinhalten ist das normalerweise
+nicht allzu schwierig. Bei eingebetteten Anwendungen kann die Bereitstellung einer alternativen HTML-Version unpraktisch
+oder unmöglich sein, je nach Funktionsumfang der Anwendung.
+
+Wenn das Plug-in oder die Anwendung über eine Barrierefreiheits-API verfügt, nutze sie in vollem Umfang, indem du alle
+für den Inhalt erforderlichen Barrierefreiheitsfunktionen hinzufügst. Beispiele für Software mit Barrierefreiheit-APIs
+sind: MS Office-Anwendungen und PDF (lesbar mit Adobe Reader oder Acrobat Pro). Die gleichen Regeln zur Barrierefreiheit,
+die für HTML gelten, gelten auch für Software von Drittanbietern: alternative Texte für Bilder bereitstellen, semantisches
+Markup verwenden (Überschriften, Tabellen usw.), für ausreichenden Farbkontrast sorgen und so weiter. Die Techniken für
+die Barrierefreiheit variieren von Softwareanwendung zu Softwareanwendung, und einige Anwendungen haben robustere
+Barrierefreiheits-APIs als andere.
+
+## Video- und Audio-Alt-Text, Abschrift, Untertitel, Audiobeschreibungen
+
+### Es gibt kein alt-Attribut für Video und Audio
+
+Das alt-Attribut ist bei `<video>`- oder `<audio>`-Elementen nicht erlaubt, um alternativen Text zu Videos hinzuzufügen,
+aber es gibt andere Möglichkeiten, um Videoinhalte zugänglich zu machen:
+
+- Synchronisierte Untertitel
+
+- Texttranskription
+
+- Audio-Beschreibungen
+
+### Alle aufgezeichneten Videos müssen mit synchronisierten Untertiteln versehen werden.
+
+Untertitel machen den Dialog und die Erzählung für gehörlose Zuschauer/innen zugänglich. Die Untertitel müssen alle
+Dialoge und Erzählungen enthalten. In den Untertiteln muss auch angegeben werden, wer spricht, um Verwechslungen zu
+vermeiden. Wenn andere wichtige Geräusche zu hören sind - wie z. B. Applaus, Lachen usw. - sollte die Unterschrift
+diese Geräusche entweder in Klammern oder in Klammern angeben.
+
+Die größte Flexibilität bei benutzerdefinierten Untertiteln lässt sich
+mit <a href="https://w3c.github.io/webvtt/" target="_blank">WebVTT</a> (dem Web Video Text Tracks Format) erreichen.
+In einigen Browsern, wie z. B. Safari unter OS X und iOS, können die Nutzer/innen ihre Untertitel auf Betriebssystemebene
+festlegen. Sie können Schriftgröße, Farbe, Hintergrundfarbe und Schriftart einstellen. Jedes Mal, wenn ein Video mit
+WebVTT-Untertiteln abgespielt wird, berücksichtigt der Videoplayer die Einstellungen der Person. Die Speicherung der
+Untertitelpräferenzen an einem zentralen Ort im Betriebssystem ist für die Nutzer/innen bequem, da sie die Einstellungen
+nicht jedes Mal neu wählen müssen, wenn sie ein neues Video ansehen.
+
+### Voraufgezeichnete Audioinhalte können synchronisierte Untertitel haben.
+
+Voraufgezeichnete reine Audio-Inhalte können ebenfalls mit Untertiteln versehen werden, obwohl in den meisten Fällen
+eine Textabschrift ausreicht.
+
+### Alle Live-Videos mit Dialogen und/oder Kommentaren müssen mit synchronisierten Untertiteln versehen werden.
+
+Live-Videos MÜSSEN mit synchronisierten Live-Untertiteln versehen werden. Für die Live-Untertitelung wird ein
+professioneller Stenograf benötigt - eine Person, die eine Stenografiermaschine benutzt, um den gesprochenen Inhalt
+zu tippen - und ein Live-Text-Feed, der das Video begleitet. Eine Stenografiermaschine ähnelt vom Konzept her einer
+Computertastatur, hat aber weniger Tasten und ermöglicht es dem geschulten Stenografen, Silben oder Töne zu tippen,
+anstatt nur einzelne Buchstaben.
+
+### Live-Audio, das hauptsächlich aus Dialogen und/oder Erzählungen besteht, sollte mit synchronisierten Untertiteln versehen sein.
+
+Wenn der Live-Audioinhalt Dialoge und/oder Erzählungen enthält, ist es in der Regel angemessen - und kann sogar
+notwendig sein -, synchronisierte Untertitel bereitzustellen. Enthält der Live-Audioinhalt Musik oder andere ähnliche
+Arten von Klängen, sind Live-Untertitel möglicherweise nicht nötig und auch nicht sinnvoll, aber das hängt vom Kontext
+ab. Das Live-Streaming von Textbeschreibungen kann sogar bei Musikkonzerten nützlich sein, um gehörlosen Zuhörern ein
+Gefühl für die Veranstaltung selbst in Echtzeit zu vermitteln. In manchen Fällen kann es auch akzeptabel sein, eine
+Textabschrift oder eine Beschreibung der Veranstaltung nach deren Ende zu veröffentlichen, aber das ist eine
+Ermessensentscheidung.
+
+### Aufgezeichnete Multimedia-Inhalte (Video und Audio) müssen mit einer Textabschrift versehen werden.
+
+Menschen, die sowohl taub als auch blind sind, können Video- oder Audioinhalte weder hören noch sehen. Die einzige
+Lösung für taubblinde Nutzer ist eine Textabschrift, die sie mit einem aktualisierbaren Braille-Ausgabegerät lesen
+können. Ein aktualisierbares Braille-Ausgabegerät ist eine Hardware mit einer Reihe von Löchern, durch die kleine
+Plastikstifte stechen und Braille-Zeichen bilden. Die Person liest die Braille-Zeichen mit dem Finger und drückt
+dann einen Knopf, um zur nächsten Textzeile zu gelangen. Die Stifte verwandeln sich in die Braille-Zeichen für
+die neue Textzeile.
+
+Eine Texttranskription ist im Wesentlichen ein Textprotokoll aller Dialoge und Erzählungen in einem Video, ähnlich
+wie die Untertitel, aber separat vom Video selbst verfügbar. Wie bei den Untertiteln sollte auch die Textabschrift
+angeben, wer spricht, und Geräusche wie Applaus und Lachen notieren. Sie sollte auch andere visuelle Informationen
+beschreiben, z. B. Beschreibungen der Szenerie, nonverbale Kommunikation zwischen Menschen und alles andere, was
+Taubblinden eine gleichwertige Alternative zum Inhalt bietet. Die Abschrift kann auf der Webseite selbst (in der
+Regel unter dem Video), auf einer separaten Webseite (mit einem Link von der Videoseite), in einem Popup-Dialog oder
+sogar in einem separaten Dokument (z. B. einer Textdatei oder einem MS Word-Dokument) angezeigt werden.
+
+### Videos müssen Audiobeschreibungen zu wichtigen visuellen Inhalten enthalten, die nicht über den Ton vermittelt werden.
+
+Wenn ein Video visuelle Elemente enthält, die nicht durch den Ton vermittelt werden - wie z. B. wichtige
+Gesichtsausdrücke, Handgesten, auf dem Bildschirm angezeigter Text, visuelle Aktionssequenzen usw. - können blinde
+Zuschauer/innen möglicherweise nicht verstehen, was passiert, wenn ihnen nicht jemand die visuellen Komponenten
+beschreibt. An dieser Stelle können Audiodeskriptionen helfen. Audiodeskriptionen sind eine Tonspur, die gleichzeitig
+mit dem Originalvideo abgespielt wird und in der ein Sprecher die wichtigen visuellen Informationen für blinde
+Nutzer/innen beschreibt.
+
+## Andere Objekte
+
+### Alle` <object>`-Elemente müssen einen alternativen Text haben.
+
+Das `<object>`-Element ist nicht mehr so häufig wie früher, aber es kann verwendet werden, um Inhalte wie Bilder,
+PDF-Dateien, Videos und Audiodateien anzuzeigen. Das `<object>`-Element braucht einen kurzen Alternativtext, ähnlich
+wie das alt-Attribut für Bilder, aber es gibt kein alt-Attribut für das `<object>`-Element. Verwende stattdessen
+aria-label (um unsichtbaren Alternativtext für Bildschirmleser hinzuzufügen) oder aria-labelledby, um auf Text an
+anderer Stelle auf der Seite zu verweisen.
+
+Wie bei jedem alternativen Text musst du sicherstellen, dass er
+
+- aussagekräftig (den Zweck des `<object>` vermittelnd)
+
+- kurz und bündig (nicht mehr als etwa 150 Zeichen).
+
+Wenn du mehr als 150 Zeichen brauchst, um das `<object>` zu beschreiben, solltest du eine der folgenden Möglichkeiten
+in Betracht ziehen:
+
+- Füge eine lange Beschreibung hinzu, indem du die gleichen Techniken anwendest, die für lange Bildbeschreibungen
+  verfügbar sind oder
+
+- Erstelle ein HTML-basiertes Äquivalent für den gesamten Inhalt und die Funktionalität des `<object>`. Dies ist die
+  beste Option, wenn das `<object>` eine interaktive Webanwendung ist.
+
+#### Gutes Beispiel: Objekt mit alternativem Text über aria-label
+
+Im folgenden vereinfachten Codebeispiel beschreibt das aria-Label den Zweck des `<object>`.
+
+```html
+<object
+  width="500"
+  height="500"
+  data="chemistry-titration-experiment.png"
+  aria-label="Steps for performing a chemistry titration experiment"></object>
+```
+
+Natürlich macht die bloße Angabe, was das `<object>` ist, es noch nicht zugänglich. Es ermöglicht dem Nutzer nur zu
+wissen, was es ist. Um die Schritte eines chemischen Titrationsexperiments wirklich zugänglich zu machen, müsstest
+du die anderen Barrierefreiheits-Grundsätze befolgen, die mit der Zugänglichkeit von Bildern zusammenhängen, z. B.
+eine Kopie der schriftlichen Schritte im textbasierten HTML-Format einfügen.
+
+#### Gutes Beispiel: Objekt mit alternativem Text über aria-labelledby
+
+In diesem Beispiel ist der Name des Objekts als Überschrift auf dem Bildschirm zu sehen.
+
+```html
+<h2 id="titration">Steps for performing a chemistry titration experiment"</h2>
+<object
+  width="500"
+  height="500"
+  data="chemistry-titration-experiment.png"
+  aria-labelledby="titration"></object>
+```
+
+## Dokumente (Word, PDF, EPUB)
+
+### Eine HTML-Version von Nicht-HTML-Inhalten sollte den Nutzern zur Verfügung gestellt werden.
+
+Die erste allgemeine Richtlinie in Bezug auf Nicht-HTML-Inhalte ist, die Informationen möglichst nicht nur
+in einem Nicht-HTML-Format zu veröffentlichen. Standard-HTML ist eines der Formate mit der größten
+Barrierefreiheit und aus den folgenden Gründen das am besten geeignete Format für Webinhalte:
+
+- Die Barrierefreiheit in HTML ist ziemlich ausgereift und übertrifft in den meisten Fällen die
+  Barrierefreiheit von Nicht-HTML-Plattformen.
+
+- Die Nutzer müssen die Datei nicht herunterladen.
+
+- Die Benutzer/innen müssen die Oberfläche des Webbrowsers nicht verlassen.
+
+- Die Nutzer/innen müssen keine zusätzliche Software besitzen, herunterladen oder installieren.
+
+Die Veröffentlichung eines Nicht-HTML-Dokuments kann sinnvoll sein, wenn das Druckerstyling beibehalten
+werden soll (z. B. beim PDF-Format) oder wenn es notwendig ist, Dateien in ihrem Originalformat für die
+Zusammenarbeit weiterzugeben (z. B. bei MS Office-Dokumenten). Trotzdem ist es in der Regel am besten,
+entweder den gesamten Inhalt auch im HTML-Format zur Verfügung zu stellen oder zumindest eine Zusammenfassung
+des Inhalts im HTML-Format zu liefern.
+
+### Nicht-HTML-Dokumente müssen die grundlegenden Prinzipien der Barrierefreiheit einhalten.
+
+Hier sind einige der grundlegenden Prinzipien für die Barrierefreiheit von Dokumenten in vielen
+verschiedenen Formaten:
+
+- Gib dem Dokument einen aussagekräftigen Titel
+
+- Biete eine gute Überschriftenstruktur
+
+- Biete alternativen Text für Bilder an
+
+- Bezeichne Tabellenüberschriften und stelle sicher, dass die Datenzellen mit den Überschriften
+  verbunden sind.
+
+- Verlasse dich nicht allein auf die Farbe, um Informationen zu vermitteln
+
+- Achte auf einen ausreichenden Kontrast zwischen Text und Hintergrund
+
+- Wähle gut lesbare Schriftarten
+
+### PDF-Dateien müssen im getaggten PDF-Format vorliegen.
+
+Das PDF-Format enthält eine Barrierefreiheit-API, die HTML sehr ähnlich ist. Der Inhalt ist in Tags verpackt,
+die semantische Elemente und Strukturen kennzeichnen. Eine PDF-Datei muss im "getaggten PDF"-Format vorliegen,
+damit sie für Bildschirmleser zugänglich ist. Nicht getaggte PDF-Dateien können von Screenreadern nicht gelesen
+werden. Adobe Reader und Acrobat Pro verfügen über eine Funktion, mit der Dokumente automatisch getaggt werden,
+wenn ein Bildschirmleseprogramm auf die Datei zugreift, aber das automatische Tagging ist nicht perfekt. Die
+automatische Markierung ist jedoch unvollkommen. Sie versucht zu erraten, wie die Tags aussehen sollen, und
+liegt oft falsch, vor allem wenn das Dokument nicht mit Blick auf die Barrierefreiheit erstellt wurde. Die
+automatisch getaggte Datei kann bei einfachen Inhalten akzeptabel sein, aber bei komplexeren Inhalten ist sie
+oft völlig unzureichend.
+
+Um eine mit Tags versehene PDF-Datei zu erstellen, musst du zunächst ein barrierefreies Dokument in der
+ursprünglichen Erstellungssoftware wie Word oder InDesign erstellen. Exportiere das Dokument ins PDF-Format
+und prüfe dann mit Acrobat Pro, ob das getaggte Dokument die Barrierefreiheit des Originaldokuments korrekt
+wiedergibt. In den meisten Fällen muss das Dokument in Acrobat Pro noch etwas nachbearbeitet werden.
+
+Das W3C führt eine Liste
+von <a href="https://www.w3.org/WAI/WCAG21/Techniques/#pdf" target="_blank">Techniken zur Barrierefreiheit
+von PDFs</a> um die WCAG 2.1-Konformität zu gewährleisten.
+
+Hinweis: Es ist zwar möglich, die Barrierefreiheit eines nicht barrierefreien Dokuments in Acrobat Pro zu
+kennzeichnen, aber der größte Teil der Arbeit, um ein PDF-Dokument barrierefrei zu machen, lässt sich in der
+Regel am einfachsten mit dem ursprünglichen Erstellungswerkzeug (z. B. Word, InDesign usw.) erledigen.
+
+### EPUB-Dateien müssen den Grundsätzen der HTML-Barrierefreiheit und den Grundsätzen der Barrierefreiheit aller anderen im EPUB-Dokument verwendeten Technologien entsprechen.
+
+EPUB ist ein Format für elektronische Bücher (eBooks), das auf der Struktur von HTML basiert, daher gelten
+praktisch alle Grundsätze der Barrierefreiheit für EPUB-Dokumente.
+
+Es gibt mehrere konkurrierende Technologien für eBooks. EPUB ist wohl die zugänglichste von allen, denn
+EPUB-Dokumente sind im Wesentlichen HTML-Dokumente, die in einem praktischen buchähnlichen Format
+zusammengefasst sind. Zum Betrachten von EPUB-Dokumenten wird ein EPUB-Reader benötigt. Du kannst Bilder,
+Multimedia, MathML und andere Technologien in EPUB-Dokumente einbinden, und zwar fast genauso wie in
+HTML-Dokumente.
+
+EPUB-Dokumente sind flexibel in der Art und Weise, wie sie Inhalte präsentieren. EPUBs sind so aufgebaut,
+dass ein EPUB-Lesegerät den Text vergrößern, die Farben ändern, den Kontrast erhöhen und die Stile
+bearbeiten kann. Barrierefreiheit und Benutzerkontrolle gehören zu den Stärken des EPUB-Formats.
+
+Im Gegensatz dazu sind PDF-Dokumente viel weniger flexibel und benutzerkonfigurierbar, da PDF-Dokumente so
+gestaltet sind, dass sie ihr visuelles Styling und Layout beibehalten. PDF-Dokumente eignen sich für
+Druckzwecke oder wenn ein strenges visuelles Layout erforderlich ist. EPUB-Dokumente sind in den meisten
+anderen Fällen besser geeignet.
+
+### EPUB-Dateien müssen im EPUB 3-Format vorliegen.
+
+Das EPUB 3-Format enthält zahlreiche Verbesserungen der Barrierefreiheit im Vergleich zu früheren
+Versionen, sodass du mit der aktuellsten Version die besten Ergebnisse erzielst. Es ist davon
+auszugehen, dass auch künftige EPUB-Versionen die Barrierefreiheit gut unterstützen werden,
+möglicherweise mit zusätzlichen Verbesserungen.
+
+### EPUB-Dokumente müssen die zusätzlichen Grundsätze zur Barrierefreiheit in der EPUB-Zugänglichkeitsspezifikation einhalten.
+
+Genauso wie PDF-Dateien gemäß der jeweiligen Barrierefreiheits-API erstellt werden müssen, müssen auch
+EPUB-Dateien die EPUB-Spezifikation für Barrierefreiheit berücksichtigen.
+
+Ressourcen zur Barrierefreiheit von EPUB:
+
+- Link: <a href="https://idpf.github.io/a11y-guidelines/" target="_blank">General EPUB 3 accessibility information</a>
+
+- Link: <a href="http://www.idpf.org/epub/a11y/" target="_blank">EPUB Accessibility 1.0 (proposed specification)</a>

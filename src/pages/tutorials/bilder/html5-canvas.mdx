@@ -1,0 +1,495 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'HTML5 Canvas'
+pubDate: 2023-05-16
+---
+
+Das `<canvas>`-Element wird als Pixel auf dem Bildschirm dargestellt, die nicht wie SVG skaliert werden.
+JavaScript wird verwendet, um zur Laufzeit dynamisch auf das `<canvas>`-Element zu zeichnen, wodurch
+dynamische Bilder wie Diagramme und Grafiken erstellt werden können. Das `<canvas>`-Element wird häufig
+für die Entwicklung von HTML5-Desktop- und Handyspielen verwendet.
+
+Das `<canvas>`-Element wird von allen Browsern unterstützt und auf dem Bildschirm dargestellt, aber der
+Inhalt des `<canvas>`-Elements ist für Screenreader nicht zugänglich. Beim `<canvas>`-Element muss die
+Barrierefreiheit mit JavaScript oder ARIA auf dem `<canvas>`-Element selbst oder mit internen Fallback-Inhalten
+innerhalb der öffnenden und schließenden `<canvas>`-Tags hinzugefügt werden. Der Inhalt des `<canvas>`-Elements
+ist mit Ausnahme des Fallback-Inhalts nicht Teil des DOM.
+
+Für interaktive Inhalte und benutzerdefinierte Steuerelemente ist SVG die bessere Wahl als `<canvas>`, da
+SVG über interne Barrierefreiheit und die Möglichkeit verfügt, Interaktivität einfach mit JavaScript hinzuzufügen.
+
+Das `<canvas>`-Element sollte nicht zum Erzeugen von Text verwendet werden, da es als Bild von Text gerendert
+wird, der bei Vergrößerung verpixelt und nicht wie CSS-Text vom Benutzer angepasst werden kann.
+
+Das `<canvas>`-Element muss einen Namen und eine Beschreibung mit Barrierefreiheit haben, die mit dem sichtbaren
+Text und Inhalt innerhalb der Zeichenfläche übereinstimmen.
+
+Wenn das `<canvas>`-Element als maus- und tastaturbedienbare benutzerdefinierte UI-Steuerelemente verwendet wird, muss
+es eine Barrierefreiheit-Rolle haben, z. B. role="button" für benutzerdefinierte `<canvas>`-Schaltflächen.
+
+Referenzen:
+
+- Link: <a href="https://msdn.microsoft.com/en-us/library/hh968259(v=vs.85).aspx" target="_blank">HTML5 Canvas and the Canvas Shadow DOM</a>
+
+- Link: <a href="https://www.ibm.com/developerworks/library/wa-games/" target="_blank">Handling user input in HTML5 Canvas-based games</a>
+
+## Einfache Text-Alternativen
+
+### Wenn `<canvas>`-Elemente zur Darstellung von Grafiken verwendet werden, muss ihnen role="img" zugewiesen werden.
+
+Das `<canvas>`-Element wird von Screenreadern nicht automatisch als Bild behandelt. Wenn der Inhalt innerhalb
+des `<canvas>`-Elements als Bild fungieren soll, muss er als solches gekennzeichnet werden, indem ihm role="img"
+zugewiesen wird.
+
+#### Gutes Beispiel: Das `<canvas>`-Element mit der semantischen Rolle eines Bildes
+
+```html
+<canvas
+  id="canvasAsImage"
+  role="img"
+  width="400"
+  height="100"
+  aria-label="Canvas element marked as an image">
+</canvas>
+```
+
+### Alle `<canvas>`-Elemente müssen eine Textalternative haben.
+
+Das `<canvas>`-Element kapselt das Objekt in sich ein und rendert den Inhalt nicht im DOM oder im
+Barrierefreiheits-Baum über die Barrierefreiheit-API. Es muss entweder interner Fallback-Inhalt
+oder ARIA-Semantik verwendet werden, um eine für Screenreader zugängliche Textalternative zu
+erstellen.
+
+#### Gutes Beispiel: Option 1: Alternativtext über aria-label oder aria-labelledby hinzufügen
+
+Die Verwendung von ARIA role="img" und aria-label="alt text" auf dem `<canvas>`-Element oder dem internen
+Fallback-Inhalt erzeugt ein Element, das dem Bildschirmleser über Bild-Schnellnavigationsbefehle zur
+Verfügung steht, wobei die Bildrolle auf der Grundlage von role="img" gesprochen wird.
+
+Das aria-label liefert eine Textbeschreibung des `<canvas>`-Elements. Screenreader erkennen das `<canvas>`-Element
+als Bild, weil es auf role="img" gesetzt ist, und Screenreader lesen den Text im aria-label als Alternativtext
+für das Bild.
+
+```html
+<canvas
+  id="goodCanvas1"
+  width="700"
+  height="100"
+  role="img"
+  aria-label="A red and white circular target with an arrow
+    pointing to the center of the target"
+  style="margin:auto">
+</canvas>
+<script>
+  var canvas = document.getElementById('goodCanvas1')
+  var ctx = canvas.getContext('2d')
+  var centerX = canvas.width / 2
+  var centerY = canvas.height / 2
+  var radius = 40
+  var radius2 = 30
+  var radius3 = 20
+  var radius4 = 10
+  ctx.fillStyle = '#eff2bc'
+  ctx.fillRect(0, 0, 700, 100)
+  ctx.fillStyle = 'green'
+  ctx.fillRect(335, 0, 30, 100)
+  ctx.fillRect(300, 36, 100, 30)
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false)
+  ctx.strokeStyle = 'blue'
+  ctx.lineWidth = 5
+  ctx.stroke()
+  ctx.fillStyle = '#e22a2a'
+  ctx.fill()
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius2, 0, 2 * Math.PI, false)
+  ctx.fillStyle = 'white'
+  ctx.fill()
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius3, 0, 2 * Math.PI, false)
+  ctx.fillStyle = '#e22a2a'
+  ctx.fill()
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius4, 0, 2 * Math.PI, false)
+  ctx.fillStyle = 'white'
+  ctx.fill()
+  ctx.strokeStyle = 'black'
+  ctx.lineWidth = 3
+  ctx.beginPath()
+  ctx.moveTo(250, 10)
+  ctx.lineTo(centerX, centerY)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(345, 40)
+  ctx.lineTo(centerX, centerY)
+  ctx.lineTo(340, 53)
+  ctx.lineJoin = 'miter'
+  ctx.stroke()
+</script>
+```
+
+#### Gutes Beispiel: Option 2: Füge alternativen Text innerhalb des `<canvas>`-Elements selbst hinzu (und aria-labelledby)
+
+Es ist möglich, alternativen Text für das `<canvas>`-Element mit Fallback-Text innerhalb des `<canvas>`-Elements selbst
+bereitzustellen. Zum Beispiel:
+
+```html
+<canvas height="200" width="400"> Fallback text goes here. </canvas>
+```
+
+Theoretisch sollte es ausreichen, den Ausweichtext hinzuzufügen, aber in der Praxis verhält sich dieser alternative
+Text nicht ganz so, wie du vielleicht erwartest. In den meisten Kombinationen aus Browser und Bildschirmlesegerät
+liest das Bildschirmlesegerät den Ausweichtext als normalen Text, aber nicht als Alternativtext für das Bild.
+
+Genauer gesagt: Wenn du nacheinander durch den Text der Webseite navigierst (z. B. mit der Pfeiltaste nach unten in
+JAWS oder NVDA), liest der Screenreader den Fallback-Text, meldet aber nicht, dass der Text zu einem Bild gehört. Wenn
+du über Grafiken navigierst (z. B. mit der Taste G in JAWS oder NVDA), erkennen einige Screenreader das `<canvas>`-Element
+überhaupt nicht als Bild, und andere melden lediglich, dass ein Bild vorhanden ist, lesen aber den Fallback-Text für das
+Bild nicht vor.
+
+Eine Lösung ist die Verwendung von aria-labelledby, um den Fallback-Text mit dem `<canvas>`-Element zu verknüpfen.
+
+```html
+<canvas
+  id="goodCanvas2"
+  width="700"
+  height="100"
+  role="img"
+  aria-labelledby="goodCanvas2Fallback"
+  style="margin:auto">
+  <p id="goodCanvas2Fallback">
+    A red and white circular target with an arrow pointing to the center of the target
+  </p>
+</canvas>
+<script>
+  /* enter script here to add visual elements to canvas element */
+</script>
+```
+
+#### Schlechtes Beispiel: `<canvas>` Element ohne Barrierefreiheit Name oder Rolle
+
+In diesem schlechten Beispiel erkennen Screenreader das `<canvas>`-Element nicht als Bild, weil
+role="img" fehlt, und Screenreader sind nicht in der Lage, etwas Sinnvolles über das Bild zu sagen,
+weil es keinen alternativen Text gibt.
+
+```html
+<canvas id="badCanvas1" width="400" height="100"> </canvas>
+<script>
+  var canvas = document.getElementById('badCanvas1')
+  var ctx = canvas.getContext('2d')
+  ctx.font = '30px Comic Sans MS'
+  ctx.fillStyle = 'red'
+  ctx.textAlign = 'center'
+  ctx.fillText('Hello inaccessible world!', canvas.width / 2, canvas.height / 2)
+</script>
+```
+
+### Der alternative Text für `<canvas>`-Elemente muss sinnvoll sein.
+
+Der alternative Text muss das Bild so beschreiben, dass es für blinde Nutzer nützlich ist. Im
+Wesentlichen muss der alternative Text als Ersatz für das Bild dienen, sodass die Bedeutung oder
+der Zweck des Bildes durch den alternativen Text effektiv vermittelt wird.
+
+#### Schlechtes Beispiel: `<canvas>`-Element mit nicht hilfreichem Fallback-Inhalt
+
+Auch wenn das Beispiel unten ein Canvas-Element mit Fallback-Inhalt zeigt, sagt dieser Fallback-Inhalt
+nichts anderes als "Dein Browser unterstützt das Canvas-Element nicht". Den Nutzern zu sagen, dass sie
+nicht auf den Inhalt zugreifen können, macht den Inhalt nicht zugänglich. Der Fallback-Text sollte
+stattdessen eine sinnvolle Alternative für das Canvas-Element bieten. In diesem Fall wäre eine
+sinnvolle Textalternative der Text innerhalb des Canvas-Elements: "Hallo unzugängliche Welt!"
+
+```html
+<canvas id="badCanvas2" width="400" height="100">
+  Your browser does not support the canvas element.
+</canvas>
+<script>
+  var canvas = document.getElementById('badCanvas2')
+  var ctx = canvas.getContext('2d')
+  ctx.font = '30px Comic Sans MS'
+  ctx.fillStyle = 'darkred'
+  ctx.textAlign = 'center'
+  ctx.fillText('Hello inaccessible world!', canvas.width / 2, canvas.height / 2)
+</script>
+```
+
+## Komplexe Textalternativen
+
+Komplexe `<canvas>`-Elemente wie Balkendiagramme und Tortendiagramme erfordern eine Volltextalternative
+für den gesamten Text und die Daten, die in dem komplexen Bild dargestellt werden. ARIA role="img"
+kennzeichnet das `<canvas>` als Bild für den Screenreader, und ein barrierefreier Name kann mit einem
+aria-label String-Wert oder einem aria-labelledby ID-Verweis auf andere Strings im DOM erstellt werden.
+Das Bild kann auch mit einer barrierefreien Beschreibung versehen werden, indem eine aria-describedby
+ID auf einen Text im DOM verweist.
+
+Textalternativen für komplexe Bilddaten können auch als barrierefreie Datentabelle dargestellt werden.
+
+### Alle `<canvas>`-Elemente, die als komplexe Bilder verwendet werden, müssen eine ausführliche Textalternative haben.
+
+Ein `<canvas>`-Element erfordert immer eine Textalternative, aber diese sollte relativ kurz sein. Eine
+Begrenzung auf etwa 150 Zeichen ist die beste Praxis, denn Screenreader lesen aria-label und aria-labelledby
+als eine einzige Textfolge, ohne dass der Nutzer den Screenreader anhalten und an derselben Stelle wieder
+fortfahren kann. Sobald der Nutzer den Screenreader unterbricht, müsste er zurückgehen und sich erneut auf
+das `<canvas>`-Element konzentrieren, um das Label zu hören.
+
+Wenn die Beschreibung mehr als 150 Zeichen benötigt, sollte sie auf andere Weise dargestellt werden, z. B.
+als lange Beschreibung oder Tabelle unterhalb des `<canvas>`-Elements.
+
+#### Gutes Beispiel: `<canvas>`-Element mit barrierefreiem Namen über aria-label
+
+Die Datenpunkte des Balkendiagramms werden im alternativen Text des Aria-Labels dargestellt.
+
+```html
+<h2>Neurons in Cerebral Cortex</h2>
+<canvas
+  id="can3"
+  height="400"
+  width="650"
+  role="img"
+  aria-label="Bar Chart Values in Millions from 0 to 12000.
+  Human: 11000, Chimp: 6200, Dolphin: 5800, Cat: 300">
+</canvas>
+<script type="text/javascript">
+  var can, ctx, minVal, maxVal, xScalar, yScalar, numSamples, y
+  // data sets -- set literally or obtain from an ajax call
+  var dataName = ['Human', 'Chimp', 'Dolphin', 'Cat']
+  var dataValue = [11000, 6200, 5800, 300]
+
+  // set these values for your data
+  numSamples = 4
+  maxVal = 12000
+  var stepSize = 1000
+  var colHead = 50
+  var rowHead = 60
+  var margin = 10
+  var header = 'Millions'
+  can = document.getElementById('can3')
+  ctx = can.getContext('2d')
+  ctx.fillStyle = 'black'
+  yScalar = (can.height - colHead - margin) / maxVal
+  xScalar = (can.width - rowHead) / (numSamples + 1)
+  ctx.strokeStyle = 'rgba(128,128,255, 0.5)' // light blue line
+  ctx.beginPath()
+  // print  column header
+  ctx.font = '14pt Helvetica'
+  ctx.fillText(header, 0, colHead - margin)
+  // print row header and draw horizontal grid lines
+  ctx.font = '12pt Helvetica'
+  var count = 0
+  for (scale = maxVal; scale >= 0; scale -= stepSize) {
+    y = colHead + yScalar * count * stepSize
+    ctx.fillText(scale, margin, y + margin)
+    ctx.moveTo(rowHead, y)
+    ctx.lineTo(can.width, y)
+    count++
+  }
+  ctx.stroke()
+  // label samples
+  ctx.font = '14pt Helvetica'
+  ctx.textBaseline = 'bottom'
+  for (i = 0; i < 4; i++) {
+    calcY(dataValue[i])
+    ctx.fillText(dataName[i], xScalar * (i + 1), y - margin)
+  }
+  // set a color and a shadow
+  ctx.fillStyle = 'green'
+  ctx.shadowColor = 'rgba(128,128,128, 0.5)'
+  ctx.shadowOffsetX = 20
+  ctx.shadowOffsetY = 1
+  // translate to bottom of graph and scale x,y to match data
+  ctx.translate(0, can.height - margin)
+  ctx.scale(xScalar, -1 * yScalar)
+  // draw bars
+  for (i = 0; i < 4; i++) {
+    ctx.fillRect(i + 1, 0, 0.5, dataValue[i])
+  }
+  function calcY(value) {
+    y = can.height - value * yScalar
+  }
+</script>
+```
+
+#### Gutes Beispiel: `<canvas>`-Element mit Textalternative über Datentabelle
+
+Die Daten im Balkendiagramm des `<canvas>`-Elements werden in einer Tabelle unterhalb des
+`<canvas>`-Elements dargestellt. Die Tabelle ist mit dem `<canvas>`-Element über aria-describedby verbunden.
+
+Beachte, dass innerhalb des `<canvas>`-Elements immer noch eine kurze Textalternative bereitgestellt
+wird, in diesem Fall als Fallback-Text. Der alternative Text weist darauf hin, dass eine ausführlichere
+Beschreibung des `<canvas>`-Elements weiter unten zu finden ist.
+
+```html
+<canvas id="can2" height="400" width="650" role="img" aria-describedby="table1">
+  Bar chart showing number of neurons in the cerebral cortex. The table below contains data details.
+</canvas>
+<table id="table1">
+  <caption>
+    Neurons in Cerebral Cortex
+  </caption>
+  <tbody>
+    <tr>
+      <th scope="col">Value</th>
+      <th scope="col">Human</th>
+      <th scope="col">Chimp</th>
+      <th scope="col">Dolphin</th>
+      <th scope="col">Cat</th>
+    </tr>
+    <tr>
+      <th scope="row">Millions</th>
+      <td>11000</td>
+      <td>6200</td>
+      <td>5800</td>
+      <td>300</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## Barrierefreiheit für Sehbehinderte
+
+### Alle `<canvas>`-Elemente sollten eine Hintergrundfüllung haben.
+
+Wenn ein `<canvas>`-Element keine Hintergrundfüllfarbe hat, kann sich die Hintergrundfarbe ändern, wenn
+die Benutzer ihre Farb- oder Kontrasteinstellungen ändern, z. B. wenn sie den Windows-Modus "Hoher Kontrast"
+verwenden. Eine der gebräuchlichsten Hintergrundfarben im Modus "Hoher Kontrast" von Windows ist Schwarz,
+sodass der Hintergrund des Canvas-Bildes zu Schwarz wechselt, wenn keine Hintergrundfüllfarbe vorhanden ist.
+
+#### Gutes Beispiel: Screenshot des `<canvas>`-Elements mit Hintergrundfüllung im Hochkontrastmodus
+
+In diesem Beispiel wird der ursprüngliche weiße Hintergrund des `<canvas>`-Elements beibehalten, damit der
+Text und die anderen Elemente in der `<canvas>`-Grafik lesbar und visuell leicht zu interpretieren sind.
+
+![](/images/bilder/canvasChartBGfill.png)
+
+#### Schlechtes Beispiel: Screenshot des `<canvas>`-Elements ohne Hintergrundfüllung im Hochkontrastmodus
+
+In diesem Beispiel ist im `<canvas>`-Element keine Hintergrundfarbe angegeben, sodass der Hintergrund im
+Windows-Modus "Hoher Kontrast" schwarz wird. Der schwarze Text wird komplett unlesbar und andere Teile der
+Grafik sind schwer zu interpretieren.
+
+![](/images/bilder/canvasChartNoFill.png)
+
+### Wenn Text in einer Grafik benötigt wird, kann es sinnvoller sein, SVG anstelle von `<canvas>` zu verwenden.
+
+Das `<canvas>`-Element rendert Grafiken als Rasterbilder, ähnlich wie jpg-, gif- und png-Bilder. Das bedeutet,
+dass die Bilder bei einer Vergrößerung blockiger oder pixeliger aussehen. Dieses Problem tritt vor allem dann
+auf, wenn Text im Bild enthalten ist. Text innerhalb von `<canvas>`-Elementen ist nicht so leicht zu lesen wie
+normaler Text im Dokument. Wenn Text in einem Bild benötigt wird - wie bei den Diagrammen in den Beispielen
+auf dieser Seite - ist es am besten, die Diagramme als SVG-Grafiken und nicht als `<canvas>`-Grafiken zu
+erstellen. SVG-Grafiken sind vektorbasiert, so dass sie stufenlos skalierbar und immer gut lesbar sind.
+
+#### Schlechtes Beispiel: Das `<canvas>` wird zum Rendern von Text verwendet
+
+Im folgenden Beispiel wird der Text im `<canvas>`-Element gerendert.
+
+<canvas
+  id="badCanvas2"
+  width="700"
+  height="100"
+  role="img"
+  aria-label="This text will not scale as well as real text or SVG"></canvas>
+
+Bei der Vergrößerung wird der Text verpixelt und/oder unscharf, wie auf dem Screenshot unten zu sehen ist.
+Echter Text oder SVG-Text würde seine Schärfe und Lesbarkeit beibehalten.
+
+![](/images/bilder/canvas-text.png)
+
+## Barrierefreiheit über die Tastatur
+
+Benutzerdefinierte UI-Steuerelemente können als `<canvas>`-Elemente mit JavaScript-Ereignisbehandlung
+erstellt werden. Ein `<canvas>`-Element, das mit der Maus bedienbar ist, muss auch mit der Tastatur
+funktionieren. Hover-Stile sollten den Tastaturfokus-Stilen entsprechen. Alle `<canvas>`-Steuerelemente
+mit onclick- und onmousedown-Ereignissen müssen über Tastaturereignisse verfügen, die prüfen, ob die
+Enter- und Leertaste aktiviert ist.
+
+### Barrierefreiheit Name und Rolle
+
+Die Standard-ARIA-Methoden, um benutzerdefinierten Steuerelementen zugängliche Namen und Rollen zu geben,
+funktionieren auch für Canvas-Elemente, z. B. `<canvas role="button" aria-label="Accessible Name"></canvas>`
+spricht als "Accessible Name button".
+
+Fallback-Inhalte können auch verwendet werden, indem man eine native Schaltfläche im Canvas-Tag platziert und
+das Mausverhalten der Canvas-Schaltfläche als Tastaturereignisse der nativen Schaltfläche anlegt. So können
+Tastaturbenutzer mit der Tabulatortaste auf die Schaltfläche zugreifen, die dann eine eigene Rolle und einen
+eigenen Textwert hat. Die Umrandung des Tastaturfokus umgibt den Canvas nicht, wenn Fallback-Inhalte verwendet
+werden, daher muss ein Fokusindikator hinzugefügt werden.
+
+### Ein `<canvas>`-Element, das mit der Maus bedient werden kann, muss auch über die Tastatur zugänglich sein.
+
+#### Fokussierbarkeit über die Tastatur
+
+Verwende tabindex="0", um ein `<canvas>`-Element in der Standardquelltextreihenfolge beim Tabbing fokussierbar
+zu machen. Tabindex macht das Element nur tabbable, aber es wird nicht mit Enter oder Leertaste aktiviert, bis
+die zusätzlichen Ereignisse hinzugefügt werden.
+
+#### Tastaturbedienbarkeit
+
+Das `<canvas>`-Element ist nicht über die Tastatur bedienbar, so dass Onclick-Ereignisse nicht durch Enter-
+oder Leertasten ausgelöst werden. Füge ein onkeydown-Ereignis hinzu, das prüft, ob die Enter- oder Leertaste
+gedrückt wird, und dann das Standardverhalten verhindert und den normalen Schaltflächencode auslöst, der
+bisher nur mit der Maus bedienbar war.
+
+##### Gutes Beispiel: `<canvas>`-Schaltflächen mit Fokussierbarkeit und zugänglichen JavaScript-Tastaturereignissen
+
+```html
+<canvas
+  id="mycanvas"
+  width="128"
+  height="36"
+  tabindex="0"
+  role="button"
+  aria-label="Canvas button"
+  onkeydown="if(event.keyCode==13 || event.keyCode==32){
+       event.preventDefault();
+       canvasDown(this)
+    }"
+  onkeyup="if(event.keyCode==13 || event.keyCode==32){
+       event.preventDefault(); canvasUp(this)
+    }"
+  onmousedown="canvasDown(this)"
+  onmouseup="canvasUp(this)"
+  onmouseover="canvasOver()"
+  onmouseout="canvasOut()"
+  onfocus="canvasOver()"
+  onblur="canvasOut()">
+</canvas>
+```
+
+##### Gutes Beispiel: `<canvas>`-Schaltflächen mit Fokussierbarkeit und zugänglichen JavaScript-Tastaturereignissen
+
+```html
+<canvas
+  tabindex="0"
+  role="button"
+  aria-label="Home"
+  width="100"
+  height="50"
+  id="gradientCanvas"
+  onmouseover="drawCanvas2()"
+  onmouseout="drawCanvas1()"
+  onfocus="drawCanvas2()"
+  onclick="document.getElementById('canvasStorage').innerHTML='Clicked on Home button'"
+  onkeydown="if(event.keyCode==13){
+       event.preventDefault();
+       document.getElementById('canvasStorage').innerHTML='Pressed Enter on Home button'
+    };
+    if(event.keyCode==32){
+       event.preventDefault();
+    document.getElementById('canvasStorage').innerHTML='Pressed Spacebar on Home button'}"
+  onblur="drawCanvas1()">
+  Your browser does not support HTML5 Canvas.
+</canvas>
+```
+
+##### Schlechtes Beispiel: `<canvas>`-Schaltfläche ohne Barrierefreiheit über die Tastatur oder Name und Rolle
+
+```html
+<canvas
+  id="badCanvas"
+  width="128"
+  height="36"
+  onmousedown="canvasDown2(this)"
+  onmouseup="canvasUp2(this)"
+  onmouseover="canvasOver2()"
+  onmouseout="canvasOut2()">
+</canvas>
+```

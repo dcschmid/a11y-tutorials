@@ -1,0 +1,2319 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Überdenken der "Affordanzen"'
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+
+In diesem Abschnitt geht es darum, die Grenzen normaler Designparadigmen zu
+erweitern. Ein Webdesign bietet Menschen, die nicht behindert sind, bestimmte
+Möglichkeiten und Menschen, die Bildschirmlesegeräte, Bildschirmlupen oder
+Eye-Tracking-Eingabegeräte verwenden, eine andere Auswahl an wahrgenommenen
+Möglichkeiten. Tatsächlich gibt es für ein und dieselbe Webseite mehrere
+Schnittstellen, je nachdem, welche Fähigkeiten und Geräte du für die Webseite
+mitbringst.
+
+Die Herausforderung besteht darin, die vielen möglichen Schnittstellen für deine
+Entwürfe zu durchdenken und dafür zu sorgen, dass sie alle auf die bestmögliche
+Weise funktionieren.
+
+## Affordanzen definieren
+
+### James J. Gibsons ursprüngliches Konzept der Affordanzen
+
+Der Psychologe James J. Gibson prägte 1977 den Begriff "Affordanzen", um die
+Bandbreite der möglichen Handlungen zu bezeichnen, die jemand mit einem bestimmten
+Objekt ausführen kann. Hier sind einige Beispiele:
+
+#### Beispiel: Die Möglichkeiten von Türen
+
+Eine Tür bietet die Möglichkeit, geöffnet zu werden und von einer Seite der Wand
+zur anderen zu gelangen. Je nach Design und Platzierung der Tür kann sie auch
+geschoben, gezogen oder zur Seite geschoben werden.
+
+#### Beispiel: Die Erschwinglichkeiten von Kaffeebechern
+
+Ein Kaffeebecher bietet die Möglichkeit, Dinge zu halten, vor allem, aber nicht
+nur, Flüssigkeiten. Wenn sie einen Henkel hat, bietet sie die Möglichkeit, an
+einer Stelle angefasst zu werden, die nicht heiß ist (wenn die Tasse eine heiße
+Flüssigkeit enthält), und sie bietet die Möglichkeit, mit dem Henkel an einen
+Pflock gehängt zu werden.
+
+### Affordanzen für wen?
+
+Ein Schlüsselbegriff in Gibsons Konzept der Affordanzen ist, dass die Affordanzen
+eines Objekts von den Handlungsmöglichkeiten einer Person abhängen, die von
+Mensch zu Mensch unterschiedlich sein können. Was sind die Affordanzen eines
+Objekts? Darauf gibt es keine allgemeingültige Antwort. Du musst dich fragen:
+Was sind die Affordanzen für wen?
+
+An diesem Punkt beginnt das Konzept der Erschwinglichkeit im Bereich der
+Barrierefreiheit.
+
+#### Beispiel: Die ungleichen Erschwinglichkeiten von Treppen
+
+Die Erschwinglichkeit von Treppen hängt von der Mobilität einer Person ab.
+
+- Eine voll mobile Person: Eine Treppe bietet die Möglichkeit, von einer Ebene zur
+  anderen zu gelangen, entweder nach oben oder nach unten.
+
+- Ein Rollstuhlfahrer: Eine Treppe bietet keine Möglichkeit, einen Rollstuhl zu
+  benutzen, also auch keine Möglichkeit, von einer Ebene zur anderen zu gelangen.
+  Eine Treppe kann für einen Rollstuhlfahrer weniger offensichtliche Dinge bieten,
+  wie z. B. die Tatsache, dass es mehrere Ebenen gibt, oder dass er einen Teil der
+  nächsten Ebene sehen kann. Aber Treppen bieten Rollstuhlfahrern nicht den
+  Hauptzweck ihrer Konstruktion. Treppen sind einfach nicht für Rollstuhlfahrer/innen
+  gedacht.
+
+#### Beispiel: Die ungleichen Möglichkeiten von Computerbildschirmen
+
+Die Möglichkeiten, die ein Computerbildschirm bietet, hängen von der Sehkraft
+einer Person ab.
+
+- Eine sehende Person: Ein Computerbildschirm bietet die Möglichkeit, visuelle
+  Schnittstellen wahrzunehmen und mit ihnen über visuelle Eingabemethoden wie Maus
+  oder Touch zu interagieren.
+
+- Eine Person, die blind ist: Ein Computerbildschirm ist für eine blinde Person
+  nicht wirklich von Nutzen. Sie können weder die visuelle Ausgabe wahrnehmen
+  noch visuelle Methoden zur Interaktion mit der visuellen Schnittstelle
+  verwenden.
+
+### Affordanzen sind binär (nach Gibson)
+
+Wenn du sowohl das Objekt als auch die Handlungsmöglichkeiten der Person
+berücksichtigst, sind die Affordanzen eines Objekts eine binäre Eigenschaft des
+Objekts: Sie sind entweder vorhanden oder nicht. Selbst wenn eine Person nicht
+alle Affordanzen eines Objekts kennt, hat das Objekt dennoch alle Affordanzen.
+Die Affordanzen eines Objekts hängen nicht von der Fähigkeit der Person ab, sie
+zu erkennen.
+
+#### Beispiel: Die sekundären (unbeabsichtigten) Eigenschaften eines Volleyballs
+
+Volleybälle sind so konzipiert, dass sie beim Volleyballspiel mit den Händen
+geschlagen werden. Das ist die offensichtlichste Eigenschaft eines Volleyballs,
+aber für die meisten Menschen bieten Volleybälle auch noch andere Möglichkeiten:
+
+- Ein Volleyball kann gekickt werden.
+
+- Eine Person kann auf einem Volleyball sitzen.
+
+- Ein Volleyball kann in einer Notsituation als Schwimmhilfe verwendet werden
+  (dies wird jedoch nicht als Hauptzweck empfohlen!)
+
+- Ein Volleyball kann verwendet werden, um ein Fenster einzuschlagen (auch diese
+  Verwendung wird unter den meisten Umständen nicht empfohlen!).
+
+- Jemand kann ein Gesicht auf einen Volleyball malen und ihn als Kopf einer
+  Vogelscheuche verwenden (keine übliche Verwendung, aber jemand könnte es tun!).
+
+Du verstehst, was ich meine. Ein Volleyball bietet viele Möglichkeiten, die über
+seinen eigentlichen Zweck hinausgehen. Gibsons Konzept der Affordanzen berücksichtigt
+all diese Möglichkeiten.
+
+### Donald Normans Human-Computer Interaction (HCI) Konzept der Affordanzen
+
+Ab 1988 begann Donald Norman, den Begriff "Affordanz" in einem Design-Kontext
+innerhalb der Mensch-Computer-Interaktion (HCI) zu verwenden. Er benutzte den
+Begriff ähnlich wie Gibson, allerdings mit ein paar wichtigen Unterschieden.
+Laut Norman sind die folgenden Dinge wahr:
+
+- Die Affordanzen eines Objekts sind abhängig von der Wahrnehmbarkeit der
+  Affordanzen. Wenn eine Person eine Affordanz nicht wahrnehmen kann, existiert
+  die Affordanz für diese Person nicht. (Im Gegensatz dazu würde Gibson sagen,
+  dass die Affordanz unabhängig davon existiert, ob eine Person sie wahrnehmen
+  kann oder nicht).
+
+- Die Wahrnehmung von Affordanzen wird durch die Kultur, den Hintergrund, die
+  Bildung und andere relevante Erfahrungen und Eigenschaften einer Person
+  beeinflusst.
+
+- Die Affordanzen eines Objekts können so gestaltet sein, dass sie offensichtlich
+  sind - und daher nutzbar und nützlich - oder das Design kann die Affordanzen
+  verschleiern oder verhindern. Für Norman ist die Qualität des Designs
+  ausschlaggebend dafür, dass ein Objekt die beabsichtigten Möglichkeiten bietet.
+
+Donald Norman hat die ursprüngliche Idee der Affordanzen in ein Designziel
+umgewandelt: Objekte sollten so gestaltet sein, dass sie die richtige Art von
+Affordanzen bieten.
+
+#### Ein gutes Beispiel: Ein Türgriff mit offensichtlichen "Push"- und "Pull"-Affordanzen
+
+Eines der klassischen Beispiele für Design-Affordance sind Türen.
+
+Wenn eine Tür so konstruiert ist, dass sie sich nur in eine Richtung öffnen lässt,
+muss eine Seite gedrückt und die andere Seite gezogen werden. Das optische
+Erscheinungsbild der Tür sollte deutlich machen, welche Aktion auf welcher Seite
+ausgeführt werden muss. Mit einem "schiebbaren" Metallschild auf der einen und
+einem "ziehbaren" Griff auf der anderen Seite müssen die Menschen nicht darüber
+nachdenken, welche Aktion sie ausführen müssen. Sie werden die Aktion ausführen,
+die ihnen die Seite der Tür ermöglicht.
+
+#### Schlechtes Beispiel: Ein Türgriff mit zweideutigen oder irreführenden Eigenschaften
+
+Wenn du eine Tür mit "ziehbaren" Griffen auf beiden Seiten gestaltest, werden die
+Leute wahrscheinlich annehmen, dass sie den Griff ziehen müssen, um die Tür zu
+öffnen, selbst wenn sie sich auf der Seite befinden, die sie drücken müssen.
+Norman würde sagen, dass das Design der Tür die Menschen glauben lässt, dass die
+Tür auf beiden Seiten "ziehbar" ist, auch wenn in Wirklichkeit nur eine Seite
+ziehbar ist.
+
+### Erschwinglichkeiten des Webdesigns
+
+Web-Designs können auch im Hinblick auf die Möglichkeiten analysiert werden,
+die sie bieten (oder nicht bieten).
+
+#### Schlechtes Beispiel: Bearbeitbare Texteingaben, die nicht bearbeitbar aussehen
+
+In dem Beispiel unten gibt es drei Textfelder, eines für die Eingabe deines
+Namens, eines für die Eingabe deiner E-Mail und eines für die Eingabe deiner
+Telefonnummer. Die Felder wurden optisch so gestaltet, dass es keine Ränder oder
+visuelle Unterscheidung gibt, so dass es nicht offensichtlich ist, wo eine Person
+mit der Maus klicken sollte, um mit der Eingabe zu beginnen.
+
+<div style='padding: 20px;border: 2px solid white;line-height:1em;'>
+  <div>
+    <label for='enterName'>Name:</label>
+    <br /> <input id='enterName' type='text' class='invisibleInput' />
+  </div>
+  <div>
+    <label for='enterEmail'>Email:</label>
+    <br /> <input id='enterEmail' type='text' class='invisibleInput' />
+  </div>
+  <div>
+    <label for='enterPhone'>Phone:</label>
+    <br /> <input id='enterPhone' type='text' class='invisibleInput' />
+  </div>
+</div>
+
+```html
+<div style="padding: 20px;border: 2px solid white;line-height:1em;">
+  <div>
+    <label for="enterName">Name:</label>
+    <br />
+    <input id="enterName" type="text" />
+  </div>
+  <div>
+    <label for="enterEmail">Email:</label>
+    <br />
+    <input id="enterEmail" type="text" />
+  </div>
+  <div>
+    <label for="enterPhone">Phone:</label>
+    <br />
+    <input id="enterPhone" type="text" />
+  </div>
+</div>
+```
+
+Es stellt sich heraus, dass die Texteingaben im obigen Formular unter den Labels
+stehen, was für einige visuelle Benutzer unerwartet sein kann, da sie erwarten,
+dass die Texteingaben direkt rechts neben den Labels stehen. Selbst wenn der
+Benutzer richtig rät, warum sollte er überhaupt raten müssen? Die Texteingaben
+sollten so gestaltet werden, dass ihre Vorteile offensichtlich sind.
+
+Schlechte Design-Entscheidungen können dazu führen, dass nur Nutzerinnen und Nutzer,
+die keine Behinderungen haben, die Möglichkeiten nutzen können. Das gilt vor allem,
+wenn es um benutzerdefinierte JavaScript-Steuerelemente geht.
+
+#### Schlechtes Beispiel: Ein Link ohne Link-Aaffordances für einige Nutzer
+
+Im folgenden Beispiel gibt es einen Link, der für sehende Mausbenutzer wie ein
+Link aussieht und sich auch so verhält. Das bedeutet, dass sehende Benutzer ihn
+anklicken können und erwarten, dass der Link sie zu dem im Link genannten Ziel
+führt. Alle diese Erwartungen erfüllen sich für sehende Mausbenutzer.
+
+<p>
+  Here is a link to
+  <span style='text-decoration: underline;color: white;cursor: pointer;'>Wikipedia</span>.
+</p>
+
+```html
+<p>
+  Here is a link to
+  <span style="text-decoration: underline;color: white;cursor: pointer;">Wikipedia</span>.
+</p>
+```
+
+Dieser Link wurde jedoch mit CSS und JavaScript und nicht mit einem Standard-Anker-Element
+(`<a>`) erstellt und es wurden keine zusätzlichen Barrierefreiheits-Attribute
+(z. B. role="link" und tabindex="0") auf ihn angewandt, so dass Tastaturbenutzer
+nicht in der Lage sind, mit der Tabulatortaste auf den Link zuzugreifen, um ihn
+zu aktivieren, und Benutzer von Bildschirmlesegeräten können den Text überhaupt
+nicht als Link erkennen.
+
+Dieser künstliche Link bietet Tastaturbenutzern und Bildschirmlesern nicht die
+Vorteile eines Links.
+
+### Physische vs. kognitive Affordanzen
+
+Wir können auch zwischen physischen und kognitiven Affordanzen unterscheiden, wie
+Rex Hartson, Professor für Informatik, erklärt. Eine Notausgangstür zum Beispiel
+ermöglicht es uns, das Gebäude zu verlassen und ist ein Beispiel für eine physische
+Affordanz. Das rote Neonschild, das uns darauf aufmerksam macht, dass die Tür
+vorhanden ist, ist hingegen ein Beispiel für eine kognitive Affordanz. Mit
+anderen Worten: Wir wissen, dass wir das Gebäude physisch verlassen können. In
+Bezug auf das Webdesign ist ein Beispiel für eine kognitive Affordanz die
+standardmäßige visuelle Gestaltung mit blauer Schrift und Unterstreichungen für
+Links. Die Nutzer erwarten, dass ein so gestalteter Text als Link funktioniert.
+Und die semantische Struktur, die ihn als echten Link kennzeichnet, ist die
+physische Affordanz, die es den Nutzern ermöglicht, den Link mit der Maus oder
+der Tastatur zu aktivieren.
+
+### Design mit Affordanzen im Hinterkopf
+
+Für unsere Zwecke in diesem Modul gibt uns Donald Normans designorientierte
+Interpretation des Konzepts der Erschwinglichkeit (Affordances) ein wenig mehr,
+mit dem wir arbeiten können, wenn wir die Nutzerbedürfnisse in unseren Webdesigns
+berücksichtigen. Wir wollen den Zweck und die Funktionen unserer Designs (die
+Affordanzen) für alle unsere Nutzerinnen und Nutzer offensichtlich machen, nicht
+nur für Menschen mit vollem Körpergewicht.
+
+Wahrnehmbare Erschwernisse: Um ein Element nutzen zu können, müssen die Nutzer
+es wahrnehmen können. Die Wahrnehmungsfähigkeit ist von Mensch zu Mensch
+unterschiedlich:
+
+- Eine sehende Person nimmt Affordances hauptsächlich durch visuelle Erkennung wahr.
+
+- Eine blinde Person nimmt die Erleichterungen hauptsächlich über den Klang wahr
+  (über einen Screenreader) und entdeckt die Erleichterungen über die semantische
+  Struktur (Namen, Rollenwerte) der Elemente im Webdesign.
+
+- Eine taubblinde Person nimmt Affordances hauptsächlich über den Tastsinn wahr
+  (über ein aktualisierbares Braille-Gerät) und entdeckt die Affordances wie
+  blinde Menschen über die semantische Struktur des Webdesigns.
+
+- Eine gehörlose Person nimmt die Barrierefreiheit hauptsächlich durch visuelle
+  Erkennung wahr und wird größtenteils keine behinderungsspezifischen Probleme
+  bei der Wahrnehmung von Barrierefreiheit in der Benutzeroberfläche haben,
+  aber sie wird definitiv Probleme mit der Barrierefreiheit von Video- und
+  Audioinhalten haben, wenn es keine Bildunterschriften oder Transkripte gibt.
+
+## Blind: Eine audio-strukturelle UX
+
+### Die UX von blinden Nutzern verstehen
+
+Zunächst einmal das Offensichtliche: Menschen, die blind sind, verlassen sich
+nicht auf die visuelle Gestaltung einer Benutzeroberfläche. Nicht jeder, der als
+blind eingestuft wird, ist komplett blind. Manche Menschen können Dinge wie helle
+und dunkle Bereiche wahrnehmen, aber im Grunde genommen ist die visuelle
+Schnittstelle nicht der wichtigste Teil einer Benutzeroberfläche für blinde
+Menschen.
+
+Blinde Menschen hören Screenreadern zu, die Webseiten laut vorlesen, aber es geht
+nicht nur darum, sich eine Webseite von Anfang bis Ende anzuhören.
+Screenreader-Nutzer haben viele Möglichkeiten, durch den Inhalt zu navigieren.
+Eine der gängigsten Methoden ist die Navigation nach Art der Elemente (Orientierungspunkte,
+Überschriften, Formularelemente, Links, Bilder, Listen usw.).
+
+Interaktive Komponenten - wie Formularelemente und benutzerdefinierte
+JavaScript-Widgets - erfordern ausgefeiltere Methoden zur Darstellung der
+semantischen Informationen für Screenreader-Nutzer. Die wichtigsten Konzepte bestehen
+darin, den Namen, die Rolle und die Werte/Eigenschaften jedes Elements darzustellen
+und die Werte entsprechend zu aktualisieren, wenn sie sich ändern (z. B. einen
+Bereich als eingeklappt oder erweitert markieren).
+
+### Audio-strukturelle Seite UX
+
+#### Bildschirmlesegeräte schaffen ein audio-strukturelles Erlebnis
+
+Menschen, die blind sind, benutzen Bildschirmlesegeräte, um sich den Inhalt
+anzuhören. Es ist eine synthetische Stimme, die Text in Sprache umwandelt. Es
+ist möglich, eine Webseite aufzurufen und sich vom Bildschirmlesegerät die ganze
+Seite von Anfang bis Ende laut vorlesen zu lassen, aber das macht kaum jemand.
+Wenn du das tust, musst du dir jedes Mal den gesamten Inhalt oben auf der Seite
+anhören - einschließlich der Marke, der Hauptnavigation (die viele Links enthalten
+kann) und anderer Funktionen wie Suche, Anmeldung usw. - bevor du zum Hauptinhalt
+kommst. Sobald du beim Hauptinhalt angekommen bist, musst du ihn dir komplett anhören.
+Die weniger interessanten Teile kannst du nicht einfach überfliegen. Und dann
+müsstest du dir auch noch alle Links und Informationen in der Fußzeile anhören.
+
+Es wäre eine Zeitverschwendung, sich jedes Mal alles auf jeder Webseite anzuhören.
+
+Und nicht nur das: Wenn du mit der Webseite interagieren willst - z. B. ein Formular
+ausfüllen und abschicken, ein eingeklapptes Menü aufklappen oder auf einen Link
+klicken - musst du den Screenreader anhalten und die Tastatur benutzen, um die
+entsprechenden Aufgaben auszuführen.
+
+Woher weißt du als blinde/r Nutzer/in, wann du zu einem Link, einer Texteingabe
+oder einer Schaltfläche kommst? Die Antwort ist, dass der Bildschirmleser es dir
+sagt (er sagt "Link" oder "Texteingabe" oder "Schaltfläche", wenn er die Elemente
+vorliest). Das Bildschirmlesegerät weiß, was die Elemente sind, weil sie von der
+Barrierefreiheit-API des Browsers und des Betriebssystems dargestellt werden.
+
+##### Beispiel: Das visuelle Layout versus die semantische Struktur der Wikipedia-Startseite
+
+Der folgende Screenshot zeigt den oberen Bereich der Wikipedia-Startseite
+(Stand: Februar 2017).
+
+![Wikipedia Startseite](/images/affordanzen/wikipedia-annotated-off.png)
+
+![Wikipedia Startseite Kommentiert](/images/affordanzen/wikipedia-annotated.png)
+
+Mit dem obigen Diagramm kommen wir der Art und Weise näher, wie ein
+Screenreader-Nutzer die Webseite erlebt, aber es ist immer noch nicht ganz richtig,
+denn es ist immer noch eine visuelle Darstellung. Entfernen wir die visuelle
+Darstellung von der Seite und listen wir die wichtigsten semantischen Elemente
+der Seite auf, so wie es viele Screenreadernutzer tun, wenn sie auf die Seite
+kommen:
+
+Eine audio-strukturelle "Ansicht" des oberen Teils der Wikipedia-Seite:
+
+- Landmarks (0 total)
+
+  - No landmarks available.
+
+- Headings (1 total)
+
+  - Level 1: "Wikipedia The Free Encyclopedia"
+
+- Form elements (4 total)
+
+  - Text input: "Search"
+
+  - Select list: "English"
+
+  - Button: no label is provided
+
+  - Button: Read Wikipedia in your language
+
+- Images (2 total)
+
+  - "Wikipedia"
+
+  - "Wikipedia logo"
+
+- Links (11 total, in this part of the page)
+
+  - "Wikipedia"
+
+  - "English 5 323 000+ articles"
+
+  - "日本語 1 044 000+ 記事"
+
+  - "Deutsch 2 016 000+ Artikel"
+
+  - "Español 1 306 000+ artículos"
+
+  - "Русский 1 363 000+ статей"
+
+  - "Français 1 829 000+ articles"
+
+  - "Italiano 1 323 000+ voci"
+
+  - "中文 918 000+ 條目"
+
+  - "Português 951 000+ artigos"
+
+  - "Polski 1 201 000+ haseł"
+
+- Lists (0 total, in this part of the page)
+
+  - No lists available.
+
+Jetzt haben wir ein viel besseres Gefühl dafür, was Screenreader-Nutzer erleben.
+
+Einige Bildschirmlesegeräte zeigen die Anzahl bestimmter Elemente an, sobald die
+Seite geladen ist. JAWS zum Beispiel liest normalerweise den Seitentitel vor und
+sagt dann etwas wie "Die Seite hat 4 Bereiche, 12 Überschriften und 78 Links"
+(die "Bereiche" sind die Orientierungspunkte). Ohne etwas anderes tun zu müssen,
+als die Seite aufzurufen, haben JAWS-Benutzer bereits ein grundlegendes Gefühl
+dafür, wie die Seite aufgebaut ist.
+
+Wenn JAWS-Benutzer eine Liste dieser Arten von Elementen oder Listen anderer Arten
+von Elementen hören möchten, können sie das tun, indem sie Einfügen + F3 drücken,
+wodurch der unten gezeigte Dialog erscheint:
+
+![Oberfläche von JAWS](/images/affordanzen/jaws-elements-list.png)
+
+Die Elementeliste in JAWS ermöglicht es den Benutzern, Elemente aller folgenden
+Arten aufzulisten:
+
+- Anker (Links)
+
+- Block-Zitate
+
+- Buttons
+
+- Kontrollkästchen
+
+- Steuerelemente (auswählbare ARIA-Widget-Steuerelemente, z. B. Tabs in einer Tablist)
+
+- Unterteilungen
+
+- Bearbeitungsfelder (Texteingaben)
+
+- Formularfelder
+
+- Rahmen
+
+- Grafiken
+
+- Überschriften
+
+- Links
+
+- Listenelemente
+
+- Listen
+
+- Objekte
+
+- Absätze
+
+- Placemarker
+
+- Optionsschaltflächen
+
+- Tabellen
+
+Auffallend ist, dass in dieser Liste keine Orientierungspunkte (oder "Regionen",
+wie JAWS sie nennt) aufgeführt sind, aber die Benutzer können mit JAWS durch die
+Orientierungspunkte navigieren, indem sie die R-Taste drücken, oder sie können
+die Liste der Orientierungspunkte mit der Tastenkombination Einfügen + Strg + R
+aufrufen. Andere Bildschirmlesegeräte wie NVDA und VoiceOver ermöglichen es den
+Nutzern ebenfalls, die Orientierungspunkte aufzulisten.
+
+Auch wenn der Nutzer die Elemente nicht in Listen wie dieser auflistet, die nach
+Art des Elements kategorisiert sind, informiert das Bildschirmlesegerät den Nutzer
+über die semantische Bedeutung, wenn er bei den Elementen ankommt. Es sagt zum
+Beispiel: "Überschrift Stufe 1, Grafik: Wikipedia The Free Encyclopedia".
+
+##### Audio-strukturelle Probleme mit der Wikipedia-Startseite
+
+- Orientierungspunkte: Es gibt keine Orientierungspunkte auf der Seite. Die
+  nützlichsten Orientierungspunkte sind `<header>`, `<nav>`, `<main>` und
+  `<footer>`. Dieses Design hat keine davon. Screenreader-Nutzer können nicht
+  direkt zu diesen Abschnitten navigieren, weil sie in der semantischen Struktur
+  nicht gekennzeichnet sind.
+
+- Formularelemente: Die Suchschaltfläche hat kein Label, so dass der Screenreader
+  nur "Schaltfläche" sagen kann, was nicht sehr nützlich ist.
+
+- Linktext: Der Linktext enthält sowohl den Namen der Sprache (z.B. Englisch) als
+  auch die Anzahl der Artikel (5.323.000+). Leider werden die Zahlen mit
+  Leerzeichen in der Mitte geschrieben, anstatt mit Kommas (in der amerikanischen
+  Schreibweise) oder Punkten (wie in den meisten anderen Regionen der Welt).
+  Die Leerzeichen unterteilen die Zahl. Anstatt "fünf Millionen
+  dreihundertdreiundzwanzigtausend" zu sagen, wie es sich gehört, heißt es in
+  Wirklichkeit "fünf dreihundertdreiundzwanzig null null null". Der Versuch, mit
+  der numerischen Schreibweise schick zu sein, macht die korrekte Aussprache der
+  Zahlen für Screenreader-Nutzer kaputt.
+
+- Listen: In diesem Teil der Wikipedia-Startseite gibt es keine Listen. Die Liste
+  der Sprachen am oberen Rand der Seite könnte als Liste gestaltet werden. Wenn
+  sie als Liste gestaltet wäre, würde der Screenreader "Liste mit zehn Einträgen"
+  sagen, was dem Benutzer hilft, die Menge des Inhalts in der Liste zu verstehen.
+  (Um fair zu sein, der Teil der Seite unter dem Screenshot oben enthält Listen,
+  die in diesem Screenshot nicht sichtbar sind).
+
+Du hast vielleicht einige Probleme mit der audio-strukturellen Ansicht der
+Wikipedia-Seite (siehe oben) bemerkt.
+
+#### Beispiel: Eine Wikipedia-Artikelseite
+
+Die audio-strukturelle Erfahrung auf einer Artikelseite in Wikipedia unterscheidet
+sich von der Erfahrung auf der Wikipedia-Startseite, weil die semantische Struktur
+ganz anders ist. Die Seite ist der Wikipedia-Artikel über Barrierefreiheit im
+Internet öffnet in einem neuen Fenster. Diesmal zeigen wir zuerst die Gesamtansicht
+der Audio-Struktur:
+
+##### Die audio-strukturelle "Ansicht" eines Wikipedia-Artikels
+
+- Landmarks (13 total)
+
+  - Main landmark
+
+  - Navigation landmark: "Personal tools"
+
+  - Navigation landmark: "Namespaces"
+
+  - Navigation landmark: "Views"
+
+  - Search landmark
+
+  - Banner (header) landmark
+
+  - Navigation landmark: "Navigation"
+
+  - Navigation landmark: "Tools"
+
+  - Navigation landmark: "Interaction"
+
+  - Navigation landmark: "Print/export"
+
+  - Navigation landmark: "Other projects"
+
+  - Navigation landmark: "Languages"
+
+  - Content Info (footer) landmark
+
+- Headings (43 total)
+
+  - Level 1: "Web Accessibility"
+
+    - Level 2: "Contents "
+
+    - Level 2: "Assistive technologies used for web browsing [ edit ]"
+
+    - Level 2: "Guidelines on accessible web design [ edit ]"
+
+      - Level 3: "Web Content Accessibility Guidelines [ edit ]"
+
+      - Level 3: "Criticism of WAI guidelines [ edit ]"
+
+      - Level 3: "Other guidelines [ edit ]"
+
+        - Level 4: "Canada [ edit ]"
+
+        - Level 4: "Philippines [ edit ]"
+
+        - ....
+
+- Form elements (4 total)
+
+  - Button: "hide"
+
+  - Search text field: "Search Wikipedia"
+
+  - Button: "Go"
+
+- Button:
+
+  - "Language settings Images (4 total)"
+
+  - "Handicapped accessible sign.svg"
+
+  - "Category"
+
+  - "Wikimedia Foundation"
+
+  - "Powered by MediaWiki"
+
+- Links (441 total)
+
+  - "Navigation"
+
+  - "Search"
+
+  - "Wikipedia"
+
+  - ... and many more links (truncated here for brevity)
+
+- Lists (41 total top-level lists: 39 bulleted lists and 2 numbered lists;
+  53 total lists including sub-lists)
+
+Kannst du aus dieser audio-strukturellen Ansicht erkennen, was auf der Seite steht?
+Dies ist die Hauptansicht der Seite aus der Sicht eines Bildschirmlesers. Alle
+anderen visuellen Aspekte sind für Screenreader-Nutzer irrelevant. Je mehr du in
+der semantischen Struktur denkst, desto erfolgreicher wirst du sein, wenn es darum
+geht, ein gutes Benutzererlebnis für Bildschirmleser zu schaffen.
+
+##### Eine audio-strukturelle Analyse der Wikipedia-Artikelseite
+
+Orientierungspunkte: Im Gegensatz zur Wikipedia-Startseite hat das Design der
+Wikipedia-Artikelseiten viele Orientierungspunkte:
+
+- eine Hauptmarkierung (`<main>` oder `<div role="main">`)
+
+- 9 Navigationspunkte (`<nav>` oderi `<div role="nav">`), die jeweils einen
+  Namen haben, damit die Benutzer sie voneinander unterscheiden können.
+
+- ein Such-Landmark (`<div role="search">`)
+
+- ein Banner/Header-Landmark (`<header>` oder `<div role="banner">`)
+
+- eine Fußzeile/Inhaltsangabe (`<footer>` oder `<div role="contentinfo">`).
+
+Die Liste der verfügbaren Orientierungspunkte ist ziemlich gut, auch wenn 9
+Navigationsmarkierungen etwas übertrieben sind. Normalerweise ist es am besten,
+die Anzahl der Orientierungspunkte auf eine relativ kurze Liste zu beschränken,
+denn ein Teil des Sinns von Orientierungspunkten ist es, Dinge schneller und
+einfacher zu finden. Je mehr Orientierungspunkte es gibt, desto weniger tragen
+sie dazu bei, die Suche zu beschleunigen oder zu erleichtern.
+
+Überschriften: Die Überschriftenstruktur ist sehr gut. Es gibt ein paar
+Überschriften in der Vorlage, gefolgt von einer guten hierarchischen Struktur
+im Artikel selbst, mit ein paar Überschriften in der Fußzeile. Das Einzige, was
+vielleicht ein bisschen verwirrend ist, ist das `"[dit]"` am Ende der
+Überschriften im Hauptartikel. Das ist ein Link, mit dem man den Text in diesem
+Abschnitt des Inhalts bearbeiten kann. Der Link befindet sich in der Überschrift
+selbst. Das ist kein Problem, wirklich nicht. Es ist nur etwas gewöhnungsbedürftig.
+
+Formularelemente: Die Formularelemente haben akzeptable Labels.
+
+Bilder: Das erste Bild in der Liste ist ein Dateiname ("Handicapped accessible
+sign.svg"), was bedeutet, dass das Bild keinen Alt-Text hat. Screenreader
+verwenden normalerweise den Dateinamen, wenn kein Alt-Text verfügbar ist. In
+diesem Fall hatten wir Glück: Der Dateiname ist für Menschen lesbar und leicht
+verständlich. Hätte der Dateiname aber z. B. img0298.svg gelautet, wüssten wir
+nicht, was das Bild vermitteln will.
+
+Links: Die Liste der Links ist extrem lang. Das ist kein Problem. Ein Problem ist
+jedoch, dass mehrere Links genau denselben Text haben: `"[anzeigen]"`. Wenn du so
+durch die Liste der Links navigierst, ist es unmöglich, diese Links voneinander
+zu unterscheiden.
+
+Listen: Es gibt eine Menge Listen auf dieser Seite, viele davon sind Unterlisten
+in einer Hierarchie. Einige davon sind mit der Navigation verbunden. Andere
+gehören zum Inhalt. Die Tatsache, dass sie als echte Listen (`<ul>` und `<ol>`)
+gekennzeichnet sind, ist eine gute Sache.
+
+### Wie sieht das ideale audio-strukturelle Benutzererlebnis für eine Seite aus?
+
+Wie solltest du an die Aufgabe herangehen, ein gutes audio-strukturelles Nutzererlebnis
+zu gestalten? Gibt es so etwas wie eine ideale audio-strukturelle UX?
+
+Jede Website ist anders, und jedes Seitendesign ist anders, aber es gibt einige Dinge,
+die du als Ausgangspunkt im Hinterkopf behalten solltest.
+
+#### Ideale Orientierungspunkte
+
+Eine theoretische Liste der idealen Orientierungspunkte könnte etwa so aussehen:
+
+- `<header> (or <div role="banner">)`
+  - `<nav> (or <div role="navigation">)`
+  - `<div role="search">`
+- `<main> (or <div role="main">)`
+- `<footer> (or <div role="contentinfo">)`
+
+Das ist alles, was du wirklich brauchst. Die Liste der Orientierungspunkte ist
+recht kurz, und das ist auch gut so. Denk daran, dass der Zweck von
+Orientierungspunkten darin besteht, das Auffinden von Teilen einer Webseite zu
+erleichtern und den Nutzern etwas Zeit zu sparen. Wenn die Liste der
+Orientierungspunkte zu lang ist, verbringen die Nutzer/innen genauso viel Zeit mit
+der Suche nach Dingen in den Orientierungspunkten wie auf der Seite selbst.
+
+In den meisten Fällen willst du nur eine Kopfzeile, eine Suche, eine Haupt- und
+eine Fußzeile. Du kannst mehrere Navigationsbereiche haben, aber es ist oft am
+besten, sich auf die Hauptnavigation zu beschränken. Wenn du mehrere
+Navigationsbereiche einrichtest, gib ihnen mit aria-label eindeutige Namen
+(z.B. `<nav aria-label="Produktkategorien">`).
+
+#### Ideale Überschriften
+
+- Die ideale Überschriftenstruktur beginnt mit einer Überschrift der Ebene 1
+  (`<h1>`) innerhalb des Hauptinhalts (`<main>` oder `<div role="main">`).
+
+- Wenn möglich, sollte es nur eine Überschrift der Ebene 1 geben, obwohl das
+  keine absolute Regel ist. Auch ein Dialog sollte mit einer Überschrift der
+  Ebene 1 beginnen, denn ein Dialog ist im Grunde eine eigenständige Ansicht,
+  fast wie eine Mini-Webseite.
+
+- Jeder größere Abschnitt des Inhalts sollte durch eine Überschrift dargestellt
+  werden.
+
+- Die Überschriftsebenen sollten eine logische hierarchische Gliederung des
+  Inhalts auf der Seite bilden.
+
+- Überschriften sollten keine Ebenen überspringen (ein untergeordnetes Element
+  einer Überschrift der Ebene 2 sollte z. B. eine Überschrift der Ebene 3 sein,
+  nicht eine Überschrift der Ebene 5).
+
+#### Ideale Formularelemente
+
+Aus semantischer Sicht ist das Wichtigste, dass alle Formularelemente genaue
+Labels (`<label>`) brauchen. Es gibt noch viele andere Aspekte der
+Barrierefreiheit von Formularen, aber die anderen Techniken kommen eher bei der
+Interaktion mit dem Formular als bei der Auflistung der Formularelemente zum
+Tragen.
+
+#### Ideale Bilder
+
+Der Alt-Text wird in der Liste der Bilder angezeigt. Deshalb solltest du erstens
+sicherstellen, dass das Bild einen Alt-Text hat, und zweitens, dass der Alt-Text
+von guter Qualität ist. Er muss genau, kurz und bündig sein und den Zweck des
+Bildes aussagekräftig beschreiben.
+
+#### Ideale Links
+
+- Das Wichtigste ist, dass jeder Link einen gültigen Namen mit Barrierefreiheit
+  haben muss.
+
+- Der barrierefreie Name kann aus normalem Text, dem Alt-Text eines Bildes
+  innerhalb des Links oder einem Label (über aria-label oder aria-labelledby) bestehen.
+
+- Der Linktext sollte auch den Zweck oder das Ziel des Links angemessen vermitteln.
+
+- Wenn möglich, sollte der Linktext auch aus dem Kontext gerissen Sinn ergeben
+  und eindeutig sein, damit die Nutzer/innen die Links unterscheiden können, wenn
+  sie alle Links auf der Seite auflisten.
+
+- Füge so viele Links ein, wie du brauchst. Wikipedia-Artikelseiten neigen dazu,
+  mehr Links zu haben als durchschnittliche Webseiten, aber die Links sind angemessen,
+  und es ist nicht falsch, viele Links zu haben, auch wenn es zugegebenermaßen lange
+  dauern wird, durch alle zu navigieren.
+
+#### Ideale Listen
+
+- Das Wichtigste ist die Verwendung von Listenauszeichnungen (`<ul>`, `<ol>`
+  oder `<dl>`), wenn du eine Liste präsentierst.
+
+- Achte außerdem darauf, dass du für jede Situation die richtige Art von Liste verwendest.
+
+- Verwende so viele Listen, wie du brauchst.
+
+## Audiostrukturelle Interaktion UX
+
+Screenreader-Benutzer verwenden in der Regel ihre Tastatur, um mit Elementen zu
+interagieren (nicht die Maus). Alles muss über die Tastatur zugänglich sein.
+
+W������������hrend die Nutzer/innen mit der Tastatur mit Elementen interagieren, hören sie
+auf das Feedback ihres Screenreaders. Die wichtigsten Arten von Rückmeldungen,
+an denen sie interessiert sind, sind folgende:
+
+- Name: Der Name oder das Label, mit dem das Element versehen ist. Bildschirmlesegeräte
+  sagen den Namen der meisten semantischen Elemente an, wenn der Nutzer sie auflistet,
+  anklickt oder durchliest.
+
+- Beschreibung: Zusätzliche Informationen über das Element (über aria-describedby).
+  Screenreader sagen die Beschreibung (falls vorhanden) normalerweise nach dem
+  Namen des Elements an.
+
+- Rolle: Kennzeichnung der Art des Elements, mit dem interagiert wird (z. B. ein
+  Textfeld, ein Registerkarten-Widget, eine Baumansicht, eine Schaltfläche, ein
+  Link, eine Grafik, ein Dialog usw.). Bildschirmlesegeräte zeigen die Rolle der
+  meisten semantischen Elemente an.
+
+- Wert:
+
+  - Eigenschaften: Merkmale von Elementen, wie aria-valuemax (bei Dingen wie
+    Schiebereglern), aria-controls, aria-owns, etc.
+
+  - Zustände: Veränderbare Bedingungen für ein Element, z. B. aria-selected=true/false,
+    aria-checked=true/false, aria-hidden=true/false usw. In den meisten Fällen
+    lesen Screenreader die Zustandsänderung automatisch, wenn der Nutzer eine
+    Funktion aktiviert. Zum Beispiel sagt ein Screenreader "erweitert", wenn der
+    Nutzer eine Schaltfläche aktiviert, die von aria-expanded="false" auf
+    aria-expanded="true" wechselt. Es sind kein JavaScript und keine Live-Regionen
+    erforderlich, damit ein Bildschirmlesegerät die Zustandsänderung ankündigt.
+
+- "Live"-Ankündigungen: Aktualisierungen
+
+### Live-Veranstaltungen
+
+Live-Veranstaltungen sind für blinde Menschen von Natur aus problematisch.
+Bildunterschriften auf Videos sind nicht hilfreich, egal, in welchem Format sie
+vorliegen. Bei professionellen Fernsehsendern sind die Bildunterschriften in der
+Regel als visuelles Element in das Video eingebettet und enthalten keinen Text,
+den ein Bildschirmleser lesen kann. Auch wenn ein textbasiertes Format verwendet
+wird, gibt es die gleichen Probleme wie bei voraufgezeichneten Multimedia-Inhalten:
+Es gibt keine einfache Möglichkeit, auf die Bildunterschriften zuzugreifen.
+
+Mögliche Lösung 1: kontinuierliche AJAX-Updates. Eine Möglichkeit, nützliche
+Texte für Live-Veranstaltungen zu senden, besteht darin, den Text mithilfe von
+AJAX in Echtzeit direkt in das Dokument zu stellen. Der Nutzer kann den Text
+dann mit normalen Screenreader-Befehlen lesen, sobald er eintrifft. Der
+Nachteil dieses Ansatzes ist, dass der Nutzer möglicherweise das Ende des
+Textes erreicht und dann ein neuer Text über der aktuellen Position des
+Nutzers im Dokument eingefügt wird. In diesem Fall müsste der Nutzer den
+Text rückwärts durchlaufen, um den neuen Text zu finden. Das kann dauern und
+es ist verwirrend, den Ausgangspunkt zu finden, vor allem, wenn die Textpassage
+lang ist oder wenn mehrere Aktualisierungen stattgefunden haben. Die
+kontinuierliche AJAX-Methode kann funktionieren, ist aber nicht die
+benutzerfreundlichste.
+
+Mögliche Lösung 2: eine Schaltfläche "Mehr Live-Text laden". Es wäre
+nutzerfreundlicher, taubblinden Nutzern mit einer einfachen Schaltfläche die
+Kontrolle darüber zu geben, wann der Inhalt geladen werden soll. Wenn die
+Nutzer die Schaltfläche aktivieren, wäre es wahrscheinlich am besten, den
+Fokus auf den Container des neuen Textes zu legen. Der Container müsste auf
+tabindex="-1" gesetzt werden, um den Fokus erfolgreich zu erhalten.
+
+## Taubblind: Eine taktil-strukturelle Nur-Text-UX
+
+Die Erfahrungen, die taubblinde Menschen im Internet machen, sind den Erfahrungen
+von Menschen, die nur blind sind, sehr ähnlich. Beide Gruppen benutzen
+Bildschirmlesegeräte. Der Unterschied besteht darin, dass ein blinder Nutzer dem
+Bildschirmlesegerät zuhört, während ein taubblinder Nutzer die Ausgabe des
+Bildschirmlesegeräts auf einem aktualisierbaren Braille-Gerät spürt.
+
+Alle Techniken der Barrierefreiheit für blinde Nutzer/innen gelten auch für
+taubblinde Nutzer/innen, mit Ausnahme der Audioanforderungen (z. B.
+Audiobeschreibungen für Videos), da taubblinde Nutzer/innen den Ton nicht
+hören können. Interessanterweise gelten die Techniken für gehörlose
+Nutzer/innen nicht für taubblinde Nutzer/innen, weil sie visuell sind, z. B.
+Bildunterschriften für Videos. Taubblinde Menschen brauchen stattdessen alles
+in einem maschinenlesbaren Textformat.
+
+![Braillegerät](/images/affordanzen/braille.png)
+
+Eine aktualisierbare Blindenschriftvorrichtung hat kleine Plastikstifte, die durch
+kleine Löcher in der Oberfläche ragen und so Blindenschriftzeichen bilden. Der
+Nutzer liest die Textzeile, indem er mit dem Finger über die Stifte fährt und die
+Zeichen ertastet. Wenn er das Ende der Zeile erreicht hat, kann er eine Taste drücken,
+um die nächste Zeile zu lesen, oder er kann verschiedene andere Tasten drücken oder
+auf der Tastatur drücken, um durch die Elemente auf der Seite zu navigieren, wobei
+er im Wesentlichen dieselben Techniken wie blinde Bildschirmleser verwendet.
+
+### Alles muss in einem Textformat sein
+
+Was den Inhalt einer Webseite angeht, muss alles in einem Textformat für taubblinde
+Nutzer sein. Alles. Es gibt keine Ausnahmen, aber es gibt einige Nuancen:
+
+- Der Alt-Text für Bilder zählt als Text.
+
+- Labels, einschließlich unsichtbarer Labels wie aria-label, zählen als Text,
+  solange die Elemente nicht durch aria-hidden="true" vor Screenreadern versteckt
+  werden.
+
+- ARIA-Live-Ankündigungen, ob auf dem Bildschirm sichtbar oder nicht, zählen
+  als Text.
+
+- In seltenen Fällen kann es akzeptabel sein, mit der CSS-Clip-Methode visuell
+  verborgenen Text nur für Screenreader-Nutzer hinzuzufügen, aber diese Methode
+  sollte nur als letztes Mittel eingesetzt werden.
+
+- Synchronisierte Bildunterschriften in Videos zählen nicht als Text für Taubblinde,
+  denn obwohl einige moderne Braille-Lesegeräte die Bildunterschriften anzeigen können,
+  ändern sie sich zu schnell, um sie in Echtzeit zu lesen, während ein Video abgespielt
+  wird. Außerdem gibt es keine einfache Möglichkeit, auf die Bildunterschriften getrennt
+  vom Video zuzugreifen, selbst wenn die Untertitel in einem Textformat vorliegen.
+  Eine Abschrift ist die einzige Möglichkeit, Video- oder Multimediainhalte für taubblinde
+  Menschen zugänglich zu machen.
+
+### Multimedia für taubblinde Menschen
+
+Im Grunde genommen gibt es keine Multimedia-Angebote für taubblinde Menschen. Sie
+können den Videoteil nicht sehen und den Audioteil nicht hören. Das Einzige, was
+du mit Multimedia-Inhalten machen kannst, ist eine alternative Textversion zu
+erstellen, was normalerweise bedeutet, dass du eine Abschrift erstellst.
+
+Die Abschrift muss leicht zu finden sein und sollte eine Überschrift oder ein
+anderes Label haben, um sie als Abschrift des Videos zu kennzeichnen. Es gibt
+verschiedene Möglichkeiten, ein Transkript auf einer Webseite zu veröffentlichen:
+
+- In normalen Absätzen, die jeder auf der gleichen Seite wie das Video aufrufen kann.
+
+  - Wenn das Transkript lang ist, könntest du eine Höhe für den Container
+    festlegen und ihn auf overflow:auto o.ä. setzen, damit sehende Nutzer/innen
+    durch das Transkript scrollen können, wenn sie wollen. Für blinde oder
+    taubblinde Nutzer ist das Scrollen jedoch irrelevant. Sie werden nicht
+    einmal wissen, dass es eine Bildlauffunktion gibt.
+
+  - Um Screenreadernutzern eine schnelle Möglichkeit zu geben, die Abschrift zu
+    umgehen, könntest du einen Link "Abschrift überspringen" am Anfang der
+    Abschrift platzieren. Du kannst diesen Link entweder immer sichtbar machen
+    oder ihn anzeigen lassen, wenn er den Fokus der Tastatur erhält. Du solltest
+    den Link für sehende Nutzer NICHT unsichtbar machen (z. B. mit der
+    CSS-Clip-Methode), denn das würde sehende Nutzer verwirren, die nicht wissen,
+    wo der Tastaturfokus liegt, wenn er auf dem versteckten Link liegt. Die
+    Verwendung eines versteckten Links wäre für Screenreader-Benutzer eigentlich
+    in Ordnung (solange du nicht display:none oder visibility:hidden verwendest),
+    aber du musst alle Anwendungsfälle berücksichtigen.
+
+- In einem Dialog, der durch Aktivieren einer Schaltfläche "Abschrift anzeigen"
+  aufgerufen wird.
+
+- Auf einer separaten Seite, die über einen Link "Zum Transkript" aufgerufen
+  werden kann.
+
+In HTML gibt es keine Möglichkeit, ein Transkript programmatisch mit einem Video
+zu verknüpfen, so wie man Bildunterschriften mit einem Video verknüpfen kann
+(z. B. mit dem `<track>`-Element). Auch wenn es ideal wäre, das Transkript mit
+dem Video zu verknüpfen, geht das nicht. Theoretisch könntest du aria-describedby
+auf dem `<video>`-Element verwenden, um auf das Transkript zu verweisen, aber
+wenn das Transkript lang ist, würde der Screenreader das ganze Transkript lesen,
+wenn der Fokus auf dem `<video>`-Element landet. Das hört sich nach einer guten
+Idee an, ist es aber meistens nicht, denn wenn Screenreader den aria-describedby-Text
+lesen, können sie nicht anhalten und an der Stelle weitermachen, an der sie
+aufgehört haben, oder durch den Text navigieren. Alles ist ein großer Textdump.
+Wenn der Nutzer den Screenreader unterbricht, kann er den Rest des aria-describedby-Textes
+nur hören, indem er das Element verlässt, wieder dorthin zurückkehrt und sich
+den aria-describedby-Text noch einmal von Anfang an anhört.
+
+Die unvollkommene Lösung für das Problem, dass das Transkript nicht programmatisch
+mit dem Video verknüpft werden kann, besteht darin, das Transkript direkt nach
+dem Video zu platzieren.
+
+### Das ideale Design für taubblinde Nutzer
+
+Die gute Nachricht ist, dass dein Haupt-Webdesign perfekt für taubblinde
+Nutzer/innen zugänglich gemacht werden kann, ohne dass du eine separate Version
+entwerfen oder zu viel zusätzliche Arbeit leisten musst, die über die
+Barrierefreiheit für blinde Bildschirmleser/innen hinausgeht. Die größte
+Herausforderung für Taubblinde sind Multimedia-Inhalte.
+
+Denke "Text zuerst". Betrachte alle multimedialen Inhalte als nutzlos für diese
+Zielgruppe (obwohl sie für andere Zielgruppen definitiv nicht nutzlos sind!). Für
+taubblinde Nutzer gibt es keine Multimedia-Inhalte, also plane von Anfang an
+textbasierte Versionen aller Multimedia-Inhalte ein.
+
+Einfachheit: Für taubblinde Nutzer/innen gilt: Je einfacher das Design, desto besser.
+
+Semantische Struktur: Kennzeichne alle Teile des Designs und des Inhalts mit den
+richtigen semantischen Elementen (Orientierungspunkte, Überschriften, Links,
+Formularelemente usw.) und ordne die Dinge logisch an, damit sie leicht zu finden
+sind.
+
+Kontrolle über das Timing: Die Verwendung einer aktualisierbaren Braillezeile
+ist in der Regel langsamer als das Betrachten der Inhalte mit den Augen und
+langsamer als das Anhören der Inhalte mit einem Bildschirmlesegerät. Gib den
+Nutzern so viel Kontrolle über die Zeiteinteilung wie möglich, einschließlich
+der Möglichkeit, Zeitlimits zu verlängern und Sitzungszeitüberschreitungen zu
+vermeiden.
+
+Allgemeine Formulierungen: Viele taubblinde Nutzer/innen werden auf der Seite nach
+Schlüsselwörtern oder Sätzen suchen, also verwende Formulierungen, die allgemein
+üblich sind und erwartet werden. Zum Beispiel suchen die Nutzer vielleicht nach
+einer "Kontakt"- oder "Über uns"-Seite. Wenn du Formulierungen wie "Kontaktieren
+Sie uns" oder "Wer wir sind" verwendest, werden die Nutzer nicht finden, wonach
+sie suchen, obwohl diese Formulierungen legitim sind.
+
+Techniken für Bildschirmleser: Wende alle anderen Techniken für die
+Barrierefreiheit von Bildschirmlesegeräten genauso an, wie du es für blinde
+Nutzer/innen tun würdest, denn auch taubblinde Nutzer/innen profitieren von ihnen.
+
+## Gehörlos: Eine stille visuelle UX
+
+### Multimedia
+
+Die größte Herausforderung für die Barrierefreiheit bei gehörlosen Menschen
+sind Video- und Audioinhalte. Die meisten Videos im Internet sind nicht mit
+Bildunterschriften versehen, sodass sie für Menschen, die den Ton nicht hören
+können, unzugänglich sind. Die Lösung liegt auf der Hand: Biete synchronisierte
+Bildunterschriften an. Das Modul in dieser Reihe über Audio, Video, Animationen
+und Bewegung behandelt die Richtlinien und Techniken für Bildunterschriften
+im Detail. Ein paar Highlights aus diesen Materialien sind erwähnenswert:
+
+- Biete die Bildunterschriften als separate, synchronisierte Dateien an: In den
+  meisten Fällen solltest du die Bildunterschriften nicht in das Video einbetten
+  (d. h. als offene, für alle sichtbare Untertitel). In der Regel ist es am
+  besten, die Bildunterschriften als separate Dateien bereitzustellen, die mit
+  dem Video synchronisiert sind. Es ist zwar nicht falsch, die Bildunterschriften
+  in das Video einzubauen - und es kann sogar sinnvoll sein, wenn du damit zeigen
+  willst, wie wichtig Bildunterschriften sind -, aber die Nutzer/innen haben mehr
+  Flexibilität, wenn die Bildunterschriften getrennt vom Video sind. Sie können
+  die Bildunterschriften ein- oder ausschalten und, je nach Einstellung, auch
+  Farben, Größe und Schriftart anpassen.
+
+- Biete Bildunterschriften in verschiedenen Formaten an: Um möglichst vielen
+  Browsern gerecht zu werden, solltest du Bildunterschriften in verschiedenen
+  Formaten anbieten.
+
+- Biete Bildunterschriften in WebVTT an: Eines der vielseitigsten Formate für
+  Bildunterschriften ist WebVTT, da die Nutzer/innen ihre Präferenzen für
+  Farben, Größe und Schriftart auf Betriebssystemebene festlegen können.
+  Browser, die die WebVTT-Anpassung unterstützen, übernehmen diese Einstellungen
+  für alle Videos, die die Nutzer/innen abspielen.
+
+- Biete Optionen zur Anpassung der Bildunterschrift im Media Player an: Nicht
+  alle Browser unterstützen die WebVTT-Anpassung, daher solltest du den Nutzern
+  die Möglichkeit geben, die Bildunterschriften im Media Player selbst anzupassen.
+  Die Einstellungen sollten leicht zu finden und anzupassen sein. Die wichtigsten
+  Optionen sind Textfarbe, Hintergrundfarbe, Textgröße und Schriftart. Du könntest
+  auch Optionen für die Platzierung der Bildunterschrift anbieten (über dem Video,
+  unter dem Video, über dem Video eingeblendet usw.). Wichtig: Wenn möglich,
+  speichere die Einstellungen für die Bildunterschrift, damit du sie nicht bei
+  jedem Video neu einstellen musst.
+
+### Live-Veranstaltungen für Gehörlose
+
+Live-Veranstaltungen benötigen Bildunterschriften. Für Bildunterschriften braucht
+man einen professionellen Übersetzer. Theoretisch könnte auch ein sehr gutes
+Spracherkennungssystem diese Aufgabe übernehmen, aber wenn die Qualität des Tons
+nicht gut kontrolliert wird, ist ein automatisches System nicht gut genug.
+
+Es gibt zwei Möglichkeiten, Bildunterschriften für Live-Veranstaltungen zu
+erstellen:
+
+- Verwende ein professionelles Übertragungssystem, um die Bildunterschriften in
+  Echtzeit in das Video selbst einzubetten.
+
+- Verwende AJAX, um die Bildunterschriften mit einem Live-Video zu synchronisieren.
+  Diese Option kann schwierig einzurichten sein. Die Bildunterschriften werden
+  aufgrund der Verzögerung bei der Transkription der Wörter nie vollständig mit
+  dem Live-Video synchronisiert sein. Eine Möglichkeit, dies zu umgehen, ist das
+  Experimentieren mit einer Verzögerung in der Videoübertragung. Je nach der
+  Geschwindigkeit des Transkribierers und anderen Variablen kannst du das Video
+  um 10 bis 30 Sekunden verzögern, um Bildunterschriften zu erhalten, die nahezu
+  synchron mit dem Video sind. Die Bildunterschriften können im Mediaplayer selbst
+  oder direkt unter dem Mediaplayer angezeigt werden.
+
+### Gebärdensprache
+
+Für viele gehörlose Menschen ist die Gebärdensprache ihre erste Sprache und
+vielleicht immer noch ihre fließendste Sprache. Inhalte in Gebärdensprache
+sind für manche Gehörlose nützlicher als Textinhalte. Das gilt besonders für
+Videoinhalte. Bildunterschriften werden schnell eingeblendet und verschwinden
+wieder vom Bildschirm, so dass die Menschen nicht genug Zeit haben, sie zu
+lesen, wenn das Verstehen der Schriftsprache nicht zu ihren Stärken gehört.
+
+Es gibt einige Möglichkeiten, Gebärdensprachdolmetscher/innen für Videos
+bereitzustellen:
+
+- Binde einen Gebärdensprachdolmetscher in das Originalvideo ein, der neben dem
+  Sprecher steht oder sitzt.
+
+- Nutze die Bild-in-Bild-Technologie (PiP), um den Gebärdensprachdolmetscher in
+  einer Ecke des Videos oder an der Seite zu zeigen.
+
+- Ermögliche es dem Nutzer, die Gebärdensprachdolmetschung ein- oder auszuschalten
+  und die Dolmetschung als separates Video neben dem Originalvideo abzuspielen,
+  synchronisiert mit dem Originalvideo.
+
+### Möglichkeiten für Innovationen für gehörlose Nutzer
+
+Hier sind ein paar Ideen für Projekte, die für gehörlose Nutzerinnen und Nutzer
+einen Unterschied machen könnten:
+
+- Automatisierte Bildunterschriften mittels Sprache-zu-Text-Technologie:
+  Automatische Bildunterschriften werden nützlich sein, wenn die automatische
+  Sprache-zu-Text-Erkennung ausgereift ist. Die Technologie ist bereits
+  respektabel, aber in vielen Situationen noch nicht genau genug. Die Verbesserung
+  der Text-zu-Sprache-Software wird Gehörlosen eine Welt voller Möglichkeiten
+  eröffnen. Abgesehen von der Barrierefreiheit im Internet, kannst du dir
+  vorstellen, wie sich eine mobile App auswirkt, mit der Gehörlose ihre täglichen
+  Gespräche von der gesprochenen Sprache in Text übersetzen können. Die Person
+  könnte dann per Text oder, noch besser, durch Gebärdensprache-zu-Text- oder
+  Gebärdensprache-zu-Sprache-Technologie antworten.
+
+- Text-zu-Gebärdensprache-Umwandlung: Verbessere die Sprachübersetzungssoftware
+  zur Umwandlung von geschriebenem Text in Avatar-basierte Gebärdensprache. Die
+  Umwandlung ist eine echte Sprachumwandlung, denn Gebärdensprachen sind nicht
+  einfach wortwörtliche Versionen von mündlichen Sprachen. Die Amerikanische
+  Gebärdensprache (ASL) basiert zum Beispiel auf der französischen Grammatik,
+  hat aber dennoch ihre eigene Syntax.
+
+- Erkennung von Gebärdensprachen: Die Umwandlung von Gebärden durch einen
+  Menschen in Text ist eine viel schwierigere Herausforderung als die Umwandlung
+  von Text in Gebärdensprache, aber eine solche Technologie wäre äußerst
+  nützlich, besonders für Menschen, deren fließendste Sprache die Gebärdensprache
+  ist.
+
+- Füge Gebärdensprachoptionen zu Medienplayern hinzu: Die meisten Mediaplayer
+  haben nicht die Möglichkeit, die Gebärdensprachdolmetschung einzuschalten.
+  Selbst wenn eine Gebärdensprachdolmetschung verfügbar ist, unterstützen die
+  meisten Medienabspielgeräte keine separate Gebärdensprachspur, so dass die
+  Gebärdensprache dauerhaft zum Originalvideo oder zu einer Kopie des Videos
+  hinzugefügt werden muss. Die Erstellung separater Versionen des Originalvideos
+  ist für die Nutzer/innen kein Problem, kann aber bei der Videoproduktion
+  problematisch sein, vor allem, wenn du nicht das Urheberrecht für das Video
+  besitzt. Wenn du einen Mediaplayer mit einer Gebärdensprachoption erstellst,
+  kannst du ein separates Video nur mit der Gebärdensprachinterpretation erstellen.
+  Dieses Video kann über einem Teil des Hauptvideos, neben dem Video oder über
+  oder unter dem Video platziert werden. Es kann so groß wie nötig gemacht werden,
+  um die Gebärdensprache leicht verständlich zu machen, und du musst das
+  Originalvideo überhaupt nicht anfassen.
+
+- Finde Wege, um das Hinzufügen von Gebärdensprache kostengünstiger zu machen:
+  Das Hinzufügen von Gebärdensprache zu Videos ist zeitaufwändig und potenziell
+  kostspielig. Es gibt keine fertige Lösung, um den Zeitaufwand für die Produktion
+  von Gebärdensprachvideos zu senken - und es ist wahrscheinlich keine gute Idee,
+  die Arbeit von Gebärdensprachdolmetscher/innen zu unterbieten, indem man sie
+  unter Druck setzt, zu einem reduzierten Satz oder kostenlos zu arbeiten - aber
+  es gibt wahrscheinlich Möglichkeiten, die Verfügbarkeit von Videos mit
+  Gebärdensprachdolmetschung aus geschäftlicher oder unternehmerischer Sicht
+  zu erhöhen.
+
+## Die Herausforderung der kognitiven Behinderungen
+
+Die am meisten vernachlässigte Art von Behinderung im Webdesign sind kognitive
+Behinderungen. <a href="https://www.w3.org/TR/WCAG21/" target="_blank">
+Richtlinien für die Barrierefreiheit von Web-Inhalten</a> kratzen
+kaum an der Oberfläche der Dinge, die du für Menschen mit kognitiven Behinderungen
+tun kannst, und zwar aus zwei Hauptgründen:
+
+- Das Spektrum der kognitiven Behinderungen ist groß, sowohl was die Arten der
+  kognitiven Behinderungen als auch deren Schweregrad angeht.
+
+- Es ist schwierig, Regeln zu formulieren, die objektiv als konform oder nicht
+  konform beurteilt werden können. Eine Regel, die besagt, dass man Dinge
+  "benutzerfreundlich" gestalten soll, ist zweifellos ein guter Rat für Menschen
+  mit kognitiven Behinderungen, aber woher weiß man, ob man erfolgreich war? Das
+  Problem ist, dass Erfolg so subjektiv und schwer zu überprüfen sein kann.
+
+Das W3C ist sich bewusst, dass es in den WCAG nur wenige Richtlinien gibt, die
+Menschen mit kognitiven Behinderungen direkt zugute kommen. Es hat
+eine <a href='https://www.w3.org/WAI/PF/cognitive-a11y-tf/' target='_blank'>
+Arbeitsgruppe für kognitive Behinderungen </a> gegründet, die Empfehlungen für
+neue Richtlinien aussprechen soll, die Menschen mit kognitiven Behinderungen
+zugute kommen. Sie stellten zusammen:
+
+- URL: <a href='https://w3c.github.io/coga/user-research/' target='_blank'>
+  Nutzerforschung zu kognitiven Behinderungen </a>
+
+- URL: <a href="https://w3c.github.io/coga/gap-analysis/" target="_blank">
+  Fahrplan für kognitive Barrierefreiheit und Lückenanalyse</a>
+
+- URL: <a href="https://w3c.github.io/coga/issue-papers/" target="_blank">Issue
+  Papers for The Cognitive and Learning Disabilities Accessibility Task Force</a>
+  (Hinweis: Zum Zeitpunkt der Erstellung dieses Moduls ist dieses Dokument das
+  unvollständigste und am wenigsten ausgefeilte der drei hier genannten)
+
+Viele der von dieser Arbeitsgruppe empfohlenen Best Practices werden jedoch
+wahrscheinlich nicht in die nächste Version der WCAG aufgenommen, weil sie noch
+zu subjektiv sind, um überprüfbar zu sein. Die WCAG-Charta verlangt, dass alle
+Richtlinien objektiv überprüfbar sein müssen.
+
+Daher werden kognitive Behinderungen aus rechtlicher Sicht und im Hinblick auf die
+Einhaltung der Richtlinien leider weiterhin vernachlässigt. Aber das ist keine
+Entschuldigung aus der Designperspektive. Es gibt immer noch viel, was du tun
+kannst und solltest. In diesem Abschnitt werden einige Ideen vorgestellt, wie du
+das tun kannst.
+
+### Was es bedeutet, eine kognitive Behinderung zu haben
+
+Es gibt viele Arten von kognitiven Behinderungen. Manche Menschen haben nur eine
+Art - z. B. ein Defizit im Kurzzeitgedächtnis - und andere Menschen haben viele
+Arten von kognitiven Behinderungen. Manche Menschen haben leichte kognitive
+Behinderungen. Andere sind schwer betroffen. Es ist unmöglich, ein einheitliches
+Profil für kognitive Behinderungen zu erstellen, aber es ist möglich, einige der
+wichtigsten Kategorien zu beschreiben.
+
+Beachte: Es gibt auch viele Ursachen für kognitive Behinderungen: angeborene
+Erkrankungen (einschließlich, aber nicht beschränkt auf genetische Störungen),
+traumatische Hirnverletzungen, Krankheiten und vieles mehr. Du musst die
+medizinische Diagnose einer Person nicht kennen, um zu verstehen, worauf die
+Designer/innen achten müssen. Am wichtigsten sind die Kategorien der Wahrnehmung,
+die auf dieser Seite erklärt werden.
+
+#### Komplexe Konzepte
+
+Allgemein gesagt sind viele Menschen mit kognitiven Behinderungen nicht in der
+Lage, komplexe Konzepte so leicht zu verstehen wie die Allgemeinbevölkerung. Sie
+verstehen vielleicht nicht immer Dinge wie implizite Bedeutung (wenn das Konzept
+nicht explizit erwähnt wird), Ursache und Wirkung, Zusammenhänge, Muster,
+prozedurale Logik (wie beim Programmieren), strukturelle Hierarchien oder
+Taxonomien und mehrere Bedeutungsebenen.
+
+#### Abstraktion
+
+Manche Menschen denken sehr wörtlich und haben Schwierigkeiten, abstrakte Konzepte
+zu verstehen. Sie können zwar konkret über bestimmte Objekte nachdenken, aber
+sie sind nicht in der Lage, von diesen spezifischen Objekten aus zu verallgemeinern.
+Wenn z. B. ein Hund neben ihnen steht, haben sie vielleicht kein Problem damit,
+einige Dinge an diesem speziellen Hund zu bemerken (z. B. die Tatsache, dass er
+behaart ist), aber sie sind nicht in der Lage, diese Beobachtungen auf ihr internes
+Konzept von Hunden im Allgemeinen zu übertragen (sie können nicht zu dem Schluss
+kommen, dass Hunde als Kategorie behaart sind). Das Problem besteht darin,
+Verbindungen zwischen Ideen herzustellen, Beziehungen oder Muster abzuleiten oder
+Ideen zu kategorisieren.
+
+Zu den abstrakten Ideen gehören Dinge wie "Gerechtigkeit", "Barmherzigkeit" oder
+"Tugend". Konkrete Begriffe sind dagegen Dinge wie "Auto" (vor allem ein bestimmtes
+Auto), "Hand" (vor allem die eigene Hand oder die Hand einer bestimmten Person)
+oder "Hamburger" (vor allem der, den man gerade isst).
+
+Manche Menschen brauchen direkte Befehle und keine abstrakten Aussagen darüber,
+was eine Person tun soll. Die Aussage "Heiße Herde können Verbrennungen verursachen"
+reicht vielleicht nicht aus, um manche Menschen davon abzuhalten, einen heißen
+Herd anzufassen. Sie müssen eher etwas hören wie: "Berühre den heißen Herd nicht,
+denn er wird dich verbrennen!"
+
+#### Sarkasmus und Satire
+
+Manche Menschen denken sehr wörtlich und haben Schwierigkeiten, den Unterschied
+zwischen einfachen Aussagen und sarkastischen oder satirischen Aussagen zu
+verstehen. Es kann sogar sein, dass sie die humorvolle Absicht gar nicht
+verstehen, weil sie die Aussage in die entgegengesetzte Richtung interpretieren
+werden.
+
+#### Ich gegen andere
+
+Manchen Menschen fällt es grundsätzlich schwer, die Dinge aus der Perspektive
+einer anderen Person zu sehen. Sie sind im wahrsten Sinne des Wortes egozentrisch,
+und zwar nicht, weil sie gemein oder egoistisch sein wollen, sondern weil ihr
+Gehirn nicht in der Lage ist, mitfühlend oder empathisch über andere nachzudenken.
+Sie nehmen die Welt so wahr, wie sie sich auf sie selbst auswirkt, und erkennen
+nicht, dass ihre Handlungen andere beeinflussen. Sie sehen zwar, dass ihr Handeln
+Auswirkungen auf sie selbst hat, aber sie können nicht vollständig zurücktreten
+und darüber nachdenken, wie andere die Welt aus ihrer eigenen Perspektive wahrnehmen.
+
+#### Problemlösung und kritisches Denken
+
+Wenn etwas schief geht, fällt es manchen Menschen schwer, das Problem zu erkennen
+und herauszufinden, wie sie es beheben oder weitermachen können. Manche Menschen
+mit kognitiven Behinderungen sind sogar nicht in der Lage, weiterzumachen, wenn
+sie keine Hilfe von einer anderen Person oder von einem intelligent gestalteten
+Fehlersuch- und Unterstützungssystem erhalten.
+
+#### Geschwindigkeit
+
+Viele Menschen mit kognitiven Behinderungen brauchen mehr Zeit, um Aufgaben zu
+erledigen. Ganz gleich, ob es sich um Gedächtnisprobleme, Aufmerksamkeitsdefizite,
+Probleme bei der Problemlösung oder andere auf dieser Seite erwähnte Probleme
+handelt, der Bedarf an mehr Zeit ist bei den meisten Kategorien kognitiver
+Behinderungen gleich.
+
+#### Gedächtnis
+
+Manchen Menschen fällt es schwer, sich Dinge in ihrem Arbeits- oder Kurzzeitgedächtnis
+zu merken, oder sie haben Probleme, Gedanken im Langzeitgedächtnis zu speichern.
+Je mehr eine Person sich merken soll, desto größer ist das Risiko, dass sie einige
+oder alle Informationen vergisst.
+
+#### Aufmerksamkeit
+
+Manchen Menschen fällt es schwer, sich auf eine Aufgabe zu konzentrieren, und sie
+lassen sich leicht von äußeren Faktoren ablenken. Online-Werbung, Animationen oder
+andere Elemente, die eine Person ablenken sollen, stellen für Menschen mit
+Aufmerksamkeitsdefiziten unweigerlich eine große Herausforderung dar. In manchen
+Fällen braucht die Person eine andere Person, die ihr hilft, bei der Sache zu
+bleiben.
+
+#### Lesen
+
+Es gibt verschiedene Arten von Leseschwächen, die von leichten Schwierigkeiten
+bis zur völligen Unfähigkeit, etwas zu lesen, reichen. In manchen Fällen liegt
+die Ursache in der visuellen Wahrnehmung. In anderen Fällen liegt die Ursache im
+Sprachverständnis begründet. In jedem Fall können Alternativen zum Text - wie
+Videos, Illustrationen und Audiodateien - eine gute Möglichkeit sein, Menschen
+mit Leseschwäche zu helfen.
+
+#### prechen und Sprache
+
+Einigen Menschen fehlt die Fähigkeit, sich durch Sprache auszudrücken. In anderen
+Fällen ist das Sprachverständnis das Problem. In diesen Fällen können nonverbale
+Kommunikationsmethoden für manche Menschen hilfreich sein.
+
+#### Mathe
+
+In der Allgemeinbevölkerung hört man häufig Aussagen wie "Ich bin nicht gut in
+Mathe", und in gewisser Weise mag das auch stimmen, aber es gibt auch eine
+kognitive Störung, die Dyskalkulie genannt wird und die sich auf die Fähigkeit
+einer Person auswirkt, numerische Berechnungen durchzuführen. Das Gehirn einer
+Person mit Dyskalkulie ist tatsächlich unfähig, bestimmte Arten von mathematischem
+Denken auszuführen. Es geht nicht nur darum, dass man langsam in Mathe ist oder
+eine psychologische Abneigung dagegen hat. Es handelt sich um eine tiefgreifendere
+Erkrankung, die sie daran hindert, mathematische Berechnungen durchzuführen.
+
+#### Verhalten
+
+Manche Menschen haben nur sehr wenig Impulskontrolle. Wenn ihnen ein Gedanke in
+den Sinn kommt, handeln sie, ohne über die Konsequenzen nachzudenken, auch wenn
+es gesellschaftlich unerwartet oder unangebracht ist. Manche Menschen verstehen
+nicht, was soziale Angemessenheit bedeutet und sind nicht in der Lage, Entscheidungen
+auf der Grundlage sozialer Erwartungen zu treffen.
+
+#### Visuelle Wahrnehmung
+
+In seltenen Fällen sind manche Menschen nicht in der Lage, visuelle Informationen
+zu verarbeiten. Eine Person mit Prosopagnosie kann den Unterschied zwischen den
+Gesichtern von Menschen nicht erkennen, ist aber möglicherweise in der Lage, den
+Unterschied zwischen Stimmen zu erkennen. Andere Erkrankungen beeinträchtigen die
+Fähigkeit einer Person, Objekte durch Sehen zu erkennen, können sie aber durch
+Berührung wahrnehmen.
+
+### Wichtige Design-Konzepte
+
+#### Prinzip 1: Mach es den Nutzern leicht, erfolgreich zu sein
+
+Wir beginnen mit der Idee, es den Nutzern leicht zu machen, erfolgreich zu sein,
+weil dies den Kern der Designherausforderung trifft. Du willst schließlich, dass
+deine Nutzer/innen die Aufgaben erfüllen, die sie erfüllen sollen. Ganz allgemein
+gesagt, soll dein Design intuitiv, überzeugend und erfolgreich sein. Die Aufgaben
+sollten klar definiert sein, ohne Verwirrung oder Ablenkung.
+
+#### Grundsatz 2: Vereinfachen
+
+Eines der wichtigsten Mantras der Barrierefreiheit für Menschen mit kognitiven
+Behinderungen ist es, alles zu vereinfachen.
+
+##### 2.1: Vereinfache die visuelle Schnittstelle
+
+Wie viele Spalten brauchst du für das visuelle Design? Wie viele Widgets und
+Funktionen brauchst du? Wie viele Inhaltsbereiche brauchst du auf einer
+einzelnen Seite? Wie viele Subnavigationslisten brauchst du?
+
+Die Antwort auf all diese Fragen lautet wahrscheinlich: weniger als du denkst.
+
+Jede Webseite sollte eine Hauptaufgabe oder -funktion haben, und die visuelle
+Schnittstelle rund um diese Aufgabe oder Funktion sollte minimal sein.
+
+##### 2.2: Vereinfache die Navigation
+
+Die Hauptnavigationsliste sollte die kürzestmögliche Liste enthalten, die noch
+Sinn macht und nützlich ist.
+
+Die Planung eines guten Navigationsschemas erfordert eine durchdachte Einteilung
+der Aufgaben oder Abschnitte der Website in Kategorien, höchstwahrscheinlich in
+einer hierarchischen Taxonomie (z. B. könnte eine Kategorie "Videospiele" drei
+Hauptunterkategorien haben ("Actionspiele", "Strategiespiele" und "Puzzlespiele",
+mit jeweils Hunderten von Produkten darunter). Die Entscheidung über die besten
+Kategorien kann ein zeitaufwändiger Prozess sein. Berücksichtige, wie die
+Nutzer/innen Dinge finden wollen, nicht nur, wie es für das Unternehmen sinnvoll
+ist, sie zu organisieren.
+
+Beschränke die Listen der Untermenüs auf ein Minimum, um alles so übersichtlich
+wie möglich zu halten.
+
+##### 2.3: Vereinfache die Prozesse und Aufgaben
+
+UX-Profis wissen, wie schwierig es sein kann, komplexe Aufgaben so zu vereinfachen,
+dass sie für die Nutzer/innen leicht zu bewältigen sind. Es ist aber auch eine der
+lohnendsten Designherausforderungen, wenn man es richtig macht. Aus geschäftlicher
+Sicht kann sich der Unterschied zwischen schwierigen und einfachen Aufgaben direkt
+auf den Umsatz auswirken. Wenn es z. B. schwierig ist, etwas zu kaufen, geben
+viele Leute auf, bevor sie den Kauf tätigen.
+
+Achte am meisten auf die Kernprozesse und Aufgaben einer Website. Auf der Website
+einer Fluggesellschaft könnten die Kernaufgaben wie folgt definiert werden:
+
+- Buchen oder Ändern einer Reservierung, einschließlich aller Flugannehmlichkeiten
+
+- Für einen Flug einchecken
+
+- Zugang zu einer persönlichen Reiseroute
+
+- Zugriff auf den Status eines Fluges
+
+- Zugriff auf ein persönliches Vielfliegerkonto
+
+- Zugang zu Flugplänen
+
+- Zugriff auf die Kontaktinformationen der Fluggesellschaft
+
+Das sind die Kernaufgaben, die im Air Carrier Access Act (ACAA) in den Vereinigten
+Staaten gesetzlich festgelegt sind. Je nach Funktionalität und Geschäftszielen der
+Website oder - um die Perspektive umzudrehen - je nach Kundenbedürfnissen und
+-zielen könnten weitere Aufgaben in die Liste aufgenommen werden.
+
+Für eine Bank könnten die Kernaufgaben wie folgt definiert werden:
+
+- Kontostände und Transaktionen prüfen
+
+- Zugriff auf aktuelle und frühere Monatsauszüge
+
+- Überweisung von Geldbeträgen zwischen Konten
+
+- Persönliche Kontoinformationen abrufen und bearbeiten (Adresse, E-Mail, Telefon
+  usw.)
+
+- Kontaktinformationen der Bank abrufen
+
+- Beantragung von Dienstleistungen (Kredite, Girokonten usw.)
+
+###### Überlege dir die verschiedenen Aufgabenpfade
+
+Denke daran, dass die tatsächlichen Schritte, die eine Person für eine bestimmte
+Aufgabe durchlaufen muss, von ihren Zugangsmethoden abhängen. Der Weg durch eine
+Aufgabe für einen sehenden Mausbenutzer kann ganz anders aussehen als der Weg
+durch dieselbe Aufgabe für einen blinden Tastaturbenutzer. Es kann hilfreich
+sein, ein Flussdiagramm oder ein Prozessdiagramm zu zeichnen, um die Schritte
+im Detail zu untersuchen.
+
+##### 2.4: Vereinfache den Inhalt
+
+Der Text - und die Ideen im Text - müssen vielleicht auch vereinfacht werden.
+Das ist eines der am schwersten zu erreichenden Ziele.
+
+Methode 1: Zusammenfassungen. Eine Sache, die helfen kann, ist die Erstellung von
+Vorschauzusammenfassungen am Anfang von Inhaltsabschnitten und/oder zusammenfassenden
+Schlussfolgerungen am Ende des Inhalts. Eine Möglichkeit ist die Erstellung von
+Aufzählungslisten mit Seitenhighlights. Eine andere Möglichkeit ist die Erstellung
+eines Inhaltsverzeichnisses am Anfang der Seite, vorausgesetzt, dass das
+Inhaltsverzeichnis eine Zusammenfassung der wichtigsten Konzepte darstellt.
+Zusammenfassungen bieten den Nutzern im Wesentlichen zwei Versionen derselben
+Informationen: eine kurze und eine lange Version.
+
+Methode 2: Ändere den Inhalt selbst. In anderen Fällen ist es vielleicht am besten,
+den Inhalt selbst zu ändern, d. h. das Vokabular zu vereinfachen, große Textabschnitte
+zu streichen, die Dinge anders zu formulieren und so weiter.
+
+#### Grundsatz 3: Alternative Darstellungen anbieten
+
+Es hilft, den Text mit Videos, Audiodateien, Illustrationen, Fotos, Diagrammen und
+so weiter zu ergänzen.
+
+##### Gutes Beispiel: Anleitung, wie man einen Origami-Kranich faltet
+
+Wenn du nur eine Textanleitung hättest, wie man einen Origami-Kranich faltet, könntest
+du es vielleicht schaffen, wenn die Anleitung gut geschrieben ist, aber es ist viel
+einfacher zu verstehen, wenn du zusätzlich zur Textanleitung Illustrationen oder
+ein Video hast.
+
+###### Textanweisungen
+
+- Beginne mit einem quadratischen Stück Papier, mit der farbigen Seite nach oben
+  (wenn das Papier auf einer Seite Farbe hat). Falte die obere Ecke des Papiers
+  nach unten zur unteren Ecke. Falte es und öffne es wieder. Falte das Papier dann
+  seitlich in der Mitte.
+
+- Drehe das Papier auf die weiße Seite um. Falte das Papier in der Hälfte, falte
+  es gut und öffne es, und falte es dann wieder in die andere Richtung.
+
+- Bringe die oberen 3 Ecken des Modells mit Hilfe der Falten, die du gemacht hast,
+  nach unten zur unteren Ecke. Flache das Modell ab.
+
+- Falte die oberen dreieckigen Laschen in die Mitte und entfalte sie.
+
+- Falte die Oberseite des Modells nach unten, falte sie gut und entfalte sie.
+
+- Öffne die oberste Klappe des Modells, indem du sie nach oben bringst und gleichzeitig
+  die Seiten des Modells nach innen drückst. Flache das Modell ab und falte es gut.
+
+- Drehe das Modell um und wiederhole die Schritte 4-6 auf der anderen Seite.
+
+- Falte die oberen Laschen in die Mitte.
+
+- Wiederhole den Vorgang auf der anderen Seite, so dass dein Modell wie folgt aussieht.
+
+- Falte beide "Beine" des Modells nach oben, falte sie gut und entfalte sie dann.
+
+- Falte die "Beine" entlang der Falten, die du gerade gemacht hast, nach innen.
+
+- Innenseite umdrehen Falte eine Seite, um einen Kopf zu bilden, und falte dann
+  die Flügel nach unten.
+
+###### Illustrierte Anweisungen
+
+![Falte ein Origami Kranich](/images/affordanzen/origami-crane.svg)
+
+###### Video-Anleitung
+
+<YouTube id='Ux1ECrNDZl4' />
+
+<Accordion>
+  <AccordionItem header='Video-Abschrift'>
+    For the origami crane, we use a square sheet of paper. Any kind of paper will do the job. First,
+    fold the paper in half both ways, as also shown in the picture on the right. So, now we have
+    made two valley folds by turning, that are now mountain folds, and we fold the other way around,
+    diagonally both ways. So, first in the one direction, and then in the other. OK, now turn the
+    sheet so the diagonal creases are mountain creases, and push in the center, and collapse like
+    so. OK, make sure that the open part points towards yourself. Take one of the flaps and fold it
+    along to the center line, the edge aligned with the center crease. Exactly. Do that with the
+    flap on the other side, too. Now you have a kite shape, and fold the upper part of the kite
+    back. Make sure not to go too far, just align with the edge. Now, open it up again. What we’ll
+    now do is called a petal fold. For that, we lift the upper layer and crease, the crease is here
+    backwards. So, we get a big rectangle. I'll repeat that. So, you can see where the paper moves
+    like this. And we’ll also do a petal fold on the other side. So, first we make the diagonal
+    creases as pre-creases. Open that up, and lift the first layer, pull it backwards, and flatten
+    the shape. So, you just have to reverse those two creases, this one and the right one here, that
+    one. Exactly, like so. And flatten the shape, OK, that’s now a bird base, as it’s called. And
+    we’ll take the part where the feet are, this one, and fold the edge nearly to the center. Not
+    all the way, just nearly, that will make the inside reverse folds we’ll make later on easier.
+    And also the flap on the other side. Also, both flaps on the back will be folded in half, so
+    turn your sheet and repeat. Again, remember not to go all the way, just nearly to the center.
+    OK, now we have those two flaps here, you see? Put one of them up as a pre-crease for the inside
+    reverse fold. Now, see that valley fold? That will be now a mountain fold and reversed inside
+    into the shape of the rest of the model, that’s why it has its name. So, reverse that fold, like
+    so, and put the flap inside the mouth, just like that. And repeat that with the other of the two
+    flaps. You can do that in one step, like I’m showing right now, or like with the first flap. OK.
+    So, now you have this shape, fold down both of the wings, or make the wings by folding down
+    those two flaps. Choose one of the necks to make it neck and tail. I’ll take this one and make
+    another inside reverse fold. And we’re already done with our nice crane. Thanks a lot for
+    watching. Let me know whether the diagrams on the right were useful or not. Bye.
+  </AccordionItem>
+</Accordion>
+
+#### Grundsatz 4: Mehr Zeit einplanen
+
+Manche Menschen mit kognitiven Einschränkungen verarbeiten Informationen langsamer
+als die Allgemeinbevölkerung. Gib ihnen genügend Zeit, um auf Dinge wie Sitzungszeitüberschreitungen,
+Fristen, Sonderangebote, interaktive Inhalte, animierte Inhalte usw. zu reagieren.
+Je nach Kontext kann es auch sinnvoll sein, den Nutzern die Möglichkeit zu geben,
+Zeitüberschreitungen zu verschieben oder abzubrechen oder Zeitlimits zu verlängern.
+
+#### Prinzip 5: Fokussiere die Aufmerksamkeit des Nutzers
+
+##### 5.1: Ablenkungen beseitigen oder reduzieren
+
+Ganz grundsätzlich willst du deine Nutzer/innen nicht ablenken. Ablenkungen
+können Dinge sein wie:
+
+- Werbeanzeigen
+
+- Autoplaying von Videos, Audios oder Animationen
+
+- Zeitgesteuerte Oberflächenelemente wie Karussells oder rotierende Banner
+
+- Automatisch aktualisierte Informationen, z. B. Social Media Feeds (Facebook,
+  Twitter usw.), Börsenticker usw.
+
+- Optisch ansprechende Inhalte, die nicht Teil des Hauptinhalts oder der Botschaft
+  sind
+
+- Optisch unausgewogene Designs
+
+- Unruhige Designs ohne klaren Fokus oder Zweck
+
+Diese bekannten Ablenkungsfaktoren zu beseitigen oder zumindest zu reduzieren, ist
+ein guter Ausgangspunkt. Darüber hinaus kannst du auch Dinge tun, um die Aufmerksamkeit
+deiner Nutzer/innen gezielt auf die wichtigsten Teile des Inhalts zu lenken.
+
+##### Prinzip 5.2: Eine kleine Anzahl von klar definierten Aufgaben präsentieren
+
+Was ist der Zweck der Webseite? Wenn du 20 Aufgaben hast, von denen du denkst, dass
+ein Nutzer sie erledigen möchte, aber keine einzige davon hervorgehoben wird, dann
+hat die Seite nicht wirklich einen Zweck. Power-User mögen die Flexibilität zu
+schätzen wissen, aber im Grunde genommen profitieren alle Nutzer von einem Design,
+das den Zweck deutlich macht.
+
+##### Grundsatz 5.3: Mach das Erlebnis fesselnd und unterhaltsam
+
+Je mehr Spaß das Erlebnis macht, desto leichter wird es für die Menschen zu
+verstehen und weiter zu nutzen sein.
+
+Um diesen Gedanken noch etwas weiter zu führen: Manche Menschen mit kognitiven
+Behinderungen schätzen eine spielähnliche Umgebung. Wahrscheinlich willst du die
+Benutzeroberfläche nicht buchstäblich in ein Spiel verwandeln, denn das würde die
+kognitive Belastung bei der Erledigung von Aufgaben erhöhen, aber einige
+spielähnliche Elemente können den Spaßfaktor erhöhen, solange diese Elemente
+Teil des Hauptzwecks der Webseite sind.
+
+Zumindest kannst du visuelle Designelemente verwenden, die lustig aussehen, wie
+zum Beispiel die drei Cartoon-Gesichter auf dem Screenshot unten. Anstatt die
+Frage nur mit Text zu stellen ("Gefällt dir die Idee, in einem Fastfood-Restaurant
+zu arbeiten?"), verwendet das Design unten Gesichter, die jede der drei
+Wahlmöglichkeiten darstellen. Ein grünes Smiley-Gesicht steht für "Ich mag es!".
+Ein gelbes, neutrales Gesicht steht für "Ich bin mir nicht sicher". Ein rotes
+Stirnrunzeln steht für "Ich mag es nicht!
+
+Hinweis: Dies ist nur ein Screenshot, daher sind die Schaltflächen und Links
+nicht funktionsfähig.
+
+![Mach das Erlebnis fesselnd](/images/affordanzen/fast-food.png)
+
+##### 5.4: Nutze visuelle Gestaltungshinweise, um Aufmerksamkeit zu erregen
+
+###### 5.4.1 Leerraum
+
+Isoliere wichtige Inhalte, indem du sie mit Leerraum ("white space") umgibst.
+
+###### 5.4.2 Farbe
+
+Verwende kräftige/dramatische Farben.
+
+###### 5.4.3 Kontrast
+
+Verwende kontrastreiche Farben und setze den hohen Kontrast auf die wichtigen
+Elemente.
+
+###### 5.4.4 Die Blicke der anderen
+
+Verwende Fotos oder Illustrationen, auf denen Menschen (oder Tiere) zu sehen sind,
+die auf das Objekt blicken, auf das du deine Nutzer/innen aufmerksam machen willst.
+
+###### 5.4.5 Überraschen
+
+Nutze das Überraschungsmoment, indem du Bilder zeigst, die unerwartet, humorvoll
+oder in irgendeiner Weise unpassend sind. Achte darauf, dass die Überraschung
+dazu dient, die Aufmerksamkeit auf die richtigen Dinge zu lenken, und dass sie
+nicht zur Ablenkung wird.
+
+###### 5.4.6 Umrahmung
+
+Rahmt die wichtigen Elemente mit visuellen Umrissen, Rahmen oder einem anderen
+visuellen Schema ein, das die wichtigen Inhalte in den Mittelpunkt des visuellen
+Rahmens stellt.
+
+###### 5.4.7 Richtungsweisende Hinweise
+
+Verwende Pfeile oder andere visuelle Orientierungshilfen, um auf wichtige Inhalte
+hinzuweisen.
+
+###### 5.4.8 Führende Linien
+
+Verwende Pfade oder Führungslinien, um den Blick der Person auf die wichtigen
+Elemente zu lenken.
+
+###### 5.4.9 Bewegung
+
+Auch Bewegung kann die Aufmerksamkeit des Nutzers auf sich ziehen, aber sei damit
+sehr vorsichtig, denn es gibt noch andere Probleme mit der Barrierefreiheit.
+
+##### 5.5: Text verwenden, um Aufmerksamkeit zu erregen
+
+- Große fette Überschriften: Verwende Stile für Überschriften, die groß und
+  fett sind (achte darauf, dass die Überschriften in der HTML-Datei auch wirklich
+  Überschriften sind!)
+
+- Knappheit: Verwende kurze Wörter und Sätze in Überschriften
+
+- Überraschen: Verwende aufmerksamkeitsstarke Wörter
+
+- Interpunktion: Ausrufe- und Fragezeichen sorgen für zusätzliche Betonung, wenn
+  sie richtig eingesetzt werden
+
+- Fettdruck: Verwende fettgedruckten Text, um wichtige Ideen hervorzuheben,
+  besonders am Anfang von Abschnitten oder Textpassagen.
+
+- Zusammenfassende Wörter: Hebe den Hauptgedanken eines Satzes oder Absatzes am
+  Anfang der Textpassage hervor.
+
+##### 5.6: Nutze auditive Hinweise, um die Aufmerksamkeit zu erregen
+
+Von der automatischen Audiowiedergabe auf Websites ist im Allgemeinen abzuraten,
+aber der Vollständigkeit halber sollten wir erwähnen, dass Audio die Aufmerksamkeit
+der Nutzer/innen auf sich ziehen kann. Unter bestimmten Umständen kann Audio
+akzeptabel sein. Kurze Fehlertöne, Bestätigungsgeräusche, Benachrichtigungstöne usw.
+können effektiv sein.
+
+Bei einem spielähnlichen Ansatz könnte eine Stimme sagen: "Gut gemacht!" oder
+"Glückwunsch! Du hast es geschafft!" oder "Ups. Sieht aus, als müsstest du etwas
+korrigieren" oder andere Meldungen, die zu den Umständen passen. Auch bei diesem
+Ansatz ist Vorsicht geboten. Die Verwendung solcher Töne zur Unterstützung von
+Menschen mit kognitiven Behinderungen kann im Widerspruch zu den Bedürfnissen von
+Menschen stehen, die Bildschirmlesegeräte benutzen, da es für sie schwierig sein
+kann, gleichzeitig auf ihren Bildschirmleser und die Töne der Webseite zu hören.
+Im Idealfall haben die Nutzer/innen die Möglichkeit, diese Töne komplett
+abzuschalten. Achte darauf, dass solche Töne kurz sind und nicht die einzige Art
+der Informationsübermittlung darstellen. Vermitteln Sie die gleichen Informationen
+auch in visuellem Text.
+
+#### Prinzip 6: Biete sofortiges Feedback für Erfolgs- und Fehlerszenarien
+
+Nutzer/innen machen Fehler, selbst auf den am besten gestalteten Websites.
+Generell gilt: Je früher du Feedback gibst, desto besser. Die WCAG-Anforderung legt
+den Schwerpunkt auf Fehlermeldungen, aber auch Erfolgsmeldungen sind wichtig.
+
+Wenn Nutzer/innen eine Funktion aktivieren oder ein Formular abschicken, musst du
+ihnen mitteilen, ob die Aktion erfolgreich war oder nicht.
+
+Wenn ein Nutzer ein Formular ausfüllt, sollte er zumindest eine Bestätigungs- oder
+Fehlermeldung erhalten, wenn das Formular abgeschickt wird. Unmittelbare
+Inline-Fehlermeldungen vor dem Absenden des Formulars können für manche Menschen
+auch gut sein:
+
+- Für sehende Nutzer ist die Inline-Validierung von Formularelementen die schnellste
+  Möglichkeit, Feedback zu geben.
+
+- Für Bildschirmleser können Inline-Validierungsfehlermeldungen knifflig sein und
+  sind in vielen Fällen nicht effektiv, aber solange die Inline-Validierung gut
+  gestaltet ist, schadet sie in der Regel nicht, auch wenn Bildschirmleser die
+  Fehlermeldungen erst nach dem Absenden des Formulars sehen (es sei denn, sie
+  navigieren im Formular zurück zu den fehlerhaften Feldern).
+
+- Es ist wichtig zu wissen, dass Screenreader-Nutzer/innen Formulare oft mit Hilfe
+  von Tabulatoren erkunden, bevor sie einen Teil des Formulars ausfüllen. Wenn sie
+  dies tun, kann das Ein- und Ausblenden eines Pflichtfeldes, ohne etwas in das
+  Feld einzutippen, die Inline-Validierung auslösen. Der Nutzer kann zum Beispiel
+  eine Fehlermeldung erhalten, die besagt: "Fehler: Feld kann nicht leer sein".
+  Wenn der Nutzer das Formular erneut durchläuft, können die Fehlermeldungen für
+  ihn verwirrend sein. Du musst also die positiven Aspekte des Inline-Feedbacks
+  mit den Nachteilen für Screenreader-Nutzer abwägen.
+
+### WCAG-Richtlinien zugunsten von kognitiven Behinderungen
+
+Auch wenn die <a href="https://www.w3.org/TR/WCAG21/" target="_blank">WCAG 2.1</a>
+nicht vollständig auf die Bedürfnisse von Menschen mit kognitiven Behinderungen
+eingeht, enthält sie doch einige relevante Richtlinien, die es wert sind, erwähnt
+zu werden.
+
+Einer der anderen Punkte ist, dass einige dieser Richtlinien nicht speziell auf
+Menschen mit kognitiven Behinderungen zugeschnitten sind. Sie sind so allgemein
+gehalten, dass sie für so gut wie alle Zielgruppen gelten. Das ist insofern gut,
+als es beweist, dass die Barrierefreiheit bei der Gestaltung für alle von Vorteil
+ist. Es ist aber auch ein Nachteil, denn es macht es schwer, einen klaren
+Zusammenhang zwischen diesen Richtlinien und der Barrierefreiheit für Menschen
+mit kognitiven Behinderungen zu erkennen.
+
+Die WCAG-Richtlinie mit dem deutlichsten Bezug zu kognitiven Behinderungen
+ist <a href='https://dequeuniversity.com/class/ux/affordances/cognitive/guidelines#reading-level'>
+3.1.5: Reading Level</a>.
+
+Hinweis:
+
+Einige Menschen mit Lesebehinderungen (und einigen anderen kognitiven Behinderungen)
+verwenden Bildschirmlesegeräte, um ihre Lesefähigkeiten zu verbessern. Daher gelten
+alle WCAG-Richtlinien, die sich mit der Barrierefreiheit von Bildschirmlesegeräten
+befassen, auch für diese Menschen. Die meisten Menschen mit kognitiven Behinderungen
+verwenden jedoch keine Bildschirmlesegeräte, daher sind die Richtlinien für
+Bildschirmlesegeräte nicht in der Liste auf dieser Seite enthalten.
+
+#### WCAG Single-A Richtlinien
+
+##### 2.5.2 Zeigeraufhebung
+
+Für Funktionen, die mit einem einzigen Zeiger bedient werden können, ist mindestens
+eine der folgenden Bedingungen erfüllt (Stufe A):
+
+- Kein Abwärts-Ereignis: Das Abwärts-Ereignis des Zeigers wird nicht zur
+  Ausführung eines Teils der Funktion verwendet;
+
+- Abbruch oder Rückgängig machen: Die Funktion wird mit dem Aufwärts-Ereignis
+  abgeschlossen, und es gibt einen Mechanismus, um die Funktion vor dem Abschluss
+  abzubrechen oder nach dem Abschluss rückgängig zu machen;
+
+- Umkehrung der Funktion: Das Up-Ereignis macht das Ergebnis des vorangegangenen
+  Down-Ereignisses rückgängig;
+
+- Wesentlich: Der Abschluss der Funktion im Abwärts-Ereignis ist unerlässlich.
+
+Wie sich das auf kognitive Behinderungen auswirkt: Alle Nutzer/innen profitieren
+von einer Funktion zum Abbrechen oder Rückgängigmachen, die es einfacher macht,
+Fehler zu korrigieren. Nutzer/innen mit kognitiven Behinderungen könnten besonders
+von dieser Funktion profitieren.
+
+###### Techniken für 2.5.2
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Sicherstellen, dass Drag-and-Drop-Aktionen abgebrochen werden können.
+
+- Stelle sicher, dass Berührungsereignisse nur dann ausgelöst werden, wenn die
+  Berührung von einem Steuerelement entfernt wird.
+
+##### 3.3.1 Fehleridentifizierung
+
+Wenn ein Eingabefehler automatisch erkannt wird, wird das fehlerhafte Element
+identifiziert und der Fehler wird dem Benutzer in Textform beschrieben. (Stufe A)
+
+Wie sich das auf kognitive Behinderungen auswirkt: Jeder muss wissen, wann ein
+Fehler auftritt, was der Fehler ist und wie man ihn behebt. Vor allem Menschen mit
+kognitiven Behinderungen können nur schwer herausfinden, was das Problem ist, wenn
+sie keine Anleitung erhalten.
+
+###### Techniken für 3.3.1
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Wenn ein Fehler auftritt, gib eine Fehlermeldung neben dem fehlerhaften Element
+  (z. B. dem Formularfeld) mit einer klaren, prägnanten Fehlermeldung aus, die den
+  Fehler erklärt (z. B. "Die eingegebene E-Mail-Adresse ist nicht gültig.").
+
+##### 3.3.2 Labels oder Instruktionen
+
+Labels oder Instruktionen werden bereitgestellt, wenn der Inhalt eine Benutzereingabe
+erfordert. (Stufe A)
+
+Was bedeutet das für Menschen mit kognitiven Behinderungen? Labels und Instruktionen
+sind für alle gut, können aber für Menschen mit kognitiven Behinderungen besonders
+wichtig sein. Die Instruktionen für Menschen mit kognitiven Behinderungen müssen
+unter Umständen expliziter und klarer sein und in einer einfacheren Sprache verfasst
+werden. Es kann sogar sinnvoll sein, die Instruktionen in einem Video- oder Audioformat
+bereitzustellen.
+
+###### Techniken für 3.3.2
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Stelle sicher, dass jedes interaktive Element mit einem eindeutigen, präzisen
+  Label versehen ist, das visuell neben dem Element angebracht ist.
+
+- Gib immer dann Instruktionen, wenn es zu Verwechslungen kommen kann.
+
+- Achte darauf, dass die Instruktionen klar und prägnant formuliert sind.
+
+#### WCAG Doppel-A Richtlinien
+
+##### 1.3.5 Identifizierung des Eingabezwecks
+
+Der Zweck eines jeden Eingabefeldes, das Informationen über den Benutzer sammelt,
+kann programmatisch bestimmt werden, wenn: (Stufe AA)
+
+- Das Eingabefeld dient einem Zweck, der im <a href="https://www.w3.org/TR/WCAG21/#input-purposes"
+  target="_blank">Abschnitt Eingabezwecke für Benutzeroberflächenkomponenten</a>
+  angegeben ist; und
+
+- Der Inhalt ist mit Technologien implementiert, die es ermöglichen, die erwartete
+  Bedeutung von Formulareingabedaten zu erkennen.
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Nutzer/innen mit kognitiven
+Einschränkungen haben vielleicht Schwierigkeiten beim Ausfüllen von Formularen.
+Sie ziehen es vielleicht auch vor, benutzerdefinierte Icons zur Beschriftung von
+Formularen zu verwenden, anstatt Worte. Ein Formular, das automatisch ausgefüllt
+werden kann, kann sehr hilfreich sein.
+
+###### Techniken für 1.3.5
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Verwende HTML 5.2-Autovervollständigungsattribute.
+
+##### 1.4.12 Textabstände
+
+Bei Inhalten, die mit Auszeichnungssprachen implementiert wurden, die die folgenden
+Textstileigenschaften unterstützen, kommt es zu keinem Verlust von Inhalt oder
+Funktionalität, wenn alle folgenden Einstellungen vorgenommen und keine andere
+Stileigenschaft geändert wird: (Stufe AA)
+
+- Zeilenhöhe (Zeilenabstand) auf mindestens das 1,5-fache der Schriftgröße;
+
+- Der Abstand zwischen den Absätzen muss mindestens das Zweifache der Schriftgröße
+  betragen;
+
+- Buchstabenabstand (Laufweite) auf mindestens das 0,12-fache der Schriftgröße;
+
+- Wortabstände mindestens das 0,16-fache der Schriftgröße.
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Legasthenikern fällt das Lesen
+mit zusätzlichen Abständen möglicherweise leichter, und sie können auch eigene
+Schriftarten verwenden, um die Lesbarkeit zu verbessern.
+
+###### Techniken für 1.4.12
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Erlaube das Überschreiben des Textabstands in CSS.
+
+- Erlaube einen Textabstand ohne Umbruch in CSS.
+
+##### 1.4.13 Inhalt bei Hover oder Fokus
+
+Wenn der Mauszeiger oder der Tastaturfokus zusätzliche Inhalte sichtbar macht
+und wieder ausblendet, gilt Folgendes: (Stufe AA)
+
+- Unzulässig: Es gibt einen Mechanismus, mit dem du den zusätzlichen Inhalt
+  ausblenden kannst, ohne den Mauszeiger oder den Tastaturfokus zu bewegen, es
+  sei denn, der zusätzliche Inhalt kommuniziert einen Eingabefehler oder verdeckt
+  oder ersetzt andere Inhalte nicht;
+
+- Schwebbar: Wenn der Mauszeiger den zusätzlichen Inhalt auslösen kann, dann
+  kann der Mauszeiger über den zusätzlichen Inhalt bewegt werden, ohne dass der
+  zusätzliche Inhalt verschwindet;
+
+- Dauerhaft: Der Zusatzinhalt bleibt so lange sichtbar, bis der Hover- oder
+  Fokus-Auslöser entfernt wird, der Nutzer ihn verwirft oder seine Informationen
+  nicht mehr gültig sind.
+
+Wie sich das auf kognitive Behinderungen auswirkt: Alle Nutzer/innen brauchen Zeit,
+um neue Inhalte wahrzunehmen, zu lesen und zu verarbeiten. Für Nutzer/innen mit
+kognitiven Einschränkungen kann es besonders frustrierend sein, wenn Inhalte kurz
+auftauchen und dann wieder verschwinden, bevor sie die Möglichkeit haben, sie zu
+überprüfen.
+
+###### Techniken für 1.4.13
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Für ARIA: Verwende role="tooltip".
+
+- Für CSS: Verwende die Pseudoklassen hover und focus.
+
+##### 3.2.3 Konsistente Navigation
+
+Navigationsmechanismen, die sich auf mehreren Webseiten innerhalb einer Reihe von
+Webseiten wiederholen, werden bei jeder Wiederholung in der gleichen relativen
+Reihenfolge ausgeführt, es sei denn, der Nutzer/die Nutzerin veranlasst eine
+Änderung. (Stufe AA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Es kann verwirrend sein, wenn
+die Benutzeroberfläche - vor allem die Hauptnavigation - zwischen verschiedenen
+Ansichten oder Seiten wechselt. Manche Menschen mit kognitiven Behinderungen haben
+eine geringe Toleranz für Veränderungen und finden es schwierig, neue Oberflächen
+zu erlernen.
+
+###### Techniken für 3.2.3
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Verwende eine Vorlage, die die Navigation auf allen Seiten an der gleichen
+  Stelle platziert.
+
+- Halte die relative Reihenfolge der Links in der Navigation gleich.
+
+- Entferne die aktuelle Seite nicht aus der Navigation. Je nach Kontext kann es
+  eine gute Idee sein, den Verweis auf die aktuelle Seite nicht als Link, sondern
+  als nicht verlinkten Text zu gestalten, sondern einen Verweis auf die aktuelle
+  Seite in der Navigationsliste zu belassen.
+
+##### 3.2.4 Konsistente Identifizierung
+
+Komponenten, die innerhalb einer Reihe von Webseiten die gleiche Funktionalität
+haben, werden einheitlich gekennzeichnet. (Stufe AA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Manche Menschen mit
+kognitiven Behinderungen sind nicht in der Lage zu erkennen, dass sich zwei
+Bezeichnungen auf dieselbe Sache beziehen können. Wenn es zum Beispiel zwei Links
+gibt, "Kontakt" und "Ruf uns an", die auf dieselbe Webseite verweisen, ist es nicht
+sofort ersichtlich, dass sie auf dieselbe Seite verweisen würden oder sollten. Ein
+anderes Beispiel: Wenn es einen fünfstufigen Prozess gibt, bei dem der Nutzer bei
+jedem Schritt auf einen Link klicken muss, um zur nächsten Seite zu gelangen,
+sollte das Wort im Link einheitlich sein. Es könnte "Weiter" oder "Continue" oder
+ein anderes Wort heißen, aber es sollte immer dasselbe Wort sein. Mische keine
+Wörter und passe sie nicht an.
+
+###### Techniken für 3.2.4
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Verwende denselben Text für alle Links, die auf eine bestimmte Webseite oder
+  ein bestimmtes Ziel verweisen.
+
+- Verwende den gleichen Text für alle Schaltflächen, die eine ähnliche Funktion haben.
+
+- Verwende denselben Text, wenn du dich auf dieselben Inhaltselemente beziehst
+  (z. B. eine Tabelle, ein Formular, ein Bild usw.)
+
+##### 3.3.3 Fehlervorschlag
+
+Wenn ein Eingabefehler automatisch erkannt wird und Vorschläge zur Korrektur
+bekannt sind, werden die Vorschläge dem Nutzer zur Verfügung gestellt, es sei
+denn, dies würde die Sicherheit oder den Zweck des Inhalts gefährden. (Stufe AA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Manche Menschen mit kognitiven
+Behinderungen können verwirrt, desorientiert oder entmutigt werden, wenn ein Fehler
+auftritt, sie aber nicht wissen, warum oder wie sie ihn beheben können.
+
+###### Techniken für 3.3.3
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Zusätzlich zu oder anstelle einer Fehlermeldung (siehe 3.3.1: Fehleridentifizierung)
+  kannst du eine Nachricht veröffentlichen, die erklärt, wie du den Fehler beheben
+  kannst.
+
+  - Beispiel 1 (Fehleridentifizierung, gefolgt von einem Vorschlag zur Fehlerbehebung):
+    "Fehler: E-Mail ist nicht gültig. Deine E-Mail-Adresse muss das @-Symbol enthalten."
+
+  - Beispiel 2 (Fehlermeldung und Vorschlag zur Fehlerbehebung in einem):
+    "Fehler: Du musst eine Größe auswählen."
+
+##### 3.3.4 Fehlervermeidung (Recht, Finanzen, Daten)
+
+Für Webseiten, die rechtliche Verpflichtungen oder finanzielle Transaktionen für
+den Nutzer auslösen, die vom Nutzer kontrollierbare Daten in Datenspeichersystemen
+ändern oder löschen oder die Testantworten des Nutzers übermitteln, ist mindestens
+eine der folgenden Bedingungen erfüllt: (Stufe AA) 1) Umkehrbar: Übermittlungen
+sind umkehrbar. 2) Überprüft: Die vom Benutzer eingegebenen Daten werden auf Eingabefehler
+überprüft und der Benutzer erhält die Möglichkeit, diese zu korrigieren. 3) Bestätigt:
+Es gibt einen Mechanismus zur Überprüfung, Bestätigung und Korrektur von Informationen,
+bevor die Eingabe abgeschlossen wird.
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Menschen mit kognitiven Behinderungen
+machen am ehesten Fehler. Es ist am besten, ihnen zu helfen, Fehler zu vermeiden,
+bevor sie dauerhaft werden.
+
+###### Techniken für 3.3.4
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Fasse für den Nutzer alle zu übermittelnden Daten zusammen, bevor der Nutzer
+  sie offiziell übermittelt.
+
+- Den Nutzer auffordern, die Übermittlung zu bestätigen (z. B. "Sind Sie sicher,
+  dass Sie diese Datei löschen wollen?")
+
+- Gib einen kurzen Warnton und eine visuelle Warnung aus, wenn der/die Nutzer/in
+  die Daten übermittelt, und bestätige dann die Absichten des/der Nutzers/in.
+
+- Erlaube nach der Übermittlung der Daten eine Nachfrist, in der die Übermittlung
+  geändert oder abgebrochen werden kann.
+
+- Biete gegebenenfalls einen "Papierkorb" an, der gelöschte Daten auffängt, damit
+  sie später wiederhergestellt werden können.
+
+#### WCAG Triple-A Richtlinien
+
+##### 1.3.6 Zweck bestimmen
+
+Bei Inhalten, die mit Auszeichnungssprachen implementiert wurden, kann der Zweck
+von Benutzeroberflächenkomponenten, Symbolen und Regionen programmatisch bestimmt
+werden. (Stufe AAA)
+
+Bezug zu kognitiven Behinderungen: Dieses Erfolgskriterium soll den Nutzern helfen,
+ihr Web-Erlebnis individuell zu gestalten. Nutzerinnen und Nutzer, denen es leichter
+fällt, Icons zu verstehen als Worte, können mithilfe von Hilfstechnologien eigene
+Icons auf dem Bildschirm platzieren. Außerdem könnten sie überflüssige Bereiche
+der Seite ausblenden, damit sie sich auf den gewünschten Inhalt konzentrieren
+können. Dies wäre hilfreich für Nutzer/innen, die Schwierigkeiten beim Lesen,
+Verarbeiten oder Konzentrieren haben.
+
+###### Techniken für 1.3.6
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- ARIA Landmarks verwenden, um Bereiche einer Seite zu identifizieren.
+
+- Zukünftige Technik (noch nicht verfügbar): Verwendung von HTML-Mikrodaten zur
+  Markierung von Komponenten der Benutzeroberfläche.
+
+##### 2.2.6 Zeitüberschreitungen
+
+Die Benutzer/innen werden vor der Dauer der Inaktivität gewarnt, die zu Datenverlusten
+führen könnte, es sei denn, die Daten bleiben länger als 20 Stunden erhalten,
+wenn der/die Benutzer/in keine Aktionen durchführt. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Nutzer/innen mit kognitiven
+Einschränkungen brauchen möglicherweise mehr Zeit, um Aufgaben zu erledigen. Wenn
+du sicherstellst, dass die Nutzer/innen vor einer Zeitüberschreitung gewarnt
+werden, können sie ihre Arbeit speichern oder ihre Sitzung verlängern, damit sie
+nicht wieder bei Null anfangen müssen.
+
+###### Techniken für 2.2.6
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Lege ein Sitzungs-Timeout fest, das nach mindestens 20 Stunden Inaktivität eintritt.
+
+- Benutzerdaten für mehr als 20 Stunden speichern.
+
+- Gib zu Beginn eines Prozesses eine Warnung über die Dauer der Inaktivität des
+  Benutzers aus.
+
+##### 3.1.3 Ungewöhnliche Wörter
+
+Es gibt einen Mechanismus, um spezifische Definitionen von Wörtern oder Phrasen zu
+finden, die auf ungewöhnliche oder eingeschränkte Weise verwendet werden,
+einschließlich Redewendungen und Jargon. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Die Lesefähigkeiten sind
+unterschiedlich. Manche Menschen können überhaupt nicht lesen. Andere können nur
+auf niedrigeren Bildungsstufen lesen.
+
+###### Techniken für 3.1.3
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Im geschriebenen Text:
+
+  - Definiere das Wort/die Wörter inline, im Kontext des Textes selbst, direkt
+    nachdem das Wort im Text erscheint.
+
+    - Beispiel 1: "Eine sparsame Gesellschaft (eine Gesellschaft, die so sparsam
+      ist, dass sie geizig ist) läuft Gefahr, die Beziehungen zwischen Arm und
+      Reich zu verschärfen."
+
+    - Beispiel 2: "Eine sparsame Gesellschaft läuft Gefahr, die Beziehungen zwischen
+      Arm und Reich zu verschärfen (sparsam = bis zum Geiz; verschärfend =
+      verschlimmernd)."
+
+  - Definiere das/die Wort/e in einem Tooltip (<a href="https://www.w3.org/TR/wai-aria-1.1/#tooltip"
+        target="_blank">ARIA role="tooltip"</a>), der durch Mausverschiebung und
+    Tastaturfokus aktiviert wird. Wenn das Wort bzw. die Wörter häufig vorkommen,
+    könnte die Quelle der Tooltip-Definitionen eine zentrale Datenbank oder Datei
+    sein, die auf der gesamten Website verwendet wird.
+
+    - Beispiel: "Von einem sparsamen Menschen kann man nicht erwarten, dass er
+      ein großzügiges Trinkgeld gibt."
+
+  - Erstelle eine Definitionsliste (`<dl>`), die ungewöhnliche Wörter definiert.
+    Die Definitionsliste kann sich am Ende der Seite befinden oder auf einer
+    separaten Seite in einem Glossar mit Begriffen. Achte darauf, dass du einen
+    Link von dem ungewöhnlichen Wort zur Definition einfügst. Sonst ist die
+    Definition zu schwer zu finden.
+
+  - Biete eine Funktion an, mit der die Benutzer/innen Definitionen in einem
+    Online-Wörterbuch finden können.
+
+- Bei Multimedia:
+
+  - Schreibe das Skript so, dass alle ungewöhnlichen Wörter vom Sprecher, im
+    Dialog oder in einer zusätzlichen Audiospur, die explizit für die
+    Barrierefreiheit erstellt wurde, erklärt werden. Wenn eine separate Tonspur
+    verwendet wird, kann das Video in zwei Versionen präsentiert werden: eine ohne
+    und eine mit den zusätzlichen Erklärungen. Achte darauf, dass die Version mit
+    den zusätzlichen Erklärungen leicht zu finden ist und dass ihr Zweck deutlich
+    gelabelt ist.
+
+  - Zeige die Definition des Wortes/der Wörter auf dem Bildschirm, vorzugsweise
+    mit begleitendem Text, damit alle Zuschauer - auch diejenigen, die nicht lesen
+    oder sehen können - von der Definition profitieren.
+
+Für Menschen mit kognitiven Einschränkungen ist die erste Option (die Wörter
+inline zu definieren) wahrscheinlich die beste, denn wenn das Wort direkt im
+Kontext definiert wird, muss der Nutzer nicht herausfinden, wie er die
+Definition finden kann und er muss auch nicht herausfinden, wie er zur
+ursprünglichen Stelle zurückkehren kann. Die Tooltip-Option ist eine gute
+zweite Wahl, weil der Nutzer die aktuelle Position nicht verlassen muss.
+
+##### 3.1.4 Abkürzungen
+
+Ein Mechanismus zur Identifizierung der erweiterten Form oder Bedeutung von
+Abkürzungen ist vorhanden. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen bezieht: Manche Menschen mit kognitiven
+Behinderungen kennen die Bedeutung einiger Abkürzungen nicht (das gilt auch für
+viele Menschen ohne kognitive Behinderungen). Auch das Konzept eines Akronyms kann
+für manche Menschen mit kognitiven Behinderungen schwer zu verstehen sein.
+
+###### Techniken für 3.1.4
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Im geschriebenen Text:
+
+  - Erweitere die Abkürzung in einer Zeile, in einem Nebensatz oder auf eine
+    ähnliche Weise.
+
+    - Beispiel: "Die Taucher benutzten SCUBA-Ausrüstung (Self-Contained Underwater
+      Breathing Apparatus), um die Unterwasserbereiche der Höhle zu erkunden."
+
+  - Stelle die Abkürzung in einem Tooltip (<a href="https://www.w3.org/TR/wai-aria-1.1/#tooltip"
+      target="_blank">ARIA role="tooltip"</a>) zur Verfügung, der durch Mausverschiebung
+    und Tastaturfokus aktiviert wird.
+
+    - Beispiel: "Die Taucher benutzten eine SCUBA-Ausrüstung, um die
+      Unterwasserbereiche der Höhle zu erkunden."
+
+  - Die Erweiterung der Abkürzung wird im `<abbr>`-Element kodiert, so dass sie
+    in den meisten Browsern bei Mausbewegungen angezeigt wird und für die
+    meisten Bildschirmlesegeräte verfügbar ist. Für Tastaturbenutzer ist die
+    Erweiterung leider immer noch nicht verfügbar. Beispiel:
+
+    - Beispielcode: `<abbr title="Unabhängiges Unterwasseratemgerät">SCUBA</abbr>`
+
+    - Beispielergebnis: SCUBA
+
+- In Multimedia:
+
+  - Schreibe das Skript so, dass Abkürzungen vom Sprecher, im Dialog oder in einer
+    zusätzlichen Tonspur (optional in einer separaten Version des Videos) erklärt
+    werden.
+
+  - Zeige das Akronym und seine Erweiterung auf dem Bildschirm, am besten mit
+    begleitender Erzählung für diejenigen, die nicht lesen oder nicht sehen können.
+
+##### 3.1.5 Leseniveau
+
+Wenn der Text nach dem Entfernen von Eigennamen und Titeln ein höheres Leseniveau
+als das der Sekundarstufe I erfordert, gibt es ergänzende Inhalte oder eine Version,
+die kein höheres Leseniveau als das der Sekundarstufe I erfordert. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Das Verständnisniveau von Menschen
+mit kognitiven Behinderungen ist sehr unterschiedlich und reicht von hochentwickelt
+bis hin zu sehr geringem Sprachverständnis am anderen Ende des Spektrums. Für
+diejenigen, die Schwierigkeiten haben, Sprache zu verarbeiten oder zu lesen, kann
+es hilfreich sein, einfache Wörter und einen einfachen Satzbau zu verwenden.
+
+###### Techniken für 3.1.5
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Im geschriebenen Text:
+
+  - Schreibe auf der niedrigstmöglichen Lesestufe, die noch für den Inhalt
+    geeignet ist.
+
+  - Biete eine Zusammenfassung in einfacher Sprache am Anfang des Inhalts oder
+    einen Link (zu einer anderen Seite oder einem anderen Teil derselben Seite) oder
+    eine Schaltfläche (zu einem Dialog oder ähnlichem) am Anfang des Inhalts.
+
+  - Schreibe eine zweite Version des Inhalts in einer einfacheren Sprache als die
+    ursprüngliche Version und stelle den Nutzern beide Versionen zur Verfügung.
+
+  - Ergänze den Text mit Illustrationen, Audio, Video oder anderen Formaten.
+
+- Bei Multimedia:
+
+  - Schreibe das Skript auf der niedrigstmöglichen Lesestufe, die noch für den
+    Inhalt geeignet ist.
+
+  - Biete eine Audio- oder audiovisuelle Zusammenfassung des Inhalts in einfacher
+    Sprache an.
+
+  - Erstelle eine zweite Version des Multimedia-Inhalts, die einfache Sprache
+    verwendet. Stelle den Nutzern beide Versionen zur Verfügung.
+
+  - Nutze die audiovisuellen Aspekte von Multimedia, um Animationen, Demonstrationen
+    oder andere nonverbale Methoden zur Veranschaulichung von Konzepten zu erstellen.
+
+Festlegen der Lesestufe:
+
+Die WCAG empfiehlt für die Lesestufe einen "unteren Sekundarschulabschluss". Wie
+kannst du wissen, ob du dieses Niveau erreicht hast? Eine Möglichkeit ist, einen
+automatischen Lesbarkeitstest durchzuführen (ReadabilityFormulas.com). Sie sind
+zwar nicht perfekt, geben aber einen allgemeinen Eindruck von der Lesestufe. Am
+besten ist es, mehr als eine Methode zu verwenden. Der Test unter dem vorherigen
+Link zeigt die Ergebnisse von 7 verschiedenen Lesbarkeitsalgorithmen und liefert
+eine zusammengesetzte Punktzahl.
+
+##### 3.1.6 Aussprache
+
+Es gibt einen Mechanismus, mit dem die spezifische Aussprache von Wörtern
+identifiziert werden kann, deren Bedeutung im Kontext mehrdeutig ist, ohne die
+Aussprache zu kennen. (Stufe AAA)
+
+Wie sich das auf kognitive Behinderungen auswirkt: Manchmal kennt eine Person ein
+Wort, wenn sie es hört, aber nicht in seiner schriftlichen Form. Eine Aussprachehilfe
+kann hier helfen.
+
+###### Techniken für 3.1.6
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Im geschriebenen Text:
+
+  - Schreibe die Aussprache in dem Kontext, in dem das Wort vorkommt.
+
+  - Füge einen Tooltip ein (verfügbar, wenn du mit der Maus darüber fährst
+    oder den Fokus auf der Tastatur hast), der die Aussprache anzeigt.
+
+  - Nimm die Aussprache in ein Glossar am Ende der Seite oder auf einer
+    separaten Seite auf. Biete bei den Wörtern im Text einen Link zum Glossar
+    an.
+
+  - Biete eine Audiodatei mit einer Aufnahme an, in der jemand das Wort oder
+    die Wörter spricht.
+
+- In Multimedia:
+
+  - Wenn die Wörter auf dem Bildschirm erscheinen, sorge dafür, dass der
+    Sprecher oder der Dialog die Wörter laut ausspricht.
+
+Solltest du die offizielle linguistische Syntax verwenden?
+
+Sprachwissenschaftler haben eine genaue Methode, um die Aussprache von Lauten mit
+international anerkannten linguistischen Glyphen zu schreiben. Leider wissen die
+meisten Menschen nicht, wie sie all diese Glyphen interpretieren können, daher
+kann es hilfreich sein, die Aussprache stattdessen phonetisch zu schreiben.
+
+Merriam Webster schreibt zum Beispiel die Aussprache für das Wort "pronunciation"
+wie folgt:
+
+`\prə-ˌnən(t)-sē-ˈā-shən auch ÷-ˌnau̇n(t)-\`
+
+Manche Menschen wissen, was das bedeutet, und das ist die richtige Schreibweise,
+wenn es auf sprachliche Präzision ankommt, aber in anderen Fällen kann es hilfreich
+sein, es eher so zu schreiben:
+
+`pro-nun-see-AY-shun`
+
+Das ist für die meisten Menschen einfacher zu verstehen.
+
+##### 3.2.5 Änderung auf Anfrage
+
+Änderungen des Kontexts werden nur auf Anfrage des Nutzers initiiert oder es gibt
+einen Mechanismus, um solche Änderungen abzuschalten. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Manche Menschen mit kognitiven
+Behinderungen sind verwirrt, wenn sich die Benutzeroberfläche ändert, vor allem,
+wenn die Benutzer/innen die Änderungen nicht selbst anfordern.
+
+###### Techniken für 3.2.5
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Achte darauf, dass keine wichtigen Ereignisse (z. B. das Laden neuer Seiten oder
+  die Änderung der Benutzeroberfläche) als Folge von Ereignissen wie Hover-,
+  Fokus- oder Formularelementänderungen auftreten. Verwende stattdessen Ereignisse
+  wie die Aktivierung eines Links oder einer Schaltfläche.
+
+##### 3.3.5 Hilfe
+
+Es ist eine kontextabhängige Hilfe verfügbar. (Stufe AAA)
+
+Wie sich dies auf kognitive Behinderungen auswirkt: Menschen mit kognitiven
+Behinderungen sind am ehesten auf Hilfe angewiesen.
+
+###### Techniken für 3.3.5
+
+Zu den Techniken, um dies zu erreichen, gehören:
+
+- Biete einen Hilfe-Link auf jeder Seite an, mit Hilfe-Dokumentation speziell
+  für diese Seite.
+
+- Biete einen Link zu einer Live-Chat-Funktion an, um jemanden zu kontaktieren,
+  der helfen kann.
+
+- Biete einen kurzen Inline-Hilfetext (z. B. Formatierungshinweise, Erklärungen
+  zur Bedeutung des Elements usw.), der jederzeit neben dem entsprechenden Element
+  (Formularfeld, Widget usw.) sichtbar ist.
+
+- Biete eine Pop-up-Hilfe (z. B. eine Schaltfläche mit einem Fragezeichen oder
+  einem "I"-Symbol, das einen Tooltip oder einen Dialog öffnet) neben Formularfeldern
+  oder Widgets, die zusätzliche Erklärungen benötigen.)
+
+- Biete einen Link zu einer Telefonnummer an, um jemanden anzurufen, der helfen kann.
+
+##### 3.3.6 Fehlervermeidung (Alle)
+
+Für Webseiten, auf denen der/die Nutzer/in Informationen eingeben muss, ist
+mindestens eine der folgenden Bedingungen erfüllt: (Stufe AAA)
+
+1. Umkehrbar: Die Eingaben sind umkehrbar.
+
+2. Überprüft: Die vom Nutzer eingegebenen Daten werden auf Eingabefehler überprüft
+   und der Nutzer erhält die Möglichkeit, sie zu korrigieren.
+
+3. Bestätigt: Es gibt einen Mechanismus zur Überprüfung, Bestätigung und Korrektur
+   von Informationen, bevor die Anmeldung abgeschlossen wird.
+
+Hinweis:
+
+Dieser Leitfaden ist im Wesentlichen identisch mit 3.3.4 Fehlervermeidung (Recht,
+Finanzen, Daten), außer dass der Geltungsbereich nicht auf rechtliche, finanzielle
+und datentechnische Situationen beschränkt ist.

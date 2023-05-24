@@ -1,0 +1,1965 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Arten von Behinderungen: Personen'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+
+In diesem Abschnitt werden wir die verschiedenen Arten von Behinderungen kennenlernen
+und erfahren, was wir als Webdesigner, Entwickler, Qualitätsmanager oder
+Projektmanager bei jeder Behinderung berücksichtigen müssen. Darüber hinaus
+werden für Szenarien für einige Behinderungen vorgestellt, die UX-Designern
+helfen, die Anforderungen für Nutzer mit Behinderungen zu verstehen.
+
+## Blind
+
+### UX-Persönlichkeit: Treffen wir Janice
+
+Janice berät seit über 15 Jahren Menschen. Sie versteht ihre Rolle als
+Therapeutin - sie konzentriert sich auf das Zuhören, um wirklich zu verstehen,
+wie sich eine Person fühlt, und lehrt die Person dann, wie sie die Situation so
+gestalten kann, dass sie leichter damit umgehen kann. Auf diese Weise sieht sie,
+wie ihre Klienten mit der Zeit wachsen und gestärkt werden.
+
+![Janice in einer Therapiesitzung](/images/grundlagen/persona-blind-therapist.jpeg)
+
+### Janice' Szenario
+
+Um sich auf die Sitzungen mit ihren Kunden vorzubereiten, öffnet Janice ihre
+Notizen auf dem Computer und hört sie mit ihrem Bildschirmlesegerät ab. Es dauert
+nur 10 Minuten, die Notizen der letzten Sitzungen durchzuhören.
+
+Die Kunden vereinbaren ihre Termine mit Hilfe einer Online-Terminplanungssoftware.
+Sie gibt Zeiten vor, die sie als "verfügbar" einstuft, und die Kunden können diese
+Zeiten dann buchen. Zwischen den einzelnen Terminen lässt sie immer 45 Minuten
+Zeit, um sich Notizen zu machen und sich auf die nächste Person vorzubereiten.
+
+Außerdem liest sie Online-Zeitschriften aus dem Bereich der Psychologie, um sich
+auf dem Laufenden zu halten, was Forschung und Beratung auf ihrem Gebiet angeht.
+Wenn sie eine neue Website öffnet, wird automatisch ihr Bildschirmlesegerät gestartet.
+Sie verwendet ein Bildschirmlesegerät, um online auf Forschungsergebnisse zuzugreifen.
+Der Screenreader liest zunächst den Namen des Webbrowsers und den Titel der Webseite.
+Dies ist der Titel, der in der Titelleiste des Browsers oder in den Registerkarten
+des Browsers angezeigt wird, und wenn die Seite mit einem Lesezeichen versehen wird.
+Dann liest ihr Bildschirmlesegerät die Seite von links nach rechts, wobei je nach
+Inhalt der Seite Inhalte wie ein Logo und ein Slogan, möglicherweise einige
+einleitende Informationen, ein Suchfeld, ein Navigationsbereich wie ein Menü und
+dann der Hauptinhalt der Seite vorgelesen werden können. Wenn sie das erste Mal auf
+eine Website kommt, hört sie sich das an, aber wenn sie dann eine andere Seite
+aufruft, möchte sie nicht alles noch einmal hören. Deshalb verwendet sie
+Tastenkombinationen, mit denen sie direkt zum Inhalt der jeweiligen Seite
+gelangen kann. Manchmal navigiert sie anhand von Überschriften, Orientierungspunkten
+und Links.
+
+### Bildschirmleser
+
+Bildschirmlesegeräte wandeln den Text auf einer Webseite in gesprochene Worte um.
+Blinde Menschen hören sich Webseiten an. In dem folgenden Video spricht Rakesh Babu,
+Assistenzprofessor an der School of Information Studies an der University of
+Wisconsin-Milwaukee, darüber, wie es ist, einen Screenreader zu benutzen,
+und über einige der Herausforderungen, die Websites mit sich bringen können, wenn
+sie nicht barrierefrei gestaltet sind.
+
+**Hinweis:** Erfahrene Screenreadernutzer stellen oft die
+Geschwindigkeit ihres Screenreaders höher. Wenn du also Schwierigkeiten hast
+Schwierigkeiten hast, den Screenreader zu verstehen, ist dies der
+Grund. Die Standardgeschwindigkeit für Bildschirmleser ist viel
+langsamer, in einem eher unterhaltsamen Tempo.
+
+<YouTube id="qL4shFJHOvc" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+    (screen reader speaking)
+
+    [Rakesh] As I was growing up and I began to lose my sight, the whole world
+    was shut, because I couldn’t see anything.
+
+    (screen reader speaking)
+
+    I just heard it say “Google.” That means I am on my home page. Screen readers
+    are these software that are designed to translate text into speech.
+
+    (screen reader speaking)
+
+    So, and that’s the primary way or other technology that helps blind people
+    interact with the web and the computers. And this seems like there’s a
+    calendar here, (laughs) but that’s just my guesswork. With a little bit of understanding
+    and compassion, designers can build technologies that are more blind-friendly.
+    People like me who can’t see can, in fact, contribute, participate effectively
+    in every aspect of life, you know, just as other people do.
+
+    End of transcript.
+
+  </AccordionItem>
+</Accordion>
+
+### Designüberlegungen für Blinde
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle Inhalte müssen in Textform oder über ein Textäquivalent (z. B.
+        Alt-Text für Bilder oder andere Nicht-Text-Objekte) dargestellt werden.
+      </td>
+      <td data-label="Warum?">
+        Bildschirmlesegeräte können Nicht-Text-Inhalte (z. B. Bilder) nicht
+        direkt lesen, aber sie können den von Ihnen bereitgestellten Alt-Text lesen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Informationen dürfen nicht allein durch visuelle Attribute vermittelt
+        werden (z. B. Farbe, räumliche Anordnung, Textstärke, Hervorhebung des
+        Hintergrunds usw.).
+      </td>
+      <td data-label="Warum?">
+        Nicht alle visuellen Informationen sind für Bildschirmleser verfügbar.
+        Selbst die visuellen Attribute, die einigen Bildschirmlesern zur Verfügung
+        stehen, wie z. B. die Textfarbe, werden normalerweise nicht standardmäßig
+        angezeigt.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar
+        sein (Hinweis: Testen Sie unbedingt mit eingeschaltetem Bildschirmlesegerät,
+        da es bei eingeschaltetem Bildschirmlesegerät feine Unterschiede im
+        Tastaturverhalten gibt).
+      </td>
+      <td data-label="Warum?">
+        Auch wenn die meisten blinden Benutzer eine Maus oder ein Trackpad benutzen
+        können, nützt ihnen das nicht viel, weil sie nicht sehen können, wo sich
+        der Mauszeiger befindet. Für sie ist es effektiver, über die Tastatur zu
+        navigieren.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Der Inhalt muss eine gut strukturierte und semantische Markierung verwenden
+        (Überschriften, Orientierungspunkte, Tabellen, Listen usw.).
+      </td>
+      <td data-label="Warum?">
+        Benutzer von Bildschirmlesegeräten rufen häufig Listen mit Überschriften,
+        Orientierungspunkten und anderen semantischen Elementen auf, um zu verstehen,
+        was auf der Seite steht. Sie können auch anhand dieser Elemente navigieren
+        (z. B. direkt zum wichtigsten Inhaltspunkt oder zu einer bestimmten Überschrift
+        springen).
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle benutzerdefinierten Steuerelemente (z. B. Schaltflächen zum Auf-
+        und Zuklappen, Lautstärkeregler für Mediaplayer, Dialoge usw.) müssen
+        den richtigen Namen/Label, die richtige Rolle (entweder mit HTML oder mit
+        ARIA) und den richtigen Wert haben und den Wert ändern, wenn dies angemessen
+        ist (z. B. ändert sich aria-expanded="false" in aria-expanded="true",
+        nachdem die Schaltfläche aktiviert wurde).
+      </td>
+      <td data-label="Warum?">
+        Im Gegensatz zu nativen HTML-Elementen haben benutzerdefinierte
+        Steuerelemente von Haus aus keine semantischen Teile, so dass
+        Bildschirmlesegeräte den Benutzern nicht sagen können, was das Widget
+        ist, und die Benutzer nicht über die Eigenschaften des Widgets informieren
+        können, es sei denn, Sie stellen diese Informationen über ARIA-Namen,
+        Rollen, Zustände und Eigenschaften bereit.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Nutzer müssen nach jeder Aktion sofort eine Rückmeldung über ihren Screenreader
+        erhalten. Stille nach dem Aktivieren einer Funktion ist immer schlecht!
+      </td>
+      <td data-label="Warum?">
+        Beispiele für Rückmeldungen: Erweitertes/geklapptes Gebiet, Änderung des
+        Werts eines Steuerelements (z. B. eines Schiebereglers, erfolgreiche/nicht
+        erfolgreiche Übermittlung eines Formulars, Benachrichtigung, dass eine neue
+        "Seite" in einseitigen Anwendungen geladen wurde usw.).
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Videos benötigen Audiodeskriptionen (zusätzliche Erläuterungen zu visuellen
+        Inhalten), wenn die ursprüngliche Tonspur des Videos (Dialoge, Geräusche,
+        Erläuterungen) nicht alles erklärt, was eine blinde Person wissen muss, um
+        das Video zu verstehen.
+      </td>
+      <td data-label="Warum?">
+        Blinde Benutzer können die Dialoge, Erzählungen und andere Töne in Videos
+        hören, aber sie können die visuellen Teile eines Videos nicht sehen. Wenn
+        also die visuellen Teile wichtige Informationen vermitteln, müssen diese
+        Teile laut beschrieben werden, damit blinde Benutzer sie verstehen können.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Auf mobilen Geräten: Alle Funktionen erfordern eine Klick-Aktion. Benutzerdefinierte
+        Wischaktionen auf Webseiten funktionieren nicht, wenn der Bildschirmleser
+        aktiviert ist.
+      </td>
+      <td data-label="Warum?">
+        Wenn ein blinder Benutzer eines Bildschirmlesegeräts ein mobiles Gerät benutzt,
+        werden von der Bildschirmlesesoftware Wischaktionen verwendet. Alle Funktionen
+        (Steuerelemente, Widgets) auf einer mobilen Webseite erfordern einen Klick,
+        um überhaupt zu funktionieren.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Sehschwäche
+
+### UX Persona: Treffen wir Edgar
+
+Edgar ist Maschinenbauingenieur und arbeitet an Heiz- und Kühlsystemen.
+Er liebt es, komplexe Probleme bei der Arbeit zu lösen und hat viel
+Verantwortung für den Entwurf großer die Konstruktion großer Heiz- und Kühlsysteme.
+
+![Edgar ist farbenblind](/images/grundlagen/persona-low-vision-engineer.jpeg)
+
+### Edgars Szenario
+
+Bei der Arbeit muss Edgar architektonische Diagramme, Baubeschreibungen und andere
+Unterlagen lesen, damit er seine technische Arbeit erledigen kann. Er benutzt eine
+Maus, um auf seinem Computer und auf Websites zu navigieren, aber da er sehbehindert
+ist, verwendet er eine Software, die die Ansicht auf seinem Computerbildschirm vergrößert.
+Wenn er eine neue Website aufruft, um sich einen allgemeinen Überblick zu verschaffen,
+kann er einfach einige Tasten auf der Tastatur drücken, um die Ansicht zu
+verkleinern, und dann mit Hilfe von Tastenkombinationen heranzoomen, um die
+Informationen zu lesen.
+
+Neben der Maus benutzt Edgar manchmal auch die Tastatur, um durch die Hauptmenüs
+zu navigieren, sofern dies möglich ist. Wenn er dies tut, behält die Software das
+Element, auf das er sich konzentriert, in der Bildschirmansicht, damit er es lesen
+kann. Wenn seine Augen müde sind, kann es vorkommen, dass er die Farben auf dem
+Bildschirm umkehrt, um das Lesen für seine Augen etwas zu erleichtern.
+
+### Übersicht
+
+Menschen mit Sehschwäche können zwar sehen, aber ihre Sehkraft ist selbst mit
+starken Korrekturgläsern noch lange nicht perfekt. Menschen mit Sehschwäche
+können nicht gut genug sehen, um Auto zu fahren oder die meisten gedruckten
+Texte zu lesen, es sei denn, sie vergrößern sie. Sehschwäche ist keine einzelne
+Krankheit. Es handelt sich um eine weit gefasste Kategorie, die viele verschiedene
+Erkrankungen mit unterschiedlichen Graden der Sehbehinderung umfasst. Manche
+Menschen können nicht gut genug sehen, um kleine Schriftarten zu lesen oder Details
+klar zu erkennen, ohne sie zu vergrößern. Es gibt viele verschiedene Arten von
+Sehschwäche, die bei einer Person auftreten können. Hier sind ein paar mögliche
+Arten und Merkmale:
+
+<Accordion>
+
+<AccordionItem header="Unschärfe">
+
+    ![Unschärfe](/images/grundlagen/blur.png)
+
+    Für Menschen mit Sehschwäche erscheinen Gesichter und Gegenstände unscharf.
+    Es ist für sie schwierig, bestimmte Merkmale zu erkennen. Bei der Nutzung
+    von Websites kann es schwierig sein, die Elemente im Vordergrund von denen
+    im Hintergrund zu unterscheiden. In der obigen Abbildung kann eine Person
+    mit verschwommenem Sehen großen Text wie Überschriften erkennen, aber
+    kleinerer Text kann schwer zu lesen sein.
+
+  </AccordionItem>
+  <AccordionItem header="Unschärfe bei geringem Kontrast">
+
+    ![Unschärfe](/images/grundlagen/blurcontrast.png)
+
+    Menschen mit Sehschwäche oder verschwommenem Sehen können auch feststellen, dass
+    dass sie Dinge mit geringem Kontrast sehen, d.h. es gibt nicht sehr viele helle
+    oder dunkle Bereiche. Alles scheint ungefähr gleich hell zu sein, was es schwierig
+    macht Umrisse, Kanten, Ränder und Details zu erkennen. In diesem Bild
+    können die Textfarben und die Hintergrundfarbe für Menschen mit geringem Kontrast
+    schwer zu erkennen sein.
+
+  </AccordionItem>
+  <AccordionItem header="Grauer Star">
+
+    ![Grauer Star](/images/grundlagen/cataracts.png)
+
+    Manche Menschen haben blinde Flecken in ihren Augen, was dazu führen kann,
+    dass sie visuelle Informationen verpassen, wenn sie sich in einem ihrer blinden
+    Flecken befinden. Eine Person, die am Grauen Star erkrankt ist, sieht möglicherweise
+    unzählige dunkle graue Flecken, die ihre Sicht trüben und das Erkennen von
+    Objekten auf einer Website extrem erschweren können.
+
+  </AccordionItem>
+  <AccordionItem header="Diabetische Netzhauterkrankung">
+
+    ![Diabetische Netzhauterkrankung](/images/grundlagen/diabeticretino.png)
+
+    Die diabetische Netzhauterkrankung ist eine weitere Augenerkrankung, bei der
+    die Betroffenen schwimmende dunkle Flecken sehen, ähnlich wie auf dem Bild hier.
+
+  </AccordionItem>
+  <AccordionItem header="Grüner Star">
+
+    ![Grüner Star](/images/grundlagen/glaucoma2.png)
+
+    Manche Menschen können nur einen kleinen Bereich sehen und haben kein
+    peripheres Sehen. Die Ränder sind stark abgedunkelt oder vignettiert.
+    Es ist, als würde man durch eine enge Röhre schauen. Das obige Bild
+    simuliert den Tunnelblick, den jemand mit einem Glaukom hat.
+
+  </AccordionItem>
+  <AccordionItem header="Hemianopie">
+
+    ![Hemianopie](/images/grundlagen/hemianopia.png)
+
+    Hemianopie ist eine weitere Augenerkrankung, bei der das Sehen auf einen
+    kleineren Bereich beschränkt ist. Bei der Hemianopie tritt der Sehverlust
+    entweder auf der rechten oder linken Seite beider Augen auf.
+
+  </AccordionItem>
+  <AccordionItem header="Makuladegeneration">
+
+    ![Makuladegeneration](/images/grundlagen/maculardegen3.png)
+
+    Makuladegeneration ist eine Augenkrankheit, bei der es zu einem Verlust des
+    Sehvermögens im Zentrum des Auges, dem Gesichtsfeld, kommt. Während Menschen
+    mit Makuladegeneration in der Peripherie noch sehen können, kann die
+    Verschlechterung der Makula zu verschwommenem Sehen oder einem blinden Fleck
+    in der Mitte des Auges führen.
+
+  </AccordionItem>
+  <AccordionItem header="Netzhautablösung">
+
+    ![Netzhautablösung](/images/grundlagen/retinaldetach.png)
+
+    Bei Menschen, die eine Netzhautablösung erleiden, kann das Sehvermögen auf
+    verschiedene Weise beeinträchtigt werden. Manche sehen Lichtblitze in ihrem
+    Blickfeld, andere sehen so genannte "Floater", die wie dunkle, vor ihnen
+    schwebende Trümmer erscheinen. Das Bild zeigt ein weiteres wichtiges Symptom
+    der Netzhautablösung, bei dem ein dunkler Schatten einen großen Teil
+    des Gesichtsfeldes bedeckt.
+
+  </AccordionItem>
+</Accordion>
+
+### Barrierefreiheit für Sehbehinderte
+
+#### Bildschirmvergrößerung
+
+Das Lesen von kleinem Text ist für einen sehbehinderten Nutzer eine äußerst
+schwierige Aufgabe. Benutzer mit einer Sehschwäche müssen möglicherweise eine
+Bildschirmvergrößerung wie ZoomText oder MAGic verwenden, die jeweils nur einen
+kleinen Teil des Bildschirms anzeigt. Bei der Bildschirmvergrößerung wird ein
+Teil des Bildschirms herangezoomt und in hoher Auflösung angezeigt.
+
+Spezialisierte Bildschirmvergrößerungsprogramme wie ZoomText und MAGic verfügen
+über eine Vielzahl von Funktionen, die das Seherlebnis für Menschen mit Sehschwäche
+optimieren. Das folgende Video gibt einen Überblick über einige der wichtigsten
+Funktionen von ZoomText.
+
+<YouTube id="ojtiVj78QPw" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+
+    One of the most important technologies for people with low vision is a screen
+    magnifier. Screen magnifiers enlarge parts of the screen, just like a magnifying
+    glass would so that the text and the images on the screen are easier to see.
+
+    I'm going to demonstrate some of the features on ZoomText, which is one brand
+    of screen magnifier, so that we can see how they work. When you first start
+    up ZoomText, the default zoom is set to two times normal view, and you can see
+    on the interface it says 2x for the power. ZoomText can go all the way up to
+    36 times normal size, which is quite large.
+
+    I'll step you through some of these enlargements, just so you can see how big
+    it can get. So here we are at the largest setting, and you can see that the text
+    is still easy to read. ZoomText takes over the font smoothing and enhances it
+    quite a bit over the normal operating system font smoothing technology. Now,
+    36 times is really too big for what I want to do, so I'm going to decrease
+    the zoom and go back down to two times, 2x.
+
+    Now, the screen enlargement is only part of what ZoomText can offer. It also
+    offers enhancements of the colors, the pointer for the mouse, and the cursor
+    for the keyboard, as well as the focus when you're navigating around menu
+    systems, around web pages. So, let's take a look at the colors first. We're
+    on the normal color scheme at the moment. I'm going to change that
+    to Invert Brightness, which changes everything to the opposite color, so
+    this is like a photo negative back in the days of film, and what was, you
+    know, black is now white, and the other colors are their opposites as well.
+    Some people find this easier to read.
+
+    Another scheme that we can choose is yellow on black. Now this one is mainly
+    for people who experience difficulty, in fact even can experience pain, when
+    they see bright lights, so looking at a white computer screen with black text
+    is really hard for them; it hurts their eyes, so they change it to a lot of
+    black with yellow text. Now, this particular website, it has a dark background
+    to begin with, so that's what gets converted into the yellow. For the parts that
+    were bright before, those are the ones that are now dark.
+
+    Another option that we have is to convert just to black and white. And we can
+    set it to be a black text on a white background, basically just removing the
+    color but leaving things as they are, and then we can reverse this so that
+    what was black is now white, what was white is now black, and we get variations
+    in the gradations of grey that were the opposite of what they were before.
+
+    Let's turn it back to normal and take a look at some of the options for the
+    pointer. Now, this is referring to the mouse pointer, which is usually in the
+    shape of an arrow, sometimes in the shape of a hand when it's over links. One
+    of the options is to use yellow with a full cross, which converts the pointer
+    to a yellow color with a black outline and then puts a red cross at the point
+    of the pointer, at the very tip of it, and that makes it really easy to see
+    where the mouse pointer is as you're moving across the screen. You could turn
+    off the full cross and just leave the large yellow cursor. Some people find
+    that easier to use.
+
+    Another option is to put a red circle around the cursor, and you could leave
+    it, in this case, a color red. You can also customize these options, but the
+    default color for this particular setting is to leave it red. And a variation
+    on this idea is to use a circle only when moving. So, if I leave the mouse
+    alone, it doesn't have a circle, but if I start moving it, it puts a circle
+    around it. And then, as soon as I stop, the circle goes away. And if you
+    have a really hard time seeing the pointer because it's just too small, you
+    could turn it to the giant green option, which just makes it huge, and as you
+    move across the screen it's very visible. I’m going to put it back to normal.
+
+    The cursor is what you see when you put the focus inside of a form element or
+    when it's in a word processor and you're typing, or an email, or something
+    like that. And the default option, if you just look at the regular cursor,
+    it's just this really small blinking line, and it's really hard for people
+    with low vision to see. We can make it more visible by choosing some of these
+    options. So, one of them is to put a green circle around the focus. So right
+    now, I'm not in a text area; I'm not in a form input or anything like that, so
+    it looks normal. If I click inside the search field, it puts the green circle
+    where the focus is, which makes it immediately obvious. And if I start typing
+    something, the green circle will follow the keystrokes.
+
+    I’m going to go ahead and turn that one off and demonstrate the last category
+    that I'm going to talk about here, which is the focus. The focus can be hard
+    to see on a webpage. If I start tabbing through the web page, it will put an
+    outline or a dotted line around the links, which is great, as long as it shows
+    up. As we tab through things, you notice that it sometimes doesn't show up.
+    Right now, for example, I'm on the login button for Facebook, but there's no
+    outline around it because the designers who put together this site took away
+    the outline for that particular link. If I tab to the next link which is the
+    sign in link, the outline comes back, so we have some inconsistencies here.
+
+    And some of these are really difficult to see, so, for example, on the Send
+    me to Mars! and Hotels link, this can be a bit difficult for someone with low
+    vision to see, so let's go down to ZoomText and make it more visible. I'm
+    going to choose the first option, which is to put a red rectangle around the
+    focus. So, going back to the web page, now I have a really easily visible red
+    outline around the link, and if I tab around to the other options, the red
+    outline follows the focus. And you can change these colors as well, but that's
+    the first option there.
+
+    ZoomText has other options; you can use it to zoom in just on a portion of
+    the screen, or you could leave it as is right now, which is enlarging the
+    whole thing. And you notice also when you move around, the mouse tracks the
+    zoom along with it so that you don't lose your place. You can use a reader as
+    well, a screen reader, and there are several options available for the screen
+    reader. You can change the rate of speech, you can let it follow your typing,
+    and some other options there. And it acts basically like JAWS, or like NVDA,
+    or VoiceOver, some of the other screen readers that are out there reading the
+    text to you.
+
+    So, for someone who has low vision, this is really the best way for them to
+    gain access to their computer and to websites. It allows them to access things
+    that they really couldn't access before, in a way that makes it possible for
+    them to be independent, which is an important aspect of web accessibility overall.
+
+  </AccordionItem>
+</Accordion>
+
+Auch wenn eine starke Vergrößerung dazu beitragen kann, die größten Herausforderungen
+bei Sehbehinderungen zu bewältigen, gibt es immer noch einige Probleme, auf die ein
+Nutzer stoßen kann. Wenn beispielsweise ein Bild besonders groß ist, muss der Benutzer
+möglicherweise um den Bildschirm herum scrollen, um das Ganze zu sehen. Wenn eine
+JavaScript-Warnung neben dem aktuellen Blickfeld erscheint, kann die Warnung für
+den sehbehinderten Benutzer außerhalb des sichtbaren Bereichs liegen, so dass er
+die Warnung möglicherweise gar nicht sieht. Am besten platzieren Sie Popups,
+Warnungen, Fehlermeldungen und ähnliche Meldungen in der Nähe des visuellen Fokus,
+damit der Benutzer sie nicht übersieht.
+
+#### Bildschirmleser für Sehschwache
+
+Die meisten Menschen denken bei Bildschirmlesern an Blinde, aber auch
+Menschen mit geringer Sehkraft können von Bildschirmlesegeräten profitieren. Die
+Hören der Wörter kann helfen, den visuellen Text leichter zu verstehen, besonders
+für Menschen mit extremer Sehschwäche. ZoomText und MAGic haben integrierte
+Bildschirmleser. Bildschirmleser, die mit Bildschirmlupen gebündelt sind
+haben normalerweise nicht so viele Funktionen wie eigenständige Bildschirmleser,
+aber sie sind für die meisten Aufgaben ausreichend.
+
+#### Anpassung der Farbe
+
+Für Menschen mit geringem Kontrast oder Farbsehvermögen können Farben
+nicht gut sichtbar und schwer voneinander zu unterscheiden sein. Text, der sich
+farblich oder in seiner Luminanz (Helligkeit) zu nah am Hintergrund liegt, kann
+schwer zu lesen sein. Manche Menschen empfinden auch Schmerzen, wenn sie auf helle
+Lichter oder helle Bereichen auf Papier oder Computerbildschirmen. Ganz weiße Hintergründe
+können besonders schwierig sein. Um den Auswirkungen von geringem Kontrast und
+hellen Bereichen entgegenzuwirken, können die Nutzer die Farben entweder im
+Betriebssystem oder im Webbrowser ändern.
+
+Farben können im Webdesign verwendet werden, aber es ist wichtig, dass wichtige
+wichtige Informationen nicht allein durch Farben vermittelt werden, denn die Nutzer
+werden die Farben so anpassen, wie es für sie am besten funktioniert. Achte darauf,
+dass die wichtigen Informationen im Text dargestellt werden.
+
+Sieh dir die Simulationen unten an, um zu sehen, wie Bildschirmvergrößerung
+und Farbanpassung von Menschen mit Sehschwäche genutzt werden.
+
+<Accordion>
+  <AccordionItem header="Vergrößerter Text">
+
+    ![Vergrößerter Text](/images/grundlagen/highcontrast4.png)
+
+    Sehbehinderte Menschen können die Bildschirmvergrößerung nutzen, um kleine
+    Texte zu lesen und kleinere Grafiken zu betrachten. Das Bild hier ist eine
+    Simulation einer Textvergrößerung, bei der die Hochkontrasteinstellungen des
+    Betriebssystems verwendet werden, um die Browsereinstellungen außer Kraft zu
+    setzen.
+
+  </AccordionItem>
+  <AccordionItem header="Vergrößerter gelber Text">
+
+    ![Vergrößerter gelber Text](/images/grundlagen/highcontrast2.png)
+
+    Für manche Menschen reicht es jedoch nicht aus, den Text zu vergrößern.
+    Manche Menschen müssen die Farben ändern. Jemand, der Schmerzen hat, wenn er
+    helles Licht sieht, kann das Farbschema umkehren und Schwarz (oder eine
+    andere dunkle Farbe) als Haupthintergrund und Gelb oder Weiß als Haupttextfarbe
+    verwenden. Hier ist Gelb die Haupttextfarbe.
+
+  </AccordionItem>
+  <AccordionItem header="Vergrößerter weißer Text">
+
+    ![Vergrößerter weißer Text](/images/grundlagen/highcontrast1.png)
+
+    Hier wird weißer Text mit schwarzem Hintergrund verwendet, um einen hohen
+    Kontrast zu erzielen und die Lesbarkeit zu erhöhen.
+
+</AccordionItem>
+  <AccordionItem header="Vergrößerter grüner Text">
+
+    ![Vergrößerter grüner Text](/images/grundlagen/highcontrast3.png)
+
+
+    Helles Grün vor schwarzem Hintergrund kann auch verwendet werden, um die
+    Lesbarkeit von Webseiten für sehbehinderte Nutzer zu verbessern.
+
+  </AccordionItem>
+</Accordion>
+
+### Designüberlegungen für Sehbehinderte
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Pinch-to-Zoom-Funktion darf nicht deaktiviert werden (vermeide die
+        Verwendung von `<meta name="viewport" content="user-scalable=no">`).
+      </td>
+      <td data-label="Warum?">
+        Wenn das Zoomen auf einer Webseite deaktiviert ist, was bei dem Parameter
+        `user-scalable=no` der Fall ist, können sehbehinderte Nutzer, die
+        Lupen zum Lesen von Inhalten verwenden, die Informationen auf einer
+        Informationen auf einer Webseite nicht richtig sehen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Der gesamte Text muss den Richtlinien für den Kontrast zum Hintergrund entsprechen
+        entsprechen (überprüfe dies mit der Browsererweiterung Deque's axe DevTools
+        für Barrierefreiheit oder einem ähnlichen Tool).
+      </td>
+      <td data-label="Warum?">
+        Manche Nutzer mit Sehschwäche sehen möglicherweise mit geringem Kontrast.
+        Daher können Text, Ränder und andere Elemente mit der gleichen oder einer
+        ähnlichen Helligkeitsstufe erscheinen. Textelemente, die in ihrer Helligkeit
+        zu nahe an den Hintergrundfarben liegen, können für diese schwer zu lesen
+        sein.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status
+        und :hover-Status haben.
+      </td>
+      <td data-label="Warum?">
+        Einige sehbehinderte Benutzer verwenden eine Tastatur oder eine Maus oder
+        beides als Eingabemethode. Sichtbare :focus- und :hover-Zustände helfen
+        den Benutzern zu wissen, wo sich der Tastatur-/Mausfokus auf einer Webseite
+        befindet. Der standardmäßige :focus-Zustand des Browsers ist nach den
+        WCAG-Richtlinien akzeptabel, aber sehbehinderte Nutzer profitieren sehr von
+        den verbesserten CSS-Zuständen :focus und :hover.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Benutzeroberfläche muss eine klare visuelle Unterscheidung zwischen
+        Inhalt (z. B. Text) und Steuerelementen (z. B. Schaltflächen, Links usw.)
+        bereitstellen.
+      </td>
+      <td data-label="Warum?">
+        Auch hier können Nutzer, die mit geringem Kontrast sehen, Schwierigkeiten
+        haben zu erkennen, ob Steuerelemente auf einer Webseite aktiviert werden
+        können, da diese Elemente mit dem umgebenden Text und den Hintergrundfarben
+        verschmelzen können.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Farbenblindheit
+
+### UX Persona: Treffen wir Randal
+
+Der 78-jährige Randal ist ein pensionierter Gärtner, der den neuen Computer
+den ihm seine Tochter gekauft hat (obwohl er sich mit Computern im Allgemeinen nicht
+sehr gut auskennt) gerne Videochats mit seinen Enkeln führt.
+
+![Randal hat eine Farbenblindheit](/images/grundlagen/persona-colorblind-grandpa.jpeg)
+
+### Randals Szenario
+
+Randal kann oft nicht erkennen, wann seine Enkelkinder "online" sind, denn für ihn
+sieht der der grüne Punkt, der anzeigt, dass sie online sind, sehr ähnlich aussieht
+wie der rote Punkt, der anzeigt, dass sie offline sind, sehr ähnlich aussieht. Das
+ist eine Quelle des Ärgers für ihn weil er nicht weiß, ob die Person antwortet
+oder nicht, bis er versucht, sie anzurufen.
+
+Eine andere Sache, die Randal gerne am Computer macht, ist das Lesen von
+Gartenblogs. Manchmal gibt es dort Anleitungen zum Pflanzen mit Farbcodes
+für den besten Zeitpunkt zum Pflanzen, aber die Farbcodes sind für ihn nicht lesbar.
+Also muss er manchmal woanders nach um diese Informationen zu finden. Es gibt
+eine bestimmte Garten-Website, die er sehr mag, aber er verirrt sich manchmal, weil
+die Registerkarten grün sind, um anzeigen, welche Hauptseite ausgewählt ist.
+
+### Überblick
+
+Farbenblindheit bedeutet nicht wörtlich, dass eine Person überhaupt keine Farben
+sehen kann (außer in sehr seltenen Fällen). Farbenblindheit bezieht sich auf die
+Unfähigkeit, zwischen bestimmten Farben zu unterscheiden, insbesondere zwischen
+Farben gleicher Helligkeit oder Leuchtkraft zu unterscheiden, auch wenn die
+Farben selbst ganz anders aussehen.
+
+### Arten von Farbenblindheit
+
+Es gibt verschiedene Arten von Farbenblindheit und unterschiedliche Grade innerhalb
+dieser Arten, daher ist es schwierig eine genaue Erklärung dafür zu geben, welche
+Farbkombinationen für Menschen, die an Farbenblindheit leiden, am schlimmsten sind.
+Die häufigste Form der Farbenblindheit ist jedoch die Rot-Grün-Farbenblindheit.
+Deuteranopie und Protanopie sind zwei häufige Unterformen der Rot-Grün-Farbenblindheit.
+Manche Menschen leiden auch unter der so genannten Tritanopie oder blau-gelber
+Farbenblindheit. Obwohl sehr selten, gibt es Menschen, die eine Unempfindlichkeit
+für alle Farben geerbt haben. Menschen, die unter Achromatopsie leiden, sehen
+Farben in Grautönen.
+
+Obwohl es schwierig ist, wirklich zu erfassen, wie Menschen Farbenblindheit erleben,
+simulieren die folgenden Tabellen, wie eine Person mit Rot-Grün-Farbenblindheit und
+Graustufensehen Farben entsprechend den Merkmalen dieser Erkrankungen sehen kann.
+
+Wenn du Schwierigkeiten hast, die Zahlen in einem der Bilder zu identifizieren,
+findest du hier eine Erklärung zu den Originalbildern:
+
+Die Zahl sechs erscheint im ersten Kreis (grüne Zahl auf rotem Hintergrund). Die
+Zahl acht erscheint im zweiten Kreis (grüne Zahl auf orangem Hintergrund). Die
+Zahl fünfundvierzig erscheint im dritten Kreis (orangefarbener Text auf grünem Hintergrund).
+Die Zahl sechsundfünfzig erscheint im vierten Bild (roter Text auf grünem Hintergrund).
+
+#### Rote und grüne Farbenblindheit und Achondroplasie
+
+##### Rote und grüne Farben
+
+![Rote und grüne Farben](/images/grundlagen/redgreennumbers.png)
+
+Die häufigste Form der Farbenblindheit ist die Rot-Grün-Farbenblindheit, bei der
+es schwierig ist, zwischen Rot-, Orange- und Grüntönen zu unterscheiden. Oben
+sind einige Beispiele für Farben, die leicht zu verwechseln sind.
+
+Kannst du die Zahlen in den Kreisen erkennen?
+
+##### Rot-Grün-Farbenblindheit
+
+![Rot/Grün-Farbenblindheit](/images/grundlagen/redgreenblindnessnumbers.png)
+
+Diejenigen, die unter Rot-Grün-Farbenblindheit leiden, können die Bilder so sehen,
+wie sie hier gepostet wurden.
+
+Die Zahlen sind auf diese Weise sehr schwer zu unterscheiden.
+
+##### Alle Farben
+
+![Alle Farben](/images/grundlagen/achromacy.png)
+
+In sehr seltenen Fällen kann das Sehvermögen einer Person für alle Farben unempfindlich
+sein, so dass die Welt in einer Art Graustufe dargestellt wird. Hier sind die
+gleichen Bilder wie in den vorherigen Beispielen, nur in Graustufen dargestellt.
+
+#### Rote und schwarze Farbenblindheit
+
+Neben der rot-grünen und blau-gelben Farbenblindheit können auch die Farben Rot
+und Schwarz für manche Menschen schwer zwischen ihnen zu unterscheiden. Die
+folgenden Tabellen zeigen, wie ähnlich die Farben für farbenblinde Menschen sein
+können.
+
+##### Rote und schwarze Farben
+
+![Rote und schwarze Farben](/images/grundlagen/red-baron.png)
+
+Rot und Schwarz können für manche Menschen schwer zu unterscheiden sein. Hier
+kannst du sehen, wie Rot und Schwarz für Menschen aussehen, die nicht farbenblind
+sind.
+
+##### Simulation in Rot und Schwarz
+
+![Simulation in Rot und Schwarz](/images/grundlagen/red-baron-siim.png)
+
+So könnte das gleiche Bild für diejenigen aussehen, die Schwierigkeiten haben,
+Rot und Schwarz zu sehen.
+
+Der rote Text und das Bild verschmelzen fast mit dem schwarzen Hintergrund.
+
+### Verwende nicht nur Farbe, um Informationen zu vermitteln
+
+Da Farben für farbenblinde Menschen ähnlich aussehen können, ist es wichtig,
+dass Farben nicht als einziges Mittel zur Kommunikation oderUnterscheidung von
+Informationen verwendet werden.
+
+Das folgende Beispiel zeigt, wie eine farbenblinde Person Informationen übersehen
+kann, die nur durch Farben vermittelt werden.
+
+#### Original-Tabelle
+
+<table>
+  <caption>JavaScript Courses</caption>
+  <thead>
+    <tr>
+      <th>Course Title</th>
+      <th>Level*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th="Course Title">Angular.js</td>
+      <td style="background:#b83b3b;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th="Course Title">Node.js</td>
+      <td style="background:#b83b3b;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th="Course Title">jQuery</td>
+      <td style="background:#ffff00;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th="Course Title">Introduction to JavaScript</td>
+      <td style="background:#008000;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+\*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
+
+In der Tabelle wird die Farbe nur verwendet, um die Schwierigkeit der Klassen darzustellen.
+Manche Menschen mit Rot-Grün-Farbenblindheit haben möglicherweise Schwierigkeiten,
+die Farben zu unterscheiden.
+
+#### Farbenblinde Perspektive
+
+Hier ist die gleiche Tabelle, wie sie für jemanden mit Rot-Grün-Farbenblindheit
+aussehen könnte. Es ist schwer, den Schwierigkeitsgrad allein anhand der Farbe zu
+erkennen, da die Kurse für Fortgeschrittene und Anfänger dieselbe Farbe haben.
+
+<table>
+  <caption>JavaScript Courses</caption>
+  <thead>
+    <tr>
+      <th>Course Title</th>
+      <th>Level*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th=" ">Angular.js</td>
+      <td style="background:#6c6c36;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" ">Node.js</td>
+      <td style="background:#6c6c36;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" ">jQuery</td>
+      <td style="background:#ffff00;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=" ">Introduction to JavaScript</td>
+      <td style="background:#6c6c36;" data-th=" ">
+        &nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+\*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
+
+### Unterstützende Technologien für Menschen mit Farbenblindheit
+
+Es gibt nicht viele unterstützende Technologien für Menschen mit Farbenblindheit.
+In den meisten Fällen müssen Menschen mit Farbenblindheit Betroffene müssen
+einfach mit ihrem Zustand leben. Ein Unternehmen namens <a href="http://enchroma.com/"
+target="_blank">EnChroma</a> behauptet, eine Brille entwickelt zu haben, die einige
+Arten von Farbenblindheit kompensieren kann. Die Produkte des Unternehmens könnten
+sich für dich lohnen, wenn du unter Farbenblindheit leidest.
+
+### Barrierefreiheit im Internet für Menschen mit Farbenblindheit
+
+Die meisten Menschen, die farbenblind sind, können Farben sehen, aber es gibt
+bestimmte Farben und Farbkombinationen die für sie schwer zu unterscheiden sind.
+Es ist wichtig, sich nicht allein auf die Farbe zu verlassen, um Informationen
+zu vermitteln.
+
+### Designüberlegungen für Farbenblindheit
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle Informationen müssen verständlich sein, ohne dass man zwischen den
+        Farben unterscheiden muss. Rot- und Grüntöne sind besonders problematisch,
+        wenn sie als einziges Mittel zur Vermittlung von Informationen verwendet
+        werden.
+      </td>
+      <td data-label="Warum?">
+        Wenn Farben allein die einzige Methode sind, um wichtige Informationen auf
+        einer Webseite zu vermitteln, können Menschen, die farbenblind sind, diese
+        Informationen völlig übersehen. Überlege dir, ob du zusätzlich zu den Farben
+        auch Text und Symbole als Mittel zur Informationsvermittlung verwenden würdest.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Gehörlos
+
+### UX-Persönlichkeit: Treffen wir Mark
+
+Mark ist ein Anwalt, der für ein großes Unternehmen arbeitet und dafür sorgt,
+dass die Verträge in Ordnung sind. Er kommt jeden Morgen ins Büro, weil er von
+seinem Büro aus eine tolle Aussicht hat und gerne produktiv ist.
+
+![Mark ist ein Anwalt, der taub ist](/images/grundlagen/persona-deaf-attorney.jpeg)
+
+### Marks Szenario
+
+Mark lächelt und grüßt die Leute in den Gängen, und wenn jemand mit ihm reden
+will, macht er das Zeichen für Chat und weiß, dass er gleich einen Chat beginnen
+wird, um etwas zu besprechen. Weil er gehörlos ist, nutzt er oft online chatten,
+um mit seinen Kollegen zu kommunizieren. Manchmal lässt er einen Kollegen Siri
+auf seinem Smartphone benutzen, um sprechen, um das Gesagte abzutippen, damit er
+es lesen kann.
+
+Manchmal arbeitet Mark auch mit einem Dolmetscher zusammen, um in Meetings das
+Gesagte in Gebärdensprache wiederzugeben. Wenn er im Internet surft, benutzt er
+keine Hilfsmittel, außer wenn er sich ein Video ansieht. Er benutzt Siri auf
+seinem Smartphone, um gesprochenen Text zu übersetzen, aber das ist nicht immer
+genau. Wenn jemand im Büro ein lustiges Video per E-Mail schickt per E-Mail schickt,
+kann er es leicht übersehen, wenn es keine Untertitel oder eine Abschrift des
+Videos gibt.
+
+## Barrierefreiheit für Gehörlose
+
+Der größte Teil des Internets ist für Menschen mit Hörbehinderungen zugänglich,
+weil der Großteil des Internets in einem visuellen oder textlichen Format
+präsentiert wird. Mit der Konvergenz der Technologien finden jedoch immer mehr
+Video-, Audio- und und Multimedia-Inhalte ihren Weg ins Internet finden. Filme
+sind online verfügbar, ebenso wie Fernsehsendungen, Nachrichtensendungen,
+Video-Blogs und andere reichhaltige Inhalte.
+
+Das Problem bei Gehörlosigkeit ist die Barrierefreiheit von Audio, entweder in
+reinen Audioformaten oder in Kombination mit Video, wie es oft der Fall ist. Bei
+reinen Audiodateien, die im Voraus aufgezeichnet wurden, ist die beste Lösung in
+der Regel eine Abschrift des Tons. Die Abschrift enthält alle Texte, Dialoge und
+andere wichtige Geräusche wie Applaus, Abstürze, Musik usw.
+
+Videodateien enthalten in der Regel Audio, das mit dem Video selbst synchronisiert
+ist. Zeitabhängige Audio- und Videodateien erfordern Untertitel. Ein Transkript
+reicht nicht aus, denn ohne synchronisierte Untertitel können die Zuschauer nicht
+genau wissen, wo die Abschrift mit dem Video übereinstimmt.
+
+## Bereitstellung von synchronisierten Videountertiteln und einem Transkript
+
+Unten siehst du ein Beispiel für ein Video mit synchronisierten Untertiteln. Wenn
+die Untertitel nicht automatisch eingeschaltet sind eingeschaltet sind, wähle
+die Schaltfläche Abspielen und dann die Schaltfläche C ("C" steht für "Captions")
+unten links im Video.
+
+<YouTube id="ZpGLy-FyOc0" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+        (whizzing)
+
+        [Jeff, skiing guide] Turn a left, turn a right. Turn a left, turn a right.
+        Turn a left, turn a right.
+
+        [Erik Weihenmayer, blind skier] I think in a blind person’s daily life,
+        they don’t get speed, and that’s what I think the most exciting part of
+        skiing is when you’re blind, is that you’re really moving fast. When
+        you’re blind, you’re reacting to what you’re feeling under your feet,
+        so you’re literally reacting instantaneously. It’s very exciting or
+        terrifying, depending on how you look at life.
+
+        (guitar music, Jeff and Erik skiing down the hill)
+
+        [Jeff] Turn a left, turn a right. Turn a left, turn a right.
+
+        [Erik] In only eight, simple words, Jeff tells me everything I need to
+        know on the slope. With each syllable, there’s no guesswork. I know
+        exactly where to be.
+
+        (guitar music)
+
+        [Jeff] Go towards me here. Back to the right, to check your speed, and
+        here we go. We’re gonna start to ski to the left. Turn a left.
+
+        [Erik] To become a good blind skier, it takes an investment. You have to
+        have a good guide who you really trust, and you have to build that relationship.
+
+        (guitar and vocal music)
+
+        [Jeff] I have to make sure that somebody up the hill is not running out
+        of control, isn’t gonna take, you know, Erik out or myself out. I cannot
+        mess up. (calling out while skiing) Turn and stop.
+
+        [Erik] You can still, in bumps, get, just get completely hammered every
+        now and then, you know? So, it’s just part of the, I guess, fun. (laughs)
+        (Erik hits a snow bank and falls) Whoa! I really did hit something there.
+
+        [Jeff] Turn a right. Turn a left. (guitar music)
+
+  </AccordionItem>
+</Accordion>
+
+Eine Abschrift ist ebenfalls wichtig. Abschriften ermöglichen es den Nutzern, den
+Inhalt in ihrem eigenen Tempo durchzugehen, und können besonders für Menschen
+hilfreich sein, die nicht schnell lesen können. Abschriften sind auch die einzige
+Möglichkeit für Gehörlose und Blinde, um überhaupt auf Video- oder Audioinhalte
+zugreifen zu können, da weder Video noch Audio für Gehörlose und Blinde direkt
+zugänglich sind. Nur digitaler Text ist zugänglich, weil er von einem
+Bildschirmlesegerät in Braille-Schrift umgewandelt werden kann.
+
+### Designüberlegungen für Taubheit
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle Videos müssen mit Untertiteln versehen sein.
+      </td>
+      <td data-label="Warum?">
+        Ohne Bildunterschriften können gehörlose Menschen wichtige Informationen
+        verpassen, die durch Dialoge und Erzählungen vermittelt werden, und sie
+        können wichtige Geräusche verpassen, die dem Video Bedeutung verleihen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle reinen Audio-Inhalte müssen mit Transkriptionen versehen sein.
+      </td>
+      <td data-label="Warum?">
+        Transkripte sind notwendig, um alle Informationen zu übermitteln, die per
+        Audio übertragen werden, einschließlich der Dialoge (und der
+        Identifizierung der Sprecher), der Erzählung, der musikalischen Hinweise
+        und der Soundeffekte.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Übersetzung von Videos in Gebärdensprache kann sehr hilfreich sein.
+      </td>
+      <td data-label="Warum?">
+        Es gibt einige Gehörlose, deren primäres Kommunikationsmittel die
+        Gebärdensprache ist. Für diese Gruppe kann die Verdolmetschung der
+        Gebärdensprache gegenüber Untertiteln und Abschriften bevorzugt werden.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Taubblind
+
+### UX-Persönlichkeit: Treffen wir Bernice
+
+Als Gymnasiastin ist Bernice sehr an Politik interessiert und kann sich vorstellen,
+in Zukunft als politische Analystin über politische Bewegungen und Ideen zu
+schreiben. Sie hat dieses Interesse entwickelt, weil ihr Vater sich für Menschen
+mit Behinderungen eingesetzt hat, als sie jung war, um ihr die bestmögliche
+Bildung zu ermöglichen.
+
+![Bernice ist Taubblind](/images/grundlagen/persona-deaf-blind-student.jpeg)
+
+### Bernices Szenario
+
+Da Bernice blind und gehörlos ist, verwendet sie ein Braille-Ausgabegerät zusammen
+mit einem Bildschirmlesegerät, um Online-Nachrichtenartikel und ihre Hausaufgaben
+zu lesen. Sie kann E-Mails, Hausaufgaben und Blogbeiträge über Politik mit einer
+QWERTY- oder Braille-Tastatur schreiben. Dann benutzt sie ein Braille-Ausgabegerät,
+um das Geschriebene zu lesen. Es erzeugt eine Reihe von erhabenen Punkten, die sie
+von links nach rechts ertastet, und dann berührt sie eine Taste, um den nächsten
+Text zu lesen.
+
+Wenn sie auf ein Video stößt, versucht sie, eine Abschrift davon zu finden,
+damit ihr Bildschirmlesegerät darauf zugreifen kann. Manchmal gibt es kein
+Transkript, so dass sie nicht auf den Inhalt des Videos zugreifen kann und sich
+auf das verlassen muss, was in den Textartikeln zu finden ist. Sie befürchtet,
+dass es für sie schwierig wird, zu recherchieren, da immer mehr Informationen über
+Videos und Podcasts vermittelt werden, die keine Abschrift haben.
+
+### Braille Displays
+
+Wenn eine Person sowohl taub als auch blind ist, besteht die einzige Möglichkeit,
+mit einem Computer zu interagieren, in der Verwendung einer aktualisierbaren
+Braillezeile in Kombination mit einem Bildschirmlesegerät. Anstatt den Bildschirmleser
+in einem Audioformat vorlesen zu lassen, lassen taube und blinde Menschen den
+Text vom Bildschirmleser auf der Braillezeile ausgeben, die sie dann mit ihren
+Händen ertasten können.
+
+Ertastbare Braillezeilen haben eine Reihe von Löchern in der Oberfläche, durch
+die kleine Stifte auf und ab wandern, um Braillezeichen zu bilden. Der
+Bildschirmleser sendet eine Textzeile an die aktualisierbare Braillezeile. Die
+Nutzer/innen lesen den Text in dieser Zeile und drücken dann eine Taste, um zur
+nächsten Zeile zu gelangen. Die Stifte fallen nach unten und bewegen sich dann
+in einer neuen Konfiguration wieder nach oben, um die neue Textzeile wiederzugeben.
+
+![Braille Display](/images/grundlagen/braille-display3-600.jpeg)
+
+Braillezeilen können an normale Computer angeschlossen werden und dienen als
+Ergänzung zur Haupttastatur des Computers. Die Benutzer wechseln oft zwischen der
+Haupttastatur zum Tippen und der Braillezeile zum Lesen.
+
+Die unten abgebildete Braillezeile ist eines der größeren Modelle. Kleinere
+Modelle sind ebenfalls erhältlich.
+
+![Braille Display 2](/images/grundlagen/braille-display2-600.jpeg)
+
+### Designüberlegungen für Taubblindheit
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Es gelten die gleichen Überlegungen wie bei Blindheit.
+      </td>
+      <td data-label="Warum?">
+        Wie blinde Menschen verwenden auch taubblinde Menschen ein Bildschirmlesegerät
+        als Ausgabegerät. Doch anstatt sich auf die Audioausgabe zu verlassen, wird
+        ein aktualisierbares Braille-Ausgabegerät verwendet, damit taubblinde Menschen
+        Inhalte durch Berührung lesen können.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Es gelten die gleichen Überlegungen wie bei Taubheit.
+      </td>
+      <td data-label="Warum?">
+        Alle Erwägungen für Gehörlose gelten in dem Sinne, dass eine Alternative
+        für den Zugang zu Audioinhalten bereitgestellt werden sollte, insbesondere
+        in einem textbasierten Format.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Außerdem muss für Audio- und Videoinhalte eine Abschrift erstellt werden.
+      </td>
+      <td data-label="Warum?">
+        Abschriften sind die einzige Möglichkeit für taubblinde Menschen, auf alle
+        Informationen zuzugreifen, die in Audio- und Videoformaten übermittelt
+        werden. Einige moderne Braille-Lesegeräte können Videountertitel anzeigen,
+        aber es kann schwierig sein, die Braille-Zeichen so schnell zu lesen, wie
+        die Untertitel angezeigt werden, daher sind Abschriften immer noch die
+        beste Option für taubblinde Nutzer.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Motorische Behinderungen
+
+### UX-Persönlichkeit: Treffen wir Jack
+
+Jack lebt mit seiner Frau und 2 Kindern zusammen. Er musste sich sehr daran
+gewöhnen, dass er seine Arme und Beine nicht mehr bewegen kann, aber es macht
+ihm viel Freude, zu lesen und zu lernen und mit seinen Kindern zu sprechen, wenn
+sie von der Schule nach Hause kommen, über das, was sie lernen und was sie mögen
+oder nicht mögen. Er hält sich über die Nachrichten auf dem Laufenden und liest
+auch über neue Entwicklungen in Wissenschaft und Technik. Außerdem kümmert er
+sich um die Finanzen der Familie und kauft Geschenke für Geburtstage auch online
+ein.
+
+![Jack hat eine motorische Behinderung](/images/grundlagen/persona-motor-veteran.jpeg)
+
+### Jacks Szenario
+
+Jack benutzt einen Mundstab, um auf einer Tastatur zu tippen, die hochgezogen ist,
+damit er sie erreichen kann. Er benutzt die Tastatur, um im Internet und auf seinem
+Computer zu navigieren. Seine Haushaltshilfe hilft ihm jeden Morgen, von seinem
+Bett in seinen Rollstuhl zu steigen. Dann kann er seinen Rollstuhl mit dem Mundstick
+steuern, um in die Küche zu gehen, um mit seiner Familie zu frühstücken und dann
+zu seiner Computerstation zu fahren. Er hat einen speziellen, erhöhten Bildschirm
+und eine Tastatur für ihn. Er hat kein Problem damit, den Bildschirm zu sehen,
+nur die Navigation ist manchmal eine Herausforderung.
+
+Manchmal findet er eine neue Website und hat Mühe, seine Ziele dort zu erreichen.
+Gestern wollte er Flugtickets für seine Familie kaufen, um in den Winterferien
+Verwandte in Florida zu besuchen. Er konnte einen Flug finden und die 4 Tickets
+auswählen, aber dann erschien ein Pop-up-Fenster, in dem er nach seiner
+Sitzplatzpräferenz gefragt wurde. Er konnte den Cursor nicht in das Pop-up-Fenster
+bewegen und konnte auch nicht fortfahren, bevor er einen Sitzplatz ausgewählt hatte.
+Das bedeutete, dass er nicht weiterkam und sich entscheiden musste, ob er warten
+wollte, bis seine Frau von der Arbeit nach Hause kam, oder ob er stattdessen die
+Website einer anderen Fluggesellschaft besuchen wollte.
+
+### Echte Menschen mit motorischen Behinderungen
+
+Motorische Behinderungen können sich auf eine Reihe von körperlichen Erfahrungen
+beziehen Sie reichen von der vorübergehenden Unfähigkeit, eine Hand aufgrund einer
+Verletzung zu benutzen, über Schwierigkeiten, eine Verletzung, bis hin zu
+Schwierigkeiten, beide Hände zu benutzen (auch bekannt als Geschicklichkeitsstörung)
+bis hin zu wenig oder gar keiner motorischen Kontrolle über die Gliedmaßen. Manche
+Menschen mit motorischen Behinderungen nutzen Hilfssoftware zusammen mit Hilfsmitteln,
+wie z. B. einem alternative Eingabegeräte oder Schalter. Wie bei den anderen Behinderungen,
+die wir bisher besprochen haben, ist die Erfahrung jedes Einzelnen einzigartig, und
+es gibt keine einheitliche Technologieempfehlung für Menschen mit motorischen Behinderungen.
+Hier sind einige Beispiele dafür, wie verschiedene assistive Technologien auf unterschiedliche
+Weise eingesetzt werden können, um die Interessen einer bestimmten Person zu erfüllen.
+
+#### Physiker Stephen Hawking
+
+Stephen Hawking, der berühmte Physiker, litt an einer degenerativen neuromuskulären
+Krankheit namens ALS (Amyotrophe Lateralsklerose), auch bekannt als Lou-Gehrig-Krankheit.
+Diese Krankheit hatte ihm nach und nach die Fähigkeit genommen, seine Muskeln nach
+Belieben zu kontrollieren. Wer ALS hat, kann mit der Zeit auch die Fähigkeit verlieren
+seine oder ihre unwillkürlichen Muskeln zu kontrollieren, wodurch es dem Körper
+unmöglich wird, zu atmen oder sich zu bewegen. Der Körper kann dann nicht mehr
+selbstständig atmen oder andere lebenserhaltende Maßnahmen durchführen.
+Er hat zahlreiche bemerkenswerte wissenschaftliche und populäre Schriften über
+Wissenschaft und das Universum geschrieben. Dies gelang ihm dank der
+Hilfsmittel, die er benutzte.
+
+Stephen Hawking benutzte einen Computer, der ihm beim Sprechen, Schreiben und der
+Interaktion mit der Welt half. An seiner Brille war ein Sensor angebracht, der die
+Bewegungen seiner Wange registrierte.
+
+![Stephen Hawkins](/images/grundlagen/stephen_hawking_switch.jpeg)
+
+Als er auf den Computerbildschirm schaute, wurden Optionen auf dem Bildschirm angezeigt
+aus denen er wählen und seine Worte in den Computer eingeben konnte.
+Dann ließ er sich seine Worte vom Computer laut vorlesen.
+
+![Stephen Hawkins Computer](/images/grundlagen/stephen_hawking_computer.jpeg)
+
+Das war ein mühsamer, zeitaufwändiger Prozess. Es konnte mehrere Minuten dauern
+bevor er einen einzigen Satz getippt hatte. Im Jahr 2008 hielt er einen TED-Talk,
+in dem er über unsere Beziehung zum Universum und über Leben außerhalb der
+Erde spekulierte. An mehreren Stellen des Videos zeigt die Kamera ihn bei der
+Interaktion mit seinem Computer interagiert und dabei Bewegungserkennungshardware
+und Wortvorhersagesoftware als Hilfsmittel einsetzt. In dem Video selbst geht es
+nicht um Barrierefreiheit im Internet, aber es ist aufschlussreich zu sehen, wie
+Hawking seinen Computer benutzt hat, denn er hätte die gleiche Art von Technologie
+benutzt, um auf Websites zuzugreifen.
+
+Eines der denkwürdigen Zitate aus seinem Vortrag (bei etwa 7:45):
+
+> "All my life I have sought to understand the universe and find answers [...] I
+have been very lucky that my disability has not been a serious handicap. Indeed,
+it has probably given me more time than most people to pursue the quest for knowledge."
+
+<YouTube id="xjBIsp8mS-c" />
+
+##### Etwas zum Nachdenken
+
+Was wäre, wenn Stephen Hawking 40 oder 50 Jahre früher geboren worden wäre? Wäre
+wäre er in der Lage gewesen, ganze Vorlesungen, wissenschaftliche Artikel und
+ganze Bücher selbst zu schreiben? Nein. Es ist buchstäblich das erste Mal in der
+Geschichte der Welt, dass jemand wie Stephen Hawking dies selbstständig tun kann.
+Er wäre vielleicht in einem Pflegeheim oder in einer anderen einsamen Umgebung
+gelandet und wäre völlig kommunikationsunfähig geworden. Und doch war er dank
+der modernen Technologien einer der brillantesten Köpfe unserer Generation.
+Das ist die Macht der modernen Technologien für Menschen mit Behinderungen.
+
+### Marie-France Bru
+
+Wie Stephen Hawking hat auch Marie-France Bru ALS (Amyotrophe Lateralsklerose). Sie
+kann ihren Körper fast nicht mehr bewegen, aber ihren Kiefer ein wenig bewegen. An
+ihrem Kiefer ist ein Sensor angebracht, der die Bewegung erfasst. Mit dieser Bewegung
+ist sie in der Lage, einen Computer zu benutzen, um eine Vielzahl von Aufgaben zu
+erledigen, z. B. E-Mails zu schreiben, mit ihrem Mann über Instant Messaging zu
+chatten, sich online um ihre Finanzen zu kümmern und Lebensmittel einzukaufen.
+
+Mit anderen Worten: Sie erledigt viele der Aufgaben, die auch viele andere Menschen
+erledigen. Sie erledigt sie nur zufällig von zu Hause aus mit ihrem Computer... indem
+sie nur ihren Kiefer bewegt.
+
+Wenn Sie sich dieses Video ansehen, achten Sie darauf, wie sie spezielle virtuelle
+Tastaturen verwendet, um mit dem Computer zu interagieren.
+
+<YouTube id="ENkjkIypXq4" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+
+    [A pivotal role in the household]
+
+    [An AssistiveWare Production]
+
+    [Marie-France Bru, teacher]
+
+    [A woman sitting in front of her computer. She views an e-commerce website.]
+
+    [A synthesized woman's voice speaking:] Nowadays, the computer has become an
+    almost indispensable tool. I am in front of my computer and manage the bank
+    accounts, as well as my mail. What is more, I do all kinds of shopping: groceries,
+    clothes, Christmas presents, just about anything—and all of that from home,
+    without a need to go out.
+
+    As I am almost completely paralyzed and my hands do not move at all, it is
+    impossible for me to type on a keyboard or use a mouse. Therefore, I use a
+    scanning program called Switch XS. This allows me, through the aid of a switch,
+    to control the scanning of one or more keyboards designed by myself. The switch
+    is a little device that is taped to my cheek. All I need to do is make small
+    jaw movements to activate the scanning.
+
+    [She uses a virtual keyboard on the computer screen. The keyboard cycles through
+    sections in sequence; she moves her cheek, which triggers the sensor and selects
+    the part of the keyboard she wants to use. She is able to type using this method.]
+
+    As I do not speak, I use the speech synthesis of Proloquo. [Computer speaks in
+    French.] Proloquo also helps me when I write. It allows me to verify that what
+    I write is in agreement with what I wanted to write. I developed a rapid writing
+    method, which is based on a pretty complicated writing keyboard.
+
+    I also use the keystrokes application, which offers the possibility of entering
+    as many abbreviations as I want. In addition, it offers word prediction. [Computer
+    speaks in French.] This allows me to write about four times as fast as when I
+    would have to type each individual letter.
+
+    [The camera moves away from her and across the hall, where a man is sitting in
+    front of a computer and typing on a keyboard.]
+
+    Switch XS also allows me to communicate with my husband through iChat when he
+    is at his desk and I am at mine. It also allows me to help him with his research
+    work. [The man types a response to his wife in an instant messaging program.]
+
+    The computer has also allowed me to create a website about my illness, motor
+    neurone disease. The site provides me many contacts with other ill people or
+    their families.
+
+    Without a computer, I would be little more than a vegetable. I can say without
+    exaggeration that the computer has saved my life. Without Switch XS I would
+    not have accessed Mac OS 10 which has changed my life. Thanks to all this
+    technology, I continue to play an important role in the household, because I
+    am the one taking care of the groceries, the one managing the bank accounts,
+    and the one keeping contact with our friends.
+
+    [Marie-France Bru, born in 1943]
+
+    [living in Paris, France]
+
+    [speaking with the voice "Lucy" of the Acapela Group]
+
+    [was diagnosed with amyotrophic lateral sclerosis (motor neurone disease) in
+    September 1995]
+
+    [Copyright 2005 AssistiveWare]
+
+    [www.assistiveware.com]
+
+    [www.als-testimony.org]
+
+    [www.acapela-group.com]
+
+  </AccordionItem>
+</Accordion>
+
+#### Schauspieler Christopher Reeve
+
+Christopher Reeve wurde in Hollywood durch seine Rolle als Superman und durch seine
+Auftritte in anderen Filmen wie Somewhere in Time berühmt.
+
+![Christopher Reeve als Superman](/images/grundlagen/christopher-reeve-superman.jpeg)
+
+1995 wurde er bei einem Reitturnier von seinem Pferd abgeworfen und erlitt dabei
+eine Verletzung der Halswirbelsäule, die ihn vom Hals abwärts lähmte. Er war
+nicht mehr in der Lage, seine Beine, Hände oder seinen Oberkörper zu bewegen. Nach
+seiner anfänglichen Rehabilitation war er in der Lage, einen elektrischen Rollstuhl
+zu benutzen, der durch eine Puff- und Sip-Steuerung angetrieben wurde, was im
+Wesentlichen bedeutet, dass er in einen Strohhalm blies oder daran saugte, der an
+seinem Rollstuhl befestigt war.
+
+![Christopher Reeve nach seinem Reitunfall](/images/grundlagen/christopher-reeve2-500.jpeg)
+
+Reeve wurde zu einem lautstarken Verfechter der Forschung zugunsten von Menschen
+mit Rückenmarksverletzungen. Mit Hilfe von Spracherkennungssoftware und anderen
+unterstützenden Technologien war er in der Lage, Bücher in voller Länge zu schreiben,
+darunter die Memoiren "Still Me" und eine meditative Reflexion über das Leben mit
+dem Titel "Nothing Is Impossible".
+
+Er nutzte dieselbe Art von Technologien für den Zugang zu Computern und zum Internet.
+
+### Von Menschen mit motorischen Behinderungen genutzte unterstützende Technologien
+
+Die unterstützenden Technologien, die eine Person mit einer motorischen Behinderung
+nutzt, sind speziell auf die Bedürfnisse dieser Person zugeschnitten. Hier sind einige
+der verfügbaren Hilfstechnologien:
+
+#### Vertikale Tastatur mit Mundstab
+
+![Vertikale Tastatur](/images/grundlagen/keyboard-vertical.jpeg)
+
+#### Einhändige Tastatur
+
+![Einhändige Tastatur](/images/grundlagen/keyboard-alt-one-hand3.jpeg)
+
+#### Erweitertes Keyboard mit erhöhten Bereichen zwischen den Tasten
+
+![Erweitertes Keyboard mit erhöhten Bereichen zwischen den Tasten](/images/grundlagen/keyboard-expanded.jpeg)
+
+##### Spracherkennung
+
+Manche Menschen können die Vorteile von Spracherkennungssoftware nutzen, die die
+die die gesprochenen Worte des Nutzers in eine Sprache übersetzt, die der Computer
+versteht. Die Spracherkennung kann verwendet werden, um Text zu tippen, Daten in
+Formulare einzugeben und auf Webseiten zu navigieren, indem man entweder die Tastatur
+oder einen Maus-Emulationsmodus benutzt. Eine der beliebtesten Marken von
+Spracherkennungssoftware ist <a href="https://www.nuance.com/dragon.html"
+target="_blank">Dragon</a>.
+
+### Designüberlegungen für motorische Behinderungen
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar sein.
+      </td>
+      <td data-label="Warum?">
+        Für sehende Tastaturbenutzer oder solche, die Geräte benutzen, die Tastaturen
+        emulieren, sollte alles, was auf einer Webseite mit der Maus gemacht werden
+        kann, auch mit einer Tastatur möglich sein. Menschen mit motorischen
+        Behinderungen verfügen möglicherweise nicht über die erforderlichen
+        feinmotorischen Fähigkeiten, um eine Maus zu benutzen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status
+        und einen sichtbaren :hover-Status haben.
+      </td>
+      <td data-label="Warum?">
+        Sehende Tastaturbenutzer wissen nur durch den sichtbaren :Fokus-Status, wo
+        sich der Tastaturfokus befindet. Wenn der Fokus ausgeschaltet ist, kann die
+        Interaktion auf einer Webseite für diese Nutzer extrem schwierig oder fast
+        unmöglich sein. Der standardmäßige :focus-Zustand des Browsers ist nach den
+        WCAG-Richtlinien akzeptabel, aber wie sehbehinderte Nutzer können auch sehende
+        Tastaturnutzer von den verbesserten CSS-Zuständen :focus und :hover profitieren.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+         Warne die Nutzer/innen vor Ablauf der Zeit (z. B. durch einen barrierefreien
+         Dialog oder eine Warnung) und gib ihnen die Möglichkeit, die Sitzung zu
+         verlängern. Achte darauf, dass die Warnung selbst langsame Antworten
+         zulässt. Eine empfohlene Mindestantwortzeit ist 2 Minuten.
+      </td>
+      <td data-label="Warum?">
+         Menschen mit motorischen Behinderungen brauchen mehr Zeit, um Informationen
+         auf einer Webseite einzugeben. Deshalb ist es wichtig, dass sie genügend
+         Zeit und Möglichkeiten haben, die Fristen zu verlängern.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Biete große Klickziele (Links, Schaltflächen, Steuerelemente) für Nutzer/innen,
+        deren Bewegungen schwer zu kontrollieren sind.
+      </td>
+      <td data-label="Warum?">
+        Menschen, die unter Zittern oder Spasmen leiden, müssen in der Lage sein,
+        Ziele auf einer Webseite zu aktivieren. Eine Vergrößerung des Zielbereichs
+        für diese Menschen kann dazu beitragen, dass sie das Ziel auf der Webseite
+        möglichst genau auswählen können.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Sprachbehinderungen
+
+Wenn eine Person Schwierigkeiten hat, Wörter zu artikulieren, kann es sein, dass
+er oder sie eine Sprachbehinderung haben. Sprachbehinderungen sind gekennzeichnet
+durch die Unfähigkeit Sprachlaute und Silben richtig oder fließend zu produzieren.
+oder sie zu ordnen. Es kann auch zu einem vollständigen Verlust der Stimme kommen.
+Manche Sprachbehinderungen können genetisch bedingt sein.
+
+### Arten von Sprachbehinderungen
+
+Sprachbehinderungen umfassen eine Vielzahl von spezifischen Sprachstörungen. Hier
+sind einige der häufigsten Arten von Sprachstörungen aufgeführt:
+
+- Stottern ist eine Sprachstörung, bei der die flüssige Wiedergabe von Sprachlauten
+  beeinträchtigt ist. Wörter oder Teile von Wörtern können unwillkürlich wiederholt
+  werden, Sprachlaute können verlängert werden, oder Sprachlaute können gestoppt
+  oder vollständig blockiert werden.
+
+- Cluttering wird manchmal als Sprachbehinderung eingestuft und ist eine Behinderung,
+  die den Redefluss beeinträchtigt. Cluttering besteht aus schnellem Sprechen, das
+  im Rhythmus uneinheitlich sein kann und dem Syntax oder Grammatik fehlen. Das
+  Sprechen kann anfangs klar sein, aber es nimmt schnell an Geschwindigkeit zu.
+  Auch undeutliches Sprechen kann vorkommen.
+
+- Apraxie ist eine motorische Sprachbehinderung, die auftritt, wenn eine Person
+  Schwierigkeiten hat, die Muskeln für die Sprachproduktion einzusetzen, um die
+  Laute von Wörtern zu bilden. Eine Person kann mehrere Versuche brauchen, um das
+  richtige Wort zu sagen.
+
+- Dysarthrie ist eine motorische Sprachbehinderung, die aufgrund einer Hirnschädigung
+  auftritt. Die Muskeln, die für die Sprachproduktion zuständig sind, sind beeinträchtigt,
+  was zu undeutlichem Sprechen, langsamer Sprache, Nuscheln oder einer Stimme,
+  die heiser oder atemlos klingt, führt.
+
+- Sprachklangstörungen sind Störungen, bei denen bestimmte Sprachlaute, insbesondere
+  Konsonantenlaute, nur schwer produziert werden können. Sie werden im Allgemeinen
+  als Artikulationsstörungen oder phonemische Störungen kategorisiert.
+
+- Artikulationsstörungen betreffen die Schwierigkeit, Sprachlaute physisch zu
+  produzieren. Infolgedessen können bestimmte Sprachlaute entweder weggelassen
+  oder hinzugefügt, durch andere Laute ersetzt oder verzerrt klingen.
+
+- Phonemische Störungen betreffen die Schwierigkeit, Sprachlaute in Sprachen zu
+  unterscheiden. Es können nur wenige Laute verwendet werden, was die Wortbedeutung
+  beeinträchtigt. Zum Beispiel können die Wörter "call" und "tall" beide als "tall"
+  ausgesprochen werden, obwohl die Person versucht, das Wort "call" und seine
+  Bedeutung in ihrer Aussage zu verwenden.
+
+- Nonvokal ist die völlige Unfähigkeit, eine Sprechstimme zu erzeugen.
+
+### Kommunikationsoptionen
+
+#### Unterstützte Kommunikation (AAC)
+
+Unterstützte Kommunikation (AAC) umfasst alle Formen der Kommunikation, die Menschen
+mit Sprachbehinderungen nutzen können, um sich auszudrücken mündliche Kommunikation,
+um sich auszudrücken. Menschen mit schweren Sprachbehinderungen können Unterstützte
+Kommunikation nutzen, um ihre Sprache zu ergänzen oder zu ersetzen. Es gibt zwei
+verschiedene Arten von Unterstützte Kommunikation, die Menschen mit
+Sprachbehinderungen nutzen können:
+Ungestützte Kommunikation und Unterstützte Kommunikation.
+
+#### Ungestützte AAC
+
+Ungestützte unterstützende und alternative Kommunikationssysteme beruhen nicht
+auf dem den Einsatz von externen Hilfsmitteln, sondern basieren auf nonverbaler
+Kommunikation wie Körpersprache, Mimik, Gestik und Gebärdensprache.
+
+#### Unterstützte Kommunikation
+
+Unterstützende und alternative Kommunikationssysteme basieren auf dem Einsatz von
+elektronischen oder nicht-elektronischen Hilfsmittels und des Körpers der Person.
+Die Hilfsmittel reichen von Kommunikationsbüchern und -tafeln, Stift und
+Papier bis hin zu und Papier bis hin zu elektronischen Geräten, die computergenerierte
+Stimmen erzeugen. Kommunikationshilfen, die keinen Strom benötigen, werden als
+Low-Tech-Kommunikationshilfen. Diejenigen, die Strom benötigen, sind
+Hightech-Kommunikationshilfen und ermöglichen der betroffenen Person oft Nachrichten
+zu speichern und abzurufen.
+
+Das folgende Video zeigt, wie Hightech-Unterstützte Kommunikation das Leben von
+Rachel Monk beeinflusst hat.
+
+<YouTube id="dEYyuLyovLg" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+
+    [Music plays]
+
+    [Narrator's Voice speaking as Rachel, Music plays in the background]: My name
+    is Rachel Monk. I really enjoy going to the art club, where I can socialize
+    with my friends. It is great being able to spend time with everyone while doing
+    something I enjoy so much. I was excluded from doing my exams at school, but
+    that didn't stop me. I went to college and studied fine arts, and I got an "A"
+    level. I can hear, and see, and understand everything you say to me. It can
+    be very hard with strangers, as a lot of people do not give me enough time to
+    speak. They do not realize how long it
+
+    [Transition to Rachel's computer-generated voice] takes for me to select the
+    icons I need to respond to them. I am a bright person and intelligent, and I
+    want my thoughts and feelings to be heard and not wasted. Everyone has the
+    right to communicate. I may sound different in my head to how I sound to
+    others, but it is all my voice. Now hear me...
+
+    [Music continues to play]
+
+    [Visual advertisement displays] Now Hear Me: It's my right to speak. Find out
+    more about what you can do to help people who use augmentative and alternative
+    communication. http://www.nowhearme.co.uk/ #myrighttospeak
+
+  </AccordionItem>
+</Accordion>
+
+### Designüberlegungen für Sprachbehinderungen
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Verlasse dich nicht auf die Spracheingabe (z. B. in mobilen Apps,
+        benutzerdefinierten Widgets, Spielen usw.).
+      </td>
+      <td data-label="Warum?">
+        Menschen mit Sprachbehinderungen haben Schwierigkeiten, Sprachlaute zu
+        erzeugen und ihre Sprachlaute zu erzeugen und ihre Mundmuskeln zu benutzen.
+        Deshalb ist es wichtig, dass alternative Kommunikationsmittel wie Chats,
+        Formulare, E-Mails etc. zur Verfügung stehen.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Kognitive Behinderungen
+
+### UX-Persönlichkeit: Treffen wir Ellen
+
+Ellen ist eine Highschool-Schülerin, die hofft, später in der Gastronomie arbeiten
+zu können - sie liebt Essen und Menschen.
+
+![Ellen hat eine kognetive Behinderung](/images/grundlagen/persona-cognitive-down-syndrome.jpeg)
+
+### Ellens Szenario
+
+Ellen hat das Down-Syndrom und besucht daher eine Schule, in der sie zusätzliche
+Unterstützung beim Lernen erhält. Komplexe Sprache kann manchmal eine Herausforderung
+sein, da das Lesen für sie immer sehr langsam war. Aber sie hat ein Ziel, und
+deshalb arbeitet sie in der Schule hart, um ihr Ziel zu erreichen.
+
+Ellen geht normalerweise in die Bibliothek, um ihre Lese-Hausaufgaben für die
+Schule zu machen. Sie benutzt gerne ein Tablet, weil sie dort leicht Wörter
+nachschlagen kann, die sie nicht versteht. Manchmal muss sie für ihre Hausaufgaben
+im Internet recherchieren, und sie hat Probleme mit Websites, die komplexere
+Informationen und viele Ablenkungen enthalten. Am besten gelingt es ihr, wenn sie
+sich wirklich auf den Text konzentrieren kann und nicht abgelenkt wird.
+
+### Übersicht Kognetive Behinderungen
+
+Kognitive Behinderungen können die Folge von angeborenen Erkrankungen sein, die
+von Geburt an bestehen, oder von Entwicklungsstörungen, die schon in jungen Jahren
+auftreten. Sie können auch die Folge von traumatischen Verletzungen, Infektionen,
+chemischen Ungleichgewichten oder anderen Erkrankungen im späteren Leben sein.
+
+Es gibt keine einheitliche Beschreibung für kognitive Behinderungen. Es gibt so
+viele verschiedene Arten und so viele Variationen innerhalb dieser Arten. Es
+kann sein, dass eine bestimmte Person nur in einem Bereich ein Defizit hat und
+nicht in allen. Dennoch gibt es einige Trends oder Kategorien, die es wert sind,
+aufgezählt zu werden, nicht weil sie auf jeden zutreffen, sondern weil sie Teil
+des Spektrums kognitiver Behinderungen sind.
+
+![Mädchen mit Down-Syndrom](/images/grundlagen/girl-with-down-syndrom.jpeg)
+
+### Webzugänglichkeit für kognitive Behinderungen
+
+#### Begrenztes Verständnis
+
+Die meisten Menschen mit kognitiven Behinderungen haben in der einen oder anderen
+Weise ein eingeschränktes Auffassungsvermögen. Sie sind möglicherweise nicht in
+der Lage, komplexe Ideen zu verstehen. Sie haben vielleicht Schwierigkeiten mit
+Metaphern oder abstrakter Sprache. Möglicherweise verstehen sie einige Arten von
+Slang oder idiomatischen Ausdrücken nicht. Manche Menschen mit kognitiven
+Behinderungen verfügen in einem Bereich über außergewöhnlich hohe kognitive
+Funktionen - z. B. die Fähigkeit, sich an Zahlen oder Gespräche zu erinnern -,
+in anderen Bereichen jedoch über geringe kognitive Funktionen, z. B. soziale
+Fähigkeiten oder emotionales Bewusstsein.
+
+#### Geringe Toleranz gegenüber kognitiver Überlastung
+
+Manche Menschen mit kognitiven Behinderungen werden leicht frustriert oder verärgert,
+wenn sie schwierige Situationen wahrnehmen oder wenn in ihrer Umgebung zu viele
+Dinge gleichzeitig passieren. Sie können mit der Komplexität des Augenblicks nicht
+umgehen. Für sie müssen die Dinge einfach und überschaubar sein. Zu viele
+Wahlmöglichkeiten können dazu führen, dass sie erstarren und emotional nicht
+in der Lage sind, ihren Gemütszustand für eine gewisse Zeit zu ändern.
+
+### Begrenzte Problemlösungsfähigkeiten
+
+Manche Menschen mit kognitiven Beeinträchtigungen sind nicht in der Lage, ein
+Problem zu lösen, und versuchen es deshalb gar nicht erst. Wenn eine Website von
+den Nutzern verlangt, einen Text in ein CAPTCHA einzugeben (wie das CAPTCHA auf
+dem Screenshot unten), können sie vielleicht nicht erkennen, welche Art von Aktion
+verlangt wird.
+
+![Captcha Abfrage](/images/grundlagen/captcha.jpg)
+
+Wenn sie eine falsche Antwort eingeben und eine Fehlermeldung erhalten, können
+sie möglicherweise nicht herausfinden, warum sie die Fehlermeldung erhalten haben
+oder wie sie das Problem lösen können
+
+### Kurzzeitiger Gedächtnisverlust
+
+Manche Menschen mit kognitiven Behinderungen haben Schwierigkeiten, sich Dinge von
+einem Moment zum nächsten zu merken. Ihr Gehirn erlaubt es ihnen nicht, sich auf
+neue Informationen zu konzentrieren, so dass sie diese kurzfristig nicht behalten
+können. Langwierige Prozesse im Internet - wie z. B. der Online-Einkauf, die
+Anmeldung eines Kontos oder das Einstellen von Einstellungen - können dazu führen,
+dass Nutzer/innen vergessen, was sie gerade getan haben, oder dass sie Informationen,
+an die sie sich erinnern müssen, von einem Schritt zum nächsten nicht mehr wissen.
+
+### Aufmerksamkeitsdefizit
+
+Manche Nutzerinnen und Nutzer leiden unter Aufmerksamkeitsdefiziten, die es ihnen
+schwer machen, sich auf die anstehende Aufgabe zu konzentrieren. Sie können sich
+in ihren eigenen Gedanken verlieren oder sie finden Online-Werbung zu interessant,
+sodass sie vergessen, warum sie die Website überhaupt besucht haben.
+
+### Schwierigkeiten beim Lesen
+
+Viele Menschen mit kognitiven Behinderungen haben Schwierigkeiten beim Lesen.
+Manche lesen auf einem niedrigeren Niveau als ihre Altersgenossen, und manche
+können überhaupt nicht lesen. Es kann hilfreich sein, den Text durch Illustrationen
+oder Audio zu ergänzen. Manche Menschen mit Legasthenie verfügen über ein hohes
+Maß an kognitiven Fähigkeiten auf konzeptioneller Ebene, aber die visuelle Codierung
+von Text kann schwierig sein, so dass es ihnen schwerfällt, Wörter zu buchstabieren
+oder zu lesen.
+
+### Schwierigkeiten beim Verstehen oder Anwenden von Mathematik
+
+Manche Menschen leiden unter Mathe-Angst. Das ist eine emotionale oder psychologische
+Angst, die manche Menschen ergreift, wenn sie mit mathematischen Problemen konfrontiert
+werden. Dabei handelt es sich weniger um ein intellektuelles Defizit als um ein
+psychologisches Defizit. Andere Menschen können mathematische Probleme wirklich nicht
+lösen, weil ihr Gehirn nicht in der Lage ist, so zu denken.
+
+### Designüberlegungen für kognitive Behinderungen
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Für Benutzer mit geringerer Auffassungsgabe:
+
+        - Vereinfache die Benutzeroberfläche so weit wie möglich.
+
+        - Vereinfache den Inhalt so weit wie möglich.
+
+        - Halte Videos und Audios so kurz wie möglich.
+
+        - Begrenze die Anzahl der Auswahlmöglichkeiten auf dem Bildschirm.
+
+        - Biete Hilfefunktionen an.
+
+        - Gestalte die Benutzerfreundlichkeit.
+
+        - Teste die Benutzerfreundlichkeit der Schnittstelle mit echten Nutzern,
+          vorzugsweise auch mit Nutzern mit kognitiven Einschränkungen.
+      </td>
+      <td data-label="Warum?">
+        Nutzerinnen und Nutzer mit geringerer Auffassungsgabe haben ein besseres
+        Web-Erlebnis, wenn die Oberfläche und der Inhalt einfach zu bedienen und
+        leicht zu verstehen sind. Zu viele Optionen und komplexe Informationen
+        können für sie schwer zu verarbeiten sein.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Für Nutzer mit Gedächtnisverlust:
+
+        - Behalte Informationen über Bildschirme hinweg und innerhalb eines Pfades.
+
+        - Biete Hilfefunktionen an.
+      </td>
+      <td data-label="Warum?">
+         Eine Website, die auf allen Seiten vorhersehbar ist (gleiche Navigation,
+         gleiche Struktur usw.), kommt Nutzern mit Gedächtnisverlust sehr zugute.
+         Zu komplizierte Seiten können Nutzer/innen mit Gedächtnisverlust ermüden.
+         Wenn Nutzer/innen Schwierigkeiten haben, mit der Webseite zu interagieren,
+         können Hilfefunktionen sie bei der Navigation auf der Webseite unterstützen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Für Nutzer/innen mit Ablenkungsgefahr:
+
+        - Reduziere oder eliminiere Ablenkungen (sei vorsichtig mit Werbung,
+          Karussells, aufdringlichem Audio, aufdringlichem Video usw.).
+      </td>
+      <td data-label="Warum?">
+        Zu viele Ablenkungen auf einer Webseite können dazu führen, dass Menschen
+        mit kognitiven Einschränkungen wichtige Informationen auf einer Webseite
+        verpassen. Ablenkungen können dazu führen, dass sie sich nicht mehr
+        konzentrieren können oder dass sie überfordert sind und die Webseite verlassen.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Leseschwäche
+
+### Schwierigkeiten beim Lesen mit Leseschwäche
+
+Viele Menschen mit kognitiven Behinderungen haben Schwierigkeiten beim Lesen.
+Manche lesen auf einem niedrigeren Niveau als ihre Altersgenossen, und manche
+können überhaupt nicht lesen. Es kann hilfreich sein, den Text durch Illustrationen
+oder Audio zu ergänzen. Manche Menschen mit Legasthenie verfügen über ein hohes
+Maß an kognitiven Fähigkeiten auf konzeptioneller Ebene, aber die visuelle
+Codierung von Text kann schwierig sein, so dass es ihnen schwerfällt, Wörter zu
+buchstabieren oder zu lesen.
+
+### Designüberlegungen für Leseschwächen
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Für Nutzer mit Leseschwierigkeiten (Legasthenie usw.):
+
+        - Ergänze den Text mit Illustrationen, Videos, Audio usw.
+
+        - Vermeide den höchsten Kontrast zwischen Text und Hintergrund (z. B. Schwarz
+          auf Weiß), ABER achte darauf, dass du innerhalb des Kontrastbereichs bleibst,
+          den Menschen mit Sehschwäche brauchen.
+      </td>
+      <td data-label="Warum?">
+        Menschen, die Schwierigkeiten mit dem Lesen von Text haben, müssen die
+        Informationen in anderen Formaten wie Bildern, Audio und Video erhalten.
+        Die Verwendung des höchsten Kontrasts kann für Menschen schwer lesbar
+        sein und die Augen belasten. Daher kann die Verwendung von Farben mit
+        einem geringeren Kontrast (z. B. Dunkelgrau gegenüber Weiß oder Off-White)
+        das Lesen von Text etwas erleichtern.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Anfälle
+
+### UX-Persönlichkeit: Treffen Sie Regina
+
+Regina ist eine Friseurin, die in einem Schönheitssalon in der Nachbarschaft arbeitet.
+
+![Regina leidet under Anfällen](/images/grundlagen/persona-seizures-movies.jpeg)
+
+### Reginas Szenario
+
+Regina war sich ihrer Empfindlichkeit gegenüber blinkenden Lichtern nicht bewusst,
+bis sie beim Anschauen eines Films einen photoepileptischen Anfall erlitt. Während
+des Films gab es eine Szene mit stark blinkenden Lichtern. Sie spürte, wie ihr
+schwindelig wurde und sie die Orientierung verlor, und ihre Arme und Beine begannen
+zu krampfen. Sie schloss sofort die Augen und atmete tief durch. Danach ging es ihr
+zwar besser, aber es war eine sehr beängstigende und unangenehme Erfahrung. Seitdem
+kann sie nicht mehr Auto fahren, da dies aufgrund ihres Anfalls nicht als sicher
+gilt. Es ist möglich, dass blinkende Lichter aus anderen Quellen denselben Anfall
+erneut auslösen können, z. B. blinkende Fahrradlichter oder ein Stroboskoplicht
+vor einem Club.
+
+### Krampfanfälle
+
+Krampfanfälle sind abnorme oder unregelmäßige elektrische Impulse im Gehirn, die
+die Fähigkeit einer Person beeinträchtigen, Informationen zu verarbeiten oder
+in manchen Fällen willkürliche Muskelbewegungen zu steuern. Manche Anfälle können
+zu heftigen Krämpfen führen, die eine Person in Gefahr bringen können. Krampfanfälle
+können durch eine Vielzahl von Umständen ausgelöst werden, z. B. durch Hirnverletzungen,
+Dehydrierung, Schlafmangel, Infektionen, Fieber, eine Überdosis Drogen, Drogenentzug
+und sogar durch blinkende Lichter. Die letzte Kategorie ist diejenige, die für
+Webentwickler/innen von Interesse ist.
+
+![Gehirn](/images/grundlagen/brain-seizure-500.jpeg)
+
+### Foto-Epileptische Anfälle
+
+Wenn Videos, Grafiken oder Animationen mit Blink- oder Stroboskop-Effekten versehen
+sind, besteht bei manchen Zuschauern die Gefahr von Krampfanfällen. Anfälle, die
+durch blinkende Lichter ausgelöst werden, werden manchmal als photoepileptische
+Anfälle bezeichnet. Einer der am besten dokumentierten Fälle, in dem blinkende
+Lichter Anfälle auslösten, war ein Pokémon-Cartoon im Jahr 1997, bei dem 685 Kinder
+ins Krankenhaus eingeliefert wurden, weil sie aufgrund einer intensiven Szene mit
+blinkenden Lichtern Anfälle erlitten.
+
+![Pokemon](/images/grundlagen/pokemon-seizure.jpeg)
+
+Nicht alle Menschen mit Anfallsleiden reagieren empfindlich auf blinkende Lichter.
+Krampfanfälle können auch durch andere Ursachen ausgelöst werden, auf die die
+meisten Webdesigner/innen keinen Einfluss haben. Dennoch können Webdesigner/innen
+und Mediengestalter/innen blinkende Lichter vermeiden, um zu verhindern, dass
+Zuschauer/innen, die empfindlich auf solche Reize reagieren, zu Schaden kommen.
+
+### Barrierefreiheit im Internet und Anfallsleiden
+
+Web- und Medienentwicklern wird empfohlen, keine Videos oder Animationen mit stark
+blinkenden Lichtern zu erstellen. Alles, was häufiger als etwa 3 Mal pro Sekunde
+blinkt, könnte einen photoepileptischen Anfall auslösen.
+
+### Designüberlegungen bei Anfallsleiden
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Verzichte auf Videos, Animationen oder Übergänge mit blinkenden Lichtsequenzen
+        von 3 Mal oder mehr pro Sekunde.
+      </td>
+      <td data-label="Warum?">
+        Blinkende, blinkende und flackernde Inhalte, die länger als drei Mal pro
+        Sekunde andauern, können bei Nutzern photoepileptische Anfälle auslösen.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Mehrfache Behinderungen
+
+Wie der Begriff schon sagt, haben Menschen mit Mehrfachbehinderungen eine Kombination
+aus zwei oder mehr Behinderungen, die Sprach-, Bewegungs-, Seh- und Hörbehinderungen
+sowie eine Lernbehinderung oder geistige Behinderung umfassen können.
+
+Der Begriff "Mehrfachbehinderung" sagt nichts darüber aus, um welche Behinderungen
+es sich handelt, wie viele Behinderungen es gibt und wie stark die einzelnen
+Behinderungen ausgeprägt sind. Es gibt eine Reihe von möglichen Kombinationen
+von Behinderungen. Eine Person kann eine motorische Behinderung in Verbindung
+mit einer geistigen Behinderung haben. Eine andere Person kann Autismus zusammen
+mit einer Sprachbehinderung haben. Manche Menschen können drei Behinderungen haben.
+Es geht nicht so sehr um die Anzahl der Behinderungen, sondern um die Auswirkungen
+der kombinierten Behinderungen und darum, wie die Behinderungen zusammen
+untergebracht werden können.
+
+## Barrierefreiheit für Mehrfachbehinderte
+
+![Ein Mädchen mit mehrfacher Behinderungen](/images/grundlagen/multipledisabilitiesaac.jpeg)
+
+Die Barrierefreiheit für Menschen mit Mehrfachbehinderungen richtet sich nach den
+individuellen Bedürfnissen des Einzelnen. Falls erforderlich, sollte die
+Kommunikation durch unterstützende und alternative Kommunikationsmittel wie
+Gebärdensprache, greifbare Symbole oder computergenerierte Sprache gefördert
+werden. Menschen mit Mehrfachbehinderungen können auch von unterstützenden
+Technologien profitieren, um funktionale Einschränkungen zu überwinden und die
+Kommunikation zu fördern. Da es schwierig ist zu erkennen, was ein Mensch mit
+Mehrfachbehinderungen braucht, ist es wichtig, sowohl die unterstützende und
+alternative Kommunikation als auch die unterstützenden Technologien zu fördern
+und die Standards der Barrierefreiheit einzuhalten, um die physische und
+technische Umgebung zugänglicher zu machen.
+
+## Zusätzliche Ressourcen
+
+- Link: <a href="https://www.zoomtext.com/" target="_blank">ZoomText</a>
+
+- Webseite: <a href="http://vimeo.com/13757711" target="_blank">Ein Video, in dem
+  ZoomText-Benutzerin Leanne Cough erklärt, wie sie ZoomText verwendet (leider hat
+  das Video keine Untertitel)</a>
+
+- Artikel: <a href="http://www.archimedes-lab.org/colorblindnesstest.html/"
+  target="_blank">Color Blindness or Color Vision Deficiency (Color Blindness
+  Tests and Facts)</a> von Gianni A. Sarcone (Archimedes Laboratory Project)
+
+- Artikel: <a href="https://de.wikipedia.org/wiki/Farbenblindheit"
+  target="_blank">Farbenblindheit</a>
+
+- Simulator: <a href="https://addons.mozilla.org/en-US/firefox/addon/nocoffee/"
+  target="_blank">NoCoffee vision simulator</a> (nur für Firefox)
+
+- Simulator: <a href="https://www.colororacle.org" target="_blank">FarColor
+  Oracle: Design for Color Impairedbenblindheit</a> (kostenloser Download für
+  Windows, Mac und Linux)
+
+- Webseite: <a href="http://www.asha.org/public/speech/disorders/AdultSandL"
+  target="_blank">American Speech-Language Hearing Association - Adult Speech and
+  Language</a>
+
+- Webseite: <a href="https://communicatespeech.com.au/resources/" target="_blank">
+  Speech Pathology resources</a>
+
+- Webseite: <a href="http://www.nidcd.nih.gov/health/voice/Pages/Default.aspx"
+  target="_blank">National Institute on Deafness and Other Communication Disorders
+  (NIDCD) - Voice, Speech and Language</a>
+
+- PDF: <a href="http://idahoat.org/Portals/60/Documents/Services/Resources/AT_CognitiveImpairmentsHandbook.pdf"
+  target="_blank">Assistive Technology for Individuals with Cognitive Impairments,
+  by the Idaho Assistive Technology Project</a>
+
+- Webseite: <a href="https://www.fcc.gov/document/white-paper-ict-access-people-cognitive-disabilities"
+  target="_blank">White Paper on ICT Access for People with Cognitive
+  Disabilities</a>
+
+- Online Artikel: <a href="https://en.wikipedia.org/wiki/Multiple_disabilities"
+  target="_blank">"Multiple disabilities" from Wikipedia</a>
+
+- Webseite: <a href="https://www.parentcenterhub.org/multiple/" target="_blank">
+  Multiple disabilities (fact sheet)</a>
