@@ -1,0 +1,901 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Multimedia, Animationen und Bewegungsabläufe'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+
+## Warum Bildunterschriften wichtig sind
+
+Untertitel sind textbasierte Versionen von Inhalten, die in einem hörbaren Format präsentiert werden. Untertitel 
+stellen die gleichen Informationen dar, die entweder durch reine Audioinhalte oder durch Audioinhalte, die mit 
+Videoinhalten synchronisiert sind, bereitgestellt werden. Die Bereitstellung von Untertiteln für reine 
+Audio-Inhalte und mit Video-Inhalten synchronisierte Audio-Inhalte trägt dazu bei, dass die Audio-Inhalte auch 
+für Personen verfügbar sind, die nicht in der Lage sind, auf Informationen zuzugreifen, die in einem hörbaren 
+Format präsentiert werden, insbesondere für gehörlose oder schwerhörige Personen. Auch wenn Untertitel verwendet 
+werden, um Audioinhalte für Gehörlose oder Schwerhörige zugänglich zu machen, können sie auch denjenigen helfen, 
+die die Sprache, die in den Audioinhalten verwendet wird, nicht fließend beherrschen; und sie können Menschen, 
+die Inhalte hören können, helfen, die Informationen, die akustisch präsentiert werden, besser zu verarbeiten.
+
+### Captions versus Subtitles
+
+Die Begriffe "Captions" und "Subtitles" werden manchmal synonym verwendet, obwohl sie nicht dasselbe 
+sind. Bei beiden handelt es sich um Text, der mit den Dialogen und Erzählungen in einem Video synchronisiert 
+wird, aber der eine ist speziell für gehörlose Zuschauer gedacht (zusätzlich zu den Dialogen und Erzählungen 
+sind Beschreibungen von Geräuschen enthalten), der andere dient der Übersetzung von einer Sprache in eine andere 
+oder der Erläuterung dessen, was in derselben Sprache gesagt wird, wenn der Ton unklar ist. Es gibt regionale 
+Unterschiede in der Verwendung der Begriffe.
+
+- In den Vereinigten Staaten bezieht sich "aptions" auf Text, der für gehörlose Zuschauer bestimmt ist, 
+  und "ubtitles" auf Text, der als Übersetzung oder Klarstellung (z. B. bei undeutlicher Sprache) geliefert 
+  wird.
+
+- Im Vereinigten Königreich bezieht sich der Begriff "subtitles" in der Regel auf den Text, der für gehörlose 
+  Zuschauer gedacht ist, obwohl "captions" dort manchmal genauso verwendet wird wie in den Vereinigten Staaten.
+
+Wenn das etwas verwirrend klingt, ist es das auch, aber solange du weißt, dass es die beiden Arten von 
+synchronisiertem Text gibt, und solange du die konzeptionellen Unterschiede zwischen den beiden kennst, ist 
+die genaue Terminologie etwas weniger wichtig.
+
+### Andere Vorteile von Captions
+
+Obwohl Untertitel für gehörlose oder schwerhörige Menschen gedacht sind, gibt es noch weitere Vorteile, die 
+sich aus der Integration von Untertiteln in Video- und Audioinhalte ergeben:
+
+- Suchmaschinenoptimierung (SEO): Suchmaschinen können nur Text durchforsten. Videos können sie nicht sehen. 
+  Wenn also Untertitel zur Verfügung gestellt werden, können Suchmaschinen die Informationen in den Untertiteln finden, 
+  weil Untertitel textbasiert sind.
+
+- Lernende in einer zweiten Sprache: Lernende, die mit der gesprochenen Sprache nicht vertraut sind, können die 
+  Untertitel nutzen, um die gesprochene Sprache zu verstehen.
+
+- Die Möglichkeit, Videos/Audios ohne Ton anzuschauen oder zu "hören": Wenn ein Betrachter in einer Situation ist, in 
+  der er das Video und/oder den Ton nicht hören kann (z. B. wenn er mit einem schlafenden Baby im Zimmer ist), kann er 
+  die Untertitel nutzen, um die Informationen im Ton zu sehen.
+
+### Auto-Captioning
+
+Die automatische Untertitelung ist vielversprechend, aber aufgrund von Schwächen in der Spracherkennung noch nicht 
+zuverlässig genug. Du kannst die automatische Untertitelung als Ausgangspunkt für die Erstellung von Untertiteln 
+verwenden, da sie in Bezug auf das Timing von Untertiteln einigermaßen genau sein kann. Aufgrund der Schwächen der 
+Spracherkennung musst du jedoch fast immer die von der automatischen Untertitelung erzeugten Fehler bearbeiten und 
+korrigieren - und möglicherweise musst du die Timing-Informationen bearbeiten, um eine größere Genauigkeit bei der 
+Synchronisierung von Untertiteln mit Audioinhalten zu erreichen.
+
+## Offene Untertitel versus geschlossene Untertitel
+
+Es gibt zwei verschiedene Arten von Untertiteln, die in Videos verwendet werden können: offene Untertitel und 
+geschlossene Untertitel. Geschlossene Untertitel sind eine mit einem Zeitstempel versehene Textdatei (.srt, .sami, 
+.xml), die in einen Mediaplayer geladen wird und im Video angezeigt wird, wenn sie eingeschaltet wird. Offene 
+Untertitel sind immer eingeschaltet und werden während der Produktion in die Videoebene "eingebrannt". Production 
+Studios nennt diesen Prozess "Untertitelung".
+
+Der Vorteil von geschlossenen Untertiteln ist, dass sie ein- und ausgeschaltet werden können. Das hängt aber davon 
+ab, ob der Player Untertitel-Dateien unterstützt. Der Vorteil von offenen Untertiteln ist, dass eine Person, die 
+Untertitel benötigt, diese unabhängig vom verwendeten Player erhält. Aber Untertitel können viele Nutzer/innen 
+ablenken, daher kann es frustrierend sein, sie nicht abschalten zu können.
+
+Wenn ein Video auf einer Konferenz gezeigt wird, sind offene Untertitel immer zu empfehlen, damit sich der/die 
+Moderator/in nicht um den Player, die Untertitel-Dateien, das Einschalten der Untertitel usw. kümmern muss. Für 
+ein reines Online-Video ist eine Untertiteldatei jedoch ideal. Du musst sicherstellen, dass der Videoplayer auf 
+deiner Website Untertitel zulässt.
+
+## Voraufgezeichnetes Multimedia
+
+Immer wenn Informationen über Audio präsentiert werden, vor allem in Videos, musst du gehörlosen oder 
+schwerhörigen Zuschauern eine Alternative bieten, damit sie Zugang zu diesen Informationen haben. Bei Video- 
+und Audioinhalten ist ein gleichwertiger Zugang durch die Bereitstellung von synchronisierten Untertiteln 
+möglich. Ohne Untertitel können gehörlose oder schwerhörige Menschen nicht auf akustische Informationen 
+zugreifen, wenn sie aufgezeichnete Video- und Audiomaterialien ansehen oder bei Live-Video- und 
+Audiopräsentationen oder reinen Audiopräsentationen sofort auf akustische Informationen zugreifen.
+
+### Alle aufgezeichneten Videos müssen mit synchronisierten Untertiteln versehen werden.
+
+Untertitel machen den Dialog und die Erzählung für gehörlose Zuschauer/innen zugänglich. Die Untertitel 
+müssen alle Dialoge und Erzählungen enthalten. In den Untertiteln muss auch angegeben werden, wer spricht, 
+um Verwechslungen zu vermeiden. Wenn andere wichtige Geräusche zu hören sind - z. B. Applaus, Lachen usw. - 
+sollte die Unterschrift diese Geräusche entweder in Klammern oder in Klammern angeben.
+
+Das größte Maß an benutzerdefinierter Flexibilität bei Untertiteln kann mit 
+<a href="https://w3c.github.io/webvtt/" target="_blank">WebVTT</a>
+(dem Web Video Text Tracks Format) erreicht werden. Bei einigen Browsern, wie Safari unter OS X und iOS, 
+können die Nutzer/innen ihre Untertitelvorgaben auf Betriebssystemebene festlegen. Sie können Schriftgröße, 
+Farbe, Hintergrundfarbe und Schriftart einstellen. Jedes Mal, wenn ein Video mit WebVTT-Untertiteln abgespielt 
+wird, berücksichtigt der Videoplayer die Einstellungen der Person. Die Speicherung der Untertitelpräferenzen an 
+einem zentralen Ort im Betriebssystem ist für die Nutzer/innen bequem, da sie die Einstellungen nicht jedes 
+Mal neu wählen müssen, wenn sie ein neues Video ansehen.
+
+#### Gutes Beispiel: Video mit Untertiteln
+
+Dieses Video hat eingebettete Untertitel. Möglicherweise musst du die Untertitel im Player einschalten, indem du 
+die die Taste c drückst.
+
+<YouTube id="y0A1sRCtEjo" />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+
+  - [Narrator] Accessibility Stories, brought to you by Deque.
+
+  - [Buna] My name is Buna, and this is my Accessibility Story. I'm a leadership strategist. I have a consulting 
+    business named Dynamic Buna. I provide speaking, training, and coaching services to business leaders. I'm not 
+    tech savvy, but I'm a technology lover and a user. I'm one of those people, I have lots of patience, and I'm 
+    pretty easy going; but I have to say, I want to interact with the real world. I want to reach into the bigger world. 
+    But because of inaccessibility with the different applications, I get frustrated. For example, something like 
+    Facebook or LinkedIn, everybody's using it. I want to promote my business, my services, my success through the 
+    social networking media; but it takes me — to achieve one task, it takes me easily five to six hours. Time is 
+    money. It's really not worth my time, so I don't even want to go. So as I have said over and over, accessibility 
+    is one thing. We must implement usability with the accessibility piece. To me, that's very important. As a 
+    leadership strategist, I'm always researching. I always want to know what's out there, what's new, and what's 
+    solid; so be able to research effectively, whether it's through website or any other digital information resources 
+    out there, be able to use Excel with the Accessibility tool and keep my own accounting as a business owner. It's 
+    very important, and also it's rewarding. I don't have to keep a log just in Braille or print. I have everything on 
+    my computer. So at the end of the year, I'm not panicking and saying, "Oh my God, I have everything in Braille; but, 
+    you know, I need to put this in the format that my accountant can access it." I can just email that to my accountant 
+    and show up for my appointment or print a copy. The advice I can offer is when you have a dream, be strategic and 
+    follow your heart. Don't let the blindness stop any of our aspirations. At the same time, be open to learn and listen 
+    from others. Listen to your quiet heart. Use your thinking capacity, then keep moving forward.
+  </AccordionItem>
+</Accordion>
+
+#### Schlechtes Beispiel: Filmvorschau ohne Untertitel
+
+In dieser Filmvorschau sprechen Menschen, aber es gibt keine Untertitel, sodass Gehörlose die Dialoge nicht verstehen 
+können. (Hinweis: Bei diesem Video fehlt auch ein Transkript, was die Situation noch schlimmer macht, da es bei diesem 
+Video überhaupt keinen Text gibt).
+
+<YouTube id="2cwEEb4s7RA" />
+
+## Live-Events
+
+### Alle Live-Multimedia-Events (Video plus Audio), die Dialoge und/oder Erzählungen enthalten, müssen von synchronisierten Untertiteln begleitet werden.
+
+Live-Multimedia-Ereignisse im Internet erfordern synchronisierte Untertitel, genau wie aufgezeichnete 
+Multimedia-Ereignisse. Beispiele für Live-Events sind:
+
+- Webinare
+
+- Webanrufe und Webkonferenzen (z.B. Skype, WebEx, GoToMeeting, etc.)
+
+- Live-Streams von Gesprächen, Reden, Vorträgen, Präsentationen usw.
+
+- Live-Nachrichtenübertragungen
+
+- Jede Live-Veranstaltung mit gesprochenen Worten als Teil des Audioinhalts
+
+Untertitel, die mit dem Live-Ton synchronisiert sind und nicht nur das gesprochene Wort wiedergeben, sondern auch 
+wichtige nicht gesprochene Geräusche identifizieren, ermöglichen gehörlosen oder schwerhörigen Menschen den Zugang 
+zu auditiven Informationen, die während der Live-Multimedia-Präsentation enthalten sind.
+
+Live-Untertitel sind möglich - Live-Fernsehsendungen wie z. B. Nachrichtensendungen in den USA sind gesetzlich 
+verpflichtet, mit Untertiteln versehen zu werden - aber die Einrichtung von Live-Untertiteln erfordert zusätzliche 
+Planung und Ressourcen. Das kostet sowohl Zeit als auch Geld. Nichtsdestotrotz sind Live-Untertitel die einzige 
+Möglichkeit, Live-Video- und/oder Audioübertragungen für gehörlose oder schwerhörige Menschen zugänglich zu machen.
+
+Bei Echtzeit-Untertiteln muss ein menschlicher Transkriptionist oder Stenograf die Wörter anhören und sie auf einer
+Stenografie-Maschine abtippen, die auch bei Gerichtsberichten verwendet wird. Die Stenografie ermöglicht ein 
+schnelleres Tippen als normale Computertastaturen. Die getippten Wörter werden in eine Software eingespeist, die den
+Text in Echtzeit anzeigt. Die Beschriftungen selbst sind immer um ein paar Sekunden verzögert, da sie erst getippt
+werden müssen und es außerdem zu netzwerkbedingten Verzögerungen zwischen Stenograf, Server und Client kommt.
+
+Nur sehr wenige kommerzielle Online-Kollaborationstools auf dem Markt bieten eine Möglichkeit, Live-Untertitel zu
+verwenden. YouTube ist ein Dienst, der Live-Untertitel zulässt. Tools wie GoToMeeting, Join.me, FuzeBox und andere 
+ähnliche Tools für die Zusammenarbeit verfügen nicht über diese wichtige Funktion.
+
+### Live-Audio, das hauptsächlich aus Dialogen und/oder Erzählungen besteht, sollte mit synchronisierten Untertiteln versehen sein.
+
+Wenn der Live-Audioinhalt Dialoge und/oder Erzählungen enthält, ist es in der Regel angemessen - und kann sogar notwendig 
+sein -, synchronisierte Untertitel bereitzustellen. Enthält der Live-Audioinhalt Musik oder andere ähnliche Arten von Klängen, 
+sind Live-Untertitel möglicherweise nicht nötig und auch nicht sinnvoll, aber das hängt vom Kontext ab. Das Live-Streaming 
+von Textbeschreibungen kann sogar bei Musikkonzerten nützlich sein, um gehörlosen Zuhörern ein Gefühl für die Veranstaltung 
+selbst in Echtzeit zu vermitteln. In manchen Fällen kann es akzeptabel sein, eine Textabschrift oder eine Beschreibung der
+Veranstaltung nach dem Ende der Veranstaltung zu veröffentlichen.
+
+#### Schlechtes Beispiel: Live-Ansage ohne Untertitel
+
+In diesem Beispiel geht es nicht um das Internet, aber es veranschaulicht die täglichen Unannehmlichkeiten, die 
+Gehörlose erleben, insbesondere in Bezug auf Live-Durchsagen.
+
+Eine gehörlose Frau befand sich auf einem Flug von Rio de Janeiro nach Panama City, als einer der Flugbegleiter eine 
+Durchsage über die Lautsprecheranlage machte. Das System ist so eingestellt, dass der Videomonitor an der Rückseite 
+der Sitze angehalten wird, wenn eine Durchsage beginnt. Auf dem Bildschirm erscheint eine Meldung: "Durchsage läuft, 
+bitte warten...". Das Problem ist, dass der Passagier die Durchsage nicht hören konnte. Sie wusste nur, dass jemand 
+etwas ankündigt.
+
+![](/images/multimedia/captions-airplane-pa.png)
+
+Das erzählte sie später in den sozialen Medien mit einem Hauch von Humor:
+
+"What is this very important announcement that has just interrupted my titillating map watching? We about to crash 
+land? We dying? Landing? Gate change? Zombies in terminal 1, please avoid? Could be anything. Caption this, please...
+
+In hindsight I'm pretty sure one of these was a gate change announcement. Tocumen airport doesn't have a lot of 
+TVs for you to check your gate. And my gate was originally supposed to be 25 before they moved it to 8. I had no 
+idea until I got to 25. I was probably the only one walking to 25 while everyone else was already at 8. Would have 
+saved me the unnecessary extra walking and knee pain...
+
+[As a side note, there were] no captions or subtitles for in-flight entertainment."
+
+Im Terminal 1 gab es vielleicht keine Zombies, aber diese Frau hätte sich über mehr Einbindung gefreut. Wenn du 
+diese Logik auf Live-Events im Internet anwendest, bekommst du eine Vorstellung davon, wie wichtig Live-Untertitel 
+sein können.
+
+### Techniken für Live-Untertitelung
+
+Das Hinzufügen von Live-Untertiteln zu einem Videostream kann eine technische Herausforderung sein. Es erfordert 
+eine Live-Verbindung mit der Textausgabe der Person, die das Ereignis transkribiert, und eine Möglichkeit, dem 
+Nutzer die Untertitel synchron zu präsentieren. Es gibt mehrere Möglichkeiten, die Untertitel zu präsentieren, 
+darunter die folgenden:
+
+#### Methode 1: Verwende einen Media Player, der Live-Untertitel unterstützt
+
+Wenn du das Glück hast, Zugang zu einem Media Player zu haben, der die Integration von Live-Untertiteln unterstützt, 
+wäre das die beste Option. Die Nutzer/innen können die Untertitel bei Bedarf einschalten oder ausschalten, wenn sie 
+sie nicht brauchen.
+
+#### Methode 2: Präsentiere die Untertitel auf der Webseite neben dem Video
+
+Du könntest eine Webseite mit einem AJAX-gesteuerten Untertitel-Feed einrichten, der die Untertitel auf der gleichen 
+Seite wie das Video anzeigt, aber nicht über den Videoplayer selbst. Im Idealfall befinden sich die Untertitel direkt 
+unter dem Video, aber in manchen Fällen kann es auch sinnvoll sein, die Untertitel neben dem Video anzuzeigen.
+
+#### Methode 3: Untertitel-Technologien für das Fernsehen verwenden
+
+Du könntest die Untertitel direkt in den Videostream als offene Untertitel integrieren, indem du die gleichen 
+Technologien verwendest, die für Fernsehsendungen zur Verfügung stehen. Wenn du diese Art von Technologie zur 
+Verfügung hast, ist das eine gute Möglichkeit.
+
+#### Methode 4: Präsentiere die Untertitel auf einer separaten Webseite
+
+Auch wenn diese Methode alles andere als ideal ist, gibt es manchmal nur die Möglichkeit, die Untertitel auf 
+einer separaten Webseite zu präsentieren, die nicht mit dem Video verbunden ist. Der/die Nutzer/in kann zwei 
+Browserfenster gleichzeitig geöffnet haben, um das Video in einem Fenster anzusehen und die Untertitel in einem 
+anderen zu lesen. Diese Option ist nur dann sinnvoll, wenn du keine Kontrolle über die Webseite hast, über die das 
+Video bereitgestellt wird, oder wenn das Video über eine andere Technologie, wie z. B. eine Webkonferenzsoftware, 
+bereitgestellt wird, die die Integration eines Live-Untertitel-Feeds nicht zulässt.
+
+## Was in Captions enthalten sein sollte
+
+### Bewährte Praktiken
+
+Es gibt fast 100% Überschneidungen zwischen den Best Practices für Untertitel und Transkripte. Im Tutorial werden 
+die Regeln an beiden Stellen wiederholt, damit sie leicht zu finden sind. Im Folgenden findest du die Regeln, die 
+nur für Untertitel gelten, und die Regeln, die nur für Abschriften gelten, zum schnellen Nachschlagen.
+
+### Einzigartige Best Practices für Untertitel
+
+- Untertitel sollten die herkömmliche Rechtschreibung verwenden und nicht versuchen, Wörter phonetisch zu schreiben, 
+  es sei denn, die phonetische Schreibweise ist für die Bedeutung des Inhalts wesentlich.
+    
+- Untertitel sollten die Geräusche selbst beschreiben und nicht die Aktionen, die diese Geräusche verursachen.
+
+### Einzigartige Best Practices für Transkripte
+
+- Wichtige visuelle Ereignisse müssen im Transkript beschrieben werden.
+
+### Untertitel müssen für geskriptete Inhalte wortwörtlich sein (es sei denn, es werden absichtlich vereinfachte Untertitel für ein bestimmtes Zielpublikum erstellt, z. B. für Menschen mit kognitiven Einschränkungen).
+
+Bei einem Drehbuch müssen die Untertitel den gesamten Inhalt des Drehbuchs wortwörtlich wiedergeben, einschließlich 
+des "ums" und des Stotterns, die absichtlich im Drehbuch enthalten sind. Dies hängt von dem Publikum ab, das die 
+Untertitel sieht. Diese Regel gilt für gehörlose oder hörgeschädigte Zuschauer/innen. Wenn das Zielpublikum 
+jedoch Menschen mit kognitiven Einschränkungen sind, können die Untertitel vereinfacht werden.
+
+#### Gutes Beispiel: Stottern und "Ähm" in Untertiteln
+
+Das Stottern kann sich in den Überschriften durch wiederholte Buchstaben und Striche widerspiegeln.
+
+```
+ I c-c-can't do that right now.
+```
+
+"Uhh "s und "Um "s können in den Sprachtext eingefügt werden.
+
+```
+ But, uh, wait... are you, um, sure about that?
+```
+
+### Untertitel sollten bei ungeschriebenen oder Live-Inhalten wortwörtlich sein (mit der optionalen Ausnahme von Stottern oder Füllwörtern - wie "ähm" - wenn die Untertitelung der Füllwörter das Leseverständnis der Untertitel verringert).
+
+Wann immer möglich, sollten Untertitel für Videos wie Sendungen, Dokumentationen, Interviews und andere ungeschriebene 
+Medien wortwörtlich sein. Wenn du jedoch zu viel stotterst und "ähm" sagst, kann das die Lesbarkeit der Untertitel 
+beeinträchtigen. Es liegt im Ermessen des Autors, ob er jede einzelne Äußerung, die in der Tonspur vorkommt, aufnehmen 
+will. Die Untertitel sollten so wortgetreu wie möglich sein, aber auch leicht und schnell zu lesen sein.
+
+### Wichtige Hintergrundgeräusche müssen in den Bildunterschriften, vorzugsweise in [Klammern] oder (Klammern), angegeben werden.
+
+Hintergrundgeräusche, die zur Stimmung, zur Szene oder zum Kontext des Videos beitragen, müssen in den Untertiteln durch 
+eine Beschreibung des Geräuschs in Klammern wiedergegeben werden. Klammern können verwendet werden, um Hintergrundgeräusche,
+Soundeffekte, Hintergrundmusik und andere wichtige Geräusche wie den Tonfall und den Tonfall der Stimme zu beschreiben, 
+wenn sie zum Erlebnis beim Betrachten des Videos beitragen. Die Einbeziehung von Hintergrundgeräuschen in die Untertitel 
+steigert den Genuss und das Verständnis dessen, was im Video gezeigt wird. Es ist jedoch wichtig, die Untertitel nicht 
+mit zu vielen beschreibenden Wörtern zu überfrachten, da zu viele Worte den Zuschauer davon ablenken können, das Video 
+in seiner Gesamtheit zu genießen.
+
+#### Gutes Beispiel: Toneffekte in Untertiteln
+
+Auf dem Screenshot unten hält eine Figur ein weinendes Baby und macht sich auf sarkastische Weise über das Weinen 
+des Babys lustig. Um dies in den Bildunterschriften zu verdeutlichen, werden Klammern um die Wörter "weinen" und 
+"imitiert das Weinen auf sarkastische Weise" verwendet.
+
+![](/images/multimedia/soundeffectscaption.png)
+
+### Sprache, die außerhalb des Bildschirms gesprochen wird, muss in den Untertiteln erfasst werden.
+
+Jede Rede, die außerhalb des Bildschirms gesprochen wird (z. B. über ein Telefon oder zu anderen Zeiten, wenn die 
+Person nicht auf dem Bildschirm zu sehen ist), muss durch die Untertitel vermittelt werden. Wenn du außerhalb 
+des Bildschirms sprichst, verwende Kursivschrift, um den Zuschauern zu zeigen, dass die Rede von jemandem kommt, 
+der nicht im Bild ist.
+
+#### Gutes Beispiel: Kursivdruck zur Darstellung von Sprache aus dem Off
+
+Verwende Kursivschrift, um anzuzeigen, dass jemand spricht, der nicht auf dem Bildschirm zu sehen ist.
+
+<em>I'll be right back.</em>
+
+### Die Identität der Person, die spricht, muss in den Bildunterschriften angegeben werden.
+
+Wenn es nicht offensichtlich ist, wer in einem Video spricht, müssen die Untertitel angeben, wer spricht. 
+Sprecherinnen und Sprecher müssen identifiziert werden, wenn sie nicht auf dem Bildschirm zu sehen sind, 
+wenn mehrere Sprecherinnen und Sprecher im selben Bild zu sehen sind oder wenn es andere Momente gibt, in 
+denen eine Sprecherin oder ein Sprecher im Video nicht offensichtlich ist. In Untertiteln werden in der 
+Regel Großbuchstaben, gefolgt von einem Doppelpunkt, verwendet, um die Namen oder Bezeichnungen der 
+Sprecher/innen von den eigentlichen Dialogen oder Erzählungen der Sprecher/innen abzugrenzen. Gemischte 
+Großbuchstaben sind normalerweise für den eigentlichen Dialog oder die Erzählung reserviert.
+
+#### Gutes Beispiel: Sprecher wird in der Caption identifiziert
+
+In diesem Screenshot befinden sich zwei Personen in einem Hühnerstall und eine der beiden Personen spricht. 
+Da nicht klar ist, wer spricht, wird der Sprecher in der Bildunterschrift vor dem Dialog identifiziert.
+
+![](/images/multimedia/speakeridentitycaption.png)
+
+### Unterschriften sollten, wann immer möglich, Satzzeichen verwenden, um die Betonung zu verdeutlichen, anstatt zusätzlichen Text zu schreiben, um die Betonung zu erklären
+
+Interpunktion sollte in Überschriften verwendet werden, um Klarheit zu schaffen, das Lesen zu erleichtern 
+und die Bedeutung zu unterstreichen, wann immer dies möglich ist. Wenn ein Sprecher zum Beispiel schreit, 
+sollte am Ende der Aussage ein Ausrufezeichen stehen, anstatt eine beschreibende Formulierung zu verwenden 
+(z. B. [SCHREIEN]). Wenn du Satzzeichen verwendest, bleiben die Untertitel sauber und übersichtlich, sodass 
+sie schneller gelesen und von den Zuschauern leichter verstanden werden können.
+
+#### Gutes Beispiel: Interpunktion zur Vermittlung von Bedeutungen
+
+Hier sind einige Möglichkeiten, wie Satzzeichen verwendet werden können, um Nachdruck zu verleihen.
+
+Bei Fragen, die ungläubig sind, setzt du ein Fragezeichen, gefolgt von einem Ausrufezeichen (?!) am Ende 
+der Aussage.
+
+```
+ You mean you slept outside in the rain?!
+```
+
+Bedeutungsvolle Pausen in der Rede sollten durch Ellipsen gekennzeichnet werden.
+
+```
+ I... I forgot what I was about to say.
+```
+
+Unterbrochene Sprache sollte mit einem Bindestrich am Ende der Zeile gekennzeichnet werden, und jeder 
+nachfolgende Text sollte in einer neuen Zeile oder einem neuen Untertitelrahmen dargestellt werden.
+
+```
+ I can't believe they--
+```
+
+### Untertitel sollten die herkömmliche Rechtschreibung verwenden und nicht versuchen, Wörter phonetisch zu schreiben, es sei denn, die phonetische Schreibweise ist für die Bedeutung des Inhalts wesentlich.
+
+Es ist wichtig, dass die Überschriften von hoher Qualität und Genauigkeit sind. Wann immer es möglich ist, sollte 
+die konventionelle Rechtschreibung für die Untertitel verwendet werden. Allerdings müssen Untertitel Audioinhalte 
+wortwörtlich wiedergeben, und es kann vorkommen, dass eine phonetische Schreibweise erforderlich ist, um 
+Audioinhalte richtig wiederzugeben. Die Verwendung von Slang kann ein Beispiel dafür sein, dass die konventionelle 
+Rechtschreibung die Sprache nicht wortgetreu wiedergibt. Das Ziel von Untertiteln ist es, Informationen so klar 
+wie möglich darzustellen. Daher sollte immer die herkömmliche Rechtschreibung verwendet werden, es sei denn, sie 
+gibt den Audioinhalt nicht richtig wieder.
+
+#### Gutes Beispiel: Richtige Verwendung der Rechtschreibung
+
+In diesem Screenshot aus dem Film Die Farbe Lila gibt die Bildunterschrift die Rede des Erzählers genau wieder, 
+indem sie Begriffe wie "gonna" und "mama" verwendet. Da der Erzähler diese Wörter tatsächlich spricht, werden 
+sie in den Bildunterschriften wortwörtlich wiedergegeben. In diesem Fall wäre die konventionelle Schreibweise 
+"going" und "mom" unwirksam, weil sie nicht die Rede des Erzählers wiedergibt, die für das Erlebnis des Films 
+wesentlich ist.
+
+Text der Bildunterschrift im Screenshot: "'One day, my daddy come and say, 'You're gonna do what your mama wouldn't.'"
+
+![](/images/multimedia/phoneticcaption.png)
+
+### Bildunterschriften müssen keine absichtlich zurückgehaltenen Informationen aus dem Inhalt vor dem richtigen Zeitpunkt preisgeben.
+
+Untertitel sollen hörbare Informationen zeitnah und genau vermitteln. Deshalb ist es wichtig, dass sie keine Informationen 
+anzeigen, bevor diese in den Audioinhalten enthalten sind. Wenn Informationen vorher angezeigt werden, kann das den 
+Genuss der Video- und Audioinhalte stören. Wenn der Inhalt noch nicht in den Audiodateien enthalten ist, sollte er 
+auch nicht in den Untertiteln gezeigt werden.
+
+### Musik sollte in den Bildunterschriften nach Möglichkeit mit Titel und Künstler gekennzeichnet sein, es sei denn, dies wäre dem Inhalt nicht angemessen.
+
+Musik, die nicht Teil der Handlung ist, wie z. B. bluesige oder unheimliche Musik, die zur Einstimmung verwendet wird, 
+sollte in den Bildunterschriften normalerweise mit Titel und Künstler gekennzeichnet werden. Die Bezeichnung "MUSIK" 
+in Großbuchstaben, gefolgt von einem Doppelpunkt, kann verwendet werden, um die Musik zu identifizieren, oder die Musik 
+kann in Verbindung mit ihrer Quelle angegeben werden. Die Identifizierung von Musik hängt von dem Kontext ab, in dem 
+die Musik verwendet wird. Wenn Musik in Bildunterschriften gekennzeichnet wird, sollte der Titel des Liedes in 
+Anführungszeichen in Großbuchstaben geschrieben werden und der Name des Interpreten folgt auf den Titel des Liedes.
+
+#### Gutes Beispiel: Erkennen von Musik in Untertiteln
+
+Im Folgenden findest du Möglichkeiten, wie Musik in Überschriften nach Titel und Künstler gekennzeichnet werden kann.
+
+```
+MUSIC: "Canon in D" by Johann Pachelbel
+```
+
+```
+HE HUMS "Sweet Caroline" by Neil Diamond.
+```
+
+```
+SHE WHISTLES "Cake by the Ocean" by DNCE
+```
+
+```
+THE ORCHESTRA PLAYS "Blue Danube" by Johann StraussaA
+```
+
+Für Musik, die nicht Teil der Handlung ist, aber die Stimmung unterstreicht, solltest du beschreibende Überschriften 
+verwenden, um die Musik zu identifizieren.
+
+```
+[EERIE MUSIC]
+```
+
+### Wichtige Musiktexte sollten in die Bildunterschriften aufgenommen werden, wenn sie für die Bedeutung des Inhalts relevant sind.
+
+Wenn Musiktexte, die in Audioinhalten verwendet werden, zum Hörerlebnis beitragen, sollten die Musiktexte in 
+die Untertitel aufgenommen werden. Bei der Aufnahme von Musiktexten in die Untertitel sollte jedoch mit Bedacht 
+vorgegangen werden. Wenn der Text mit Sprache verwoben ist, ist es zum Beispiel besser, die Musik zu kennzeichnen 
+und die Sprache zu untertiteln, als sowohl den Text als auch die Sprache zu zeigen. Wenn Musiktexte untertitelt 
+werden, sollten sie jedoch wörtlich wiedergegeben und mit Noten am Anfang und Ende jeder Zeile unterlegt werden, 
+um zu verdeutlichen, dass die Zeilen gesungen und nicht gesprochen werden.
+
+#### Gutes Beispiel: Musiktexte in Untertiteln
+
+Wenn Musiktexte gesungen werden, sollten am Anfang und am Ende der Untertitelzeile Noten verwendet werden, 
+um den Gesang zu kennzeichnen. Wenn keine Noten vorhanden sind, könnten die Zuschauer denken, dass die 
+gesprochen werden.
+
+```
+ ♪ O say can you see ♪
+```
+
+### Wenn Sprache unhörbar oder schwer zu verstehen ist, sollte dies in den Untertiteln in einer neutralen Sprache erwähnt werden.
+
+Wenn Sprache zu schwer zu entziffern ist oder wenn der Ton unhörbar ist, sollte dies in den Untertiteln direkt 
+in neutraler Sprache erwähnt werden. Vermeide Ausdrücke wie "unverständliche Sprache", um schwierige oder 
+unhörbare Sprache zu beschreiben, sondern verwende stattdessen etwas wie "unhörbar" oder "undeutlich".
+
+#### Gutes Beispiel: Bildunterschrift mit neutraler Sprache
+`
+Die Bildunterschrift auf dem Screenshot unten beschreibt das Flüstern zwischen den Figuren auf dem Bildschirm 
+als unhörbar.
+
+![](/images/multimedia/goodinaudiblecaption.png)
+
+
+#### Schlechtes Beispiel: Bildunterschrift mit negativer Sprache
+
+In diesem Beispiel wird derselbe Screenshot verwendet, auf dem Personen miteinander flüstern, aber die Bildunterschrift 
+beschreibt die Sprache als unverständlich. Begriffe wie "unverständlich" und "zusammenhangloses Gebrabbel" sollten 
+nicht verwendet werden, um schwer zu entzifferndes Audio zu beschreiben.
+
+![](/images/multimedia/badinaudiblecaption.png)
+
+### Starke Sprache sollte beibehalten und nicht aus den Bildunterschriften herausgeschnitten werden, wann immer dies möglich ist, oder sie sollte mit einem Piepton versehen oder stummgeschaltet werden, um den stilistischen oder inhaltlichen Anforderungen des Zielpublikums oder des Kontexts zu entsprechen.
+
+Wenn in der Rede Kraftausdrücke verwendet werd##en, sollten diese auch in den Untertiteln erscheinen. Wenn die 
+Kraftausdrücke jedoch bearbeitet werden, sollten die Untertitel die Bearbeitung widerspiegeln. Wenn zum Beispiel 
+die Kraftausdrücke komplett herausgeschnitten werden, sollte das Wort BLEEP verwendet werden. Wenn ein Teil des 
+Wortes stummgeschaltet ist, können Ellipsen oder Bindestriche zwischen dem ersten und dem letzten Buchstaben des 
+Wortes verwendet werden, um die Stummschaltung zu verdeutlichen. Für Wörter, die synchronisiert werden, solltest 
+du das Ersatzwort in den Überschriften verwenden.
+
+#### Gutes Beispiel: Starke Sprache redigieren
+
+Wenn Kraftausdrücke herausgeschnitten werden, sollte das Wort "BLEEP" verwendet werden, um sie zu ersetzen.
+
+```
+ What the BLEEP were you thinking?
+```
+
+Wenn ein Wort stummgeschaltet ist, können Bindestriche verwendet werden, um die Stummschaltung anzuzeigen.
+
+```
+ I can't believe I fell for your s---!
+```
+
+### In den Untertiteln sollte angegeben werden, wenn geflüstert oder gemurmelt wird.
+
+Wenn geflüstert oder gemurmelt wird, sollte dies in den Untertiteln kenntlich gemacht werden. Der beste Weg, um 
+Flüstern oder Mundwerk zu kennzeichnen, ist eine Beschriftung in Großbuchstaben vor dem Dialog. Die Bezeichnung 
+kann in Klammern oder ohne Klammern, gefolgt von einem Doppelpunkt, stehen. Klammern können auch um den Dialog 
+herum verwendet werden, um das Flüstern zu kennzeichnen; aber zu viel geflüsterter oder gemundeter Dialog in Klammern kann die Überschriften überladen aussehen lassen.
+
+### Untertitel sollten die Geräusche selbst beschreiben, nicht die Aktionen, die die Geräusche verursachen.
+
+Wenn in den Audiodateien wichtige Geräusche vorkommen, sollten die Untertitel die Geräusche selbst beschreiben und 
+nicht, was oder wer die Geräusche verursacht. 
+
+#### Schlechtes Beispiel: Untertitel, der die Quelle des Geräuschs beschreibt
+
+Auf dem Screenshot unten schnuppert ein kleines Mädchen an ihrem Brot, bevor es isst. Die Bildunterschrift 
+beschreibt jedoch, dass das Mädchen an seinem Brot schnüffelt. Anstatt zu sagen, dass das Mädchen an ihrem 
+Brot schnüffelt, sollte die Bildunterschrift nur den Geräuscheffekt des Schnüffelns benennen und nicht 
+beschreiben, dass das Schnüffeln von dem Mädchen kommt.
+
+![](/images/multimedia/badsoundscaption.png)
+
+#### Gutes Beispiel: Untertitel, der den Soundeffekt selbst beschreibt
+
+Dies ist derselbe Screenshot des Mädchens, das an ihrem Brot schnüffelt, aber die Bildunterschrift beschreibt 
+jetzt genau den Geräuscheffekt des Schnüffelns, anstatt zu beschreiben, dass das Schnüffeln von dem Mädchen 
+kommt.
+
+![](/images/multimedia/goodsoundscaption.png)
+
+## Visuelle Präsentation von Untertiteln
+
+### Untertitel sollten nicht länger als drei Zeilen auf dem Bildschirm sein.
+
+Es ist wichtig, dass die Untertitel richtig unterteilt sind, damit sie leichter und schneller zu lesen sind und 
+nicht wichtige visuelle Komponenten blockieren, wenn sie von Videos begleitet werden. Wenn die Untertitel nicht 
+unterteilt sind, müssen die Betrachter/innen die Untertitel möglicherweise noch einmal lesen, damit sie einen 
+Sinn ergeben.
+
+### Zeilenumbrüche sollten, wenn nötig, an logischen Punkten zwischen den Sätzen und nicht in der Mitte eines Satzes eingefügt werden.
+
+Wenn es innerhalb eines Rahmens mehrere Zeilen mit Bildunterschriften gibt, sollten die Bildunterschriften an 
+natürlichen oder logischen Punkten in der Aussage unterbrochen werden. Wenn die Aussage grammatikalische 
+Unterbrechungen wie Kommas oder Semikolons enthält, können diese auch verwendet werden, um die Stellen zu 
+markieren, an denen die Überschriften unterbrochen werden sollen.
+
+Beachte bei der Erstellung von Unterbrechungen in den Überschriften folgende Punkte: 
+
+- Ein neuer Satz sollte eine neue Überschrift und einen neuen Sprecher einleiten. Wenn die Sätze sehr kurz 
+  sind, können sie in einer Überschrift präsentiert werden.
+
+- Bei längeren Sätzen solltest du sie durch logische oder grammatikalische Unterbrechungen trennen (z. B. 
+  durch Kommas) und entweder die Artikel, Konjunktionen oder Präpositionen in den Sätzen verwenden, um eine neue 
+  Zeile oder eine neue Überschrift zu beginnen.
+
+- Wenn beschreibende Texte (nichtsprachliche Informationen in Klammern) verwendet werden, können die Überschriften 
+  an den Stellen unterbrochen werden, an denen die beschreibenden Texte bei den nichtsprachlichen Informationen bleiben
+
+#### Schlechtes Beispiel: Bildunterschrift ohne Break Points
+
+Die Überschrift in diesem Beispiel ist sehr lang und hat keine Unterbrechungen, was es schwierig macht, sie 
+schnell zu lesen. Beschriftungstext: Die Überschrift in diesem Beispiel ist sehr lang und hat keine Unterbrechungen, 
+so dass es schwierig ist, sie schnell zu lesen.
+
+![](/images/multimedia/captionnobreak.png)
+
+#### Gutes Beispiel: Beschriftung mit Break Points
+
+Hier ist nun eine Überschrift, die logische Unterbrechungen enthält und zentriert ist, damit sie für den Betrachter 
+leichter zu lesen ist. Beschriftungstext: Dies ist eine lange Überschrift mit Unterbrechungspunkten, die leichter zu 
+lesen ist (die Unterbrechungen kommen nach dem Wort "Überschrift" und nach dem Wort "Punkte", auf das ein Komma folgt).
+
+![](/images/multimedia/captionwithbreaks.png)
+
+### Bildunterschriften sollten in gemischter Großschreibung geschrieben werden.
+
+Früher war es üblich, Bildunterschriften ausschließlich in Großbuchstaben zu schreiben. Heute wird jedoch empfohlen, 
+die Bildunterschriften in gemischten Großbuchstaben zu schreiben, um die Lesbarkeit zu verbessern.
+
+### Die Standardschriftart für Bildunterschriften sollte eine serifenlose Schrift sein.
+
+Um die Lesbarkeit der Bildunterschriften zu verbessern, wird auch hier empfohlen, serifenlose Schriften statt 
+Serifenschriften zu verwenden. Bildunterschriften sollen schnell gelesen werden, deshalb ist es wichtig, dass 
+lesbare Schriften für die Bildunterschriften verwendet werden. Die Serifen (die kleinen Linien am Ende der 
+Striche in den Buchstaben) können die Lesbarkeit von Serifenschriften gegenüber serifenlosen Schriften erschweren, 
+da sie die Buchstaben für manche Nutzer/innen zusammenlaufen lassen.
+
+### Die maximale Anzahl von Zeichen pro Zeile der Bildunterschriften darf 32 Zeichen nicht überschreiten.
+
+Bildunterschriften sollten nicht länger als 32 Zeichen pro Zeile sein. Alles, was länger ist, kann die 
+Bildunterschriften unleserlich machen und wichtige visuelle Inhalte blockieren.
+
+### Bildunterschriften sollten unter allen Umständen mindestens 1 Sekunde lang auf dem Bildschirm bleiben und die Anzahl der Wörter berücksichtigen, möglichst mit 0,3 Sekunden pro Wort.
+
+Bildunterschriften sollten mindestens 1 Sekunde lang in einem Rahmen auf dem Bildschirm angezeigt werden. Bei 
+längeren Bildunterschriften kann es besser sein, die Regel von 0,3 Sekunden pro Wort zu verwenden. Die 
+Betrachter/innen sollten genügend Zeit haben, eine Bildunterschrift zu sehen und zu verarbeiten. 
+Bildunterschriften, die zu früh oder nicht schnell genug vom Bildschirm verschwinden, sind unwirksam.
+
+### Bildunterschriften sollten so platziert werden, dass sie den Text auf dem Bildschirm, die Gesichter der Personen oder andere wichtige visuelle Informationen nicht verdecken.
+
+Bildunterschriften werden in der Regel am unteren Rand des Bildschirms platziert und der Text wird zentriert. 
+Bildunterschriften müssen jedoch verschoben werden, wenn sie den Text auf dem Bildschirm, die Gesichter der 
+Menschen oder andere wichtige visuelle Inhalte verdecken. Wenn Bildunterschriften verschoben werden, sollte 
+der Text jedoch entweder mittig oder links ausgerichtet sein. Um die Lesbarkeit nicht zu beeinträchtigen, 
+werden Bildunterschriften normalerweise nicht rechts ausgerichtet. Wenn Bildunterschriften verschoben werden 
+müssen, sollten sie am Ende eines Satzes oder an einem grammatikalischen Bruch in einer Aussage verschoben werden. 
+Außerdem darf eine Bildunterschrift nie innerhalb eines Rahmens verschoben werden. Achte darauf, dass die 
+Bildunterschriften in einem neuen Rahmen an eine neue Position verschoben werden.
+
+#### Schlechtes Beispiel: Bildunterschrift, die das Gesicht des Sprechers verdeckt
+
+In diesem Beispiel befindet sich die Bildunterschrift über dem Gesicht des Sprechers und verdeckt dessen Mund. 
+Der Mund des Sprechers/der Sprecherin sollte nicht verdeckt werden, weil manche Zuschauer/innen zusätzlich zu 
+den Bildunterschriften auch von den Lippen lesen, um zu verstehen, was im Video vermittelt wird.
+
+![](/images/multimedia/badcaptionposition.png)
+
+#### Gutes Beispiel: Bildunterschrift so positioniert, dass sie den visuellen Inhalt nicht blockiert
+
+In diesem Beispiel wird die Bildunterschrift links so platziert, dass sie weder den Namen und Titel des Sprechers 
+im Video noch andere wichtige visuelle Inhalte wie das Gesicht des Sprechers verdeckt.
+
+![](/images/multimedia/goodcaptionposition.png)
+
+### Bildunterschriften sollten genau mit dem Ton synchronisiert werden, es sei denn, dies würde die Lesbarkeit der Bildunterschriften erschweren.
+
+Während einer Audiopräsentation kann es vorkommen, dass eine Person zu schnell spricht oder sich andere Elemente 
+im Ton schnell bewegen. In diesem Fall können Bildunterschriften, die mit dem Ton synchronisiert sind und schneller 
+als die Mindestdauer angezeigt werden, schwer oder gar nicht lesbar sein, was den Zweck der Bildunterschriften 
+zunichte macht. Auch wenn Bildunterschriften in der Regel immer wortwörtlich wiedergegeben werden, müssen sie unter 
+Umständen reduziert werden, wenn Sprache oder andere Elemente im Ton zu schnell vorkommen. Die Kürzung von 
+Bildunterschriften sollte jedoch immer das letzte Mittel sein. Wenn Bildunterschriften bearbeitet werden müssen, 
+ist es äußerst wichtig, dass sie immer noch so viel wie möglich von dem vermitteln, was der Ton aussagt. Versuche, 
+den Inhalt nicht umzuformulieren, sondern streiche stattdessen Wörter, die unnötig sind.
+
+### Die Standardfarbkombination sollte weißer Text auf schwarzem Hintergrund sein.
+
+Weißer Text auf schwarzem Hintergrund sorgt für einen hohen Kontrast bei der Betrachtung von Bildunterschriften, vor 
+allem, wenn die Betrachter die Bildunterschriften nicht nach ihren Wünschen anpassen können.
+
+### Das Standard-Kontrastverhältnis zwischen Schriftfarbe und Hintergrundfarbe in Bildunterschriften muss mindestens 3:1 betragen (bei einer Mindestschriftgröße von 18 Punkt).
+
+Ähnlich wie bei großen Texten müssen Bildunterschriften mit einer Schriftgröße von mindestens 18 Punkt ein 
+Kontrastverhältnis von 3:1 zwischen Text und Hintergrund aufweisen. Dieses Verhältnis trägt dazu bei, dass 
+die Bildunterschriften für Menschen mit Sehschwäche leichter zu lesen sind. Da die Bildunterschriften vor 
+dem visuellen Inhalt angezeigt werden, ist es wichtig, dass sie auch für Menschen mit Sehschwäche gut zu erkennen sind.
+
+### Die Standardschriftgröße für Bildunterschriften sollte mindestens 22pt betragen
+
+Bildunterschriften sollten eine Schriftgröße verwenden, die leicht zu lesen ist. Unter Verbindung mit einer 
+serifenlosen Schrift sollte die Schriftgröße für Bildunterschriften eine Schriftgröße von mindestens 22 Punkt haben. 
+Beachte jedoch, dass die Schriftgröße von der Art des verwendeten Mediaplayers abhängen kann. Dies ist ein guter Grund, 
+um einen Mediaplayer zu verwenden, der es ermöglicht, das Aussehen der Bildunterschriften in Videos anpassen können.
+
+### Die Standardschriftgröße für Bildunterschriften sollte normal (nicht fett) sein.
+
+Bildunterschriften sollten übersichtlich und leicht zu lesen sein, daher ist die beste Schriftgröße für Bildunterschriften 
+eine normale Schriftgröße. Eine fette Schriftart kann zwar eine größere Schriftgröße haben, ist aber schwieriger zu lesen, 
+vor allem bei der Geschwindigkeit, mit der die Bildunterschriften angesehen werden.
+
+### Farben in Bildunterschriften müssen nicht die einzige Möglichkeit sein, die Bedeutung zu vermitteln.
+
+Es kann Zuschauer geben, die Bildunterschriften verwenden und farbenblind sind. Wenn also Farbe verwendet wird, 
+um eine Bedeutung zu vermitteln, z. B. um ein Wort oder einen Satz zu betonen, kann es sein, dass farbenblinde 
+Betrachter die Bedeutung nicht erkennen. Verlasse dich bei Bildunterschriften nicht allein auf die Farbe, um 
+die Bedeutung zu vermitteln. Verwende stattdessen den Text der Bildunterschrift selbst, um die Bedeutung zu 
+vermitteln. Je nachdem, was vermittelt werden soll, kannst du die Bedeutung durch Interpunktion, Kursivschrift 
+oder Großbuchstaben hervorheben oder durch beschreibende Bildunterschriften, wenn mehr Informationen nötig sind, 
+um die Bedeutung zu unterstreichen.
+
+#### Schlechtes Beispiel: Farbe zum Anzeigen von Schreien verwendet
+
+In dieser Bildunterschrift sind die Wörter "Stopp" und "unhöflich" in der Farbe Rot dargestellt, um das Schreien 
+zu verdeutlichen. Einem farbenblinden Betrachter könnte jedoch entgehen, dass die Worte geschrien werden, da sie 
+in der Bildunterschrift nur durch die Farbe angezeigt werden
+
+<div style="display: inline-block;color: #fff;font-size: 22pt;background: #000;padding: 4px 8px;">
+  <span style="color:red;">Stop</span> being so <span style="color:red;">rude</span>.
+</div>
+
+### Kursive Schrift oder Großbuchstaben könenn zur Hervorhebung in Bildunterschriften verwendet werden, wenn die Zeichensetzung allein nicht ausreicht, um die Bedeutung zu vermitteln.
+
+Manchmal reichen Satzzeichen zur Hervorhebung in Bildunterschriften nicht aus. In diesem Fall können Wörter und Sätze 
+in Bildunterschriften durch Kursivschrift oder Großbuchstaben hervorgehoben werden. Wenn aber ein Ausrufezeichen die 
+Intensität des Schreis nicht richtig wiedergibt, können die Worte, die geschrien werden, in Großbuchstaben geschrieben 
+werden. Die Standardeinstellung für die Hervorhebung sollte jedoch kursiv sein; für stärkere Hervorhebungen wie Schreien 
+sollten Großbuchstaben verwendet werden. Achte jedoch darauf, nicht zu viele Großbuchstaben in Bildunterschriften zu 
+verwenden, da sie schwer zu lesen sein können, vor allem wenn sie zu sehr mit gemischter Großschreibung vermischt sind.
+
+#### Gutes Beispiel: Kursiv und Großbuchstaben zur Hervorhebung verwendet
+
+In dem schlechten Beispiel für die Regel, keine Farbe allein zu verwenden, um Bedeutung zu vermitteln, wird für die 
+Wörter "Stopp" und "unhöflich" die Farbe Rot verwendet, um das Schreien anzuzeigen. Anstelle der Farbe können auch 
+Großbuchstaben verwendet werden, wenn die Zeichensetzung die Intensität des Schreiens nicht ganz wiedergibt.
+
+<div style="display: inline-block;color: #fff;font-size: 22pt;background: #000;padding: 4px 8px;">STOP being so RUDE!</div>
+
+Wenn die Betonung nicht so stark sein soll, kannst du kursiv statt in Großbuchstaben schreiben.
+
+<div style="display: inline-block;color: #fff;font-size: 22pt;background: #000;padding: 4px 8px;">
+<em>Stop</em> being so <em>rude!</em>
+</div>
+
+### Anführungszeichen (oder optional kursiv oder unterstrichen, wenn dies im Bildunterschriftenformat unterstützt wird) und Groß- und Kleinschreibung sollten verwendet werden, um Titel (z. B. von Büchern oder Filmen) in Bildunterschriften zu kennzeichnen.
+
+Wenn es angebracht ist, sollten Anführungszeichen und gemischte Großbuchstaben verwendet werden, um Titel von Büchern 
+oder Filmen in Bildunterschriften abzusetzen und zusammenzusetzen. Wenn du ein Dateiformat verwendest, das Kursivschrift 
+oder Unterstreichungen unterstützt, können diese Stile zur Darstellung von Film- oder Buchtiteln in Bildunterschriften 
+verwendet werden.
+
+#### Gutes Beispiel: Buchtitel in Anführungszeichen
+
+In der Bildunterschrift unten ist der Titel des Buches in Anführungszeichen gesetzt.
+
+<div style="display: inline-block;color: #fff;font-size: 22pt;background: #000;padding: 4px 8px;">
+ She read "A Tale of Two Cities" to the class.
+</div>
+
+### Der letzte Rahmen der Bildunterschrift sollte bei langen Stillepausen vom Bildschirm entfernt werden.
+
+Wenn lange Stille herrscht, sollte die Bildunterschrift nicht angezeigt werden, da der Betrachter denken könnte, dass 
+während der Stille Audio abgespielt wird. Entferne alle Bildunterschriften, die die Stille nicht kennzeichnen. Bei 
+Hintergrundmusik sollte die Beschreibung der Musik nicht die ganze Zeit über angezeigt werden, während die 
+Hintergrundmusik läuft. Die Beschreibung sollte nach 4 oder 5 Sekunden auf dem Bildschirm entfernt werden.
+
+### Die Lücken in den Bildunterschriften müssen mindestens 1,5 Sekunden lang sein.
+
+Die Länge der Lücken zwischen den Bildunterschriften sollte mindestens 1,5 Sekunden betragen. Lücken, die kürzer 
+als 1,5 Sekunden sind, lassen die Bildunterschriften ruckartig erscheinen und verschwinden. Wenn die Zeit für 
+die Anzeige der Bildunterschrift genutzt werden kann, dann sollte diese Zeit auch genutzt werden.
+
+### Perioden der Stille sollten als solche gekennzeichnet werden, wenn der visuelle Inhalt den Eindruck erweckt, dass wichtige Geräusche oder Sprache zu hören sein könnten.
+
+Wenn der visuelle Inhalt den Eindruck erweckt, dass Ton zu hören ist, obwohl in Wirklichkeit kein Ton abgespielt wird, 
+sollten Bildunterschriften dem Betrachter mitteilen, dass es während der visuellen Darstellung eine Zeit der Stille gibt. 
+Beschreibende Formulierungen können verwendet werden, um die Stille zu vermitteln
+
+### Wenn die Bildunterschrift unbekannte oder ungewöhnliche Wörter oder Ausdrücke enthält, sollte sie länger auf dem Bildschirm angezeigt werden.
+
+Bildunterschriften sollen zwar schnell gelesen werden, sind aber letztlich für Zuschauer/innen gedacht, die keinen Zugang 
+zu den Audioinhalten haben, um eine Multimedia-Präsentation zu verstehen und zu begreifen. Wenn in der Rede ungewöhnliche 
+oder unbekannte Wörter verwendet werden, solltest du den Zuschauern etwas mehr Zeit geben, um die Terminologie zu verarbeiten. 
+Wenn nicht genügend Zeit zum Verstehen ungewöhnlicher oder unbekannter Wörter gegeben wird, können sich die Bildunterschriften 
+als ineffektiv und selbstzerstörerisch erweisen, da sie es den Zuschauern nicht ermöglichen, die präsentierten Informationen 
+angemessen zu verstehen.
+
+### Zusätzliche Zeit für eine Bildunterschrift sollte hinzugefügt werden, wenn auf dem Bildschirm viel passiert.
+
+Wenn viele visuelle Inhalte auf dem Bildschirm zu sehen sind, kann das die Zuschauer/innen davon ablenken, die 
+Bildunterschriften zu lesen und zu verstehen. Um sicherzustellen, dass den Zuschauern keine Informationen entgehen, 
+sollten Bildunterschriften, die viele visuelle Inhalte begleiten, etwas länger als die Standardregel von 1 Sekunde 
+angezeigt werden.
+
+## Visuelle Anpassbarkeit
+
+### Medienplayer sollten die visuelle Anpassung von Bildunterschriften ermöglichen.
+
+Dass es für die Nutzer/innen von Vorteil ist, wenn sie die Bildunterschriften optisch anpassen können, wurde bereits 
+an anderer Stelle in diesem Modul erwähnt. Sorge dafür, dass die Anpassungsoptionen leicht zu finden und auszuwählen sind.
+
+#### Gutes Beispiel: Visuelle Anpassungsoptionen für Bildunterschriften im Able Player
+
+Der <a href="https://ableplayer.github.io/ableplayer/" target="_blank">Able Player</a> und ermöglicht die Anpassung von:
+
+- Position: Unter dem Video oder Overlay
+    
+- Schriftart: Anstatt viele spezifische Schriftarten anzubieten, beschränkt sich der Able Player auf 5 
+  Kategorien (Serifen, serifenlos, Monospace, kursiv, Fantasy)
+    
+- Schriftgröße: 100% bis zu 200%
+    
+- Schriftfarbe: 8 verschiedene Farben stehen zur Auswahl
+    
+- Hintergrundfarbe: 8 Auswahlmöglichkeiten stehen zur Verfügung
+    
+- Deckkraft des Hintergrunds: Bereich von 0% bis 100%
+
+Der Einstellungsdialog bietet eine Vorschau der Einstellungen, bevor sie gespeichert werden.
+
+![](/images/multimedia/ableplayercustomcaptions.png)
+
+#### Gutes Beispiel: Anpassen der Bildunterschrift in Windows
+
+In Windows können die Benutzer/innen die Gestaltung der Bildunterschriften festlegen, einschließlich Schriftart, Farbe, 
+Größe, Hintergrundfarbe usw. Videos in Edge, die den integrierten HTML 5-Videoplayer verwenden, berücksichtigen diese 
+Benutzereinstellungen. Der Internet Explorer unterstützt diese Benutzereinstellungen nicht.
+
+![](/images/multimedia/webvtt-settings-windows.png)
+
+#### Gutes Beispiel: Anpassen der Bildunterschrift in Mac OS
+
+Unter Mac OS kannst du die Einstellungen für die Bildunterschriften in den Systemeinstellungen anpassen (unter 
+Barrierefreiheit > Bildunterschriften). Der Safari-Browser beachtet diese Einstellungen. Bei anderen Browsern unter 
+Mac OS ist das nicht der Fall.
+
+Standardeinstellungen für Bildunterschriften (weißer Text auf halbtransparentem schwarzen Hintergrund):
+
+![](/images/multimedia/webvtt-settings-mac-default.png)
+
+Benutzerdefinierte Einstellungen für die Bildunterschrift (in diesem Fall: großer gelber Text auf einem halbtransparenten schwarzen Hintergrund):
+
+![](/images/multimedia/webvtt-settings-mac-custom.png)
+
+#### Gutes Beispiel: Anpassen der Bildunterschrift in iOS
+
+Unter iOS können die Einstellungen für die Bildunterschriften in den Systemeinstellungen angepasst werden (unter 
+Einstellungen > Allgemein > Barrierefreiheit > Untertitel und Untertitel). Der Safari-Browser beachtet diese 
+Einstellungen. Bei anderen Browsern unter Mac iOS ist das möglicherweise nicht der Fall.
+
+Standardeinstellungen für Bildunterschriften (weißer Text auf halbtransparentem schwarzen Hintergrund):
+
+![](/images/multimedia/webvtt-settings-ios-default.png)
+
+Benutzerdefinierte Einstellungen für die Bildunterschrift (in diesem Fall: großer gelber Text auf einem 
+halbtransparenten schwarzen Hintergrund):
+
+![](/images/multimedia/webvtt-settings-ios-custom.png)
+
+## Bildunterschrift-Dateiformat
+
+### Es sollten mehrere Bildunterschriftenformate zur Verfügung stehen.
+
+Eine Bildunterschrift-Datei enthält alle gesprochenen Wörter und Beschreibungen, die in einer Video- und 
+Audiopräsentation enthalten sind, sowie die Zeitcodes, die angeben, wann die Bildunterschriften beim Abspielen 
+des Videos erscheinen sollen. Media Player unterstützen verschiedene Arten von Bildunterschriften, daher ist es 
+wichtig zu wissen, welche Dateien deine Plattform oder dein Player unterstützt. Die meisten Player unterstützen 
+die einfache Bildunterschrift von SubRip mit der Dateierweiterung .srt. Es gibt jedoch eine wachsende Zahl von 
+Playern, die erweiterte Bildunterschriften wie WebVTT (Dateierweiterung .vtt) unterstützen. Während bei den 
+einfachen Dateiformaten in der Regel nur die Timecodes erforderlich sind, bieten die erweiterten Dateiformate 
+mehr Flexibilität bei der Gestaltung und Positionierung der Bildunterschriften. Es ist jedoch wichtig, sich 
+nicht nur auf ein Format für Bildunterschriften zu verlassen. Wenn du sowohl einfache als auch fortgeschrittene 
+Dateiformate verwendest, kannst du sicherstellen, dass deine Bildunterschriften veröffentlicht und von einem 
+möglichst großen Publikum angesehen werden.
+
+Zu den grundlegenden Bildunterschriftenformaten gehören die folgenden:
+
+- Link: <a href="https://en.wikipedia.org/wiki/SubRip#SubRip_text_file_format" target="_blank">SubRip (.srt)</a>
+
+- Link: <a href="https://wiki.videolan.org/SubViewer" target="_blank">SubViewer (.sbv or .sub)</a>
+
+- Link: <a href="https://en.wikipedia.org/wiki/LRC_%28file_format%29" target="_blank">LRC (.lrc)</a>
+
+Zu den erweiterten Bildunterschriftenformaten gehören:
+
+- Link: <a href="https://w3c.github.io/webvtt/" target="_blank">WebVTT (.vtt)</a>
+
+- Link: <a href="https://learn.microsoft.com/en-us/windows/win32/wmp/adding-closed-captions-to-digital-media" target="_blank">SAMI (.smi or .sami)</a>
+
+- Link: <a href="https://www.w3.org/TR/ttml1/" target="_blank">TTML (.ttml)</a>
+
+### Mindestens eines der Dateiformate sollte ein WebVTT-Dateiformat sein.
+
+WebVTT ist eines der nützlichsten Formate für Bildunterschriften im Internet, weil die Benutzer sie im 
+Betriebssystem einstellen können und die Einstellungen für alle WebVTT-Videos in Browsern, die WebVTT 
+unterstützen, einheitlich sind. Zu den Browsern, die WebVTT und die Anpassung der Bildunterschriften 
+unterstützen, gehört Safari auf macOS und iOS. Wenn du also Bildunterschriften erstellst, solltest du 
+WebVTT als eines der Dateiformate angeben, damit die Nutzer/innen die Bildunterschriften nach ihren 
+Wünschen anpassen können.
+
+#### Gutes Beispiel: WebVTT-Anpassung
+
+Der folgende Screenshot zeigt eine Bildunterschrift in der Standardformatierung, d. h. in einer weißen serifenlosen 
+Schrift wie Arial, vor einem durchscheinenden schwarzen Hintergrund. Der Text der Bildunterschrift lautet: Sie werden 
+denken, dass du seltsam bist.
+
+![](/images/multimedia/webvttoriginal.png)
+
+Da es sich bei der Bildunterschrift um eine WebVTT-Datei handelt, können die Betrachter das Aussehen der Bildunterschriften 
+über ihr Betriebssystem anpassen. Unten siehst du denselben Screenshot wie oben, aber mit Bildunterschriften, die nach 
+den Vorlieben des Betrachters angepasst wurden.
+
+In diesem Screenshot hat die Bildunterschrift einen einfarbigen schwarzen Hintergrund und der Text ist jetzt eine weiße 
+Serifenschrift wie Courier New.
+
+![](/images/multimedia/webvttcustom1.png)
+
+Die Bildunterschrift auf dem Screenshot hat jetzt einen vergrößerten gelben Text in einer serifenlosen Schrift wie 
+Arial vor einem durchscheinenden schwarzen Hintergrund.
+
+![](/images/multimedia/webvttcustom2.png)
+
+In diesem letzten Screenshot ist der Hintergrund einfarbig weiß und der Text ist jetzt eine blaue serifenlose Schrift, 
+die wie Arial aussieht.
+
+![](/images/multimedia/webvttcustom3.png)
+
+
+

@@ -795,7 +795,7 @@ Das `<picture>`-Element ist eine robuste Funktion und liefert nur das gewünscht
 
 #### Schlechtes Beispiel: Bild mit zugewiesener Größe
 
-Ein Bild mit einer festgelegten Größe und ohne srcset wird nicht an den Bildschirm angepasst und ist auf 
+Ein Bild mit einer festgelegten Größe und ohne srcset wird nicht an den Bildschirm angepasst und ist auf
 kleinen Geräten möglicherweise größer als der Viewport.
 
 In diesem Beispiel ist das Bild zu breit für den Viewport, was zu einem horizontalen Scrollen führt
@@ -806,91 +806,98 @@ In diesem Beispiel ist das Bild zu breit für den Viewport, was zu einem horizon
 
 ### Objekte/Plugins sollten so umlaufen, dass sie den größten Teil der Breite des Viewports ausfüllen, ohne einen horizontalen Viewport-Überlauf zu verursachen.
 
-Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Objekte 
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Objekte
 und Plugins anpasst, damit sie nicht über das Ansichtsfenster hinausgehen.
 
 #### Technik 1: Setze max-width:100% für den Container
 
-Die Techniken zur Erstellung von `<object>`-Elementen und Plugins variieren von `<object>` und Plugin zu Plugin, 
-aber eines der grundlegendsten Konzepte ist die Einstellung von max-width:100% für den Container um das `<object>` 
-oder Plugin. Wenn das Element eine Größenänderung zulässt, kann es den Container vollständig ausfüllen. 
+Die Techniken zur Erstellung von `<object>`-Elementen und Plugins variieren von `<object>` und Plugin zu Plugin,
+aber eines der grundlegendsten Konzepte ist die Einstellung von max-width:100% für den Container um das `<object>`
+oder Plugin. Wenn das Element eine Größenänderung zulässt, kann es den Container vollständig ausfüllen.
 Flash, Silverlight, SVG und andere Arten von Elementen sind in der Lage, die gesamte Breite des Containers auszufüllen.
 
 #### Technik 2: Verwende Vektorbilder
 
-Verwende im `<object>` oder Plugin selbst, wann immer möglich, vektorbasierte Elemente, um maximale Klarheit 
+Verwende im `<object>` oder Plugin selbst, wann immer möglich, vektorbasierte Elemente, um maximale Klarheit
 zu erreichen, wenn die Nutzer/innen heranzoomen.
 
 ## Responsive Tabellen
 
 ### Tabellen sollten so umbrochen werden, dass sie den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf zu verursachen.
 
-Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass die Größe der Tabellen entsprechend 
-angepasst wird, damit sie nicht horizontal gescrollt werden müssen. Bei Tabellen mit nur wenigen Spalten und wenig 
-Text kannst du dies erreichen, indem du die Spaltenbreiten als Prozentsatz der Viewport-Breite definierst und die 
-maximale Tabellenbreite mit max-width:100% im Tabellenstil einschränkst. Um größere Tabellen in kleinen 
-Ansichtsfenstern, z. B. auf Handys, unterzubringen, muss die Tabelle möglicherweise in eine Spalte umgewandelt und 
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass die Größe der Tabellen entsprechend
+angepasst wird, damit sie nicht horizontal gescrollt werden müssen. Bei Tabellen mit nur wenigen Spalten und wenig
+Text kannst du dies erreichen, indem du die Spaltenbreiten als Prozentsatz der Viewport-Breite definierst und die
+maximale Tabellenbreite mit max-width:100% im Tabellenstil einschränkst. Um größere Tabellen in kleinen
+Ansichtsfenstern, z. B. auf Handys, unterzubringen, muss die Tabelle möglicherweise in eine Spalte umgewandelt und
 neu angeordnet werden.
 
 #### Gutes Beispiel: Tabelle in einzelne Spalte umwandeln
 
-Die Tabelle wird auf eine Spalte umgestellt, wenn sich die Breite des Browsers ändert. So bleibt die Lesbarkeit erhalten 
+Die Tabelle wird auf eine Spalte umgestellt, wenn sich die Breite des Browsers ändert. So bleibt die Lesbarkeit erhalten
 und das horizontale Scrollen wird überflüssig.
 
 Todo: make an real example
 
 ```html
 <table id="rt">
-<caption>People &amp; Their Cities <br>(Single-Column)</caption>
+  <caption>
+    People &amp; Their Cities
+    <br />(Single-Column)
+  </caption>
   <thead>
-    <tr><th scope="col">&nbsp;</th>
-    <th scope="col">City of Birth</th>
-    <th scope="col">Current City</th>
-    <th scope="col">Favorite City</th>
-  </tr></thead><tbody>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
-    <td data-header="Current City: " data-th=" Current City">Rome</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
-    <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
-    <td data-header="Current City: " data-th=" Current City">Stockholm</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
-    <td data-header="Current City: " data-th=" Current City">London</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
-    <td data-header="Current City: " data-th=" Current City">Boise</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
-  </tr>
-</tbody></table>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">City of Birth</th>
+      <th scope="col">Current City</th>
+      <th scope="col">Favorite City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
+      <td data-header="Current City: " data-th=" Current City">Rome</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
+      <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
+      <td data-header="Current City: " data-th=" Current City">Stockholm</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
+      <td data-header="Current City: " data-th=" Current City">London</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
+      <td data-header="Current City: " data-th=" Current City">Boise</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
-Hier ist ein Screenshot der gleichen Tabelle in einem schmalen Ansichtsfenster (z. B. auf einem Mobiltelefon), der zeigt, 
+Hier ist ein Screenshot der gleichen Tabelle in einem schmalen Ansichtsfenster (z. B. auf einem Mobiltelefon), der zeigt,
 wie die Tabelle in ein vertikal ausgerichtetes Listenformat umgewandelt wird:
 
 ![](/images/responsive-design-und-zoom/table-responsive.png)
 
-Bildbeschreibung: Nachdem die Größe der Tabelle geändert wurde, erstrecken sich die Zeilenköpfe, die sich früher auf der 
-linken Seite der Tabelle befanden, über die gesamte Breite der Tabelle, und die Datenspalten werden in einer einzigen 
+Bildbeschreibung: Nachdem die Größe der Tabelle geändert wurde, erstrecken sich die Zeilenköpfe, die sich früher auf der
+linken Seite der Tabelle befanden, über die gesamte Breite der Tabelle, und die Datenspalten werden in einer einzigen
 linearisierten Spalte unter den Zeilenköpfen dargestellt, anstatt in einem Spaltengitter.
 
-Das Styling für die Tabelle ist unten abgebildet. Die Media Query mit dem Parameter max-width ändert die visuelle 
+Das Styling für die Tabelle ist unten abgebildet. Die Media Query mit dem Parameter max-width ändert die visuelle
 Formatierung, wenn die Breite der Tabelle eine bestimmte Grenze für kleinere Bildschirmgrößen erreicht (in diesem Fall 570px).
 
 ```css
@@ -900,7 +907,7 @@ Formatierung, wenn die Breite der Tabelle eine bestimmte Grenze für kleinere Bi
   border-collapse: collapse;
 }
 
-#rt th, 
+#rt th,
 #rt td {
   padding: 3px;
 }
@@ -909,7 +916,7 @@ Formatierung, wenn die Breite der Tabelle eine bestimmte Grenze für kleinere Bi
   text-align: left;
   background-color: #eee;
   padding: 5px;
-  outline:1px solid #ccc;
+  outline: 1px solid #ccc;
 }
 
 #rt td {
@@ -917,95 +924,102 @@ Formatierung, wenn die Breite der Tabelle eine bestimmte Grenze für kleinere Bi
 }
 
 @media (max-width: 570px) {
-    #rt {
-      width: 100%;
-      border: 2px solid #ccc;
-      border-collapse: collapse;
-    }
-    
-    #rt th, 
-    #rt td {
-      display: block;
-      padding: 3px;
-    }
-    
-    #rt td::before {
-      content: attr(data-header);
-      font-weight: bold;
-      display: inline-block;
-      width: 50%;
-      text-align: right;
-      padding-right: 20px;
-    }
-    
-    #rt th {
-      text-align: left;
-      background-color: #eee;
-      padding: 5px;
-      outline:1px solid #ccc;
-    }
-    
-    #rt th[scope="col"] {
-      display: none;
-    }
-    
-    #rt td {
-      padding-left: 5px;
-    }
+  #rt {
+    width: 100%;
+    border: 2px solid #ccc;
+    border-collapse: collapse;
+  }
+
+  #rt th,
+  #rt td {
+    display: block;
+    padding: 3px;
+  }
+
+  #rt td::before {
+    content: attr(data-header);
+    font-weight: bold;
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  #rt th {
+    text-align: left;
+    background-color: #eee;
+    padding: 5px;
+    outline: 1px solid #ccc;
+  }
+
+  #rt th[scope='col'] {
+    display: none;
+  }
+
+  #rt td {
+    padding-left: 5px;
+  }
 }
 ```
 
 #### Schlechtes Beispiel: Tabelle hat feste Breite
 
-Die Tabelle hat eine feste Breite. Sie passt sich nicht an, wenn das Fenster schrumpft, sodass die Nutzer 
+Die Tabelle hat eine feste Breite. Sie passt sich nicht an, wenn das Fenster schrumpft, sodass die Nutzer
 horizontal scrollen müssen, um sie zu lesen, wenn der Bildschirm zu klein ist.
 
 TODO: make a real example
 
 ```html
 <table id="rt3">
-<caption>People &amp; Their Cities <br>(Single-Column)</caption>
+  <caption>
+    People &amp; Their Cities
+    <br />(Single-Column)
+  </caption>
   <thead>
-    <tr><th scope="col">&nbsp;</th>
-    <th scope="col">City of Birth</th>
-    <th scope="col">Current City</th>
-    <th scope="col">Favorite City</th>
-  </tr></thead><tbody>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
-    <td data-header="Current City: " data-th=" Current City">Rome</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
-    <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
-    <td data-header="Current City: " data-th=" Current City">Stockholm</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
-    <td data-header="Current City: " data-th=" Current City">London</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
-  </tr>
-  <tr>
-    <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
-    <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
-    <td data-header="Current City: " data-th=" Current City">Boise</td>
-    <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
-  </tr>
-</tbody></table>
+    <tr>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">City of Birth</th>
+      <th scope="col">Current City</th>
+      <th scope="col">Favorite City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Ernesto Trivoli</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Naples</td>
+      <td data-header="Current City: " data-th=" Current City">Rome</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Naples</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Margarita de Rosas</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Mexico City</td>
+      <td data-header="Current City: " data-th=" Current City">Los Angeles</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">New York</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Kristin Mumfordson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Berlin</td>
+      <td data-header="Current City: " data-th=" Current City">Stockholm</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Cambridge</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Samson Abrahamson</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Tripoli</td>
+      <td data-header="Current City: " data-th=" Current City">London</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Jerusalem</td>
+    </tr>
+    <tr>
+      <th scope="row" data-th=" &nbsp;">Sahara Blackstone-Carver</th>
+      <td data-header="City of Birth: " data-th=" City of Birth">Atlanta</td>
+      <td data-header="Current City: " data-th=" Current City">Boise</td>
+      <td data-header="Favorite City: " data-th=" Favorite City">Nairobi</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
-Unten ist ein Screenshot der gleichen Tabelle zu sehen, nachdem das Browserfenster auf eine viel 
-geringere Breite verkleinert wurde. Der Nutzer muss von Seite zu Seite scrollen, um alle Teile der 
+Unten ist ein Screenshot der gleichen Tabelle zu sehen, nachdem das Browserfenster auf eine viel
+geringere Breite verkleinert wurde. Der Nutzer muss von Seite zu Seite scrollen, um alle Teile der
 Tabelle zu sehen. Es ist unmöglich, die gesamte Tabelle auf einmal zu sehen.
 
 ![](/images/responsive-design-und-zoom/table-horizontal-scrolling.png)
@@ -1014,7 +1028,7 @@ Tabelle zu sehen. Es ist unmöglich, die gesamte Tabelle auf einmal zu sehen.
 
 ### Der Text sollte so umlaufen, dass er den größten Teil der Breite des Ansichtsfensters ausfüllt, ohne einen horizontalen Überlauf des Ansichtsfensters zu verursachen.
 
-Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der 
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der
 Textcontainer ändert, damit sie das Ansichtsfenster nicht überfüllen.
 
 #### Gutes Beispiel: Text fließt neu, wenn sich die Fenstergröße ändert
@@ -1024,7 +1038,11 @@ Der Text unten fließt neu, wenn sich die Größe des Ansichtsfensters ändert.
 <div style="width:70%; border:1px solid #808080; padding:4px;">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur sem, id convallis dui. Sed porta dictum libero, non dapibus erat mattis ac. Fusce sed aliquet elit. Suspendisse euismod sagittis augue sit amet porttitor. Morbi et justo ullamcorper, euismod lorem sit amet, vehicula tortor. Nulla sed libero ut lectus consectetur sodales eu ac metus. Sed consequat ac quam eu sollicitudin. Sed ut diam nec arcu sagittis luctus. Aenean volutpat facilisis mi, in rhoncus ligula vehicula eget. Cras cursus lacinia sollicitudin. </p>
 
-<p>Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.</p>
+<p>
+  Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam
+  sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec
+  aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.
+</p>
 
 <p>Curabitur et libero nec nisi commodo blandit at id lectus. Maecenas sit amet varius risus. Aliquam convallis erat eget scelerisque vestibulum. Integer laoreet ante arcu, quis ultrices lorem interdum eget. Aliquam erat volutpat. Donec non diam sed felis posuere semper et quis sapien. Duis ut volutpat neque. Quisque a diam justo. Maecenas dapibus, neque sit amet tincidunt fringilla, enim purus interdum nisl, eget sagittis tellus sapien a magna. Maecenas non blandit nibh, sed consequat ipsum. In sit amet viverra odio.</p>
 </div>
@@ -1036,7 +1054,11 @@ Der Text unten hat eine festgelegte Breite, sodass er nicht umläuft, wenn sich 
 <div style="width: 700px; border:1px solid #808080; padding:4px;">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur sem, id convallis dui. Sed porta dictum libero, non dapibus erat mattis ac. Fusce sed aliquet elit. Suspendisse euismod sagittis augue sit amet porttitor. Morbi et justo ullamcorper, euismod lorem sit amet, vehicula tortor. Nulla sed libero ut lectus consectetur sodales eu ac metus. Sed consequat ac quam eu sollicitudin. Sed ut diam nec arcu sagittis luctus. Aenean volutpat facilisis mi, in rhoncus ligula vehicula eget. Cras cursus lacinia sollicitudin. </p>
 
-<p>Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.</p>
+<p>
+  Mauris posuere lacinia orci, ac mollis purus viverra ut. Nullam nulla lectus, dignissim id quam
+  sed, commodo dignissim risus. Aenean nec nulla id dui fermentum tincidunt quis at purus. Donec
+  aliquet egestas iaculis. Cras rhoncus lobortis lorem ac tempor. Nam dictum accumsan auctor.
+</p>
 
 <p>Curabitur et libero nec nisi commodo blandit at id lectus. Maecenas sit amet varius risus. Aliquam convallis erat eget scelerisque vestibulum. Integer laoreet ante arcu, quis ultrices lorem interdum eget. Aliquam erat volutpat. Donec non diam sed felis posuere semper et quis sapien. Duis ut volutpat neque. Quisque a diam justo. Maecenas dapibus, neque sit amet tincidunt fringilla, enim purus interdum nisl, eget sagittis tellus sapien a magna. Maecenas non blandit nibh, sed consequat ipsum. In sit amet viverra odio.</p>
 </div>
@@ -1045,13 +1067,13 @@ Der Text unten hat eine festgelegte Breite, sodass er nicht umläuft, wenn sich 
 
 ### UI-Komponenten sollten so umlaufen, dass sie den größten Teil der Breite des Viewports ausfüllen, ohne einen horizontalen Viewport-Überlauf zu verursachen.
 
-Wenn sich die Größe des Ansichtsfensters ändert, musst du sicherstellen, dass die UI-Komponenten der Seite neu angeordnet 
+Wenn sich die Größe des Ansichtsfensters ändert, musst du sicherstellen, dass die UI-Komponenten der Seite neu angeordnet
 und in der Größe angepasst werden, um die Lesbarkeit und eine angemessene Klick-/Touch-Zielgröße zu gewährleisten.
 
 #### Gutes Beispiel: UI-Komponenten fließen bei Größenänderung des Fensters neu
 
-Die folgenden Screenshots zeigen, wie sich die UI-Komponenten der Deque-Homepage verändern, wenn sich die Fenstergröße ändert. 
-Wenn die Seite von der Desktop-Ansicht zur Handy-Ansicht wechselt, werden das Deque-Logo, der Kontakt-Link, die sozialen 
+Die folgenden Screenshots zeigen, wie sich die UI-Komponenten der Deque-Homepage verändern, wenn sich die Fenstergröße ändert.
+Wenn die Seite von der Desktop-Ansicht zur Handy-Ansicht wechselt, werden das Deque-Logo, der Kontakt-Link, die sozialen
 Symbole und die Schaltfläche "Anmelden" im Kopfbereich an die neue Fenstergröße angepasst.
 
 Desktop-Ansicht von Deque.com:
@@ -1066,16 +1088,16 @@ Telefonische Ansicht von Deque.com:
 
 ### Videoelemente sollten den größten Teil der Breite des Ansichtsfensters ausfüllen, ohne einen horizontalen Überlauf des Ansichtsfensters zu verursachen.
 
-Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Videos anpasst, 
-damit sie das Ansichtsfenster nicht überfüllen. Eine Methode dafür ist, die maximale Breite des Videos mit dem Stil 
+Wenn sich die Größe des Ansichtsfensters ändert, musst du dafür sorgen, dass sich auch die Größe der Videos anpasst,
+damit sie das Ansichtsfenster nicht überfüllen. Eine Methode dafür ist, die maximale Breite des Videos mit dem Stil
 max-width:100% für den Container um das Video herum einzuschränken.
 
 #### Gutes Beispiel: Videoplayer passt die Größe an
 
-Dieser Videoplayer hat drei Größen, abhängig von der Größe des Bildschirms. Wenn sich der Bildschirm verkleinert, wird 
+Dieser Videoplayer hat drei Größen, abhängig von der Größe des Bildschirms. Wenn sich der Bildschirm verkleinert, wird
 auch das Video verkleinert.
 
-Das Originalvideo, ein TED-Vortrag von Stella Young mit dem Titel "I'm not your inspiration, thank you very much" und 
+Das Originalvideo, ein TED-Vortrag von Stella Young mit dem Titel "I'm not your inspiration, thank you very much" und
 ist auf der TED-Website verfügbar. Du kannst das Browserfenster auf dieser Seite verkleinern, um die drei Größen selbst zu erleben.
 
 ##### Desktop-Ansicht des Videos (der Videoplayer ist groß):
@@ -1092,7 +1114,7 @@ ist auf der TED-Website verfügbar. Du kannst das Browserfenster auf dieser Seit
 
 #### Schlechtes Beispiel: Video Player passt die Größe nicht an
 
-Das Bild unten zeigt ein Video mit einer festen Breite, das nicht auf die Browsergröße reagiert. Die rechte Seite des 
+Das Bild unten zeigt ein Video mit einer festen Breite, das nicht auf die Browsergröße reagiert. Die rechte Seite des
 Videos wird abgeschnitten, wenn das Browserfenster verkleinert wird.
 
 ![](/images/responsive-design-und-zoom/video-responsive-bad.png)
@@ -1101,18 +1123,18 @@ Videos wird abgeschnitten, wenn das Browserfenster verkleinert wird.
 
 ### Merkmale des Inhalts können vereinfacht, verkleinert oder eliminiert werden, wenn sie vergrößert oder auf kleinen Bildschirmen angezeigt werden.
 
-Auf kleinen Viewports kann es schwierig oder unmöglich sein, den Inhalt langer oder komplizierter Webseiten gleichzeitig 
-auf dem Bildschirm darzustellen. Wenn die Bedeutung oder Verständlichkeit des Inhalts darunter leidet, dass nicht alles 
-auf einmal auf dem Bildschirm zu sehen ist, kann es eine gute Idee sein, den Inhalt selbst zu vereinfachen oder Teile des 
+Auf kleinen Viewports kann es schwierig oder unmöglich sein, den Inhalt langer oder komplizierter Webseiten gleichzeitig
+auf dem Bildschirm darzustellen. Wenn die Bedeutung oder Verständlichkeit des Inhalts darunter leidet, dass nicht alles
+auf einmal auf dem Bildschirm zu sehen ist, kann es eine gute Idee sein, den Inhalt selbst zu vereinfachen oder Teile des
 Inhalts zu löschen.
 
-Ebenso kann es eine gute Idee sein, dekorative Grafiken oder Stile, die nicht unbedingt notwendig sind, zu reduzieren 
+Ebenso kann es eine gute Idee sein, dekorative Grafiken oder Stile, die nicht unbedingt notwendig sind, zu reduzieren
 oder zu entfernen.
 
 #### Gutes Beispiel: Inhalt wird bei veränderter Fenstergröße vereinfacht
 
-Die Screenshots unten zeigen, wie der Inhalt der Homepage der Deque University vereinfacht wird, wenn sich die Fenstergröße 
-ändert. Wenn die Seite von der Desktop-Ansicht zur Tablet-Ansicht wechselt, wird das dekorative Bild rechts neben dem 
+Die Screenshots unten zeigen, wie der Inhalt der Homepage der Deque University vereinfacht wird, wenn sich die Fenstergröße
+ändert. Wenn die Seite von der Desktop-Ansicht zur Tablet-Ansicht wechselt, wird das dekorative Bild rechts neben dem
 Hauptinhalt der Seite aus der Ansicht entfernt.
 
 Desktop-Ansicht der Deque Universität:
@@ -1125,15 +1147,14 @@ Tablet-Ansicht der Universität Deque:
 
 ### Funktionen der Benutzeroberfläche sollten vereinfacht, verkleinert oder eliminiert werden, wenn sie vergrößert oder auf kleinen Bildschirmen angezeigt werden.
 
-Wenn die Größe des Ansichtsfensters schrumpft, müssen die Komponenten der Benutzeroberfläche möglicherweise verkleinert 
-oder sogar entfernt werden, um die Lesbarkeit und eine angemessene Klick-/Touch-Zielgröße der verbleibenden Elemente auf 
+Wenn die Größe des Ansichtsfensters schrumpft, müssen die Komponenten der Benutzeroberfläche möglicherweise verkleinert
+oder sogar entfernt werden, um die Lesbarkeit und eine angemessene Klick-/Touch-Zielgröße der verbleibenden Elemente auf
 dem Bildschirm zu erhalten.
-
 
 #### Gutes Beispiel: Die Komponenten der Benutzeroberfläche werden vereinfacht, wenn sich die Fenstergröße ändert
 
-Die folgenden Screenshots zeigen, wie die Benutzeroberfläche der Homepage der Deque University vereinfacht wird, wenn 
-sich die Fenstergröße ändert. Wenn die Seite von der Desktop- oder Tablet-Ansicht zur Handy-Ansicht wechselt, werden 
+Die folgenden Screenshots zeigen, wie die Benutzeroberfläche der Homepage der Deque University vereinfacht wird, wenn
+sich die Fenstergröße ändert. Wenn die Seite von der Desktop- oder Tablet-Ansicht zur Handy-Ansicht wechselt, werden
 die Hauptnavigation, "Kontakt" und "Gehe zu Deque.com" unter einem Hamburger-Menü zusammengefasst.
 
 Desktop-Ansicht der Deque Universität:
