@@ -1,0 +1,53 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Auto-Play'
+---
+
+Visuelle Inhalte, die sich bewegen, können für Menschen mit bestimmten kognitiven Einschränkungen problematisch sein, insbesondere für Menschen mit Aufmerksamkeitsstörungen und Leseschwierigkeiten. Sich bewegende Inhalte können ablenken und es den Menschen erschweren, sich auf den Inhalt der Webseite zu konzentrieren, und sie können schwer zu lesen sein, während sie sich bewegen. Wenn du zulässt, dass sich Inhalte bis zu fünf Sekunden lang bewegen, lenkst du die Aufmerksamkeit der Menschen auf dich, aber nicht so lange, dass du sie ablenken oder daran hindern könntest, die Webinhalte zu nutzen und mit ihnen zu interagieren.
+
+## Es muss eine Methode bereitgestellt werden, um Medieninhalte, die automatisch abgespielt werden und 5 Sekunden oder länger dauern, anzuhalten, zu stoppen oder auszublenden.
+
+Die Anforderung, den Nutzern einen Mechanismus zum Anhalten, Stoppen oder Ausblenden von Inhalten zu bieten, gilt für zwei Kategorien von Inhalten:
+
+- Sich bewegende, blinkende oder scrollende Inhalte einschließlich:
+
+  - Filme und synchronisierte Medienpräsentationen
+    
+  - Animationen
+  
+  - Echtzeit-Spiele
+    
+  - scrollende Börsenticker
+
+- Automatische Aktualisierung der Inhalte:
+
+  - automatisch aktualisierte Wetterinformationen, Nachrichten und Aktienkurse
+    
+  - Automatisch aktualisierte Präsentationen und Nachrichten
+
+Für beide Arten von Inhalten muss es einen Mechanismus geben, um den Inhalt anzuhalten, zu stoppen oder auszublenden. Dieser Mechanismus darf nicht den Fokus des Nutzers auf der Seite binden und ihn daran hindern, mit dem Rest der Seite zu interagieren. Es wäre zum Beispiel nicht angemessen, ein Steuerelement bereitzustellen, das den Inhalt nur so lange anhält, wie das Steuerelement den Fokus hat; dann könnte der Nutzer nicht mit dem Rest der Seite interagieren.
+
+Darüber hinaus gibt es zwei weitere Überlegungen zur automatischen Aktualisierung von Inhalten:
+
+- Es kann ein Mechanismus vorgesehen werden, der es dem Nutzer ermöglicht, die Häufigkeit der Aktualisierung von Inhalten zu steuern, und
+    
+- Es gibt keine Fünf-Sekunden-Ausnahme für die automatische Aktualisierung von Inhalten, da es wenig Sinn macht, Inhalte nur fünf Sekunden lang automatisch zu aktualisieren und dann aufzuhören.
+
+Eine Ausnahme gilt für beide Kategorien von Inhalten, wenn der sich bewegende oder automatisch aktualisierende Inhalt für die Aktivität wesentlich ist. Ein gängiges Beispiel für eine wesentliche Aktivität ist eine Animation, die anzeigt, dass eine Seite, ein Inhalt oder ein Prozess geladen wird.
+
+Vergiss nicht, darauf zu achten, dass der Mechanismus zur Steuerung des Inhalts leicht zu finden, mit der Tastatur bedienbar und mit einem eindeutigen Label versehen ist, das seinen Zweck angibt.
+
+### Gutes Beispiel: Animation mit einer Play/Pause-Funktion
+
+TODO: Make Example
+
+### Gutes Beispiel: Eine Online-Kommentarplattform mit einer Pause/Fortsetzungsfunktion
+
+Die folgenden Screenshots zeigen den oberen Bereich des Leserkommentarbereichs unter einem Artikel auf einer Nachrichtenseite. Der erste Screenshot zeigt den Standardzustand des Kommentarbereichs. Neue Kommentare werden automatisch am Anfang der Kommentarliste eingefügt, und die Nutzer/innen haben die Möglichkeit, die Live-Aktualisierung über ein Steuerelement vor dem ersten sichtbaren Kommentar anzuhalten. Wenn die Kommentaraktualisierung angehalten wurde, hat der Nutzer die Möglichkeit, die Live-Aktualisierung fortzusetzen, wie auf dem zweiten Screenshot zu sehen ist.
+
+![](/images/multimedia/updates-default.png)
+![](/images/multimedia/updates-paused.png)
+
+### Schlechtes Beispiel: Autoplay-Animation
+
+![](/images/multimedia/loop.gif)

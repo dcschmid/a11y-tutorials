@@ -1,0 +1,38 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Krampfanfälle auslösende Inhalt'
+---
+
+Manche Menschen reagieren empfindlich auf blinkende Lichter, wie z.B. Stroboskoplicht, und können infolgedessen Anfälle erleiden, die als photoepileptische Anfälle bekannt sind. Diese Anfälle können gefährlich sein und zu körperlichen Schäden führen, was dies zu einem ernsten Gesundheitsproblem macht, das über die Barrierefreiheit hinausgeht. Vor allem Video- und Multimediaentwickler müssen darauf achten, keine visuellen Effekte zu kreieren, die bei den Zuschauern Anfälle auslösen könnten.
+
+## Blinkender Inhalt
+
+Krampfanfälle sind abnorme oder unregelmäßige elektrische Impulse im Gehirn, die die Fähigkeit einer Person beeinträchtigen, Informationen zu verarbeiten oder in manchen Fällen freiwillige Muskelbewegungen zu kontrollieren. Manche Anfälle können zu heftigen Krämpfen führen, die eine Person in die Gefahr bringen, sich zu verletzen. Krampfanfälle können durch eine Vielzahl von Umständen ausgelöst werden, z. B. durch Hirnverletzungen, Dehydrierung, Schlafmangel, Infektionen, Fieber, eine Überdosis Drogen, Drogenentzug und sogar durch blinkende Lichter. Die letzte Kategorie ist diejenige, die für Webentwickler/innen von Interesse ist.
+
+### Photo-Epileptische Anfälle
+
+Die Verwendung von Blink- oder Stroboskop-Effekten in Videos, Grafiken oder Animationen kann bei einigen Zuschauern - Menschen mit lichtempfindlicher Epilepsie - das Risiko von Anfällen erhöhen. Anfälle, die durch blinkende Lichter ausgelöst werden, werden manchmal als photoepileptische Anfälle bezeichnet. Einer der am besten dokumentierten Fälle, in dem blinkende Lichter Anfälle auslösten, war ein Pokémon-Zeichentrickfilm aus dem Jahr 1997, bei dem 685 Kinder ins Krankenhaus eingeliefert wurden, weil sie aufgrund einer intensiven Szene mit blinkenden Lichtern Anfälle bekamen.
+
+![](/images/multimedia/pokemon-seizure.png)
+
+Im Film "Breaking Dawn" gab es eine intensive Szene mit blinkenden Lichtern, die bei den Zuschauern im Kino zu Krampfanfällen führte.
+
+![](/images/multimedia/BreakingDawn_MovieCompanion.jpg)
+
+Auch Inhalte, die keine Krampfanfälle auslösen, können bei manchen Zuschauern Schwindel, Übelkeit oder Desorientierung hervorrufen. Dies wird im nächsten Abschnitt über Animationen und Bewegung näher erläutert.
+
+### Eine Seite muss keine Inhalte enthalten, die mehr als 3 Mal pro Sekunde blinken, es sei denn, diese blinkenden Inhalte sind ausreichend klein und die Blitze sind kontrastarm und überschreiten nicht die allgemeinen Blitzschwellenwerte oder die roten Blitzschwellenwerte.
+
+Inhalte, die mehr als dreimal pro Sekunde blinken oder flackern, können bei Menschen mit lichtempfindlicher Epilepsie oder anderen Arten von lichtempfindlichen Anfallsleiden einen Anfall auslösen. Es ist wichtig, dass du keine Inhalte erstellst, die bei deinen Nutzern Anfälle auslösen können.
+
+Wenn Inhalte, die mehr als dreimal pro Sekunde blinken, klein genug sind oder unter bestimmten Kontrastschwellen liegen, ist das Risiko, einen Anfall auszulösen, deutlich geringer. Daher sind Inhalte, die mehr als dreimal pro Sekunde aufblinken, erlaubt, solange eine der folgenden Bedingungen erfüllt ist:
+
+Der blinkende Bereich ist "klein genug". Was ist also klein genug? Die WCAG definieren "klein genug" als: "weniger als 25 % von 10 Grad des Gesichtsfeldes (das entspricht dem zentralen Sichtfeld des Auges)". Diese Größe für alle möglichen Bildschirmgrößen zu berechnen, wäre zeitaufwändig und mühsam. Deshalb hat das W3C auch eine Faustregel aufgestellt, die einen sicheren Schwellenwert für Nutzer auf einer Vielzahl von Bildschirmtypen bietet. Die Details der Berechnungen, die zur Erstellung der Empfehlung verwendet wurden, findest du im <a href="https://www.w3.org/TR/WCAG20-TECHS/G176" target="_blank">WCAG-Technikdokument G176: Keeping the flashing area small enough</a>, aber es läuft auf Folgendes hinaus: "...jedes einzelne blinkende Ereignis auf einem Bildschirm (es gibt kein anderes Blinken auf dem Bildschirm), das kleiner ist als ein zusammenhängender Bereich von 21.824 Quadratpixeln (beliebige Form), würde die allgemeinen und roten Blitzschwellenwerte überschreiten." Zum Beispiel würde ein blinkender Bereich von 200 x 100 Pixel diese Bedingung erfüllen.
+
+Der Kontrast des blinkenden Inhalts ist "niedrig genug". Wie bestimmen wir also, welcher Kontrast niedrig genug ist? Wie bei der maximalen Größe für blinkende Inhalte gibt das W3C in seiner Definition der <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html#general-thresholddef" target="_blank">"allgemeinen Schwellenwerte für Blinken und rotes Blinken"</a> eine sehr technische Formel zur Berechnung des Kontrasts an. In diesem Fall empfiehlt das W3C, ein Tool zur Bewertung von blinkenden Inhalten zu verwenden, wie z. B. das <a href="http://trace.umd.edu/peat" target="_blank">Photosensitive Epilepsy Analysis Tool (PEAT) des Trace Centers</a>, eine kostenlose, herunterladbare Ressource für Entwickler, um Anfallsrisiken in ihren Webinhalten und ihrer Software zu identifizieren.
+
+Um auf Nummer sicher zu gehen, solltest du erwägen, alle Blitze zu eliminieren, aber kleine Blitzbereiche oder sehr kontrastarme Blitze können aus Sicht der Anfallskontrolle akzeptabel sein (auch wenn sie wahrscheinlich immer noch störend und ablenkend sind, was für Nutzer mit Aufmerksamkeitsstörungen oder kognitiven Einschränkungen ein Problem sein kann).
+
+### Prüfen von blinkenden Inhalten
+
+Die Anzahl der Blitze pro Sekunde zu testen - um festzustellen, ob die Barrierefreiheit gegeben ist oder nicht - kann etwas schwierig sein. Es gibt ein kostenloses Software-Tool, <a href="https://trace.umd.edu/peat" target="_blank">PEAT</a>, das hilfreich sein kann, und es gibt einen Dienst namens <a href="http://www.hardingtest.com/" target="_blank">Harding Test</a>. Um auf Nummer sicher zu gehen, ist alles, was mehrmals pro Sekunde auffällig blinkt, wahrscheinlich riskant und sollte am besten entfernt oder so repariert werden, dass es nicht mehr blinkt.

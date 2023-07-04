@@ -1,0 +1,139 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Barrierefreiheit im Media Player'
+---
+
+In der Vergangenheit wurden für die Einbettung von Videos und anderen Medientypen in Webseiten eigene Plugins wie Windows Media Player, Flash, RealMedia, QuickTime, Java und so weiter benötigt. All diese Technologien können immer noch funktionieren, um eigenständige Videos auf einem Computer abzuspielen, aber sie sind im Web viel weniger verbreitet, weil HTML 5 Video den Plugin-Ansatz weitgehend überflüssig gemacht hat. HTML 5-Video funktioniert gut, und der im Browser eingebaute Media Player kann barrierefrei sein. Die tatsächliche Barrierefreiheit des Media Players variiert jedoch von Browser zu Browser und hängt vom Grad der Unterstützung durch den Screenreader ab.
+
+Eine Möglichkeit, zuverlässig barrierefreie Ergebnisse in allen Browsern zu erzielen, ist die Verwendung eines bestehenden HTML5-basierten Players, der für Barrierefreiheit entwickelt und getestet wurde. Diese Unterrichtsmodule verwenden den Open-Source-Player <a href="https://ableplayer.github.io/ableplayer/" target="_blank">Able Player</a>, wo es möglich ist. Der Able Player bietet die Möglichkeit, Bildunterschriften, Transkripte, Audiodeskriptionen und Gebärdensprachdolmetscher einzubinden. Außerdem sind alle Steuerelemente so konzipiert, dass sie für Tastaturbenutzer/innen und Screenreader-Nutzer/innen zugänglich sind.
+
+Andere Medienplayer, die mit Blick auf die Barrierefreiheit entwickelt wurden, sind <a href="https://www.accessibilityoz.com/ozplayer/OzPlayer" target="_blank">OzPlayer</a>, entwickelt von Accessibility Oz, der Open-Source-Medienplayer <a href="https://github.com/nomensa/Accessible-Media-Player" target="_blank">Nomensa</a>, der <a href="https://github.com/paypal/accessible-html5-video-player" target="_blank">Open-Source-Medienplayer PayPal</a> und andere.
+
+In diesem Abschnitt wird erörtert, was ein Medienplayer braucht, um als barrierefrei zu gelten.
+
+## Barrierefreiheit mit der Tastatur
+
+### Alle Funktionen eines Media Players müssen für Tastaturbenutzer verfügbar sein
+
+In anderen Modulen dieser Reihe wurde die Barrierefreiheit von Tastaturen bereits ausführlich behandelt, daher werden wir hier nur die grundlegenden Konzepte besprechen.
+
+#### Alle Steuerelemente müssen mit Tabulator fokussierbar sein.
+
+Wenn es sich bei dem Steuerelement um eine systemeigene Schaltfläche (`<button>` oder `<input type="submit">`) handelt, ist es bereits tab-fokussierbar. Wenn es sich um ein benutzerdefiniertes Steuerelement handelt, das ein `<div>`, `<span>` oder ein anderes nicht fokussierbares Element verwendet, musst du tabindex="0" hinzufügen, um es tab-fokussierbar zu machen.
+
+#### Die Tabulatorreihenfolge muss logisch sein
+
+Wenn die Benutzer mit der Tabulatortaste durch die Steuerelemente navigieren, sollte die Tabulatorreihenfolge so weit wie möglich mit der visuellen Reihenfolge der Steuerelemente übereinstimmen.
+
+#### Alle Steuerelemente müssen visuelle Fokusanzeigen haben
+
+Sehende Nutzer müssen jederzeit wissen, wo sich der Tastaturfokus befindet. Wenn sie mit der Tabulatortaste auf ein Steuerelement im Mediaplayer klicken, sollte es auf irgendeine Weise hervorgehoben werden, z. B. durch einen Rahmen, einen Umriss, eine Hintergrundfarbe oder einen anderen ähnlichen Effekt.
+
+#### Die Funktionalität muss mit der Tastatur funktionieren
+
+Du musst davon ausgehen, dass ein Tastaturbenutzer die Maus überhaupt nicht benutzt (unabhängig davon, ob das für einen bestimmten Benutzer zutrifft oder nicht). Du kannst keine Steuerelemente erstellen, die nur mit der Maus aktiviert werden können.
+
+#### Der Fokus muss bei Interaktionen logisch verwaltet werden
+
+Wenn ein Nutzer eine Funktion aktiviert, muss der Fokus an die logischste Stelle gehen. Wenn er z. B. einen Dialog aktiviert, muss der Fokus zum Dialog gehen. Wenn der/die Nutzer/in den Dialog schließt, muss der Fokus zurück zu der Schaltfläche gehen, die den Dialog ursprünglich aktiviert hat (oder in seltenen Fällen zu einer anderen logischen Stelle).
+
+#### Gib Tastaturanweisungen für alle ungewöhnlichen Steuerelemente an
+
+Am besten verwendest du Standard-Steuerelemente und -Methoden, aber wenn du benutzerdefinierte Steuerelemente hast, von denen die Benutzer nicht wissen, wie sie zu verwenden sind, solltest du Anweisungen geben.
+
+## Screen Reader Accessibility
+
+### Alle Steuerelemente eines Mediaplayers müssen für Screenreader-Nutzer die richtigen Namen, Rollen und Werte anzeigen.
+
+Native Steuerelemente - wie Schaltflächen, Links und Formularelemente - zeigen Screen-Reader-Nutzern automatisch die richtigen Informationen an. Benutzerdefinierte JavaScript-Steuerelemente benötigen korrektes ARIA-Markup, um Screenreadern die richtige Semantik zu vermitteln. Ausführliche Informationen zur korrekten Verwendung von ARIA findest du in den <a href="https://www.w3.org/TR/wai-aria-practices-1.1/" target="_blank">ARIA Authoring Practices</a> auf der W3C-Website.
+
+#### Name
+
+Der Name des Steuerelements könnte zum Beispiel "Play", "Pause", "Lautstärke" usw. lauten. Jedes Steuerelement braucht einen genauen Namen oder ein Label. Bei nativen `<button>`-Elementen wird der Name durch den Text im Label übermittelt (z. B. wird `<button>Play</button>` von Screenreadern als "Play" gelesen). Für benutzerdefinierte Schaltflächen und Steuerelemente können die Attribute aria-label oder aria-labelledby erforderlich sein (z. B. `<span role="button" tabindex="0" aria-label="Play">`), je nachdem wie die Elemente im Markup dargestellt werden.
+
+#### Rolle
+
+Jedes Steuerelement muss für den Screenreader und den Benutzer als Steuerelement erkennbar sein. Du kannst benutzerdefinierten Steuerelementen bei Bedarf eine Rolle zuweisen. Im Falle eines Media Players ist die häufigste Rolle role="button". Dies ist die richtige Rolle für eine Abspiel-/Pause-Schaltfläche, eine Funktion zum Ein- und Ausschalten von Bildunterschriften und andere einfache Steuerelemente dieser Art. Die richtige Rolle für einen Schieberegler für die Lautstärke wäre role="slider". Unter anderen Umständen können auch andere Rollen angebracht sein.
+
+#### Wert
+
+Wenn ein Schieberegler von links nach rechts oder von oben nach unten bewegt wird, müssen Screenreader-Nutzer hören, wie sich die Werte ändern. Ein Schieberegler für die Lautstärke könnte Dinge wie "50%", "40%", "30%" usw. sagen, wenn die Lautstärke verringert wird. In den <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#slider" target="_blank">ARIA Authoring Practices für Schieberegler</a> findest du weitere Informationen dazu.
+
+## Bildunterschriften, Transkripte und Audiobeschreibungen
+
+### Medienplayer sollten den Zugang zu Bildunterschriften, Transkriptionen und Audiobeschreibungen ermöglichen.
+
+#### Option 1: Bereitstellung von Barrierefreiheit im Medienplayer selbst
+
+Ein idealer Medienplayer verfügt über die Fähigkeit, Bildunterschriften, Transkripte und Audiobeschreibungen mit minimalem Aufwand für die Person, die die Medien vorbereitet, zu integrieren.
+
+Hinweis:
+
+Die beste Methode zur Bereitstellung von Barrierefreiheit in einem Media Player besteht darin, für jede Art von Barrierefreiheit eine eigene Schaltfläche bereitzustellen, idealerweise mit dem entsprechenden standardisierten Symbol für jede Funktion.
+
+- Bildunterschrift-Symbol
+
+- Transkriptionssymbol (dieses Symbol ist das am wenigsten standardisierte in dieser Liste)
+
+- Symbol für die Audiobeschreibung
+
+- Symbol für Gebärdensprachdolmetschung
+
+Manche Mediaplayer bieten nur ein Symbol an, z. B. das Symbol für die Bildunterschrift, und platzieren dort alle Funktionen für die Barrierefreiheit. In gewisser Weise ist das sinnvoll, denn die anderen Symbole nehmen Platz weg und können die Benutzeroberfläche unübersichtlich erscheinen lassen. Das Problem bei diesem Ansatz ist jedoch, dass Nutzer/innen, die Audiodeskriptionen, Transkriptionen oder Gebärdensprache bevorzugen, möglicherweise nicht daran denken, das Menü für geschlossene Bildunterschriften zu öffnen, um die anderen Funktionen zu sehen, die sie wirklich brauchen.
+
+#### Option 2: Biete die Barrierefreiheit auf andere Art und Weise an
+
+Alle diese Barrierefreiheit-Funktionen sind Voraussetzungen, aber der Media Player selbst muss diese Funktionen nicht unbedingt bereitstellen, wenn sie auf andere Weise bereitgestellt werden.
+
+Bildunterschriften: Du kannst zum Beispiel ein Video produzieren, bei dem die Bildunterschriften in das Video selbst eingebettet sind. Wenn das Video bereits mit Bildunterschriften versehen ist, ist es nicht unbedingt erforderlich, einen Media Player zu haben, der die Bildunterschriftentechnologie unterstützt.
+
+Hinweis: Beachte, dass es in der Regel viel einfacher ist, Bildunterschriften im Internet zu verwenden, als Videodateien mit Untertiteln zu produzieren! Außerdem können die Nutzer/innen das Aussehen der Bildunterschriften bei Web-Untertiteln anpassen, während sie dies bei den Bildunterschriften im Video selbst nicht können.
+
+Audiobeschreibungen: Das Gleiche gilt für Audiodeskriptionen. Du kannst zwei Versionen eines Videos erstellen: eine mit und eine ohne Audiodeskription. Jedes Video kann separat präsentiert werden, ohne dass der Player die Möglichkeit bietet, die Audiobeschreibungen ein- und auszuschalten.
+
+Transkripte: Bei Transkripten kann das Transkript über oder unter dem Video angezeigt werden. Die Abschriften müssen nicht in den Media Player selbst integriert werden.
+
+Im Allgemeinen ist es am einfachsten, einen Media Player zu verwenden, der möglichst viele Barrierefreiheitsfunktionen unterstützt, anstatt die Barrierefreiheit auf weniger systematische Weise bereitzustellen.
+
+##### Gutes Beispiel: Medienplayer mit Barrierefreiheit
+
+Der Able Player Media Player kann Bildunterschriften, Gebärdensprachdolmetscher, Audiodeskriptionen und eine Abschrift enthalten, wie im folgenden Screenshot zu sehen ist.
+
+![](/images/multimedia/media-player-a11y-features.png)
+
+## Anpassungsfähigkeit
+
+### Medienplayer sollten die visuelle Anpassung von Bildunterschriften ermöglichen.
+
+Dass es für die Nutzer/innen von Vorteil ist, wenn sie die Bildunterschriften optisch anpassen können, wurde bereits an anderer Stelle in diesem Modul erwähnt. Sorge dafür, dass die Anpassungsoptionen leicht zu finden und auszuwählen sind.
+
+#### Gutes Beispiel: Visuelle Anpassungsoptionen für Bildunterschriften im Able Player
+
+Der Able Player ermöglicht die Anpassung von:
+
+- Position: Unter dem Video oder Overlay
+- Schriftart: Anstatt viele spezifische Schriftarten anzubieten, beschränkt sich der Able Player auf 5 Kategorien (Serifen, serifenlos, Monospace, kursiv, Fantasy)
+
+- Schriftgröße: 100% bis zu 200%
+
+- Schriftfarbe: 8 verschiedene Farben stehen zur Auswahl
+
+- Hintergrundfarbe: 8 Auswahlmöglichkeiten stehen zur Verfügung
+
+- Deckkraft des Hintergrunds: Bereich von 0% bis 100%
+
+Der Einstellungsdialog bietet eine Vorschau der Einstellungen, bevor sie gespeichert werden.
+
+![](/images/multimedia/ableplayercustomcaptions.png)
+
+### Medienabspielprogramme sollten sich die Präferenzen der Nutzer/innen merken.
+
+Im Idealfall merkt sich ein Media Player die Präferenzen des Nutzers global, so dass die Einstellungen des Nutzers jedes Mal, wenn derselbe Media Player verwendet wird, erhalten bleiben. Das erspart dem Nutzer die Zeit, die er sonst jedes Mal für die Änderung der Bildunterschrift aufwenden müsste. Mögliche Wege, dies zu erreichen, sind die folgenden:
+
+- Verwende JavaScript, um ein Cookie auf dem Computer des Nutzers zu setzen, und rufe das Cookie ab, wenn der Media Player geladen wird.
+
+- Auf passwortgeschützten Websites speicherst du die Präferenzen des Medienplayers zusammen mit anderen Benutzerdaten auf dem Server und rufst die Präferenzen ab, wenn der Medienplayer geladen wird.
+
+### Medienplayer sollten Videos im Vollbildmodus anzeigen können.
+
+Für Nutzer/innen mit Sehschwäche solltest du eine Vollbildoption anbieten, damit das Video in maximaler Größe auf dem Bildschirm der/des Nutzer/in angezeigt werden kann.
