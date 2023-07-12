@@ -1,159 +1,169 @@
 html {
-    background-color: #0d0950;
-    color: #fff;
-    font-family: sans-serif;
+  background-color: #0d0950;
+  color: #fff;
+  font-family: sans-serif;
 }
 
 body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
-    line-height: 1.6;
-    font-size: 1.125rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80ch;
+  padding: 1rem;
+  line-height: 1.6;
+  font-size: 1.125rem;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1 {
-    margin: 2rem 0 1rem;
-    font-size: 2rem;
-    font-weight: 600;
+  margin: 2rem 0 1rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 h2 {
-    margin: 3rem 0 1rem;
-    font-size: 1.75rem;
-    font-weight: 600;
+  margin: 3rem 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 600;
 }
 
 h3 {
-    margin: 3rem 0 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+  margin: 3rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 h4 {
-    margin: 3rem 0 1rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+  margin: 3rem 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 h5 {
-    margin: 3rem 0 1rem;
-    font-size: 1.15rem;
-    font-weight: 600;
+  margin: 3rem 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 
 p {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 a {
-    text-decoration: underline;
-    color: #fff;
+  text-decoration: underline;
+  color: #fff;
 }
 
-a[target="_blank"] {
-    &::after {
-        content: "";
-        width: 1rem;
-        height: 1rem;
-        margin-left: 0.5rem;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        display: inline-block;
-    }
+a[target='_blank'] {
+  &::after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+  }
 }
 
 img {
-    max-width: 100%;
-    width: 100%;
+  max-width: 100%;
+  width: 100%;
 }
 
 ul,
 ol {
-    display: block;
-    list-style-type: decimal; // bei ol
-    list-style-type: disc; // bei ul
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 40px;
+  display: block;
+  list-style-type: decimal; // bei ol
+  list-style-type: disc; // bei ul
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
 }
 
 .accordion__item h3 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-
 table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
 thead {
-    @media screen and (max-width: 600px) {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
+  @media screen and (max-width: 600px) {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
 }
 
 th {
-    background: #333;
-    color: white;
-    font-weight: bold;
+  background: #333;
+  color: white;
+  font-weight: bold;
 }
 
 td,
 th {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    text-align: left;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  text-align: left;
 }
 
 tr {
-    @media screen and (max-width: 600px) {
-        display: block;
-        margin-bottom: 1.5rem;
-    }
+  @media screen and (max-width: 600px) {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
 }
 
 td {
-    & > p {
-        margin: 0;
-        padding: 0;
-    }
+  & > p {
+    margin: 0;
+    padding: 0;
+  }
 
-    @media screen and (max-width: 600px) {
-        display: block;
+  @media screen and (max-width: 600px) {
+    display: block;
 
-        &::before {
-            content: attr(data-label);
-            font-weight: bold;
-            text-transform: uppercase;
-            display: block;
-        }
+    &::before {
+      content: attr(data-label);
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
     }
+  }
 }
 
 .screen-reader-only {
-    position: absolute;
-    width: 1px;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-    white-space: nowrap;
+  position: absolute;
+  width: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+body .accordion__panel {
+  border: 1px solid #fff;
+}
+
+body .accordion_header {
+  border: 1px solid #fff;
+}
+body .is-active .accordion_header {
+  border: 1px solid #fff;
 }

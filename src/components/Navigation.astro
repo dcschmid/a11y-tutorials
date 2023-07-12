@@ -3,24 +3,24 @@ import Logo from './Logo.astro'
 ---
 
 <nav class="navigationRoot">
-  <a class="navigationLogo" href="/"><Logo /></a>
-  <a class="navigationItem" href="/suche">Suche</a>
+	<a class="navigationLogo" href="/"><Logo /></a>
+	<a class="navigationItem" href="/suche">Suche</a>
 </nav>
 
 <style lang="scss" is:global>
-  .navigationRoot {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-  }
+	.navigationRoot {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
 
-  .navigationLogo {
-    height: 45px;
-    width: 150px;
-  }
+	.navigationLogo {
+		height: 45px;
+		width: 150px;
+	}
 
-  .navigationItem {
-    text-decoration: none;
-  }
+	.navigationItem {
+		text-decoration: none;
+	}
 </style>
