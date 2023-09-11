@@ -1,0 +1,119 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Zusammenfassung und Checkliste'
+---
+
+## Zusammenfassung
+
+Dynamischer Inhalt: Stille ist schlecht. Wenn Screenreader-Nutzer eine Funktion
+(Link, Schaltfläche, Steuerelement usw.) aktivieren oder wenn sich ein wichtiger
+Teil des Inhalts ändert, müssen sie eine Rückmeldung erhalten. Eine der
+grundlegenden Herausforderungen bei dynamischen Inhalten ist es, herauszufinden,
+wie man Bildschirmleser/innen am besten über die dynamischen Änderungen informiert.
+Die drei wichtigsten Möglichkeiten sind:
+
+- Die Seite laden oder neu laden, wobei der `<title>` der Seite die aktualisierten
+  dynamischen Informationen wiedergibt.
+
+- Verschiebe den Fokus auf den aktualisierten Inhalt oder auf eine Bestätigungs-
+  oder Fehlermeldung.
+
+- Einen ARIA-Live-Bereich verwenden, um eine Ankündigung zu machen.
+
+Zeitlimits: Achte darauf, dass du den Nutzern genug Zeit gibst, um ihre Aufgaben
+zu erledigen, oder sie warnst, wenn ihre Zeit abläuft, und ihnen die Möglichkeit
+gibst, ihre Zeit zu verlängern. Aktualisiere die Seite nicht automatisch oder
+lade sie neu.
+
+AJAX: Informiere die Nutzer/innen (in der Regel durch Verschieben des Fokus oder
+durch die Verwendung von ARIA-Live-Regionen), wenn neue Inhalte auf Wunsch der
+Nutzer/innen geladen werden (z. B. durch Klicken auf einen Link oder eine
+Schaltfläche), aber achte darauf, dass du dies nicht zu häufig ankündigst, wie im
+Fall von Lazy Loading, und achte darauf, dass du die UX so gestaltest, dass
+Nutzer/innen mit Tastatur alle Teile der Seite erreichen können (sei vorsichtig
+mit unendlichem Scrollen).
+
+## Checkliste
+
+### Benachrichtigung der Nutzer über Änderungen
+
+#### Statusmeldungen
+
+- Statusmeldungen müssen über Rollen oder Eigenschaften programmatisch bestimmbar
+  sein, so dass sie dem Nutzer von assistiven Technologien präsentiert werden können,
+  ohne dass sie im Fokus stehen.
+
+### Zeitlimits
+
+#### Sitzungszeitbegrenzung
+
+- Wenn es ein Zeitlimit für die Sitzung gibt, MÜSSEN die Nutzer gewarnt werden,
+  bevor die Sitzung endet, und sie müssen Zeit haben, ihre Daten zu speichern
+  und/oder die Sitzung zu verlängern.
+
+- Unvollständige Daten sollten nach einer Sitzungszeitüberschreitung gespeichert
+  werden.
+
+- Die Nutzer/innen sollten vor der Dauer der Inaktivität gewarnt werden, die zu
+  einem Datenverlust führen könnte, es sei denn, die Daten werden länger als 20
+  Stunden aufbewahrt, wenn der/die Nutzer/in keine Aktionen durchführt.
+
+#### Zeitgeber mit festen Fristen
+
+- Timer mit festen Fristen sollten den Nutzern eine dynamische Countdown-Funktion
+  bieten, vor allem wenn die Frist bald abläuft.
+
+- Countdown-Funktionen sollten in strategischen Abständen ARIA-Live-Ankündigungen
+  posten.
+
+- Countdown-Funktionen müssen ARIA-Live-Meldungen NICHT so häufig posten, dass
+  sie Screenreader-Nutzer/innen überfordern.
+
+- Wenn das Timing kritisch ist, kann ein dynamischer Countdown in den `<title>`
+  der Seite integriert werden.
+
+- Wenn das Timing kritisch ist, sollten die dynamischen Countdown-Timer und
+  Warnungen auf allen relevanten Seiten der Website zu finden sein.
+
+#### Automatisches Aktualisieren/Wiederaufladen
+
+- Die Seite muss nicht automatisch aktualisiert oder neu geladen werden.
+
+- Eine Webseite kann den Nutzer benachrichtigen, wenn eine Aktualisierung
+  empfohlen wird.
+
+### AJAX
+
+#### Lazy Loading
+
+- Platzhalter für AJAX-Inhalte sollten Screenreader-Nutzer darüber informieren,
+  dass der Inhalt geladen wird.
+
+- "Lazy Loading" AJAX-Inhalte sollten nicht angekündigt werden, während sie
+  geladen werden.
+
+#### Unendliches Scrollen
+
+- Eine Funktion zum "unendlichen Scrollen" muss es Nutzern ermöglichen, alle
+  Bereiche der Seite mit der Tastatur zu erreichen.
+
+- Ein "Endlos-Scrolling" kann nur auf Wunsch des Nutzers aktiviert werden.
+
+#### Interstitielle Ansichten
+
+- Screenreader-Nutzer müssen informiert werden, wenn eine Webseite eine
+  Zwischenansicht oder eine Fortschrittsanzeige startet oder in einen Pausen-
+  oder Besetzt-Zustand übergeht.
+
+#### Single-Page-Anwendung
+
+- Screenreader-Nutzer müssen darüber informiert werden, wenn neue "Seiten" in
+  einseitigen Anwendungen geladen werden.
+
+- Der Browserverlauf muss aktualisiert werden, wenn ein AJAX-Ereignis das
+  Ergebnis eines Klicks auf einen Link ist oder wenn das Ereignis so beschaffen
+  ist, dass ein Nutzer erwarten würde, dass er nach dem Ereignis die Schaltfläche
+  "Zurück" benutzen kann.
+
+- Die Seite muss angemessen reagieren, wenn der Nutzer die Funktion "Zurück"
+  oder "Vor" im Browser aktiviert.

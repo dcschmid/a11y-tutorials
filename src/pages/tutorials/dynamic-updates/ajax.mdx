@@ -1,0 +1,550 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'AJAX'
+---
+
+AJAX-Ereignisse sind ein gängiger Bestandteil des modernen Webdesigns. Sie
+beschleunigen das Nutzererlebnis, indem sie das Nachladen ganzer Seiten
+überflüssig machen. Du kannst kleine Teile der Benutzeroberfläche oder des
+Inhalts auf einmal laden, entweder auf Anfrage des Benutzers oder aufgrund
+anderer Ereignisse. Die beiden größten Probleme mit AJAX sind:
+
+Zu wissen, wann und wie Screenreader-Nutzer über den neuen Inhalt informiert
+werden sollen, und Fokus-Management
+
+In diesem Abschnitt findest du einige praktische Beispiele, die diese und weitere
+Themen behandeln.
+
+## Lazy Loading
+
+"Lazy Loading" AJAX-Inhalte werden fast gleichzeitig mit dem Rest der Seite
+geladen, aber es gibt eine leichte Verzögerung, z. B. durch serverseitige
+Skriptverzögerungen, komplexe Datenbankabfragen, zeitaufwändige
+Authentifizierungsschritte oder alles andere, was eine Webseite verlangsamen
+könnte. Die Hauptseite soll schnell geladen werden, und der Rest der Seite soll
+kurz darauf geladen werden. Die Entwickler trennen die beiden Ladevorgänge
+(Hauptseite und AJAX-Teile), um den Endnutzern ein besseres Gesamterlebnis zu bieten.
+
+Lazy Loading ist ein legitimer Designansatz, der sich kaum auf die Barrierefreiheit
+auswirkt. Allerdings können unter zwei Umständen Probleme auftreten:
+
+- Wenn der Nutzer an der leeren Stelle ankommt, wo der Inhalt noch nicht geladen
+  wurde.
+
+- Wenn die Entwickler sich zu sehr von ARIA-Live-Meldungen hinreißen lassen, von
+  denen sie glauben, dass sie Screenreadernutzern zugute kommen, obwohl sie in
+  Wirklichkeit alles noch schlimmer machen, indem sie sie mit unwichtigen
+  "Inhalt geladen"-Meldungen überhäufen.
+
+### Platzhalter für AJAX-Inhalte sollten Screenreader-Nutzer über das Laden informieren
+
+Wenn Nutzer an einem Ort ankommen, an dem der Inhalt noch nicht geladen wurde, ist
+es am besten, dort einen Platzhalter zu haben. Für sehende Nutzer kann dies ein
+sich drehendes Rad, eine Animation des Fortschrittsbalkens, eine Sanduhr-Animation
+oder eine "Bitte warten"-Meldung sein. Nutzer von Bildschirmlesegeräten müssen
+außerdem wissen, dass der Inhalt in diesem Bereich geladen wird.
+
+#### Gut: Bild mit Alt-Text als AJAX-Platzhalter verwendet
+
+Eine der einfachsten Möglichkeiten, Screenreadern mitzuteilen, dass AJAX-Inhalte
+geladen werden, ist die Verwendung eines Symbols und eines Alt-Textes, der etwas
+wie "Inhalt wird geladen" oder eine andere geeignete Meldung enthält.
+
+```html
+<img src="spinning.gif" alt="Content loading" width="36" height="36" />
+```
+
+### "Lazy Loading" AJAX-Inhalte sollten beim Laden nicht angekündigt werden
+
+Bei "Lazy Loading"-Inhalten wird davon ausgegangen, dass sie so schnell geladen
+werden, dass sie keine Auswirkungen auf Screenreader-Nutzer haben. Wenn es Grund
+zu der Annahme gibt, dass der Inhalt langsam geladen wird, kann eine
+ARIA-Live-Ankündigung angebracht sein, aber wenn der Inhalt so konzipiert ist,
+dass er relativ schnell geladen wird, ist es am besten, überhaupt keine Ankündigung
+zu machen.
+
+#### Schlecht: Lazy Loading mit ARIA-Live-Ankündigungen bei jedem Ereignis
+
+Dieses Beispiel würde Screenreader-Nutzer in den Wahnsinn treiben, denn jedes
+Mal, wenn ein kleines Stück Inhalt geladen wird, kündigt der Screenreader über
+ARIA-Live-Ankündigungen an, dass es verfügbar ist. Die Absicht ist gut, aber in
+diesem Szenario ist es am besten, Dinge nicht anzukündigen, sobald sie verfügbar
+sind, denn sie werden so schnell geladen, dass der Nutzer wahrscheinlich nicht
+in diesen Bereichen ankommt, bevor der Inhalt geladen ist, und die ganzen
+Ankündigungen zu hören, kann überwältigend sein.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/lazy-loading/bad/index.html"
+target="_blank">Beispiel: Lazy Loading mit ARIA-Live-Ankündigungen bei jedem Ereignis</a>
+
+#### Gut: Fließendes Laden ohne Unterbrechungen für Screenreader-Nutzer
+
+In diesem Beispiel gibt es keine ARIA-Live-Ankündigungen, wenn die kleinen
+Inhaltsstücke geladen werden. Der Inhalt wird so schnell geladen, dass es sehr
+ungewöhnlich wäre, wenn ein Nutzer an diesen Stellen ankommen würde. Wenn sie
+dennoch ankommen, bevor der Inhalt geladen ist, gibt es ein Platzhalterbild mit
+dem Alt-Text "Inhalt wird geladen".
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/lazy-loading/good/index.html"
+target="_blank">Beispiel: Fließendes Laden ohne Unterbrechungen für Screenreader-Nutzer</a>
+
+## Unendliches Scrollen
+
+### Unendliches Scrollen muss Tastaturnutzern den Zugriff auf alle Bereiche ermöglichen
+
+Ein "unendliches Scrollen" ist ein Bereich auf der Seite, der jedes Mal neue Inhalte
+lädt, wenn der Nutzer scrollt oder sich dem unteren Ende der Seite nähert. Sie
+wurde erfunden, um Nutzern den Zugriff auf kontinuierliche Inhalte - wie
+Facebook-Feeds - zu ermöglichen, ohne dass sie etwas anderes tun müssen als
+scrollen. Die Idee ist für Mausbenutzer/innen gut genug, aber für
+Tastaturbenutzer/innen ist es sehr schwierig, denn sie können nie über den
+unendlichen Scrollbereich hinausgehen, weil jedes Mal, wenn sie es versuchen,
+neue Inhalte geladen werden und sich als nächstes in die Tab-Reihenfolge einfügen.
+
+#### Schlecht: Unendliches Scrollen, ohne rechte Spalte per Tastatur zugänglich
+
+Dieses Beispiel für unendliches Scrollen ist schlecht, weil die Nutzer beim
+Durchblättern des Bereichs mit der Tabulatortaste nie das untere Ende erreichen,
+was bedeutet, dass sie den Inhalt auf der rechten Seite nicht erreichen können,
+wenn sie sich vorwärts durch den Inhalt bewegen. Sie können ihn vielleicht auf
+andere Weise erreichen, z. B. indem sie rückwärts durch die Seite navigieren,
+aber das ist immer noch eine frustrierende und verwirrende Erfahrung. Blinde
+Nutzerinnen und Nutzer bemerken vielleicht gar nicht, dass es nach dem
+Endlos-Scroll-Bereich noch Inhalte gibt.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/infinite-scrolling/bad/index.html"
+target="_blank">Beispiel: Unendliches Scrollen, ohne rechte Spalte per Tastatur zugänglich</a>
+
+#### Gut: Unendliches Scrollen als letztes Feature auf der Seite
+
+In diesem Beispiel gibt es nach dem unendlichen Scrollbereich keinen Inhalt mehr,
+so dass man sich keine Sorgen machen muss, dass die Nutzer den Inhalt nach diesem
+Bereich nicht mehr erreichen können. Das unendliche Scrollen kann für manche
+Nutzer/innen immer noch etwas verwirrend sein, aber insgesamt ist dies ein
+akzeptabler Ansatz.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/infinite-scrolling/good1/index.html"
+target="_blank">Beispiel: Unendliches Scrollen als letztes Feature auf der Seite</a>
+
+### Ein "Endlos-Scrolling" darf nur auf Wunsch der Nutzer/innen aktiviert werden
+
+Eine Möglichkeit, die Probleme mit der Barrierefreiheit von Bereichen mit
+unendlichem Scrollen zu beheben, besteht darin, die automatischen Aspekte
+aufzugeben und die Nutzer/innen entscheiden zu lassen, wann neue Inhalte geladen
+werden.
+
+#### Gut: "Unendliche" Inhalte, nur auf Anfrage des Nutzers ausgelöst
+
+Dieses Beispiel bietet die größte Barrierefreiheit für die meisten Nutzer/innen.
+Anstatt automatisch zu scrollen, wenn ein bestimmter Punkt erreicht ist, wird
+den Nutzern eine Schaltfläche angezeigt, die ihnen die Möglichkeit gibt, weitere
+Inhalte zu laden, wenn sie dies wünschen. Bei diesem Ansatz kann es sogar
+akzeptabel sein, den Inhalt nach dem mittleren Abschnitt zu platzieren, da die
+Nutzer/innen immer problemlos zu allen Bereichen der Seite gelangen können.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/infinite-scrolling/good2/index.html"
+target="_blank">Beispiel: "Unendliche" Inhalte, nur auf Anfrage des Nutzers ausgelöst</a>
+
+## Interstitielle Ansichten
+
+### Informiere User über Zwischenansicht, Fortschrittsanzeige oder Statusänderungen
+
+Das Schlimmste, was Bildschirmleser/innen hören können, nachdem sie eine Schaltfläche
+aktiviert haben, ist Stille.
+
+Wenn Bildschirmleser-Nutzer/innen Stille erleben, fragen sie sich wahrscheinlich:
+"Hat es funktioniert?" "Ist mein Bildschirmlesegerät eingefroren?" "Ist mein
+Browser abgestürzt?" "Soll ich die Seite neu laden?" Sie brauchen eine Rückmeldung.
+
+Wenn der Nutzer eine Aktion anfordert, die lange dauert, wie z. B. die Suche nach
+Flugtickets, ist es üblich, dem Nutzer eine Zwischenseite zu zeigen, um ihm zu
+bestätigen, dass der Link funktioniert hat und dass er die Ergebnisse erhält,
+wenn er wartet. Nutzer von Bildschirmlesegeräten brauchen dieselbe Art von Bestätigung.
+Die folgenden beiden Optionen sind in der Regel am besten geeignet:
+
+- Bewege den Fokus auf die interstitielle Nachricht oder
+
+- Kündige die Zwischenmeldung über eine ARIA-Live-Region an.
+
+Im Idealfall bleibt die Zwischenmeldung nicht lange auf dem Bildschirm, daher
+sollte sie kurz sein, damit der Bildschirmleser alles lesen kann, bevor die
+nächste Seite erscheint.
+
+#### Gut: Interstitielle Ansicht
+
+Wenn der Nutzer in diesem Beispiel die Schaltfläche zum Starten der Zwischenansicht
+aktiviert, verschwindet die ursprüngliche Ansicht und wird durch die Zwischenansicht
+ersetzt. Der Bildschirmleser liest den Inhalt dieser Ansicht, weil sie sich in einer
+Aria-Live-Region befindet. Wenn die Interstitial-Ansicht verschwindet, kehrt die
+ursprüngliche Seite zurück, wobei die Tabelle mit den Suchergebnissen hinzugefügt
+wird. Nach einer kurzen absichtlichen Pause wechselt der Fokus auf die Tabelle und
+der Screenreader liest die Bildunterschrift der Tabelle.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/interstitial/good/index.html"
+target="_blank">Beispiel: Interstitielle Ansicht</a>
+
+Hinweis 1: Wenn du ARIA-Live-Regionen verwendest, musst du sicherstellen, dass
+sich die Region beim Laden der Seite im DOM befindet und dass sie zunächst leer
+ist. Füge die Nachricht in die Live-Region ein, wenn es angebracht ist.
+
+Hinweis 2: Wenn du den Fokus in einen Container verschiebst, der über AJAX geladen
+wurde, musst du eine JavaScript-Zeitüberschreitung (in der Regel 1 bis 2 Sekunden)
+verwenden, NACHDEM der Inhalt geladen wurde, bevor du den Fokus an den neuen
+Container sendest. Achte außerdem darauf, dass der Container auf tabindex="-1"
+eingestellt ist.
+
+#### Schlecht: Interstitielle Ansicht ohne Barrierefreiheit
+
+In diesem schlechten Beispiel ist das visuelle Erlebnis dasselbe wie im guten Beispiel,
+aber Screenreader werden nicht über die Zwischenansicht oder die Suchergebnisse
+informiert.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/interstitial/bad/index.html"
+target="_blank">Beispeil: Interstitielle Ansicht ohne Barrierefreiheit</a>
+
+## Single Page Applications
+
+Einzelseitenanwendungen wurden erfunden, um Websites zu beschleunigen. Anstatt
+jedes Mal, wenn eine Person auf einen Link klickt, eine komplette Seitenaktualisierung
+zu erzwingen, laden Einzelseitenanwendungen in der Regel nur den Hauptinhalt und
+ein paar Variablen wie den Seitentitel, seitenbezogene Stile (falls vorhanden)
+und seitenbezogenes JavaScript (falls vorhanden). Die beiden wichtigsten Probleme
+der Barrierefreiheit, die gelöst werden müssen, sind:
+
+- Benachrichtigung der Nutzer, wenn neue Inhalte geladen werden (Stille ist
+  schlecht). Wenn Screenreader-Nutzer Links, Schaltflächen oder Steuerelemente
+  aktivieren, müssen sie eine Rückmeldung erhalten. Das Design sollte eine
+  Standardmethode für den Umgang mit AJAX-gesteuerten Links und Formular-Eingaben
+  haben.
+
+- Verwaltung des Tastaturfokus. Oft klicken Nutzer auf Links in DOM-Knoten, die
+  nach dem Laden des neuen Inhalts nicht mehr vorhanden sind (z. B. wenn sie auf
+  einen Link in einem Absatz im Hauptinhaltsbereich klicken; dieser Absatz ist
+  dann komplett verschwunden, nachdem der Hauptinhalt mit dem neuen Inhalt
+  überschrieben wurde). Das führt fast immer dazu, dass der Fokus komplett
+  verloren geht und wieder an den Anfang der Seite zurückkehrt. Das kann unter
+  bestimmten Umständen in Ordnung sein (wenn es wünschenswert ist, an den Anfang
+  der Seite zu gelangen), aber es ist am besten, den Fokus immer an eine bestimmte
+  Stelle zu setzen, wenn das Risiko besteht, dass der Fokus verloren geht.
+
+### User sollten auf das Laden neuer "Seiten" in SPAs hingewiesen werden
+
+Es gibt zwei Möglichkeiten, den Nutzer zu informieren, wenn neue AJAX-Inhalte
+geladen wurden:
+
+- Verschiebe den Fokus auf den neuen Inhalt
+
+- Ankündigung des neuen Inhalts über aria-live
+
+In den meisten einfachen Single-Page-Anwendungen ist es jedoch am sinnvollsten,
+den Fokus auf den neuen Inhalt zu setzen.
+
+#### Den Fokus auf den neuen Inhalt setzen
+
+Beachte die folgenden Punkte, wenn du den Fokus sendest:
+
+- Der Container muss auf tabindex="-1" gesetzt werden. Um den Fokus erfolgreich zu
+  empfangen, muss der Container, an den der Fokus gesendet wird, auf tabindex="-1"
+  gesetzt sein.
+
+- Der Fokus muss vorübergehend verschoben werden und dann an das richtige Ziel
+  gesendet werden. Wenn sich der Fokus bereits auf dem Element befindet, an das
+  der Fokus gesendet wird, lesen einige Screenreader (insbesondere VoiceOver auf
+  macOS) den Text in dem Element nicht, selbst wenn sich der Text im Element
+  geändert hat. Eine der einfachsten Möglichkeiten, dies zu beheben, ist, den
+  Fokus vorübergehend an einen leeren Container zu senden und ihn dann an das
+  gewünschte Ziel zu senden. Nicht alle Screenreader benötigen den Trick mit dem
+  temporären Fokus, aber es ist eine Voraussetzung (zumindest im Moment), wenn
+  du VoiceOver und Safari unterstützen willst.
+
+- Es muss eine Verzögerung geben, bevor der Fokus an das endgültige Ziel
+  gesendet wird. VoiceOver auf iOS ist besonders anfällig dafür, den Fokus auf
+  AJAX-Inhalte zu verlieren, wenn der Fokus zu früh gesendet wird. Eine gute
+  Verzögerungsdauer ist in der Regel etwa 1 Sekunde, aber du solltest dein Skript
+  testen, um sicherzustellen, dass die von dir gewählte Verzögerung ausreichend
+  ist. Die meisten Screenreader können viel kürzere Verzögerungen tolerieren,
+  iOS jedoch nicht (bis sie das Problem behoben haben).
+
+- Der Fokus sollte am Anfang des AJAX-Inhalts an eine Überschrift gesendet werden.
+  Wenn möglich, sende den Fokus zu einer Überschrift am Anfang des AJAX-Inhalts.
+  Die Überschrift wirkt im Wesentlichen wie der Titel der neuen Seite. Bei
+  einseitigen Anwendungen wird der `<title>` von den meisten Screenreadern nicht
+  gelesen, daher ist eine Überschrift, die als eine Art Ersatz für den `<title>`
+  fungiert, ein guter Ansatz. Die erste `<h1>`-Überschrift im AJAX-Inhalt kann in
+  JavaScript ausgewählt werden: `$("#container h1:first")`. Es kann auch
+  akzeptabel sein, den Fokus an den Container des neuen AJAX-Inhalts zu
+  senden - z. B. `$("#content")` - wenn keine Überschrift verfügbar ist.
+
+#### Ankündigung des neuen Inhalts über aria-live
+
+In weniger häufigen Fällen kann es sinnvoll sein, den Fokus auf der Schaltfläche
+(oder dem Steuerelement oder dem Link) zu belassen, anstatt den Fokus auf den
+neuen Inhalt zu legen. Wenn das der Fall ist, muss der Nutzer trotzdem eine
+Bestätigung hören, dass etwas passiert ist.
+
+- Optional: Bestätige, dass die Aktion im Gange ist. Wenn das Risiko besteht,
+  dass sich der Empfang der AJAX-Antwort verzögert, kannst du etwas wie "Seite
+  wird geladen", "Suche" oder "läuft" oder etwas Ähnliches ankündigen. Dies könnte
+  für AJAX-Antworten gelten, die Inhalte von Servern Dritter abrufen, oder für
+  Datenbankabfragen, die ein paar Sekunden dauern können.
+
+- Bestätige das Ergebnis der Aktion (Erfolgs- oder Fehlermeldung). Lass die Nutzer
+  wissen, dass das Ereignis beendet wurde und dass es entweder erfolgreich war oder
+  fehlgeschlagen ist. Du könntest Dinge sagen wie "Nachricht gesendet" oder "Fehler:
+  Nachricht konnte nicht gesendet werden" oder "Zusätzliche Ergebnisse geladen" usw.
+
+- Halte die Nachricht kurz. ARIA-Live-Nachrichten können nicht abgespielt werden
+  und es besteht die Gefahr, dass der Nutzer sie unterbricht. Wenn die Nachricht
+  also vollständig gehört werden muss, ist es wahrscheinlicher, dass der Nutzer
+  einer kurzen Nachricht zuhört als einer langen.
+
+- Wähle zwischen durchsetzungsfähig und höflich. Eine durchsetzungsfähige
+  Nachricht (aria-live="assertive") ist in der Regel angebracht, wenn die
+  ARIA-Live-Nachricht das Ergebnis der Aktivierung einer Schaltfläche oder
+  eines Links durch den Nutzer ist, aber auch aria-live="polite" ist eine Option.
+
+- Optional: Gib (kurze) Instruktionen zu den neuen Inhalten an. Ein Beispiel
+  wäre ein benutzerdefiniertes Autovervollständigungsfeld, das Optionen lädt,
+  sobald der Nutzer mit der Eingabe beginnt. Die Ankündigung könnte etwa lauten:
+  "Vier Optionen verfügbar. Benutze den Pfeil nach unten, um auszuwählen."
+
+#### Gut: Link-Klick-Ereignis mit Techniken zur Barrierefreiheit in einer Single-Page-Anwendung
+
+Wenn ein Nutzer in einer einseitigen Anwendung auf einen Link klickt, gibt es einige
+Dinge zu beachten. Für den Anfang zeigen wir nur das grundlegende Klick-Ereignis
+und listen die erforderlichen Elemente im Kommentar im Code auf. Auf den
+eigentlichen Code gehen wir etwas später auf dieser Seite ein.
+
+```js
+$(document).on('click', 'a', function (e) {
+  /* Don't let links act like regular links */
+  e.preventDefault()
+
+  /* Run functions that do the following:
+    - empty the containers that the AJAX content will fill
+    - load the AJAX content
+    - update the document with the AJAX content
+    - update the browser history
+    - send the focus temporarily to an empty container
+    - send the focus to the desired destination after a delay
+  */
+})
+```
+
+### Browserverlauf muss aktualisiert werden bei AJAX-Linkklicks oder erwarteter Zurück-Schaltflächen-Nutzung
+
+Die Nutzer/innen erwarten, dass sie den Zurück-Button benutzen können, nachdem
+sie auf einen Link geklickt oder eine Funktion aktiviert haben, die scheinbar
+eine neue Seite lädt. Bei einseitigen Anwendungen wird der Browserverlauf nicht
+aktualisiert, es sei denn, die Seite enthält JavaScript-Code, um den Browserverlauf
+zu ändern. Das ist etwas, das systematisch geplant und umgesetzt werden muss.
+
+#### Gut: Aktualisieren des Browserverlaufs
+
+Der folgende Code zeigt eine vereinfachte Möglichkeit, den Browserverlauf mit
+history.pushState() zu aktualisieren.
+
+```js
+var newUrl = 'https://dequeuniversity.com'
+var newTitle = 'Deque University'
+history.pushState(
+  {
+    url: newUrl,
+    title: newTitle
+  },
+  newTitle,
+  newUrl
+)
+```
+
+### Seite muss auf 'Zurück' oder 'Vor' im Browser angemessen reagieren
+
+Der Browser sendet ein Popstate-Ereignis, wenn die Schaltflächen "Zurück" oder
+"Vorwärts" (oder Tastaturbefehle) im Browser aktiviert werden. Du kannst dieses
+Ereignis abfangen und die entsprechenden Techniken für die Barrierefreiheit anwenden.
+
+#### Gut: Eine Popstate-Funktion mit Barrierefreiheit
+
+Dieses Beispiel zeigt, wo du die Barrierefreiheit bei einem popstate-Ereignis
+einbauen kannst. Die Details werden später im nächsten Beispiel gezeigt.
+
+```js
+$(window).on('popstate', function (e) {
+  var state = e.originalEvent.state
+  if (state !== null) {
+    /*
+    Run functions that do the following:
+    - empty the containers that the AJAX content will fill
+    - load the AJAX content
+    - update the document with the AJAX content
+    - send the focus temporarily to an empty container
+    - send the focus to the desired destination after a delay
+    */
+  } else {
+    /*
+    (optional conditions when a popstate
+    is not activated)
+    */
+  }
+})
+```
+
+### Das Ganze zusammenfassen
+
+Es ist hilfreich, diese Grundsätze in der Praxis zu sehen (oder zu hören),
+deshalb helfen die folgenden Beispiele, die Dinge konkreter zu veranschaulichen.
+
+#### Gutes Beispiel: Barrierefreie Single-Page-Anwendung
+
+Dies ist eine einfache Möglichkeit, eine Single-Page-Anwendung zu erstellen, ohne
+auf JavaScript-Frameworks angewiesen zu sein. Der folgende Code verwendet zwar
+jQuery, aber die Selektoren können leicht für einfaches JavaScript geändert werden.
+
+Beachte, dass in den meisten Browsern eine gepunktete Linie (oder ähnliches) auf
+dem Bildschirm angezeigt wird, wenn der Fokus auf der Überschrift im Hauptinhalt
+landet. Auf einer echten Website würdest du diesen speziellen Fokusindikator
+vielleicht unterdrücken wollen (aber nicht die Fokusindikatoren für Links,
+Schaltflächen usw.!), aber wir haben ihn hier beibehalten, damit deutlicher wird,
+wann und wo der Fokus liegt.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/singlepage/good/index.html"
+target="_blank">Beispiel: Barrierefreie Single-Page-Anwendung</a>
+
+So wie dieses Beispiel aufgebaut ist, sind alle Seiten echte HTML-Dateien, und
+die Links funktionieren auch, wenn JavaScript deaktiviert ist. Wenn du keine
+echten Dateien möchtest, kannst du auch Webserver-Umleitungen verwenden, um das
+gleiche Ergebnis zu erzielen. Jede Seite verweist auf das Skript der Ein-Seiten-Anwendung,
+so dass jede Seite der Ausgangspunkt für das Ein-Seiten-Erlebnis sein kann.
+
+Einige Funktionen, die in diesem Beispiel noch nicht enthalten sind, die aber
+hinzugefügt werden könnten, sind:
+
+- Umgang mit Links, die zu externen Seiten oder Nicht-HTML-Dokumenten (.pdf,
+  .docx, .mp4, etc.) führen
+
+- Umgang mit Formularen, einschließlich Validierungsfehlermeldungen und Erfolgsmeldungen
+
+Der JavaScript-Code ist unten abgebildet:
+
+```js
+$(function () {
+  var currentContent = $('#innerContent')
+  var currentHeading = $('#contentHeading')
+  var newTitle
+  var newHeading
+  var newContent
+
+  var load = function (newUrl) {
+    /* get AJAX content */
+    $.get(newUrl).done(function (data) {
+      /* Parse the page into variables to insert separately */
+      newTitle = $(data).filter('title').html()
+      var newMain = $(data).filter('main').html()
+      newHeading = $(newMain).filter('h1').html()
+      newContent = $(newMain).filter('#innerContent').html()
+
+      /* update document with AJAX content variables */
+      document.title = newTitle
+      currentContent.html(newContent)
+      currentHeading.html(newHeading)
+    })
+  }
+
+  function focusH1() {
+    /* Set focus temporarily on an empty div,
+    to force screen readers (especially VoiceOver)
+    to read the focused item if the focus was already
+    on that same item before we re-sent the focus to it */
+    $('#tempFocus').focus()
+
+    /* Set focus on the h1 at the beginning of the content
+    after a brief delay (the delay is mostly for iOS;
+    sometimes shorter delays work, but they are risky
+    in iOS, so a minimum of 1 second is recommended) */
+    setTimeout(function () {
+      currentHeading.focus()
+    }, 1000)
+  }
+
+  function emptyOld() {
+    /* empty the original content
+    that is about to be replaced
+    so that iOS doesn't read old information */
+    $('#contentHeading, #innerContent').empty()
+  }
+
+  $(document).on('click', 'a', function (e) {
+    /* activate the functions when a link is clicked */
+
+    /* don't let links act like regular links */
+    e.preventDefault()
+
+    emptyOld()
+
+    newUrl = $(this).attr('href')
+    load(newUrl)
+
+    /* update the browser history */
+    history.pushState(
+      {
+        url: newUrl,
+        title: newTitle
+      },
+      newTitle,
+      newUrl
+    )
+
+    focusH1()
+  })
+
+  $(window).on('popstate', function (e) {
+    var state = e.originalEvent.state
+
+    if (state !== null) {
+      /* activate the functions if a popstate is detected,
+      e.g. if "back" or "forward" are used in the browser */
+
+      emptyOld()
+
+      document.title = state.title
+
+      load(state.url)
+
+      focusH1()
+    } else {
+      /* if the page loads normally
+      (not by clicking on a link or by
+      using the back/forward buttons) */
+    }
+  })
+})
+```
+
+#### Gut: Angular Single Page Application mit Barrierefreiheit
+
+Dieses Beispiel ist eine Abwandlung der gleichen Ideen, bei der Angular verwendet
+wird.
+
+Der Hauptunterschied zum vorherigen Beispiel besteht darin, dass es eine
+ARIA-Live-Ankündigung gibt, die sagt, dass der Inhalt geladen wird, sobald der
+Nutzer einen Link aktiviert. In diesem Beispiel ist diese Ankündigung wahrscheinlich
+nicht nötig, weil die Ladezeit der Seite kurz ist, aber du kannst dieses Beispiel
+als Modell für Ereignisse verwenden, die länger dauern.
+
+Tipp: Wenn du eine Ankündigung zum Laden von Inhalten machst, solltest du sie
+ankündigen, bevor du das AJAX-Ladeereignis startest. Der Sinn der Ankündigung
+"Inhalt wird geladen" ist es, Feedback zu geben, bevor die Ergebnisse eintreffen.
+Wenn du wartest, bis das AJAX-Ereignis begonnen hat, oder noch schlimmer, nachdem
+es beendet wurde, kommt die Ankündigung möglicherweise zu spät oder gar nicht,
+wenn der Inhalt nicht geladen wird.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/singlepage/good-angular/index.html"
+target="_blank">Angular Single Page Application mit Barrierefreiheit</a>
+
+#### Schlecht: Einseitige Anwendung ohne Barrierefreiheit
+
+Dieses schlechte Beispiel folgt nicht den Best Practices für Barrierefreiheit,
+d.h. wenn der Nutzer einen Link aktiviert, sagt der Screenreader nichts.
+Bildschirmleser-Nutzer fragen sich vielleicht, ob etwas kaputt ist.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/singlepage/bad-angular/index.html"
+target="_blank">Einseitige Anwendung ohne Barrierefreiheit</a>

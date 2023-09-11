@@ -1,0 +1,300 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Benutzer über Änderungen benachrichtigen'
+---
+
+Eines der größten Probleme mit der Barrierefreiheit bei dynamischen Inhalten
+ist die Notwendigkeit, die Nutzer über die Änderung des Inhalts zu informieren.
+Sehende Nutzer profitieren davon, wenn die Änderungen hervorgehoben oder
+visuell hervorgehoben werden. Blinde Nutzerinnen und Nutzer müssen auf andere Weise
+benachrichtigt werden, z. B. indem eine neue Seite gelawwwwwden wird, der Fokus
+auf den neuen Inhalt gelegt wird oder ARIA-Live-Ankündigungen verwendet werden.
+Egal wie ausgefallen die dynamischen Prozesse sind, die grundlegende Notwendigkeit,
+die Nutzer/innen über Änderungen zu informieren, bleibt bestehen.
+
+Eines der schlimmsten Dinge, die bei dynamischen Inhalten passieren können, ist,
+dass Screenreader-Nutzer/innen eine Funktion aktivieren (z. B. auf eine Schaltfläche
+klicken) und absolut nichts hören. Das ist bei modernen AJAX-gesteuerten Websites
+leider sehr häufig der Fall, weil die Entwickler die Benutzererfahrung von
+Screenreadern nicht berücksichtigen.
+
+## Option 1: Seite laden oder neu laden
+
+Eine der einfachsten Methoden, um Menschen auf neue Inhalte aufmerksam zu machen,
+ist, sie auf eine neue Seite zu schicken oder die aktuelle Seite neu zu laden.
+Dies ist die älteste Methode und erfordert kein JavaScript. Du lässt den Nutzer
+einfach einen Link aktivieren.
+
+Wenn eine neue Seite geladen wird oder wenn dieselbe Seite neu geladen wird,
+machen die meisten Screenreader Folgendes
+
+- Sie lesen den Seitentitel vor
+
+- Sie geben eine Zusammenfassung der Funktionen auf der Seite aus (z. B. "7
+  Überschriften, 3 Regionen und 27 Links")
+
+- Sie beginnen mit dem Lesen am Anfang der Seite.
+
+Wenn diese Ereignisse eintreten, wissen Screenreader-Nutzer/innen, dass sie sich
+auf einer neuen Seite befinden (oder dass die aktuelle Seite neu geladen wird,
+wenn sie denselben Titel hören wie die Seite, auf der sie sich gerade befunden
+haben), und erwarten daher, dass sie gleich neue Inhalte hören werden.
+
+### Überlegungen zur Barrierefreiheit
+
+Das Laden einer neuen Seite ist nicht per se unzugänglich (es sei denn, es
+geschieht unerwartet), aber es gibt ein paar Überlegungen, die du beachten solltest:
+
+- Achte darauf, dass der Seitentitel den Inhalt der Seite UND das Ergebnis der
+  Benutzeraktionen korrekt wiedergibt. Wenn der/die Nutzer/in zum Beispiel gerade
+  ein fehlerhaftes Formular abgeschickt hat, muss der Seitentitel den Fehlerzustand
+  wiedergeben. Er könnte z. B. lauten: "Fehler: Bitte korrigiere 3 Fehler im Formular."
+
+- Mache es einfach, zum Hauptinhalt zu navigieren. Wenn der neue Inhalt irgendwo
+  in der Mitte der Webseite vergraben ist, ist er möglicherweise schwer zu finden.
+  Benutzer von Bildschirmlesegeräten und sehende Tastaturbenutzer müssen den gesamten
+  Inhalt in der Kopfzeile und der Navigation überspringen, um zum Hauptinhalt zu
+  gelangen. Wenn die Seite Überschriften und Orientierungspunkte verwendet, ist das
+  für Screenreader relativ einfach, weil es dafür spezielle Tastenkombinationen gibt.
+  Sehende Tastaturbenutzer haben diese Tasten nicht zur Verfügung, daher wird ein
+  Link "Zum Hauptinhalt springen" empfohlen. Achte darauf, dass das Ziel dieses
+  Links tabindex="-1" hat, sonst funktioniert er in manchen Browsern nicht.
+
+## Option 2: Den Fokus verschieben
+
+Wenn ein neuer Inhalt als direktes Ergebnis einer Benutzeraktion erscheint - wie
+z. B. das Aktivieren einer Schaltfläche - kann es sinnvoll sein, den Fokus auf
+diesen neuen Inhalt zu setzen. Ein klassisches Beispiel ist das Senden des Fokus
+an einen modalen Dialog, der aufpoppt. Tastaturbenutzer brauchen den Fokus auf
+das Dialogfeld, damit sie damit interagieren können.
+
+### Überlegungen zum Fokus-Verhalten
+
+- Der Container, an den der Fokus gesendet wird, muss tabindex="-1" haben. Wenn
+  der Container nicht auf tabindex="-1" gesetzt ist, wird der Fokus nicht in
+  allen Browsern erfolgreich ankommen und Screenreader können den Text möglicherweise
+  nicht lesen.
+
+- Der Container darf nicht leer sein. Du möchtest den Fokus nicht an ein leeres
+  `<div>` oder einen anderen leeren Container senden, denn selbst wenn der Fokus
+  erfolgreich ankommt, kann das Lesegerät nichts lesen. Der Bildschirmleser bleibt
+  stumm und macht damit den Zweck des Senden des Fokus zunichte.
+
+- Verschiebe den Fokus nicht unerwartet. Das Senden des Fokus sollte immer das
+  Ergebnis einer vom Nutzer initiierten Aktion oder eines anderen kritischen
+  Ereignisses sein, das die sofortige Aufmerksamkeit des Nutzers erfordert. Sende
+  den Fokus nicht nur, um eine Ankündigung zu machen, wenn das Verschieben des
+  Fokus die Aktionen des Nutzers stören würde oder wenn die Störung nicht kritisch
+  ist. Verwende ARIA-Live-Regionen, um Ankündigungen zu machen, die nicht den
+  Tastaturfokus stehlen.
+
+- Das Senden des Fokus muss das letzte Ereignis sein, und es wird wahrscheinlich
+  notwendig sein, das Senden des Fokus zu verzögern. Wenn Inhalte über AJAX geladen
+  werden, dauert es manchmal einen Moment, NACHDEM die AJAX-Inhalte geladen wurden,
+  bis sie für Bildschirmleser verfügbar sind, vor allem, wenn JavaScript verwendet
+  wird, um die neuen Inhalte nach dem Laden zu bearbeiten, und vor allem, wenn sich
+  der Tastaturfokus bereits in dem Bereich befindet, an den du den Fokus senden
+  willst (entweder an das Element selbst oder an einen Abkömmling davon). Wenn du
+  den Fokus zu früh sendest, kann es sein, dass der DOM-Knoten noch nicht
+  verfügbar oder leer ist, so dass der Screenreader nichts sagt, wenn der Fokus
+  auf dem Knoten ankommt. Teste den Vorgang in verschiedenen Screenreadern und
+  Browsern. Wenn einer von ihnen den Inhalt nicht lesen kann, wenn der Fokus
+  eintrifft, füge eine Verzögerung hinzu (1 bis 2 Sekunden sind ausreichend),
+  bevor du den Fokus sendest. Um auf Nummer sicher zu gehen, ist es am besten,
+  bei allen AJAX-Ladeereignissen eine Verzögerung einzufügen, bevor der Fokus
+  gesendet wird.
+
+#### Fokus wird nach einer Verzögerung auf AJAX-Inhalte mit tabindex="-1" verschoben
+
+In diesem Beispiel wird der AJAX-Inhalt geladen, dann wird tabindex="-1" zur
+ersten Überschrift im neuen Inhalt hinzugefügt, dann gibt es eine
+JavaScript-Verzögerung von 1 Sekunde, dann wird der Fokus auf die Überschrift
+im neuen Inhalt (die mit tabindex="-1") gesetzt. Es ist zwar möglich, den Fokus
+auf den gesamten Container statt auf die Überschrift zu setzen, aber einige
+Screenreader lesen den gesamten Inhalt des Containers ohne Unterbrechung, wenn
+der Container den Fokus erhält, was bei langen Dokumenten wie diesem hier etwas
+unübersichtlich sein kann. Normalerweise ist es besser, den Fokus auf die
+Überschrift am Anfang zu setzen. Wenn es keine Überschrift gibt, ist es akzeptabel,
+den Fokus an den Container zu senden. Du könntest sogar das JavaScript so
+einrichten, dass es nach der ersten Überschrift sucht und, wenn es keine gibt,
+den Fokus an den Container sendet.
+
+TODO: Make a real example
+
+Der Code für diese einfache AJAX-Interaktion ist unten abgebildet:
+
+```html
+<div id="decContainer"></div>
+<script>
+  $('#decButton').click(function () {
+    $.ajax({
+      url: 'assets/html/module-dynamic/ajax/declaration.html',
+      type: 'GET',
+      cache: false,
+      success: function (result) {
+        $('#decContainer').show().html(result)
+        var decHeading = $('#decContainer h2:first')
+        /* set tabindex="-1" so the heading can receive keyboard focus */
+        decHeading.attr('tabindex', '-1')
+        setTimeout(function () {
+          /* move focus to the heading after a delay of 1 second */
+          $('#decContainer h2:first').focus()
+        }, 1000)
+      }
+    })
+  })
+</script>
+```
+
+#### Der Fokus wurde auf einen Container verschoben, dem tabindex="-1" fehlt
+
+In diesem schlechten Beispiel wird alles "richtig" gemacht, außer dass der
+Container, der den Fokus erhält, nicht auf tabindex="-1" gesetzt ist, so dass
+der Fokus in den meisten Browsern nicht erfolgreich ankommt und der Screenreader
+nichts zu lesen hat.
+
+TODO: Make a real example
+
+Der Code für diese einfache AJAX-Interaktion ist unten abgebildet:
+
+```html
+<div id="decContainer2"></div>
+<script>
+  $('#decButton2').click(function () {
+    $.ajax({
+      url: 'assets/html/module-dynamic/ajax/declaration.html',
+      type: 'GET',
+      cache: false,
+      success: function (result) {
+        $('#decContainer2').show().html(result)
+        var decHeading = $('#decContainer2 h2:first')
+        setTimeout(function () {
+          $('#decContainer2 h2:first').focus()
+        }, 1000)
+      }
+    })
+  })
+</script>
+```
+
+## Option 3: ARIA Live
+
+ARIA-Live-Ankündigungen ermöglichen es der Webseite, Ankündigungen zu machen,
+ohne eine Seite zu laden oder neu zu laden oder den Fokus zu verschieben. Für
+benutzerdefinierte Widgets und benutzerdefinierte Ereignisse können ARIA-Live-Ankündigungen
+die einzige Möglichkeit sein, bestimmte Arten von Zustandsänderungen oder
+andere ähnliche Ereignisse zu kommunizieren.
+
+ARIA-Live-Regionen sind Container (wie `<div>` oder `<span>`), die als
+Live-Regionen gekennzeichnet sind. Sie sind zu Beginn leer. Wenn eine
+Ankündigung gemacht werden muss, fügt ein JavaScript-Ereignis Text in den
+ARIA-Live-Container ein. Bildschirmlesegeräte sprechen den Text.
+
+Es gibt zwei Hauptarten von ARIA-Live-Ansagen: aria-live="assertive" und aria-live="polite".
+Durchsetzungsfähige Ansagen sollen den Screenreader sofort unterbrechen und die
+Ansage machen. Höfliche Ansagen sollen warten, bis der Screenreader den aktuellen
+Satz oder das aktuelle Element zu Ende gelesen hat, bevor er die Ansage macht.
+Die Ansage wird in eine Warteschlange gestellt, bis der Screenreader bereit ist.
+
+Es gibt auch spezielle Arten von ARIA-Live-Regionen. Wenn du ein Element auf
+role="alert" setzt, wird es zu einer durchsetzungsfähigen ARIA-Live-Region
+(der Unterschied ist, dass Screenreader auch "alert" sagen, wenn sie ARIA-Warnmeldungen
+lesen). Weitere Informationen findest du in der <a href="https://www.w3.org/TR/wai-aria-1.1/#aria-live"
+target="_blank">offiziellen Dokumentation über aria-live regions</a>.
+
+### Gutes Beispiel: Einfache ARIA-Live-Ankündigung
+
+In diesem Beispiel wird nach dem Aktivieren der Schaltfläche vorübergehend eine
+Live-Ansage angezeigt. Der Fokus wird nicht von der Schaltfläche wegbewegt.
+Bildschirmleser sagen den Text an, der in den Live-Bereich eingefügt wurde.
+
+Der Code für das obige Beispiel ist unten dargestellt:
+
+```html
+<p>
+  <button id="liveButton">Create announcement</button>
+  <span id="liveRegion" aria-live="assertive"></span>
+</p>
+<p><button id="liveButton">Create announcement</button></p>
+<script>
+  $('#liveButton').click(function () {
+    var live = $('#liveRegion')
+    live
+      .css({
+        display: 'inline-block',
+        'background-color': '#fff5bc',
+        padding: '0px 4px'
+      })
+      .text('Hooray for accessibility!')
+    setTimeout(function () {
+      live.text('')
+      live.removeAttr('style')
+    }, 3000)
+  })
+</script>
+```
+
+### Überlegungen zu ARIA-Live-Ansagen
+
+- Die ARIA-Live-Region muss vorhanden und leer sein, bevor eine Ankündigung gemacht
+  wird. Am besten stellst du sicher, dass die ARIA-Live-Region bereits auf der
+  Seite ist, wenn die Seite geladen wird. Du kannst nicht gleichzeitig eine
+  ARIA-Live-Region einfügen und eine Ankündigung machen. Der Bereich muss sich auf
+  der Seite befinden und die Barrierefreiheit-API muss wissen, dass er da ist und
+  leer ist, bevor eine Ansage an den Screenreader gesendet werden kann. Wenn du
+  die ARIA-Live-Region nach dem Laden der Seite einfügst, musst du JavaScript
+  verwenden, um die Anzeige zu verzögern (in der Regel um mindestens eine Sekunde),
+  bevor du einen Text in die Region sendest.
+
+- ARIA-Live-Ansagen sollten kurz sein. Screenreader ermöglichen es den Nutzern,
+  ARIA-Live-Ansagen zu unterbrechen. Wenn eine ARIA-Live-Ansage unterbrochen
+  wird, kann sie nicht mehr abgerufen werden. Die Ansage ist verloren. Bei kurzen
+  Ansagen ist die Wahrscheinlichkeit, dass sie unterbrochen werden, geringer.
+
+- Entferne die Ansage kurz nachdem sie eingefügt wurde (in den meisten Fällen).
+  ARIA-Live-Ansagen werden häufig verwendet, um Dinge anzukündigen, die nur
+  vorübergehend sind, daher ist es sinnvoll, dass die Ansage selbst vorübergehend
+  ist. Du willst nicht riskieren, dass ein Screenreader-Nutzer auf den veralteten
+  Text einer ARIA-Live-Ankündigung stößt, der nicht mehr relevant ist. Der Nutzer
+  könnte denken, dass die Webseite die Ankündigung erneut macht, obwohl er in
+  Wirklichkeit nur die ursprüngliche Ankündigung gefunden hat.
+
+- Wenn die Ankündigung nicht gesehen werden soll, verstecke sie mit einem CSS-Clip.
+  Manchmal sind ARIA-Live-Ankündigungen nur für Screenreader-Nutzer gedacht. In
+  diesem Fall kannst du die CSS-Clip-Methode verwenden, um sie nur für sehende
+  Nutzer zu verbergen. Das CSS würde etwa so aussehen:
+
+  ```css
+  .visuallyhidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    border: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+  }
+  ```
+
+## Statusmeldungen
+
+Statusmeldungen müssen über Rollen oder Eigenschaften programmatisch bestimmbar
+sein, so dass sie dem Nutzer von assistiven Technologien präsentiert werden
+können, ohne dass sie im Fokus stehen.
+
+Wenn neue Informationen auf dem Bildschirm erscheinen, ohne dass sie fokussiert
+werden, müssen sie als Statusmeldung kodiert werden, damit assistive Technologien
+den Nutzer auf die Informationen aufmerksam machen können. Andernfalls kann es
+sein, dass die Nutzer/innen die neuen Informationen nicht hören, wenn sie ein
+Bildschirmlesegerät verwenden, oder sie nicht sehen, wenn sie eine Bildschirmlupe
+verwenden und die Informationen außerhalb ihres Sichtfelds erscheinen.
+
+### Gutes Beispiel: Statusmeldung lesen, ohne den Fokus zu erhalten
+
+Unten siehst du den Bildschirm, den ein Nutzer erreicht, nachdem er über den
+Link Kontakt eine Nachricht an die Deque University gesendet hat. Diese
+Nachricht wird automatisch von einem Bildschirmlesegerät gelesen, ohne dass
+sie fokussiert werden muss.
+
+![Statusmeldung, die lautet: Danke für deinen Kommentar! Wir haben uns gemerkt, wo du warst. Klicke auf den Link unten, um zurück zu gelangen. Bring mich zurück.](/images/dynamic-updates/good-example-status-message-no-focus.png)

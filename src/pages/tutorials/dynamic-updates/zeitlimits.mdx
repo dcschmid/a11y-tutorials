@@ -1,0 +1,276 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Zeitlimits'
+---
+
+Wenn es für eine Aktivität ein Zeitlimit gibt, müssen die Nutzer/innen entweder
+das Zeitlimit im Voraus kennen oder gewarnt werden, wenn die Zeit abläuft, und
+sie müssen genügend Zeit haben, um entweder ihre Arbeit zu beenden oder das
+Zeitlimit zu verlängern.
+
+## Session Timeout
+
+### Bei Zeitlimit für Sitzung: Warnung und Zeit zum Speichern/Verlängern vorschreiben
+
+Eine Sitzung darf nie ohne eine Warnung enden. Eine der effektivsten Möglichkeiten,
+die Nutzer zu warnen, ist ein Dialog, der dem Nutzer die Wahl lässt, die Sitzung
+zu verlängern oder sie auslaufen zu lassen. Die Warnung sollte so rechtzeitig
+erscheinen, dass der/die Nutzer/in noch Zeit hat, darauf zu reagieren. Eine
+zweiminütige Warnung wird unter den meisten Umständen als ausreichend angesehen.
+
+#### Sitzungs-Timeout mit Countdown, Warnung und Zeitlimit-Verlängerung
+
+In diesem Beispiel wird den Nutzern vor dem Ende der Sitzung ein Dialog angezeigt.
+
+Beispiel: <a href="https://dequeuniversity.com/assets/html/module-dynamic/timeout/good/index.html"
+target="_blank">Gehe zum Beispiel zum Session-Timeout mit einer Dialogwarnung</a>
+
+#### Schlechtes Beispiel: Timeout der Sitzung ohne Warnung
+
+In diesem schlechten Beispiel endet die Sitzung ohne jede Warnung und ohne dass
+die Nutzer die Möglichkeit haben, die Sitzung zu verlängern.
+
+Beispiel: <a href="https://dequeuniversity.com/assets/html/module-dynamic/timeout/bad/index.html"
+target="_blank">Gehe zum schlechten Beispiel der Sitzungszeitüberschreitung ohne
+Warnung</a>
+
+### Unvollständige Daten sollten nach einem Timeout der Sitzung gespeichert werden
+
+Wenn eine Sitzung für einen Nutzer vorzeitig endet, besteht das Risiko eines
+Datenverlusts. Selbst wenn die Website den Nutzer vor der Zeitüberschreitung
+warnt, können andere Ereignisse dazwischenkommen, die dazu führen, dass der
+Nutzer die Sitzung nicht verlängern kann. Der Nutzer muss sich zum Beispiel vom
+Computer entfernen, um anderen Dingen nachzugehen, oder er wird durch andere
+Dinge im Raum abgelenkt. Nur weil die Nutzerin oder der Nutzer die Sitzung nicht
+verlängert, solltest du nicht davon ausgehen, dass sie oder er sich entschieden
+hat, die Sitzung abzubrechen und ihre oder seine Daten endgültig zu verlieren.
+
+Selbst wenn der/die Nutzer/in vor der Sitzungszeit gewarnt wird, kann es sein,
+dass er/sie nicht weiß, dass die Daten verloren gehen, wenn die Sitzung endet.
+Wenn eine Nutzerin oder ein Nutzer begonnen hat, Daten in ein Formular einzugeben,
+sollte die Website nach Möglichkeit so programmiert sein, dass die Daten bei
+Beendigung der Sitzung gespeichert werden, so dass die Nutzerin oder der Nutzer
+die Daten nach dem Start einer neuen Sitzung abrufen und dort weitermachen kann,
+wo sie oder er aufgehört hat. Das gilt vor allem, wenn der Nutzer mitten in einem
+langwierigen Prozess steckt, z. B. beim Ausfüllen einer Steuererklärung oder eines
+Hypothekenantrags oder beim Schreiben einer langen Nachricht.
+
+Manchmal ist es nicht möglich, nicht praktikabel oder nicht ratsam, die Daten zu
+speichern, aber diese Umstände sollten eher als Ausnahme denn als Regel betrachtet
+werden.
+
+### Nutzer vor Datenverlust bei Inaktivität warnen
+
+Wenn eine Nutzerin oder ein Nutzer versehentlich zu lange braucht, um eine
+Aufgabe zu erledigen, oder die Seite für eine gewisse Zeit inaktiv lässt, ist es
+frustrierend, wenn sie oder er die Aufgabe noch einmal von vorne beginnen muss.
+Um das zu vermeiden, kannst du:
+
+- Gib dem/der Nutzer/in unabhängig von der Inaktivität mindestens 20 Stunden
+  Zeit, um die Aufgabe oder das Formular zu erledigen.
+
+- Informiere die Nutzer/innen zu Beginn der Aufgabe über die Zeitbeschränkung
+  für die Inaktivität, damit sie ihre Informationen im Voraus vorbereiten können
+  (damit sie nicht noch mehr Dokumente suchen müssen, um z. B. ihre Steuererklärung
+  zu vervollständigen, und so eine Zeitüberschreitung für die Inaktivität riskieren),
+  und achte darauf, dass die Pausen, die sie machen, um ihre Arbeit zu überprüfen,
+  nicht zu lang sind.
+
+- Benutzerinformationen speichern. Diese Lösung ist jedoch von verschiedenen
+  Datenschutzrichtlinien und -gesetzen abhängig (z. B. von der ausdrücklichen
+  Zustimmung des Nutzers). Das W3C empfiehlt daher, vor der Verwendung dieser
+  Lösung Experten für Datenschutz und Rechtsbeistand zu konsultieren.
+
+Beachte, dass dieses Erfolgskriterium nicht für Inhalte gilt, die unabhängig
+von der Inaktivität zeitlich begrenzt sind. Zeitlich begrenzte Inhalte werden
+von SC 2.2.1 "Zeitliche Begrenzung" abgedeckt.
+
+#### Gutes Beispiel: Inaktivitäts-Timeout-Warnung
+
+In diesem Beispiel wird ein Nutzer zu Beginn gewarnt, dass seine Sitzung nach
+15 Minuten Inaktivität abläuft.
+
+![Um deine Daten zu schützen, laufen Benutzersitzungen nach 15 Minuten Inaktivität ab. Wenn du die Arbeit länger als diese Zeitspanne unterbrichst, verlierst du möglicherweise Fortschritte in diesem Formular.](/images/dynamic-updates/timeout-warning.png)
+
+## Timer mit festen Fristen
+
+### Timer mit festen Fristen: dynamischer Countdown, vor allem kurz vor Ablauf
+
+Ein dynamischer Countdown zählt in Echtzeit bis zur Deadline herunter. So bekommen
+die Nutzer ein Gefühl für die Dringlichkeit der Frist und können entsprechend
+handeln.
+
+Wichtig: Screenreader lesen den Text des Timers als statischen Text und bieten
+keine Live-Updates, es sei denn, es werden auch ARIA-Live-Regionen verwendet. Der
+Nutzer kann vom Timer weg und wieder zurück navigieren, um die verbleibende Zeit
+zu erfahren, aber die Live-Aktualisierung erfolgt nicht automatisch.
+
+### Countdowns sollten ARIA-Live-Ankündigungen in Abständen nutzen
+
+Screenreader-Nutzer können von Live-Ansagen über die verbleibende Zeit profitieren,
+vor allem, wenn die Frist näher rückt. Wenn ein Nutzer zum Beispiel einen
+einstündigen Test ablegt, könnte der Timer ihn in 15-Minuten-Intervallen, bei
+noch 2 Minuten und bei noch 1 Minute informieren. Das wäre vernünftig.
+
+#### Gutes Beispiel: Timer mit ARIA-Warnungen und Seitentitel-Updates
+
+In diesem Beispiel ist die Frist sehr bald abgelaufen: 40 Sekunden ab dem Zeitpunkt,
+an dem die Seite geladen wird. Alle 10 Sekunden gibt es eine ARIA-Live-Ansage, und
+außerdem alle 5 verbleibenden Sekunden. Die Häufigkeit der Ansagen in diesem Beispiel
+ist zu Instruktionszwecken etwas übertrieben (damit du die ARIA-Live-Ansagen erleben
+kannst). In den meisten Fällen würdest du weniger Ansagen machen und mehr Zeit zwischen
+den Ansagen lassen.
+
+Beispiel: <a href='https://dequeuniversity.com/assets/html/module-dynamic/deadline/good/index.html'
+target='_blank'>Gehe zu Timer gutes Beispiel</a>
+
+Hinweis 1: Beachte auch, dass der Seitentitel dynamisch mit der verbleibenden
+Zeit aktualisiert wird.
+
+Hinweis 2: Wenn der Timer abläuft oder wenn der Nutzer die Schaltfläche "Kaufen"
+betätigt, wird der Fokus auf die Nachricht gesetzt, damit Screenreader-Nutzer
+sie hören können. Das ist in diesem Fall besonders wichtig, weil die Schaltfläche
+"Kaufen" verschwindet. Wenn der Tastaturfokus auf der Schaltfläche liegt, wenn
+sie verschwindet, geht der Fokus höchstwahrscheinlich verloren und kehrt an den
+Anfang der Seite zurück. Das Verschieben des Fokus auf die Nachricht stellt
+sicher, dass der Fokus nicht verloren geht.
+
+#### Schlechtes Beispiel: Timer ohne ARIA-Warnungen
+
+In diesem schlechten Beispiel sieht der Timer für sehende Nutzer gleich aus,
+aber es gibt keine ARIA-Ankündigungen für Screenreader-Nutzer. Der Seitentitel
+ist ebenfalls statisch und enthält keinen dynamischen Timer.
+
+Beispiel: <a href="https://dequeuniversity.com/assets/html/module-dynamic/deadline/bad/index.html"
+target="_blank">Gehe zu Timer schlechtes Beispiel</a>
+
+### Countdowns sollten ARIA-Live nicht übermäßig für Screenreader-Nutzer posten
+
+Es gibt keine genaue Regel dafür, wie oft ARIA-Updates gepostet werden sollten,
+aber du solltest dir Gedanken über das Nutzererlebnis machen und berücksichtigen,
+wie wichtig es ist, die genaue verbleibende Zeit zu kennen. Jeder Kontext ist ein
+bisschen anders.
+
+Was du nicht willst, ist, Ankündigungen so häufig zu posten, dass es
+Screenreadernutzern schwerfällt, den Rest der Seite wahrzunehmen. Du willst
+nicht in den Bereich der Belästigung vordringen.
+
+### Bei kritischem Timing kann dynamischer Countdown ins `<title>` einfließen
+
+Der `<title>` der Seite ist das erste, was Screenreader-Nutzer hören. Wenn die
+Frist bald abläuft, kann es hilfreich sein, gleich beim Laden der Seite die
+verbleibende Zeit zu hören. Wenn die Frist nicht so bald abläuft, ist es weniger
+wichtig, einen dynamischen Timer in den `<title>` der Seite einzufügen.
+
+### Bei kritischem Timing sollten Countdowns und Warnungen auf der Seiten stehen
+
+Denke ganzheitlich über die Website als Ganzes nach. Wenn es sich bei der Website
+um eine Auktions- oder Ticketverkaufsseite handelt oder um eine andere Website,
+bei der es auf die Einhaltung von Fristen ankommt, solltest du einen dynamischen
+Countdown-Timer auf allen relevanten Seiten einbauen, einschließlich ARIA-Live-Updates
+und Aktualisierungen des Seitentitels, wo es angebracht ist.
+
+## Automatisch aktualisieren/neu laden
+
+### Die Seite muss nicht automatisch aktualisiert oder neu geladen werden
+
+Die häufigsten Verstöße gegen diese Regel sind Nachrichten-Websites. Es gibt
+legitime Gründe, den Inhalt aktuell zu halten, aber es gibt ernsthafte Probleme
+mit der Barrierefreiheit und der Benutzerfreundlichkeit von Seiten, die sich
+automatisch aktualisieren.
+
+Seiten, die sich ohne die Erlaubnis des Nutzers automatisch aktualisieren,
+verursachen Probleme für alle. Wenn eine Person gerade dabei ist, die Seite zu
+lesen, wird der Bildschirm kurzzeitig leer, während die Seite neu geladen wird.
+Im besten Fall kehren der visuelle Blickwinkel und der Tastaturfokus an dieselbe
+Stelle zurück. Das ist immer noch ärgerlich und verwirrend, besonders für
+Nutzer/innen mit Aufmerksamkeitsdefiziten oder kognitiven Einschränkungen. Im
+schlimmsten Fall verändert sich die Seite erheblich und der ursprüngliche Inhalt
+ist gar nicht mehr vorhanden oder befindet sich an einer anderen Stelle.
+
+Nutzer von Bildschirmlesegeräten sind besonders stark von automatischen
+Seitenaktualisierungen betroffen. Es kann lange dauern, bis sie ihre vorherige
+Position gefunden haben, und dann wird die Seite möglicherweise erneut aktualisiert.
+Das kann ziemlich frustrierend sein. In manchen Fällen haben die Nutzer/innen
+nicht genug Zeit, ihren Platz zu finden, bevor die Seite erneut aktualisiert wird.
+Das gilt besonders für Menschen mit motorischen Einschränkungen, die sich nur
+langsam bewegen können.
+
+#### Schlechtes Beispiel: Automatischer JavaScript-Refresh
+
+In diesem schlechten Beispiel verwendet die simulierte Nachrichtenseite JavaScript,
+um sich nach 5 Sekunden automatisch zu aktualisieren und eine andere Schlagzeile
+zu zeigen. Zugegeben, 5 Sekunden sind eine viel kürzere Aktualisierungszeit als
+auf echten Nachrichtenseiten. Die meisten Nachrichtenseiten würden ein paar Minuten
+warten, bevor sie die Seite aktualisieren, aber die Probleme mit der Barrierefreiheit
+sind immer noch real, egal ob mit einer kurzen oder einer längeren Verzögerung.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/reload/bad/index.html?version=1"
+target="_blank">Gehe zu JavaScript Auto-Refresh schlechtes Beispiel</a>
+
+#### Schlechtes Beispiel: Meta refresh
+
+In diesem schlechten Beispiel wird das refresh `<meta>` Element anstelle von
+JavaScript verwendet, um die Seite alle 5 Sekunden zu aktualisieren. Ein kleiner
+Vorteil dieser (schlechten) Technik ist, dass der Viewport in den meisten Browsern
+an seine ursprüngliche Position zurückkehrt, im Gegensatz zum JavaScript-Ereignis
+"Seite laden", das in der Regel dazu führt, dass die Seite wieder nach oben scrollt.
+Trotzdem ist dies ein schlechtes Beispiel, das vermieden werden muss.
+
+Hinweis: Die Überschrift des Artikels in diesem Beispiel ändert sich nicht bei
+jeder Aktualisierung, aber auf einer echten Nachrichtenseite würde sie sich
+wahrscheinlich regelmäßig ändern.
+
+```html
+<meta http-equiv="refresh" content="5" />
+```
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/reload/bad2/index.html"
+target="_blank">Gehe zu meta refresh schlechtes Beispiel</a>
+
+### Webseiten können Nutzer über empfohlene Updates benachrichtigen
+
+Wenn frische Inhalte für eine Website wichtig sind, ist eine Möglichkeit, diesem
+Bedürfnis nachzukommen, ohne das Benutzererlebnis zu beeinträchtigen, eine
+Benachrichtigung darüber zu geben, dass neuere Inhalte verfügbar sind.
+
+- Wenn die Aktualisierung dringend ist, benutze einen Dialog oder etwas Ähnliches,
+  um den Nutzer zu benachrichtigen. Leite den Fokus auf das Dialogfeld, um eine gute
+  Barrierefreiheit zu gewährleisten, und gib den Nutzern die Möglichkeit, die Seite
+  zu aktualisieren oder zurückzukehren, ohne die Seite zu aktualisieren.
+
+- Wenn die Aktualisierung nicht dringend ist, solltest du weniger aufdringliche
+  Methoden zur Benachrichtigung der Nutzer/innen in Betracht ziehen, z. B. eine
+  ARIA-Warnmeldung, die auf dem Bildschirm sichtbar ist und von Screenreadern
+  angezeigt wird, aber nicht den Tastaturfokus stiehlt.
+
+#### Gutes Beispiel: ARIA-Warnung, wenn neue, nicht dringende Inhalte verfügbar sind
+
+In diesem guten Beispiel wird nach 5 Sekunden eine ARIA-Warnung angezeigt, wenn
+ein neuer Inhalt verfügbar ist. Die Meldung ist etwas unauffällig und erscheint
+am Anfang des Dokuments. Die Tatsache, dass es sich um eine ARIA-Warnung
+(role="alert") handelt, stellt sicher, dass Screenreadernutzer die Ankündigung
+hören. Die Nutzer haben dann die Möglichkeit, die Seite zu aktualisieren oder
+nicht. Sie können auch wählen, ob sie in 5 Sekunden erneut daran erinnert werden
+wollen.
+
+Beachte die Dauer der Verzögerung: Eine viel längere Verzögerung als 5 Sekunden
+wäre angemessener. Die schnelle Zeitüberschreitung dient nur dazu, das Konzept
+besser zu veranschaulichen.
+
+Link: <a href="https://dequeuniversity.com/assets/html/module-dynamic/reload/good/index.html?version=1"
+target="_blank">Ein gutes Beispiel ist der ARIA-Alarm</a>
+
+Hinweis zum Tastaturfokus: Die Schaltflächen "In 5 Sekunden erinnern" und "Abbrechen"
+lassen beide ihren eigenen Container (`<div role="alert">`) verschwinden, was
+bedeutet, dass der Tastaturfokus verloren geht, wenn du ihn nicht an eine bestimmte
+Stelle sendest. Du musst den Fokus irgendwo hinschicken, nachdem diese Schaltflächen
+gedrückt wurden. In diesem Fall sendet das Skript den Fokus an das erste `<h1>`
+auf der Seite, wenn eine dieser Schaltflächen gedrückt wird.
+
+Hinweis zum Leeren des Alert-Containers: Wenn ein und derselbe Alert-Container
+(oder Aria-Live-Container) für mehrere Meldungen verwendet werden soll, ist es
+immer am besten, den Container zu leeren, bevor neue Inhalte hineingeschrieben
+werden. Andernfalls besteht die Gefahr, dass Screenreader den neuen Inhalt nicht
+lesen können, vor allem wenn er mit dem vorherigen Inhalt identisch ist, wie in
+diesem Fall.
