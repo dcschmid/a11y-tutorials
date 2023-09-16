@@ -1,0 +1,100 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Button'
+---
+
+import Button from '../../../../examples/widgets/Button.astro'
+
+In den meisten Fällen ist die Verwendung eines nativen HTML `<button>`- oder
+`<input type="submit">`-Elements die bessere Wahl als die Erstellung eines
+benutzerdefinierten ARIA-Buttons. Es gibt jedoch Anwendungsfälle, in denen
+ein ARIA-Button sinnvoll sein kann, z. B. wenn das Styling eines
+Standard-`<button>`-Elements in den Zielbrowsern unter bestimmten Umständen zu
+schwierig ist oder bei der Nachrüstung von Legacy-Markup, dessen Umwandlung in
+Standard-`<button>`-Elemente problematisch sein könnte.
+
+Siehe auch <a href="https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+target="_blank"> die offizielle W3C-Dokumentation über ARIA-Schaltflächen</a>.
+
+## Beispiel
+
+<Button />
+
+## Erwartete Funktion
+
+### Aktivierung
+
+Jede der folgenden Möglichkeiten aktiviert die Schaltfläche: Mausklick, Berührung
+(auf einem Touch-Gerät), die Eingabetaste oder die Leertaste. Wenn eine dieser
+Methoden nicht funktioniert, ist das ein Fehler, der behoben werden muss. Die
+Schaltfläche(n) können mit einem Skript versehen werden, um eine beliebige Funktion
+auf der Website zu aktivieren.
+
+### Tastatur
+
+Entweder die Eingabetaste oder die Leertaste kann zum Aktivieren der Schaltfläche
+verwendet werden.
+
+### Bildschirmleser
+
+Wenn der Benutzer eines Bildschirmlesegeräts auf die Schaltfläche zugreift, sagt
+der Bildschirmleser "Schaltfläche" und liest dann den Text innerhalb des
+Schaltflächenelements vor. Die Schaltfläche reagiert entsprechend auf Tastaturbefehle
+und verhält sich wie ein HTML-Schaltflächenelement.
+
+## Wichtige Merkmale der Barrierefreiheit
+
+Die ARIA-Schaltflächen sind so gestaltet, dass sie ein identisches Erlebnis wie
+Standard-HTML-Schaltflächen bieten.
+
+## Hinweise für Entwickler und QA
+
+Beachte: Verwende wann immer möglich echte `<button>`-Elemente anstelle von
+ARIA-Schaltflächen. Echte Schaltflächen sind bereits von Haus aus barrierefrei
+und du musst ihre Funktionalität nicht neu erstellen.
+
+### Visuelles Design
+
+- Die Schaltfläche kann beliebig gestaltet werden, sollte aber das Aussehen einer
+  Schaltfläche haben. Sie sollte sich deutlich von Text ohne Schaltfläche
+  unterscheiden. Dieses Muster ermöglicht es, dass verschiedene Klassen von
+  Schaltflächen (primäre und sekundäre) auf Wunsch ein unterschiedliches visuelles
+  Aussehen erhalten. Wenn die Benutzer also den Unterschied zwischen primären und
+  sekundären Schaltflächen kennen müssen, muss der Text der Schaltfläche diesen
+  Unterschied deutlich machen.
+
+- Der Mauszeiger sollte ein Pfeil sein und kein Textsymbol oder eine Hand (die
+  einen Link anzeigen würde).
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+  </tbody>
+</table>

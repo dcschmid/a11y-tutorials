@@ -1,0 +1,97 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Checkbox (Gemischter Zustand)'
+---
+
+import GemischteCheckbox from '../../../../examples/widgets/GemischteCheckbox.astro'
+
+Ein dreistufiges Checkbox kann markiert, nicht markiert oder teilweise markiert
+sein. Die Bedingung, dass es teilweise angekreuzt ist, basiert auf der Auswahl
+der untergeordneten Elemente. Wenn alle untergeordneten Elemente ausgewählt sind,
+ist die übergeordnete Checkbox aktiviert. Wenn einige untergeordnete
+Elemente ausgewählt sind, ist die übergeordnete Checkbox teilweise aktiviert.
+
+Siehe auch <a href="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/"
+target="_blank">die offizielle W3C-Dokumentation über ARIA-Kontrollkästchen</a>.
+
+## Beispiel
+
+<GemischteCheckbox />
+
+## Erwartete Bedienung
+
+### Tastatur
+
+- Das dreistufige Kontrollkästchen verhält sich wie ein normales HTML-Kontrollkästchen:
+  Die Nutzer können mit der Tabulatortaste darauf zugreifen und es mit der
+  Leertaste auswählen.
+
+- Wenn du eines oder mehrere (aber nicht alle) der untergeordneten Checkbox-Elemente
+  auswählst, zeigt die Tri-State-Checkbox einen gemischten Status an.
+
+- Wenn du alle untergeordneten Elemente des Kontrollkästchens auswählst, zeigt
+  das dreistufige Kontrollkästchen einen markierten Status an.
+
+### Bildschirmleser
+
+- Das dreistufige Ankreuzfeld sollte als "angekreuzt", "nicht angekreuzt" oder
+  "gemischt" gelesen werden. Nicht alle Bildschirmlesegeräte unterstützen den
+  gemischten Zustand. In manchen Fällen zeigt das Bildschirmlesegerät "nicht
+  angekreuzt" an, wenn sich das Kontrollkästchen im gemischten Zustand befindet.
+
+## Die wichtigsten Merkmale der Barrierefreiheit
+
+Dieses ARIA-Kontrollkästchen verhält sich genau wie ein HTML-Kontrollkästchen,
+mit der zusätzlichen Funktion, dass es teilweise ausgewählt werden kann.
+
+## Hinweise für Entwickler und QA
+
+### Visuelles Styling
+
+- Das visuelle Styling für das dreistufige Ankreuzfeld sollte anders aussehen als
+  das eines normalen zweistufigen Ankreuzfeldes.
+
+- Achte darauf, dass die Methode, mit der du das Kontrollkästchen als ausgewählt
+  oder nicht ausgewählt kennzeichnest, im Windows-Modus mit hohem Kontrast sichtbar
+  ist. Im Internet Explorer werden Hintergrundbilder und Hintergrundfarben überschrieben.
+  Zu den Methoden, die visuell funktionieren, gehören die Verwendung eines
+  `<img>`-Elements oder eines Schriftsymbols im CSS. In diesem Beispiel wird ein
+  Schriftsymbol verwendet.
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>
+        Name des Kontrollkästchens wird zweimal gesprochen. Gruppenname wird nicht gesprochen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>Gruppenname nicht gesprochen.</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>
+        NVDA liest die Änderungen des angekreuzten/unangekreuzten Status des ersten Beispiels (mit
+        Fieldset) nicht, wenn der Benutzer den Status umschaltet.
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,146 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Dialog (Meldungsdialog)'
+---
+
+import MeldungsDialog from '../../../../examples/widgets/MeldungsDialog.astro'
+
+Diese Seite zeigt ein modales Nachrichtenmuster, das das ARIA-Attribut (role="dialog")
+verwendet. Ein Modal ist ein Dialogfeld/Popup-Fenster, das oben auf der aktuellen
+Seite angezeigt wird und eine Benutzeraktion erfordert, um es zu schließen. Der
+Dialog ist für die Nutzer nur verfügbar, wenn das Modal aktiv ist. Wenn das Modal
+aktiv ist, ist der Rest der Seite mit Maus, Tastatur, Touch oder Screenreader
+nicht erreichbar.
+
+Siehe auch die <a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/"
+target="_blank">offizielle W3C-Dokumentation zu ARIA-Dialogmustern</a>
+
+## Beispiel
+
+<MeldungsDialog />
+
+## Erwartete Bedienung
+
+### Aktivierung
+
+Dialoge werden in der Regel durch Benutzeraktionen aktiviert (z. B. durch das
+Aktivieren einer Schaltfläche), können aber auch das Ergebnis eines zeitlich
+begrenzten Ereignisses (z. B. einer Timeout-Warnung für eine Sitzung) oder anderer
+Ereignisse sein.
+
+### Visuelles Design
+
+Der Dialog sollte sich visuell vom Rest der Seite abheben. Normalerweise wird ein
+Dialog in der Mitte der Seite platziert und mit einem visuellen Rahmen versehen.
+Der Hintergrund wird in der Regel verdeckt, indem er ausgegraut, verwaschen oder
+unscharf dargestellt wird.
+
+### Tastatur
+
+Die Tabulatortaste muss innerhalb des Dialogs eingeschränkt sein. Die Benutzer
+können den Dialog nicht mit der Tabulatortaste verlassen. Der Fokus geht auf den
+Dialog, wenn er aktiviert wird, entweder auf den Dialogcontainer, auf die
+Überschrift des Dialogs, auf das erste fokussierbare Element innerhalb des Dialogs
+oder auf die Standardschaltfläche des Dialogs. Es gibt einen gewissen Spielraum
+bei der Entscheidung, wohin der Fokus gesendet werden soll. Wenn der Dialog
+geschlossen wird, kehrt der Fokus zur ursprünglichen Auslöseschaltfläche zurück
+oder zu einem anderen logischen Ort, wenn die Schaltfläche nicht mehr verfügbar
+ist oder wenn der Dialog durch etwas anderes als eine Schaltfläche aktiviert wurde.
+
+### Bildschirmleser
+
+Bildschirmlesegeräte sagen "Dialog" oder "Warndialog" an (je nach Dialogtyp),
+dann den Namen des Dialogs (in der Regel durch eine aria-labelledby-Referenz auf
+die erste Überschrift im Dialog, aber auch aria-label kann funktionieren) und
+dann den aria-describedby-Wert, falls vorhanden. Wenn der Fokus auf eine
+Schaltfläche gesetzt wurde, liest der Screen Reader auch den Text der Schaltfläche.
+Wenn der Fokus auf den Container gesetzt wurde, kann das Lesegerät damit beginnen,
+den gesamten Textinhalt des Dialogs zu lesen, oder es kann eine Pause einlegen
+und darauf warten, dass der Benutzer beginnt, durch den Dialog zu navigieren.
+
+Wenn ein Screenreader-Nutzer anhand von Elementen wie Überschriften, Orientierungspunkten,
+Links, Formularelementen usw. navigiert, sind die einzigen Elemente, die verfügbar
+sind, wenn der Dialog geöffnet ist, die Elemente im Dialog selbst. Es darf keine
+Möglichkeit geben, mit Screenreader-Tastaturkürzeln auf etwas außerhalb des Dialogs
+zuzugreifen.
+
+Dies gilt für das Dialogmuster und das Alertdialog-Muster. Mit etwas mehr
+Feinschliff funktioniert es auch für das nicht-modale Dialogmuster.
+
+## Die wichtigsten Merkmale der Barrierefreiheit
+
+- Der Dialog ist modal: Tastaturbenutzer können die Tabulatortaste nicht verwenden,
+  um außerhalb des Dialogs zu navigieren, und Screenreader-Benutzer können keine
+  Tastaturkürzel (z. B. für Überschriften, Orientierungspunkte, Links usw.)
+  verwenden, um außerhalb des Dialogs zu navigieren.
+
+- Der Fokus wird an das Dialogfeld gesendet, wenn es aktiviert wird.
+
+- Der Fokus kehrt zum ursprünglichen Auslöser zurück, wenn der Dialog
+  geschlossen wird.
+
+## Hinweise für Entwickler und QA
+
+Um dieses Steuerelement zu validieren, musst du es manuell mit einer Screenreader-Software,
+einer Maus und einer Tastatur testen. Abhängig von deiner individuellen Konfiguration
+müssen alle Elemente der Benutzeroberfläche innerhalb des Dialogs auf die richtige
+Fokussierung und alle benutzerdefinierten Verhaltensfunktionen getestet werden.
+
+Wichtig!
+
+Du musst einen Verweis auf das triggerElement behalten, das aktiviert ist, um das
+Dialogfeld anzuzeigen, damit du den Fokus darauf zurücksetzen kannst, nachdem das
+Dialogfeld geschlossen wurde.
+
+Dies wurde so geschrieben, dass du nie mehr als ein Dialogfeld zu deiner Anwendung
+hinzufügen musst. Da sie modal sind, wirst du nie mehr als ein Dialogfeld zur
+gleichen Zeit haben. So kannst du deinen HTML-Code relativ sauber halten und die
+gesamte Konfiguration in das JavaScript verschieben. Auf diese Weise teilst du dem
+Dialogfeld jedes Mal, wenn du es zeigst, alle Details mit, die es braucht, um sich
+korrekt darzustellen. Wenn du mehr als ein Dialogfeld haben willst (z. B. für
+Stylingzwecke), kannst du das trotzdem ohne Konflikte tun.
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>
+        Volle Unterstützung (liest aber das fokussierte Element zuerst, und role="document" wird als
+        Landmark behandelt, falls vorhanden)
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iPad iOS</td>
+      <td data-label='Untertützung'>
+        Der Fokus ist nicht auf dem Dialogfeld (du musst den Fokus manuell setzen)
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>
+        Der barrierefreie Name und die Beschreibung werden nicht bekannt gegeben. Die Rolle wird
+        angekündigt.
+      </td>
+    </tr>
+  </tbody>
+</table>

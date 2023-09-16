@@ -1,0 +1,532 @@
+---
+
+---
+
+<button class='open_button' type='button' onclick="openDialog('dialog1', this)">
+  Meldungsdialog anzeigen!
+</button>
+
+<div id='dialog_layer' class='dialogs'>
+  <div
+    role='dialog'
+    id='dialog1'
+    aria-labelledby='dialog1_label'
+    aria-modal='true'
+    class='hidden'
+  >
+    <h2 id='dialog1_label' class='dialog_label'>Meldungs Dialog</h2>
+    <p class='dialog_text'>
+      Meldungsdialoge können lange (oder kurze) Textpassagen enthalten, z.B.
+      Hinweise auf Nutzungsbedingungen, Benutzervereinbarungen für Software,
+      Hilfetexte, Erklärungen usw.
+    </p>
+    <div class='dialog_form_actions'>
+      <button class='dialog_button' type='button' onclick='closeDialog(this)'>
+        Schließen
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  var aria = aria || {}
+
+  aria.Utils = aria.Utils || {}
+  ;(function () {
+    /**
+     * @description
+     *  Key code constants
+     */
+    aria.KeyCode = {
+      BACKSPACE: 8,
+      TAB: 9,
+      RETURN: 13,
+      SHIFT: 16,
+      ESC: 27,
+      SPACE: 32,
+      PAGE_UP: 33,
+      PAGE_DOWN: 34,
+      END: 35,
+      HOME: 36,
+      LEFT: 37,
+      UP: 38,
+      RIGHT: 39,
+      DOWN: 40,
+      DELETE: 46
+    }
+
+    aria.Utils = aria.Utils || {}
+
+    // Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+    aria.Utils.matches = function (element, selector) {
+      if (!Element.prototype.matches) {
+        Element.prototype.matches =
+          Element.prototype.matchesSelector ||
+          Element.prototype.mozMatchesSelector ||
+          Element.prototype.msMatchesSelector ||
+          Element.prototype.oMatchesSelector ||
+          Element.prototype.webkitMatchesSelector ||
+          function (s) {
+            var matches = element.parentNode.querySelectorAll(s)
+            var i = matches.length
+            while (--i >= 0 && matches.item(i) !== this) {
+              // empty
+            }
+            return i > -1
+          }
+      }
+
+      return element.matches(selector)
+    }
+
+    aria.Utils.remove = function (item) {
+      if (item.remove && typeof item.remove === 'function') {
+        return item.remove()
+      }
+      if (
+        item.parentNode &&
+        item.parentNode.removeChild &&
+        typeof item.parentNode.removeChild === 'function'
+      ) {
+        return item.parentNode.removeChild(item)
+      }
+      return false
+    }
+
+    aria.Utils.isFocusable = function (element) {
+      if (element.tabIndex < 0) {
+        return false
+      }
+
+      if (element.disabled) {
+        return false
+      }
+
+      switch (element.nodeName) {
+        case 'A':
+          return !!element.href && element.rel != 'ignore'
+        case 'INPUT':
+          return element.type != 'hidden'
+        case 'BUTTON':
+        case 'SELECT':
+        case 'TEXTAREA':
+          return true
+        default:
+          return false
+      }
+    }
+
+    aria.Utils.getAncestorBySelector = function (element, selector) {
+      if (!aria.Utils.matches(element, selector + ' ' + element.tagName)) {
+        // Element is not inside an element that matches selector
+        return null
+      }
+
+      // Move up the DOM tree until a parent matching the selector is found
+      var currentNode = element
+      var ancestor = null
+      while (ancestor === null) {
+        if (aria.Utils.matches(currentNode.parentNode, selector)) {
+          ancestor = currentNode.parentNode
+        } else {
+          currentNode = currentNode.parentNode
+        }
+      }
+
+      return ancestor
+    }
+
+    aria.Utils.hasClass = function (element, className) {
+      return new RegExp('(\\s|^)' + className + '(\\s|$)').test(
+        element.className
+      )
+    }
+
+    aria.Utils.addClass = function (element, className) {
+      if (!aria.Utils.hasClass(element, className)) {
+        element.className += ' ' + className
+      }
+    }
+
+    aria.Utils.removeClass = function (element, className) {
+      var classRegex = new RegExp('(\\s|^)' + className + '(\\s|$)')
+      element.className = element.className.replace(classRegex, ' ').trim()
+    }
+
+    aria.Utils.bindMethods = function (object /* , ...methodNames */) {
+      var methodNames = Array.prototype.slice.call(arguments, 1)
+      methodNames.forEach(function (method) {
+        object[method] = object[method].bind(object)
+      })
+    }
+
+    aria.Utils.IgnoreUtilFocusChanges = false
+
+    aria.Utils.dialogOpenClass = 'has-dialog'
+
+    aria.Utils.focusFirstDescendant = function (element) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        var child = element.childNodes[i]
+        if (
+          aria.Utils.attemptFocus(child) ||
+          aria.Utils.focusFirstDescendant(child)
+        ) {
+          return true
+        }
+      }
+      return false
+    }
+
+    aria.Utils.focusLastDescendant = function (element) {
+      for (var i = element.childNodes.length - 1; i >= 0; i--) {
+        var child = element.childNodes[i]
+        if (
+          aria.Utils.attemptFocus(child) ||
+          aria.Utils.focusLastDescendant(child)
+        ) {
+          return true
+        }
+      }
+      return false
+    }
+
+    aria.Utils.attemptFocus = function (element) {
+      if (!aria.Utils.isFocusable(element)) {
+        return false
+      }
+
+      aria.Utils.IgnoreUtilFocusChanges = true
+      try {
+        element.focus()
+      } catch (e) {}
+      aria.Utils.IgnoreUtilFocusChanges = false
+      return document.activeElement === element
+    }
+
+    aria.OpenDialogList = aria.OpenDialogList || new Array(0)
+
+    aria.getCurrentDialog = function () {
+      if (aria.OpenDialogList && aria.OpenDialogList.length) {
+        return aria.OpenDialogList[aria.OpenDialogList.length - 1]
+      }
+    }
+
+    aria.closeCurrentDialog = function () {
+      var currentDialog = aria.getCurrentDialog()
+      if (currentDialog) {
+        currentDialog.close()
+        return true
+      }
+
+      return false
+    }
+
+    aria.handleEscape = function (event) {
+      var key = event.which || event.keyCode
+
+      if (key === aria.KeyCode.ESC && aria.closeCurrentDialog()) {
+        event.stopPropagation()
+      }
+    }
+
+    document.addEventListener('keyup', aria.handleEscape)
+
+    aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
+      this.dialogNode = document.getElementById(dialogId)
+      if (this.dialogNode === null) {
+        throw new Error('No element found with id="' + dialogId + '".')
+      }
+
+      var validRoles = ['dialog', 'alertdialog']
+      var isDialog = (this.dialogNode.getAttribute('role') || '')
+        .trim()
+        .split(/\s+/g)
+        .some(function (token) {
+          return validRoles.some(function (role) {
+            return token === role
+          })
+        })
+      if (!isDialog) {
+        throw new Error(
+          'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.'
+        )
+      }
+
+      var backdropClass = 'dialog-backdrop'
+      if (this.dialogNode.parentNode.classList.contains(backdropClass)) {
+        this.backdropNode = this.dialogNode.parentNode
+      } else {
+        this.backdropNode = document.createElement('div')
+        this.backdropNode.className = backdropClass
+        this.dialogNode.parentNode.insertBefore(
+          this.backdropNode,
+          this.dialogNode
+        )
+        this.backdropNode.appendChild(this.dialogNode)
+      }
+      this.backdropNode.classList.add('active')
+
+      document.body.classList.add(aria.Utils.dialogOpenClass)
+
+      if (typeof focusAfterClosed === 'string') {
+        this.focusAfterClosed = document.getElementById(focusAfterClosed)
+      } else if (typeof focusAfterClosed === 'object') {
+        this.focusAfterClosed = focusAfterClosed
+      } else {
+        throw new Error(
+          'the focusAfterClosed parameter is required for the aria.Dialog constructor.'
+        )
+      }
+
+      if (typeof focusFirst === 'string') {
+        this.focusFirst = document.getElementById(focusFirst)
+      } else if (typeof focusFirst === 'object') {
+        this.focusFirst = focusFirst
+      } else {
+        this.focusFirst = null
+      }
+
+      var preDiv = document.createElement('div')
+      this.preNode = this.dialogNode.parentNode.insertBefore(
+        preDiv,
+        this.dialogNode
+      )
+      this.preNode.tabIndex = 0
+      var postDiv = document.createElement('div')
+      this.postNode = this.dialogNode.parentNode.insertBefore(
+        postDiv,
+        this.dialogNode.nextSibling
+      )
+      this.postNode.tabIndex = 0
+
+      if (aria.OpenDialogList.length > 0) {
+        aria.getCurrentDialog().removeListeners()
+      }
+
+      this.addListeners()
+      aria.OpenDialogList.push(this)
+      this.clearDialog()
+      this.dialogNode.className = 'default_dialog'
+
+      if (this.focusFirst) {
+        this.focusFirst.focus()
+      } else {
+        aria.Utils.focusFirstDescendant(this.dialogNode)
+      }
+
+      this.lastFocus = document.activeElement
+    }
+
+    aria.Dialog.prototype.clearDialog = function () {
+      Array.prototype.map.call(
+        this.dialogNode.querySelectorAll('input'),
+        function (input) {
+          input.value = ''
+        }
+      )
+    }
+
+    aria.Dialog.prototype.close = function () {
+      aria.OpenDialogList.pop()
+      this.removeListeners()
+      aria.Utils.remove(this.preNode)
+      aria.Utils.remove(this.postNode)
+      this.dialogNode.className = 'hidden'
+      this.backdropNode.classList.remove('active')
+      this.focusAfterClosed.focus()
+
+      if (aria.OpenDialogList.length > 0) {
+        aria.getCurrentDialog().addListeners()
+      } else {
+        document.body.classList.remove(aria.Utils.dialogOpenClass)
+      }
+    }
+
+    aria.Dialog.prototype.replace = function (
+      newDialogId,
+      newFocusAfterClosed,
+      newFocusFirst
+    ) {
+      aria.OpenDialogList.pop()
+      this.removeListeners()
+      aria.Utils.remove(this.preNode)
+      aria.Utils.remove(this.postNode)
+      this.dialogNode.className = 'hidden'
+      this.backdropNode.classList.remove('active')
+
+      var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed
+      new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst)
+    }
+
+    aria.Dialog.prototype.addListeners = function () {
+      document.addEventListener('focus', this.trapFocus, true)
+    }
+
+    aria.Dialog.prototype.removeListeners = function () {
+      document.removeEventListener('focus', this.trapFocus, true)
+    }
+
+    aria.Dialog.prototype.trapFocus = function (event) {
+      if (aria.Utils.IgnoreUtilFocusChanges) {
+        return
+      }
+      var currentDialog = aria.getCurrentDialog()
+      if (currentDialog.dialogNode.contains(event.target)) {
+        currentDialog.lastFocus = event.target
+      } else {
+        aria.Utils.focusFirstDescendant(currentDialog.dialogNode)
+        if (currentDialog.lastFocus == document.activeElement) {
+          aria.Utils.focusLastDescendant(currentDialog.dialogNode)
+        }
+        currentDialog.lastFocus = document.activeElement
+      }
+    }
+
+    window.openDialog = function (dialogId, focusAfterClosed, focusFirst) {
+      new aria.Dialog(dialogId, focusAfterClosed, focusFirst)
+    }
+
+    window.closeDialog = function (closeButton) {
+      var topDialog = aria.getCurrentDialog()
+      if (topDialog.dialogNode.contains(closeButton)) {
+        topDialog.close()
+      }
+    }
+
+    window.replaceDialog = function (
+      newDialogId,
+      newFocusAfterClosed,
+      newFocusFirst
+    ) {
+      var topDialog = aria.getCurrentDialog()
+      if (topDialog.dialogNode.contains(document.activeElement)) {
+        topDialog.replace(newDialogId, newFocusAfterClosed, newFocusFirst)
+      }
+    }
+  })()
+</script>
+
+<style>
+  .hidden {
+    display: none;
+  }
+
+  [role='dialog'] {
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #000;
+    background-color: #fff;
+    min-height: 100vh;
+  }
+
+  @media screen and (min-width: 640px) {
+    [role='dialog'] {
+      position: absolute;
+      top: 2rem;
+      left: 50vw; /* move to the middle of the screen (assumes relative parent is the body/viewport) */
+      transform: translateX(
+        -50%
+      ); /* move backwards 50% of this element's width */
+
+      min-width: calc(
+        640px - (15px * 2)
+      ); /* == breakpoint - left+right margin */
+      min-height: auto;
+      box-shadow:
+        0 19px 38px rgb(0 0 0 / 12%),
+        0 15px 12px rgb(0 0 0 / 22%);
+    }
+  }
+
+  .dialog_label {
+    text-align: center;
+    color: #005a6a;
+    line-height: 1.2;
+    font-weight: 700;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .dialog_button {
+    border-radius: 5px;
+    display: inline-block;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 2px solid #005a6a;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    background-color: #005a6a;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .dialog_close_button {
+    float: right;
+    position: absolute;
+    top: 10px;
+    left: 92%;
+    height: 25px;
+  }
+
+  .dialog_close_button img {
+    border: 0;
+  }
+
+  .dialog_desc {
+    padding: 10px 20px;
+  }
+
+  .dialog_text {
+    color: #000;
+  }
+
+  /* native <dialog> element uses the ::backdrop pseudo-element */
+
+  /* dialog::backdrop, */
+  .dialog-backdrop {
+    display: none;
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  @media screen and (min-width: 640px) {
+    .dialog-backdrop {
+      background: rgb(0 0 0 / 30%);
+    }
+  }
+
+  .dialog-backdrop.active {
+    display: block;
+  }
+
+  .no-scroll {
+    overflow-y: auto !important;
+  }
+
+  /* this is added to the body when a dialog is open */
+  .has-dialog {
+    overflow: hidden;
+  }
+
+  .open_button {
+    display: inline-block;
+    position: relative;
+    padding: 0.4em 0.7em;
+    border: 1px solid rgb(36, 116, 214);
+    border-radius: 5px;
+    box-shadow: rgb(109, 134, 171) 0px 1px 2px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(47, 60, 81) 0px -1px 1px;
+    background-color: rgb(28, 110, 233);
+    background-image: linear-gradient(rgb(37, 115, 233), rgb(22, 100, 218));
+  }
+</style>

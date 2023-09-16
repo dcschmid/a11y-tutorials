@@ -1,0 +1,57 @@
+<button class='alert-button' type='button' id='alert-trigger'>
+  Löse ein Alert aus
+</button>
+
+<div id='example' role='alert'></div>
+
+<script type='text/template' id='alert-template'>
+  ;<p>Glückwunsch! Du hast ein Alert ausgelöst.</p>
+</script>
+
+<script>
+  window.addEventListener('load', function () {
+    var button = document.getElementById('alert-trigger')
+
+    button.addEventListener('click', addAlert)
+  })
+
+  /*
+   * @function addAlert
+   *
+   * @desc Adds an alert to the page
+   *
+   * @param   {object}  event  -  Standard W3C event object
+   *
+   */
+  function addAlert() {
+    var example = document.getElementById('example')
+    var template = document.getElementById('alert-template').innerHTML
+
+    example.innerHTML = template
+  }
+</script>
+
+<style>
+  [role='alert'] {
+    margin: 1rem 0;
+    padding: 10px;
+    border: 2px solid hsl(206deg 74% 54%);
+    border-radius: 4px;
+    background: #ccc;
+    color: #000;
+  }
+
+  [role='alert']:empty {
+    display: none;
+  }
+
+  .alert-button {
+    background-color: #444; /* Green */
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+</style>

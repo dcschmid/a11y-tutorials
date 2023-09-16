@@ -1,0 +1,17 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Expand/Collapse'
+---
+
+import ExpandCollapse from '../../../../examples/widgets/ExpandCollapse.astro'
+
+Dieses Muster erzeugt eine Schaltfläche, mit der ein Element ausgeblendet (zugeklappt)
+oder nicht ausgeblendet (aufgeklappt) werden kann. Der aktuelle Zustand des Elements
+und Änderungen des Zustands werden an Screenreader-Nutzer weitergegeben. Die HTML5-Elemente
+`<details>` und `<summary>` bieten diese Art von Funktionalität von Haus aus, aber
+die Unterstützung für diese Elemente ist nicht universell. Es besteht die
+Möglichkeit, `<details>` und `<summary>` für dieses Muster in Browsern zu verwenden,
+die sie unterstützen, oder dieses Muster kann so konfiguriert werden, dass nur
+generische `<div>`-Elemente verwendet werden.
+
+<ExpandCollapse />

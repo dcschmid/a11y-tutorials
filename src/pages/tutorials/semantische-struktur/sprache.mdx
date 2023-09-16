@@ -26,7 +26,7 @@ falsche Sprachbibliothek verwenden.
 Die Sprache wird genau in der zweiten Zeile des Codes angegeben.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,8 +48,8 @@ Die Sprache wird genau in der zweiten Zeile des Codes angegeben.
 Höre dir an, wie JAWS eine Passage aus Dr. Martin Luther Kings "Ich habe einen Traum"-Rede vorliest:
 
 <audio controls>
-  <source src="/audio/language-doc.ogg" type="audio/ogg" />
-  <source src="/audio/language-doc.mp3" type="audio/mpeg" />
+  <source src='/audio/language-doc.ogg' type='audio/ogg' />
+  <source src='/audio/language-doc.mp3' type='audio/mpeg' />
   Your browser does not support the audio element.
 </audio>
 
@@ -62,7 +62,7 @@ wenn die Sprachbezeichnung ungenau ist - liest das Bildschirmlesegerät das Doku
 es fast unmöglich ist, es zu verstehen.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -85,8 +85,8 @@ Hör dir an, wie JAWS dieselbe Passage aus derselben Rede vorliest, ohne die im 
 Standardsprache Spanisch (die englischen Wörter werden mit spanischem Akzent gelesen):
 
 <audio controls>
-  <source src="/audio/language-doc-bad.ogg" type="audio/ogg" />
-  <source src="/audio/language-doc-bad.mp3" type="audio/mpeg" />
+  <source src='/audio/language-doc-bad.ogg' type='audio/ogg' />
+  <source src='/audio/language-doc-bad.mp3' type='audio/mpeg' />
   Your browser does not support the audio element.
 </audio>
 
@@ -113,7 +113,7 @@ Die Hauptsprache der Seite wird im html-Tag angegeben, in diesem Fall ist es Eng
 In diesem Beispiel fehlt das lang-Attribut komplett im `<html>`-Element.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html></html>
 ```
 
@@ -122,7 +122,7 @@ In diesem Beispiel fehlt das lang-Attribut komplett im `<html>`-Element.
 Der Wert "anglais" (das französische Wort für "Englisch") ist nicht gültig. Der richtige Wert wäre in diesem Fall lang="en".
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="anglais"></html>
 ```
 
@@ -151,8 +151,8 @@ Das Markup für den obigen Absatz ist unten abgebildet:
 Hör zu, wie JAWS diese Inline-Sprachänderung vorliest:
 
 <audio controls>
-  <source src="/audio/language-inline.ogg" type="audio/ogg" />
-  <source src="/audio/language-inline.mp3" type="audio/mpeg" />
+  <source src='/audio/language-inline.ogg' type='audio/ogg' />
+  <source src='/audio/language-inline.mp3' type='audio/mpeg' />
   Your browser does not support the audio element.
 </audio>
 
@@ -179,8 +179,8 @@ Hör dir an, wie JAWS denselben Satz ohne die im Code angegebene Sprachänderung
 englischen Akzent):
 
 <audio controls>
-  <source src="/audio/language-inline-bad.ogg" type="audio/ogg" />
-  <source src="/audio/language-inline-bad.mp3" type="audio/mpeg" />
+  <source src='/audio/language-inline-bad.ogg' type='audio/ogg' />
+  <source src='/audio/language-inline-bad.mp3' type='audio/mpeg' />
   Your browser does not support the audio element.
 </audio>
 

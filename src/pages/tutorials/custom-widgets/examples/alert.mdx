@@ -1,0 +1,179 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Alert'
+---
+
+import Alert from '../../../../examples/widgets/Alert.astro'
+
+Ein Alert ist eine besondere Art von ARIA-Live-Region. Screenreader zeigen den
+Text innerhalb der Meldung an, ohne den Fokus auf die Meldung zu legen. Warnungen
+werden normalerweise so gestaltet, dass sie sich optisch vom restlichen Inhalt
+abheben, damit sie auffallen, wenn sie erscheinen.
+
+Siehe auch die <a href="https://www.w3.org/WAI/ARIA/apg/patterns/alert/"
+target="_blank">offizielle W3C-Dokumentation über ARIA-Warnmuster</a>.
+
+## Beispiel
+
+<Alert />
+
+## Erwartete Operation
+
+### Aktivierung
+
+Ein Alarm kann durch eine Benutzeraktion (z. B. Klicken auf eine Schaltfläche),
+ein zeitlich festgelegtes Ereignis oder andere Umstände aktiviert werden.
+
+### Tastatur
+
+Der Fokus bleibt, wo er ist. Der Fokus wird nicht verschoben, wenn eine Meldung
+aktiviert wird.
+
+### Bildschirmleser
+
+Eine Warnung ist eine besondere Art von Assertive ARIA-Live-Region, daher sollten
+Bildschirmleser alles, was sie gerade sagen, sofort unterbrechen und stattdessen
+die Ankündigung lesen. Die meisten Bildschirmleser sagen "Alarm", bevor sie den
+Text innerhalb der Meldung lesen.
+
+## Wichtige Merkmale der Barrierefreiheit
+
+- Ein leerer Container wird als role="alert" markiert.
+
+- Der Text wird als Reaktion auf ein Auslöseereignis in den Container eingefügt.
+
+- Screenreader zeigen den Text an.
+
+## Hinweise für Entwickler und QA
+
+### Visuelle Gestaltung
+
+- Eine Textmeldung wird auf dem Bildschirm angezeigt, und zwar innerhalb des aktuellen
+  Sichtfelds des Nutzers und in der Nähe des aktuellen Tastaturfokus und/oder Mauszeigers,
+  so dass sie sofort sichtbar ist, auch für Nutzer von Bildschirmlupen, die jeweils
+  nur einen kleinen Teil des Bildschirms sehen können.
+
+- Die Meldung sollte sich visuell vom umgebenden Inhalt abheben und subjektiv wie
+  eine Warnmeldung aussehen. Icons können dabei helfen, die Bedeutung der Meldung
+  zu vermitteln.
+
+### Die Klarheit der Textmeldung
+
+In diesem Beispiel werden drei verschiedene Arten der visuellen Gestaltung gezeigt:
+für Erfolgsmeldungen, für allgemeine Informationsmeldungen und für Fehlermeldungen.
+Das Styling ist rein visuell. Die Symbole (ein Häkchen für Erfolgsmeldungen, der
+Buchstabe "I" mit einem Kreis drumherum für Infomeldungen und ein Ausrufezeichen
+in einem Dreieck für Fehlermeldungen) werden über CSS generiert, so dass sie nicht
+an Screenreader weitergegeben werden, und es gibt keine Möglichkeit, alternativen
+Text für sie bereitzustellen. Insgesamt gibt es keine semantische Möglichkeit,
+Meldungen als Erfolgs-, Info- oder Warnmeldungen für Screenreader zu kennzeichnen.
+Wenn also die Unterscheidung zwischen den verschiedenen Arten von Warnmeldungen
+wichtig ist, solltest du Wörter (wie "Warnung" oder "Glückwunsch") in die Meldung
+einfügen, um die Bedeutung zu vermitteln. Beispiele:
+
+- "Warnung! Diese Aktion kann nicht rückgängig gemacht werden."
+
+- "Glückwunsch! Deine Anmeldung war erfolgreich."
+
+### Die Länge der Nachricht
+
+Warnmeldungen sollten kurz sein. Benutzer von Bildschirmlesegeräten können eine
+Warnmeldung unterbrechen (z. B. durch die Eingabe eines Zeichens oder die Strg-Taste),
+und es gibt keine Möglichkeit, ein Bildschirmlesegerät anzuweisen, eine
+unterbrochene Warnmeldung weiterzulesen. Wenn die Meldung noch auf dem Bildschirm
+angezeigt wird, können die Nutzer/innen zu der Meldung navigieren, um sie von
+dem Bildschirmlesegerät als normalen Text vorlesen zu lassen.
+
+### Visuelle Erreichbarkeit
+
+Stelle sicher, dass die Meldung dort erscheint, wo die Nutzer sie sehen können.
+Sie sollte in der Nähe des aktuellen Blick- und/oder Tastaturfokus des Nutzers
+erscheinen. Das gilt besonders für Benutzer mit Bildschirmvergrößerung, die
+jeweils nur einen kleinen Teil des Bildschirms sehen können.
+
+Wenn sich der Nutzer am Ende einer langen Seite befindet und die Meldung am oberen
+Rand der Seite, oberhalb des Bildlaufs, erscheint, wo sie für den Nutzer gar nicht
+zu sehen ist, ist die Wahrscheinlichkeit groß, dass sehende Nutzer nicht wissen,
+dass die Meldung überhaupt erschienen ist.
+
+### Die Timeout-Option
+
+In den meisten Fällen ist es am besten, die Option "Zeitüberschreitung" zu
+vermeiden, da die Nutzer/innen die Meldung vielleicht ganz übersehen oder sie
+nicht zu Ende lesen, bevor sie verschwindet. Wenn du eine Zeitüberschreitung
+einrichtest, solltest du die Dauer großzügig bemessen, damit die Meldung möglichst
+lange verfügbar ist.
+
+Der Nachteil, wenn du die Zeitüberschreitung nicht verwendest, ist, dass
+Screenreader-Nutzer beim Lesen des Dokuments möglicherweise erneut auf den Text
+stoßen und denken, dass sie eine neue Meldung hören, obwohl es sich in Wirklichkeit
+um eine alte Meldung handelt, die auf dem Bildschirm geblieben ist. Du musst die
+Bedürfnisse von sehenden Nutzern (für die die Warnmeldung sichtbar bleiben muss)
+mit denen von Bildschirmlesern (die die Warnmeldung sofort hören und sie nicht
+noch einmal hören müssen) abwägen.
+
+### Mehrere Warnmeldungen
+
+Am besten ist es, wenn immer nur eine Warnmeldung sichtbar ist, denn manche
+Bildschirmleser lesen alle verfügbaren Warnmeldungen vor, wenn eine neue
+Warnmeldung aktiviert wird. Wenn du eine neue Warnmeldung aktivierst, deaktivierst
+du am besten zuerst alle anderen Warnmeldungen.
+
+### Warnung versus Warndialog
+
+Eine Warnung (role="alert") erfordert keine Benutzeraktion. Sie verschiebt den
+Tastaturfokus nicht. Kein Teil der Seite wird ausgeblendet oder verdeckt oder ist
+zu keiner Zeit verfügbar.
+
+Ein Warndialog (role="alertdialog") erfordert eine Benutzeraktion. Er verhält
+sich wie ein normaler Dialog, aber er soll ein Gefühl der Dringlichkeit vermitteln.
+Bildschirmlesegeräte sagen in der Regel "Warndialog", wenn ein Warndialog auftaucht.
+Der Fokus wird auf das Dialogfeld gelegt und der Benutzer wird aufgefordert,
+etwas zu tun. Normalerweise bedeutet das, dass er auf eine Schaltfläche klicken
+muss, auch wenn es sich nur um eine Schaltfläche "OK" oder "Schließen" handelt.
+Der Benutzer kann nicht mit der Tabulatortaste aus dem Dialog heraus navigieren,
+und Screenreader-Benutzer können keine Tastaturkürzel verwenden, um auf semantische
+Elemente (Überschriften, Orientierungspunkte, Formularelemente usw.) außerhalb
+des Dialogs zuzugreifen.
+
+### Automatisiertes Testen
+
+- Wenn du ein automatisiertes Tool wie die aXe-Browsererweiterung verwendest,
+  solltest du zwei separate Tests durchführen: einen, wenn die Meldung inaktiv ist
+  und einen weiteren, wenn die Meldung aktiv ist.
+
+- Automatisierte Tests sollten manuelle Tests nicht ersetzen, sondern ergänzen
+  und die Hinweise in diesem Abschnitt berücksichtigen.
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,104 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Karussell (basierend auf einem Tabpanel)'
+---
+
+import Karussell from '../../../../examples/widgets/Karussell.astro'
+
+Dieses Karussellmuster basiert auf einem ARIA-Registerkartenmuster. Es ist jeweils
+nur ein Tab-Panel (Karussell-Element) sichtbar. Es gibt Schaltflächen, um vorwärts
+und zurück zu gehen oder um das Karussell abzuspielen/anzuhalten.
+
+Siehe auch die <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel/"
+target="_blank">offizielle W3C-Dokumentation über das Karussell (Diashow oder
+Bildrotator) Muster</a>.
+
+## Beispiel
+
+<Karussell />
+
+## Erwarteter Betrieb
+
+### Tastatur
+
+- Der/die Nutzer/in kann mit der Tabulatortaste zum aktiven Tab in der Tabliste
+  wechseln und dann mit den Pfeiltasten oder Strg+Bildauf/Strg+Bildab zwischen den
+  Tabs navigieren. Mit der Tabulatortaste wird NICHT zur nächsten Registerkarte in
+  der Tabliste gewechselt, da immer nur eine Registerkarte fokussiert werden kann,
+  ähnlich wie bei Optionsfeldern.
+
+- Die Schaltflächen für Zurück, Weiter und Wiedergabe/Pause können mit der
+  Leertaste oder der Eingabetaste aktiviert werden.
+
+### Bildschirmleser
+
+Wenn der Benutzer den Fokus auf eine Registerkarte legt, sollte der Bildschirmleser
+den Namen/das Label der Registerkarte vorlesen und ankündigen, dass es sich bei
+dem fokussierten Element um eine Registerkarte handelt, und die Gesamtzahl der
+Registerkarten in der Registerkartenliste angeben, z. B. "Erkennbar, Registerkarte
+1 von 4." JAWS erklärt außerdem, dass der Benutzer eine Tastenkombination drücken
+kann, um zum entsprechenden Registerkartenfeld zu gelangen ("Benutze die JAWS-Taste
+plus Alt + M, um zum kontrollierten Element zu gelangen").
+
+## Wichtige Merkmale der Barrierefreiheit
+
+- Aus Sicht der Barrierefreiheit ist es ungünstig, ein Karussell beim Laden der
+  Seite automatisch ablaufen zu lassen. In der Regel ist es besser, die Nutzer/innen
+  selbst entscheiden zu lassen, wann sie zum nächsten Element wechseln wollen, als
+  einen willkürlichen Timer einzustellen.
+
+- Für alles, was abgespielt oder automatisch abgespielt wird, ist eine Pausentaste
+  erforderlich.
+
+- Die Tastaturnavigation in der Tablist wird mit den Pfeiltasten gesteuert, nicht
+  mit der Tabulator-Taste.
+
+- Durch die korrekte semantische Markierung kann der Screenreader erkennen, wie
+  viele Tabs in der Tabliste sind und welches Tab-Panel von welchem Tab
+  gesteuert wird.
+
+## Hinweise für Entwickler und QA
+
+Die folgenden Attribute auf den Registerkarten werden umgeschaltet, wenn der
+Benutzer zwischen den Registerkarten wechselt:
+
+- aria-selected=true/false
+
+- tabindex=0/-1
+
+Hinweis: Entwickler müssen darauf achten, dass der Chrome-Browser die
+Tastenkombinationen Strg+Seiteoben/Strg+Seiteunten nicht auf die Webseite
+überträgt, wenn mehrere Tabs geöffnet sind.
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung (Anzahl der Tabs nicht bekannt)</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>Volle Unterstützung (Anzahl der Tabs nicht bekannt)</td>
+    </tr>
+  </tbody>
+</table>

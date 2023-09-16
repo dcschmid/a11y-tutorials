@@ -7,43 +7,43 @@ import '../styles/global.scss'
 const { pageTitle } = Astro.props
 ---
 
-<html lang="de">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>{pageTitle}</h1>
-			<slot />
-		</main>
-		<Footer />
+<html lang='de'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>{pageTitle}</h1>
+      <slot />
+    </main>
+    <Footer />
 
-		<script>
-			function addNoOpener(link: Element) {
-				let linkTypes = (link.getAttribute('rel') || '').split(' ')
-				if (!linkTypes.includes('noopener')) {
-					linkTypes.push('noopener')
-				}
-				link.setAttribute('rel', linkTypes.join(' ').trim())
-			}
+    <script>
+      function addNoOpener(link: Element) {
+        let linkTypes = (link.getAttribute('rel') || '').split(' ')
+        if (!linkTypes.includes('noopener')) {
+          linkTypes.push('noopener')
+        }
+        link.setAttribute('rel', linkTypes.join(' ').trim())
+      }
 
-			function addNewTabMessage(link: Element) {
-				if (!link.querySelector('.screen-reader-only')) {
-					link.insertAdjacentHTML(
-						'beforeend',
-						'<span class="screen-reader-only"> (öffnet sich in einem neuen Tab)</span>'
-					)
-				}
-			}
+      function addNewTabMessage(link: Element) {
+        if (!link.querySelector('.screen-reader-only')) {
+          link.insertAdjacentHTML(
+            'beforeend',
+            '<span class="screen-reader-only"> (öffnet sich in einem neuen Tab)</span>'
+          )
+        }
+      }
 
-			document.querySelectorAll('a[target="_blank"]').forEach((link) => {
-				addNoOpener(link)
-				addNewTabMessage(link)
-			})
-		</script>
-	</body>
+      document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+        addNoOpener(link)
+        addNewTabMessage(link)
+      })
+    </script>
+  </body>
 </html>

@@ -1,0 +1,2139 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'ARIA-Konzepte'
+---
+
+Bevor du versuchst, benutzerdefinierte ARIA-JavaScript-Widgets zu erstellen, ist
+es hilfreich zu wissen, was ARIA ist und was die erwarteten Designmuster sind.
+Es gibt Erwartungen an die Tastaturinteraktion und an die Informationen, die
+Screenreadern programmatisch zur Verfügung stehen müssen, damit die Widgets auch
+für blinde Menschen zugänglich sind. In diesem Abschnitt wird die Grundlage
+erläutert, auf der alle benutzerdefinierten ARIA-JavaScript-Widgets aufgebaut sind.
+
+## ARIA-Axiome
+
+- Verwende niemals ARIA, es sei denn, du musst es tun.
+
+- Verwende immer ARIA, wenn du es musst.
+
+- Du machst es (wahrscheinlich) falsch.
+
+Das ist ein bisschen ironisch gemeint, aber es zeigt einige wichtige Punkte auf.
+
+Wenn Entwickler/innen zum ersten Mal etwas über ARIA lernen, denken sie manchmal,
+dass es überall angewendet werden kann und sollte und dass alles jetzt ein
+eigenes ARIA-Widget sein sollte. Nein, das sollte es nicht. Verwende, wann immer
+möglich, native HTML-Elemente. Sie funktionieren. Die Leute wissen, wie man sie
+benutzt. Sie sind zugänglich. Erstelle nur dann ein eigenes ARIA/JavaScript-Widget,
+wenn es einen zwingenden Grund dafür gibt.
+
+Wenn du einen zwingenden Grund hast, ein benutzerdefiniertes ARIA/JavaScript-Widget
+zu erstellen, verwende ARIA und verwende es gut. Bei ARIA geht es nicht nur darum,
+ein paar Attribute hier und da einzufügen. Es ist ein ganz anderes Modell der
+Benutzeroberflächenauszeichnung. Du musst die nicht-visuellen Aspekte der
+Benutzeroberfläche durchdenken. Du musst die ARIA-Denkweise lernen und die
+technischen Details richtig hinbekommen. Wenn du es zum ersten Mal versuchst,
+wirst du wahrscheinlich etwas oder viele Dinge übersehen, weil du wahrscheinlich
+noch nicht ganz verstehst, was dahinter steckt oder welche Konsequenzen es hat,
+wenn du es falsch machst.
+
+Aber du kannst es lernen. In diesem Abschnitt werden die wichtigsten Konzepte
+erklärt, damit du eine solide Grundlage für die Logik und die Muster der
+ARIA-Techniken hast.
+
+## Übersicht
+
+### Was kann ARIA tun?
+
+Mit ARIA kannst du die folgenden Informationen an Bildschirmleser weitergeben:
+
+- Labels oder Namen für Elemente (z.B. mit aria-label oder aria-labelledby oder ähnlich)
+
+- Rollen, role="navigation", role="main" usw.
+
+- Zustände von dynamischen/interaktiven Komponenten (z. B. aria-selected="true",
+  aria-expanded="true", aria-hidden="true")
+
+- Eigenschaften von Elementen (z. B. aria-haspopup="true")
+
+- Beziehungen zwischen Artikeln (z. B. aria-owns, aria-controls, die beide eine
+  Art Eltern-Kind-Beziehung beschreiben, bei der ein Artikel einen anderen besitzt
+  oder kontrolliert)
+
+- Live-Ankündigungen in Echtzeit, die an Screenreader weitergegeben werden
+
+### ARIA ist nur für unterstützende Technologien nützlich
+
+- ARIA ändert nichts für sehende Nutzer. Zum Beispiel verbirgt aria-hidden="true"
+  den Inhalt nicht vor sehenden Nutzern, aber es verbirgt ihn vor Screenreadern.
+
+### ARIA ist keine Programmiersprache
+
+ARIA hat keine eigene prozedurale Logik oder Interaktivität. Um ein Baummenü,
+eine Registerkarte oder ein anderes interaktives Widget zu erstellen, musst du
+JavaScript verwenden, um den Inhalt mit Funktionen zu versehen, und du verwendest
+ARIA, um die Dinge entsprechend mit Namen, Rollen, Zuständen, Eigenschaften und
+Beziehungen zu labeln. ARIA ist im Wesentlichen eine API für die Übermittlung
+dieser Informationen an Bildschirmlesegeräte.
+
+## Name
+
+### Der Algorithmus zur Berechnung des "Barrierefreiheit"-Namens
+
+Die Barrierefreiheit eines Elements wird nach einem ziemlich komplizierten
+Algorithmus berechnet. Eine vereinfachte Version dieses Algorithmus ist
+unten dargestellt:
+
+#### aria-labelledby
+
+Wenn es ein Attribut aria-labelledby gibt, hat der Text, auf den es sich bezieht,
+Vorrang vor allen anderen name- und label-Methoden.
+
+#### aria-label
+
+Wenn es kein aria-labelledby gibt, hat die Textzeichenfolge aria-label Vorrang
+vor allen anderen Methoden. Beachte, dass der aria-label Text unsichtbar ist und
+nur für Benutzer von Assistenzsystemen verfügbar ist.
+
+#### Der native HTML-Text/Label/alt-Text des Elements
+
+Wenn es kein aria-labelledby oder aria-label gibt, wird der native Text eines
+Elements verwendet (z. B. der Text zwischen dem öffnenden und dem schließenden
+`<button>`-Element, der `<label>`-Text in einem Formularfeld, der Alt-Text eines
+Bildes usw.).
+
+#### title
+
+Wenn keine anderen Benennungsmethoden verfügbar sind, wird der Titel als Label
+verwendet. Beachte, dass der Titel am besten als zusätzliche, nicht essentielle
+Information betrachtet wird, da der Titel nicht immer sichtbar ist und manche
+Nutzer/innen ihn gar nicht erreichen können, z. B. in Browsern, die den Titeltext
+nur bei Mausverschiebung anzeigen.
+
+Wichtig!
+
+Plane immer, zuerst die nativen HTML-Methoden für die Beschriftung zu verwenden.
+Verwende aria-labelledby oder aria-label nur, wenn keine andere Methode im
+jeweiligen Kontext gut funktioniert.
+
+### Beschreibung von aria-labelledby
+
+#### Der aria-labelledby Text ist (normalerweise) auf der Seite sichtbar
+
+In fast allen Fällen ist der aria-labelledby-Text bereits auf der Seite sichtbar.
+Der Sinn der Verwendung von aria-labelledby ist es, das Element mit seinem Label
+zu verknüpfen, so dass Bildschirmleser die beiden programmatisch so miteinander
+verbinden können, wie sehende Benutzer sie visuell miteinander verbinden. In
+einigen seltenen Fällen kannst du auf Text verweisen, der visuell ausgeblendet
+ist, und das kann für manche Dinge angemessen sein, aber du könntest sehende
+Benutzer benachteiligen, wenn du das tust, also denke sorgfältig nach, bevor du
+ein Label ausblendest.
+
+#### Das Attribut aria-labelledby bezieht sich auf die id eines anderen Elements
+
+Mit aria-labelledby gibst du die ID eines anderen Elements ein. Du gibst nicht
+den Text des Labels selbst ein.
+
+```html
+<div class="modal" role="dialog" tabindex="0" aria-labelledby="h1">
+  <h1 id="h1">Confirm your selection</h1>
+  ...
+</div>
+```
+
+#### Du kannst dich mit aria-labelledby auf mehrere IDs beziehen
+
+Eine der Stärken des aria-labelledby-Attributs ist, dass du dich auf mehrere
+ausgewählte Texte beziehen und sie alle zusammen zur Beschriftung eines Elements
+verwenden kannst. Das kann besonders nützlich sein, um komplexe Formulare zu
+beschriften, z. B. solche, die in einem Raster angeordnet sind, in dem mehrere
+Labels auf ein einziges Formularfeld angewendet werden können.
+
+```html
+<span id="males">
+  <span id="frank">
+    <span id="rang">
+      <input type="text" aria-labelledby="males frank ranking" />
+    </span>
+  </span>
+</span>
+```
+
+#### Der aria-labelledby Text ersetzt den ursprünglichen Text eines Elements
+
+Wie aria-label soll der Text, auf den aria-labelledby verweist, den ursprünglichen
+Text des Elements ersetzen. Verwende aria-labelledby nicht, um zusätzliche
+Informationen zu dem bereits vorhandenen Text zu liefern, denn das ist in den
+meisten Fällen nicht der Fall. Das Attribut aria-describedby ist für diesen Zweck
+besser geeignet.
+
+Wie bei aria-label ist das Verhalten von Screenreadern nicht ganz einheitlich.
+In manchen Fällen wird der Screenreader sowohl den Originaltext als auch den
+Text von aria-labelledby lesen, aber verlass dich nicht darauf.
+
+### Beschreibung von aria-label
+
+#### Das aria-label enthält den Text des Labels selbst
+
+Du schreibst den Label-Text als Teil des aria-label-Attributs selbst.
+
+```html
+<nav aria-label="Clothing for Girls"></nav>
+```
+
+#### Der aria-label Text ist unsichtbar
+
+Das Attribut aria-label erzeugt ein unsichtbares Label für ein Element, das nur
+für assistive Technologien verfügbar ist. Sehende Nutzer können es nicht sehen
+und es gibt keinen visuellen Hinweis darauf, dass das Label vorhanden ist, sodass
+sehende Nutzer überhaupt nicht von aria-label profitieren. Es gibt nicht einmal
+einen Pop-up-Tooltip. Es ist wirklich völlig unsichtbar. Nur Nutzer von
+Hilfstechnologien profitieren davon.
+
+#### Der aria-label Text ersetzt den Originaltext eines Elements
+
+Wenn du einen Link hast und dem Link ein aria-label hinzufügst, ersetzt der Text,
+den du in das aria-label schreibst, den ursprünglichen Linktext.
+
+Screenreader ersetzen den Linktext durch den aria-label Text im folgenden Beispiel:
+
+```html
+<a href="http://w3.org" aria-label="The World Wide Web Consortium"> W3C </a>
+```
+
+Das Bildschirmlesegerät sagt dann "Link: Das World Wide Web Consortium". Es wird
+überhaupt nicht "W3C" sagen, obwohl das Einzige, was sehende Nutzer sehen, "W3C"
+ist.
+
+Achte deshalb darauf, dass du aria-label nicht verwendest, um zusätzliche
+Informationen über ein Element bereitzustellen, denn aria-label funktioniert
+nicht auf diese Weise. Der Text des aria-label ist keine zusätzliche Information.
+Er ist die einzige Information.
+
+Zugegeben, nicht alle Screenreader verhalten sich unter allen Umständen so, es
+gibt also Situationen, in denen der Screenreader sowohl den Originaltext als
+auch den aria-label Text anzeigt, aber darauf kannst du dich nicht verlassen.
+Du solltest davon ausgehen, dass aria-label den Originaltext ersetzt, denn
+dafür ist es laut der offiziellen Spezifikation vorgesehen.
+
+Wenn du nur einen Hauptnavigationsbereich in einer Weboberfläche hast, ist es
+in der Regel nicht nötig, ihn zu labeln, da der Screenreader "Navigationsbereich"
+anzeigt und die Nutzer direkt zu diesem Bereich navigieren können. Wenn es
+jedoch mehrere Navigationsbereiche gibt, kann es hilfreich sein, sie zu
+kennzeichnen, damit die Nutzer/innen sie unterscheiden können, wenn sie nach
+Markierungsbereichen navigieren.
+
+```html
+<nav role="navigation" aria-label="Product Categories"></nav>
+```
+
+Es ist immer am besten, für jedes Formularelement ein visuelles Label zu
+verwenden. Es gibt jedoch spezielle Fälle, in denen die visuelle Nähe anderer
+Elemente (wie z. B. die Schaltfläche "Suchen") für sehende Nutzerinnen und Nutzer
+als visuelles Label ausreicht und ein separates, explizites Text-Label überflüssig
+sein kann. Das zeigt das Beispiel der Website-Suche unten, bei der die Schaltfläche
+zwar kein explizites Label für das Feld auf der linken Seite ist, aber dennoch
+ein visuelles Label zu sein scheint:
+
+<form action='#' role='search'>
+  <input aria-label='Site Search' name='search' type='search' />
+  <input type='submit' value='Search' />
+</form>
+
+So einfach es für sehende Nutzer ist, die oben beschriebene Suchfunktion zu
+nutzen, so schwierig wird es für blinde Nutzer sein, wenn du nicht ein explizites
+Label anbietest. Die visuelle Nähe (in diesem Fall der Schaltfläche "Suchen") ist
+für Nutzer, die die Oberfläche nicht sehen können, bedeutungslos. Biete Nutzern
+von Bildschirmlesegeräten immer eine Art explizites Label an. Andernfalls kann es
+sein, dass der Screenreader gar kein Label liest, wenn er das Eingabeelement
+erreicht. Das Attribut aria-label ist eine Möglichkeit, ein explizites,
+unsichtbares Label für Bildschirmleser hinzuzufügen:
+
+```html
+<form action="#" role="search">
+  <input aria-label="Site Search" name="search" type="search" />
+  <input type="submit" value="Search" />
+</form>
+```
+
+### Unterstützung für aria-labelledby und aria-label
+
+Mit den Attributen aria-label und aria-labelledby kannst du fast jedem HTML-Element
+einen Namen oder ein Label zuweisen: Links, Formularfelder, Absätze usw. Die
+Unterstützung für Bildschirmleser ist jedoch am besten bei fokussierbaren Elementen
+oder bei Elementen in Anwendungsregionen, wie später erklärt wird. In der Praxis
+ist die Screenreader-Unterstützung für aria-label und aria-labelledby am besten
+auf:
+
+- Fokussierbare Elemente (`<a>`, `<input>`, etc.). Bei nicht fokussierbaren Elementen
+  (`<p>`, `<div>`, `<span>`, `<h1>`, etc.) ist die Unterstützung nicht so gut.
+
+- Elemente mit semantischer Bedeutung, im Gegensatz zu den Elementen, die keine
+  semantische Bedeutung haben (wie `<div>` und `<span>`).
+
+- Anwendungsbereiche (role="application"). Sei aber sehr vorsichtig mit
+  Anwendungsregionen, denn sie deaktivieren die meisten regulären Tastaturkürzel
+  des Screenreaders.
+
+Im Prinzip solltest du aria-label auf jedes HTML-Element anwenden können, egal
+ob es ein Absatz, eine Überschrift, ein Formularelement, ein Link, ein Bild oder
+etwas anderes ist. In der Praxis wird das Attribut aria-label bei einigen Elementen
+besser unterstützt als bei anderen, und nicht alle Screenreader - oder Versionen
+desselben Screenreaders - unterstützen aria-label auf dieselbe Weise. Erschwerend
+kommt hinzu, dass die Unterstützung für aria-label in der Regel besser ist, wenn
+ein Element innerhalb einer Anwendungsregion (ein Bereich der Webseite, der als
+role="application" gekennzeichnet ist) beschriftet wird, als wenn ein Element in
+einem normalen Dokumentbereich der Webseite beschriftet wird. Noch verwirrender
+ist, dass die Unterstützung davon abhängen kann, welchen Screenreader-Modus du
+verwendest. Wenn du das Bildschirmlesegerät zum Beispiel direkt durch das Dokument
+lesen lässt (im Dokument- oder Lesemodus), liest es den Wert des Aria-Labels bei
+einigen Elementen möglicherweise nicht, aber wenn du nacheinander durch die Elemente
+navigierst oder mit der Tabulatortaste auf das Element klickst (im Formularlesemodus),
+kann das gleiche Bildschirmlesegerät den Wert des Aria-Labels lesen. Und um die
+Sache noch komplizierter zu machen, können sich verschiedene Browser oder Versionen
+desselben Browsers bei der gleichen Marke von Screenreadern unterschiedlich verhalten.
+
+Eine etwas vereinfachte Zusammenfassung ist, dass die Unterstützung für
+aria-label am besten ist:
+
+- auf fokussierbaren Elementen (`<a>`, `<input>`, etc.), oder
+
+- auf Elementen innerhalb einer Anwendungsregion (z. B. `<div role="application">`)
+
+## Rolle
+
+Jedes HTML-Element hat eine Rolle, d.h. eine Reihe von Merkmalen, Eigenschaften
+und Methoden, um Informationen an den und/oder vom Nutzer zu übermitteln. Im
+Wesentlichen definiert die Rolle, was das Element ist. Bildschirmlesegeräte und
+andere unterstützende Technologien müssen die Rolle jedes Elements auf der Webseite
+kennen, um intelligent damit interagieren zu können, und sie müssen in der Lage
+sein, diese Rolle dem Nutzer zu vermitteln.
+
+Wenn ein Bildschirmlesegerät z. B. auf ein `<img>`-Element stößt, weiß es,
+dass es sich um ein Bild handelt - dass die Rolle als "Bild" definiert ist.
+Das Bildschirmlesegerät teilt dem Nutzer also mit, dass es sich um ein Bild
+handelt (die meisten Bildschirmlesegeräte sagen "Grafik") und liest dann den
+Alt-Text für das Bild oder vielleicht den Dateinamen oder das Linkziel, wenn
+das Bild keinen Alt-Text hat. Ein Bildschirmlesegerät verhält sich ganz anders,
+wenn es auf ein `<p>`-Element trifft (bei dem die Rolle als "Absatz" definiert ist).
+
+### Landmark Rollen
+
+Screenreader-Nutzer können das visuelle Design einer Seite nicht erkennen und
+brauchen daher eine nicht-visuelle Möglichkeit, um die Navigation vom Hauptinhalt,
+der Fußzeile oder anderen Bereichen zu unterscheiden. ARIA-Landmark-Rollen bieten
+eine Möglichkeit, dies zu tun. Wenn du Orientierungspunkte definierst, können
+Screenreader-Benutzer alle Regionen auflisten, um zu verstehen, wie die Seite
+aufgebaut ist, und dann direkt zu der Region navigieren, die sie interessiert.
+Verfügbare Landmark-Regionen sind:
+
+- application
+
+- banner
+
+- complementary
+
+- contentinfo
+
+- form
+
+- main
+
+- navigation
+
+- search
+
+HTML 5 definiert auch Orientierungspunkte mit Tags wie:
+
+- `<header>` (entspricht role="banner")
+
+- `<nav>` (äquivalent zu role="navigation")
+
+- `<main>` (entspricht role="main")
+
+- `<aside>` (entspricht role="complementary")
+
+- `<footer>` (entspricht role="contentinfo")
+
+Du kannst entweder ARIA-Landmarken oder HTML 5-Landmarken verwenden - oder sie
+kombinieren, z.B. `<nav role="navigation">` - und der Effekt ist der gleiche.
+
+### Widget-Rollen
+
+HTML hat nur eine begrenzte Anzahl von Rollen zur Verfügung, was es schwierig
+macht, die Identität oder Funktionalität von benutzerdefinierten Widgets wie
+hierarchischen Baummenüs oder Registerkarten zu vermitteln. ARIA fügt keine neuen
+HTML-Elemente hinzu, wohl aber das Attribut role und eine Liste von Rollen, die
+vorher nicht Teil der HTML-Spezifikation waren. Diese neuen Rollen sind:
+
+- alert
+
+- alertdialog
+
+- application
+
+- dialog
+
+- group
+
+- log
+
+- marquee
+
+- menu
+
+- menubar
+
+- menuitem
+
+- menuitemcheckbox
+
+- menuitemradio
+
+- progressbar
+
+- separator
+
+- slider
+
+- spinbutton
+
+- status
+
+- tab
+
+- tablist
+
+- tabpanel
+
+- timer
+
+- toolbar
+
+- tooltip
+
+- tree
+
+- treegrid
+
+- treeitem
+
+Die Möglichkeit, ein Element als Registerkarte, Menü oder Symbolleiste zu
+kennzeichnen, ist eine wichtige Neuerung für Menschen, die Screenreader
+verwenden. Sehende Nutzer hatten schon immer den Vorteil, dass sie das visuelle
+Design sehen konnten. Wenn es also eine Tab-Liste im Design gibt, werden sehende
+Nutzer sie wahrscheinlich als solche erkennen, weil sie wie eine Tab-Liste
+aussieht. Blinde Nutzer können das Design nicht sehen und ihre Bildschirmlesegeräte
+können die visuellen Hinweise nicht für sie interpretieren. Daher werden blinde
+Nutzer wahrscheinlich nicht wissen, dass sie eine Tabulatorliste gefunden haben,
+es sei denn, etwas im Markup weist das Element ausdrücklich als Tabulatorliste
+aus. An dieser Stelle kann ARIA helfen. Mit den ARIA-Rollen tablist, tab und
+tabpanel kann ein Bildschirmlesegerät z. B. sagen: "Tablist mit drei Elementen"
+(wenn die Tablist drei Tabs enthält). Eine vereinfachte Version einer Tab-Liste
+ist unten abgebildet.
+
+```html
+<ul role="tablist">
+  <li role="tab">Home</li>
+  <li role="tab">Products</li>
+  <li role="tab">Services</li>
+</ul>
+
+<div role="tabpanel">
+  <p>Info about the home page/p></p>
+</div>
+
+<div role="tabpanel">
+  <p>Info about products/p></p>
+</div>
+
+<div role="tabpanel">
+  <p>Info about services/p></p>
+</div>
+```
+
+Wir müssten noch einige zusätzliche Eigenschaften und etwas JavaScript
+hinzufügen, damit dieses Beispiel wie vorgesehen funktioniert, aber es zeigt
+zumindest die grundlegende Rollenstruktur einer typischen Registerkartenliste.
+(Wenn du ein fertiges Beispiel sehen möchtest, kannst du dir das Beispiel-Tab-Panel
+im Abschnitt "ARIA Widget-Beispiele" in diesem Kapitel ansehen).
+
+Hinweis: Erfinde keine Rollen
+
+Du kannst keine eigenen Rollen erfinden, zumindest nicht, wenn du willst, dass
+Hilfstechnologien sie verstehen. Jedes Rollenattribut, das der Browser oder die
+unterstützende Technologie nicht versteht, wird ignoriert. Der Inhalt des Elements
+ist weiterhin wie gewohnt verfügbar, aber die von dir erfundene Rolle wird dem
+Nutzer nicht mitgeteilt.
+
+### Pseudo-HTML-Rollen
+
+Eine weitere Möglichkeit, die ARIA Webentwicklern bietet, ist, die Rolle eines
+Elements komplett zu ändern. Zum Beispiel wird das `<p>`-Element von Browsern
+und assistiven Technologien normalerweise als Absatz interpretiert. Wenn du es
+in `<p role="heading" aria-level="1">` änderst, wird der Absatz jetzt als
+`<h1>`-Element interpretiert. Bildschirmlesegeräte sagen "Überschriftenebene 1",
+bevor sie den Inhalt mit dem Element lesen, und im Grunde ist das Element gar
+kein Absatz mehr, zumindest für Bildschirmlesegeräte-Nutzer. Es ist ein `<h1>`.
+Auf ähnliche Weise könntest du `<span role="checkbox">` verwenden, um ein
+benutzerdefiniertes Kontrollkästchen zu erstellen, oder `<span role="link">`, um
+einen benutzerdefinierten Link zu erstellen. Zu den verfügbaren Pseudo-HTML-Rollen
+gehören die folgenden:
+
+- button
+
+- checkbox
+
+- columnheader
+
+- combobox
+
+- contentinfo
+
+- form
+
+- grid
+
+- gridcell
+
+- heading
+
+- img
+
+- link
+
+- listbox
+
+- listitem
+
+- option
+
+- radio
+
+- radiogroup
+
+- row
+
+- rowgroup
+
+- rowheader
+
+- scrollbar
+
+- textbox
+
+#### Hinweis: Weisen Sie keine Rollen neu zu, wenn Sie es nicht müssen
+
+Wenn Webentwickler erfahren, dass sie die Rollen von Elementen neu zuweisen können,
+spielen sie manchmal verrückt und verwenden ARIA-Rollen anstelle des eingebauten
+semantischen Markups, das in normalem, unmodifiziertem HTML verfügbar ist. Wann
+immer es möglich ist, ist es am besten, normales HTML zu verwenden, denn mit dem
+Rollenattribut ist keine andere Funktion verbunden als die, die Rolle selbst zu
+kommunizieren. Wenn du z. B. ein benutzerdefiniertes Kontrollkästchen erstellst,
+reicht es nicht aus, role="checkbox" zuzuweisen, um die Funktionalität eines
+Kontrollkästchens wiederherzustellen. Du musst JavaScript schreiben, das alle
+Tastatur- und Mausfunktionen und die Logik von Kontrollkästchen nachbildet.
+Warum verwendest du nicht einfach ein richtiges Kontrollkästchen?
+
+### Die Dokumenten-Rolle
+
+In einem Dokumentbereich ermöglichen Bildschirmlesegeräte den Nutzern, mit
+Tastenkombinationen durch Elemente (Überschriften, Orientierungspunkte, Tabellen,
+Listen usw.) zu navigieren und auf alle Aspekte des Textes zuzugreifen,
+einschließlich der Rechtschreibung von Wörtern.
+
+Hinweis: Die Standardrolle für eine Webseite ist die Dokumentenrolle. Du musst
+also nichts an einer Standard-Webseite ändern, um ihr diese Rolle zu geben. Die
+Webseite ist bereits das Äquivalent zu role="document".
+
+Der einzige Grund, warum du role="document" schreiben musst, ist, um eine
+Dokumentenregion innerhalb einer anderen Art von Region zu erstellen, z. B.
+innerhalb einer Anwendungsregion. Ein Beispiel wäre die Erstellung einer
+Dokumentregion innerhalb eines modalen Dialogs (ein Container mit role="dialog",
+der eine spezielle Art von Anwendungsregion ist), damit Screenreader-Benutzer
+navigieren und den Text innerhalb des Dialogs lesen können. Wenn du normalen Text
+(Absätze, Überschriften, `<div>`-Elemente, Listen, Tabellen usw.) in einen Dialog
+einfügst, können Screenreader nicht darauf zugreifen, weil nur über die Tastatur
+fokussierbare Elemente (und ihre programmatisch zugewiesenen Labels und
+Beschreibungen) im Anwendungsmodus zugänglich sind.
+
+### Die Anwendungs-Rolle
+
+Der Anwendungsmodus ermöglicht es Entwicklern, das Verhalten eines Widgets völlig
+frei zu programmieren, einschließlich der Handler für Tastaturereignisse. Mit
+großer Macht kommt aber auch große Verantwortung. Der Aufruf von role="application"
+erfordert eine sorgfältige Planung aller Aspekte der Interaktion. Es gibt so viele
+Möglichkeiten, dies falsch zu machen, dass es meistens am besten ist, Anwendungsregionen
+ganz zu vermeiden. Dennoch gibt es einige legitime Anwendungsfälle.
+
+#### Anwendungsrolle nicht für Screenreader-Seitennavigation verwenden
+
+Im normalen Lesemodus eines Dokuments verfügen Bildschirmlesegeräte über eine
+Vielzahl von Tastenkombinationen, mit denen die Benutzer/innen Text lesen,
+durch Elemente (wie Überschriften, Tabellen, Formularfelder, Listen usw.)
+navigieren, die Rechtschreibung von Wörtern herausfinden und andere Funktionen
+im Zusammenhang mit Text und Dokumentstruktur nutzen können.
+
+Fast alle diese Funktionen sind in einer Anwendungsregion ausgeschaltet.
+Und warum? Weil Webentwickler/innen in der Lage sein müssen, die Logik der
+Tastaturinteraktionen innerhalb von Webanwendungen zu steuern und gegebenenfalls
+eigene Tastaturkürzel festzulegen. Wenn Screenreader alle Tastenkombinationen in
+einer Anwendungsregion intakt lassen würden, würden die Tastenkombinationen des
+Screenreaders mit der Tastaturlogik des Entwicklers kollidieren, und das Skripten
+von Tastaturinteraktionen wäre für Webentwickler fast unmöglich.
+
+Zu den wichtigsten Tastaturfunktionen, die NICHT deaktiviert werden, gehören die
+folgenden:
+
+- Die Tabulatortaste, um durch fokussierbare Elemente wie Links, Formularelemente
+  und alles mit tabindex="0" zu gehen.
+
+- Die Enter- oder Return-Taste, um einen Link oder eine Schaltfläche zu aktivieren
+  oder ein Formular abzuschicken.
+
+- Die Leertaste, um eine Schaltfläche zu aktivieren oder ein Formular abzuschicken.
+
+- Die Pfeiltasten, um Elemente in `<select>`-Listen auszuwählen oder um zwischen
+  Optionsfeldern zu wählen
+
+#### Dokumentenrolle in Anwendungsregion bei Screenreader-Textnavigation nutzen
+
+Wenn du möchtest, dass Screenreader-Benutzer ihre normalen Tastaturmethoden
+innerhalb deiner Anwendung oder innerhalb eines Teils deiner Anwendung verwenden
+können, kannst du role="document" innerhalb einer Anwendungsregion einbetten. Mit
+anderen Worten: Die folgende Struktur ist zulässig:
+
+```html
+<div role="application">
+  <div role="document"></div>
+</div>
+```
+
+Diese Struktur löst im Wesentlichen das Problem, dass innerhalb von Anwendungsregionen
+keine regulären Screenreader-Tastaturkürzel zur Verfügung stehen. Sie kann besonders
+für modale Dialoge (role="dialog" oder role="alertdialog") nützlich sein, die einen
+gemischten Inhalt mit regulärem Text und Formularelementen haben können.
+
+#### Nicht fokussierbare Inhalte müssen für Bildschirmleser zugänglich sein
+
+- Absätze
+
+- Überschriften
+
+- `<div>`-Elemente
+
+- `<span>`-Elemente
+
+- Listen
+
+- Tabellen
+
+- usw.
+
+Mit anderen Worten: Egal, was du in einen Anwendungsbereich einfügst, wenn du es
+nicht mit der Tastatur erreichen kannst, haben Screenreadernutzer überhaupt keinen
+Zugang dazu. Wenn du einen modalen Dialog mit einem Textabsatz darin hast (oder
+eine Tabelle oder eine Liste oder irgendetwas anderes, das nicht fokussiert
+werden kann), können Screenreader-Nutzer ihn nicht hören.
+
+Auch dafür gibt es gute Gründe, denn es wird erwartet, dass die Anwendungen ihre
+eigene Tastaturlogik haben, aber du musst entsprechend planen.
+
+#### Nicht fokussierbare Elemente nicht künstlich fokussierbar machen, nur für Screenreader
+
+Es stimmt zwar, dass durch das Hinzufügen von tabindex="0" zu einem Element die
+Fokussierung über die Tastatur möglich wird, so dass Screenreader den Text lesen
+können, aber Screenreader können trotzdem nicht auf normale Weise mit dem Text
+interagieren. Sie können nicht eine Zeile nach der anderen oder ein Wort nach
+dem anderen lesen, die Rechtschreibung von Wörtern überprüfen oder andere
+textbezogene Operationen durchführen, an die sie gewöhnt sind. Sie können nur
+mit der Tabulatortaste zum Element wechseln und es vollständig anhören. Wenn sie
+das Lesegerät anhalten, wird es nicht an der Stelle fortgesetzt, an der es
+unterbrochen wurde. Sie müssen das Element mit der Tabulatortaste verlassen, dann
+wieder zu ihm zurückkehren und sich das Ganze noch einmal anhören.
+
+Außerdem ist es nicht normal, dass man mit der Tabulatortaste zu einem Absatz,
+einem Listenelement oder einer Überschrift wechseln kann. Die Benutzer/innen
+erwarten eine Art Link, Schaltfläche oder Formulareingabefunktion, wenn sie mit
+der Tabulatortaste zu einem Element wechseln. Wenn sie mit der Tabulatortaste zu
+einem Absatz wechseln und dann versuchen, mit der Eingabetaste zu interagieren,
+passiert nichts, und das kann verwirrend sein. Sie könnten denken, dass etwas
+kaputt ist.
+
+#### Die Anwendungsrolle sollte nur in Widgets verwendet werden, die sie benötigen
+
+Wenn du role="application" verwendest, achte darauf, dass du es nur auf das Widget
+selbst anwendest, damit Screenreader-Nutzer ihre normalen Tastenkombinationen für
+den Inhalt der Webseite verwenden können.
+
+Wickle niemals eine ganze Webseite in eine Anwendungsregion ein. Die Angabe von
+`<body role="application">` wäre besonders schlecht, weil dadurch die gesamte
+Webseite für die normalen Tastaturmethoden des Screenreaders unzugänglich wird.
+
+#### Einige Widgets rufen automatisch den Anwendungsmodus auf
+
+Einige Rollen lösen in den meisten Bildschirmlesern automatisch den Anwendungsmodus
+aus, z. B:
+
+- role=""dialog""
+
+- role=""alertdialog""
+
+- role="tablist"
+
+Du kannst den Bildschirmleser nicht daran hindern, bei diesen Elementen in den
+Anwendungsmodus zu wechseln, und das ist so gewollt. Sei dir nur bewusst, dass
+alle Elemente mit diesen Rollen die oben beschriebenen Tastaturbeschränkungen für
+Bildschirmleser haben.
+
+### Die Präsentations-Rolle
+
+Die Markierung eines Abschnitts als role="presentation" hebt im Wesentlichen die
+ursprüngliche Rolle des Elements auf und verwandelt es in ein `<span>` oder `<div>`,
+die neutrale, unsemantische Tags sind, die keine Rolle vermitteln. Das ist sozusagen
+das Gegenteil der "Pseudo-HTML"-Rollen (beschrieben auf der Seite Pseudo-HTML-Rollen
+weiter oben in diesem Abschnitt), die einem Element eine semantische Rolle hinzufügen,
+auch wenn es ursprünglich nur ein neutrales `<div>` oder `<span>` war.
+
+Beachte: Wenn du role="presentation" hinzufügst, wird das Element NICHT vor anderen
+versteckt. Sehende Nutzerinnen und Nutzer sehen es immer noch, und blinde Nutzerinnen
+und Nutzer hören den Text, aber ihre Bildschirmlesegeräte zeigen keine semantische
+Rolle für den Text an.
+
+#### Beispiel: Die semantische Bedeutung eines Elements mit role="presentation" aufheben
+
+Im folgenden Beispiel erkennen Screenreader den Text nicht als Überschrift, weil
+die Überschriftenrolle durch die Präsentationsrolle aufgehoben wurde:
+
+```html
+<h1 role="presentation">Deep Thoughts</h1>
+```
+
+Anstatt wie sonst "Überschriftenebene 1: Tiefe Gedanken" zu sagen, sagt der
+Screenreader einfach "Tiefe Gedanken".
+
+#### Schlecht: Die semantische Bedeutung eines Elements mit role="presentation" aufheben
+
+Im folgenden Beispiel erkennt der Screenreader NICHT, dass es sich bei dem Text
+um einen Link handelt, und der Link wird nicht in der Liste der Links angezeigt:
+
+```html
+<a href="http://deque.com" role="presentation">Deque</a>
+```
+
+Anstatt "Link: Deque", wie es normalerweise der Fall wäre, sagt das Lesegerät
+einfach "Deque". Der Link ist aber immer noch über die Tastatur fokussierbar
+und funktioniert als Link, so dass dies für Screenreader verwirrend ist.
+
+Das Hinzufügen von role="presentation" zu einer Tabelle verhindert, dass die
+Tabelle in der Liste der Tabellen für Screenreader-Nutzer angezeigt wird und
+dass sie durch die Zellen der Tabelle navigieren können.
+
+### Die Mathe-Rolle
+
+Das Thema Mathe im Web und MathML kann sehr schnell sehr kompliziert werden. In
+diesem Abschnitt wird nicht versucht, alle Probleme im Zusammenhang mit der
+Barrierefreiheit von Mathematik zu behandeln, aber es wird gezeigt, wie die ARIA
+role="math" in mathematische Ausdrücke im Web passt.
+
+Beachte, dass das gesamte Objekt mit einem Aria-Label versehen ist, in dem die
+Gleichung in Worten ausgedrückt wird, um den Inhalt innerhalb des MathML-Markups
+für Screenreader und/oder Browser, die MathML nicht unterstützen, zu übermitteln.
+
+#### MathML-Gleichung 1
+
+Browser, die kein natives MathML unterstützen - wie z. B. der Internet Explorer -,
+stellen die nächste Zeile als normalen Text dar, anstatt als mathematische Gleichung:
+
+a 3 + b 2 + c
+
+Der Quellcode für die obige Gleichung:
+
+```html
+<div role="math" aria-label="a cubed plus b squared plus c">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <msup>
+        <mi>a</mi>
+        <mn>3</mn>
+      </msup>
+      <mo>+</mo>
+      <msup>
+        <mi>b</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>+</mo>
+      <mi>c</mi>
+    </mrow>
+  </math>
+</div>
+```
+
+#### MathML-Gleichung 2
+
+x 1 + x 2 + x 3
+
+Der Quellcode für die obige Gleichung:
+
+```html
+<div role="math" aria-label="x sub 1 plus x sub 2 plus x sub 3">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <msub>
+        <mi>x</mi>
+        <mn>1</mn>
+      </msub>
+      <mo>+</mo>
+      <msub>
+        <mi>x</mi>
+        <mn>2</mn>
+      </msub>
+      <mo>+</mo>
+      <msub>
+        <mi>x</mi>
+        <mn>3</mn>
+      </msub>
+    </mrow>
+  </math>
+</div>
+```
+
+#### Unterstützung für MathML
+
+Im Allgemeinen ist die Unterstützung von Screenreadern für Mathematik noch nicht
+so stabil, wie sie sein könnte, aber sie verbessert sich. VoiceOver auf iOS
+unterstützt natives MathML recht gut und erlaubt es Screenreadern sogar, durch
+die verschiedenen Teile der Gleichung zu navigieren; es liest sowohl den
+Aria-Label-Text als auch die mathematische Gleichung selbst. VoiceOver unter
+macOS (und OS X) liest MathML ebenfalls gut, scheint es aber nicht so einfach zu
+machen, durch Gleichungen zu navigieren; es liest den Aria-Label-Text nicht.
+Weder JAWS noch NVDA unterstützen natives MathML wie oben beschrieben.
+
+Hilfsprogramme wie MathJax öffnet in einem neuen Fenster können die Darstellung
+von MathML in verschiedenen Browsern verbessern, aber es muss trotzdem darauf
+geachtet werden, dass die Darstellung für Screenreader geeignet ist.
+
+### Die Definitions-Rolle
+
+Die Definitionsrolle ist nicht besonders verbreitet und die Screenreader-Unterstützung
+ist noch nicht stabil für diese Rolle, aber wenn sie unterstützt wird, kann sie einen
+Textabschnitt als Definition markieren. Beachte, dass HTML bereits eine `<dl>`-Struktur
+für Definitionen anbietet, die Screenreader besser unterstützt als die Definitionsrolle,
+daher wäre es besser, eine Definitionsliste anstelle von ARIA zu verwenden.
+
+#### Gut: Definitionen in Fußnoten
+
+In diesem Beispiel werden einige möglicherweise unbekannte Begriffe in einen
+Absatz eingefügt und mit Links zu den Definitionen unten in den Fußnoten versehen.
+
+```html
+<div class="deque-wrapper">
+  <blockquote>
+    <p>
+      "Today's sub-40s have different horrors, prominent among which are
+      <span id="anomie">anomie</span
+      ><sup><a href="class/custom-widgets/concepts/role/definition#note-anomie">[1]</a></sup> and
+      <span id="solipsism">solipsism</span
+      ><sup><a href="class/custom-widgets/concepts/role/definition#note-solipsism">[2]</a></sup> and
+      a peculiarly American loneliness: the prospect of dying without once having loved something
+      more than yourself."
+
+      <br />
+      ― David Foster Wallace, <em> Consider the Lobster and Other Essays</em>
+    </p>
+  </blockquote>
+
+  <ol>
+    <li id="note-anomie">
+      <span role="definition">
+        <strong>Anomie:</strong>
+        social instability resulting from a breakdown of standards and values
+      </span>
+    </li>
+    <li id="note-solipsism">
+      <span role="definition">
+        <strong>Solipsism:</strong><br />
+        A) a theory in philosophy that your own existence is the only thing that is real or that can
+        be known, or<br />
+        B) extreme egocentrism
+      </span>
+    </li>
+  </ol>
+</div>
+```
+
+Hinweis: Das Attribut role="definition" sollte nicht direkt auf ein Element
+angewendet werden, das bereits eine semantische Bedeutung hat, wie z. B. die
+Listenelemente (`<li>`), denn dadurch würde die semantische Bedeutung der
+Listenelemente außer Kraft gesetzt, was wir nicht wollen. Wir wollen die
+semantische Bedeutung der Liste intakt lassen.
+
+```html
+<ol>
+  <li id="note-anomie">
+    <span role="definition">
+      <strong>Anomie:</strong>
+      social instability resulting from a breakdown of standards and values
+    </span>
+  </li>
+  <li id="note-solipsism">
+    <span role="definition">
+      <strong>Solipsism:</strong><br />
+      A) a theory in philosophy that your own existence is the only thing that is real or that can
+      be known, or<br />
+      B) extreme egocentrism
+    </span>
+  </li>
+</ol>
+```
+
+#### Gut: Definitionsliste
+
+Du musst role="definition" nicht zu einer Definitionsliste hinzufügen, da die
+Semantik bereits durch das HTML-Markup verstanden wird, aber das ARIA wird hier
+hinzugefügt, um zu zeigen, wie Definitionslisten aus ARIA-Sicht strukturiert sind.
+
+```html
+<dl>
+  <dt id="anomie-dt">anomie</dt>
+  <dd id="anomie-dd" role="definition" aria-labelledby="anomie-dt">
+    social instability resulting from a breakdown of standards and values
+  </dd>
+  <dt id="solipsism-dt">solipsism</dt>
+  <dd id="solipsism-dd" role="definition" aria-labelledby="solipsism-dt">
+    A) a theory in philosophy that your own existence is the only thing that is real or that can be
+    known, or<br />
+    B) extreme egocentrism
+  </dd>
+</dl>
+```
+
+### Die Notes-Rolle
+
+Die Rolle "note" ist vom Konzept her ähnlich wie HTML 5 `<aside>` oder ARIA
+role="complementary", aber role="note" ist keine Landmark-Region wie die anderen
+beiden und soll im Allgemeinen im Kontext des restlichen Inhalts um sie herum
+gelesen werden. Außerdem sollten `<aside>` und role="complementary" für sich
+genommen einen gewissen Sinn ergeben. Das Gleiche gilt nicht unbedingt für
+role="note".
+
+Es gibt verschiedene Möglichkeiten, eine Sonnenfinsternis sicher zu betrachten,
+z. B. mit einer Schweißerbrille der Stufe 14 oder höher oder durch das projizierte
+Bild einer Lochkamera.
+
+Wichtig: Sieh niemals mit bloßen Augen, durch eine Kamera oder ein Fernglas
+direkt in die Sonne.
+
+```html
+<p>
+  Es gibt verschiedene Möglichkeiten, eine Sonnenfinsternis sicher zu betrachten, zum Beispiel mit
+  einer Schweißerbrille ab Schutzklasse 14 oder das projizierte Bild einer Lochkamera zu betrachten.
+</p>
+<p></p>
+
+<p role="note">
+  <strong>Wichtig:</strong> Sieh niemals direkt in die Sonne mit Augen, durch eine Kamera oder ein
+  Fernglas in die Sonne.
+</p>
+>
+```
+
+### Die Verzeichnis-Rolle
+
+Die Verzeichnisrolle dient zur Bezeichnung eines Inhaltsverzeichnisses oder einer
+ähnlichen Verzeichnisstruktur, unabhängig davon, ob die Elemente Links sind oder
+nicht.
+
+Inhaltsverzeichnis von "Der geheimnisvolle Schlüssel und was er öffnete" von
+Louisa May Alcott
+
+```html
+<ul role="directory">
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-01.html"
+    >
+      Chapter 1 - The Prophecy
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-02.html"
+    >
+      Chapter 2 - Paul
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-03.html"
+    >
+      Chapter 3 - Secret Service
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-04.html"
+    >
+      Chapter 4 - Vanished
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-05.html"
+    >
+      Chapter 5 - A Hero
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-06.html"
+    >
+      Chapter 6 - Fair Helen
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-07.html"
+    >
+      Chapter 7 - The Secret Key
+    </a>
+  </li>
+  <li>
+    <a
+      href="http://literature.org/authors/alcott-louisa-may/the-mysterious-key-and-what-it-opened/chapter-08.html"
+    >
+      Chapter 8 - Which?
+    </a>
+  </li>
+</ul>
+```
+
+### Abstrakte Rollen
+
+Die letzte Art der ARIA-Rolle ist die abstrakte Rolle. Du kannst keine abstrakten
+Rollen in deinem Code verwenden, also sind sie in der Praxis überhaupt nicht nützlich.
+Sie sind hier nur der Vollständigkeit halber aufgeführt, weil sie in der Spezifikation
+definiert sind. Betrachte sie als Kategorien von Rollen und nicht als die eigentlichen
+Rollen selbst. In der Spezifikation sind abstrakte Rollen wie folgt definiert:
+
+- command
+
+- composite
+
+- input
+
+- landmark
+
+- range
+
+- section
+
+- sectionhead
+
+- select
+
+- structure
+
+- widget
+
+Beachte: Du kannst keine der abstrakten Rollen direkt in deinem Dokument verwenden.
+Zum Beispiel wäre role="widget" nicht gültig, wenn du es in deinen Code schreiben
+würdest. Manche Dinge werden als Widgets verstanden, aber du kannst selbst kein
+Widget angeben. Das machen die Browser für dich.
+
+## Wert
+
+Eigenschaften und Zustände müssen Screenreadern mitgeteilt werden, und alle
+Änderungen müssen ebenfalls mitgeteilt werden. In einigen Fällen beziehen sich
+diese Attribute auf die IDs anderer Elemente (z. B. aria-labelledby="someID").
+In anderen Fällen sind die Optionen true oder false (z. B. aria-hidden="true").
+Einige ARIA-Attribute sind auf vordefinierte Optionen beschränkt (z.B.
+aria-orientation="vertical" gegenüber aria-orientation="horizontal").
+
+Bei dynamischen Widgets muss der Wert je nach Situation umgeschaltet werden
+(z. B. aria-expanded="true" versus aria-expanded="false"). Das Umschalten des
+Wertes geschieht nicht automatisch, nur weil du den Ausgangszustand einstellst
+oder ARIA verwendest. Du musst JavaScript verwenden, um den Wert umzuschalten.
+
+### Global
+
+Diese Eigenschaften und Zustände können für jedes Element auf der Webseite gelten,
+auch wenn du ihm keine ARIA-Rolle zuweist.
+
+- Properties
+
+  - aria-atomic
+
+  - aria-controls
+
+  - aria-describedby
+
+  - aria-dropeffect
+
+  - aria-flowto
+
+  - aria-haspopup
+
+  - aria-label
+
+  - aria-labelledby
+
+  - aria-live
+
+  - aria-owns
+
+  - aria-relevant
+
+- States
+
+  - aria-busy
+
+  - aria-disabled
+
+  - aria-grabbed
+
+  - aria-hidden
+
+  - aria-invalid
+
+### Widgets
+
+Diese Eigenschaften und Zustände gelten für Benutzeroberflächenobjekte wie Alert,
+Alertdialog, Menü, Fortschrittsanzeige, Tooltip und andere Widgets.
+
+- Properties
+
+  - aria-autocomplete
+
+  - aria-haspopup
+
+  - aria-label
+
+  - aria-level
+
+  - aria-multiline
+
+  - aria-multiselectable
+
+  - aria-orientation
+
+  - aria-readonly
+
+  - aria-required
+
+  - aria-sort
+
+  - aria-valuemax
+
+  - aria-valuemin
+
+  - aria-valuenow
+
+  - aria-valuetext
+
+- States
+
+  - aria-checked
+
+  - aria-disabled
+
+  - aria-expanded
+
+  - aria-hidden
+
+  - aria-invalid
+
+  - aria-pressed
+
+  - aria-selected
+
+### Ziehen und Ablegen
+
+Diese Eigenschaften und Zustände gelten für Elemente auf der Seite, die ein Nutzer
+interaktiv mit der Maus oder anderen Eingabegeräten bewegen und neu anordnen kann.
+
+- Properties
+
+  - aria-dropeffect
+
+- States
+
+  - aria-grabbed
+
+### Live-Regionen
+
+Diese Eigenschaften und Zustände gelten für Elemente, die so eingestellt sind,
+dass sie Echtzeit-Durchsagen an Screenreader-Nutzer übermitteln.
+
+- Properties
+
+  - aria-atomic
+
+  - aria-live
+
+  - aria-relevant
+
+- States
+
+  - aria-busy
+
+## Beschreibung
+
+### aria-describedby verwenden
+
+Das Attribut aria-describedby dient dazu, zusätzliche Informationen über ein
+Element hinzuzufügen. Anders als aria-labelledby und aria-label ist das
+Attribut aria-describedby nicht Teil der Berechnung des zugänglichen Namens
+öffnet in einem neuen Fenster. Stattdessen ist es Teil der Berechnung der
+Barrierefreiheit der Beschreibung. Mit anderen Worten: Verwende aria-describedby
+nicht, um dem Element einen Namen, ein Label oder einen Titel zu geben. Verwende
+sie stattdessen, um das Element zu beschreiben oder zusätzliche Informationen
+über das Element zu geben.
+
+Beachte: Wenn das Element nur einen barrierefreien Namen braucht, brauchst du
+aria-describedby gar nicht zu verwenden.
+
+Wenn ein Element sowohl einen Namen als auch eine Beschreibung hat, lesen
+Screenreader zuerst den Namen eines Elements und dann seine Beschreibung. In
+älteren Versionen von VoiceOver unter OS X verzögerte die Standardeinstellung das
+Vorlesen des aria-describedby-Textes um mehrere Sekunden, so dass es sehr
+unwahrscheinlich war, dass die Benutzer/innen den aria-describedby-Text jemals
+hören würden, weil die Benutzer/innen fast immer an dem Element vorbeigingen,
+bevor der Screen Reader den aria-describedby-Text vorlas. Zum Glück hat Apple die
+Standardeinstellung geändert, um diese Verzögerung zu beseitigen. Die Nutzerinnen
+und Nutzer können die Verzögerung immer noch selbst einrichten, indem sie die
+Einstellungen ändern, aber das liegt nicht in der Hand der Entwicklerinnen und
+Entwickler.
+
+### aria-describedby-Text für Sehende und Bildschirmleser im Dokumentenkontext bereitstellen
+
+#### Gut: aria-describedby gibt zusätzliche Infos für Formularfelder an
+
+```html
+<label for="newPassword">Choose a new password:</label>
+<input type="password" id="newPassword" aria-describedby="pwdInfo" />
+<span id="pwdInfo">Minimum 8 characters, with both letters and numerals</span>
+```
+
+### Unterstützung für aria-describedby
+
+Im Allgemeinen müssen die folgenden Bedingungen erfüllt sein, damit Screenreader
+den aria-describedby-Text lesen können:
+
+- Das Element muss eine semantische Rolle haben. Die meisten Screenreader lesen
+  den aria-describedby-Text auf `<span>`- oder `<div>`-Elementen nicht.
+
+- In vielen Fällen muss das Element ein natürlich fokussierbares Element sein
+  (z. B. Links, Schaltflächen, Formularelemente).
+
+- Die Wahrscheinlichkeit, dass aria-describedby unterstützt wird, ist bei Elementen,
+  die typischerweise Barrierefreiheit haben können, wie Bilder und Tabellen, größer.
+  Elemente wie Absätze, Überschriften, Listen usw. werden in der Regel nur als
+  Textstrings und nicht als Elemente mit barrierefreien Namen betrachtet, so dass
+  die meisten Bildschirmlesegeräte aria-describedby für sie nicht unterstützen.
+
+## Live-Regionen (Detail)
+
+Mit dem aria-live-Attribut kannst du Screenreader-Nutzern Ankündigungen machen,
+unabhängig davon, was der Nutzer tut. Mit anderen Worten: Du musst nicht warten,
+bis der Nutzer eine Funktion auf der Webseite aktiviert (z. B. auf eine Schaltfläche
+klickt oder den Fokus auf ein bestimmtes Element legt oder davon wegbewegt). Du
+kannst dem/der Nutzer/in jederzeit eine Aria-Live-Ankündigung zukommen lassen,
+basierend auf einem Timer, einer Nutzer/innen-Aktion, dem Ergebnis eines
+Serverprozesses oder auf so ziemlich jedem anderen Ereignisauslöser, den du
+möchtest. Diese Ankündigungen können auf dem Bildschirm sichtbar sein, müssen es
+aber nicht. Normalerweise werden diese Meldungen nicht von einer Änderung des
+Fokus begleitet, aber in seltenen Fällen kann sich auch der Fokus ändern.
+
+Die Grundidee hinter einer ARIA-Live-Ankündigung besteht darin, einen leeren
+Container zu erstellen, der darauf wartet, dass ein Text über JavaScript in ihn
+eingefügt wird. Der Browser und die Barrierefreiheit-API wissen, dass es den
+Container gibt und dass er als Live-Region gekennzeichnet ist. Sobald ein Text
+in die Live-Region eingefügt wird, gibt die Barrierefreiheit-API diese Information
+an das Lesegerät weiter, das dann die Ansage macht.
+
+### Gut: Eine ARIA-Live-Ankündigung
+
+Der Container unten ist als Live-Region gekennzeichnet.
+
+```html
+<div aria-live="polite"></div>
+```
+
+Nach dem richtigen Ereignisauslöser (der je nachdem, was auf der Seite passiert,
+unterschiedlich ist) wird der Text in den Container eingefügt. Im folgenden Beispiel
+sagt der Screenreader "Hallo, Screenreader-Nutzer!".
+
+```html
+<div aria-live="polite">Hello, screen reader user!</div>
+```
+
+### Assertiv versus polite
+
+Es gibt zwei Arten, wie eine Aria-Live-Ansage gemacht werden kann: assertiv oder
+polite.
+
+#### Assertive
+
+Eine Assertive-Ansage - gekennzeichnet durch aria-live="assertive" - unterbricht
+ein Bildschirmlesegerät, wenn es gerade einen Text liest, und liest die
+aria-live-Ansage vor. Der Text, den das Lesegerät gerade gelesen hat, wird
+abgeschnitten und nicht automatisch nach der aria-live-Ansage fortgesetzt. Der/die
+Nutzer/in kann sich entscheiden, ob er/sie den Inhalt, den er/sie zuvor gelesen
+hat, noch einmal lesen möchte oder ob er/sie mit anderen Dingen weitermachen
+möchte. Wenn also mehrere Assertive-Ansagen gleichzeitig oder kurz hintereinander
+erscheinen, können sich die Ansagen gegenseitig unterbrechen und der/die Nutzer/in
+kann den vollständigen Text der unterbrochenen Ansage(n) nicht hören.
+
+#### Polite
+
+Eine höfliche Ansage, die mit aria-live="polite" gekennzeichnet ist, stellt
+die Ansage in eine Warteschlange und liest sie vor, nachdem der Screen Reader den
+Text in der Warteschlange gelesen hat. Wenn mehrere höfliche Ansagen gleichzeitig
+oder in rascher Folge erfolgen, sollte der/die Nutzer/in sie alle hören, solange
+er/sie die Live-Ansagen nicht durch die Aktivierung anderer Screenreader-Funktionen
+unterbricht.
+
+### ARIA-Live-Ansagen sollten kurz sein
+
+Wenn ein Benutzer eine ARIA-Live-Ansage unterbricht - z. B. durch Drücken der
+Steuerungstaste (damit die Ansage aufhört) oder durch Drücken der Tabulatortaste,
+um zum nächsten fokussierbaren Element zu wechseln usw. - kann die Ansage nicht
+wiederhergestellt werden. Bildschirmlesegeräte verfügen (derzeit) nicht über eine
+Option zum erneuten Lesen von Live-Ansagen. Wenn die Live-Ansage durch irgendetwas
+unterbrochen wird oder wenn der Nutzer nicht gut genug aufpasst, erfüllt die
+Ansage ihren Zweck nicht. So funktionieren ARIA-Live-Ansagen nun mal.
+
+Angesichts dieser inhärenten Einschränkung bei Live-Ankündigungen ist es am
+besten, die Ankündigung kurz zu halten. Andernfalls besteht die Gefahr, dass
+der/die Nutzer/in und/oder die Webseite bzw. der Screenreader die Ansage
+unterbricht, bevor sie zu Ende ist, was die Ansage nutzlos macht.
+
+### Die ARIA-Live-Region muss zu Beginn leer sein
+
+Wenn der ARIA-Live-Region-Container beim Laden der Seite oder beim Hinzufügen der
+Live-Region zum DOM mit Text (innerer Text zwischen den öffnenden und schließenden
+Tags) gefüllt wird, wird die Barrierefreiheit-API den inneren Text nicht ankündigen.
+Live-Ankündigungen funktionieren nur dann richtig, wenn die Barrierefreiheit-API
+eine Änderung an der Live-Region erkennt. Bereits vorhandener Text wird nicht als
+Änderung registriert, so dass Screenreader nichts ankündigen können.
+
+### ARIA-Live-Region muss vor Texteinfügung erkannt werden
+
+Am besten ist es, beim Laden der Seite einen leeren Live-Region-Container in das
+Dokument einzufügen. Das ist der sicherste Weg, um sicherzustellen, dass die
+Barrierefreiheit-API den Container als Live-Region registriert. Es ist möglich,
+eine Live-Region später zum DOM hinzuzufügen, solange die Region leer ist, wenn
+sie hinzugefügt wird. Wenn die Region dem DOM ohne ein Seitenaktualisierungsereignis
+hinzugefügt wird, füge mit JavaScript eine Verzögerung ein, bevor du versuchst,
+eine Ankündigung in die Region einzubringen. Du musst mit der Dauer der Pause
+experimentieren. Teste sie mit verschiedenen Screenreadern und Browsern, auch
+mit mobilen Geräten, bevor du dich für eine Mindestdauer der Pause entscheidest.
+Wahrscheinlich sind mindestens 2 Sekunden für alle Kombinationen erforderlich,
+aber es können auch andere Faktoren ins Spiel kommen.
+
+### Modifizierungsattribute für aria-live Regionen
+
+#### aria-atomic
+
+Das Attribut aria-atomic teilt der assistiven Technologie mit, ob eine ganze
+Region oder nur die Änderung erneut vorgelesen werden muss.
+
+##### aria-atomic="false"
+
+Dies ist die Standardeinstellung. Das bedeutet, dass bei einer Änderung in der
+Region diese Änderung eigenständig angezeigt werden kann. Wenn eine Live-Region
+aktualisiert wird, kann die Aktualisierung eigenständig angekündigt werden und
+macht trotzdem Sinn. Zum Beispiel wird eine Schlagzeile zu einem Newsfeed
+hinzugefügt.
+
+##### aria-atomic="true"
+
+Manchmal muss die gesamte Live-Region gelesen werden, damit der Nutzer genug
+Kontext hat, um die Aktualisierung zu verstehen. Wenn atomic auf "true" gesetzt
+ist, bedeutet das, dass die gesamte Region bei jeder Änderung neu gelesen werden
+muss.
+
+#### aria-relevant
+
+##### aria-relevant="all"
+
+Alle Änderungen sind relevant. Verwende es sparsam - wenn es zu oft verwendet
+wird, kann es der Benutzerfreundlichkeit sehr schaden.
+
+##### aria-relevant="Ergänzungen"
+
+Hinzufügungen von Knoten in der Live-Region sind relevant. Knoten, die z. B. von
+der Spitze eines Logs entfernt werden, werden lediglich entfernt, um Platz für
+andere Einträge zu schaffen, und das Entfernen dieser Knoten hat keine Bedeutung.
+
+##### aria-relevant="removals"
+
+Das Entfernen von Knoten in der Live-Region ist relevant (d.h. ein Screenreader
+spricht das Entfernen).
+
+##### aria-relevant="text"
+
+Änderungen am Textinhalt (einschließlich Textäquivalenten wie Alt-Text) in der
+Live-Region sind relevant.
+
+Hinweis: Die aria-relevanten Werte für "Entfernen" oder "Alle" sollten sparsam
+verwendet werden. Assistive Technologien müssen nur dann über die Entfernung von
+Inhalten informiert werden, wenn die Entfernung eine wichtige Veränderung darstellt,
+z. B. wenn ein Freund einen Chatroom verlässt.
+
+#### aria-busy
+
+Es kann vorkommen, dass du die Ankündigung von Darstellungsänderungen durch assistive
+Technologien unterdrücken möchtest, während eine Region aktualisiert wird. Um
+Ankündigungen zu unterdrücken, während die Region aktualisiert wird, kannst du
+die Eigenschaft aria-busy (state) verwenden. Setze aria-busy="true" und lösche das
+Attribut, wenn die Region fertig ist.
+
+### Verschiedene Arten von aria-live Regionen
+
+#### role="alert"
+
+Eine ARIA-Warnung (role="alert") ist eine besondere Art von Assertive-Live-Region,
+die verwendet werden kann, um Screenreadernutzern wichtige Informationen mitzuteilen.
+Ein Alert ist das Äquivalent zu aria-live="Assertive", außer dass einige Screenreader
+"alert" sagen, um die Nutzer/innen wissen zu lassen, dass es sich um eine Warnmeldung
+handelt.
+
+##### Beispiel: Bestätigungsalarm
+
+Der ursprüngliche HTML-Code enthält einen leeren Container für die Warnmeldung:
+
+```html
+<form id="successForm" method="post" action="javascript:void(0)">
+  <p><button>Save my preferences</button></p>
+  <div class="msg" role="alert">
+    <span class="msgTxt"></span>
+  </div>
+</form>
+```
+
+Der endgültige Code nach der Verwendung von JavaScript, um den Text in die Meldung
+einzufügen:
+
+```html
+<form id="successForm" method="post" action="javascript:void(0)">
+  <p><button>Save my preferences</button></p>
+  <div class="msg" role="alert">
+    <span class="msgTxt">Your preferences have been saved.</span>
+  </div>
+</form>
+```
+
+Hinweis: Das `<span>` innerhalb der Meldung ist nicht erforderlich. Es ist in
+diesem Skript enthalten, weil das Skript andere Funktionen hat, mit denen du
+optional andere Inhalte in die Meldung einfügen kannst, z. B. Schaltflächen zum
+Schließen der Meldung.
+
+### role="status"
+
+Ein Element mit role="status" kündigt Statusaktualisierungen für Screenreader-Nutzer
+an. Die Status-Rolle ist eine besondere Art von Live-Region für Status-Updates,
+also Ankündigungen, die weniger dringend sind als Alerts. Statusaktualisierungen
+haben einen impliziten aria-live-Typ von höflich (was bedeutet, dass Bildschirmleser
+mit dem Lesen der Ankündigung warten, bis sie mit dem, was sie gerade lesen, fertig
+sind) und einen impliziten aria-atomic von wahr (was bedeutet, dass alles in der
+Region angekündigt wird; nicht nur Hinzufügungen oder Subtraktionen).
+
+Manchmal ist es eine Ermessensfrage, ob eine Ankündigung eine Warnung, eine
+Statusaktualisierung oder eine allgemeine aria-live Ankündigung sein soll. Jede
+dieser Varianten kann funktionieren, aber sie können den Nutzern einen etwas
+anderen Eindruck von der Dringlichkeit der Ankündigung vermitteln, vor allem bei
+Bildschirmlesegeräten, die "Alarm" oder "Status" sagen, bevor sie Alarme bzw.
+Statusaktualisierungen ankündigen.
+
+Beachte: Screenreader unterscheiden möglicherweise nicht zwischen role="status"
+und aria-live="höflich", so dass das Endergebnis für die Nutzerinnen und Nutzer
+gleich klingen kann.
+
+### role="timer"
+
+Wenn du ein Element auf role="timer" setzt, wird es als Zeitzähler verwendet, der
+entweder aufwärts oder abwärts zählt. Diese Rolle ist nicht so nützlich wie andere
+Arten von Live-Regionen, denn der implizite Wert ist aria-live="off", was bedeutet,
+dass Screenreader Änderungen an Timern überhaupt nicht ankündigen sollen, obwohl
+Screenreader-Nutzer den Inhalt des Timers lesen können, wenn sie zum Timer navigieren
+und sich den Text anhören. Der Grund dafür, dass Bildschirmlesegeräte Timer nicht
+ankündigen sollen, ist, dass es viel zu lästig wäre, die Zeit jede Sekunde (oder
+wie groß das Intervall auch immer sein mag) vorgelesen zu bekommen, und dass die
+Ankündigungen die Fähigkeit des Nutzers beeinträchtigen würden, den Rest der
+Webseite zu lesen. Semantisch gesehen ist die Einstellung von role="timer" für
+Timer zwar richtig, aber sie hat keinen Einfluss auf die Barrierefreiheit.
+
+### role="marquee"
+
+Wenn du ein Element mit role="marquee" versiehst, wird es zu einem scrollenden Bereich
+(z. B. einem Nachrichtenticker) mit unwesentlichen Ankündigungen. Der implizite Wert
+ist aria-live="off", was bedeutet, dass Screenreader Änderungen in Marquees überhaupt
+nicht ankündigen sollen, obwohl Screenreader-Nutzer den Inhalt des Marquees lesen
+können, wenn sie zum Marquee navigieren und sich den Text anhören. Wie bei den Timern
+wäre es auch bei den Marquees zu lästig, auf Aktualisierungen zu hören, wenn sie
+häufig vorkommen, und die Ankündigungen würden die Fähigkeit des Nutzers beeinträchtigen,
+den Rest der Webseite zu lesen. Semantisch gesehen ist die Einstellung von role="marquee"
+für scrollende Marquees richtig, aber sie hat keinen Einfluss auf die Barrierefreiheit.
+
+### role="log"
+
+Logs zeichnen aufeinanderfolgende Ereignisse auf, wie z. B. eine Chat-Konversation,
+Schritte in einem Software-Installationsprozess oder andere ähnliche aufeinanderfolgende
+Aktionen.
+
+## Barrierefreiheit über die Tastatur
+
+Jedes HTML-Element hat eine Rolle, d.h. eine Reihe von Merkmalen, Eigenschaften und
+Methoden, um Informationen an den und/oder vom Nutzer zu übermitteln. Im Wesentlichen
+definiert die Rolle, was das Element ist. Bildschirmlesegeräte und andere unterstützende
+Technologien müssen die Rolle jedes Elements auf der Webseite kennen, um intelligent
+damit interagieren zu können, und sie müssen in der Lage sein, diese Rolle dem
+Nutzer zu vermitteln.
+
+Wenn ein Bildschirmlesegerät z. B. auf ein `<img>`-Element stößt, weiß es, dass
+es sich um ein Bild handelt - dass die Rolle als "Bild" definiert ist. Das
+Bildschirmlesegerät teilt dem Nutzer also mit, dass es sich um ein Bild handelt
+(die meisten Bildschirmlesegeräte sagen "Grafik") und liest dann den Alt-Text
+für das Bild oder vielleicht den Dateinamen oder das Linkziel, wenn das Bild
+keinen Alt-Text hat. Ein Bildschirmlesegerät verhält sich ganz anders, wenn
+es auf ein `<p>`-Element trifft (bei dem die Rolle als "Absatz" definiert ist).
+
+### ARIA Keyboard Patterns
+
+Da sich das Web von einem reinen Dokumentenmodell zu einem interaktiven Anwendungsmodell
+mit allen Funktionen entwickelt hat, hatten JavaScript-Programmierer manchmal
+Schwierigkeiten, Tastaturinteraktionsmuster zu finden, die für das Web sinnvoll sind.
+Die Interaktionen im Web beschränkten sich in der Regel auf die Verwendung der
+Tabulatortaste und der Eingabetaste, während die Pfeiltasten nur selten verwendet
+wurden. Im Gegensatz dazu gibt es in Betriebssystemen wie Windows, macOS und Linux
+ausgefeiltere Tastaturdesignmuster, die die gesamte Bandbreite der Tastaturoptionen
+ausnutzen und die Pfeiltasten sowie Modifikatortasten wie Strg, Alt, Shift, Befehl,
+Funktionstasten (F1, F2, F3 usw.) usw. ausgiebig verwenden.
+
+#### ARIA-Tastatur Best Practices
+
+ARIA enthält Tastaturinteraktionsmuster, die mehr dem Desktop-Modell entsprechen,
+um JavaScript-Programmierern mehr Flexibilität zu geben und den Nutzern eine
+konsistentere und effizientere Erfahrung in Desktop- und Webanwendungen zu ermöglichen.
+Der <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank">ARIA Authoring
+Practices Guide (APG)</a> enthält empfohlene Tastaturinteraktionsmuster für viele
+der gängigsten Arten von <a href="https://www.w3.org/WAI/ARIA/apg/patterns/" target="_blank">
+Mustern und Widgets</a> wie Akkordeons, Autovervollständigung, modale Dialoge,
+Menüs, Baumansichten und so weiter.
+
+#### Mit der Tabulatortaste zum Widget, mit den Pfeiltasten im Widget
+
+Im Allgemeinen lässt sich das ARIA-Muster so beschreiben: Die Benutzer/innen
+wechseln mit der Tabulatortaste zum Widget und verwenden dann die Pfeiltasten,
+um innerhalb des Widgets zu navigieren. Manchmal stehen auch andere Tasten zur
+Verfügung, z. B. Home, End, Page Up, Page Down usw., aber die Pfeiltasten sind
+die wichtigste Navigationstaste in ARIA-Widgets.
+
+### Bedienbarkeit
+
+Zunächst einmal das Offensichtliche: Barrierefreiheit mit der Tastatur setzt
+voraus, dass deine Website tatsächlich mit einer Tastatur funktioniert. Wenn für
+irgendeinen Teil deiner Website eine Maus erforderlich ist, ist deine Website
+nicht tastaturzugänglich. Das ist es, worauf sich die "Bedienbarkeit" bezieht:
+Die Website muss mit dem Eingabegerät und den Methoden des Nutzers funktionieren.
+Die Person kann eine Maus, eine Tastatur, einen Touchscreen, sprachgesteuerte
+Bedienelemente, ein Gerät zur Verfolgung der Augenbewegungen, ein Gerät mit einem
+Schalter, das die Wangenbewegungen erkennt, oder eine andere Art von Gerät
+haben... und deine Website muss mit all diesen Geräten funktionieren.
+
+Leider gibt es auf vielen Websites Funktionen, die nur mit der Maus funktionieren.
+Das führt zu Problemen für verschiedene Gruppen von Menschen mit Behinderungen,
+z. B:
+
+- Benutzer mit Zittern oder spastischen Bewegungen in den Händen, denen die
+  manuelle Präzision fehlt, die für die Verwendung einer Maus erforderlich ist
+
+- Nutzer ohne Hände, die es einfacher finden, ein Gerät wie einen Mundstick mit
+  einer Tastatur zu benutzen als mit einer Maus
+
+- Blinde, die zwar eine Maus benutzen können, aber nicht sehen können, wo sich
+  der Mauszeiger befindet, so dass es für sie keinen Sinn macht, eine Maus zu
+  benutzen.
+
+Die gute Nachricht ist, dass die meisten Technologien, die von Menschen verwendet
+werden, die keine Maus benutzen können, eine Tastatur emulieren. Daher kann man
+bei den meisten Dingen davon ausgehen, dass sie für alle Arten von Eingabegeräten
+funktionieren, wenn sie mit einer Tastatur und einer Maus funktionieren. Es gibt
+ein paar Ausnahmen, wenn du mit Touchscreen-Gesten oder anderen speziellen Methoden
+arbeitest. In diesen Fällen musst du ein paar zusätzliche Dinge tun, damit die
+Gesten funktionieren, aber du solltest trotzdem sicherstellen, dass die Aktionen
+nur mit einer Tastatur oder nur mit einer Maus funktionieren.
+
+#### Wie man die Barrierefreiheit der Tastatur testet
+
+Es gibt eigentlich nur eine Möglichkeit, die Barrierefreiheit mit der Tastatur
+zu testen, nämlich indem du deine Maus beiseite legst und versuchst, alles auf
+deiner Website mit der Tastatur zu machen. Hier sind einige grundlegende
+Tastaturmethoden:
+
+- Fokus: Achte darauf, dass handlungsrelevante Elemente den Fokus der Tastatur
+  erhalten können, z. B:
+
+  - Links
+
+  - Formularelemente
+
+  - Schaltflächen (einschließlich "Schließen"-Schaltflächen in Popups)
+
+  - Dropdown-Menüs
+
+  - Tooltips und Mouse-over-Aktionen
+
+  - Modale Fenster und Popups
+
+  - Drag & Drop-Steuerelemente und -Objekte
+
+  - Steuerelemente für Media Player (Wiedergabe, Pause, Lautstärke, Bildunterschriften,
+    Größenänderung usw.)
+
+  - Benutzerdefinierte Steuerelemente (simulierte Kontrollkästchen, Optionsfelder,
+    Auswahllisten usw.)
+
+  - Felder mit vorausschauender oder prädiktiver Texteingabe
+
+  - Datumswähler
+
+  - Alles, mit dem die Benutzer interagieren müssen oder das Informationen vor den
+    Benutzern verbirgt, bis sie sie anfordern
+
+- Funktionsweise: Alle Steuerelemente müssen die richtige Aktion auf die erwartete
+  Weise ausführen. Zum Beispiel:
+
+  - Schaltflächen (einschließlich Submit-Schaltflächen, Optionsschaltflächen
+    und Kontrollkästchen) müssen mit der Maus, der Eingabetaste und der
+    Leertaste aktiviert werden können.
+
+  - Links müssen mit der Maus und der Eingabe-/Returntaste "anklickbar" sein.
+
+  - Optionsfelder müssen als Gruppe "tabbar" sein, aber du kannst mit den Pfeiltasten
+    zwischen den Optionsfeldern in der Gruppe navigieren
+
+  - Dropdown-Auswahllisten sollten mit den Pfeiltasten nach oben und nach unten
+    verwendet werden können, oder der Nutzer sollte die Möglichkeit haben, die Liste
+    mit Alt + Pfeil nach unten zu erweitern, dann die Pfeiltasten innerhalb der Liste
+    zu verwenden und mit der Enter/Return-Taste die Option auszuwählen.
+
+  - ARIA-Widgets sollten den Entwurfsmustern folgen, die in den <a href="https://www.w3.org/WAI/ARIA/apg/"
+    target="_blank">ARIA-Authoring-Practices</a> beschrieben werden
+
+### Sichtbarer Fokusindikator
+
+Sehende Tastaturbenutzer müssen jederzeit sehen können, wo sich der Tastaturfokus
+befindet. Wenn sie mit der Tabulatortaste durch eine Webseite navigieren und nicht
+sehen können, wo sich der Fokus befindet, wird die Navigation auf der Website zu
+einem Ratespiel. "Ich frage mich, was passiert, wenn ich jetzt Enter drücke?" Wie
+oft muss ich die Tabulatortaste drücken, um zum Link "Kontakt" zu gelangen? Die
+Website ist im Grunde unbrauchbar.
+
+Die gute Nachricht ist, dass du nichts tun musst, um den Tastaturfokus sichtbar
+zu machen. Das übernehmen die Browser für dich. Einige Browser (wie Internet
+Explorer und Firefox) setzen einen gepunkteten Rahmen um die aktiven Links und
+Schaltflächen. Andere Browser (wie Safari und Chrome) legen einen abgerundeten,
+durchgezogenen Rahmen um die aktiven Elemente. Solange du nichts unternimmst, um
+die browsereigene Fokusanzeige auszuschalten, kannst du die Anforderungen der
+Barrierefreiheit für visuelle Fokusanzeigen erfüllen.
+
+#### Schalte den Fokusumriss nicht aus
+
+Wie wird der visuelle Fokusindikator überhaupt ausgeschaltet? Das passiert im CSS:
+
+```css
+a:focus {
+  outline: 0; /* or outline: none; */
+}
+```
+
+Wenn du die Gliederung auf 0 oder gar nicht einstellst, unterdrücken die Browser
+den nativen Stil und machen es sehenden Nutzern schwer oder unmöglich, zu navigieren.
+Einige Browser zeigen die URL unten links auf dem Bildschirm an, damit die Nutzer
+zumindest sehen können, wie die Webadresse des Links lautet, aber manchmal sind
+die URLs nicht zu entziffern, mit Phrasen wie /index.aspx?rid=893248&session=23497hofaso829naa.
+Niemand kann sich einen Reim darauf machen. Außerdem zeigen nicht alle Browser
+die URL an, so dass du dich nicht darauf verlassen kannst, dass die Nutzer sie
+überhaupt sehen können.
+
+#### Du kannst den visuellen Fokusindikator verbessern
+
+Die gepunktete Umrisslinie im Internet Explorer und Firefox ist gut genug, um die
+Barrierefreiheit zu gewährleisten, aber sie ist nicht immer gut genug für Menschen
+mit Sehschwäche, weil die gepunktete Linie zu klein oder zu kontrastarm sein kann.
+Du kannst den visuellen Fokusindikator anpassen, indem du ihn dicker machst oder
+Farben wählst, die sich kontrastreicher von den Hintergründen auf deiner Website
+abheben. Wenn du ihn anpasst, kannst du jede Farbkombination wählen, die zu deiner
+Website passt.
+
+```css
+a:focus {
+  background-color: #fdf6e7;
+  outline: 1px solid #8cc63f;
+}
+```
+
+Das Ergebnis des obigen Stils ist, dass die Links eine hellgelbe Hintergrundfarbe
+und eine hellgrüne Umrandung haben, wenn sie den Tastaturfokus erhalten.
+
+Manchmal musst du mehrere Farbkombinationen für die visuellen Fokusstile erstellen,
+um unterschiedliche Hintergrundfarben in verschiedenen Abschnitten der Website zu
+berücksichtigen. Die Kopfzeile könnte z. B. einen dunklen Hintergrund haben und
+der Inhalt einen hellen Hintergrund.
+
+Du kannst ähnliche :focus-Stile für Schaltflächen und andere Elemente mit
+Aktionsmöglichkeiten erstellen.
+
+#### Du kannst auch den Schwebezustand und den aktiven Zustand verbessern
+
+Nutzer mit eingeschränktem Sehvermögen profitieren von verbesserten Hover-Styles,
+da diese deutlicher machen, wo sich die Links befinden und ob sich die Maus gerade
+über einem Link befindet oder nicht.
+
+Du könntest für die verschiedenen Zustände - Fokus, Hover und Aktiv - verschiedene
+Stile erstellen, aber das musst du nicht. Manchmal ist es sinnvoller, ihnen allen
+denselben Stil zu geben:
+
+```css
+a:focus,
+a:hover,
+a:active {
+  background-color: #fdf6e7;
+  outline: 1px solid #8cc63f;
+}
+```
+
+Nutzer mit eingeschränktem Sehvermögen werden die Hover-Stile besonders schätzen.
+
+### Tab/Lesereihenfolge
+
+#### Die lineare Tabulator-/Lesereihenfolge wird durch das DOM bestimmt
+
+Das DOM (Document Object Model) kann als der Quellcode definiert werden, nachdem
+er vom Browser interpretiert und das JavaScript angewendet wurde. Bei statischen
+Inhalten ist die Reihenfolge im DOM dieselbe wie die im ursprünglichen Quellcode.
+Bei dynamischen Inhalten besteht jedoch die Möglichkeit, dass die Webentwickler
+Dinge in der falschen Reihenfolge in das DOM eingefügt haben. Sie könnten zum
+Beispiel den neuen Code ganz oben oder ganz unten im DOM einfügen und sich dann
+für die visuelle Platzierung auf CSS verlassen. Für sehende Mausbenutzer ist das
+in Ordnung, aber nicht für Tastaturbenutzer, denn für sie ist es schwer herauszufinden,
+wie sie zu den fokussierbaren Elementen in den dynamischen Bereichen gelangen. Die
+Benutzer erwarten, dass die Tabulatorreihenfolge mit der visuellen Reihenfolge
+übereinstimmt. Wenn das nicht der Fall ist, gehen sie oft davon aus, dass der
+Inhalt für die Tastatur nicht zugänglich ist, auch wenn er technisch gesehen
+zugänglich ist, aber nur in einer anderen Reihenfolge.
+
+#### Die Tabulator-/Lesereihenfolge muss mit der visuellen Reihenfolge übereinstimmen
+
+Es ist fast immer die beste Praxis, die Tabulator-/Lesereihenfolge mit der visuellen
+Reihenfolge abzustimmen, d. h. sicherzustellen, dass die Reihenfolge der Inhalte
+im DOM mit der visuellen Reihenfolge übereinstimmt. Die Nutzerinnen und Nutzer wollen
+sich auf natürliche Weise durch den Inhalt bewegen können, ohne die gesamte Webseite
+nach der Stelle durchsuchen zu müssen, an der der Fokus auf dem Element liegt, auf
+das sie zugreifen wollen.
+
+Es gibt einige Ausnahmen von dieser Regel. So kann es z. B. sinnvoll sein, den
+Inhalt eines modalen Fensters am oberen oder unteren Ende des DOM zu platzieren
+und den Tastatur- und Bildschirmleserzugriff auf den Rest des Dokuments zu deaktivieren,
+während das modale Fenster geöffnet ist. Wenn du diese in sich abgeschlossenen
+Codeabschnitte oben oder unten im DOM platzierst, werden sie absichtlich vom Rest
+der Seite isoliert, damit die Benutzer nicht mit dem Rest der Seite interagieren.
+Aber für die meisten nicht-modalen Inhalte willst du solche Elemente nicht isolieren.
+Du möchtest, dass sie sich im natürlichen Fluss des Dokuments befinden, was bedeutet,
+dass die DOM-Reihenfolge mit der visuellen Reihenfolge übereinstimmen muss.
+
+### Keine Tastatur-Falle
+
+Du willst, dass Tastaturbenutzer in der Lage sind
+
+- Zu allen Elementen mit Aktionsmöglichkeiten zu gelangen (Links, Schaltflächen,
+  Formularelemente usw.)
+
+- die aktivierbaren Elemente nutzen
+
+- über die aktivierbaren Elemente hinausgehen und mit dem Rest der Webseite fortfahren.
+
+Tastaturfallen treten auf, wenn der letzte Schritt nicht möglich ist. Wenn die
+Nutzer/innen nicht mit der Tabulatortaste aus einem Objekt heraus oder an ihm
+vorbei gehen können, ist das ein echtes Problem. Je nachdem, wie sehr die
+Tastaturfalle sie daran hindert, die Seite zu verlassen, sind sie gezwungen, mit
+einem Tastaturkürzel zur Adressleiste zu gehen und dann rückwärts durch die
+Seite zu navigieren, oder sie müssen den Browser ganz schließen und von vorne
+beginnen.
+
+Der häufigste Übeltäter ist Flash (insbesondere Flash-Objekte in Firefox auf
+dem Mac), aber auch schlecht konzipiertes JavaScript kann eine Tastaturfalle
+verursachen.
+
+### Richtiges Verwenden des Tabindex
+
+#### Verwende tabindex="0", um ein Element tabbable und focusable zu machen
+
+Wenn du einem Element, das normalerweise nicht tabbar ist - wie `<p>`, `<h2>` oder
+`<div>` - tabindex="0" zuweist, wird dieses Element Teil des normalen Tab-Flows.
+Die Nutzerinnen und Nutzer können mit der Tabulatortaste den Tastaturfokus auf das
+Element setzen.
+
+Normalerweise würdest du das nicht tun wollen - es macht z. B. wenig Sinn, mit
+der Tabulatortaste zu einem normalen Absatz zu wechseln - aber es kann in einer
+Reihe von Situationen eine nützliche Technik sein:
+
+- Um Legacy-Code mit reinen Maus-JavaScript-Ereignissen um Tastaturfunktionen zu
+  erweitern.
+
+- Um bestimmte Elemente in ARIA/JavaScript-Widgets mit Tastaturfunktionen
+  auszustatten, z. B. die Tabs in einem Tab-Panel (`<li role="tab" tabindex="0">`).
+
+- Um Screenreader zu zwingen, Text innerhalb eines Formulars oder einer Anwendung
+  zu lesen, der sonst übersprungen werden könnte. Hinweis: Normalerweise gibt es
+  bessere Möglichkeiten, um sicherzustellen, dass der Text in diesen Situationen
+  gelesen werden kann, z. B. mit aria-label, aria-labelledby oder aria-describedby,
+  aber tabindex="0" kann manchmal eine akzeptable Lösung sein.
+
+#### tabindex="-1" macht ein Element per JavaScript fokussierbar, aber nicht tabbar
+
+Wenn du einem Element tabindex=-1" zuweist, können die Nutzer/innen zwar immer
+noch nicht mit der Tabulatortaste darauf zugreifen, aber du kannst den Fokus mit
+JavaScript an das Element senden. Diese Technik kann in vielen Situationen
+nützlich sein:
+
+- Um den Fokus an eine Nachricht zu senden, z. B. eine Fehlermeldung oder eine
+  Bestätigungsmeldung, damit sehende Nutzer sie sehen und blinde Nutzer sie über
+  ihre Bildschirmlesegeräte hören können.
+
+- Um den Fokus an ein Steuerelement in einem JavaScript-Widget zu senden, z. B.
+  an einen inaktiven Tab in einer Tablist. Bevor du den Fokus erhältst, wird die
+  inaktive Registerkarte auf `<li role="tab" tabindex="-1">` gesetzt. Nachdem er
+  den Fokus erhalten hat, würdest du mit JavaScript den Wert für den Tabindex auf
+  0 ändern (`<li role="tab" tabindex="0">`), wodurch der aktive Tab in den normalen
+  Tab-Flow versetzt würde. Die anderen Tabs (alle inaktiv) würden alle auf
+  `<li role="tab" tabindex="-1">` gesetzt werden.
+
+#### Verwende tabindex nicht mit positiven Zahlen
+
+Wenn du tabindex für positive Zahlen verwendest (z. B. tabindex="1" oder
+tabindex="2"), sind dies die ersten Dinge, zu denen der Nutzer auf der Seite
+wechselt. Das bringt den normalen Tab-Fluss durcheinander. Die Idee, die
+Tab-Reihenfolge zu ändern, ist an und für sich nicht schlecht. Auf manchen
+Webseiten kann es legitim sein, den Fokus beim Laden der Seite auf einen
+bestimmten Bereich zu legen.
+
+Es gibt zwei Hauptprobleme mit einem Tabindex mit positiven Zahlen:
+
+- Der normale Tabulatorfluss ist unterbrochen: Die Elemente mit tabindex sind nicht
+  mehr Teil des normalen Tab-Flows, wenn du durch das Dokument blätterst. Wenn es
+  zum Beispiel 100 Links auf der Seite gibt und der Link 30 den Tabindex="1" und
+  der Link 31 den Tabindex="2" hat, wird der Benutzer zuerst auf den Link 30, dann
+  auf den Link 31, dann auf die Links 1, 2, 3 und so weiter klicken. So weit so
+  gut, aber wenn der Nutzer bei Link 29 ankommt, ist der nächste Punkt, den er ansteuert,
+  nicht Link 30. Es wird Link 32 sein. Der Nutzer kann erst dann zu den Links 30
+  oder 31 wechseln, wenn er zu Link 100 gewechselt ist. Nach Link 100 geht es zu
+  Link 31, dann zu 32 und dann zurück zu 1. Es kann sehr frustrierend sein, wenn
+  man bei Link 29 ist und versucht, zu Link 30 zu gelangen, und es nicht schafft
+  (zumindest nicht, bis man 70 weitere Male auf Tab gedrückt hat).
+
+- Dynamische Inhalte können deinen beabsichtigten Tab-Fluss unterbrechen: Wenn du
+  das gleiche Beispiel wie oben verwendest, also eine Seite mit 100 Links, bei der
+  die Links 30 und 31 einen Tabindex von 1 bzw. 2 haben, und du JavaScript verwendest,
+  um einen neuen Inhaltsabschnitt zwischen den Links 30 und 31 einzufügen, musst
+  du jedem Link und jedem Formularelement dazwischen, das nach dem Link 30 und
+  vor dem Link 31 auftaucht, einen Tabindex-Wert zuweisen, damit diese Elemente in
+  den normalen Tab-Flow gelangen. Wenn du vergisst, auch nur für einen Link einen
+  Tabindex-Wert zu setzen, geht der Nutzer zu Link 1 und kehrt erst dann zu diesem
+  Bereich zurück, wenn er durch die Links 2, 3, 4 usw. bis zu Link 29 tabbt. An
+  diesem Punkt wird der Nutzer zum nächsten Element im neuen Abschnitt wechseln,
+  aber bis dahin ist er wahrscheinlich ziemlich frustriert, und es ist möglich,
+  dass er einfach annimmt, dass der Link oder das Formularelement überhaupt
+  nicht zugänglich ist.
+
+### Fokus Management
+
+#### Programmatische und visuelle Fokusreihenfolge abgleichen
+
+Streng genommen ist die Fokusreihenfolge die Fokusreihenfolge -
+"Fokus" ist ein Begriff, der ein Verhalten beschreibt, das ein Dokumentobjekt
+haben kann. Da der Fokus jedoch in der Regel der Reihenfolge folgt, in der die
+Objekte im Dokumentenquelltext erscheinen, stimmt er möglicherweise nicht mit der
+Reihenfolge überein, in der die Benutzer mit den Objekten auf der Seite interagieren.
+Dies geschieht in der Regel aufgrund eines oder mehrerer der folgenden Faktoren:
+Die "Reihenfolge" der Elemente ist falsch. Mit anderen Worten: Die Elemente wurden
+per CSS so auf der Seite positioniert, dass sich ihre visuelle Position verändert
+hat und sie früher (oder später) platziert wurden, als es aufgrund ihrer
+ursprünglichen Position der Fall gewesen wäre. Oder die Elemente sind optisch
+"versteckt", d. h. sie sind so gescriptet, dass sie aufgrund eines bestimmten
+Ereignisses erscheinen, aber nicht aus der Tab-Reihenfolge herausgenommen wurden.
+Das bedeutet, dass sie fokussierbar sind, auch wenn der Fokus nicht visuell
+wiedergegeben wird. Oder die von den Nutzern erwartete Interaktion folgt einem
+Pfad, der nicht mit der Platzierung der Elemente in der Dokumentenquelle übereinstimmt.
+
+### Dynamische Inhalte inline mit aufrufenden Steuerelementen darstellen
+
+Das Hinzufügen oder Ändern von Inhalten auf der Seite durch Skripte ist oft das
+Ergebnis einer Aktion des Nutzers. So kann zum Beispiel eine neue Ebene erscheinen,
+die ein Formular einleitet, nachdem ein Nutzer auf den Link "Anmelden" geklickt
+hat. In der Praxis kann sich das `<div>`, das das Formular enthält, am unteren
+Ende der Seite befinden, vor dem schließenden `<body>`-Tag, und mit CSS ausgeblendet
+werden. Wenn du den "Anmelden"-Link aktivierst, wird das Anmeldeformular zwar
+sichtbar, aber in der eigentlichen Tab-Reihenfolge erst sehr spät eingeblendet.
+Um dies zu umgehen, gibt es zwei mögliche Ansätze für die Barrierefreiheit:
+
+Eine Möglichkeit wäre, das Anmeldeformular per AJAX als nächstes Element in die
+Seite einzufügen. Eine andere Möglichkeit wäre, den Fokus auf das Anmeldeformular
+zu verschieben, wenn es geöffnet wird, so dass es so wirkt, als wäre es das nächste
+Element in der Dokumentenquelle.
+
+Unabhängig davon, welcher Ansatz gewählt wird, muss das Endergebnis sein, dass
+das nächste Element, das den Fokus erhält, das nächste logische Element ist,
+mit dem der Nutzer interagieren wird.
+
+### Vermeide geräteabhängige Ereignisse
+
+Geräteabhängige Ereignisse sind Ereignisse, für die der Benutzer ein bestimmtes
+Eingabegerät benötigt, z. B. eine Maus. Es ist möglich, Ereignisse zu binden,
+die kein bestimmtes Gerät erfordern, oder Ereignisse so zu kombinieren, dass
+eine bestimmte Art von Hardware nicht erforderlich ist. Anstelle von Ereignissen,
+die auf Mausbewegungen wie Mouseover oder Hover reagieren, kann der Entwickler
+z. B. onfocus oder blur verwenden. Auf diese Weise kann die Benutzeroberfläche
+auf die Aktionen des Benutzers reagieren, unabhängig davon, ob er die Maus
+benutzt oder nicht.
+
+Stelle sicher, dass alle handlungsfähigen Elemente den Fokus erhalten können.
+Vermeide es, Ereignisse auf Elemente anzuwenden, die normalerweise keinen Fokus
+erhalten können, es sei denn, der Fokus wird verwaltet.
+
+Wie bereits erwähnt, können nur bestimmte Elemente von Haus aus im Browser den
+Fokus erhalten. Die Anwendung von Ereignissen auf Elemente, die von Haus aus
+nicht fokussiert werden können, bedeutet oft, dass sie für Tastaturbenutzer
+nicht zugänglich sind, es sei denn, die gewählten Ereignisse reagieren auf die
+entsprechenden Tastendrücke und das zu fokussierende Element wurde in der
+Tab-Reihenfolge platziert. Der kürzeste Weg, um diese Anforderung zu erfüllen,
+besteht darin, sicherzustellen, dass Ereignisse an Elemente gebunden werden,
+die von Natur aus fokussierbar sind, z. B. `<a>`, `<button>` und `<input>`. Die
+Bindung von Ereignissen an andere Elemente - wie z. B. ein `<td>` für die
+Tabellensortierung - bringt die zusätzliche Anforderung mit sich, das Element
+über das tabindex-Attribut zur Tabulatorreihenfolge hinzuzufügen. Das ist ein
+einfacher, aber sehr effektiver Schritt, um die Barrierefreiheit zu verbessern.
+
+Stelle sicher, dass simulierte Steuerelemente, simulierte Dialoge, Kalendersteuerungen,
+eingebettete Medieninhalte, Menüs und andere dynamische Inhalte über die Tastatur
+aufgerufen, bedient und geschlossen werden können.
+
+Was die Barrierefreiheit der Tastatur und die Fokussteuerung angeht, müssen die
+Nutzer/innen mit dem System interagieren können, ohne dass sie eine Maus benutzen
+müssen. Der Grund dafür ist, dass sie entweder den Mauszeiger nicht sehen können
+oder nicht über die nötige Feinmotorik verfügen, um eine Maus effektiv zu nutzen.
+Schnittstellen, die auf clientseitigem Skripting beruhen, sind in der Regel kein
+Problem mehr für Menschen mit Behinderungen, vorausgesetzt, die Interaktivität
+einer solchen Schnittstelle kann mit der Tastatur ausgeführt werden. Steuerelemente
+und Elemente der Benutzeroberfläche, die nicht aus Standard-HTML bestehen, können
+eine Herausforderung für den Tastaturzugang darstellen. Dinge wie simulierte
+Dialoge, simulierte Kalendersteuerungen, Drag-and-Drop-Schnittstellen, Leuchtkästen
+und so weiter müssen über die Tastatur zugänglich sein; und die Nutzer/innen müssen
+in der Lage sein, sie nur über die Tastatur zu öffnen, zu bedienen und zu schließen.
+
+Stelle sicher, dass der Fokus zu dem Punkt zurückkehrt, an dem die Interaktion begann,
+wenn das simulierte Dialogfeld oder Steuerelement geschlossen wird.
+
+Eine der größten Herausforderungen bei der Erstellung von Rich Web Interfaces mit
+JavaScript ist die Verwaltung des Fokus, wenn neue Inhalte oder Steuerelemente auf
+der Seite hinzugefügt oder entfernt werden. Immer wenn ein neuer Inhalt auf der
+Seite erscheint, weil der Nutzer ein Steuerelement aufgerufen hat, muss der
+Interaktionsfluss zirkulär sein, damit der Nutzer zu der Stelle zurückkehrt, an
+der die Interaktion begonnen hat. Normalerweise ist dieser zirkuläre Fluss implizit,
+d. h., dass Nutzer/innen ohne Behinderungen natürlich dort weitermachen, wo sie
+aufgehört haben. Aus Sicht der Barrierefreiheit erwarten Nutzer/innen mit Behinderungen
+dieselbe Interaktion und müssen daher an den Punkt zurückkehren, an dem ihre Interaktion
+begonnen hat.
+
+Sorge dafür, dass sich der Fokus bei dynamischen Inhalten entsprechend ändert.
+
+Die Darstellung oder Änderung von Inhalten auf dem Bildschirm kann es erforderlich
+machen, dass der Nutzer mit dem neuen oder geänderten Inhalt interagiert oder ihn
+zumindest zur Kenntnis nimmt. Es ist wichtig, dass der aktualisierte Seiteninhalt
+deutlich gekennzeichnet ist. So kann der/die Nutzer/in die Änderung nachvollziehen
+und auch ein/e Tastaturbenutzer/in kann mit den neuen Inhalten interagieren. Wie
+dies geschieht, hängt oft von der Art und Beschaffenheit des Inhalts ab. Ein Beispiel:
+
+- Bei Inhalten, die dem Bildschirm als Reaktion auf ein vom Nutzer ausgelöstes
+  Ereignis hinzugefügt werden, sollte der Fokus auf den neuen Inhalt verschoben
+  werden.
+
+- Bei Inhalten, die als Reaktion auf ein vom Nutzer ausgelöstes Ereignis vom
+  Bildschirm entfernt werden, sollte der Fokus auf die nächste logische Stelle
+  in der Interaktion verschoben werden.
+
+- Wenn Inhalte geändert werden, ohne dass dies auf ein vom Nutzer ausgelöstes
+  Ereignis zurückzuführen ist, sollte der Nutzer über die Änderung informiert
+  werden.
+
+Vermeide es, neue Fenster ohne Benachrichtigung des Benutzers zu öffnen; vermeide
+es, neue Fenster zu öffnen, wenn sich der Fokus ändert.
+
+Das Öffnen neuer Fenster ist generell eine schlechte Idee, von der die meisten
+Menschen abraten würden. Im Hinblick auf die Barrierefreiheit können neue Fenster
+für AT-Nutzer/innen verwirrend sein, weil sie eine unerwartete Browseraktion
+auslösen. Besonders problematisch sind sie für Benutzer/innen von
+Bildschirmvergrößerungsgeräten oder sogar für Benutzer/innen, die ihren Monitor
+auf eine größere Auflösung eingestellt haben, da neue Fenster außerhalb des
+Ansichtsfensters erscheinen können und der/die Benutzer/in den Anzeigebereich
+scrollen muss, um das neue Fenster zu finden. Das Problem lässt sich in erster
+Linie entschärfen, wenn die Nutzer/innen wissen, dass ein neues Fenster geöffnet
+wurde, so dass sie es bei Bedarf schließen und zum übergeordneten Fenster
+zurückkehren können. Daher sollten die Nutzer im Text des Links darauf hingewiesen
+werden, dass ein neues Fenster geöffnet wird. Wenn der Nutzer auf den Link stößt,
+wird er durch die Benachrichtigung auf das neue Fenster aufmerksam gemacht. Es ist
+nicht ratsam, ein neues Fenster zu öffnen, wenn sich der Fokus ändert (z. B.
+wenn ein Nutzer mit dem Mauszeiger über einen Link fährt), selbst wenn die
+Benachrichtigung vorhanden ist. Der Grund dafür ist, dass das Fokusereignis
+ausgelöst und das neue Fenster geöffnet wird, bevor die Benachrichtigung für den
+Nutzer tatsächlich angezeigt wird. Daher sollte das Öffnen neuer Fenster direkt
+durch einen Tastendruck oder ein Klickereignis ausgelöst werden.
+
+Biete Tastaturinteraktionen für simulierte Steuerelemente an, die ihre
+Desktop-Entsprechung nachahmen.
+
+Wenn du Oberflächenelemente erstellst, die das Aussehen und die Funktionsweise
+von Standard-Desktop-Steuerelementen nachahmen sollen, z. B. Baummenüs,
+Warnmeldungen, Dialoge usw., solltest du Tastenkombinationen vorsehen, mit denen
+die Steuerelemente auf dieselbe Weise bedient werden können wie ihre Desktop-Vorbilder.
+
+### Tastatur Instruktionen
+
+Was ist, wenn deine JavaScript-Widgets zu 100 % tastaturtauglich sind, aber die
+Leute nicht wissen, wie sie sie benutzen sollen? Du könntest sagen: "Das ist die
+Schuld des Nutzers", und vielleicht ist es das auch, aber vielleicht liegt es auch
+nur daran, dass es so viele Möglichkeiten gibt, dieselbe Art von Widget zu erstellen,
+dass der Nutzer einfach nicht weiß, welches Designmuster du verwendest. Das kann
+besonders bei ARIA-Widgets der Fall sein, die den ARIA-Authoring-Practice-Empfehlungen
+folgen.
+
+#### Benutzer erwarten möglicherweise keine ARIA-Tastaturmuster oder sind sich dieser nicht bewusst
+
+ARIA-Widgets sollen nativen Desktop-Designmustern folgen. Das ist eines der
+Verkaufsargumente von ARIA. Die Idee ist, dass sich das Web mehr wie "echte"
+Anwendungen verhält, damit wir mehr Konsistenz zwischen unseren Erfahrungen in
+nativen Anwendungen und Webanwendungen haben. Die ARIA-Entwurfsmuster ersparen
+uns auch Tastenanschläge, denn das Muster besteht darin, mit der Tabulatortaste
+in das Widget zu gehen und dann die Pfeiltasten (nicht die Tabulatortaste) zu
+benutzen, um innerhalb des Widgets zu navigieren, so dass wir die Tabulatortaste
+benutzen können, um mit einem einzigen Tastendruck über das Widget hinauszugehen.
+Drücke einmal die Tabulatortaste, um in das Objekt zu gelangen, und noch einmal,
+um es zu verlassen. Das Navigieren innerhalb des Objekts ist optional und erfolgt
+mit den Pfeiltasten, aber nur, wenn wir es wollen.
+
+Dieses "neue" Muster (zumindest im Web) ist eine gute Idee, aber nicht alle Nutzer
+erwarten es, vor allem weil die meisten Websites dieses Muster noch nicht verwenden.
+Wenn mehr Websites dieses Muster verwenden, werden sich die Nutzer daran gewöhnen
+und sich anpassen, aber im Moment befinden wir uns in einer Übergangsphase, in der
+nur wenige Websites dieses Muster verwenden und die meisten nicht. Die Nutzer
+erwarten immer noch, dass sie mit der Tabulatortaste überall auf einer Website
+navigieren können.
+
+#### Solltest du ARIA-Tastaturmuster verwenden?
+
+Die Diskrepanz zwischen den Erwartungen des Nutzers (die Tabulatortaste zu verwenden)
+und den guten Absichten des Webdesigners (die ARIA-Best Practices zu verwenden,
+die die Verwendung der Pfeiltasten empfehlen) kann zu Verwirrung führen und einige
+Nutzer dazu verleiten, fälschlicherweise zu glauben, dass die Widgets nicht
+tastaturzugänglich sind, auch wenn sie es sind. Manche Leute benutzen dies als
+Argument gegen die Verwendung von ARIA-Tastaturmustern. Das Problem bei dieser Logik
+ist, dass, wenn alle warten, bis die meisten Websites ARIA-Tastaturmuster verwenden,
+niemand jemals ARIA-Tastaturmuster implementieren wird.
+
+Drehen wir das Ganze um: Je früher Websites ARIA-Tastaturmuster einführen, desto
+eher werden die Nutzer/innen sie erwarten, wenn sie auf deine Website kommen. Es
+hat sich gezeigt, dass Tastaturnutzer/innen bereits daran gewöhnt sind, diese
+Konventionen im Betriebssystem zu verwenden, so dass es für sie gar nicht so
+schwer ist, diese Tastaturmuster auf Websites zu lernen. Trotzdem kann es eine
+gute Idee sein, den Nutzern ein paar zusätzliche Informationen in Form einer
+kurzen Instruktion zu geben.
+
+### Überlege dir kurze Instruktionen für Tastaturbenutzer
+
+Wenn du anfängst, ARIA-Tastaturdesignmuster zu verwenden, solltest du in Erwägung
+ziehen, Tastaturbenutzern einige Anweisungen zu geben, damit sie wissen, wie sie
+mit deinen JavaScript-Widgets interagieren können. Denke daran, dass die
+Barrierefreiheit über die Tastatur vor allem zwei Zielgruppen anspricht:
+
+- Sehende Tastaturbenutzer
+
+- Blinde Benutzer von Bildschirmlesegeräten
+
+Entwickler neigen dazu, sehende Tastaturbenutzer zu vergessen, also pass auf, dass
+du das nicht tust. Die Nachricht kann kurz sein. Sie könnte zum Beispiel so lauten:
+
+- "Benutze deine Pfeiltasten, um im Baummenü zu navigieren."
+
+- "Benutze deine Pfeiltaste nach unten, gefolgt von der Eingabetaste, um aus der
+  Dropdown-Liste auszuwählen."
+
+- ... und so weiter. Halte die Instruktionen kurz.
+
+Hier sind einige Möglichkeiten, wie du Anweisungen für die Tastatur geben kannst:
+
+- Schreibe die Instruktionen über das Widget, so dass sie jeder sehen kann.
+
+- Lass die Instruktionen als Pop-up-Tooltip erscheinen, wenn das Widget den Fokus
+  erhält. Verwende aria-live, um den Text im Tooltip anzukündigen.
+
+- Lass die Instruktionen als normalen Text erscheinen, wenn das Widget den Fokus
+  erhält. Erwäge, einen Umriss oder eine Hintergrundfarbe hinzuzufügen, um die
+  Aufmerksamkeit von sehenden Nutzern auf den Text zu lenken. Verwende aria-live,
+  um den Text anzukündigen.
+
+Vielleicht fallen dir noch andere Möglichkeiten ein, um den Nutzer über das
+Tastaturmuster zu unterrichten. Achte nur darauf, dass du tatsächlich ein
+Standardmuster verwendest und dass deine Methoden sowohl für sehende
+Tastaturbenutzer als auch für blinde Bildschirmleser funktionieren.
+
+## Verwandte Links
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#landmark"
+  target="_blank">ARIA Landmark Roles vom W3C</a>
+
+- Artikel: <a href="https://accessibility.oit.ncsu.edu/it-accessibility-at-nc-state/developers/accessibility-handbook/aria-landmarks/"
+  target="_blank">ARIA Landmarks von der NC State University</a>
+
+- Artikel: <a href="http://www.marcozehe.de/2009/10/31/easy-aria-tip-4-landmarks/"
+  target="_blank">Einfacher ARIA-Tipp #4: Landmarks von Marco (Marcos Blog zur Barrierefreiheit)</a>
+
+- Artikel: <a href="http://blog.paciellogroup.com/2013/02/using-wai-aria-landmarks-2013/"
+  target="_blank">Using WAI-ARIA Landmarks - 2013 von Steve Faulkner (The Paciello
+  Group)</a>
+
+- Artikel: <a href="http://mcdlr.com/wai-aria-cheatsheet/"
+  target="_blank">WAI-ARIA Landmark Roles Cheatsheet</a>
+
+- Artikel: <a href="https://www.w3.org/TR/wai-aria-1.0/roles"
+  target="_blank">Barrierefreie Rich Internet Applications (WAI-ARIA) 1.0 -
+  The Roles Model von W3C</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#document"
+  target="_blank">Offizielle W3C-Dokumentation über die Dokumentenrolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#application"
+  target="_blank">Offizielle W3C-Dokumentation über die Anwendungsrolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#presentation"
+  target="_blank">Offizielle W3C-Dokumentation über die Präsentationsrolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#math"
+  target="_blank">Offizielle W3C-Dokumentation über die Mathe-Rolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#definition"
+  target="_blank">Offizielle W3C-Dokumentation ����ber die Definitions-Rolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#note"
+  target="_blank">Offizielle W3C-Dokumentation über die Notiz-Rolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#directory"
+  target="_blank">Offizielle W3C-Dokumentation über die Verzeichnisrolle</a>
+
+- Artikel: <a href="https://www.w3.org/WAI/PF/aria/roles#abstract_roles"
+  target="_blank">Offizielle W3C-Dokumentation über abstrakte Rollen</a>
+
+- Artikel: <a href="https://www.w3.org/TR/wai-aria/#introstates"
+  target="_blank">W3C Erklärung der ARIA Zustände und Eigenschaften</a>

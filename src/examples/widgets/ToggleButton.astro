@@ -1,0 +1,245 @@
+---
+
+---
+
+<a tabindex='0' role='button' id='toggle' aria-pressed='false'>
+  Mute
+  <svg aria-hidden='true' focusable='false'>
+    <use xlink:href='#icon-sound'></use>
+  </svg>
+</a>
+
+<svg
+  version='1.1'
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+  style='display: none'
+  id='svg_definitions'
+>
+  <defs>
+    <symbol id='icon-mute' viewBox='0 0 75 75'>
+      <polygon
+        id='polygon1'
+        points='39.389,13.769 22.235,28.606 6,28.606 6,47.699 21.989,47.699 39.389,62.75 39.389,13.769'
+        style='stroke: currentcolor; stroke-width: 5; stroke-linejoin: round; fill: currentcolor'
+      ></polygon>
+      <path
+        id='path3003'
+        d='M 48.651772,50.269646 69.395223,25.971024'
+        style='fill: none; stroke: currentcolor; stroke-width: 5; stroke-linecap: round'
+      ></path>
+      <path
+        id='path3003-1'
+        d='M 69.395223,50.269646 48.651772,25.971024'
+        style='fill: none; stroke: currentcolor; stroke-width: 5; stroke-linecap: round'
+      ></path>
+    </symbol>
+    <symbol id='icon-sound' viewBox='0 0 75 75'>
+      <polygon
+        points='39.389,13.769 22.235,28.606 6,28.606 6,47.699 21.989,47.699 39.389,62.75 39.389,13.769'
+        style='stroke: currentcolor; stroke-width: 5; stroke-linejoin: round; fill: currentcolor'
+      ></polygon>
+      <path
+        d='M 48.128,49.03 C 50.057,45.934 51.19,42.291 51.19,38.377 C 51.19,34.399 50.026,30.703 48.043,27.577'
+        style='fill: none; stroke: currentcolor; stroke-width: 5; stroke-linecap: round'
+      ></path>
+      <path
+        d='M 55.082,20.537 C 58.777,25.523 60.966,31.694 60.966,38.377 C 60.966,44.998 58.815,51.115 55.178,56.076'
+        style='fill: none; stroke: currentcolor; stroke-width: 5; stroke-linecap: round'
+      ></path>
+      <path
+        d='M 61.71,62.611 C 66.977,55.945 70.128,47.531 70.128,38.378 C 70.128,29.161 66.936,20.696 61.609,14.01'
+        style='fill: none; stroke: currentcolor; stroke-width: 5; stroke-linecap: round'
+      ></path>
+    </symbol>
+  </defs>
+</svg>
+
+<script>
+  var ICON_MUTE_URL = '#icon-mute'
+  var ICON_SOUND_URL = '#icon-sound'
+
+  function init() {
+    var toggleButton = document.getElementById('toggle')
+    toggleButton.addEventListener('click', toggleButtonClickHandler)
+    toggleButton.addEventListener('keydown', toggleButtonKeydownHandler)
+    toggleButton.addEventListener('keyup', toggleButtonKeyupHandler)
+  }
+
+  /**
+   * Toggles the toggle button’s state if it’s actually a button element or has
+   * the `role` attribute set to `button`.
+   *
+   * @param {MouseEvent} event
+   */
+  function toggleButtonClickHandler(event) {
+    if (
+      event.currentTarget.tagName === 'button' ||
+      event.currentTarget.getAttribute('role') === 'button'
+    ) {
+      toggleButtonState(event.currentTarget)
+    }
+  }
+
+  /**
+   * Toggles the toggle button’s state with the enter key.
+   *
+   * @param {KeyboardEvent} event
+   */
+  function toggleButtonKeydownHandler(event) {
+    if (event.keyCode === 32) {
+      event.preventDefault()
+    } else if (event.keyCode === 13) {
+      event.preventDefault()
+      toggleButtonState(event.currentTarget)
+    }
+  }
+
+  /**
+   * Toggles the toggle button’s state with space key.
+   *
+   * @param {KeyboardEvent} event
+   */
+  function toggleButtonKeyupHandler(event) {
+    if (event.keyCode === 32) {
+      event.preventDefault()
+      toggleButtonState(event.currentTarget)
+    }
+  }
+
+  /**
+   * Toggles the toggle button’s state between *pressed* and *not pressed*.
+   *
+   * @param {HTMLElement} button
+   */
+  function toggleButtonState(button) {
+    var isAriaPressed = button.getAttribute('aria-pressed') === 'true'
+
+    button.setAttribute('aria-pressed', isAriaPressed ? 'false' : 'true')
+
+    var icon = button.querySelector('use')
+    icon.setAttribute(
+      'xlink:href',
+      isAriaPressed ? ICON_SOUND_URL : ICON_MUTE_URL
+    )
+  }
+
+  window.onload = init
+</script>
+
+<style>
+  [role='button'] {
+    display: inline-block;
+    position: relative;
+    padding: 0.4em 0.7em;
+    border: 1px solid hsl(213deg 71% 49%);
+    border-radius: 5px;
+    box-shadow: 0 1px 2px hsl(216deg 27% 55%);
+    color: #fff;
+    text-shadow: 0 -1px 1px hsl(216deg 27% 25%);
+    background-color: hsl(216deg 82% 51%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(216deg 82% 53%),
+      hsl(216deg 82% 47%)
+    );
+  }
+
+  [role='button']:hover {
+    border-color: hsl(213deg 71% 29%);
+    background-color: hsl(216deg 82% 31%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(216deg 82% 33%),
+      hsl(216deg 82% 27%)
+    );
+    cursor: default;
+  }
+
+  [role='button']:focus {
+    outline: none;
+  }
+
+  [role='button']:focus::before {
+    position: absolute;
+
+    /* button border width - outline width - offset */
+    top: calc(-1px - 3px - 3px);
+    right: calc(-1px - 3px - 3px);
+    bottom: calc(-1px - 3px - 3px);
+    left: calc(-1px - 3px - 3px);
+    border: 3px solid hsl(213deg 71% 49%);
+
+    /* button border radius + outline width + offset */
+    border-radius: calc(5px + 3px + 3px);
+    content: '';
+  }
+
+  [role='button']:active {
+    border-color: hsl(213deg 71% 49%);
+    background-color: hsl(216deg 82% 31%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(216deg 82% 53%),
+      hsl(216deg 82% 47%)
+    );
+    box-shadow: inset 0 3px 5px 1px hsl(216deg 82% 30%);
+  }
+
+  [role='button'][aria-pressed] {
+    border-color: hsl(261deg 71% 49%);
+    box-shadow: 0 1px 2px hsl(261deg 27% 55%);
+    text-shadow: 0 -1px 1px hsl(261deg 27% 25%);
+    background-color: hsl(261deg 82% 51%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(261deg 82% 53%),
+      hsl(261deg 82% 47%)
+    );
+  }
+
+  [role='button'][aria-pressed]:hover {
+    border-color: hsl(261deg 71% 29%);
+    background-color: hsl(261deg 82% 31%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(261deg 82% 33%),
+      hsl(261deg 82% 27%)
+    );
+  }
+
+  [role='button'][aria-pressed='true'] {
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;
+    border-color: hsl(261deg 71% 49%);
+    background-color: hsl(261deg 82% 31%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(261deg 82% 63%),
+      hsl(261deg 82% 57%)
+    );
+    box-shadow: inset 0 3px 5px 1px hsl(261deg 82% 30%);
+  }
+
+  [role='button'][aria-pressed='true']:hover {
+    border-color: hsl(261deg 71% 49%);
+    background-color: hsl(261deg 82% 31%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(261deg 82% 43%),
+      hsl(261deg 82% 37%)
+    );
+    box-shadow: inset 0 3px 5px 1px hsl(261deg 82% 20%);
+  }
+
+  [role='button'][aria-pressed]:focus::before {
+    border-color: hsl(261deg 71% 49%);
+  }
+
+  [role='button'] svg {
+    margin: 0.15em auto -0.15em;
+    height: 1em;
+    width: 1em;
+    pointer-events: none;
+  }
+</style>

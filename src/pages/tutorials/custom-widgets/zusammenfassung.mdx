@@ -1,0 +1,26 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Zusammenfassung'
+---
+
+Barrierefreie benutzerdefinierte JavaScript-Widgets zu erstellen, kann knifflig sein.
+Es gibt viele kleine Dinge zu beachten, wie z. B. Tastaturinteraktion, Touch-Interaktion,
+ARIA-Authoring-Praktiken und sogar die Frage, ob ein benutzerdefiniertes JavaScript-Widget
+überhaupt der richtige Ansatz ist. Es ist immer am besten, von der Annahme auszugehen,
+dass native HTML-Widgets die beste Lösung sind. Sie sind von Haus aus zugänglich
+und die Menschen sind an sie gewöhnt. Sie müssen nicht erst lernen, wie man sie
+benutzt, so wie sie lernen müssen, wie man ein benutzerdefiniertes Steuerelement
+benutzt, das sie noch nie gesehen haben.
+
+Studiere die <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank">
+WAI-ARIA Authoring Practices</a>. Wenn du dich auf den Weg machst, ein
+benutzerdefiniertes Widget zu erstellen, suche dir ein ARIA-Widget, das
+deine Ziele bereits erfüllt. Wenn es keines gibt, das deinen
+Vorstellungen entspricht, frage dich zuerst, ob das, was du willst, wirklich
+notwendig ist, weil es für die Nutzer/innen ungewohnt sein wird. Wenn du dich
+entscheidest, dass es notwendig ist, identifiziere das nächstgelegene ARIA-Widget
+und verwende diese ARIA-Rollen und Designmuster als Grundlage für dein Design. Es
+ist in Ordnung, zusammengesetzte Widgets zu entwerfen, die aus Designmustern von
+2 oder mehr ARIA-Widgets bestehen, solange das Endergebnis intuitiv zu bedienen ist
+und alle Namen, Rollen und Eigenschaften für Screenreader-Nutzer richtig
+kommuniziert werden.

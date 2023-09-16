@@ -1,0 +1,150 @@
+---
+---
+
+<div class="deque-expander" id="gettysburg">
+  <div class="deque-expander-summary">
+	  <span class="toggle-indicator"></span>
+    The Gettysburg Address, by Abraham Lincoln
+  </div>
+  <div class="deque-expander-content">
+    <p>Four score and seven years ago our fathers brought forth
+      on this continent, a new nation, conceived in Liberty, and
+      dedicated to the proposition that all men are created equal.</p>
+
+      <p>Now we are engaged in a great civil war, testing whether that
+      nation, or any nation so conceived and so dedicated, can long endure.</p>
+
+      <p>We are met on a great battle-field of that war. We have come to dedicate
+      a portion of that field, as a final resting place for those who here gave
+      their lives that that nation might live. It is altogether fitting and proper
+      that we should do this.</p>
+
+      <p>But, in a larger sense, we can not dedicate &mdash; we can not consecrate
+      &mdash; we can not hallow &mdash; this ground. The brave men, living and dead,
+      who struggled here, have consecrated it, far above our poor power to add or
+      detract. The world will little note, nor long remember what we say here, but
+      it can never forget what they did here. It is for us the living, rather, to
+      be dedicated here to the unfinished work which they who fought here have thus
+      far so nobly advanced. It is rather for us to be here dedicated to the great
+      task remaining before us &mdash; that from these honored dead we take increased
+      devotion to that cause for which they gave the last full measure of devotion
+      &mdash; that we here highly resolve that these dead shall not have died in vain
+      &mdash; that this nation, under God, shall have a new birth of freedom &mdash;
+      and that government of the people, by the people, for the people, shall not
+      perish from the earth.</p>
+  </div>
+</div>
+
+<script>
+
+
+(function () {
+
+function createExpander(container) {
+    var containerTag = container.tagName;
+    var summary = container.querySelector('.deque-expander-summary');
+
+    if (summary.hasAttribute('aria-expanded')) {
+        return false;
+    }
+
+    summary.setAttribute('tabindex', '0');
+    summary.setAttribute('aria-expanded', 'false');
+
+    container.classList.add('deque-expander');
+    if (container.hasAttribute('open')) {
+        summary.setAttribute('aria-expanded', 'true');
+        container.setAttribute('open');
+    } else {
+        summary.setAttribute('aria-expanded', 'false');
+        container.removeAttribute('open');
+    }
+
+    // it would seem that browsers treat the <summary>
+    // element as if it were a button, i.e. automagically
+    // treat space and enter as 'click' events.
+    summary.setAttribute('role', 'button');
+    summary.setAttribute('aria-expanded', 'false');
+
+    function setOpenStatus() {
+        if (container.hasAttribute('open')) {
+            summary.setAttribute('aria-expanded', 'true');
+        } else {
+            summary.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    summary.addEventListener('click', function() {
+        setTimeout(setOpenStatus);
+    });
+}
+
+
+
+function activateAllExpanders() {
+    var expanders = document.querySelectorAll('.deque-expander');
+    for (var i = 0; i < expanders.length; i++) {
+        if (expanders[i]) {
+            if (expanders[i].querySelector('summary')) {
+                if (!expanders[i].querySelector('summary').hasAttribute('aria-expanded')) {
+                    createExpander(expanders[i]);
+                }
+            }
+
+            if (expanders[i].querySelector('.deque-expander-summary')) {
+                if (!expanders[i].querySelector('.deque-expander-summary').hasAttribute('aria-expanded')) {
+                    createExpander(expanders[i]);
+                }
+            }
+        }
+    }
+}
+
+activateAllExpanders();
+
+});
+</script>
+
+<style>
+.deque-expander .deque-expander-summary {
+  display: block;
+  border: 0;
+  padding: 14px 36px 14px 12px;
+  color: #000000;
+  left: 0;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.05);
+}
+.deque-expander .deque-expander-summary::-webkit-details-marker {
+  display: none;
+}
+.deque-expander .deque-expander-summary .toggle-indicator:before {
+  background: none;
+  color: #5e5e5e;
+  float: left;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 10px 0 0;
+  padding: 0;
+  text-align: center;
+  width: 20px;
+}
+.deque-expander .deque-expander-summary:hover {
+  cursor: default;
+  outline: 1px solid #990000;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.deque-expander .deque-expander-summary:active {
+  cursor: default;
+  background: rgba(0, 0, 0, 0.3);
+  outline: 1px solid #990000;
+}
+.deque-expander .deque-expander-summary:focus {
+  outline: 1px dashed #000000;
+  background: rgba(0, 0, 0, 0.1);
+}
+.deque-expander .deque-expander-content {
+  clear: both;
+  padding: 14px 36px 14px 12px;
+}
+<style>

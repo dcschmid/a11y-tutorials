@@ -49,7 +49,8 @@ zugewiesen wird.
   role="img"
   width="400"
   height="100"
-  aria-label="Canvas element marked as an image">
+  aria-label="Canvas element marked as an image"
+>
 </canvas>
 ```
 
@@ -78,7 +79,8 @@ für das Bild.
   role="img"
   aria-label="A red and white circular target with an arrow
     pointing to the center of the target"
-  style="margin:auto">
+  style="margin:auto"
+>
 </canvas>
 <script>
   var canvas = document.getElementById('goodCanvas1')
@@ -156,7 +158,8 @@ Eine Lösung ist die Verwendung von aria-labelledby, um den Fallback-Text mit de
   height="100"
   role="img"
   aria-labelledby="goodCanvas2Fallback"
-  style="margin:auto">
+  style="margin:auto"
+>
   <p id="goodCanvas2Fallback">
     A red and white circular target with an arrow pointing to the center of the target
   </p>
@@ -246,7 +249,8 @@ Die Datenpunkte des Balkendiagramms werden im alternativen Text des Aria-Labels 
   width="650"
   role="img"
   aria-label="Bar Chart Values in Millions from 0 to 12000.
-  Human: 11000, Chimp: 6200, Dolphin: 5800, Cat: 300">
+  Human: 11000, Chimp: 6200, Dolphin: 5800, Cat: 300"
+>
 </canvas>
 <script type="text/javascript">
   var can, ctx, minVal, maxVal, xScalar, yScalar, numSamples, y
@@ -382,11 +386,12 @@ erstellen. SVG-Grafiken sind vektorbasiert, so dass sie stufenlos skalierbar und
 Im folgenden Beispiel wird der Text im `<canvas>`-Element gerendert.
 
 <canvas
-  id="badCanvas2"
-  width="700"
-  height="100"
-  role="img"
-  aria-label="This text will not scale as well as real text or SVG"></canvas>
+  id='badCanvas2'
+  width='700'
+  height='100'
+  role='img'
+  aria-label='This text will not scale as well as real text or SVG'
+></canvas>
 
 Bei der Vergrößerung wird der Text verpixelt und/oder unscharf, wie auf dem Screenshot unten zu sehen ist.
 Echter Text oder SVG-Text würde seine Schärfe und Lesbarkeit beibehalten.
@@ -450,7 +455,8 @@ bisher nur mit der Maus bedienbar war.
   onmouseover="canvasOver()"
   onmouseout="canvasOut()"
   onfocus="canvasOver()"
-  onblur="canvasOut()">
+  onblur="canvasOut()"
+>
 </canvas>
 ```
 
@@ -475,7 +481,8 @@ bisher nur mit der Maus bedienbar war.
     if(event.keyCode==32){
        event.preventDefault();
     document.getElementById('canvasStorage').innerHTML='Pressed Spacebar on Home button'}"
-  onblur="drawCanvas1()">
+  onblur="drawCanvas1()"
+>
   Your browser does not support HTML5 Canvas.
 </canvas>
 ```
@@ -490,6 +497,7 @@ bisher nur mit der Maus bedienbar war.
   onmousedown="canvasDown2(this)"
   onmouseup="canvasUp2(this)"
   onmouseover="canvasOver2()"
-  onmouseout="canvasOut2()">
+  onmouseout="canvasOut2()"
+>
 </canvas>
 ```

@@ -1,0 +1,105 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Button (Toggle)'
+---
+
+import ToggleButton from '../../../../examples/widgets/ToggleButton.astro'
+
+Ein Toggle-Button ähnelt einer Checkbox, weil er entweder ausgewählt oder nicht
+ausgewählt ist und jeder Toggle-Button unabhängig von allen anderen Toggle-Buttons
+funktionieren kann. In der Tat kann eine Checkbox eine akzeptable Alternative
+zu einem Toggle-Button sein.
+
+Siehe auch die <a href="https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+target="_blank">offizielle W3C-Dokumentation über ARIA-Schaltflächen</a>.
+
+## Beispiel
+
+<ToggleButton />
+
+## Erwartete Bedienung
+
+### Tastatur
+
+Entweder die Eingabetaste oder die Leertaste kann verwendet werden, um die
+Schaltfläche als gedrückt oder nicht gedrückt zu markieren.
+
+### Bildschirmleser
+
+Wenn der Benutzer eines Bildschirmlesegeräts mit der Tabulatortaste auf die
+Schaltfläche zeigt, sagt das Bildschirmlesegerät "Umschalttaste", liest den Text
+innerhalb des Schaltflächenelements und teilt den Umschaltzustand der Schaltfläche
+mit. Der genaue Wortlaut variiert von einem Screenreader zum anderen. Es könnte
+heißen "ein" oder "aus" (Narrator), "gedrückt" oder "nicht gedrückt" (NVDA) oder
+ähnlich.
+
+## Wichtige Merkmale der Barrierefreiheit
+
+- Die ARIA-Schaltflächen sind so gestaltet, dass sie ein identisches Erlebnis
+  bieten wie Standard-HTML-Schaltflächen.
+
+- Das Attribut aria-pressed wird auf true oder false gesetzt, um den aktuellen
+  Zustand anzuzeigen.
+
+## Hinweise für Entwickler und QA
+
+Beachte: Verwende wann immer möglich echte `<button>`-Elemente anstelle von
+ARIA-Schaltflächen. Echte Schaltflächen sind bereits von Haus aus barrierefrei
+und du musst ihre Funktionalität nicht neu erstellen.
+
+### Visuelles Design
+
+- Der Toggle-Button kann beliebig gestaltet werden, sollte aber das Aussehen
+  eines Buttons haben. Er sollte sich deutlich vom Text einer anderen
+  Schaltfläche unterscheiden.
+
+- Der Umschaltzustand - der Unterschied zwischen ausgewählt und nicht
+  ausgewählt - muss visuell auf eine Art und Weise angezeigt werden, die sich
+  nicht nur auf die Farbe verlässt. Benutzer mit geringem Kontrastsehen,
+  Farbenblindheit oder anderen Sehbehinderungen können die Unterschiede zwischen
+  den Farben möglicherweise nicht erkennen. Außerdem überschreibt der
+  Windows-Hochkontrastmodus die Text- und Hintergrundfarben und macht sie
+  damit als Unterscheidungsmerkmal für den Umschaltzustand unbrauchbar. Zu den
+  Methoden, die visuell funktionieren, gehören die Verwendung eines `<img>`-Elements
+  oder eines Schriftsymbols im CSS. In der hier gezeigten Implementierung wird
+  ein Häkchen-Symbol zusätzlich zu der Farbänderung von blau zu schwarz
+  verwendet, wenn die Schaltfläche ausgewählt ist.
+
+- Der Mauszeiger sollte ein Pfeil sein und kein Textsymbol oder ein Handsymbol
+  (das einen Link anzeigen würde).
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>
+        Die Standard-Schaltfläche liest den Status "aria-pressed" nicht korrekt. Fehler in iOS, bei
+        dem es nicht funktioniert, wenn role="button" nicht vorhanden ist.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Nicht unterstützt. Der Statuswechsel wird nicht gesprochen.</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>Nicht unterstützt. Der Statuswechsel wird nicht gesprochen.</td>
+    </tr>
+  </tbody>
+</table>

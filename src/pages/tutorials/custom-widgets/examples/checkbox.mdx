@@ -1,0 +1,84 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Checkbox'
+---
+
+import Checkbox from '../../../../examples/widgets/Checkbox.astro'
+
+Wann immer es möglich ist, solltest du native HTML-Checkboxen verwenden. Es ist
+jedoch möglich, ARIA-Checkboxen zu erstellen, die sich sowohl für sehende als
+auch für Screenreader-Benutzer genau wie native Checkboxen verhalten, wie dieses
+Muster zeigt.
+
+Siehe auch die <a href="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/"
+target="_blank">offizielle W3C-Dokumentation über ARIA-Checkboxen</a>.
+
+## Beispiel
+
+<Checkbox />
+
+## Erwartete Bedienung
+
+### Tastatur
+
+Das Kontrollkästchen funktioniert wie ein normales HTML-Kontrollkästchen: Du
+kannst mit der Tabulatortaste darauf zugreifen und es dann mit der Leertaste
+auswählen.
+
+### Bildschirmlesegeräte
+
+Wenn du mit der Tabulatortaste auf das Kontrollkästchen klickst, lesen
+Bildschirmlesegeräte das Label des Kontrollkästchens und sagen "Kontrollkästchen
+nicht markiert" (oder "markiert") oder ähnlich. Wenn du die Leertaste drückst,
+lesen Bildschirmlesegeräte den neuen Status vor ("markiert" oder "nicht markiert").
+
+## Wichtige Merkmale der Barrierefreiheit
+
+Dieses ARIA-Kontrollkästchen ist so gestaltet, dass es sich genauso verhält wie
+ein natives HTML-Kontrollkästchen.
+
+## Hinweise für Entwickler und QA
+
+### Visuelles Styling
+
+Achte darauf, dass die Methode, mit der du das Kontrollkästchen als ausgewählt
+oder nicht ausgewählt kennzeichnest, im Windows-Modus mit hohem Kontrast sichtbar
+ist. Im Internet Explorer werden Hintergrundbilder und Hintergrundfarben
+überschrieben. Zu den Methoden, die visuell funktionieren, gehören die Verwendung
+eines `<img>`-Elements oder eines Schriftsymbols im CSS. In diesem Beispiel wird
+ein Schriftsymbol verwendet.
+
+## Unterstützung für Browser und Bildschirmleser
+
+<table>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Unterstützung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS + IE</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA + Firefox</td>
+      <td data-label='Untertützung'>
+        Name des Kontrollkästchens wird zweimal gesprochen. Gruppenname wird nicht gesprochen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari iOS</td>
+      <td data-label='Untertützung'>Gruppenname nicht gesprochen.</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver + Safari MacOS</td>
+      <td data-label='Untertützung'>Volle Unterstützung</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator + Edge</td>
+      <td data-label='Untertützung'>Gruppenname nicht gesprochen.</td>
+    </tr>
+  </tbody>
+</table>
