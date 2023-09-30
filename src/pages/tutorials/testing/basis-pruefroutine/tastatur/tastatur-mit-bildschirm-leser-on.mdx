@@ -1,0 +1,79 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Tastaturfunktionalität bei eingeschaltetem Screen Reader'
+---
+
+Screenreader-Nutzer sind auf bestimmte Tastenkombinationen angewiesen, um auf der
+Webseite zu navigieren und zu interagieren. Daher muss sichergestellt werden, dass
+die üblichen Tastenkombinationen, die ihnen über den Screenreader zur Verfügung
+stehen, nicht mit den von den Entwicklern erstellten Tastenkombinationen in Konflikt
+geraten. Außerdem dürfen die im Webbrowser und im Betriebssystem vorhandenen
+Tastenkombinationen nicht mit den benutzerdefinierten Tastenkombinationen kollidieren.
+
+## Bildschirmleser-Modi
+
+Um die Tastatur effektiv nutzen zu können, haben Screen Reader verschiedene Modi
+für die Nutzung und Interaktion mit Webseiten. Jeder Modus dient einem bestimmten
+Zweck, und jeder Modus verfügt über eine Reihe von Funktionen für die Interaktion
+mit einer Webseite. Die meisten Bildschirmlesegeräte haben folgende Modi zur
+Verfügung:
+
+- Dokumentenmodus (Lesemodus): Normalerweise ist dies der Standardmodus für
+  Bildschirmlesegeräte, in dem Bildschirmleser-Nutzer/innen Text lesen und anhand
+  von Wörtern und Zeichen navigieren können.
+
+- Fokusmodus: Ein Modus, der es Bildschirmlesern ermöglicht, durch fokussierbare
+  Elemente zu navigieren (mit der Tabulatortaste oder den Pfeiltasten). Einige
+  Tastenanschläge, die im Dokumentmodus möglich sind, sind in diesem Modus nicht
+  verfügbar.
+
+- Anwendungsmodus: Ein Modus, der alle regulären Tastenkombinationen für Bildschirmleser
+  deaktiviert und es Entwicklern ermöglicht, eigene Tastenkombinationen zu erstellen
+  (sollte nur für bestimmte benutzerdefinierte Widgets verwendet werden).
+
+- Tabellenmodus: Ein Modus, der es Nutzern ermöglicht, in Tabellen in jede beliebige
+  Richtung zu navigieren.
+
+Mehr über die Verwendung von Bildschirmlesegeräten erfährst du im Kurs "Verwendung
+von Bildschirmlesegeräten".
+
+## Testmethodik für die Tastaturfunktionalität mit einem Screenreader
+
+So testest du die Tastaturfunktionalität mit einem Screenreader:
+
+- Öffne die Webseite mit einem Screenreader und einem kompatiblen Browser (es ist
+  ratsam, mit mehreren Screenreadern und Browsern zu testen).
+
+- Navigiere vom URL-Feld aus mit der Tabulatortaste in die Webseite.
+
+- Während du durch die Webseite blätterst, verwende einige der üblichen
+  Tastenkombinationen, die Screenreadernutzern zur Verfügung stehen (z. B.
+  H für Überschriften, G für Bilder).
+
+- Wenn möglich, suche Elemente wie eine Tabelle oder ein Formular, um die
+  Tastenkombinationen zu verwenden, die in verschiedenen Modi verfügbar sind
+  (Tabellenmodus, Formularmodus). Überprüfe, ob die Tastenkombinationen, die in
+  diesen Modi verfügbar sind, funktionieren.
+
+## Schlecht: Eigene Tastenkombi stört Screen Reader-Tasten
+
+Der Link in diesem Beispiel führt dich zu einem Formular, das die Tastenkombination
+G verwendet, um das Formular abzuschicken. Benutzer von Bildschirmlesegeräten navigieren
+mit der Taste G durch Bilder und Grafiken auf einer Webseite. Die Tastenkombination,
+die zum Absenden des Formulars verwendet wird, beeinträchtigt also die Tastenkombination,
+mit der Benutzer von Bildschirmlesegeräten normalerweise durch Grafiken navigieren.
+
+Wenn du kein Bildschirmlesegerät verwendest, wird das Formular jedes Mal abgeschickt,
+wenn du die G-Taste drückst. Wenn du jedoch einen Screenreader wie Narrator oder
+NVDA verwendest, sucht der Screenreader nach Grafiken auf der Seite, wenn du die
+G-Taste drückst.
+
+- Link: <a href="https://dequeuniversity.com/assets/html/module-input-methods/keyboard-shortcuts/badkeyboardshortcut.html"
+  target="_blank">Beispiel der schlechten Tastenkombination</a>
+
+Das Problem mit dem Formular ist, dass ein Entwickler die Taste G für das Absenden
+des Formulars verwendet hat, aber das funktioniert nicht, wenn ein Bildschirmlesegerät
+verwendet wird. Die Tastenanschläge eines Bildschirmlesegeräts überschreiben die
+benutzerdefinierten Tastenanschläge, wenn die Tastenanschläge kollidieren. Es ist
+wichtig, dass du diese Information meldest, wenn dieses Problem beim Testen entdeckt
+wird.

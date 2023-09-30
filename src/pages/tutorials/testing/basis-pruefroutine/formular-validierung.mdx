@@ -1,0 +1,124 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test Formular Validierung'
+---
+
+Die Rückmeldung nach dem Ausfüllen eines Formulars muss sowohl an Benutzer/innen
+mit assistiver Technologie als auch an Benutzer/innen, die keine assistive
+Technologie verwenden, übermittelt werden. Die Nutzer müssen wissen, ob sie ein
+Formular erfolgreich abgeschickt haben oder ob es Fehler gibt, die sie beheben
+müssen, bevor sie das Formular abschicken können. Beim Testen der Formularvalidierung
+ist es wichtig, dass sowohl die Erfolgs- als auch die Fehlermeldungen den verschiedenen
+Nutzern richtig vermittelt werden.
+
+## Prüfmethodik für die Formularvalidierung
+
+### Fehlermeldungen
+
+Wenn ein Benutzer einen Fehler in einem Formular macht, muss er sofort eine
+Rückmeldung erhalten. Die Nutzer müssen wissen, dass Fehler aufgetreten sind und
+wo sich diese Fehler im Formular befinden. Diese beiden Komponenten müssen nicht
+nur für sehende Nutzer/innen sichtbar sein, sondern auch für Nutzer/innen von
+Hilfsmitteln zugänglich sein.
+
+Es gibt verschiedene Möglichkeiten, wie Fehlermeldungen an die Nutzer/innen
+übermittelt werden können. Einige Methoden beinhalten eine Fehlerzusammenfassung,
+in der die Anzahl und die Art der Fehler aufgelistet sind. Bei anderen Methoden
+wird der Fokus auf den ersten Fehler im Formular gelegt, damit die Nutzer/innen
+sich durch das Formular bewegen und die Fehler korrigieren können. Auch wenn
+die Methoden unterschiedlich sind, ist es wichtig, dass die Rückmeldung sofort
+erfolgt und dass sie sichtbar, aussagekräftig und zugänglich ist.
+
+So testest du Fehlermeldungen:
+
+- Suche dir ein Formular auf der Webseite.
+
+- Fülle das Formular nicht vollständig aus, vor allem nicht die Felder, die
+  erforderlich sind oder eine besondere Formatierung erfordern (mache
+  absichtlich Fehler).
+
+- Sende das Formular ab.
+
+- Überprüfe, ob du sofort nach dem Absenden eine Rückmeldung zu den Fehlern
+  erhältst, z. B:
+
+  - Eine Fehlerzusammenfassung
+
+  - Fehlermeldungen für bestimmte Formularelemente, die neben den Formularelementen
+    stehen
+
+- Achte darauf, dass die Fehlermeldungen informativ und umsetzbar sind (die
+  Benutzer/innen sollten wissen, was sie tun müssen, um den Fehler zu beheben).
+
+So testest du mit einem Bildschirmlesegerät:
+
+- Wiederhole die Schritte 1 bis 3 oben mit einem Bildschirmlesegerät.
+
+- Überprüfe, ob der Screenreader sofort nach der Eingabe eine Rückmeldung gibt.
+
+  - Es kann eine globale Fehlerzusammenfassung angezeigt werden.
+
+    - Hinweis: Es empfiehlt sich, in der Fehlerzusammenfassung eine Methode vorzusehen,
+      mit der du schnell auf Fehler im Formular zugreifen kannst (z. B. einen Link,
+      der zum ersten Fehler im Formular führt).
+
+  - Oder der Fokus wird auf das erste Formularelement mit einem Fehler gelenkt
+
+- Navigiere zu allen Formularelementen mit bestimmten Fehlern und stelle sicher,
+  dass die Fehlermeldungen für diese bestimmten Formularelemente über den Screenreader
+  übermittelt werden.
+
+Wichtig!
+
+Manche Formulare lösen Fehlermeldungen aus, wenn die Benutzer/innen mit der
+Tabulatortaste durch das Formular navigieren oder sich von einem Formularelement
+entfernen, bevor sie es ausfüllen. Es ist nicht empfehlenswert, Fehlermeldungen
+an diese Ereignisse zu knüpfen, denn Screenreader-Nutzer erkunden ein Formular
+gerne, bevor sie es ausfüllen. Wenn sie das Formular erkunden und Fehlermeldungen
+auslösen, stoßen sie möglicherweise auf die Fehlermeldungen, wenn sie das Formular
+zum ersten Mal ausfüllen.
+
+## Erfolgsmeldungen
+
+Wenn Erfolgsmeldungen bereitgestellt werden, müssen sie für Nutzer/innen, die
+sehen können, sichtbar sein und durch assistive Technologien sichtbar gemacht
+werden.
+
+So testest du Erfolgsmeldungen:
+
+- Finde ein Formular auf der Webseite.
+
+- Fülle das Formular anhand der Anweisungen aus, falls vorhanden (siehe Teste
+  Formular Labels und Instruktionen, um die Qualität der Instruktionen zu
+  bewerten).
+
+- Sende das Formular ab.
+
+- Prüfe, ob unmittelbar nach dem Absenden eine Erfolgsmeldung erscheint. Die
+  Erfolgsmeldung sollte sichtbar und aussagekräftig sein (z. B. "Ihr Formular
+  wurde erfolgreich abgeschickt.").
+
+Zum Testen mit einem Bildschirmlesegerät:
+
+- Wiederhole die Schritte 1 bis 3 mit einem Bildschirmlesegerät.
+
+- Überprüfe, ob der Screenreader die Nachricht sofort nach dem Absenden des F
+  ormulars übermittelt.
+
+## Mobiles Web
+
+Verwende entweder VoiceOver (iOS) oder Talkback (Android):
+
+- Finde ein Formular auf der Webseite.
+
+- Bei Erfolgsmeldungen füllst du das Formular ohne Fehler aus. Bei
+  Fehlermeldungen machst du absichtlich Fehler im Formular, z. B. indem du
+  Pflichtfelder nicht ausfüllst oder falsche Formatierungen in Formularfelder
+  mit Formatierungsvorgaben eingibst.
+
+- Sende das Formular ab.
+
+- Überprüfe, ob die Erfolgs- und Fehlermeldungen nicht nur sichtbar, sondern
+  auch für den mobilen Bildschirmleser sichtbar sind. Bei Fehlern in bestimmten
+  Feldern musst du den Fokus auf die Felder legen und sicherstellen, dass die
+  Fehlermeldung für jedes dieser Felder vom Bildschirmlesegerät angezeigt wird.

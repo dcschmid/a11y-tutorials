@@ -1,0 +1,104 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Fokussierbarkeit der Tabs und Tab-Reihenfolge'
+---
+
+import { Image } from 'astro:assets'
+import TabOrder from './images/tab-order.png'
+
+Wenn ein Nutzer mit der Tastatur durch eine Webseite navigiert, sollte er oder
+sie mit der Tabulatortaste auf Elemente zugreifen können, die den Fokus der
+Tastatur erhalten sollen (z. B. Links und Schaltflächen). Außerdem sollte die
+Tabulatorreihenfolge mit dem Layout des Inhalts übereinstimmen. Obwohl die
+Tabulator-Reihenfolge der Lesereihenfolge der Webseite folgen sollte, kann sie
+manchmal leicht von der Lesereihenfolge des Inhalts abweichen. Solange die
+Tab-Reihenfolge jedoch logisch und intuitiv ist, können die Nutzer die Webseite
+verstehen und angemessen mit ihr interagieren.
+
+## Prüfmethodik für die Fokussierbarkeit von Tabs
+
+So überprüfst du die Fokussierbarkeit von Tabs:
+
+- Beginne damit, den Cursor in die Adressleiste oder das URL-Feld des Webbrowsers
+  zu setzen.
+
+- Navigiere von dort aus nur mit der Tastatur und der Tabulatortaste durch die Webseite.
+
+- Während du mit der Tabulatortaste durch die Webseite navigierst, notiere dir
+  die Elemente, die den Tastaturfokus erhalten.
+
+- Navigiere mit Shift + Tab rückwärts.
+
+- Achte darauf, dass alle fokussierbaren Elemente tatsächlich den Tastaturfokus
+  erhalten. Alle Links, Formulareingaben, interaktiven Steuerelemente und
+  Schaltflächen sollten den Tastaturfokus erhalten.
+
+## Prüfmethodik für die Tab-Reihenfolge
+
+So überprüfst du die Tab-Reihenfolge einer Webseite:
+
+- Beginne damit, den Cursor in die Adressleiste oder das URL-Feld des Webbrowsers
+  zu setzen.
+
+- Navigiere von dort aus nur mit der Tastatur und der Tabulatortaste durch die Webseite.
+
+- Während du durch die Webseite navigierst, überprüfe, ob die Reihenfolge der
+  Tabs dem Inhalt der Webseite entspricht. Am besten ist es, wenn die Tabulatorreihenfolge
+  der Lesereihenfolge der Webseite entspricht.
+
+- Tabuliere dich durch das gesamte Dokument, um sicherzustellen, dass die
+  Tabulatorreihenfolge logisch und intuitiv ist.
+
+## Schlecht: Seite mit unlogischer Tab-Reihenfolge
+
+Auf der <a href="https://dequeuniversity.com/demo/mars/"
+target="_blank">MarsCommuter-Demoseite</a>, (und die absichtlich so gestaltet wurde,
+dass sie viele Fehler in Bezug auf die Barrierefreiheit aufweist), ist die
+Tab-Reihenfolge wie folgt, wenn der Benutzer die Seite mit einem Tab öffnet:
+
+- Das "Von"-Feld unter der Überschrift "Buche deine Reise".
+
+- Das Feld "Nach"
+
+- Das Feld "Abreisedatum".
+
+- Das Feld "Uhrzeit
+
+- Ein mysteriöses Objekt, das keine Funktionalität und keinen sichtbaren
+  Fokusindikator hat
+
+- Ein weiteres mysteriöses Objekt
+
+- Dann beginnt die Tabulatorreihenfolge oben links auf dem Bildschirm und setzt
+  sich in einer natürlicheren Tabulatorreihenfolge fort
+
+<Image
+  src={TabOrder}
+  alt='Screenshot der Mars Commuter-Startseite, der die Reihenfolge der Registerkarten
+  zeigt, wie oben beschrieben'
+/>
+
+Diese Reihenfolge der Registerkarten kann sinnvoll sein, weil der Hauptzweck der
+Website darin besteht, dass die Nutzer Reisen buchen können. Die Nutzer wollen
+vielleicht gleich zu den Buchungsfunktionen springen. Aber es gibt mehrere Probleme
+mit diesem Ansatz:
+
+- Der Nutzer wird an den Anfang der Webseite zurückgeschickt, bevor er alle
+  Elemente im Formular des Abschnitts "Reise buchen" aufrufen und das Formular
+  abschicken kann.
+
+- Einige visuell ausgeblendete Elemente befinden sich auf dieser Seite noch in
+  der Tab-Reihenfolge (die "geheimnisvollen" Fokusobjekte), was zu Verwirrung führen
+  kann. Wenn etwas visuell ausgeblendet ist, darf es sich nicht in der Tab-Reihenfolge
+  befinden.
+
+- Wenn der Nutzer die gesamte Seite mit der Tabulatortaste durchläuft,
+  überspringt die Tabulatorreihenfolge die ersten Elemente (das Feld "Von", das
+  Feld "Bis" usw.), weil diese Elemente am Anfang der Tabulatorreihenfolge stehen.
+  Es ist sehr verwirrend für die Benutzer, wenn sie die Elemente nicht in ihrer
+  natürlichen Reihenfolge ansteuern können.
+
+Der Grund dafür, dass die Tabulatorreihenfolge unlogisch ist, liegt darin, dass
+einigen der Formularsteuerelemente ein Tabindex-Wert mit einer positiven Zahl
+zugewiesen wurde. Die Tester sollten daher empfehlen, dass Tabindex-Werte mit
+positiven Zahlen vermieden werden.

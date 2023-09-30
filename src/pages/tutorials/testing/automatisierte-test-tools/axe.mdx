@@ -1,0 +1,95 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'axe DevTools'
+---
+
+import { Image } from 'astro:assets'
+import AxeDevTools from './images/axe-devtools-screenshot.png'
+import AxeDevToolsIssueDescription from './images/axe-devtools-more-info-issue-description.png'
+import AxeDevToolsGuidlinesFailed from './images/axe-devtools-highlight-inspect-impact-guidelines-failed.png'
+import AxeDevToolsSolveIssue from './images/axe-devtools-solve-the-issue.png'
+import AxeDevToolsCodeSnippet from './images/axe-devtools-code-snippet.png'
+
+Die axe DevTools-Browsererweiterung basiert auf einer leichtgewichtigen Open-Source-JavaScript-Bibliothek,
+die es Testern und Entwicklern ermöglicht, Webinhalte im Browser zu bewerten.
+Dieses leistungsstarke Tool verwendet Regeln für die Barrierefreiheit, die konsistente
+Ergebnisse liefern, so dass Tester und Entwickler Probleme leicht erkennen und
+Barrierefreiheit korrigieren können. Die Ergebnisse liefern auch keine falsch-positiven
+Ergebnisse. Es ist eines der robustesten kostenlosen Tools, die derzeit für
+automatisierte Tests der Barrierefreiheit verfügbar sind.
+
+## Schritte zur Verwendung von axe DevTools
+
+Die Verwendung der axe DevTools-Browsererweiterung ist ziemlich einfach. Im Folgenden
+findest du einige schnelle Schritte, um mit dem Tool zum Testen der Barrierefreiheit
+loszulegen:
+
+- Lade zunächst die axe DevTools-Erweiterung für <a href="http://bit.ly/aXe-Firefox"
+  target="_blank">Firefox</a> oder <a href="http://bitly.com/aXe-Chrome"
+  target="_blank">Chrome</a> herunter.
+
+- Als Nächstes navigierst du zu der Webseite, die du testen möchtest.
+
+- Um auf die Erweiterung zuzugreifen, öffne das Menü der Entwicklertools in deinem
+  Browser. Du kannst mit der rechten Maustaste auf die Webseite klicken und im
+  Menü Inspektion wählen. Die Tastenkombination Strg + Umschalt + I öffnet die
+  Entwicklertools in beiden Browsern unter Windows, und die Tastenkombination
+  Befehl + Alt + I öffnet die Entwicklertools in beiden Browsern unter macOS.
+
+- Suche im Menü Entwicklertools die Registerkarte für die axe DevTools-Erweiterung
+  und öffne das Tool.
+
+- Wähle die Schaltfläche Alle meine Seite scannen, um eine Analyse der Barrierefreiheit
+  der Webseite durchzuführen. Sobald die Analyse abgeschlossen ist, werden die
+  Ergebnisse im Tool angezeigt.
+
+<Image src={AxeDevTools} alt='' />
+
+## Einen axe DevTools Bericht verstehen
+
+Sobald die Analyse abgeschlossen ist, erscheinen zwei Inhaltsbereiche im Dashboard
+des Tools. Das linke Feld enthält eine Liste der Barrierefreiheitsprobleme, die
+auf der Webseite gefunden wurden, sowie die Anzahl der Vorkommnisse auf der Webseite.
+Wenn du ein Problem auswählst, erhältst du im rechten Bereich des Dashboards
+detaillierte Informationen über das Auftreten des Problems auf der Webseite. Auf
+der rechten Seite findest du Folgendes
+
+- Eine Beschreibung des Problems und einen Link für weitere Informationen. Der
+  Link führt dich zu einer Seite, die ausführliche Informationen über das Problem
+  und Empfehlungen zur Behebung des Problems enthält.
+
+  <Image src={AxeDevToolsIssueDescription} alt='' />
+
+- In der oberen linken Ecke siehst du die Auswirkung des Problems (kritisch,
+  schwerwiegend usw.) sowie die Richtlinien zur Barrierefreiheit, gegen die
+  das Problem verstößt.
+
+- In der Nähe der Auswirkung und des Links "Weitere Informationen" befinden sich
+  zwei Schaltflächen: Markieren und Prüfen. Die Schaltfläche Untersuchen führt
+  dich zu dem Code, der das Problem im Inspektor verursacht. Wenn das Problem auf
+  der Webseite zu sehen ist, zeigt dir die Schaltfläche Hervorheben, wo das Problem
+  auf der Webseite auftritt.
+
+  <Image src={AxeDevToolsGuidlinesFailed} alt='' />
+
+- Der Codeschnipsel, der das Problem verursacht hat.
+
+  <Image src={AxeDevToolsCodeSnippet} alt='' />
+
+- Eine Liste mit Richtlinien, die zur Behebung des Problems verwendet werden können.
+
+  <Image src={AxeDevToolsSolveIssue} alt='' />
+
+## Zusammenfassung
+
+Wie bereits erwähnt, ist die axe DevTools-Browsererweiterung ein einfaches Tool,
+mit dem Tester/innen schnell Probleme mit der Barrierefreiheit erkennen können.
+Die Ergebnisse und die detaillierten Informationen, die das Tool liefert, können
+den Testern helfen, umsetzbare Fehlerberichte zu erstellen, die die Entwickler
+nutzen können, um die Probleme zu beheben. Die Entwickler können das Tool auch
+selbst nutzen, um Probleme zu finden und schnell zu beheben. Es muss jedoch noch
+einmal betont werden, dass automatisierte Tests nur ein Teil einer effektiven
+Prüfung der Barrierefreiheit sind. Obwohl sie bei der Suche nach Problemen sehr
+hilfreich sind, dürfen sich Tester/innen und Entwickler/innen nicht ausschließlich
+auf automatisierte Tests verlassen, um alle Probleme mit der Barrierefreiheit auf
+Webseiten zu finden.

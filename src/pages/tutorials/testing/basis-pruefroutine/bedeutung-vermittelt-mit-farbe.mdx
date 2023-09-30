@@ -1,0 +1,64 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test für die Bedeutung von Farben'
+---
+
+import { Image } from 'astro:assets'
+import OriginalChart from './images/originalchart2.png'
+import ChartWithLabel from './images/chartwithlabels3.png'
+
+Farben können das Aussehen von Webinhalten verbessern und sie attraktiver und
+ansprechender machen. Aber wenn Farben verwendet werden, um eine Bedeutung zu
+vermitteln, können Menschen mit Sehbehinderungen die Farben möglicherweise nicht
+wahrnehmen, sodass sie die Bedeutung nicht verstehen können. Wenn zum Beispiel
+auf einer Webseite mit grünem Text zwischen guten Dingen und mit rotem Text
+zwischen schlechten Dingen unterschieden wird, können blinde, farbenblinde und
+sogar sehbehinderte Menschen nicht erkennen, welche Dinge gut und welche schlecht
+sind. Es ist völlig in Ordnung, diese Farben für sehende Menschen zu verwenden,
+aber nur, wenn die Informationen auch in einem anderen Textformat dargestellt
+werden. Wenn du zum Beispiel vor jedem Artikel das Wort "gut" oder "schlecht"
+einträgst, löst das das Problem für Nutzer mit Farbfehlern oder für Menschen,
+die überhaupt nicht sehen können.
+
+## Prüfmethodik
+
+### Desktop Web und Mobile Web
+
+Wenn du prüfst, ob die Farbe eine Bedeutung hat:
+
+- Identifiziere zunächst alle Stellen auf der Webseite, an denen Farbe verwendet
+  wird, um eine Bedeutung zu vermitteln.
+
+- Wenn dies der Fall ist, prüfe, ob auch eine gleichwertige textbasierte Methode
+  verwendet wird, um die Bedeutung zu vermitteln.
+
+- Beurteile außerdem den Inhalt und die Informationen auf der Webseite und
+  überprüfe, ob es in den textbasierten Inhalten Verweise auf Farben gibt (z. B.
+  Instruktionen, die den Benutzer auffordern, eine grüne Schaltfläche zu wählen).
+
+### Schlecht: Farbe zur Vermittlung von Bedeutungen
+
+Das Kuchendiagramm in diesem Beispiel hat farbige Abschnitte, denen es an
+visuellen Verbindungen zwischen ihren Labels fehlt, die nicht nur auf der Farbe
+basieren. Die Labels stehen nebeneinander, ohne dass eine direkte visuelle
+Verbindung zwischen den Labels und den entsprechenden Abschnitten des Kreisdiagramms
+besteht. Für Menschen, die schlecht sehen oder farbenblind sind, kann es schwierig
+sein, einige Abschnitte von anderen Abschnitten zu unterscheiden. Das Diagramm
+ist sogar für Nutzer mit perfekter oder korrigierter Sehkraft schwer zu interpretieren.
+
+<Image
+  src={OriginalChart}
+  alt='Ein Beispiel für ein Tortendiagramm, bei dem sich die einzelnen
+  Tortenscheiben nur durch ihre Farbe unterscheiden.'
+/>
+
+### Gut: Bedeutung wird durch Text und Farbe vermittelt
+
+Das Kuchendiagramm hat jetzt klare visuelle Labels, die nicht auf Farbe angewiesen
+sind. Die Labels stehen neben den Tortenscheiben und die Prozentangaben helfen den
+Nutzern, das Tortendiagramm besser zu verstehen.
+
+<Image
+  src={ChartWithLabel}
+  alt='Die Torte mit Farben und Labels zur Kennzeichnung der Tortenstücke'
+/>

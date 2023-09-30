@@ -1,0 +1,161 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test für Überschrifen'
+---
+
+import { Image } from 'astro:assets'
+import HeadingsJaws from './images/headingslistjaws.png'
+import HeadingsNVDA from './images/headingslistnvda.png'
+
+Auf Webseiten werden oft visuelle Überschriften verwendet, um Abschnitte einer
+Webseite zu kennzeichnen und zu beschreiben. Es ist jedoch wichtig, dass die
+visuellen Überschriften auch semantisch als Überschriften übermittelt werden.
+Die Verwendung von semantischen Überschriften sorgt nicht nur für eine klare
+Struktur des Webdokuments, sondern auch dafür, dass Benutzer/innen von Hilfsmitteln
+mit Hilfe von semantischen Überschriften durch die Webseite navigieren und etwas
+über den Inhalt der Webseite erfahren können. Im Folgenden findest du eine Liste
+von Punkten, die du beachten solltest, wenn du eine Webseite nach Überschriften
+untersuchst:
+
+- Überschriften werden verwendet: Die Seite hat eine Überschrift. Auf fast allen
+  Seiten sollte es mindestens eine Überschrift geben, normalerweise am Anfang des
+  Hauptinhalts, nach der Navigation.
+
+- Echte Überschriften: Achte darauf, dass die Überschriften echte Überschriftenauszeichnungen
+  verwenden (`<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`) und nicht nur
+  visuelles Styling, das wie Überschriften aussieht.
+
+- Keine missbräuchliche Verwendung von Überschriften: Jeder Text, der als
+  Überschrift gekennzeichnet ist, ist in Wirklichkeit eine konzeptionelle
+  Abschnittsüberschrift. Wenn der Text nicht wirklich den Zweck einer
+  Überschrift erfüllt, sollte er nicht als Überschrift gekennzeichnet werden.
+
+- Überschriftenhierarchie: Die Überschriftenhierarchie ist sinnvoll.
+  Idealerweise beginnt die Seite mit einer "h1" - die normalerweise gleich oder
+  ähnlich wie der Seitentitel ist - und überspringt keine Ebenen; dies sind
+  jedoch keine absoluten Anforderungen.
+
+Beachte: Die ARIA-Attribute role="heading" und aria-level können verwendet werden,
+um Überschriften semantisch zu kennzeichnen. Es wird jedoch empfohlen, die
+HTML-Auszeichnung für Überschriften zu verwenden.
+
+## Prüfmethodik für Überschriften
+
+Auch wenn Überschriften auf einer Webseite sichtbar sind, ist es wichtig
+festzustellen, ob semantische Überschriften auf der Webseite verwendet werden.
+Wie bei den Orientierungspunkten können die Prüferinnen und Prüfer ein
+Bildschirmlesegerät verwenden, um die Webseite anhand von Überschriften zu
+navigieren oder eine Liste der auf der Webseite verfügbaren Überschriften zu
+erstellen.
+
+### Option 1: Nach Überschriften navigieren
+
+So navigierst du mit einem Screenreader über die Überschriften auf einer Webseite:
+
+- Öffne die Webseite mit dem Test-Screenreader und dem dazu kompatiblen Browser
+  (z. B. NVDA und Firefox oder Chrome).
+
+- Drücke die Taste, mit der du zur nächsten Überschrift navigieren kannst
+  (bei NVDA und JAWS: H).
+
+- Wenn es Überschriften gibt, führt dich der Tastendruck zu den Überschriften
+  auf der Seite. Wenn es keine Überschriften gibt, sagt der Screenreader
+  möglicherweise, dass es keine nächste (oder vorherige, wenn du rückwärts
+  navigierst) Überschrift gibt.
+
+- Achte darauf, ob es auf der Seite Überschriften und Überschriftenebenen gibt.
+  Es sollte mindestens eine (und nur eine) Überschriftsebene 1 für die gesamte
+  Seite vorhanden sein, und die Überschriftsebene 1 sollte die Nutzer zum
+  Hauptinhalt führen, damit die Nutzer zum Hauptinhalt der Webseite springen
+  können.
+
+- Überprüfe die Hierarchie der auf der Seite verwendeten Überschriften. Folgt
+  auf Überschriftenebene 1 eine Überschriftenebene 2? Kommt Überschriftsebene
+  3 nach Überschriftsebene 2?
+
+- Überprüfe auch, ob die Überschriften korrekt und informativ sind. Eine
+  Überschrift sollte die Informationen in dem Abschnitt, den sie kennzeichnet,
+  kurz hervorheben oder beschreiben.
+
+### Option 2: Eine Liste der Überschriften generieren
+
+Je nach Screenreader kannst du eine Liste aller Überschriften auf der Webseite
+erstellen. Bei dieser Option konzentrieren wir uns auf die Erstellung einer
+Liste mit NVDA, JAWS und VoiceOver.
+
+- Öffne die Webseite mit dem Test-Screenreader und dem dazu kompatiblen Browser
+  (z. B. NVDA und Firefox oder Chrome).
+
+- Drücke auf der Webseite die Taste, die zum Erstellen einer Liste von Elementen
+  gehört:
+
+  - Für NVDA lautet die Tastenkombination: Einfügen + F7
+
+  - Für JAWS lautet die Tastenkombination: Einfügen + F6
+
+  - Für VoiceOver startest du den Rotor mit der Tastenkombination:
+    Strg + Option + U, und benutze dann die Pfeiltasten, um die Liste der
+    Überschriften zu finden.
+
+- Wenn du die Liste der Überschriften gefunden hast, sieh nach, welche
+  Überschriften auf der Webseite vorhanden sind. Auch hier sollte es mindestens
+  eine Überschrift der Ebene 1 für den Hauptinhalt geben, damit Screenreader-Nutzer
+  zum Hauptinhalt der Webseite springen können, die Überschriften sollten in
+  einer angemessenen Hierarchie stehen und für jede Überschrift sollte ein
+  aussagekräftiger Text verwendet werden.
+
+### Schlecht: In JAWS und NVDA generierte Überschriftenliste
+
+Der folgende Screenshot zeigt eine Liste von Überschriften, die vom Screenreader
+JAWS auf der MarsCommuter Demonstrationsseite generiert wurde.
+
+<Image src={HeadingsJaws} alt='' />
+
+Und hier ist ein Screenshot der Überschriftenliste mit NVDA:
+
+<Image src={HeadingsNVDA} alt='' />
+
+Die Überschriftenliste von JAWS und NVDA zeigt, dass es auf der MarsCommuter-Seite
+eine ganze Menge normalen Text gibt, der unnötigerweise als Überschrift
+gekennzeichnet ist. Wenn der Text nicht wie eine Überschrift aussieht oder sich
+so verhält, sollte er auch nicht in der Überschriftenliste eines Screenreaders
+erscheinen.
+
+Denke daran, dass nur semantische Überschriften für Bildschirmleser verfügbar
+sind. Wenn es also Text auf einer Webseite gibt, der als Überschrift gestaltet
+ist, aber nicht mit dem Tastaturkürzel für Überschriften aufgerufen werden kann
+oder nicht in der Liste vorhanden ist, hat diese Überschrift nicht das richtige
+semantische Markup.
+
+### Mobiles Web
+
+Talkback und Firefox verwenden:
+
+- Du kannst entweder "Explore by Touch" aktivieren (am einfachsten für Anfänger)
+  oder Gesten zum Lesen und Interagieren mit der Webseite verwenden.
+
+- Wenn du "Erkunden durch Berühren" aktivierst, kannst du deinen Finger auf dem
+  Bildschirm bewegen und der Screenreader zeigt den Inhalt unter deinem Finger
+  an.
+
+- Bei Gesten wischst du auf der Webseite nach rechts, um den nächsten Punkt auf
+  der Webseite zu lesen.
+
+- Sobald du auf eine Überschrift stößt, achte darauf, dass sie als Überschrift
+  angekündigt wird.
+
+- Achte darauf, dass alles, was wie eine Überschrift aussieht, auch als
+  Überschrift interpretiert wird.
+
+VoiceOver iOS und Safari verwenden:
+
+- Sobald du auf der Webseite bist, starte den Rotor, indem du zwei Finger auf den
+  Bildschirm legst und sie in einer kreisförmigen Bewegung bewegst.
+
+- Wische nach links oder rechts, um die Liste der Überschriften auf der Webseite
+  zu finden.
+
+- Wische nach oben oder unten, um eine Überschrift aus der Liste auszuwählen.
+
+- Vergewissere dich, dass alle Überschriften auf der Webseite als Überschriften
+  angezeigt werden und in der Liste enthalten sind.

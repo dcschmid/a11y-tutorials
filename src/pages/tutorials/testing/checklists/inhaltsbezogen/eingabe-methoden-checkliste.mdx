@@ -1,0 +1,173 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Geräteunabhängige Methoden der Benutzereingabe: Zusammenfassung & Checkliste'
+---
+
+## Zusammenfassung
+
+Die Nutzer müssen mit Webinhalten interagieren können. Dazu gehören alle
+Formularelemente, Links, JavaScript-Funktionen, benutzerdefinierte Widgets und
+alle anderen Arten von Inhalten. Die wichtigsten Methoden zur Interaktion sind
+Maus, Tastatur, Berührung und Stimme. Es gibt auch andere Methoden (z. B. Eye
+Tracking oder Einzelschalter), aber sie alle nutzen im Wesentlichen eine der
+oben genannten Methoden oder emulieren sie. Es ist wichtig, alle Aspekte der
+Barrierefreiheit von Eingabemethoden zu berücksichtigen, z. B. die Funktionalität,
+das Fokusmanagement in benutzerdefinierten Widgets, visuelle Fokus- und
+Hover-Indikatoren, die Nichtverfügbarkeit von JavaScript-Gestenaktionen auf
+mobilen Geräten, wenn der Screenreader aktiviert ist, usw. Die Barrierefreiheit
+der Eingabemethoden stellt sicher, dass die Nutzer/innen Webinhalte nicht nur
+lesen, sondern auch mit ihnen interagieren und bei Bedarf Daten übermitteln
+können.
+
+## Checkliste
+
+### Maus-Eingabe
+
+Größe des Klickziels
+
+- Die Größe des Klickziels sollte groß genug sein, um eine einfache Bedienung
+  mit der Maus zu ermöglichen (auch für Nutzer mit Zittern oder eingeschränkter
+  Fingerfertigkeit), ohne zu riskieren, dass ein benachbarter Link oder Button
+  aktiviert wird.
+
+Visueller Hover-Indikator
+
+- Ein verbesserter visueller Hover-Indikator sollte vorhanden sein.
+
+- Das Mauszeigersymbol beim Schweben sollte der Art der Aktion entsprechen, die
+  das Element erlaubt.
+
+Aufhebung des Mauszeigers
+
+- Für Funktionen, die mit einem einzigen Zeiger bedient werden können, muss mindestens
+  eine der folgenden Bedingungen erfüllt sein: kein Abwärts-Ereignis, kann
+  abbrechen/rückgängig machen, Aufwärtsumkehr oder wesentlich.
+
+### Tastatureingabe
+
+Fokussierbarkeit von Tabs
+
+- Links, Schaltflächen und interaktive Steuerelemente müssen mit der Tastatur
+  fokussierbar sein.
+
+Tab-Reihenfolge
+
+- Die Navigationsreihenfolge von fokussierbaren Elementen (Links, Formularelemente
+  usw.) muss logisch und intuitiv sein.
+
+- Ein Tabindex mit positiven Werten sollte vermieden werden.
+
+Visueller Fokusindikator
+
+- Alle fokussierbaren Elemente müssen einen visuellen Fokusindikator haben, wenn
+  sie fokussiert sind.
+
+- Fokussierbare Elemente sollten über verbesserte Stile für visuelle
+  Fokusindikatoren verfügen.
+
+- Der Kontrast aller kleinen visuellen Fokusindikatoren (kleiner als 3px x 3px)
+  vor dem Hintergrund sollte mindestens 4,5 zu 1 betragen.
+
+- Der Kontrast aller großen visuellen Fokusindikatoren (mindestens 3 x 3 px) vor
+  dem Hintergrund sollte mindestens 3 zu 1 betragen.
+
+Tastaturfunktionalität
+
+- Die Funktionen müssen über die Tastatur verfügbar sein, es sei denn, die
+  Funktion kann nicht auf bekannte Weise über die Tastatur ausgeführt werden.
+
+Tastatur-Fallen
+
+- Der Tastaturfokus muss nicht in einem bestimmten Seitenelement gesperrt oder
+  gefangen sein, und der Nutzer muss in der Lage sein, zu und von allen navigierbaren
+  Seitenelementen nur mit der Tastatur zu navigieren.
+
+Fokusmanagement bei Interaktionen
+
+- Der Fokus muss absichtlich verschoben oder (über JavaScript) auf das
+  entsprechende Element gesetzt werden, wenn die Aktion des Nutzers eine Änderung
+  des Kontexts oder der Position für eine effektive Tastatur- oder Touch-Interaktion
+  erfordert.
+
+- Der Fokus muss nicht verloren gehen oder an den Anfang der Seite zurückgesetzt
+  werden, außer beim Laden oder Neuladen einer Seite.
+
+- Wenn der Fokus verschoben oder gesetzt wird, muss das Zielelement einen
+  programmatisch bestimmbaren Text enthalten (entweder Standardtext oder
+  programmatisch zugeordneter Text).
+
+Tastaturkurzbefehle
+
+- Von der Seite vorgegebene Tastenkombinationen und Zugriffstasten müssen nicht
+  mit bestehenden Tastenkombinationen im Browser, im Betriebssystem oder in
+  unterstützenden Technologien kollidieren.
+
+Tastaturanweisungen für Benutzer
+
+- Wenn ein benutzerdefiniertes Tastaturverhalten erforderlich ist, um eine
+  Komponente zu verwenden, müssen Anweisungen für die Tastatur bereitgestellt werden.
+
+- ARIA-Widgets, die mehr als nur die Tabulatortaste erfordern, können für die
+  Nutzer verwirrend sein, deshalb darfst du Anweisungen für die Tastatur geben.
+
+### Touch-Eingabe
+
+Touch-Funktionalität
+
+- Die Funktionen müssen mit Standard-Touch-Methoden zur Verfügung stehen, es sei
+  denn, die Funktionen können nicht auf bekannte Weise mit einem Touch-Gerät
+  ausgeführt werden.
+
+Touch-Funktionalität mit aktiviertem Screen Reader
+
+- Die Funktionen müssen mit Screen-Reader-Touch-Methoden (z. B. Klick-Aktionen)
+  verfügbar sein, es sei denn, die Funktionen können nicht auf bekannte Weise mit
+  einem Touch-Gerät ausgeführt werden.
+
+Touch-Zielgröße
+
+- Die Größe des Klick-/Touch-Ziels sollte groß genug sein, um eine einfache
+  Bedienung mit dem Finger zu ermöglichen, ohne zu riskieren, dass ein
+  benachbarter Link oder Button aktiviert wird.
+
+Fokusfalle
+
+- Der Fokus muss nicht auf ein bestimmtes Seitenelement fixiert werden und der
+  Nutzer muss in der Lage sein, mit Standard-Touch-Aktionen oder Gesten zu allen
+  navigierbaren Seitenelementen zu navigieren.
+
+Zeigergesten
+
+- Alle Funktionen, die Mehrpunkt- oder pfadbasierte Gesten zur Bedienung verwenden,
+  müssen auch mit einem einzelnen Zeiger ohne pfadbasierte Geste bedient werden können,
+  es sei denn, eine Mehrpunkt- oder pfadbasierte Geste ist unerlässlich.
+
+### Eingabemodalitäten
+
+- Webinhalte sollten die Nutzung der auf einer Plattform verfügbaren
+  Eingabemodalitäten nicht einschränken, es sei denn, die Einschränkung ist
+  unerlässlich, um die Sicherheit des Inhalts zu gewährleisten oder um die
+  Benutzereinstellungen zu berücksichtigen.
+
+### Bewegung, verschwindende Inhalte und Übergänge
+
+Bewegungsaktivierung
+
+- Funktionen, die durch die Bewegung des Geräts oder des Nutzers ausgelöst werden
+  können, müssen auch von den Komponenten der Benutzeroberfläche bedient werden
+  können und die Möglichkeit bieten, die Bewegungsaktivierung zu deaktivieren.
+
+Übergänge
+
+- Übergänge müssen das Lesen oder die Interaktion nicht stören, es sei denn,
+  die Störung ist kurz.
+
+- Übergangseffekte sollten so gering wie möglich gehalten werden (um Übelkeit,
+  Schwindel, Belästigung usw. zu vermeiden).
+
+- Übergänge sollten Parallaxen-Effekte vermeiden.
+
+Sich bewegende oder verschwindende Inhalte
+
+- Inhalte sollten sich nicht so bewegen, dass interaktive Elemente schwer zu
+  aktivieren sind.

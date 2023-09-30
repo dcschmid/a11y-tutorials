@@ -1,0 +1,380 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Semantische Struktur und Navigation: Zusammenfassung & Checkliste'
+---
+
+Bildschirmlesegeräte und andere unterstützende Technologien verlassen sich auf
+das zugrunde liegende semantische Markup, um sinnvolle Informationen über die
+Struktur und den Inhalt von Webseiten zu vermitteln. Im Folgenden findest du
+eine Liste aller wichtigen Prinzipien, die in diesem Kapitel behandelt werden:
+
+## Seitentitel
+
+- Titel für jede Seite
+
+  - Der Seitentitel `<title>` muss vorhanden sein und Text enthalten.
+
+  - Der `<title>` der Seite muss aktualisiert werden, wenn sich die Webadresse ändert.
+
+- Aussagekräftiger Seitentitel
+
+  - Der `<title>` der Seite muss genau und informativ sein.
+
+  - Wenn eine Seite das Ergebnis einer Benutzeraktion oder einer skriptgesteuerten
+    Kontextänderung ist, mss der Text des `<title>` das Ergebnis oder die Kontextänderung
+    für den Benutzer beschreiben.
+
+  - Der `<title>` sollte prägnant sein.
+
+  - Der `<title>` der Seite sollte, wenn möglich, eindeutig sein.
+
+  - Einzigartige Informationen sollten im `<title>` an erster Stelle stehen.
+
+  - Der `<title>` der Seite sollte mit der Überschrift im Hauptinhalt
+    übereinstimmen (oder ihr sehr ähnlich sein).
+
+## Sprache
+
+- Primäre Sprache der Seite
+
+  - Die Hauptsprache der Seite muss im `<html>`-Element genau angegeben werden.
+
+  - Die primäre Sprache der Seite muss mit einem gültigen Wert im `<html>`-Element
+    angegeben werden.
+
+- Sprache der Teile innerhalb der Seite
+
+  - Inline-Sprachänderungen müssen mit einem gültigen lang-Attribut
+    gekennzeichnet werden.
+
+- Sprachcodes
+
+  - Der Sprachcode muss gültig sein.
+
+## Landmarken
+
+- Landmarken erstellen (HTML 5, ARIA)
+
+  - Landmarken sollten verwendet werden, um vordefinierte Teile des Layouts zu
+    kennzeichnen (`<header>`, `<nav>`, `<main>`, `<footer>`, etc.).
+
+- Best Practices für Landmarks
+
+  - Der gesamte Text sollte innerhalb einer Landmark-Region enthalten sein.
+
+  - Mehrere Instanzen desselben Typs von Landmarken sollten sich durch unterschiedliche,
+    bestimmbare Labels (aria-label oder aria-labelledby) unterscheiden lassen.
+
+  - Eine Seite sollte nicht mehr als eine Instanz jeder der folgenden Landmarken
+    enthalten: banner, main und contentinfo.
+
+  - Die Gesamtzahl der Orientierungspunkte sollte so weit minimiert werden, wie es
+    für den Inhalt angemessen ist.
+
+- Rückwärtskompatibilität
+
+  - Die Landmarks sollten abwärtskompatibel sein.
+
+## Allgemeine UI-Komponenten
+
+- In Inhalten, die mit Auszeichnungssprachen implementiert werden, kann der Zweck
+  von Benutzeroberflächenkomponenten, Symbolen und Regionen programmatisch
+  festgelegt werden.
+
+## Überschriften
+
+- Echte Überschriften
+
+  - Text, der visuell oder strukturell als Überschrift fungiert, sollte im
+    Markup als echte Überschrift gekennzeichnet werden.
+
+  - Text, der visuell oder strukturell nicht als Überschrift fungiert, sollte
+    nicht als Überschrift gekennzeichnet werden.
+
+- Aussagekräftiger Text
+
+  - Überschriften müssen genau und informativ sein.
+
+  - Überschriftentext sollte prägnant und relativ kurz sein.
+
+- Gliederung/Hierarchie des Inhalts
+
+  - Überschriften sollten eine klare und genaue strukturelle Gliederung der
+    Inhaltsbereiche einer Webseite vermitteln.
+
+  - Überschriften sollten keine hierarchischen Ebenen überspringen.
+
+- Best Practices für Überschriften der Ebene 1
+
+  - Der Anfang des Hauptinhalts sollte mit `<h1>` beginnen.
+
+  - Die meisten Webseiten sollten nur eine `<h1>` haben.
+
+## Links
+
+- Links richtig benennen
+
+  - Links müssen semantisch als solche gekennzeichnet sein.
+
+  - Links und Schaltflächen sollten entsprechend ihrer Funktion semantisch
+    benannt werden.
+
+- Link-Text
+
+  - Ein Link muss einen programmatisch bestimmbaren Text haben, der durch den
+    Algorithmus zur Berechnung des barrierefreien Namens bestimmt wird.
+
+  - Der Zweck jedes Links muss sich allein aus dem Linktext erschließen lassen.
+
+  - Der Linktext darf die Rolle ("Link") nicht wiederholen.
+
+  - Merkmale wie Labels, Namen und Textalternativen für Inhalte, die auf mehreren
+    Webseiten dieselbe Funktion haben, müssen einheitlich gekennzeichnet sein.
+
+- Links zu externen Seiten, neuen Fenstern, Dateien
+
+  - Ein Link, der in einem neuen Fenster oder Tab geöffnet wird, muss darauf
+    hinweisen, dass er in einem neuen Fenster oder Tab geöffnet wird.
+
+  - Ein Link zu einer Datei oder einem Ziel in einem alternativen oder nicht
+    webbasierten Format muss den Typ der Datei oder des Ziels angeben.
+
+  - Ein Link zu einer externen Website darf darauf hinweisen, dass er zu einer
+    externen Website führt.
+
+- Optische Unterscheidbarkeit vom Text
+
+  - Links müssen sich optisch vom umgebenden Text abheben.
+
+- Visueller Fokusindikator
+
+  - Alle fokussierbaren Elemente müssen einen visuellen Fokusindikator haben,
+    wenn sie fokussiert sind.
+
+  - Fokussierbare Elemente müssen über verbesserte Stile für visuelle
+    Fokusindikatoren verfügen.
+
+## Navigation zwischen Seiten
+
+- Navigationslisten
+
+  - Eine Navigationsliste sollte mit dem `<nav>`-Element oder role="navigation"
+    gekennzeichnet sein.
+
+  - Eine Navigationsliste sollte eine sichtbare Methode enthalten, um die Nutzer/innen
+    darüber zu informieren, welche Seite innerhalb der Navigationsliste die derzeit
+    aktive/sichtbare Seite ist.
+
+  - Eine Navigationsliste sollte eine Methode enthalten, mit der blinde Nutzer/innen
+    darüber informiert werden, welche Seite innerhalb der Navigationsliste die
+    gerade aktive/sichtbare Seite ist.
+
+- Konsistenz
+
+  - Navigationsmuster, die sich auf Webseiten wiederholen, müssen jedes Mal in
+    der gleichen relativen Reihenfolge dargestellt werden und müssen beim Navigieren
+    durch die Website nicht die Reihenfolge ändern.
+
+## Navigation innerhalb von Seiten
+
+- Navigationslinks überspringen
+
+  - Es sollte ein "Skip"-Link mit Tastaturfunktion vorhanden sein, damit
+    Tastaturbenutzer direkt zum Hauptinhalt navigieren können.
+
+  - Der "Skip-Link" sollte das erste fokussierbare Element auf der Seite sein.
+
+  - Ein Skip-Link muss entweder immer sichtbar sein oder bei Tastaturfokus
+    sichtbar sein.
+
+- Inhaltsverzeichnis
+
+  - Ein Inhaltsverzeichnis für die Seite KANN am Anfang des Inhalts oder in der
+    Kopfzeile eingefügt werden.
+
+  - Wenn ein Inhaltsverzeichnis für die Seite enthalten ist, sollte es die
+    Überschriftenstruktur der Seite widerspiegeln.
+
+- Lesereihenfolge und Tabulator-/Fokus-Reihenfolge
+
+  - Die Lesereihenfolge muss logisch und intuitiv sein.
+
+  - Die Navigationsreihenfolge von fokussierbaren Elementen muss logisch und
+    intuitiv sein.
+
+  - tabindex mit positiven Werten sollte nicht verwendet werden.
+
+- Paginierte Ansichten
+
+  - Eine paginierte Ansicht muss eine sichtbare Methode enthalten, die den Nutzer
+    darüber informiert, welche Ansicht gerade aktiv/sichtbar ist.
+
+  - Eine paginierte Ansicht sollte eine Methode enthalten, mit der blinde Nutzer
+    darüber informiert werden, welche Ansicht gerade aktiv/sichtbar ist.
+
+- Ein-Tasten-Kurzbefehle
+
+  - Wenn es eine Tastenkombination mit nur einem Zeichen gibt, muss mindestens
+    eine der folgenden Bedingungen erfüllt sein: Tastenkombinationen mit nur einem
+    Zeichen können ausgeschaltet oder neu zugeordnet werden oder sind nur aktiv,
+    wenn die entsprechende Komponente der Benutzeroberfläche im Fokus ist.
+
+## Tabellen
+
+- Semantisches Markup für tabellarische Daten
+
+  - Tabellarische Daten sollten in einer `<table>` dargestellt werden.
+
+- Bildunterschrift/Name der Tabelle
+
+  - Datentabellen sollten eine programmatisch zugewiesene Bildunterschrift oder
+    einen Namen haben.
+
+  - Der Name/die Bildunterschrift einer Datentabelle sollte die Identität oder
+    den Zweck der Tabelle genau, aussagekräftig und prägnant beschreiben.
+
+  - Der Name/die Bildunterschrift jeder Datentabelle sollte im Kontext anderer
+    Tabellen auf derselben Seite eindeutig sein.
+
+- Tabellenkopfzeilen
+
+  - Tabellenüberschriften müssen mit `<th>` gekennzeichnet sein.
+
+  - Der Text der Tabellenüberschrift muss die Kategorie der entsprechenden
+    Datenzellen genau beschreiben.
+
+- Einfache Kopfzeilenzuordnungen
+
+  - Die Datenzellen einer Tabelle müssen mit den entsprechenden Kopfzellen
+    verknüpft werden.
+
+- Gruppierte Kopfzeilenzuordnungen
+
+  - Die Kopfzeilen von Tabellengruppen müssen mit den entsprechenden
+    Datenzellengruppen verknüpft werden.
+
+- Komplexe Kopfzeilen-Assoziationen
+
+  - Kopfzeilen/Daten-Zuordnungen, die nicht mit `<th>` und scope bezeichnet werden
+    können, müssen mit headers plus id bezeichnet werden.
+
+- Verschachtelte oder geteilte Tabellen
+
+  - Datentabellenköpfe und Datenassoziationen müssen nicht in verschachtelten,
+    zusammengelegten oder getrennten Tabellen referenziert werden.
+
+- Tabellenzusammenfassung
+
+  - Für Datentabellen kann eine Zusammenfassung angegeben werden.
+
+  - Wenn eine Zusammenfassung der Datentabelle vorhanden ist, sollte sie die
+    Tabelle für Screenreader verständlicher machen.
+
+- Layout-Tabellen
+
+  - Tabellen dürfen nicht für die rein visuelle Gestaltung (ohne Daten) verwendet werden.
+
+  - Layout-Tabellen müssen kein Daten-Tabellen-Markup enthalten.
+
+## Listen
+
+- Semantisches Markup für Listen
+
+  - Listen müssen mit dem entsprechenden semantischen Markup erstellt werden.
+
+## iFrames
+
+- Frame-Titel
+
+  - iFrames, die den Nutzern Inhalte vermitteln, müssen ein nicht leeres
+    Titelattribut haben.
+
+  - Der Titel des Iframes muss genau und beschreibend sein.
+
+  - Frames müssen einen eindeutigen Titel haben (im Kontext der Seite).
+
+- Seitentitel innerhalb eines Iframe
+
+  - Die Quellseite eines iframe MUSS einen gültigen, aussagekräftigen `<title>` haben.
+
+- Semantische Struktur über iframes hinweg
+
+  - Die Überschriftenhierarchie eines iframe sollte so gestaltet sein, dass sie
+    möglichst in die Überschriftenhierarchie des übergeordneten Dokuments passt.
+
+- Ausblenden von iFrames, die keinen sinnvollen Inhalt enthalten
+
+  - Ausgeblendete Frames oder Frames, die den Nutzern keinen Inhalt vermitteln,
+    sollten mit aria-hidden="true" vor unterstützenden Technologien
+    verborgen werden.
+
+## Andere semantische Elemente
+
+- `<strong>` und `<em>`
+
+  - Kritische Betonungen im Text sollten durch visuelle Gestaltung vermittelt
+    werden.
+
+  - Kritische Hervorhebungen im Text sollten in einem textbasierten Format
+    vermittelt werden.
+
+- `<blockquote>` und `<q>`
+
+  - Das `<blockquote>`-Element sollte verwendet werden, um lange Zitate (auf
+    Blockebene) zu kennzeichnen.
+
+  - Das `<blockquote>`-Element sollte nicht nur für die visuelle Gestaltung
+    verwendet werden.
+
+  - Das `<q>`-Element (für Inline-Zitate) sollte nicht als einzige Möglichkeit
+    zur Kennzeichnung von Zitaten verwendet werden.
+
+- `<code>`, `<pre>`
+
+  - Code sollte mit dem `<code>`-Element gekennzeichnet werden.
+
+  - Code-Blöcke sollten mit dem `<pre>`-Element formatiert werden.
+
+- Durchstreichen/Löschen und Einfügen
+
+  - Durchgestrichener Text sollte mit dem `<del>`-Element markiert werden.
+
+  - Kritischer durchgestrichener Text muss mit einer textbasierten Methode
+    ergänzt werden, um die Bedeutung des Durchstreichens zu vermitteln.
+
+  - Text, der eingefügt werden soll, sollte mit dem `<ins>`-Element
+    gekennzeichnet werden.
+
+  - Kritischer Text, der eingefügt werden soll, muss mit einer textbasierten
+    Methode ergänzt werden, um die Bedeutung der Einfügung zu vermitteln.
+
+- Hervorhebung (`<mark>`)
+
+  - Hervorgehobener Text sollte mit dem `<mark>`-Element markiert werden.
+
+  - Kritischer hervorgehobener Text sollte mit einer textbasierten Methode
+    ergänzt werden, um die Bedeutung der Hervorhebung zu vermitteln.
+
+## Parsing und Gültigkeit
+
+- Vollständige Start- und End-Tags
+
+  - In Inhalten, die mit Auszeichnungssprachen implementiert wurden, müssen die
+    Elemente vollständige Start- und End-Tags haben.
+
+- Widersprüche und Duplikate
+
+  - IDs müssen innerhalb einer Webseite eindeutig sein.
+
+  - Die Namen von Elementen auf Blockebene (z. B. Orientierungspunkte, Tabellen,
+    iFrames usw.) müssen innerhalb einer Webseite eindeutig sein, wenn sie
+    angegeben werden.
+
+- Parent-Child-Beziehungen
+
+  - Markup sollte die erforderlichen Eltern-Kind-Beziehungen von Elementen und
+    Attributen einhalten.
+
+- Veraltetes Markup
+
+  - Veraltetes Markup sollte nicht verwendet werden.

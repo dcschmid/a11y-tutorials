@@ -1,0 +1,153 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test Form Labels und Instruktionen'
+---
+
+Klare Labels und klare Instruktionen sind wichtig für die Barrierefreiheit von
+Formularen. Formularfelder und andere Steuerelemente haben in der Regel sichtbare
+Labels, wie z. B. "E-Mail-Adresse:" als Label für ein Textfeld. Wenn diese Labels
+richtig beschriftet sind, können Menschen mit einem Formular interagieren, indem
+sie nur die Tastatur benutzen, die Spracheingabe nutzen oder Bildschirmlesegeräte
+verwenden. Wenn die Beschriftung korrekt ist, kann das Label selbst auswählbar sein,
+so dass eine Person, die Schwierigkeiten hat, auf kleine Optionsfelder oder
+Kontrollkästchen zu klicken, irgendwo auf den Labeltext klicken kann. Wenn klare
+Instruktionen für das gesamte Formular, für Gruppen von Formularelementen und für
+einzelne Formularelemente richtig gekennzeichnet sind, kann dies verhindern, dass
+sowohl Benutzer von Hilfsmitteln als auch Benutzer ohne Hilfsmittel beim Ausfüllen
+des Formulars Fehler machen.
+
+## Prüfmethodik für Form Labels
+
+Achte auf alle Formulare auf der Webseite. Ein Formular kann ein einzelnes Textfeld
+sein, wie z. B. "Suchen", oder ein komplexes Formular mit Textfeldern, Optionsfeldern,
+Kontrollkästchen, Dropdown-Listen und Schaltflächen.
+
+Es ist wichtig, dass die Labels richtig beschriftet sind, damit sie für unterstützende
+Technologien verfügbar sind. Automatisierte Tests können dir dabei helfen, herauszufinden,
+ob die Labels korrekt mit den Formularfeldern verknüpft sind, und bestätigen,
+dass auf der gesamten Webseite eindeutige IDs verwendet werden. Wenn die IDs
+nicht eindeutig sind, vor allem in Formularen, werden die Labels möglicherweise
+nicht richtig mit dem vorgesehenen Formularfeld verknüpft. Manuelle Tests dienen
+dazu, die Positionierung und Wirksamkeit von Labels zu überprüfen.
+
+### Einzelne Formularelemente
+
+Bei der Bewertung von Labels für einzelne Formularelemente solltest du auf
+Folgendes achten:
+
+- Das Label für das Formularelement ist für sehende Nutzer/innen sichtbar und
+  befindet sich in der Nähe des Formularelements.
+
+- Platzhalter allein werden nicht als Label verwendet. Da Platzhalter verschwinden,
+  sobald ein Nutzer Informationen eingibt, sind Platzhalter als sichtbare Labels
+  nicht ausreichend.
+
+- Das Label ist für assistive Technologien sichtbar. Um dies zu überprüfen,
+  verwende einen Screenreader und lege den Fokus auf die Formulareingabe (Textfeld,
+  Optionsfeld usw.). Das Label, das mit der Formulareingabe verknüpft ist,
+  sollte vom Screenreader angezeigt werden. Ist dies nicht der Fall, ist das Label
+  nicht richtig beschriftet.
+
+- Das Label benennt oder vermittelt den Zweck des Formularelements richtig. Die
+  Benutzer sollten wissen, was sie tun sollen, wenn sie auf das Label stoßen.
+
+- Wenn ein Bild oder ein Symbol als Label verwendet wird, prüfe mit einem
+  Screenreader, ob es eine geeignete Textalternative gibt. Die Textalternative
+  sollte angezeigt werden, wenn der Fokus auf die Formulareingabe gelegt wird.
+
+### Gruppierte Formularelemente
+
+Für Formularelemente, die miteinander in Beziehung stehen, brauchen sie nicht nur
+individuelle Labels, sondern auch ein Gruppen-Label, um den gesamten Kontext für
+die miteinander in Beziehung stehenden Formularelemente zu vermitteln. Gruppen von
+Optionsfeldern oder Kontrollkästchen haben fast immer ein Label für die Gruppe.
+
+Wenn du ein Formular auswertest, suche nach Formularelementen, die miteinander in
+Beziehung stehen (z. B. Kontaktinformationen, Rechnungsadresse) und prüfe Folgendes:
+
+- Das Label für zusammenhängende Formularelemente ist für sehende Benutzer/innen
+  sichtbar und befindet sich in der Nähe der Formularelemente, die es beschriftet.
+
+- Das Label der Gruppe ist für unterstützende Technologien sichtbar. Verwende
+  einen Screenreader und platziere den Fokus innerhalb der Formulargruppierung.
+  Wenn der Fokus auf das erste Formularelement in der Gruppe gesetzt wird, sollten
+  sowohl das Label der Gruppe als auch das individuelle Label für das Formularelement
+  vom Bildschirmlesegerät angezeigt werden. Wenn das Label der Gruppe nicht angezeigt
+  wird, ist es nicht richtig gekennzeichnet.
+
+- Das Label der Gruppe benennt oder vermittelt den Zweck der Formulargruppierung
+  richtig.
+
+## Prüfmethodik für die Instruktionen des Formulars
+
+### Ganzes Formular und gruppierte Formularabschnitte
+
+Wenn für das erfolgreiche Ausfüllen eines gesamten Formulars oder eines
+gruppierten Formularabschnitts Instruktionen erforderlich sind, müssen diese
+Instruktionen für alle Nutzer/innen zugänglich sein.
+
+Um die Barrierefreiheit der Instruktionen für ein ganzes Formular oder eine Gruppe
+von Formularelementen zu prüfen, solltest du auf Folgendes achten:
+
+- Die Instruktionen für das Formular oder die Formulargruppe sind sichtbar und
+  erscheinen, bevor die Nutzer/innen mit den Formularelementen interagieren.
+
+- Die Instruktionen sind für unterstützende Technologien verfügbar (überprüfe,
+  ob ein Screenreader die Instruktionen für die Benutzer/innen anzeigt).
+
+- Instruktionen für Formulargruppen werden programmatisch mit den jeweiligen
+  Formularelementen verknüpft.
+
+- Um dies zu überprüfen, verwende ein Bildschirmlesegerät und öffne die Registerkarte
+  der Formulargruppe. Das Bildschirmlesegerät sollte den Nutzern entweder Anweisungen
+  anzeigen, wenn sie mit der Tabulatortaste in die Gruppierung wechseln (`<legend>`)
+  oder wenn sie mit der Tabulatortaste auf ein Formularelement in der Gruppierung
+  wechseln (aria-describedby).
+
+- Die Instruktionen sind sinnvoll und umsetzbar. Die Nutzer/innen sollten genau
+  wissen, was sie tun müssen, nachdem sie die Instruktionen gelesen haben.
+
+- Instruktionen verlassen sich nicht allein auf sensorische Merkmale wie Farbe. In
+  den Instruktionen sollte zum Beispiel nicht stehen, dass rot umrandete Felder
+  erforderlich sind.
+
+### Einzelne Formularelemente
+
+Einzelne Formularelemente können besondere Instruktionen haben, z. B. wenn das
+Feld erforderlich ist oder wenn eine besondere Formatierung des Formularfelds
+erforderlich ist. Spezifische Instruktionen für Formularelemente müssen sowohl
+für Benutzer/innen von assistiven Technologien als auch für Personen, die keine
+assistiven Technologien verwenden, verfügbar sein.
+
+Wenn du die Barrierefreiheit von Instruktionen für bestimmte Formularelemente
+prüfst, solltest du
+
+- Prüfe, ob die Instruktionen sichtbar sind und sich in der Nähe des
+  Formularelements befinden, das sie beschreiben.
+
+- Prüfe, ob die Instruktionen für Nutzer/innen von Hilfstechnologien verfügbar
+  sind. Verwende einen Screenreader und richte den Fokus auf das Formularelement.
+  Der Screenreader sollte die Instruktionen anzeigen, wenn der Fokus auf das
+  Formularelement gesetzt wird.
+
+- Achte darauf, dass die Instruktionen spezifisch und aussagekräftig sind. Die
+  Nutzer sollten wissen, ob ein Feld erforderlich ist oder welche Art von
+  Formatierung erforderlich ist, um das Formularfeld auszufüllen.
+
+- Achte darauf, dass sich die Instruktionen nicht auf sensorische Merkmale
+  verlassen, wie z. B. die Verwendung von Farben, um ein erforderliches Feld
+  anzuzeigen.
+
+### Mobiles Web
+
+- Überprüfe, ob die Instruktionen und Labels des Formulars für die Benutzer/innen
+  sichtbar sind, während sie durch das Formular navigieren.
+
+- Verwende entweder VoiceOver (iOS) oder Talkback (Android):
+
+  - Überprüfe, ob die Instruktionen für das gesamte Formular und die gruppierten
+    Abschnitte sichtbar sind und über den Screenreader übermittelt werden.
+
+  - Bei einzelnen Formularelementen musst du den Fokus in oder auf das Formularelement
+    legen. Überprüfe, ob das Label durch den Screenreader dargestellt wird und
+    ob alle spezifischen Instruktionen für das Element ebenfalls übermittelt werden.

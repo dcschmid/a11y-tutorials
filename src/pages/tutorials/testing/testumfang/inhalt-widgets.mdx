@@ -1,0 +1,113 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Seiteninhalt und Widgets'
+---
+
+## Auswahl bestimmter Seiteninhalte für die Bewertung
+
+### Bilder
+
+Barrierefreiheitsprobleme im Zusammenhang mit Bildern sind die Nummer 1 unter den
+Barrierefreiheitsproblemen im Internet. Die meisten Barrierefreiheitsprobleme im
+Zusammenhang mit Bildern drehen sich um zwei Fehler: Erstens, ob das alt-Attribut
+im `<img>`-Element überhaupt vorhanden ist, und zweitens, ob der Text im alt-Attribut
+von ausreichender Qualität ist, um als geeigneter Ersatz für das Bild zu dienen.
+Da der letzte Fall sehr subjektiv ist, müssen alle Bilder in den Testeinheiten
+manuell geprüft werden.
+
+Für viele Websites sollten Testeinheiten ausgewählt werden, weil sie die Möglichkeit
+bieten, die Qualität des alternativen Textes zu überprüfen. Wenn viele Bilder
+verwendet werden, z. B. in einem Webshop, einer Galerie oder einer Webanwendung,
+solltest du eine Handvoll Bilder zum Testen auswählen. Oft zeigt sich schon nach
+wenigen Einheiten, ob die Mitarbeiter/innen in der Entwicklung oder im
+Content-Bereich wissen, wie man gute Alternativtexte erstellt. Wähle mehr
+Einheiten aus, je nachdem, wie viele verschiedene Teams Code oder Inhalte für
+die Website beisteuern, denn so kannst du herausfinden, wo Unterschiede im
+Verständnis der Teammitglieder für alternativen Text liegen.
+
+### Tabellen
+
+Tabellen sind ein weiterer Bereich, in dem eine unzugängliche Produktion
+erhebliche Auswirkungen auf die Nutzer haben kann. Prüfer/innen sollten eine
+Handvoll repräsentativer Beispiele für Tabellen auswählen.
+
+In der Regel verursachen sehr einfache Tabellen keine größeren Probleme, daher
+sollten nur ein oder zwei Beispiele für einfache Tabellen einbezogen werden.
+Komplexe Tabellen, z. B. solche mit Zellen, die sich über mehrere Spalten oder
+Zeilen erstrecken, führen jedoch häufig zu erheblichen Problemen und sollten
+kritisch auf eine angemessene Barrierefreiheit geprüft werden.
+
+Auf großen Websites werden Tabellen mit Daten oft mit serverseitigem Code erstellt,
+der die Daten der Tabelle aus einer Datenbank abruft. Wenn mehrere Tabellen gefunden
+werden, die sehr ähnliche Daten enthalten, sollte nur ein Beispiel für eine solche
+Tabelle verwendet werden. Wenn der Verdacht besteht, dass die Tabellen manuell
+erstellt wurden (d.h. nicht mit Informationen aus einer Datenbank), sollte eine
+kleine Handvoll ausgewählt werden.
+
+In der Praxis erstellen die meisten Entwickler/innen die Tabellen immer auf die
+gleiche Art und Weise, so dass sich Fehlermuster sehr schnell zeigen werden.
+
+### Formulare
+
+Formulare im Web sind die wichtigste Funktion, mit der ein Benutzer mit
+Webschnittstellen interagieren kann. Jedes Mal, wenn ein Nutzer einen Status auf
+Twitter oder Facebook postet, wird ein Formular ausgefüllt. Jedes Mal, wenn
+Rechnungen beim Online-Banking bezahlt werden, wird ein Formular ausgefüllt. Jedes
+Mal, wenn eine E-Mail mit Gmail oder Yahoo verschickt wird, wird ebenfalls ein
+Formular ausgefüllt. Doch unter den Bereichen, in denen Barrierefreiheit ein
+Thema ist, stehen Formulare ganz oben auf der Liste der Probleme, die sie für
+Nutzer/innen mit Behinderungen verursachen.
+
+Aus der Sicht der Prüfung ist es wichtig, dass bei einem Audit auch Formulare
+umfassend getestet werden, vor allem, wenn diese Formulare Teil der
+Kernfunktionalität des zu prüfenden Systems sind. Wie bei den Tabellen ist auch
+bei den Formularen die Wiederverwendung von Code oft sehr hoch. In PHP, JSP und
+anderen objektorientierten serverseitigen Sprachen werden zum Beispiel oft Klassen
+geschrieben, die sowohl die Darstellung als auch die Verarbeitung von Formularen
+übernehmen. In anderen Fällen kann clientseitiger Code wie jQuery für die
+Darstellung und Verarbeitung von Formularen verwendet werden.
+
+Bei beiden Ansätzen, ob clientseitig oder serverseitig, wird oft derselbe Code
+für alle (oder zumindest die meisten) Formulare auf der Website verwendet. Wenn
+dies auf der zu testenden Website der Fall ist, ist es ratsam, nicht jedes einzelne
+Formular auf der Website zu testen, sondern sich auf einzigartige Beispiele zu
+konzentrieren, die es dem Tester ermöglichen, effizient gute Daten zu erhalten.
+
+### Frames
+
+Bei Frames gibt es in der Regel nur eine begrenzte Anzahl von gut dokumentierten
+Problemen mit der Barrierefreiheit, deren Prüfung oft durch automatisierte Tests
+erledigt werden kann. Es gibt zwar einige Tests, die manuell durchgeführt werden
+sollten, aber das Testen von Frames geht in den meisten Fällen recht schnell.
+Außerdem ist die Behebung der meisten Probleme mit Frames ebenfalls recht schnell
+und kann sich für die Endnutzer/innen sehr positiv auswirken. Aus diesem Grund
+sollten Frames in den Test einbezogen werden.
+
+### Multimedia
+
+Auch bei der Darstellung multimedialer Inhalte gibt es eine Reihe von Herausforderungen,
+die sich auf die Barrierefreiheit auswirken. Eine Vielzahl von behinderten Nutzerinnen
+und Nutzern kann nicht nur von den Multimedia-Inhalten betroffen sein, sondern auch
+von den Oberflächenelementen, die die Multimedia-Inhalte präsentieren, wie z. B.
+Video- und Audio-Player. Deshalb muss Multimedia in den Test einbezogen werden.
+
+## Auswahl von benutzerdefinierten Widgets und clientseitigem Scripting für die Prüfung
+
+Moderne Unternehmenswebsites enthalten oft viele clientseitige Skripte und
+benutzerdefinierte Widgets, oft durch den Einsatz von JavaScript-Frameworks wie
+jQuery, MooTools, Dojo usw. Client-seitiges Scripting bietet die Möglichkeit,
+reichhaltige interaktive Erlebnisse online zu schaffen. Leider gibt es auch eine
+Reihe von Möglichkeiten, wie Widgets und clientseitige Skripte Probleme mit der
+Barrierefreiheit verursachen können, die sich für Nutzer/innen mit Behinderungen
+sehr negativ auswirken. Deshalb ist es sehr wichtig, Funktionen zu testen, die
+clientseitiges Scripting beinhalten.
+
+Bei der Auswahl von clientseitigen Skripten ist es ratsam, einzigartige,
+repräsentative Beispiele auszuwählen. Wenn die Website z. B. mehrere simulierte
+Dialoge oder Leuchtkästen enthält, ist es ratsam, mindestens einen davon zu testen.
+Das Gleiche gilt für dynamische Menüs, Akkordeon-Menüs, Tabellensortierung und
+alle anderen Elemente der Benutzeroberfläche, die mit clientseitigem Scripting
+dargestellt werden und/oder davon abhängen. In der Regel werden nur ein oder
+zwei Beispiele für jede Art von skriptbasierten UI-Elementen benötigt,
+vorausgesetzt, sie stammen aus der gleichen Codebasis, da diese Elemente
+wahrscheinlich den gleichen zugrunde liegenden Code verwenden.

@@ -1,0 +1,379 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test Video/Audio Barrierefreiheit'
+---
+
+Video-, Audio- und Multimedia-Präsentationen müssen für Menschen mit Sinnesbehinderungen
+(Blindheit, Sehbehinderung, Gehörlosigkeit, Schwerhörigkeit, Taubblindheit)
+zugänglich sein. Es gibt verschiedene Methoden, um sicherzustellen, dass Menschen
+mit Sinnesbehinderungen Zugang zu den Informationen haben, die in diesen
+Präsentationen bereitgestellt werden. Zu den gängigen Methoden gehören:
+
+- Bildunterschriften: Text, der mit den Medien synchronisiert wird, für diejenigen,
+  die die akustischen Informationen nicht hören können.
+
+- Abschriften: Ein Volltextdokument, das gesprochene Worte, aussagekräftige Soundeffekte
+  und wichtige visuelle Informationen enthält. Menschen, die den Inhalt nicht sehen
+  oder hören können, profitieren von einer Abschrift.
+
+- Audiobeschreibungen: Eine den Medien hinzugefügte Audiospur, in der ein Sprecher
+  wichtige visuelle Inhalte beschreibt, die in der ursprünglichen Audiospur des
+  Mediums nicht enthalten sind (z. B. unausgesprochene Handlungen und Ereignisse),
+  damit auch Menschen, die das Geschehen nicht sehen können, davon profitieren können.
+
+Die Anforderungen an Video-, Audio- und Multimediainhalte hängen davon ab, welche
+Barrierefreiheit oder welchen Standard der Inhalt erfüllen soll. Im Folgenden
+findest du eine Entscheidungsmatrix für die Barrierefreiheit von Multimedia-Inhalten,
+mit deren Hilfe du feststellen kannst, welche Anforderungen an die verschiedenen
+Arten von Inhalten je nach Konformitätsstufe gestellt werden. A, AA und AAA
+beziehen sich auf die Konformitätsstufen der Web Content Accessibility Guidelines
+(WCAG).
+
+<table>
+  <thead>
+    <tr>
+      <th>Art</th>
+      <th>Captions</th>
+      <th>Abschrift</th>
+      <th>Audio-Beschreibungen (AD)</th>
+      <th>Gebärdensprache</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Art'>Voraufgezeichnete Multimedia</td>
+      <td data-label='Captions'>
+        - A: MUSS
+
+        - AA: MUSS
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Abschrift'>
+        - A: SOLLTE
+
+        - AA: SOLLTE
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        - A: MUSS
+
+        - AA: MUSS
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: MUSS
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art'>Voraufgezeichnetes Nur-Video</td>
+      <td data-label='Captions'>
+        entfällt
+      </td>
+
+      <td data-label='Abschrift'>
+        - A: SOLLTE
+
+        - AA: SOLLTE
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        - A: MUSS
+
+        - AA: MUSS
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        entfällt
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art'>Voraufgezeichnetes Nur-Audio</td>
+      <td data-label='Captions'>
+        entfällt
+      </td>
+
+      <td data-label='Abschrift'>
+        - A: MUSS
+
+        - AA: MUSS
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        entfällt
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: KANN
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art'>Live-Multimedia</td>
+      <td data-label='Captions'>
+        - A: SOLLTE
+
+        - AA: MUSS
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Abschrift'>
+        entfällt
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: KANN
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: KANN
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art'>Nur Live-Video</td>
+      <td data-label='Captions'>
+        entfällt
+      </td>
+
+      <td data-label='Abschrift'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: MUSS
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: KANN
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        entfällt
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art'>Nur Live-Audio</td>
+      <td data-label='Captions'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: MUSS (Captions oder Transkripte)
+      </td>
+
+      <td data-label='Abschrift'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: MUSS (Captions oder Transkripte)
+      </td>
+
+      <td data-label='Audio-Beschreibungen (AD)'>
+        entfällt
+      </td>
+
+      <td data-label='Gebärdensprache'>
+        - A: KANN
+
+        - AA: KANN
+
+        - AAA: KANN
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Prüfmethodik für reine Videos
+
+Für Präsentationen, die nur Videoinhalte (visuelle Inhalte) enthalten:
+
+- Prüfe zunächst, ob eine Audiodeskription oder eine Textbeschreibung der visuellen
+  Inhalte notwendig ist. Wenn wichtige visuelle Informationen nirgendwo vermittelt
+  werden, ist eine Audio- oder Textbeschreibung erforderlich.
+
+- Wenn eine Audio- oder Textbeschreibung vorhanden ist, überprüfe, ob sie wichtige
+  visuelle Inhalte im Video genau beschreibt (eventuell musst du das gesamte
+  Video ansehen, um sicherzustellen, dass die Audio- oder Textbeschreibung genau
+  ist).
+
+- Wenn eine Textbeschreibung vorhanden ist, stelle sicher, dass sie sich in der
+  Nähe des Videos befindet, das sie beschreibt, und von allen Nutzern leicht
+  gefunden werden kann.
+
+## Prüfmethodik für Video und Audio
+
+Für Präsentationen, die sowohl Video- als auch Audioinhalte enthalten, müssen
+Bildunterschriften bereitgestellt werden. Aber auch Transkripte und Audiodeskriptionen
+können erforderlich sein, je nachdem, welche Anforderungen an die Barrierefreiheit
+oder welche Standards die Inhalte erfüllen müssen.
+
+### Bildunterschriften
+
+- Überprüfe, ob Bildunterschriften vorhanden sind, entweder in Form von offenen
+  Untertiteln (Untertitel, die immer eingeschaltet sind und nicht ausgeschaltet
+  werden können) oder geschlossenen Untertiteln (suche nach einer Schaltfläche für
+  geschlossene Untertitel oder einer Möglichkeit, die Untertitel einzuschalten).
+
+- Wenn Bildunterschriften verfügbar sind, überprüfe Folgendes:
+
+  - Die Bildunterschriften sind mit dem gesprochenen Audioinhalt synchronisiert.
+
+  - Die Bildunterschriften sind korrekt. Wenn der Inhalt geskriptet ist, sollten
+    die Bildunterschriften wortwörtlich sein (einschließlich "um's" und Stottern).
+    Wenn der Inhalt nicht geskriptet ist, sollten die Bildunterschriften so
+    wortgetreu wie möglich sein (aber "um's" und Stottern können weggelassen
+    werden).
+
+  - Wenn mehrere Sprecher/innen auf dem Bildschirm zu sehen sind, werden sie in
+    den Bildunterschriften genannt.
+
+  - Alle wichtigen Soundeffekte (z. B. stimmungsvolle Musik) werden in den
+    Bildunterschriften erfasst und beschrieben.
+
+- Achte darauf, dass keine automatischen Bildunterschriften verwendet werden, da
+  sie oft ungenau sind.
+
+### Abschriften
+
+- Überprüfe, ob eine Abschrift verfügbar ist.
+
+- Wenn eine Abschrift verfügbar ist, sollte sie sich in der Nähe der Multimedia-Präsentation
+  befinden und leicht zu finden sein (entweder auf der Seite selbst oder über einen
+  Link).
+
+- Überprüfe die Abschrift auf ihre Richtigkeit. Die Abschrift sollte Folgendes enthalten:
+
+  - Alle gesprochenen Worte
+
+  - Beschreibungen wichtiger nonverbaler Klänge (Geräusche, Musik), die zum
+    Erlebnis beitragen
+
+  - Identifizierung der Sprecher/innen
+
+  - Beschreibungen wichtiger visueller Inhalte - Abschriften sind für Menschen
+    gedacht, die die Inhalte nicht hören oder sehen können
+
+### Audiobeschreibung
+
+- Wenn eine Audiodeskription erforderlich ist, überprüfe, ob sie wichtige visuelle
+  Inhalte im Video genau beschreibt (eventuell musst du das gesamte Video ansehen,
+  um sicherzustellen, dass die Audiodeskription korrekt ist).
+
+## Prüfmethodik für reine Audioinhalte
+
+Für Präsentationen, die nur Audioinhalte (Podcasts) enthalten:
+
+- Überprüfe, ob eine Abschrift verfügbar ist.
+
+- Wenn eine Abschrift vorhanden ist, sollte sie sich in der Nähe der Audio-Präsentation
+  befinden und leicht zu finden sein (entweder auf der Seite selbst oder über
+  einen Link).
+
+- Überprüfe die Abschrift auf ihre Richtigkeit. Die Abschrift sollte Folgendes enthalten:
+
+  - Alle gesprochenen Worte
+
+  - Beschreibungen wichtiger nonverbaler Klänge (Geräusche, Musik), die zum
+    Erlebnis beitragen
+
+  - Identifizierung der Sprecher
+
+## Prüfmethodik für Medienplayer
+
+Die Barrierefreiheit von Mediaplayern kann schwierig sein, obwohl durch die Verwendung
+des HTML 5 Videoelements und anderer Player, die mit Blick auf die Barrierefreiheit
+entwickelt wurden, Fortschritte gemacht wurden. Das Hauptproblem bei Mediaplayern
+ist jedoch die Barrierefreiheit für Tastaturen und Bildschirmlesegeräte. In der
+Vergangenheit waren Mediaplayer berüchtigt dafür, dass sie Tastaturfallen verursachten,
+und die Steuerelemente von Mediaplayern wurden von Bildschirmlesern nicht richtig
+erkannt. Obwohl es Fortschritte gibt, ist es immer noch wichtig, Media Player zu
+testen und sicherzustellen, dass sie von so vielen Nutzern wie möglich bedient
+werden können.
+
+### Testen der Barrierefreiheit über die Tastatur
+
+Um Medienplayer auf Barrierefreiheit zu prüfen, solltest du sicherstellen, dass
+die folgenden Punkte zutreffen:
+
+- Auf alle Steuerelemente kann mit der Tabulatortaste zugegriffen werden.
+
+- Die Tabulatorreihenfolge der Steuerelemente ist logisch. Sie sollte die visuelle
+  Reihenfolge der Steuerelemente widerspiegeln.
+
+- Alle Steuerelemente haben visuelle Fokusindikatoren. Wenn der Tastaturfokus auf
+  ein Steuerelement gesetzt wird, sollte es einen visuellen Rahmen um das Steuerelement
+  geben, damit die Benutzer wissen, wo der Fokus liegt.
+
+- Alle Steuerelemente können über die Tastatur aktiviert werden. Die Eingabetaste
+  und die Leertaste sollten Schaltflächen aktivieren, und der Lautstärkeregler und
+  der Fortschrittsregler sollten mit den Pfeiltasten nach unten, oben, rechts und
+  links gesteuert werden.
+
+- Der Fokus wird bei allen Benutzerinteraktionen verwaltet. Wenn ein Steuerelement
+  beispielsweise einen modalen Dialog aktiviert (z. B. Bildunterschrift), wird der
+  Fokus auf den Dialog gesetzt. Wenn das Dialogfeld geschlossen wird, geht der
+  Fokus zurück zu dem Steuerelement, das das modale Dialogfeld aktiviert hat.
+
+- Wenn es im Media Player benutzerdefinierte Steuerelemente gibt, werden Instruktionen
+  für die Bedienung über die Tastatur bereitgestellt.
+
+### Testen der Barrierefreiheit von Screenreadern
+
+Die Unterstützung von Media-Playern für Bildschirmlesegeräte kann von dem jeweiligen
+Bildschirmlesegerät abhängen. Daher ist es am besten, einen Media Player mit
+mindestens zwei verschiedenen Arten von Bildschirmlesern zu testen. Generell
+solltest du jedoch auf Folgendes achten, wenn du einen Media Player mit einem
+Bildschirmlesegerät testest:
+
+- Der Name jedes Steuerelements wird an das Lesegerät übermittelt. Das Bildschirmlesegerät
+  sollte Namen von Steuerelementen wie "Abspielen", "Pause" und "Lautstärke"
+  wiedergeben, damit die Benutzer wissen, was das Steuerelement ist.
+
+- Die Funktion jedes Steuerelements wird dem Bildschirmleser mitgeteilt. Anders
+  als der Name gibt die Funktion das Element an, das das Steuerelement verwendet,
+  z. B. eine Schaltfläche oder einen Schieberegler. Zusammen mit dem Namen sollte
+  das Bildschirmlesegerät etwas wie "Play-Taste" oder "Lautstärkeregler" anzeigen.
+
+- Der Wert bestimmter Steuerelemente wird an das Lesegerät übermittelt. Wenn du
+  einen Schieberegler für die Lautstärke verwendest, sollte das Steuerelement
+  den Wert angeben, damit die Nutzer Änderungen verstehen. Wenn ein Nutzer zum
+  Beispiel die Lautstärke von 100 % auf 80 % senkt, sollte der Screenreader die
+  Werte "100 %, 90 %, 80 %" ansagen.

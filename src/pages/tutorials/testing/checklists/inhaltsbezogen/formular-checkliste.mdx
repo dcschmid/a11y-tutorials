@@ -1,0 +1,225 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Formular Labels, Instruktionen und Validierung: Zusammenfassung & Checkliste'
+---
+
+## Zusammenfassung
+
+Damit die Nutzer wissen, wie sie ein Formular ausfüllen können, muss das Formular
+zugänglich sein. In den meisten Fällen ist das leicht zu bewerkstelligen. Zu den
+wichtigsten Konzepten gehören:
+
+- Labels für Formulareingaben
+
+- Labels für Gruppen von Eingaben
+
+- Instruktionen und Hinweise, wo nötig
+
+- Fehlervermeidung
+
+- Formularvalidierung
+
+Bei all diesen Maßnahmen müssen die Informationen auf dem Bildschirm sichtbar,
+korrekt und aussagekräftig sein, programmgesteuert bestimmt werden können und
+programmgesteuert mit dem entsprechenden Formularelement oder der entsprechenden
+Gruppe verbunden werden.
+
+Je interaktiver ein Formularelement oder ein Prozess ist, desto mehr muss auf die
+Barrierefreiheit geachtet werden:
+
+- Fokusmanagement
+
+- Setzen und Aktualisieren von ARIA-Namen, -Rollen und -Werten, wo nötig
+
+- ARIA-Live-Ankündigungen, wo nötig
+
+## Checkliste
+
+### Labels
+
+Semantische Labels
+
+- Labels müssen programmatisch mit den entsprechenden Elementen verknüpft werden.
+
+- Labels müssen programmatisch bestimmbar sein.
+
+Aussagekräftiger Label-Text
+
+- Labels müssen aussagekräftig sein.
+
+- Labels müssen sich nicht nur auf sensorische Merkmale beziehen.
+
+Icons als Labels
+
+- Icons können als visuelle Labels (ohne visuellen Text) verwendet werden, wenn
+  die Bedeutung des Icons visuell offensichtlich ist und wenn es ein programmatisch
+  zugeordnetes semantisches Label gibt, das für assistive Technologien verfügbar
+  ist.
+
+Platzhaltertext als Label
+
+- Platzhaltertext muss nicht als einzige Methode zur Bereitstellung eines Labels
+  für eine Texteingabe verwendet werden.
+
+Sichtbarkeit von Labels
+
+- Labels müssen sichtbar sein.
+
+- Bei Benutzeroberflächenkomponenten mit Labels, die Text oder Bilder von Text
+  enthalten, muss der Name den Text enthalten, der visuell dargestellt wird.
+
+Nähe von Labels zu Steuerelementen
+
+- Ein Label sollte visuell neben dem entsprechenden Element liegen.
+
+- Ein Label sollte im DOM an das zugehörige Element angrenzen.
+
+Mehrere Labels für ein Feld
+
+- Wenn mehrere Labels für ein Element verwendet werden, muss jedes Label
+  programmatisch mit dem entsprechenden Element verknüpft werden.
+
+Ein Label für mehrere Felder
+
+- Wenn ein Label für mehrere Elemente verwendet wird, muss das Label programmatisch
+  mit jedem der entsprechenden Elemente verknüpft werden.
+
+### Gruppen-Labels
+
+Semantische Gruppen-Labels
+
+- Gruppen-Labels müssen programmatisch mit der Gruppe verknüpft werden, wenn
+  die einzelnen Labels für jedes Element der Gruppe allein nicht ausreichen.
+
+- Gruppen-Labels müssen programmatisch bestimmbar sein.
+
+Aussagekräftige Group Labels
+
+- Gruppen-Labels müssen aussagekräftig sein.
+
+- Gruppen-Labels müssen sich nicht nur auf sensorische Merkmale beziehen.
+
+Nähe von Gruppen-Labels
+
+- Gruppen-Labels müssen visuell an die gruppierten Elemente angrenzen.
+
+- Gruppen-Labels müssen im DOM an die gruppierten Elemente angrenzen.
+
+Sichtbarkeit von Group Labels
+
+- Gruppen-Labels müssen sichtbar sein.
+
+### Instruktionen und andere hilfreiche Informationen
+
+Instruktionen für Formulare, Gruppen und Abschnitte
+
+- Anweisungen für Gruppen oder Abschnitte müssen programmatisch mit der Gruppe
+  verknüpft werden.
+
+- Instruktionen für Gruppen oder Abschnitte müssen programmatisch bestimmbar sein.
+
+- Anweisungen für Gruppen oder Abschnitte müssen sinnvoll sein.
+
+- Anweisungen für Gruppen oder Abschnitte müssen sichtbar sein.
+
+- Anweisungen für Gruppen oder Abschnitte müssen visuell neben den gruppierten
+  Elementen stehen.
+
+- Anweisungen für Gruppen oder Abschnitte müssen im DOM neben den gruppierten
+  Elementen liegen.
+
+- Wenn die Anweisungen für Gruppen oder Abschnitte nicht wichtig sind, können die
+  Anweisungen ausgeblendet werden, bis der Nutzer sie anfordert.
+
+- Instruktionen für Gruppen oder Abschnitte müssen sich nicht allein auf
+  Verweise auf sensorische Merkmale stützen.
+
+Instruktionen für Eingaben
+
+- Instruktionen für ein Element müssen programmatisch mit dem Element verknüpft sein.
+
+- Instruktionen für ein Element müssen als programmatisch bestimmbarer Text
+  verfügbar sein.
+
+- Anweisungen für ein Element müssen sinnvoll sein.
+
+- Anweisungen für ein Element müssen sichtbar sein.
+
+- Anweisungen für ein Element sollten visuell neben dem Element stehen.
+
+- Anweisungen für ein Element sollten im DOM neben dem Element liegen.
+
+- Wenn die Instruktionen für ein Element nicht kritisch sind, können die
+  Instruktionen verborgen sein, bis der Nutzer sie anfordert.
+
+- Instruktionen für ein Element müssen sich nocht nur auf Verweise auf
+  sensorische Merkmale stützen.
+
+Erforderliche Felder
+
+- Erforderliche Felder müssen programmatisch als solche gekennzeichnet werden.
+
+- Erforderliche Felder sollten einen visuellen Hinweis darauf haben, dass das
+  Feld erforderlich ist.
+
+- Der Formularvalidierungsprozess muss eine Fehlermeldung enthalten, die erklärt,
+  dass ein Feld erforderlich ist, wenn das Feld im Ausgangszustand des Formulars
+  nicht sowohl visuell als auch programmatisch als erforderlich gekennzeichnet ist.
+
+Zweck der Eingabe
+
+- Der Zweck jedes gemeinsamen Eingabefeldes, das persönliche Daten einer Person
+  erfasst, muss programmatisch anhand der Liste der 53 Eingabezwecke für
+  Benutzeroberflächenkomponenten definiert werden.
+
+### Dynamische Formulare und benutzerdefinierte Widgets
+
+Änderungen des Kontexts
+
+- Die Fokussierung auf ein Element muss nicht automatisch einen Kontextwechsel
+  auslösen, es sei denn, der Nutzer wurde vorher angemessen informiert.
+
+- Das Ändern des Wertes eines Elements muss nicht automatisch einen Kontextwechsel
+  auslösen, es sei denn, der/die Nutzer/in wird vorher angemessen darauf hingewiesen.
+
+- Das Überfahren eines Elements mit der Maus muss nicht automatisch einen
+  Kontextwechsel auslösen, es sei denn, der/die Nutzer/in wurde vorher angemessen
+  darauf hingewiesen.
+
+Benutzerdefinierte Formulareingaben
+
+- Native HTML-Formularelemente sollten, wann immer möglich, verwendet werden.
+
+- Benutzerdefinierte Formularelemente sollten sich so weit wie möglich wie
+  native HTML-Formularelemente verhalten.
+
+- Benutzerdefinierte Formularelemente SOLLTEN angemessene Namen, Rollen und
+  Werte haben.
+
+- Aktualisierungen und Zustandsänderungen, die nicht über HTML- oder ARIA-Methoden
+  kommuniziert werden können, sollten über ARIA-Live-Nachrichten kommuniziert werden.
+
+### Formular-Validierung
+
+Überlegungen zur Fehleridentifizierung
+
+- Fehlerrückmeldungen müssen sofort nach dem Absenden des Formulars (oder nach
+  einem gleichwertigen Ereignis, wenn es kein Ereignis zum Absenden des Formulars
+  gibt) zur Verfügung gestellt werden.
+
+- Fehlerrückmeldungen müssen programmatisch mit dem entsprechenden Element
+  verknüpft werden.
+
+- Fehlerrückmeldungen müssen programmatisch bestimmbar sein.
+
+- Fehlerrückmeldungen müssen aussagekräftig sein.
+
+- Fehlerrückmeldungen müssen sichtbar sein.
+
+Überlegungen zur Erfolgsbestätigung
+
+- Die Rückmeldung zur Erfolgsbestätigung sollte programmatisch bestimmbar sein.
+
+- Erfolgsbestätigungen müssen aussagekräftig sein.
+
+- Die Rückmeldung zur Erfolgsbestätigung muss sichtbar sein.

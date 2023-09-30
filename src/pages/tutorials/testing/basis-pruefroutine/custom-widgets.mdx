@@ -1,0 +1,106 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Benutzerdefinierte Widgets testen'
+---
+
+Wenn assistive Technologien auf Webinhalte und insbesondere auf benutzerdefinierte
+Widgets treffen, müssen sie in der Lage sein, so viele Informationen wie möglich
+zu sammeln, damit sie effektiv mit dem Inhalt interagieren können. Die Nutzer
+müssen wissen, womit sie interagieren (Name), mit welcher Art von Element sie
+interagieren (Rolle) und welchen Zustand oder welche Eigenschaften die Steuerelemente
+haben, mit denen sie interagieren (Zustand oder Wert). Wenn Standard-HTML-Elemente
+verwendet werden, lassen sich diese Informationen recht einfach an die Nutzer
+weitergeben. Wenn jedoch benutzerdefinierte Widgets erstellt werden, müssen die
+Entwickler diese Informationen von Grund auf neu erstellen und sie mit Hilfe von
+ARIA-Rollen und -Attributen an die Benutzer von Hilfstechnologien weitergeben.
+Außerdem müssen sie sicherstellen, dass die benutzerdefinierten Widgets vollständig
+mit der Tastatur bedient werden können. Auch wenn automatisierte Tests hilfreich
+sein können, wenn es darum geht, den Farbkontrast zu prüfen und festzustellen,
+ob zulässige Werte für ARIA-Rollen und -Attribute verwendet wurden, sollten
+automatisierte Tests nur als Ergänzung zu manuellen Tests eingesetzt werden,
+insbesondere bei benutzerdefinierten Widgets. Die Wirksamkeit der Barrierefreiheit
+von benutzerdefinierten Widgets wird durch manuelle Tests ermittelt.
+
+## Testmethodik für die Barrierefreiheit der Tastatur und benutzerdefinierte Widgets
+
+Die Konzepte, die auf den Seiten Test für Barrierefreiheit mit der Tastatur in
+diesem Abschnitt besprochen werden, gelten auch für die Barrierefreiheit mit der
+Tastatur für benutzerdefinierte Widgets. Die wichtigsten Punkte für die
+Barrierefreiheit über die Tastatur sind:
+
+- Die Steuerelemente müssen fokussierbar sein.
+
+- Die Tabulatorreihenfolge muss logisch und intuitiv sein.
+
+- Die benutzerdefinierten Tastenkombinationen dürfen nicht mit den üblichen
+  Screenreader- und Browser-Tastenkombinationen kollidieren.
+
+- Der Fokus muss zu jeder Zeit sichtbar sein.
+
+- Der Fokus muss während der gesamten Interaktion verwaltet werden.
+
+- Der Inhalt darf nicht zu einer Tastaturfalle führen.
+
+Auch wenn die oben genannten Punkte recht einfach erscheinen, muss darauf hingewiesen
+werden, dass die Entwickler bei benutzerdefinierten Widgets die Tastaturfunktionen
+von Grund auf neu erstellen müssen. Daher ist es wichtig, diese Widgets manuell zu
+testen. Außerdem gibt es bestimmte ARIA-Tastaturdesignmuster, die für bestimmte
+Widgets empfohlen werden und an die sich Entwickler/innen halten sollten. Im
+Allgemeinen läuft es auf Folgendes hinaus: Die Nutzer/innen sollten in der Lage
+sein, mit der Tabulatortaste zum Widget zu wechseln und die Pfeiltasten innerhalb
+des Widgets zu benutzen.
+
+## Prüfmethodik für Barrierefreiheit über die Tastatur und Screenreader
+
+Wenn Nutzer von Hilfsmitteln wie Screenreadern mit dynamischen benutzerdefinierten
+Widgets interagieren, muss das Widget nicht nur über die Tastatur zugänglich sein,
+sondern sie benötigen auch wichtige Informationen über das Widget und die Art und
+Weise, wie sie mit dem Widget interagieren, die durch ihre Hilfsmittel vermittelt
+werden. Insbesondere müssen die Nutzer von Hilfstechnologien wissen:
+
+- Den Namen oder das Label des benutzerdefinierten Widgets oder Elements. Wenn die
+  Nutzer zum Beispiel mit einem modalen Dialog interagieren, müssen sie wissen, was
+  der modale Dialog ihnen anzeigt (z. B. "Voreinstellungen bestätigen").
+
+- Die Rolle des benutzerdefinierten Widgets oder Elements. Die Nutzer müssen wissen,
+  mit welcher Art von Element sie interagieren. Um das Beispiel des modalen Dialogs
+  aufzugreifen, sollte den Nutzern durch ihre assistive Technologie vermittelt
+  werden, dass sie mit einem Dialog interagieren.
+
+- Der Zustand des benutzerdefinierten Widgets oder Elements. Wenn sich der Zustand
+  der Benutzerschnittstellenkomponente aufgrund der Interaktion oder der Reaktion
+  des Nutzers ändert, müssen assistive Technologien die Änderungen vermitteln. Ein
+  gutes Beispiel ist ein erweiterbarer Bereich. Wenn der Nutzer den Bereich ausdehnt,
+  muss die assistive Technologie mitteilen, dass der Bereich erweitert wurde.
+
+- Die Eigenschaften, die mit dem benutzerdefinierten Widget oder Element verbunden
+  sind. Wenn es Attribute gibt, die dazu beitragen, dass der Nutzer die Interaktion
+  mit dem Widget oder Element versteht, müssen diese Eigenschaften vermittelt werden.
+  Bei einem Schieberegler gibt es einen Mindest- und einen Höchstwert, die den Nutzern
+  mitgeteilt werden müssen, damit sie richtig damit interagieren können.
+
+- Der Wert des benutzerdefinierten Widgets oder Elements. Um noch einmal das
+  Beispiel mit dem Schieberegler aufzugreifen: Wenn ein Nutzer einen Wert innerhalb
+  der im Schieberegler angegebenen Spanne auswählt, muss ihm der gewählte Wert
+  mitgeteilt werden.
+
+Es gibt eine Reihe von Widgets und anderen dynamischen Inhalten, die Entwickler
+erstellen können. Die Art der Informationen, die den Nutzern von Hilfsmitteln
+angezeigt werden, hängt nicht nur von der Art des Widgets ab, sondern auch von den
+Informationen, die die Entwickler in ihren Code einbauen. Um zu sehen, wie die
+Informationen über benutzerdefinierte Widgets an Hilfsmittel weitergegeben werden,
+sollten die Tester/innen den Kurs Benutzerdefinierte JavaScript/ARIA-Widgets
+besuchen und mit einem Bildschirmlesegerät auf die Widget-Beispiele im Kurs
+zugreifen. Wenn du benutzerdefinierte Widgets bewertest:
+
+- Gehe durch den gesamten Inhalt der Webseite und benutze dabei nur einen
+  Screenreader und die Tastatur.
+
+- Interagiere mit allen Komponenten der Benutzeroberfläche.
+
+- Überprüfe, ob die Informationen, die über das Bildschirmlesegerät übermittelt
+  werden, genau das wiedergeben, was angezeigt wird, während du mit den Komponenten
+  interagierst.
+
+- Vergewissere dich, dass die Informationen zuverlässig sind und dass die
+  Komponenten mit dem Bildschirmlesegerät kompatibel sind.

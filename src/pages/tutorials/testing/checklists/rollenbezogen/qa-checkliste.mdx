@@ -1,0 +1,91 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Checkliste für die Qualitätssicherung'
+---
+
+## Automatisiertes Testen
+
+- Wurde der Code mit axe DevTools geprüft?
+
+## Semantik und Struktur
+
+- Können Struktur, Informationen und Beziehungen, die durch die visuelle
+  Darstellung (in Überschriften, Listen, Menüs, Formularen usw.) vermittelt
+  werden, programmatisch bestimmt werden?
+
+## Lesbarkeit
+
+- Wurde die Lesereihenfolge getestet, um zu bestätigen, dass alle Inhalte auf
+  der Seite in einer logischen Reihenfolge für unterstützende Technologien
+  verfügbar sind?
+
+## Bilder
+
+- Haben alle verlinkten, informativen und dekorativen `<img>`-Elemente einen
+  geeigneten Alternativtext (z. B. alt-Attribute)?
+
+- Haben alle informativen Hintergrundbilder auf der Seite einen alternativen
+  Text, der von unterstützenden Technologien gelesen werden kann?
+
+## Tastatur- und Touchscreen-Navigation
+
+- Ist der Fokus bei der Interaktion mit einer Seite über die Tastatur immer
+  sichtbar, wird er bei Bedarf verwaltet und folgt er einer logischen
+  Reihenfolge?
+
+- Können alle Funktionen nur über die Tastatur ausgeführt werden?
+
+- Folgen alle Interaktionen mit der Tastatur (und dem Touchscreen) den erwarteten
+  Mustern, damit die Nutzer wissen, wie sie mit allen Widgets auf der Seite
+  interagieren können?
+
+- Können Nutzer, die nur die Tastatur benutzen, den Fokus immer wieder verschieben,
+  ohne in eine Falle zu geraten?
+
+## Tabellen
+
+- Sind Datentabellen so beschriftet, dass die richtigen Beziehungen zwischen den
+  Datenzellen und den zugehörigen Spalten- oder Zeilenkopfzellen erkennbar sind?
+
+## Formular Labels
+
+- Haben die Steuerelemente des Formulars sichtbare Labels? Sind das Label und das
+  Steuerelement programmatisch miteinander verbunden?
+
+- Sind zusammengehörige Felder gruppiert und mit einem gemeinsamen Label
+  verbunden (falls vorhanden)?
+
+## Formular-Fehler
+
+- Sind Fehlerbeschreibungen programmatisch mit dem jeweiligen Formularelement verknüpft?
+
+- Werden Benutzer von Bildschirmlesegeräten auf einen Fehler aufmerksam gemacht,
+  wenn dieser beim Absenden des Formulars auftritt?
+
+- Wenn ein Validierungsfehler während der Benutzereingabe auftritt oder wenn ein
+  Benutzer den Fokus verschiebt, wird die Fehlermeldung von einem Bildschirmlesegerät
+  gesprochen?
+
+## Benutzerdefinierte Steuerelemente
+
+- Haben alle benutzerdefinierten Steuerelemente, skriptgesteuerten Komponenten
+  und Widgets Namen und Rollen, die die nativen HTML-Steuerelemente nachahmen,
+  und sind sie programmatisch bestimmbar?
+
+## Kontextänderungen
+
+- Wurde überprüft, dass, wenn ein Element den Fokus erhält, z. B. durch einen
+  Tabulator, nicht automatisch eine größere Kontextänderung ausgelöst wird?
+
+- Wurde überprüft, dass eine Person, die die Einstellung einer Komponente der
+  Benutzeroberfläche ändert, nicht automatisch eine größere Kontextänderung
+  auslöst, wenn sie nicht vorher benachrichtigt wurde?
+
+## Timing
+
+- Gibt es für scrollende, sich bewegende, blinkende, dynamische oder sich
+  automatisch aktualisierende Inhalte Mechanismen, um sie zu stoppen, anzuhalten,
+  auszublenden und zu kontrollieren?
+
+- Kann das Zeitlimit für die Erledigung einer Aufgabe durch den/die Nutzer/in
+  ausgeschaltet, angepasst oder verlängert werden - es sei denn, es gilt eine Ausnahme?

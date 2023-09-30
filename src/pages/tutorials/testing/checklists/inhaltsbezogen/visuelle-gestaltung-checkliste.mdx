@@ -1,0 +1,143 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Visuelle Gestaltung und Farben: Zusammenfassung & Checkliste'
+---
+
+## Zusammenfassung
+
+Visuelle Inhalte müssen so präsentiert werden, dass sie von Menschen mit
+unterschiedlichen Fähigkeiten wahrgenommen und verstanden werden können, z. B.
+von farbenblinden oder sehbehinderten Menschen oder von Menschen mit kognitiven,
+sprachlichen oder Lernschwächen. Außerdem müssen sie so dargestellt werden, dass
+sie für verschiedene Bildschirmgrößen, vom Desktop bis zum Mobiltelefon, und
+für verschiedene Browser-Zoomstufen geeignet sind.
+
+## Checkliste
+
+### Farbe
+
+- Jede Information, die durch Farbe vermittelt wird, muss von einer programmatisch
+  bestimmbaren Textalternative begleitet sein.
+
+- Die Textalternative für farbige Informationen muss dieselben Informationen ohne
+  Farbe genau wiedergeben.
+
+- Jede durch Farbe vermittelte Information muss von einer sichtbaren Alternative
+  (Text, Bild usw.) begleitet werden, deren Bedeutung nicht von der Farbe abhängt.
+
+- Farbe allein darf nicht verwendet werden, um Links vom umgebenden Text zu
+  unterscheiden, es sei denn, der Farbkontrast zwischen dem Link und dem
+  umgebenden Text beträgt mindestens 3:1 und es wird eine zusätzliche
+  Unterscheidung (z. B. Unterstreichung, Umriss usw.) vorgenommen, wenn der
+  Link mit dem Mauszeiger bewegt wird oder den Fokus erhält.
+
+- Farbe sollte nicht als einzige Methode zur Unterscheidung von UI-Komponenten
+  und/oder dem sie umgebenden Inhalt verwendet werden, es sei denn, der Farbkontrast
+  zwischen den UI-Komponenten und/oder dem umgebenden Inhalt beträgt mindestens 3:1.
+
+- Sichtbarer Text sollte Standardtext im Markup sein (keine Bilder oder grafischen
+  Versionen von Text), damit der Benutzer Textfarbe und Kontrast anpassen kann.
+
+- Sichtbare UI-Komponenten sollten native Steuerelemente und Funktionen verwenden
+  (keine Bilder oder grafischen Versionen von Steuerelementen), um die Anpassung
+  von Farbe und Kontrast der Benutzeroberfläche zu ermöglichen.
+
+### Kontrast
+
+- Kleiner Text (unter 18 Punkt normaler Schrift oder 14 Punkt fetter Schrift) muss
+  ein Kontrastverhältnis von mindestens 4,5 zu 1 zum Hintergrund haben.
+
+- Kleiner Text (unter 18 Punkt normaler Schrift oder 14 Punkt fetter Schrift) sollte
+  ein Kontrastverhältnis von mindestens 7 zu 1 zum Hintergrund haben.
+
+- Großer Text und Bilder von großem Text (mit mindestens 18 Punkt oder 14 Punkt
+  Fettschrift) müssen ein Kontrastverhältnis von mindestens 3 zu 1 zum Hintergrund
+  haben.
+
+- Jede visuelle Begrenzung, die den Trefferbereich einer aktiven Benutzerkomponente
+  anzeigt (der Bereich, in dem ein Zeiger das Steuerelement aktivieren kann), muss
+  einen ausreichenden Kontrast von mindestens 3 zu 1 zum angrenzenden Hintergrund
+  haben.
+
+- Der visuelle Status einer aktiven Komponente der Benutzeroberfläche muss einen
+  ausreichenden Kontrast von mindestens 3 zu 1 zum angrenzenden Hintergrund haben.
+
+- Teile von Grafiken (die zum Verständnis des Inhalts erforderlich sind) müssen
+  ein Kontrastverhältnis von mindestens 3 zu 1 zu den angrenzenden Farben haben.
+
+- Der Kontrast aller visuellen Fokusindikatoren zum Hintergrund muss mindestens
+  3 zu 1 betragen.
+
+- Wenn visuelle Begrenzungen zur Unterscheidung von Steuerelementen verwendet werden,
+  muss der Kontrast der Begrenzungen von UI-Steuerelementen im Vergleich zu
+  angrenzenden Bereichen mindestens 3 zu 1 betragen, um das UI-Steuerelement von
+  den angrenzenden Bereichen zu unterscheiden.
+
+- Webinhalte müssen alle wesentlichen visuellen Informationen im Windows High
+  Contrast Mode beibehalten.
+
+- Das Design muss den Windows High Contrast Mode nicht außer Kraft setzen.
+
+### Visuelles Layout
+
+- Inhaltsblöcke sollten visuell voneinander getrennt und abgegrenzt sein, z. B.
+  durch Ränder, Füllungen oder andere Methoden, um visuellen "Weißraum" zu
+  schaffen.
+
+- Labels sollten visuell an die zugehörigen Steuerelemente angrenzen.
+
+- Das Layout sollte nur einen visuellen Hauptschwerpunkt haben.
+
+- Das Design sollte die Aufmerksamkeit auf den beabsichtigten visuellen
+  Schwerpunkt lenken.
+
+### Zielgröße
+
+- Die Zielgröße der Elemente, die bei Berührung berührt werden, sollte mindestens
+  44 x 44 Pixel betragen, mit mindestens sechs Pixeln inaktivem Abstand zwischen
+  benachbarten Elementen.
+
+### Lesereihenfolge, Fokusreihenfolge
+
+- Die Lesereihenfolge muss logisch und intuitiv sein.
+
+- Die Navigationsreihenfolge von fokussierbaren Elementen muss logisch und
+  intuitiv sein.
+
+- Ein Tabindex mit positiven Werten sollte nicht verwendet werden.
+
+### Typografie
+
+- Schriftarten sollten für sehende Nutzer leicht lesbar sein.
+
+- Der Zeilenabstand sollte innerhalb von Absätzen mindestens 1,5 betragen.
+
+- Der Abstand zwischen den Absätzen sollte mindestens 1,5 mal größer sein als
+  der Zeilenabstand.
+
+- Die Anzahl der Zeichen oder Glyphen pro Zeile in einem Textabschnitt oder einer
+  Textspalte sollte 80 (40 Zeichen in Chinesisch, Japanisch oder Koreanisch)
+  nicht überschreiten.
+
+- Der Text sollte nicht vollbündig sein.
+
+- Schriftarten sollten vom Benutzer anpassbar sein.
+
+### CSS-generierte Inhalte und versteckte Inhalte
+
+- CSS-generierte Inhalte sollten vermieden werden.
+
+- Für informative CSS-generierte Inhalte muss eine Textalternative bereitgestellt
+  werden, und der CSS-generierte Text sollte auf aria-hidden="true"
+  gesetzt werden.
+
+- Dekorative oder überflüssige CSS-generierte Inhalte sollten auf
+  aria-hidden="true" gesetzt werden.
+
+- Optisch verborgene und inaktive Inhalte müssen für Screenreader-Nutzer so
+  lange verborgen bleiben, bis sie für sehende Nutzer sichtbar und aktiv
+  gemacht werden.
+
+- Wenn zusätzlicher Inhalt durch das Hovern des Mauszeigers oder den Tastaturfokus
+  ausgelöst wird, muss dieser zusätzliche Inhalt ausblendbar, schwebbar
+  und beständig sein.

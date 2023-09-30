@@ -1,0 +1,160 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Test für Landmarks'
+---
+
+import { Image } from 'astro:assets'
+import LandmarkListNVDA from './images/landmarkslistnvda.png'
+import LandmarkListJaws from './images/landmarkslistjaws.png'
+import LandmarksNVDA from './images/landmarks-nvda.png'
+import LandmarksJaws from './images/landmarks-jaws.png'
+
+Die WCAG verlangen, dass es einen Mechanismus gibt, der es den Nutzern ermöglicht,
+sich wiederholende Inhalte zu überfliegen. Diese Anforderung kann durch einen
+Link "Navigation überspringen/zum Hauptinhalt", semantische Überschriften, die
+die Webseite strukturieren, oder durch die Verwendung von Orientierungspunkten
+erfüllt werden.
+
+Wenn Orientierungspunkte verwendet werden, um verschiedene Abschnitte auf einer
+Webseite zu kennzeichnen, können Screenreader-Nutzer die Orientierungspunkte
+nutzen, um zu diesen bestimmten Abschnitten auf der Seite zu navigieren. Die
+Verwendung von Orientierungspunkten ist eine weitere Möglichkeit für
+Screenreader-Nutzer, zum Hauptinhalt einer Webseite zu springen. Landmarken
+können einer Webseite entweder mit den HTML 5-Elementen `<header>`, `<footer>`,
+`<main>` und `<nav>` hinzugefügt werden oder mit den entsprechenden ARIA-Attributen
+role="banner", role="contentinfo", role="main" und role="navigation".
+
+Einige Best Practices, die du für Orientierungspunkte auf einer Webseite beachten
+solltest, sind:
+
+- Achte darauf, dass es nur eine Instanz von `<header>`/role="banner",
+  `<footer>`/role="contentinfo" und `<main>`/role="main" auf der
+  Webseite gibt.
+
+- Wenn es mehrere Instanzen von `<nav>`/role="navigation" gibt, sollten die
+  Abschnitte eindeutige Namen haben, die durch aria-label oder aria-labelledby
+  angegeben werden (diese eindeutigen Namen werden durch einen Screenreader
+  vermittelt).
+
+- Die Anzahl der Orientierungspunkte auf einer Webseite sollte relativ gering und
+  dem Inhalt der Webseite angemessen sein. Wenn es zum Beispiel zu viele
+  Navigationspunkte gibt, kann es für die Benutzer schwierig sein, den Zweck all
+  dieser Punkte zu erkennen.
+
+## Prüfmethodik für Orientierungspunkte
+
+Orientierungspunkte auf einer Webseite sind im Code enthalten, sodass sie das visuelle
+Design einer Webseite nicht beeinflussen. Der einfachste und schnellste Weg, um
+Landmarken zu prüfen, ist die Verwendung eines Screenreaders. Mit Screenreadern
+wie NVDA, VoiceOver, JAWS und Narrator kannst du eine Webseite anhand von
+Orientierungspunkten durchsuchen. Wenn du NVDA, JAWS und VoiceOver verwendest,
+kannst du auch eine Liste der Orientierungspunkte auf der Webseite erstellen.
+
+## Desktop Web
+
+### Option 1: Nach Orientierungspunkten navigieren
+
+So navigierst du mit einem Bildschirmlesegerät auf einer Webseite nach Orientierungspunkten:
+
+- Öffne die Webseite mit dem Test-Screenreader und dem dazu kompatiblen Browser
+  (z. B. NVDA und Firefox oder Chrome).
+
+- Drücke die Taste, die für die Navigation zum nächsten Orientierungspunkt
+  vorgesehen ist (für NVDA, D; für JAWS, R).
+
+- Wenn es Orientierungspunkte gibt, führt dich der Tastendruck zu den Orientierungspunkten
+  auf der Seite. Wenn es keine Orientierungspunkte gibt, sagt der Screenreader
+  möglicherweise, dass es keinen nächsten (oder vorherigen, wenn du rückwärts
+  navigierst) Orientierungspunkt gibt.
+
+- Achte darauf, welche Arten von Orientierungspunkten auf der Seite vorhanden sind.
+  Wenn Orientierungspunkte verwendet werden, sollte zumindest ein Orientierungspunkt
+  für den Hauptinhalt vorhanden sein (angekündigt als "Hauptorientierungspunkt"),
+  damit die Nutzer/innen zum Hauptinhalt der Webseite springen können.
+
+### Option 2: Eine Liste der Orientierungspunkte generieren
+
+Je nach Screenreader kannst du eine Liste mit allen Orientierungspunkten auf der
+Webseite erstellen. Bei dieser Option konzentrieren wir uns auf die Erstellung
+einer Liste mit NVDA, JAWS und VoiceOver.
+
+- Öffne die Webseite mit dem Test-Screenreader und dem dazu kompatiblen Browser
+  (z. B. NVDA und Firefox oder Chrome).
+
+- Drücke auf der Webseite die Taste, die zum Erstellen einer Liste von Elementen
+  gehört:
+
+  - Für NVDA lautet die Tastenkombination: Einfügen + F7
+
+  - Für JAWS lautet die Tastenkombination: Einfügen + Steuerung + R
+
+  - Für VoiceOver startest du den Rotor mit der Tastenkombination:
+    Strg + Option + U, und benutze dann die Pfeiltasten, um die Liste der
+    Orientierungspunkte zu finden.
+
+- Wenn du die Liste der Orientierungspunkte gefunden hast, sieh nach, welche
+  Orientierungspunkte auf der Webseite verfügbar sind. Auch hier sollte es einen
+  Orientierungspunkt für den Hauptinhalt geben, damit Screenreader-Nutzer zum
+  Hauptinhalt der Webseite springen können.
+
+#### Schlecht: Schlechte Landmarkenstruktur
+
+Der folgende Screenshot zeigt eine Liste von Landmarken, die vom Bildschirmleseprogramm
+JAWS auf der MarsCommuter Demonstrationsseite erstellt wurde.
+
+<Image src={LandmarkListNVDA} alt='' />
+
+Und hier ist ein Screenshot der Landmarkenliste mit NVDA:
+
+<Image src={LandmarkListJaws} alt='' />
+
+Beide Auflistungen zeigen, dass es mehrere Navigationspunkte auf der MarsCommuter-Startseite
+gibt, aber die Navigationspunkte haben keine eindeutigen Namen, um den Zweck jedes
+Navigationspunktes zu identifizieren. Das kann für Benutzer von Bildschirmlesegeräten
+verwirrend sein.
+
+#### Gut: Gute Landmarkenstruktur
+
+Der folgende Screenshot ist eine Liste von Landmarken, die von JAWS auf der Seite
+Deque Blog gerendert wird.
+
+<Image src={LandmarksJaws} alt='' />
+
+Und unten ist ein Screenshot der Landmarken von Deque Blog, gerendert von NVDA:
+
+<Image src={LandmarksNVDA} alt='' />
+
+In beiden Screenshots gibt es einen Orientierungspunkt für den Bannerbereich der
+Seite, der das Navigationsmenü und das Suchfeld enthält, den Hauptinhalt (der es
+den Nutzern ermöglicht, zum Hauptinhalt der Webseite zu springen), einen ergänzenden
+Bereich und die Fußzeileninformationen (Inhaltsinfo). Das Layout der Webseite wird
+durch die richtige Verwendung der Orientierungspunkte für Screenreader-Nutzer
+verständlich dargestellt.
+
+### Mobiles Web
+
+Talkback und Firefox verwenden:
+
+- Du kannst entweder "Explore by Touch" aktivieren (am einfachsten für Anfänger)
+  oder Gesten zum Lesen und Interagieren mit der Webseite verwenden.
+
+- Wenn du "Erkunden durch Berühren" aktivierst, kannst du deinen Finger auf dem
+  Bildschirm bewegen und der Screenreader zeigt den Inhalt unter deinem Finger an.
+
+- Bei Gesten wischst du auf der Webseite nach rechts, um das nächste Element auf
+  der Webseite zu lesen.
+
+- Wenn es auf der Webseite Orientierungspunkte gibt, werden diese zuerst angesagt,
+  gefolgt vom Inhalt.
+
+VoiceOver iOS und Safari verwenden:
+
+- Wenn du auf der Webseite bist, starte den Rotor, indem du zwei Finger auf den
+  Bildschirm legst und sie in einer kreisförmigen Bewegung bewegst.
+
+- Wische nach links oder rechts, um die Liste der Orientierungspunkte auf der
+  Webseite zu finden.
+
+- Wische nach oben oder unten, um einen Orientierungspunkt aus der Liste auszuwählen.
+
+- Springe zu jeder Sehenswürdigkeit auf der Webseite.

@@ -1,0 +1,47 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Aktivieren der Barrierefreiheit auf einem Mac'
+---
+
+import { Image } from 'astro:assets'
+import KeyboardAccess from './images/macos-full-keyboard-access.png'
+import SafariTab from './images/safari-tab-highlight.png'
+
+Die Barrierefreiheit der Tastatur darf auf deinem Mac NICHT aktiviert sein und war
+in der Vergangenheit standardmäßig ausgeschaltet (möglicherweise auch nach einer
+Aktualisierung des Betriebssystems), aber das kann sich ändern. Deine Testergebnisse
+für die Barrierefreiheit der Tastatur und des Bildschirmlesegeräts sind ungenau,
+wenn du die Barrierefreiheit der Tastatur nicht an den folgenden beiden Stellen
+aktivierst:
+
+- Systemeinstellungen
+
+- Safari-Einstellungen
+
+## Systemweite Barrierefreiheit für die Tastatur aktivieren
+
+Die Standard-Tastaturzugriffsfunktion auf dem Mac erlaubt es den Benutzern nur,
+mit der Tabulatortaste auf Steuerelemente (Texteingaben, Schaltflächen usw.)
+zuzugreifen. Um Links und andere Elemente mit der Tabulatortaste anzusteuern,
+musst du die Einstellung "Tastaturnavigation verwenden, um den Fokus zwischen
+Steuerelementen zu bewegen" aktivieren:
+
+Systemeinstellungen > Barrierefreiheit > Tastatur > Vollständiger Tastaturzugriff
+
+<Image
+  src={KeyboardAccess}
+  alt='Screenshot der Funktion "Vollständiger Tastaturzugriff" in den Systemeinstellungen'
+/>
+
+## Aktiviere die Barrierefreiheit der Safari-Tastatur
+
+Die Barrierefreiheit der Tastatur muss auch in Safari separat aktiviert werden.
+
+Safari-Einstellungen > Erweitert > Barrierefreiheit > Drücke die Tabulatortaste,
+um jedes Element auf einer Webseite zu markieren.
+
+<Image
+  src={SafariTab}
+  alt='Das Kontrollkästchen für die erweiterten Einstellungen der Barrierefreiheit
+  in Safari'
+/>

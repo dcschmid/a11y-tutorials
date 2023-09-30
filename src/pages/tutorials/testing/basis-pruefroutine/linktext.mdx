@@ -1,0 +1,126 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Qualität des Linktextes prüfen'
+---
+
+Wenn Nutzer/innen auf einen Link auf einer Webseite stoßen, erwarten sie, dass
+sie den Zweck des Links verstehen. Links sollten aussagekräftig und beschreibend
+sein, damit die Nutzer/innen sofort wissen, wohin der Link sie führt, ohne ihn
+aktivieren zu müssen. Der Text für den Link (Text im Anker-Tag) sollte entweder
+das Thema oder den Inhalt der Zielseite vermitteln. Wenn der Linktext selbst
+diese Informationen nicht vermittelt, sollten die Informationen durch den Text
+unmittelbar um den Link herum vermittelt werden. Wenn der Link z. B. in einem
+Satz oder Absatz enthalten ist, sollten die Nutzer/innen aus dem Text innerhalb
+des Satzes oder Absatzes sinnvolle Informationen über die Zielseite des Links
+entnehmen können.
+
+## Übliche Arten von Links
+
+<table>
+  <thead>
+    <tr>
+      <th>Art des Links</th>
+      <th>Überlegungen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Art des Links'>Link-Text selbst</td>
+      <td data-label='Überlegungen'>
+        Bei Linktext, der für sich allein steht, sollte der Text den Zweck des
+        Links beschreiben oder einen Hinweis auf den Inhalt der Zielseite geben.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Links'>Link Text im Kontext</td>
+      <td data-label='Überlegungen'>
+        Der Link selbst sollte zusammen mit dem dazugehörigen Text den Zweck
+        des Links beschreiben.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Links'>Bilder als Links</td>
+      <td data-label='Überlegungen'>
+        Wenn ein Link nur ein Bild enthält, sollte der alternative Text des Bildes
+        den Zweck des Links beschreiben. Wenn das Bild mit Text innerhalb des `<a>`-
+        Elements gepaart ist und der Text den Zweck des Links angemessen beschreibt,
+        sollte das Bild von unterstützenden Technologien ignoriert werden, indem
+        ein leeres oder nicht vorhandenes alt-Attribut (alt="") verwendet wird
+        oder indem es als CSS-Hintergrundbild dargestellt wird.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Links'>Icons als Links</td>
+      <td data-label='Überlegungen'>
+        Bei Icon Fonts, die als Links verwendet werden, sollte der Zweck des Links
+        mit einem der folgenden ARIA-Attribute angegeben werden: aria-label,
+        aria-labelledby oder aria-describedby. Die für aria-labelledby und
+        aria-describedby verwendeten id-Referenzen sollten den Link richtig
+        beschreiben.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Prüfmethodik
+
+Wenn du keine assistive Technologie verwendest, bist du vielleicht versucht, einfach
+alle Links auf der Webseite zu überprüfen, um festzustellen, ob die Links sinnvoll
+sind und ihren Zweck richtig vermitteln. Dabei darfst du aber nicht vergessen, auch
+unterstützende Technologien einzusetzen, da der Zweck eines Links durch Textalternativen,
+abgeschnittenen Text oder ARIA-Attribute vermittelt werden kann. Außerdem können
+einige Screenreader eine Liste aller Links auf der Webseite erstellen, was es einfacher
+macht, die Links aus dem Kontext heraus zu bewerten, um zu sehen, ob sie sinnvoll
+sind.
+
+### Desktop-Web
+
+Beim Testen der Qualität von Linktexten (mit einem Screenreader):
+
+- Öffne den Webbrowser mit einem Bildschirmlesegerät und dem dazu kompatiblen
+  Browser (z. B. VoiceOver und Safari).
+
+- Gehe entweder mit der Tabulatortaste zu jedem Link auf der Webseite, um zu
+  notieren, wie ein Screenreader den Link darstellt, oder - je nach
+  Screenreader - erstelle eine Liste aller Links auf der Webseite.
+
+  - Für NVDA und JAWS, verwende die Tastenkombination Einfügen + F7
+
+  - Für VoiceOver verwendest du den Rotor, um die Liste der Links zu finden. Öffne
+    den Rotor mit der Tastenkombination Strg + Option + U und benutze die Pfeiltasten,
+    um die Liste der Links auf der Webseite zu finden.
+
+- Folge dem Link, um die Zielseite zu besuchen.
+
+- Nachdem du die Zielseite besucht hast, überprüfe, ob der Linktext den Zweck
+  der Seite, auf die der Link führt, richtig wiedergibt, entweder anhand des
+  Linktextes selbst (wenn der Link allein steht) oder anhand seines Kontextes
+  (wenn er in einer Aussage oder einem Absatz steht).
+
+### Mobiles Web
+
+Mit Talkback und Firefox:
+
+- Du kannst entweder "Explore by Touch" aktivieren (empfohlen) oder Gesten zum L
+  esen und Interagieren mit der Webseite verwenden.
+
+- Wenn du "Erkunden durch Berühren" aktivierst, kannst du deinen Finger auf dem
+  Bildschirm bewegen und der Screenreader zeigt den Inhalt unter deinem Finger an.
+
+- Bei Gesten wischst du auf der Webseite nach rechts, um das nächste Element auf
+  der Webseite zu lesen. Tippe doppelt, um einen Link zu aktivieren.
+
+- Entscheide, ob der Link für sich allein oder im Kontext geeignet ist, je
+  nachdem, wohin er den Nutzer führt.
+
+VoiceOver iOS und Safari verwenden:
+
+- Sobald du auf der Webseite bist, starte den Rotor, indem du zwei Finger auf den
+  Bildschirm legst und sie in einer kreisförmigen Bewegung bewegst.
+
+- Wische nach links oder rechts, um die Liste der Links auf der Webseite zu finden.
+
+- Wische nach oben oder unten, um einen Link aus der Liste auszuwählen.
+
+- Entscheide, ob der Link für sich allein oder im Kontext geeignet ist, je
+  nachdem, wohin er die Nutzer/innen führt.

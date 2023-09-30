@@ -1,0 +1,225 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Qualität des Alt-Textes testen'
+---
+
+import { Image } from 'astro:assets'
+import BadAltText from './images/marscommuterbadalt.png'
+
+Textalternativen für Bilder sollten funktional sein und Nutzern, die die Bilder
+nicht sehen können, eine gleichwertige Erfahrung bieten. Je nach dem Kontext, in
+dem das Bild verwendet wird, muss nicht immer das Bild selbst beschrieben werden,
+sondern es kann auch seine Funktion beschrieben werden. Wenn zum Beispiel ein
+Lupensymbol verwendet wird, um eine Suchschaltfläche zu kennzeichnen, würde der
+Alt-Text für das Symbol nicht "Lupe", sondern "Suche" lauten. Auch der
+Alternativtext sollte kurz und prägnant sein, normalerweise nicht länger als
+150 Zeichen. Wenn der Alternativtext diese Länge überschreitet, kann er für
+Benutzer/innen von Hilfstechnologien zu lang und ausführlich sein. Alternativtexte
+funktionieren nicht wie echter Text, d.h. die Nutzer können die Aussagen im
+Alternativtext nicht wiederholen, sondern müssen den Alternativtext noch einmal
+lesen oder hören. Es gibt einige Ausnahmen von dieser Best Practice, aber im
+Allgemeinen ist ein kürzerer Alternativtext die gängige Praxis.
+
+Jeder `<img>`-Tag sollte ein alt-Attribut haben. Automatisierte Tests können
+feststellen, ob das alt-Attribut fehlt; aber manuelle Tests sind notwendig, um
+festzustellen, ob die Textalternativen für Bilder die Informationen vermitteln,
+die für das Verständnis und die Interaktion mit dem Inhalt der Webseite nützlich
+sind. Manuelle Tests sind auch erforderlich, um sicherzustellen, dass für
+Hintergrundbilder - die über CSS und nicht über ein `<img>`-Tag bereitgestellt
+werden - überhaupt ein alternativer Text bereitgestellt wird, und um festzustellen,
+ob dieser nützlich ist.
+
+Es gibt viele verschiedene Arten von Bildern, die auf einer Webseite vorkommen
+können, und der alternative Text muss im Kontext bewertet werden, um festzustellen,
+ob er für jedes Bild geeignet ist.
+
+## Übliche Arten von Bildern
+
+Es gibt verschiedene Arten von Bildern, die auf einer Webseite verwendet werden
+können, und es gibt allgemeine Ansätze dafür, wie alternativer Text für diese
+Arten von Bildern verfasst und bereitgestellt werden sollte. In der folgenden
+Tabelle sind diese gängigen Bildtypen aufgeführt und es gibt Hinweise zu
+alternativen Textmethoden. Bei der Prüfung der Qualität von Textalternativen ist
+es jedoch entscheidend, das Bild zu betrachten und zu beurteilen, wie das Bild
+im Kontext der Webseite verwendet wird. Wenn du mehr über Bilder und
+Barrierefreiheit erfahren möchtest, besuche den Kurs Bilder, SVG und Canvas.
+
+<table>
+  <thead>
+    <tr>
+      <th>Art des Bildes</th>
+      <th>Überlegungen zum alternativen Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Art des Bildes'>Aktiv (oder umsetzbar)</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Der alternative Text sollte die Funktion des Bildes oder das Ziel beschreiben,
+        wenn das Bild als Link verwendet wird.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Informativer und informativer Hintergrund (CSS)</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Der alternative Text sollte den Zweck des Bildes beschreiben und Informationen
+        vermitteln, die es den Nutzern ermöglichen zu verstehen, wie das Bild zum
+        Inhalt der Webseite beiträgt.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Dekorativ</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Wenn das Bild rein dekorativ ist, sollte es keine Textalternative geben.
+        Wenn das Bild mit einem `<img>`-Tag bereitgestellt wird, braucht es trotzdem
+        ein alt-Attribut, aber der Wert sollte leer (oder null) sein, damit assistive
+        Technologien das Bild ignorieren (im Code sieht es aus wie alt="").
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Redundant</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Wenn ein Bild direkt neben einem Text steht, der das Bild beschreibt, sollte
+        kein alternativer Text angegeben werden. Er wiederholt einfach die Beschreibung,
+        die im Text neben dem Bild steht. Auch wenn das Bild mit einem `<img>`-Tag
+        bereitgestellt wird, braucht es ein alt-Attribut, aber der Wert sollte leer
+        (oder null) sein.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Komplex (z. B. Diagramme, Schaubilder)</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Komplexe Bilder brauchen sowohl einen alternativen Text als auch eine lange
+        Beschreibung. Da der Alternativtext kurz sein soll, muss eine ausführliche
+        Beschreibung erstellt werden, um alle Informationen eines komplexen Bildes
+        zu vermitteln. Die lange Beschreibung sollte leicht auffindbar sein und die
+        Informationen im Bild gleichwertig ersetzen. Die Darstellung der Informationen
+        in einem anderen Format, z. B. in einer Datentabelle, ist ein akzeptabler
+        Ersatz für ein komplexes Bild.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Eingabe</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Der alternative Text sollte eine genaue Beschreibung der Formulareingabe,
+        des Steuerelements oder der Schaltfläche sein, aber er sollte nicht die
+        Funktion der Eingabe, des Steuerelements oder der Schaltfläche enthalten.
+        Zum Beispiel sollte der alternative Text für einen Submit-Button "Submit"
+        heißen, nicht "Submit-Button". Wenn der alternative Text die Funktion enthält,
+        kann die Funktion für Personen, die Hilfsmittel wie Bildschirmlesegeräte
+        verwenden, doppelt dargestellt werden.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Art des Bildes'>Canvas</td>
+      <td data-label='Überlegungen zum alternativen Text'>
+        Ein aussagekräftiger Alternativtext für `<canvas>`-Bilder sollte entweder
+        über das Attribut aria-label oder aria-labelledby bereitgestellt werden.
+        Bei komplexen `<canvas>`-Bildern sollte eine zusätzliche Beschreibung über
+        eine aria-describedby ID mit Verweis auf Text im DOM verfügbar sein.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Prüfmethodik
+
+Bei der Prüfung auf alternativen Text suchen wir in der Regel nach den folgenden
+Punkten:
+
+- Es gibt Alternativtext: Jedes Bild hat einen passenden Alternativtext.
+
+- Der Alternativtext ist beschreibend: Der Alternativtext sollte den Zweck des
+  Bildes auf eine Weise beschreiben, die das Bild angemessen ersetzt.
+
+- Der Alternativtext ist prägnant: Der Alternativtext sollte kurz sein. Es gibt
+  kein offizielles Limit, aber ein Limit von etwa 150 Zeichen gilt als beste Praxis.
+
+- Eine lange Beschreibung gibt es für komplexe Bilder: Die lange Beschreibung
+  befindet sich auf der gleichen Seite, in der Nähe des komplexen Bildes oder ist
+  über einen Link zu einer anderen Seite verfügbar.
+
+- Die lange Beschreibung ist ein angemessener Ersatz für das Bild: Jemand, der
+  das Bild nicht sehen kann, sollte in der Lage sein, es zu verstehen und den
+  Zweck des Bildes anhand der langen Beschreibung zu begreifen.
+
+Der alternative Text ist auf der Webseite nicht sichtbar, da er durch Code
+bereitgestellt wird. Wenn das Bild also über ein `<img>`-Element bereitgestellt
+wird, ist es am einfachsten, den Alternativtext mit einem Bildschirmlesegerät
+auszuwerten. Mit einem Bildschirmlesegerät können Benutzer/innen die Bilder auf
+einer Webseite mit Hilfe bestimmter Tastatureingaben durchsuchen.
+
+Handelt es sich bei dem Bild jedoch um ein Hintergrundbild, das Informationen oder
+eine Bedeutung vermittelt, muss der alternative Text durch aria-label, aria-labelledby
+oder eine andere Methode wie ausgeschnittener oder Offscreen-Text bereitgestellt
+werden.
+
+Alternativer Text für diese Art von Bildern wird nicht durch die Tastatureingaben
+eines Screenreaders für die Grafiknavigation übermittelt, wenn ihm nicht die ARIA
+role="img" zugewiesen ist. Möglicherweise musst du im herkömmlichen Dokumentenmodus
+des Bildschirmlesegeräts durch die Webseite navigieren, um den alternativen Text
+zu hören, oder den Code überprüfen, um zu sehen, ob alternativer Text durch eine
+der oben genannten alternativen Methoden bereitgestellt wird.
+
+## Desktop Web
+
+- Öffne die Webseite mit dem Test-Screenreader und dem dazu kompatiblen Webbrowser
+  (z.B. JAWS und Chrome, Firefox oder Internet Explorer).
+
+- Verwende die Tastenkombination, die mit Bildern (oder Grafiken) verbunden ist,
+  um die Bilder auf der Webseite zu durchsuchen:
+
+  - Bei NVDA und JAWS ist das Tastenkürzel G
+
+  - Wenn du VoiceOver verwendest, kannst du durch Bilder navigieren oder mit dem
+    Rotor eine Liste von Bildern erstellen. Um den Rotor zu verwenden, gibst du
+    die Tastenkombination Strg + Option + Befehl + G ein und verwendest die Pfeiltasten,
+    um die Liste der Bilder auf der Webseite zu finden.
+
+### Schlecht: Unzureichender Alternativtext
+
+Auf der MarsCommuter-Demoseite gibt es mehrere Bilder im Karussell/Widget, die
+keinen ausreichenden Alternativtext haben. Im Screenshot unten auf der Seite
+steht im Alternativtext für das Bild neben der Überschrift "Free Astronaut
+Ice Cream" "icecream.jpg".
+
+<Image src={BadAltText} alt='' />
+
+Der alternative Text beschreibt das Bild nicht genau. Stattdessen sollte der
+Alternativtext kurz und prägnant sein, z. B. "Zwei Astronauten arbeiten an einer
+Station im Weltraum über der Erde".
+
+## Mobiles Web
+
+Mit Talkback und Firefox:
+
+- Du kannst entweder "Explore by Touch" aktivieren (empfohlen) oder Gesten zum Lesen
+  und Interagieren mit der Webseite verwenden.
+
+- Wenn du "Erkunden durch Berühren" aktivierst, kannst du deinen Finger auf dem
+  Bildschirm bewegen und der Screenreader zeigt den Inhalt unter deinem Finger
+  an.
+
+- Bei Gesten wischst du auf der Webseite nach rechts, um das nächste Element auf
+  der Webseite zu lesen.
+
+- Wenn du auf ein Bild stößt, überprüfe, ob der alternative Text für das Bild
+  geeignet ist.
+
+VoiceOver iOS und Safari verwenden:
+
+- Sobald du auf der Webseite bist, starte den Rotor, indem du zwei Finger auf den
+  Bildschirm legst und sie in einer kreisförmigen Bewegung bewegst.
+
+- Wische nach oben oder unten, um die Liste der Bilder auf der Webseite zu finden.
+
+- Wische nach links oder rechts, um ein Bild aus der Liste auszuwählen.
+
+- Wenn du ein Bild ausgewählt hast, überprüfe, ob der alternative Text zu dem
+  Bild passt.
+
+Hinweis: Wenn das Swipen ein Bild umgeht oder das Erkunden durch Berühren kein
+Bild anzeigt, handelt es sich möglicherweise um ein CSS-/Hintergrundbild oder
+eine Icon-Schrift ohne Bildrolle (role="img"). Wenn ein CSS-/Hintergrundbild oder
+eine Icon-Schriftart dekorativ ist, ist das in Ordnung, aber wenn es sinnvoll ist,
+braucht es einen alternativen Text.

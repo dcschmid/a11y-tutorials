@@ -1,0 +1,61 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Touch Target Größe'
+---
+
+Größere Touch-Targets sind vor allem für Nutzer/innen von Vorteil, die unter
+Handzittern oder ungenauen Handbewegungen leiden oder andere Körperteile zum
+Auslösen der Targets verwenden müssen. Zu den Arten von Touch-Targets, die
+Tester/innen in Betracht ziehen müssen, gehören unter anderem:
+
+- Links
+
+- Absenden-Schaltflächen
+
+- Radio-Buttons
+
+- Menüs und Menüpunkte
+
+- Eingabefelder und Comboboxen (Auswahlfelder)
+
+- Benutzerdefinierte Widget-Steuerelemente (Schaltflächen für Medienplayer, Registerkarten)
+
+## Größe der Touch-Ziele
+
+Idealerweise sollten Touch-Ziele mindestens 9,6 mm breit und 9,6 mm hoch sein,
+obwohl die Höhe bei Elementen wie Inline-Links schwieriger zu erreichen sein kann.
+Obwohl es hilfreich wäre, ein mobiles Gerät zu haben, um die Zielgröße zu testen,
+kann die Webseite manipuliert werden, um die Größe zu überprüfen:
+
+- Setze die Breite im CSS auf mindestens 44px (das 48px-Layoutraster von Android
+  ist im Web weniger relevant, aber es schadet nicht, die Touch-Ziele größer zu
+  machen). Bei Geräten mit Standardauflösung wird die Seite mit 44px dargestellt
+  und bei Geräten mit doppelter Dichte wird der Wert interpoliert und mit dem
+  Äquivalent von 44px dargestellt, auch wenn der tatsächliche Wert 88px beträgt.
+
+## Prüfmethodik für die Touch-Zielgröße
+
+Wie bereits erwähnt, ist es am besten, die Größe der Touch-Ziele auf mobilen
+Geräten zu testen, um zu sehen, ob die Größe den oben genannten Best-Practice-Anforderungen
+entspricht. Es gibt noch einige andere Möglichkeiten, um sicherzustellen, dass
+Nutzer mit eingeschränkter Fingerfertigkeit oder motorischen Einschränkungen
+die Ziele auslösen können.
+
+- Responsive Design: (Desktop) Wenn die Webseite responsive ist, verkleinere den
+  Viewport des Browsers auf die passende Größe für Mobilgeräte (Tablet und
+  Telefon).
+
+- Formulare: Wenn HTML-Labels in Formularen verwendet werden, sollten die
+  Nutzer/innen das Label selbst auswählen können, um den Fokus auf oder in das
+  Formularelement zu legen. Teste, ob das Label ausgewählt werden kann. Das ist
+  besonders wichtig für Optionsfelder und Kontrollkästchen, da sie sehr klein sind.
+
+- Links (von sich aus) und Schaltflächen: Idealerweise sollte auch das Padding
+  um Links und Schaltflächen Teil des Ziels sein, nicht nur der Text darin.
+  Teste, ob die Füllung um diese Elemente ausgewählt werden kann. Wenn du nur den
+  Text innerhalb des Rahmens verwendest, wird das Ziel kleiner.
+
+- Links inline mit Text: Links, die von normalem Text umgeben sind, sollten so
+  viel Zeichen haben, dass sie 9,6 mm groß sind. Zusätzliches Padding für die Höhe
+  kann das visuelle Layout stören, daher ist es wichtig, dass sie breit genug sind,
+  um ausgelöst zu werden.

@@ -1,0 +1,78 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Verantwortlichkeit für Prüfungen'
+---
+
+## Testen sollte ein integraler Bestandteil des Entwicklungslebenszyklus sein
+
+Die Prüfung der Barrierefreiheit wird oft als nachträglicher Gedanke behandelt
+und am Ende eines Projekts durchgeführt. Die Prüfung der Barrierefreiheit bis
+zum Ende des Entwicklungszyklus aufzuschieben, kann jedoch kostspielig sein und
+den Zeit- und Kostenaufwand für die Fertigstellung eines Projekts erheblich
+erhöhen. Die Prüfung der Barrierefreiheit muss in allen wichtigen Phasen des
+Entwicklungsprozesses ernst genommen werden - vor allem in der Entwurfs- und
+Erstellungsphase -, um kostspielige Fehler zu vermeiden, die erst in der
+Testphase aufgedeckt werden.
+
+### Die Planungs- und Entwurfsphase
+
+Wenn die Barrierefreiheit bei der Gestaltung von Webinhalten und Nutzerinteraktionen
+berücksichtigt wird, können viele Barrierefreiheitsprobleme, die sich häufig durch
+den Entwicklungszyklus ziehen, vermieden werden. Bereits in der Planungs- und
+Entwurfsphase des Webentwicklungsprozesses sollten die Entwickler/innen Hinweise
+zur Barrierefreiheit erhalten, die auf den Standards und bewährten Verfahren basieren,
+die bei dem Projekt eingehalten werden sollen. Die Anmerkungen sollten aufzeigen,
+was zu tun ist, um ein barrierefreies Nutzererlebnis zu gewährleisten (z. B.
+Farbwahl, Alternativtexte für Bilder, Überschriftenebenen, Linktexte, Label und
+Fehlermeldungen in Formularen, visuelle Fokusfarben, Nutzerinteraktionen und
+Tastaturfunktionen).
+
+Auch das Testen muss in dieser Phase frühzeitig berücksichtigt werden. Die für
+das Testen Verantwortlichen sollten damit beginnen, den Umfang der Tests zu
+definieren und Tests auf der Grundlage der in der Planungsphase festgelegten
+Anforderungen an die Barrierefreiheit zu entwickeln und zu schreiben. Auch die
+Entwurfsanmerkungen und die Entwurfsanforderungen können für die Entwicklung von
+Tests für das Projekt genutzt werden. Wenn du die Tests so früh entwickelst, erhöht
+sich die Wahrscheinlichkeit, dass kritische Probleme mit der Barrierefreiheit
+erkannt und behoben werden.
+
+### Die Bau-/Erstellungsphase
+
+Die Erstellungsphase des Entwicklungsprozesses spielt eine wichtige Rolle, wenn
+es darum geht, die Barrierefreiheit zu testen. In dieser Phase sollten die Entwickler/innen
+automatisierte Tests durchführen, um ihren Code zu prüfen, während sie ihn schreiben.
+Unit-Tests, Integrationstests und Tools wie axe DevTools können dabei helfen, eine
+Reihe von Problemen mit der Barrierefreiheit zu erkennen, bevor sie die
+Produktionsumgebung erreichen (weitere Informationen findest du im Abschnitt über
+automatisierte Testtools in diesem Kurs). Im Idealfall sollten Probleme, die durch
+automatisierte Tests erkannt werden können, in der eigentlichen Testphase nicht
+erkannt werden - diese sollte sich auf umfassende manuelle Tests und QS konzentrieren.
+
+Zusätzlich zu den automatisierten Tests sollten die Entwickler/innen ihre Inhalte
+zumindest auf Barrierefreiheit mit der Tastatur testen und benutzerdefinierte
+Widgets mit Screenreadern testen. Das Testen von benutzerdefinierten Widgets ist
+besonders wichtig, da die Entwickler die Funktionen im Grunde von Grund auf neu
+erstellen. Fehler in der Barrierefreiheit, die in dieser Phase entdeckt werden,
+können schnell behoben werden, wenn die Entwickler/innen das Testen als Teil des
+normalen Entwicklungsprozesses begreifen. Fehler können und werden sich jedoch
+einschleichen, deshalb muss die eigentliche Testphase noch abgeschlossen werden.
+
+### Die Testphase
+
+In der Testphase des Entwicklungsprozesses wird überprüft, ob die Anforderungen
+an die Barrierefreiheit des Projekts erfüllt wurden, und die von den Entwicklern
+durchgeführten automatischen Tests werden validiert. In der Testphase sollten die
+Tests, die in der Planungsphase erstellt wurden, mit automatisierten und manuellen
+Testmethoden durchgeführt werden. Zu den Rollen, die die Tests durchführen können,
+gehören Experten für Barrierefreiheit, ein für Barrierefreiheit geschultes
+Qualitätssicherungs-Team, Entwickler mit Barrierefreiheits-Kenntnissen und Nutzer
+mit Behinderungen (wobei echte Nutzer zur Bewertung des Nutzererlebnisses herangezogen
+werden). Während der Testphase sollte alles bewertet werden, vom Front-End-Markup
+und der Programmierung über Textinhalte bis hin zu Multimedia-Inhalten, wie es
+der Testumfang vorsieht.
+
+Nach Abschluss der Tests sollten die Ergebnisse in einem detaillierten Format
+mitgeteilt werden, das es auch Personen mit wenig oder gar keinem Wissen über
+Barrierefreiheit ermöglicht, das Problem zu beheben. Mängel in der Barrierefreiheit
+sollten detailliert und in einer Weise erläutert werden, die für die
+Empfänger/innen der Berichte verständlich ist.

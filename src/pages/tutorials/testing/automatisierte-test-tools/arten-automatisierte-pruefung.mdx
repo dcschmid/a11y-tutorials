@@ -1,0 +1,78 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Arten von automatisierten Tests'
+---
+
+## Automatisierte Unit-Tests für Barrierefreiheit
+
+Je mehr Code Entwickler/innen schreiben und je umfangreicher dieser Code wird,
+desto schwieriger und zeitaufwändiger kann das manuelle Testen des Codes werden.
+Automatisierte Unit-Tests können Entwicklern Zeit (und, um ehrlich zu sein, auch
+Kopfschmerzen) ersparen, wenn sie während des Build-Prozesses implementiert werden.
+Unit-Tests überprüfen das Verhalten des Codes, ohne auf externe Abhängigkeiten
+wie eine Datenbank oder das Dateisystem angewiesen zu sein; und je kleiner der
+Test ist, desto besser können die Entwickler/innen nachvollziehen, wie gut ihr
+Code funktioniert. Diese Tests laufen in kürzester Zeit ab, da sie vollständig
+im Speicher liegen und nicht von Änderungen in der Umgebung beeinflusst werden.
+Der Gedanke hinter automatisierten Unit-Tests ist, dass Entwickler/innen Probleme
+umso eher erkennen, je früher sie diese beheben können und nicht riskieren, dass
+ihr Code später nicht mehr funktioniert.
+
+Automatisierte Unit-Tests können genutzt werden, um Fehler in der Barrierefreiheit
+des Codes bereits in einem frühen Stadium des Entwicklungszyklus zu erkennen, was
+eine Menge Vorteile mit sich bringt. Manuelle Tests der Barrierefreiheit werden
+zwar immer notwendig sein, aber die Implementierung von Unit-Tests für die
+Barrierefreiheit kann den Aufwand und die Arbeitsabläufe des manuellen Testprozesses
+erheblich reduzieren. Auch wenn nur ein Drittel der Barrierefreiheitsprobleme durch
+automatisierte Tests gefunden werden kann, lohnt es sich, dieses "Drittel" anzugehen,
+vor allem, wenn ein Großteil der Barrierefreiheitsprobleme auf einer Webseite in
+diesen Prozentsatz fällt. Wenn diese Probleme durch die Automatisierung sofort
+gefunden werden können, haben die Prüfer/innen mehr Zeit, sich auf Probleme zu
+konzentrieren, die nur durch manuelle Tests entdeckt werden können.
+
+Die Ergebnisse der automatisierten Barrierefreiheitstests geben Entwicklern außerdem
+mehr Sicherheit bei der Änderung und Behebung bestehender Probleme, ohne dass sie
+sich Sorgen machen müssen, dass der Code Nebeneffekte hat oder etwas kaputt macht.
+Und schließlich kann die Erstellung von barrierefreiem Code für Entwickler/innen
+zur Gewohnheit werden, wenn sie Unit-Tests nutzen, um Probleme mit der Barrierefreiheit
+zu erkennen. Die Entwickler/innen lernen aus den Ergebnissen, die sie erhalten,
+und erinnern sich daran, Barrierefreiheit zu implementieren, wenn sie neuen Code
+erstellen.
+
+## Automatisierte Integrationstests für Barrierefreiheit
+
+Sobald durch die Unit-Tests festgestellt wurde, dass alles ordnungsgemäß funktioniert,
+sollten Integrationstests durchgeführt werden, um zu prüfen, ob die Einheiten
+als Ganzes zusammenpassen. Durch Integrationstests können Entwickler/innen
+Barrierefreiheitsprobleme aufdecken, während sie weiter an der Entwicklung
+arbeiten. Integrationstests sollten getrennt von den Unit-Tests durchgeführt werden,
+damit sie in verschiedenen Phasen des Entwicklungszyklus durchgeführt werden können.
+Diese Tests können relativ schnell (aber langsamer als Unit-Tests) durchgeführt
+und wiederholt werden, während die Entwickler/innen noch früh genug Probleme
+aufdecken können, bevor sie zu echten Problemen werden.
+
+## Automatisierte Regressionstests und Überwachung
+
+Nachdem die bei automatisierten und manuellen Tests entdeckten Probleme behoben
+wurden, sollten Regressionstests und Monitoring durchgeführt werden. Bei automatisierten
+Regressionstests geht es darum, neue Fehler oder Regressionen in bestehenden Funktionen
+aufzudecken, nachdem Änderungen an einem System vorgenommen wurden, z. B.
+Funktionserweiterungen, Patches oder Konfigurationsänderungen. Die Erfahrung hat
+gezeigt, dass bei der Korrektur von Software und Websites häufig neue Fehler
+auftreten bzw. alte Fehler wieder auftauchen, so dass ein Regressionstest notwendig
+ist, um solche negativen Folgen von Änderungen aufzudecken.
+
+Zu den gängigen Methoden des Regressionstests gehört es, zuvor durchgeführte
+Tests erneut durchzuführen und zu prüfen, ob sich das Programmverhalten geändert
+hat und ob zuvor behobene Fehler erneut aufgetreten sind. Mit Regressionstests
+kann ein System effektiv getestet werden, indem systematisch die geeignete
+Mindestmenge an Tests ausgewählt wird, die für eine bestimmte Änderung erforderlich
+ist.
+
+Wenn es um Barrierefreiheit geht, sind sowohl das Ziel als auch der Ansatz derselbe.
+Bei einer Regressionsprüfung der Barrierefreiheit geht es nicht nur darum, neue
+Fehler zu finden, sondern auch um die erfolgreiche Behebung von Fehlern, die in den
+vorherigen Tests gefunden wurden. In einem solchen Szenario genügt es, das System
+mit genau denselben Tests zu prüfen, die während des vorherigen Prüfvorgangs
+durchgeführt wurden. Auf diese Weise können die Reparaturen anhand der gleichen
+Kriterien überprüft werden, mit denen die ursprünglichen Fehler gefunden wurden.

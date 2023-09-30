@@ -1,0 +1,68 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Tastaturfunktionalität'
+---
+
+import { Image } from 'astro:assets'
+import AddTrip1 from './images/mars-addtrip1.png'
+import AddTrip2 from './images/mars-addtrip2.png'
+
+Viele Menschen können keine Maus benutzen und sind auf die Tastatur angewiesen,
+um mit dem Internet zu interagieren. Blinde Menschen und einige sehende Menschen
+mit Mobilitätseinschränkungen nutzen die Tastatur oder andere Hilfsmittel, die
+auf Tastaturbefehle angewiesen sind, wie z. B. die Spracheingabe. Websites müssen
+es den Menschen ermöglichen, auf alle Inhalte und Funktionen - Links, Formulare,
+Mediensteuerungen usw. - über eine Tastatur zuzugreifen.
+
+## Testmethodik für die Tastaturfunktionalität
+
+Beim Testen der Tastaturfunktionalität ist es wichtig sicherzustellen, dass alle
+Funktionen einer Webseite auch bei ausschließlicher Verwendung der Tastatur
+verfügbar sind. Hinweis: Es gibt kleinere Ausnahmen von dieser Regel, wie z. B.
+Eingaben, die von den Bewegungen des Nutzers abhängen (z. B. freihändiges
+Zeichnen), aber in den meisten Fällen muss die Funktionalität über die Tastatur
+verfügbar sein. Mehr über die Regeln für die Tastatureingabe erfährst du im Kurs
+Geräteunabhängige Benutzereingabemethoden.
+
+So testest du die Funktionalität der Tastatur:
+
+- Überprüfe, ob du alle Elemente mit der Tabulatortaste ansteuern kannst, z. B.
+  Links, Formularfelder, Schaltflächen und Steuerelemente für den Media Player.
+  Vergewissere dich, dass es keine Aktionen oder Optionen gibt, auf die du nicht
+  zugreifen kannst, weil sie nur beim Überfahren mit der Maus oder durch Klicken
+  verfügbar sind.
+
+- Überprüfe, ob du von allen Elementen, die du mit der Tabulatortaste ansteuern
+  kannst, weggehen kannst. Ein häufiges Problem ist, dass sich der Tastaturfokus
+  in Steuerelementen und benutzerdefinierten Widgets verfängt und du nicht mehr
+  herauskommst; man nennt das die "Tastaturfalle".
+
+- Überprüfe bei Elementen wie Auswahlfeldern, Schiebereglern oder Menüleisten,
+  ob du dich mit der Pfeiltaste nach unten oder nach oben innerhalb der Elemente
+  bewegen kannst. (Vergewissere dich, dass du innerhalb der Elemente navigieren
+  kannst, ohne dass sich der Kontext ändert, z. B. wenn du den ersten Punkt in
+  einem Dropdown-Menü markierst, wird dieser Punkt automatisch ausgewählt.)
+
+- Achte darauf, dass du mit der Eingabetaste oder der Leertaste ein bestimmtes
+  Element innerhalb eines Elements auswählen kannst.
+
+## Schlecht: Steuerelemente, die nur mit der Maus bedient werden können
+
+In den Bereichen "Reise buchen" und "Wer reist?" auf der <a href="https://dequeuniversity.com/demo/mars/"
+target="_blank">Startseite der MarsCommuter-Website</a>, können die Steuerelemente
+für "Eine weitere Reise hinzufügen" und "Einen Reisenden hinzufügen" nicht mit der
+Tastatur bedient werden.
+
+Der Screenshot unten zeigt das Steuerelement "Reise hinzufügen", bevor es
+ausgewählt wird.
+
+<Image src={AddTrip1} alt='AddTrip1' />
+
+Der Screenshot unten zeigt das Steuerelement "Reise hinzufügen", nachdem es ausgewählt
+wurde und neue Formularfelder eingefügt wurden.
+
+<Image src={AddTrip2} alt='AddTrip2' />
+
+Ein solches Problem kann vermieden werden, wenn Standard-HTML-Steuerelemente wie
+Links (`<a>`), Schaltflächen (`<button>`) und Eingaben (`<input>`) verwendet werden,
+da sie die Bedienung über die Tastatur garantieren.

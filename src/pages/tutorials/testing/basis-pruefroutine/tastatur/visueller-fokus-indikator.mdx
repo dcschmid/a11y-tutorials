@@ -1,0 +1,67 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Visueller Fokusindikator'
+---
+
+Wenn Nutzer/innen durch Links und Formularelemente navigieren, müssen sie sehen
+können, wo der Tastaturfokus liegt. Sonst wissen sie nicht, wann sie die Eingabetaste
+drücken müssen, um Links zu folgen, oder wann sie Informationen in Formularfelder
+eingeben müssen. Der Tastaturfokus sollte in den Seitenelementen sichtbar und
+logisch sein.
+
+## Prüfmethodik für den visuellen Fokusindikator
+
+Es gibt eine Reihe von Methoden, die für den visuellen Fokus verwendet werden können.
+Zum Beispiel kann ein vertikaler Balken verwendet werden, wenn ein leeres Textfeld
+fokussiert wird, Links können einen sichtbaren Rahmen oder Umriss haben, wenn sie
+fokussiert werden, oder eine Schaltfläche kann ihre Farbe ändern, wenn sie fokussiert
+wird. Das Ziel der Tests für den visuellen Fokus ist es, sicherzustellen, dass die
+Benutzer/innen jederzeit wissen, wo der Tastaturfokus liegt.
+
+### Tests nur für die Tastatur
+
+So testest du den visuellen Fokusindikator über die Tastatur:
+
+- Rufe die Webseite über das URL-Feld im Browser auf.
+
+- Während du durch die Webseite navigierst, überprüfe, ob fokussierbare Elemente
+  einen klaren, sichtbaren Indikator haben, der den visuellen Fokus
+  kennzeichnet.
+
+  - Elemente wie Links, Schaltflächen und Steuerelemente sollten einen Rahmen
+    oder einen ähnlichen Indikator haben.
+
+  - Der Standard-Fokus des Browsers (manchmal ein gestrichelter Rahmen oder eine
+    Umrandung um das Element) reicht aus, auch wenn es sich empfiehlt, den Fokus
+    mit CSS zu verbessern.
+
+- Wenn Bilder als Links verwendet werden oder wenn es andere Arten von aktiven
+  Bildern gibt, stelle sicher, dass sie auch einen visuellen Fokusindikator haben.
+
+- Wenn ein Textfeld fokussiert wird, sollte der Fokus gekennzeichnet werden. Dies
+  kann durch einen vertikalen Balken oder einen hervorgehobenen Text im Feld geschehen,
+  damit die Nutzer wissen, dass sie etwas eingeben können. Zusätzlich zu einem vertikalen
+  Balken im Feld kann das Feld auch einen Rahmen oder Umriss haben.
+
+Hinweis: Ein Beispiel für einen Fehlerbericht zum visuellen Fokusindikator findest
+du auf der Seite Fehlerberichte für Barrierefreiheit schreiben im Abschnitt
+Fehler-/Mängelmanagement in diesem Kapitel.
+
+## Tests nur mit der Maus
+
+Ein visueller Fokusindikator sollte auch für Mausbenutzer verfügbar sein. Wenn
+ein Mausbenutzer zum Beispiel in ein Textfeld klickt, sollte er auch einen
+vertikalen Balken oder einen anderen Hinweis darauf sehen, dass das Feld den
+Fokus hat. Wenn sie ein Element verwenden, um etwas auf der Webseite auszulösen
+(z. B. eine Schaltfläche zum Öffnen eines Dialogs oder eines erweiterbaren
+Bereichs), sollten sie außerdem den Fokus auf dem auslösenden Element sehen, wenn
+sie den Inhalt schließen.
+
+Außerdem sollte ein visueller Hover-Indikator für Mausbenutzer/innen vorhanden
+sein. Ein visueller Hover-Indikator hilft dabei, aktive Elemente wie Links und
+Schaltflächen auf einer Webseite zu erkennen. Wenn der Mauszeiger zum Beispiel
+über einem Link schwebt, sollte sich der Schwebezustand deutlich ändern, um
+anzuzeigen, dass der Link ausgewählt werden kann. Außerdem sollte sich der
+Mauszeiger in einen Handzeiger verwandeln, wenn er über Links schwebt (nicht
+aber bei Schaltflächen - der Mauszeiger sollte beim Schweben über Schaltflächen
+gleich bleiben).

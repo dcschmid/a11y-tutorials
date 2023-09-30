@@ -1,0 +1,152 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Effektive Tickets für Fehler in der Barrierefreiheit schreiben'
+---
+
+import { Image } from 'astro:assets'
+import GoodReport from './images/marscommutergoodreport.png'
+
+## Bestandteile eines guten Fehlerberichts
+
+Damit die Probleme behoben werden können, müssen die Berichte gut geschrieben
+sein. Das ist besonders wichtig bei Problemen mit der Barrierefreiheit. Warum
+ist das so? Wenn du einen Fehler für eine Funktion meldest, die nicht zu deinem
+Team gehört, kannst du nicht sicher sein, wie gut sich die Person, die mit diesem
+Fehler betraut ist, mit Barrierefreiheit auskennt, und du möchtest die Chancen
+erhöhen, dass die Person, die mit der Behebung des Fehlers betraut ist, das
+unerwünschte Verhalten schnell reproduzieren kann.
+
+### Berichtsvorlage
+
+Wenn du alle Daten aus der automatisierten Testphase, der manuellen Testphase und
+der Screenreader-Testphase gesammelt hast, musst du sie in einem einzigen Format
+zusammenfassen, das leicht zu lesen und zu verwenden ist. Im Folgenden findest du
+eine einfache Vorlage, die du für die Erfassung von Problemen verwenden kannst.
+
+<table>
+  <thead>
+    <tr>
+      <th>Template Komponente</th>
+      <th>Beschreibung der Komponente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Template Komponente'>Beschreibender Titel</td>
+      <td data-label='Beschreibung der Komponente'>
+        Gib einen beschreibenden Titel an, der das Problem der Barrierefreiheit identifiziert
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Problem Beschreibung</td>
+      <td data-label='Beschreibung der Komponente'>
+        Gib eine detaillierte Beschreibung des Problems
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Erwartete Ergebnisse</td>
+      <td data-label='Beschreibung der Komponente'>
+        Beschreibe das erwartete Verhalten, also das, was ein Nutzer bei der
+        Interaktion mit dem Inhalt erwartet
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Plattform und AT</td>
+      <td data-label='Beschreibung der Komponente'>
+        Identifiziere die Plattform und jede unterstützende Technologie, die bei
+        der Entdeckung des Problems verwendet wurde
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Auswirkung/Schweregrad</td>
+      <td data-label='Beschreibung der Komponente'>
+        Identifiziere den Grad der Auswirkung (z.B. kritisch, schwerwiegend, mäßig,
+        geringfügig); wird oft verwendet, um Prioritäten für die Behebung von
+        Problemen zu setzen und diese einzuteilen
+
+        - Kritisch: Das Problem führt dazu, dass Inhalte für Menschen mit
+          Behinderungen blockiert werden. Solange keine Lösung implementiert ist,
+          sind die Inhalte nicht zugänglich, was die Organisation sehr anfällig für
+          rechtliche Schritte macht. Die Behebung des Problems sollte oberste
+          Priorität haben.
+
+        - Schwerwiegend: Das Problem führt zu ernsthaften Barrieren für Menschen
+          mit Behinderungen. Bis eine Lösung implementiert ist, werden einige
+          Inhalte nicht zugänglich sein, was die Organisation anfällig für
+          rechtliche Schritte macht. Nutzer/innen, die auf Hilfsmittel angewiesen
+          sind, werden beim Versuch, auf Inhalte zuzugreifen, erhebliche
+          Frustrationen erleben. Die Behebung des Problems sollte eine Priorität
+          sein.
+
+        - Mäßig: Dieses Problem führt zu einigen Barrieren für Menschen mit
+          Behinderungen, hindert sie aber nicht daran, auf grundlegende
+          Elemente oder Inhalte zuzugreifen. Dies könnte die Organisation
+          anfällig für rechtliche Schritte machen. Dieser Fehler muss behoben
+          werden, bevor eine Seite als vollständig konform angesehen werden
+          kann.
+
+        - Geringfügig: Dies ist ein Problem, das weniger Auswirkungen auf die
+          Nutzer/innen hat als ein mittelschweres Problem. Damit eine Seite als
+          vollständig konform angesehen werden kann, muss dieses Problem behoben
+          werden, kann aber als letztes behandelt werden.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Schritte zum Reproduzieren</td>
+      <td data-label='Beschreibung der Komponente'>
+        Gib an, welche Angaben zur Reproduktion des Problems erforderlich sind,
+        einschließlich einer Schritt-für-Schritt-Anleitung und der Anmeldedaten,
+        die zur Reproduktion des Problems verwendet werden sollten.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Visuell oder Video</td>
+      <td data-label='Beschreibung der Komponente'>
+         Stelle einen Screenshot mit visuellen Indikatoren, eine Videoaufzeichnung
+         des Problems mit der Barrierefreiheit oder sogar einen Codeschnipsel zur
+         Verfügung, wo das Problem auftritt.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Template Komponente'>Empfehlungen</td>
+      <td data-label='Beschreibung der Komponente'>
+        Wann immer möglich, versuche Empfehlungen zur Behebung des Problems zu
+        geben
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Beispiel für einen Fehlerbericht
+
+Titel: Visuelle Fokusanzeige verschwindet im Buchungs-Widget
+
+Beschreibung: Wenn ein Nutzer durch das Buchungs-Widget auf der MarsCommuter-Startseite
+navigiert, geht der visuelle Fokusindikator verloren, nachdem er durch die Formularfelder
+für die Abfahrtsdaten navigiert hat.
+
+Erwartete Ergebnisse: Wenn ein sehender Nutzer mit der Tastatur durch das Widget
+navigiert, sollte er jederzeit sehen können, wo sich der Tastaturfokus innerhalb
+des Widgets befindet.
+
+Schweregrad: Kritisch (Hindert sehende Tastaturbenutzer daran, mit der Webseite
+zu interagieren)
+
+Schritte zum Reproduzieren:
+
+- Rufe die Startseite von MarsCommuter auf.
+
+- Setze den Tastaturfokus auf das Feld Von im Buchungs-Widget.
+
+- Bewege dich durch die restlichen Felder.
+
+- Der visuelle Fokus verschwindet nach dem Formularfeld, in dem der Benutzer
+  die Uhrzeit auswählt.
+
+Visuell: <Image src={GoodReport} alt='' />
+
+Abhilfe: Überprüfe, ob die CSS-Eigenschaft outline nicht durch outline: none; oder
+outline: 0; deaktiviert ist, nachdem die Nutzer die Felder für die Abfahrtsdaten
+mit der Tabulatortaste verlassen haben. Der visuelle Fokusindikator muss dem
+Tastaturfokus im gesamten Widget und auf der Webseite folgen.

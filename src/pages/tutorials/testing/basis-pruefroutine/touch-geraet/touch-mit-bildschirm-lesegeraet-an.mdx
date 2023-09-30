@@ -1,0 +1,54 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Touch-Funktionalität mit eingeschaltetem Screen Reader'
+---
+
+Wenn ein Bildschirmlesegerät auf einem Touchscreen oder einem mobilen Gerät
+verwendet wird, setzt es die Standardgesten auf dem Gerät außer Kraft und
+ersetzt sie durch Gesten, die das Surfen und die Interaktion für diejenigen
+verbessern, die auf ein Bildschirmlesegerät angewiesen sind. Da die Standardgesten
+durch diese neuen Gesten ersetzt werden, ist es wichtig, dass die
+Touch-Funktionalität auf einer Webseite nicht mit den Gesten des Bildschirmlesegeräts
+kollidiert. Die Touch-Funktionalität muss intakt bleiben, wenn ein Bildschirmlesegerät
+zum Browsen und zur Interaktion mit einer Webseite verwendet wird.
+
+## Prüfmethodik für Touch-Funktionalität mit Screenreadern
+
+Die Verwendung eines Bildschirmlesegeräts auf einem mobilen Gerät kann etwas
+gewöhnungsbedürftig sein, aber ein Bildschirmlesegerät muss verwendet werden,
+um die Touch-Funktionalität effektiv zu testen.
+
+Wenn du ein Bildschirmlesegerät auf einem mobilen Gerät verwendest, überprüfe das:
+
+- Die Touch-Funktionalität ist verfügbar, wenn das Bildschirmlesegerät eingeschaltet
+  ist, einschließlich der Aktivierung von Links, Schaltflächen und der Interaktion
+  mit benutzerdefinierten Widgets.
+
+- Benutzerdefinierte Gesten sind nicht die einzige Möglichkeit, mit Inhalten auf
+  einer Webseite zu interagieren. Wenn eine Geste zur Interaktion mit dem Inhalt
+  verwendet werden kann, wird eine berührungsbasierte Alternative angeboten (z. B.
+  das Auswählen/Klicken auf linke und rechte Pfeile im Gegensatz zum Wischen nach
+  links oder rechts, um den Inhalt anzuzeigen).
+
+## Schlecht: Gesten ohne berührungsbasierte Alternative
+
+In diesem Beispiel kann das Skript nur mit Gesten verwendet werden. Benutzer von
+Screenreadern mit Touch-Geräten können es nicht verwenden, weil die Gesten auf
+der Webseite durch die Gesten des Screenreaders überschrieben werden. Um die Gesten
+des Screenreaders nicht zu beeinträchtigen, sollte eine berührungsbasierte
+Alternative wie die Auswahl von Pfeilen, um zum nächsten Bild zu gelangen,
+angeboten werden.
+
+- Link: <a href="https://dequeuniversity.com/assets/html/module-input-methods/gestures/bad.html"
+  target="_blank">Schlechtes Beispiel für eine reine Gestenfunktion</a>
+
+## Gut: Gesten mit Touch-basierter Alternative
+
+Um das oben beschriebene Problem zu beheben, wurden links und rechts neben dem
+Bild klickaktivierte Schaltflächen hinzugefügt, damit Screenreader-Nutzer auf
+Touch-Geräten die volle Funktionalität der Diashow nutzen können. Die Schaltflächen
+sind auch für Nicht-Bildschirmleser verfügbar und funktionieren auch auf
+mobilen Geräten, die keine geskripteten Gesten unterstützen.
+
+- Link: <a href="https://dequeuniversity.com/assets/html/module-input-methods/gestures/good.html"
+  target="_blank">Gutes Beispiel für Gesten plus Tasten</a>

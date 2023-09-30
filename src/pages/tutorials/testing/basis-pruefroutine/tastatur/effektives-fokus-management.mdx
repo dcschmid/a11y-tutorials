@@ -1,0 +1,60 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Effektives Fokusmanagement (Formularvalidierung, Dialoge, AJAX, etc.)'
+---
+
+Wenn dynamische Inhalte auf der Grundlage von Nutzereingaben generiert werden,
+muss sichergestellt werden, dass der Tastaturfokus während der gesamten Interaktion
+verschoben und für Tastaturnutzer sichtbar ist. Wenn ein Nutzer ein Element auslöst,
+das neue Inhalte auf der Webseite erzeugt, sollte der Tastaturfokus auf den neuen
+Inhalt verschoben werden. Wenn ein Nutzer Inhalte von der Webseite entfernt, sollte
+der Tastaturfokus an die nächste logische Stelle auf der Webseite oder zu dem Element
+verschoben werden, das die Änderung ausgelöst hat, je nach Art und Beschaffenheit
+des Inhalts. Die Idee ist, dass der Tastaturfokus dorthin zurückkehren muss, wo der
+Nutzer nach dem Erstellen oder Entfernen des Inhalts auf der Webseite weitermachen
+kann. Er darf nicht verloren gehen oder an den Anfang der Webseite verschoben werden,
+wo die Nutzerinnen und Nutzer die Seite möglicherweise wieder von vorne beginnen
+müssen.
+
+## Prüfmethodik für Fokusmanagement
+
+Wenn du das Fokusmanagement testest, suche nach dynamischen Inhalten auf der Webseite,
+die aufgrund von Interaktionen erzeugt oder entfernt werden. Verwende die Tastatur,
+um auf Fokusmanagement zu testen.
+
+Wenn der vom Benutzer erzeugte Inhalt ein modaler Dialog ist:
+
+- Vergewissere dich, dass der Tastaturfokus an den Dialog gesendet wird, wenn er
+  geöffnet wird. Bei kurzen Dialogen kann der Fokus an eine Standardschaltfläche
+  im Dialog gesendet werden. Bei größeren Dialogen kann der Fokus auf die erste
+  Überschrift des Dialogs gesetzt werden.
+
+- Achte darauf, dass der Fokus innerhalb des Dialogs bleibt. Du darfst nicht in
+  der Lage sein, außerhalb des Dialogs mit der Tabulatortaste zu wechseln oder
+  zu navigieren.
+
+- Wenn der Dialog geschlossen wird, entweder über eine Schaltfläche oder die
+  Esc-Taste, überprüfe, ob der Fokus zu dem Element zurückkehrt, das den Dialog
+  ausgelöst hat. Es darf nicht an den Anfang der Seite zurückgesetzt werden oder
+  ganz verschwinden.
+
+Wenn der vom Benutzer generierte Inhalt auf der Seite selbst erscheint
+(Erfolgs-/Fehlermeldungen der Formularvalidierung, AJAX):
+
+- Stelle sicher, dass der Fokus auf den neuen Inhalt auf der Webseite wandert,
+  damit die Nutzer den Inhalt finden können.
+
+- Wenn der Inhalt vom Nutzer geschlossen werden kann, muss der Fokus entweder
+  dorthin zurückverlagert werden, wo der Nutzer zuvor auf der Webseite war,
+  oder dorthin, wo die nächste logische Interaktion stattfindet. Bei einer
+  Fehlermeldung in einem Formular kann der Fokus beispielsweise auf die erste
+  Eingabe verschoben werden, die einen Fehler enthält.
+
+Hinweis: Das Verschieben des Fokus ist eine Möglichkeit, Bildschirmleser dazu
+zu bringen, Inhalte anzukündigen. Allerdings muss es einen programmatisch
+bestimmbaren Text geben, damit der Screenreader den Inhalt anzeigt, wenn der
+Fokus verschoben wird. Wenn der Fokus verschoben wird, ist es wichtig, dass
+entweder echter Text oder programmatisch zugewiesener Text (z. B. durch
+aria-describedby) vorhanden ist. Verwende zusätzlich zur Tastatur ein
+Bildschirmlesegerät, um zu prüfen, ob es neue Inhalte vorliest, wenn der Fokus
+verschoben wird.

@@ -11,27 +11,27 @@
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
   },
   "dependencies": {
-    "astro": "^3.0.12",
+    "astro": "^3.2.0",
     "astro-compress": "^2.0.15",
     "astro-compressor": "^0.4.0",
     "astro-critters": "^2.0.11"
   },
   "devDependencies": {
     "@astro-community/astro-embed-youtube": "^0.4.1",
-    "@astrojs/mdx": "^1.0.3",
+    "@astrojs/mdx": "^1.1.0",
     "@astrojs/prism": "^3.0.0",
-    "@typescript-eslint/parser": "^6.6.0",
-    "accessible-astro-components": "^2.2.0",
+    "@typescript-eslint/parser": "^6.7.3",
+    "accessible-astro-components": "^2.2.1",
     "astro-auto-import": "^0.3.1",
     "astro-mdx-code-blocks": "^0.0.4",
-    "astro-pagefind": "^1.2.3",
-    "eslint": "^8.49.0",
+    "astro-pagefind": "^1.2.4",
+    "eslint": "^8.50.0",
     "eslint-plugin-astro": "^0.29.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-markdownlint": "^0.5.0",
     "prettier": "^3.0.3",
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-astro": "^0.12.0",
-    "sass": "^1.66.1"
+    "sass": "^1.68.0"
   }
 }
