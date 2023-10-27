@@ -1,0 +1,50 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Windows'
+---
+
+import { Image } from 'astro:assets'
+import UIInspect from './images/ui-automation-inspect.png'
+import EdgeF12 from './images/edge-f12-a11y-tree.png'
+
+## Windows-API für Barrierefreiheit
+
+Windows hat mehrere Iterationen der Barrierefreiheit-APIs durchlaufen. Die aktuelle
+Windows-API für Barrierefreiheit heißt UI Automation und wurde erstmals mit Windows
+Vista eingeführt. Der Edge-Browser und der Narrator-Bildschirmleser nutzen die
+UI-Automatisierung. Die ältere Windows-API für Barrierefreiheit, MSAA (Microsoft
+Active Accessibility), wird immer noch von einigen älteren Programmen verwendet,
+darunter der Internet Explorer.
+
+## Inspektion der Barrierefreiheit-API
+
+### Inspect.exe
+
+Das Tool Inspect.exe im <a href="https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk"
+target="_blank">Windows 10 SDK</a>, um die Barrierefreiheit von Elementen in Edge
+oder anderer Windows-Software zu prüfen. Vergewissere dich, dass Inspect.exe auf
+den Modus UI Automation eingestellt ist. Hinweis: Nach der Installation des Windows
+10 SDK findest du die Anwendung Inspect.exe unter Program Files > Windows Kits >
+10 > bin > [deine Plattform] (oder einem ähnlichen Pfad, wenn du das SDK an einem
+anderen Ort installiert hast).
+
+<Image
+  src={UIInspect}
+  alt='Screenshot des Dienstprogramms inspect.exe, das die Eigenschaften der
+  Barrierefreiheit eines Registerkarten-Widgets auf einer Webseite anzeigt'
+/>
+
+Weitere Informationen findest du in der <a href="https://docs.microsoft.com/en-us/windows/desktop/WinAuto/windows-automation-api-portal"
+target="_blank">Windows UI Automation API-Dokumentation</a>.
+
+### Der Strukturbaum der Barrierefreiheit in Edge F12
+
+Um den Strukturbaum der Barrierefreiheit in Edge zu untersuchen, kannst du das
+Barrierefreiheits-Panel in den F12-Entwicklertools verwenden, das du auf der
+Registerkarte DOM Inspector findest.
+
+<Image
+  src={EdgeF12}
+  alt='Screenshot des Bedienfelds für Barrierefreiheit in Edge, das die Rolle
+  einer ARIA-Tabliste zeigt'
+/>

@@ -1,0 +1,157 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Überschriften'
+---
+
+## Wie Screenreader Überschriften behandeln
+
+Beim Lesen eines `<h1>`-Elements sagen Bildschirmlesegeräte "Überschriftenebene
+eins", gefolgt von dem Text innerhalb der Überschrift. Die anderen Überschriftsebenen
+werden auf ähnliche Weise angekündigt.
+
+Vergiss nicht, dass blinde Nutzer/innen eine Webseite nicht einfach nur ansehen und
+sofort verstehen können, wie ein/e sehende/r Nutzer/in sie gestaltet. Visuelle Nutzer
+können viele Informationen über das Layout der Seite aufnehmen, ohne den gesamten
+Inhalt lesen zu müssen. Blinde Nutzer haben diesen Luxus nicht. Bildschirmlesegeräte
+lesen linear, was bedeutet, dass sie sich die gesamte Webseite anhören müssen, es
+sei denn, es gibt eine andere bequeme Möglichkeit, einen "Blick" auf das Layout
+und die Struktur der Seite zu werfen. Es hat sich herausgestellt, dass
+Überschriften eine Möglichkeit sind, dies zu tun.
+
+Benutzer von Bildschirmlesegeräten können mit Tastaturkürzeln durch die
+Überschriftenstruktur eines Dokuments navigieren. Die meisten Bildschirmlesegeräte
+bieten eine Methode an, mit der du die meisten oder alle der folgenden Schritte
+ausführen kannst:
+
+## Methode 1: Alle Überschriften auflisten
+
+Einige Screenreader (wie NVDA) zeigen dies in einer Baumansicht an. Andere (wie
+VoiceOver) zeigen alle Überschriften in einer flachen Liste an, zusammen mit der
+Nummer der Überschriftsebene.
+
+<table>
+  <caption>Alle Überschriften auflisten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>Einfügen + F6</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>
+        Einfügen + F7 (um die Elementeliste zu öffnen), dann wähle Überschriften
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts die
+        Überschriften auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Feststelltaste + F6</td>
+    </tr>
+  </tbody>
+</table>
+
+## Methode 2: Navigiere von einer Überschrift zur nächsten
+
+<table>
+  <caption>Navigiere von einer Rubrik zur nächsten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>H</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>H</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>
+        Benutze den Rotor, um Überschriften auszuwählen (drehe zwei Finger auf dem Bildschirm nach
+        links oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>
+        Wische wiederholt nach oben und dann nach unten (oder wische nach unten und dann nach oben),
+        um die Lesesteuerung zu durchlaufen, bis "Überschriften" ausgewählt ist, dann wische nach
+        unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Befehl + H</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>H (nur im Scan-Modus)</td>
+    </tr>
+  </tbody>
+</table>
+
+## Methode 3: Zu Überschriften einer bestimmten Ebene navigieren
+
+Diese Methode wird nicht so häufig verwendet wie die anderen, aber wenn Nutzer/innen
+die Überschriften nach Ebenen durchsuchen wollen, können sie das in einigen Screenreadern.
+
+<table>
+  <caption>Navigiere zu Überschriften einer bestimmten Ebene</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>1-6</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>1-6</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>1-6 (nur im Scan-Modus)</td>
+    </tr>
+  </tbody>
+</table>

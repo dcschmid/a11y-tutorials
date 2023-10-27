@@ -1,0 +1,161 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Grafiken'
+---
+
+## Wie Bildschirmleser Bilder behandeln
+
+<table>
+  <thead>
+    <tr>
+      <th>Art des Bildes</th>
+      <th>Wie Bildschirmleser das Bild behandeln</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Art des Bildes'>Alternativtext</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        Bildschirmlesegeräte lesen das Alt-Attribut von Bildern, wenn ein Alt-Text
+        angegeben ist, und melden das Wort "Grafik" vor dem Alt-Text. Zum Beispiel,
+        `<img src="cat_0123.jpg" alt="Eine getigerte Katze, die mit einem Ball aus
+        Schnur spielt">` wird als "Grafik, eine getigerte Katze, die mit einem Ball
+        aus Schnur spielt" gelesen.
+
+        Hinweis: Sage nicht "Bild von..." oder "Grafik" (oder ähnliches) im Alt-Text,
+        denn das sagen Screenreader bereits!
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art des Bildes'>Fehlender Alt-Text</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        Wenn ein Bild keinen Alt-Text hat, sagt JAWS den Dateinamen des Bildes an.
+        Zum Beispiel, `<img src="katze_0123.jpg">`
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art des Bildes'>Null Alt-Text</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        Bildschirmlesegeräte ignorieren Bilder, die mit einem leeren Alt-Text
+        gekennzeichnet sind, komplett (was du ja auch willst, wenn du absichtlich
+        einen leeren Alt-Text verwendet hast). Zum Beispiel sagen Screenreader
+        nichts, wenn sie auf `<img src="cat.jpg" alt="">` stoßen.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art des Bildes'>Verknüpfte Bilder</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        Wenn ein Bild ein Link ist, sagt JAWS "Link-Grafik", bevor es den Alt-Text
+        des Bildes sagt. Zum Beispiel, `<a href="katze_seite.html"><img src="katze_0123.jpg"
+        alt="Eine getigerte Katze, die mit einem Ball aus Schnur spielt"></a>` wird
+        als "Link-Grafik, eine getigerte Katze, die mit einem Ball aus Schnur
+        spielt" gelesen.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art des Bildes'>Verlinkte Bilder ohne Alt-Text</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        Wenn es sich bei dem Bild ohne Alt-Text um einen Link handelt, liest JAWS
+        in der Regel das Link-Ziel, d.h. das href-Attribut im HTML-Markup für den
+        Link. Zum Beispiel, `<a href="katze_seite.html"><img src="katze_0123.jpg"
+        alt=""></a>` wird gelesen als "Link Grafik, Katze Unterstrich Seite Punkt
+        H T M L"
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Art des Bildes'>Bildkarte Hotspots</td>
+      <td data-label='Wie Bildschirmleser das Bild behandeln'>
+        JAWS liest den Alt-Text für Bildkarten-Hotspots; daher sollte der
+        Alt-Text das Linkziel beschreiben.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Methode 1: Alle Grafiken auflisten
+
+<table>
+  <caption>Alle Grafiken auflisten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>Einfügen + Steuerung + G</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts Bilder
+        auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Feststelltaste + N</td>
+    </tr>
+  </tbody>
+</table>
+
+## Methode 2: Navigiere von einer Grafik zur nächsten
+
+<table>
+  <caption>Navigiere von einer Grafik zur nächsten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>G</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>G</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>
+        Drehe zwei Finger auf dem Bildschirm (wie ein Wählrad), um den Rotor zu öffnen, suche die
+        Bilder und wische dann nach rechts
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Befehl + G</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>

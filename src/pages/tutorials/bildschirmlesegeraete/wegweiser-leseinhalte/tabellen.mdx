@@ -1,0 +1,141 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Tabellen'
+---
+
+## Wie Bildschirmleser Tabellen lesen
+
+Die Software des Bildschirmlesegeräts meldet dem Nutzer, dass es eine Tabelle
+gibt, und sagt, wie viele Spalten und Zeilen sie hat, z. B. "Tabelle mit 4
+Spalten und 5 Zeilen".
+
+Daraufhin kann der/die Nutzer/in entscheiden, ob er/sie den Bildschirmleser alle
+Zellen im normalen Modus durchlesen lassen möchte oder ob er/sie Zelle für Zelle
+navigieren möchte (manchmal auch als "Tabellennavigationsmodus" bezeichnet). Im
+normalen Modus beginnt das Lesegerät in der oberen linken Zelle der ersten Zeile
+und liest die gesamte Zeile vor, dann geht es zur nächsten Zeile und liest sie
+von links nach rechts und so weiter. Im Tabellennavigationsmodus kann der Nutzer
+in jede beliebige Richtung navigieren, indem er die entsprechende Tastenkombination
+im Bildschirmlesegerät verwendet.
+
+## Methode 1: Liste mit allen Tabellen anzeigen
+
+<table>
+  <caption>Alle Tabellen auflisten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>
+        Einfügen + F3 (zum Öffnen der Elementeliste), dann Tabellen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>
+        Steuerung + Option + U (zum Öffnen des Rotors), dann mit den Pfeiltasten links/rechts
+        Tabellen auswählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+## Methode 2: Navigiere von einer Tabelle zur nächsten
+
+<table>
+  <caption>Von einer Tabelle zur nächsten navigieren</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>T</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>T</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>
+        Benutze den Rotor, um Tabellen auszuwählen (drehe zwei Finger auf dem Bildschirm nach links
+        oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Befehl + T</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>T (nur im Scan-Modus)</td>
+    </tr>
+  </tbody>
+</table>
+
+## Methode 3: Navigieren zwischen Zellen innerhalb einer Tabelle
+
+<table>
+  <caption>Zwischen Zellen innerhalb einer Tabelle navigieren</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nach oben/unten/links/rechts wischen</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nach links/rechts wischen und durch Berührung erkunden</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Steuerung + Alt + Pfeiltasten</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,124 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'NVDA Konfigurationsoptionen'
+---
+
+import { Picture } from 'astro:assets'
+import NvdaMouseSettings from './images/nvdamousesettings.png'
+import NvdaSpeechviewer from './images/nvdaspeechviewer.png'
+
+## NVDA-Installation
+
+NVDA, die Abkürzung für Non-Visual Desktop Access, ist ein kostenloser Bildschirmleser,
+der <a href="http://www.nvaccess.org" target="_blank">hier</a> heruntergeladen werden
+kann. Wenn du NVDA herunterlädst, kannst du zwischen drei Optionen wählen, um den
+Bildschirmleser zu nutzen. Du kannst NVDA auf deinem Computer installieren, eine
+tragbare USB-Kopie erstellen, um sie auf anderen Computern zu verwenden, oder die
+temporäre Kopie verwenden, die beim Download ausgeführt wird.
+
+Wenn du dich für die Installation von NVDA auf deinem Computer entscheidest, gibt
+es einige zusätzliche Optionen zu beachten. Eine Option ist, dass du festlegen
+kannst, ob NVDA automatisch auf dem Windows-Anmeldebildschirm gestartet werden
+soll. Diese Option solltest du eventuell deaktivieren, da der Bildschirmleser
+bei jedem Start deines Computers aktiviert wird. Eine weitere Option, die du in
+Betracht ziehen solltest, ist, NVDA zu erlauben, eine Tastenkombination zu
+erstellen, mit der du NVDA jederzeit starten kannst. Es ist empfehlenswert,
+diese Option zu aktivieren, damit du den Bildschirmleser schnell starten kannst,
+wenn du ihn brauchst.
+
+## Wie man NVDA startet und ausschaltet
+
+Wenn du die Shortcut-Option aktiviert hast, kannst du NVDA mit der Tastenkombination
+Strg + Alt + N starten. Du kannst auch die Schaltfläche Startmenü in der linken
+Ecke der Taskleiste verwenden, nach NVDA suchen und die Anwendung dort starten.
+Wenn du eine Desktop-Verknüpfung für NVDA hast, kannst du auch den Buchstaben "N"
+verwenden, um den Screenreader auszuwählen, oder du kannst den Ausführen-Dialog
+öffnen und "NVDA" in das Feld eingeben, um den Screenreader zu starten.
+
+Wenn du NVDA startest, erscheint ein Dialogfeld, das dir Optionen zur Verwendung
+von NVDA anbietet. Mit der ersten Option, "Feststelltaste als NVDA-Modifikatortaste
+verwenden", kannst du auswählen, ob du die Feststelltaste zusätzlich oder anstelle
+der Einfügetaste als NVDA-Modifikatortaste verwenden möchtest. Um Verwirrung bei
+der Verwendung von NVDA-Tasten zu vermeiden, ist es möglicherweise am besten,
+diese Option nicht zu markieren.
+
+Die zweite Option, "NVDA automatisch starten, nachdem ich mich bei Windows angemeldet
+habe", startet das Bildschirmlesegerät automatisch, nachdem du dich bei Windows
+angemeldet hast. Wenn du den Bildschirmleser nicht regelmäßig verwendest, solltest
+du auch diese Option nicht aktivieren.
+
+Am einfachsten lässt sich NVDA mit der Tastenkombination Einfg + Q ausschalten.
+Wenn sich die Einfg-Taste auf deinem Numpad befindet, musst du sicherstellen,
+dass die Num-Taste ausgeschaltet ist. Wenn du mit der Maus arbeitest, kannst du
+auch in den Infobereich der Taskleiste gehen, mit der rechten Maustaste auf das
+NVDA-Symbol klicken und "Beenden" wählen, um den Screen Reader zu beenden.
+Vergewissere dich vor dem Beenden von NVDA, dass alle Dialogfelder innerhalb
+der Screenreader-Anwendung geschlossen sind. Du kannst NVDA erst dann beenden,
+wenn das einzige geöffnete Dialogfeld die Frage ist, ob du die Anwendung wirklich
+beenden willst.
+
+## Anpassen der NVDA-Optionen
+
+### Deaktivieren der Mauseinstellungen
+
+Wenn du NVDA startest, fällt dir vielleicht als Erstes auf, dass der Bildschirmleser
+alles verfolgt und liest, was sich unter dem Mausfokus befindet. Das kann etwas
+verwirrend sein; außerdem verlassen sich die meisten Screenreader-Nutzer nicht auf
+die Maus als Eingabegerät. So deaktivierst du die Mausverfolgung:
+
+- Finde das NVDA-Symbol im Infobereich der Taskleiste (es kann sich im Infobereich
+  befinden)
+
+- Klicke mit der rechten Maustaste auf das NVDA-Symbol und wähle "Einstellungen"
+  aus dem Menü
+
+- Navigiere zu "Mauseinstellungen...".
+
+- Deaktiviere das Kontrollkästchen "Mausverfolgung aktivieren" und wähle dann "OK".
+
+  <Picture src={NvdaMouseSettings} formats={['avif', 'webp']} alt='NVDA Mouse Settings' />
+
+oder du kannst den Tastaturkurzbefehl Einfügen + M verwenden, um die Mausverfolgung
+jederzeit zu aktivieren oder zu deaktivieren.
+
+### Spracheinstellungen
+
+Die Spracheinstellungen für NVDA findest du im Menü "Einstellungen" oder du
+kannst sie mit der Tastenkombination Einfg + Strg + V öffnen. Wenn du den eSpeak
+NG Synthesizer (den Standard-Sprachsynthesizer in NVDA) verwendest, siehst du im
+Dropdown-Menü "Stimme" alle für den Synthesizer verfügbaren Stimmen und im
+Dropdown-Menü "Variante" Variationen von Stimmen. Dort findest du auch Optionen
+zum Erhöhen oder Verringern der Geschwindigkeit, der Tonhöhe, der Lautstärke und
+der Beugung (wie stark die Tonhöhe beim Sprechen ansteigt und fällt). Außerdem
+kannst du unter "Interpunktion/Symbol-Level" auswählen, wie viel Interpunktion
+NVDA beim Lesen erkennt. Die Interpunktions-/Symbolstufe kann auch mit der
+Tastenkombination Einfügen + P eingestellt werden. Die Option "Automatische
+Sprachumschaltung" ermöglicht es NVDA, Sprachwechsel in einem Dokument zu erkennen,
+wenn die Sprache im Dokument richtig erkannt wurde.
+
+### Einstellungen für die Dokumentformatierung
+
+In den Einstellungen für die Dokumentformatierung kannst du festlegen, wie viel
+NVDA über ein Dokument berichtet. Unter Einstellungen kannst du auswählen, ob
+NVDA den Namen der Schriftart, die Schriftgröße, die Textausrichtung, die Farben,
+die Hervorhebung, Rechtschreibfehler, Links, Überschriften, Einrückungen und
+mehr melden soll. Diese Einstellungen ähneln den Einstellungen der Verbositätsstufe
+für Narrator. Du kannst diese Einstellungen auch jederzeit mit der Tastenkombination
+Einfügen + Strg + D ändern.
+
+## Sprachbetrachter
+
+Wenn du ein Dokument oder eine Webseite mit NVDA bewertest, kann der Speech Viewer
+ein hilfreiches Werkzeug während des Testprozesses sein. Der Sprachbetrachter ist
+ein separates Fenster, in dem du sehen kannst, was NVDA sagt, während er ein Dokument
+liest.
+
+<Picture src={NvdaSpeechviewer} formats={['avif', 'webp']} alt='Nvda Speech Viewer' />
+
+Wenn du innerhalb des Sprachfensters klickst oder den Fokus setzt, hört NVDA auf
+zu sprechen. Du kannst dann den gesprochenen Text auswählen und kopieren und darin
+deine Auswertungen verwenden. Die Sprachansicht findest du unter "Extras" im
+NVDA-Menü (klicke mit der rechten Maustaste auf das NVDA-Symbol im Infobereich,
+um das Menü aufzurufen). Wenn du den Speech Viewer schnell nutzen willst, kannst
+du unter "Eingabegesten" im NVDA-Menü eine Tastenkombination für den Speech Viewer
+erstellen.

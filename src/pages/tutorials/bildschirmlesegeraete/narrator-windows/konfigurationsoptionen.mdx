@@ -1,0 +1,103 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Konfigurationsoptionen für den Narrator'
+---
+
+import { Picture } from 'astro:assets'
+import Narratornavigation from './images/narratornavigation.png'
+import NarratorVoice from './images/narratorvoice.png'
+
+Ähnlich wie VoiceOver auf dem Mac ist der Bildschirmleser Narrator in das Windows 10 Anniversary Update
+integriert. Wenn du das Windows 10 Anniversary Update hast, ist keine Installation erforderlich.
+
+## Wie du Narrator startest und ausschaltest
+
+Am einfachsten lässt sich Narrator mit der Tastenkombination Windows-Taste + Strg + Enter starten und
+beenden. Wenn du die Tasten zum ersten Mal zusammen drückst, erscheint ein Dialogfeld, das dich
+auffordert, den Bildschirmleser zu starten. Wenn du mit dem Screenreader fertig bist, drückst du die
+Tastenkombination erneut, um Narrator zu beenden. Du kannst Narrator auch schließen, indem du die
+Tastenkombination Feststelltaste + Escape drückst.
+
+Eine andere Möglichkeit, Narrator zu öffnen, ist, die Schaltfläche Start in der linken Ecke der
+Taskleiste zu verwenden und zum Ease of Access Center zu navigieren. Wähle im Center für Barrierefreiheit
+die Option Narrator starten. Du kannst das Ease of Access Center auch über den Anmeldebildschirm
+aufrufen, um Narrator zu starten.
+
+## Anpassen der Narrator-Optionen
+
+Wenn der Narrator eingeschaltet ist, kannst du auf die Einstellungen des Screenreaders zugreifen,
+indem du das Symbol für die Narrator-Einstellungen in der Taskleiste auswählst. Unter den
+Narrator-Einstellungen findest du eine Liste von Einstellungsmöglichkeiten, darunter allgemeine,
+Navigations- und Spracheinstellungen.
+
+### Allgemeine Einstellungen
+
+Unter den allgemeinen Einstellungen kannst du die Narrator-Taste (Feststelltaste) sperren, damit du
+sie nicht für bestimmte Befehle verwenden musst. Außerdem kannst du wählen, ob du die Zeichen oder Wörter,
+die du eingibst, hörst und ob du den markierten Cursor oder den blauen Fokus, der um den virtuellen
+Cursor des Narrators erscheint, aktivieren oder deaktivieren möchtest. Wenn du Narrator noch nicht
+kennst, ist es vielleicht am besten, die allgemeinen Standardeinstellungen so zu belassen, bis du dich
+besser mit dem Screenreader vertraut gemacht hast.
+
+### Navigationseinstellungen
+
+In den Navigationseinstellungen solltest du beim Testen von Narrator darauf achten, dass die Option
+"Mit der Maus lesen und mit dem Bildschirm interagieren" nicht aktiviert ist. Wenn diese Option aktiviert
+ist, folgt Narrator dem Mauszeiger und liest alles vor, was sich unter dem Mauszeiger befindet. Die
+meisten Nutzer/innen von Bildschirmlesegeräten navigieren nur über die Tastatur, deshalb ist es wichtig,
+dass die Tastaturnavigation zusammen mit Narrator verwendet wird.
+
+<Picture
+  src={Narratornavigation}
+  formats={['avif', 'webp']}
+  alt='Navigationseinstellungen im Narrator'
+/>
+
+### Spracheinstellungen
+
+Mit den Schiebereglern in den Spracheinstellungen kannst du die Geschwindigkeit, die Lautstärke und
+die Tonhöhe der Stimme des Narrator Bildschirmlesegeräts einstellen und du kannst auch eine ganz andere
+Stimme für das Bildschirmlesegerät wählen. Wenn du die Geschwindigkeit der Narrator-Stimme erhöhen
+möchtest, solltest du bedenken, dass einige Stimmen schneller lesen als andere. Die Stimmen in Narrator,
+die bis zu 800 Wörter pro Minute vorlesen können, sind: Microsoft David Mobile, Microsoft Zira Mobile
+und Microsoft Mark Mobile. Wenn du noch nicht so lange mit Narrator arbeitest, solltest du eine
+niedrigere Geschwindigkeit wählen, um sicherzustellen, dass Narrator den Inhalt, den du bewertest,
+richtig vorliest.
+
+<Picture src={NarratorVoice} formats={['avif', 'webp']} alt='Spracheinstellungen in Narrator' />
+
+Tastenkombinationen können auch verwendet werden, um die Geschwindigkeit oder Lautstärke der Stimme
+des Narrators zu erhöhen oder zu verringern:
+
+- Um die Geschwindigkeit der Stimme zu erhöhen oder zu verringern, verwende die Tastenkombination
+  Feststelltaste + Plus (+) oder Minus (-).
+
+- Um die Lautstärke der Stimme zu erhöhen oder zu verringern, drückst du die Tastenkombination
+  Feststelltaste + Steuerung + Plus (+) oder Minus (-).
+
+### Verbosity-Einstellungen
+
+Eine weitere Option, die du in Erwägung ziehen solltest, ist die Anpassung der Ausführlichkeitsstufen
+in Narrator. Durch die Einstellung der Ausführlichkeitsstufen in Narrator kannst du festlegen, wie
+viele Informationen du über den Text auf einer Webseite erhältst. Die Optionen reichen von der reinen
+Textanzeige bis hin zu Informationen über Schriftarten und Schriftgrößen. In Narrator gibt es sechs
+Ausführlichkeitsstufen (0 bis 5) und die gewünschte Ausführlichkeitsstufe wird per Tastendruck ausgewählt.
+
+Um die Ausführlichkeitsstufe in Narrator zu ändern, drückst du die Tastenkombination
+Feststelltaste + V. Du kannst die Tastenkombination wiederholen, bis du die gewünschte
+Ausführlichkeitsstufe hörst.
+
+Die Ausführlichkeitsstufen in Narrator sind:
+
+- Ausführlichkeitsstufe 0: nur Text
+
+- Ausführlichkeitsstufe 1: grundlegende Informationen wie Überschriften, Rechtschreib- und Grammatikfehler
+
+- Ausführlichkeitsstufe 2: Schriftstile wie fett, kursiv, unterstrichen und mehr; andere
+  Formatierungen wie Aufzählungsstile
+
+- Ausführlichkeitsgrad 3: zusätzliche Informationen wie Kopf- und Fußzeilen in einem Dokument
+
+- Ausführlichkeitsgrad 4: Schriftartennamen, Schriftgrößen usw.
+
+- Verbosity Level 5: Informationen über Animationen, Layout; ob Absätze mit Einrückung beginnen, etc.

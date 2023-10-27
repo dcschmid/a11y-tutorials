@@ -25,7 +25,8 @@ module.exports = {
             parser: 'eslint-plugin-markdownlint/parser',
             extends: ['plugin:markdownlint/recommended'],
             rules: {
-                'markdownlint/md033': ['off']
+                'markdownlint/md033': ['off'],
+                'markdownlint/md013': ['error', {'line_length': 100} ]
             }
         }
     ]

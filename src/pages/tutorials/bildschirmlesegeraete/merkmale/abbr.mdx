@@ -1,0 +1,38 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Abkürzungen & Akronyme'
+---
+
+## Wie Screenreader Abkürzungen behandeln
+
+- Aussprechbare Abkürzungen: Screenreader versuchen in der Regel, Abkürzungen und
+  unsinnige Wörter auszusprechen, wenn sie genügend Vokale und Konsonanten haben,
+  um aussprechbar zu sein; ansonsten buchstabieren sie die Buchstaben. Die NASA
+  wird zum Beispiel in der Regel als Wort ausgesprochen, während DHS als einzelne
+  Buchstaben ausgesprochen wird: "D H S".
+
+- Unaussprechliche Abkürzungen: Wenn Bildschirmleser-Nutzer/innen ein vom
+  Bildschirmleser vorgelesenes Wort nicht verstehen, können sie es sich vom
+  Bildschirmleser Buchstabe für Buchstabe vorlesen lassen. Beim buchstabenweisen
+  Vorlesen von Wörtern unterscheidet das Bildschirmlesegerät zwischen Groß- und
+  Kleinbuchstaben, indem es die Großbuchstaben in einer höheren Tonlage oder mit
+  lauterer Stimme hervorhebt.
+
+## Erweitere den ersten Teil einer Abkürzung
+
+Es ist am besten, das erste Vorkommen einer Abkürzung auf einer Webseite zu erweitern,
+damit es keine Verwirrung darüber gibt, was die Abkürzung bedeutet.
+
+## Semantisches Markup für Abkürzungen
+
+Du kannst das `<abbr>`-Element verwenden, um Abkürzungen und Akronyme zu kennzeichnen.
+
+### Ein gutes Beispiel: Eine mit `<abbr>` gekennzeichnete Abkürzung
+
+```html
+<abbr title="Self-Contained Underwater Breathing Apparatus">SCUBA</abbr>
+```
+
+Einige Screenreader lesen den gesamten erweiterten Text der Abkürzung, wenn du das
+tust. Andere lesen nur den sichtbaren Text. In den meisten Fällen erlauben Screenreader
+den Benutzern, das Verhalten beim Lesen von Abkürzungen anzupassen.

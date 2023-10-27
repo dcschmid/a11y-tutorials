@@ -1,0 +1,499 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'NVDA Tastatureingaben'
+---
+
+NVDA (Non-Visual Desktop Access) ist ein kostenloser, voll funktionsfähiger und
+portabler Bildschirmleser für Microsoft Windows, den du auf deinen PC oder auf
+ein tragbares Medium wie einen USB-Stick herunterladen kannst. Es wurde 2006 von
+den Gründern von NV Access, Michael Curran und James Teh, auf den Markt
+gebracht - blinde Computerprogrammierer, die sich leidenschaftlich für die
+Barrierefreiheit von Computern einsetzen.
+
+So installierst du NVDA: Gehe <a href="http://www.nvaccess.org/download/"
+target="_blank">hier hin</a> . Wir ermutigen dich, zu spenden, wenn du kannst.
+Wenn du das nicht kannst, kannst du die Spende überspringen und einfach die
+Software herunterladen.
+
+Beachte: NVDA funktioniert gut mit Firefox, Chrome und Edge. NVDA bietet auch eine
+gute Unterstützung für den Internet Explorer, aber die besten Testkombinationen
+sind NVDA + Firefox, NVDA + Chrome und NVDA + Edge.
+
+## NVDA-Tastenkombinationen
+
+Hinweis: Einige Tastenkombinationen erfordern die Verwendung der NVDA-Modifikatortaste.
+Standardmäßig sind sowohl die Einfügetaste des Ziffernblocks als auch die erweiterte
+Einfügetaste als NVDA-Änderungstasten festgelegt, aber die Benutzer können die
+Feststelltaste als zusätzliche NVDA-Änderungstaste festlegen. In den folgenden
+Tabellen wird davon ausgegangen, dass die Einfügetaste als NVDA-Modifikatortaste
+verwendet wird. Wenn du deine Einstellungen geändert hast, musst du möglicherweise
+die Feststelltaste anstelle der Einfügetaste verwenden. Beachte auch, dass diese
+Tastenkombinationen für die Desktop-Tastaturbelegung von NVDA gelten; einige
+Tastenkombinationen sind anders, wenn du die Laptop-Tastaturbelegung von NVDA verwendest.
+
+## Browse- und Fokus-Modi
+
+Browse-Modus: Der Browse-Modus wird beim Lesen von Dokumenten oder Webseiten
+verwendet.
+
+Fokusmodus: Der Fokusmodus wird verwendet, wenn der Benutzer ein Formular oder
+andere Felder eingibt, die Benutzereingaben erfordern.
+
+NVDA schaltet automatisch zwischen den Modi Blättern und Fokus um, aber der
+Nutzer kann mit Einfügen + Leertaste zwischen beiden Modi umschalten.
+
+## Sprachbetrachter
+
+Aktiviere den Sprachbetrachter: Wenn du den Sprachbetrachter aktivierst, wird ein
+Fenster geöffnet, das alles anzeigt, was NVDA sagt. Dies ist nützlich für sehende
+Nutzer, die NVDA zu Testzwecken lernen. Aktiviere sie unter Extras im NVDA-Menü.
+
+## Die Grundlagen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        An/Aus
+      </td>
+      <td data-label='Aufgabe'>NVDA einschalten</td>
+      <td data-label='Kommando'>Steuerung + Alt + N</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>NVDA ausschalten</td>
+      <td data-label='Kommando'>Einfügen + Q</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Lesen
+      </td>
+      <td data-label='Aufgabe'>Lesen stoppen</td>
+      <td data-label='Kommando'>Steuerung</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Lies ab diesem Punkt kontinuierlich weiter</td>
+      <td data-label='Kommando'>Einfügen + Pfeil nach unten oder Numpad Plus (+)</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächsten Artikel lesen</td>
+      <td data-label='Kommando'>Abwärtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes fokussierbares Element lesen (z. B. Link, Schaltfläche)</td>
+      <td data-label='Kommando'>Tab</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Aktiviere
+      </td>
+      <td data-label='Aufgabe'>Link</td>
+      <td data-label='Kommando'>Eingabe</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Button</td>
+      <td data-label='Kommando'>Eingabe oder Leertaste</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Überschriften
+      </td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Überschrift</td>
+      <td data-label='Kommando'>H</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Gehe zur nächsten Überschrift der Ebene [1-6]</td>
+      <td data-label='Kommando'>1 - 6</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Alle Überschriften auflisten</td>
+      <td data-label='Kommando'>Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Landmarken</td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Landmarke/Region</td>
+      <td data-label='Kommando'>D</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Liste der Elemente</td>
+      <td data-label='Aufgabe'>
+        Liste aller Links, Überschriften, Formularfelder, Schaltflächen und Orientierungspunkte
+        anzeigen
+      </td>
+      <td data-label='Kommando'>Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Tabellen
+      </td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Tabelle</td>
+      <td data-label='Kommando'>T</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>In Tabellenzellen navigieren</td>
+      <td data-label='Kommando'>
+        Strg + Alt + Pfeil nach unten oder Pfeil nach oben oder Pfeil nach links oder Pfeil nach
+        rechts
+      </td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Listen
+      </td>
+      <td data-label='Aufgabe'>Zur nächsten Liste gehen</td>
+      <td data-label='Kommando'>L</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zum nächsten Listenpunkt gehen</td>
+      <td data-label='Kommando'>I</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Grafiken</td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Grafik</td>
+      <td data-label='Kommando'>G</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Links
+      </td>
+      <td data-label='Aufgabe'>Alle Links auflisten</td>
+      <td data-label='Kommando'>Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zum nächsten Link gehen</td>
+      <td data-label='Kommando'>K</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Gehe zum nächsten nicht besuchten Link</td>
+      <td data-label='Kommando'>U</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Gehe zum nächsten besuchten Link</td>
+      <td data-label='Kommando'>V</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Navigiere</td>
+      <td data-label='Aufgabe'>
+        Schalte um zwischen: Optionsfeldern, Listenelementen, Tabs (ARIA-Widget), Elementen der
+        Baumansicht (ARIA-Widget), Menüpunkten (ARIA-Widget)
+      </td>
+      <td data-label='Kommando'>Pfeil rechts oder Pfeil unten oder Pfeil links oder Pfeil oben</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Rückwärts gehen</td>
+      <td data-label='Aufgabe'>
+        Zur vorherigen Überschrift, zum Orientierungspunkt, zur Tabelle, zum fokussierbaren Element,
+        usw.
+      </td>
+      <td data-label='Kommando'>Shift + [H, D, T, Tab, etc.]</td>
+    </tr>
+  </tbody>
+</table>
+
+## Text lesen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan='7' data-label='Thema'>
+        Zeile
+      </td>
+      <td data-label='Aufgabe'>Sprich vorherige Zeile</td>
+      <td data-label='Kommando'>Pfeil nach oben oder Numpad 7</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Zeile sagen</td>
+      <td data-label='Kommando'>Pfeil nach unten oder Numpad 9</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelle Zeile sagen</td>
+      <td data-label='Kommando'>Einfügen + Pfeil nach oben oder Numpad 8</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Beginn der Zeile</td>
+      <td data-label='Kommando'>Umschalttaste + Numpad 1</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Ende der Zeile</td>
+      <td data-label='Kommando'>Umschalttaste + Numpad 3</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Oberste Zeile</td>
+      <td data-label='Kommando'>Umschalttaste + Numpad 7</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Untere Zeile</td>
+      <td data-label='Kommando'>Umschalttaste + Numpad 9</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Zeichen
+      </td>
+      <td data-label='Aufgabe'>Sprich vorheriges Zeichen</td>
+      <td data-label='Kommando'>Pfeil nach links oder Numpad 1</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes Zeichen sagen</td>
+      <td data-label='Kommando'>Pfeil nach rechts oder Numpad 3</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Zeichen sagen</td>
+      <td data-label='Kommando'>Numpad 2</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sprich das Zeichen phonetisch aus</td>
+      <td data-label='Kommando'>Numpad 2 zweimal schnell</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Wort
+      </td>
+      <td data-label='Aufgabe'>Vorheriges Wort sagen</td>
+      <td data-label='Kommando'>Strg + Pfeil nach links oder Numpad 4</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sag das nächste Wort</td>
+      <td data-label='Kommando'>Strg + Pfeil nach rechts oder Numpad 6</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Wort sagen</td>
+      <td data-label='Kommando'>Numpad 5</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Satz
+      </td>
+      <td data-label='Aufgabe'>Sprich vorherigen Satz</td>
+      <td data-label='Kommando'>Alt + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sag den nächsten Satz</td>
+      <td data-label='Kommando'>Alt + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sprich den aktuellen Satz</td>
+      <td data-label='Kommando'>Alt + Numpad 5</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Absatz
+      </td>
+      <td data-label='Aufgabe'>Sprich vorherigen Absatz</td>
+      <td data-label='Kommando'>Strg + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sprich nächsten Absatz</td>
+      <td data-label='Kommando'>Strg + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Buchstabieren
+      </td>
+      <td data-label='Aufgabe'>Wort buchstabieren</td>
+      <td data-label='Kommando'>Numpad 5 zweimal schnell</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Wort phonetisch buchstabieren</td>
+      <td data-label='Kommando'>Numpad 5 dreimal schnell</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelle Zeile buchstabieren</td>
+      <td data-label='Kommando'>Einfügen + Pfeil nach oben zweimal schnell</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Buchstabiere die aktuelle Zeile phonetisch</td>
+      <td data-label='Kommando'>Einfügen + Pfeil nach oben dreimal schnell</td>
+    </tr>
+  </tbody>
+</table>
+
+## Tabellen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Thema'>Tabelle</td>
+      <td data-label='Aufgabe'>Gehe zur nächsten (vorherigen) Tabelle</td>
+      <td data-label='Kommando'>T (Umschalt + T)</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Zelle
+      </td>
+      <td data-label='Aufgabe'>Zelle nach rechts</td>
+      <td data-label='Kommando'>Strg + Alt + Rechtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle nach links</td>
+      <td data-label='Kommando'>Strg + Alt + Pfeil nach links</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle unten</td>
+      <td data-label='Kommando'>Strg + Alt + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle oben</td>
+      <td data-label='Kommando'>Strg + Alt + Pfeil nach oben</td>
+    </tr>
+  </tbody>
+</table>
+
+## Formulare
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Thema'>Alle auflisten</td>
+      <td data-label='Aufgabe'>Alle Formularelemente auflisten</td>
+      <td data-label='Kommando'>Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Navigiere
+      </td>
+      <td data-label='Aufgabe'>Nächstes Formularfeld</td>
+      <td data-label='Kommando'>F</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes fokussierbares Element</td>
+      <td data-label='Kommando'>Tab</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster Button</td>
+      <td data-label='Kommando'>B</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Checkboxen
+      </td>
+      <td data-label='Aufgabe'>Auswählen und abwählen</td>
+      <td data-label='Kommando'>Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Checkbox</td>
+      <td data-label='Kommando'>X</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Kombinationsfelder (select):
+      </td>
+      <td data-label='Aufgabe'>Combo-Box öffnen</td>
+      <td data-label='Kommando'>Alt + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Optionen durchsuchen/auswählen</td>
+      <td data-label='Kommando'>Pfeil nach unten oder den ersten Buchstaben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Mehrere Optionen auswählen</td>
+      <td data-label='Kommando'>Umschalttaste + Pfeil nach unten (oder Pfeil nach oben)</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Combo-Box</td>
+      <td data-label='Kommando'>C</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Radiobuttons
+      </td>
+      <td data-label='Aufgabe'>Auswahl umschalten</td>
+      <td data-label='Kommando'>Pfeil nach oben/Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Optionsschaltfläche</td>
+      <td data-label='Kommando'>R</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Fokus-Modus*</td>
+      <td data-label='Aufgabe'>Umschalten zwischen Fokus- und Browsermodus</td>
+      <td data-label='Kommando'>Einfügen + Leertaste</td>
+    </tr>
+  </tbody>
+</table>
+
+\* Der "Fokusmodus" ermöglicht es dir, Daten in Formularfelder einzugeben. Im
+Blätternmodus kannst du mit Standard-Screenreader-Kurzbefehlen auf der Seite
+navigieren (z. B. zu Überschriften, Orientierungspunkten, Links usw.)
+
+## Sonstige Befehle
+
+<table>
+  <thead>
+    <tr>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Aufgabe'>Suche nach einem Wort oder einer Phrase</td>
+      <td data-label='Kommando'>NVDA + Strg + F</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Tastatur Hilfe</td>
+      <td data-label='Kommando'>Einfügen + 1</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster Blockquote</td>
+      <td data-label='Kommando'>Q</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>
+        Die nächste Taste, die du drückst, ignoriert NVDA und ist ein normaler Tastendruck
+      </td>
+      <td data-label='Kommando'>Einfügen + F2</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Eingetippte Zeichen sprechen</td>
+      <td data-label='Kommando'>Einfügen + 2</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Getippte Wörter sprechen</td>
+      <td data-label='Kommando'>Einfügen + 3</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Lesen des gesamten Vordergrundfensters (z. B. für Dialoge)</td>
+      <td data-label='Kommando'>Einfügen + B</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Titel des aktuellen Vordergrundfensters ankündigen</td>
+      <td data-label='Kommando'>Einfügen + T</td>
+    </tr>
+  </tbody>
+</table>
+
+## Zusätzliche Ressourcen
+
+Die vollständige Liste der Tastaturbefehle von NVDA findest du im offiziellen <a
+href="https://www.nvaccess.org/files/nvda/documentation/userGuide.html"
+target="_blank">NVDA-Benutzerhandbuch</a>.
+
+Die Support-Webseite von NV Access findest du <a href="https://www.nvaccess.org/get-help/"
+target="_blank">hier</a>.

@@ -4,5 +4,8 @@
 		"allowed_elements": [
 			"Youtube"
 		]
+	},
+	"MD013": {
+		"line_length": 100
 	}
 }

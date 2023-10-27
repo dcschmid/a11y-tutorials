@@ -1,0 +1,86 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'VoiceOver (iOS) Konfigurationsoptionen'
+---
+
+import { Picture } from 'astro:assets'
+import AccessibilityShortcut from './images/accessibility_shortcut.png'
+import AccessibilityShortcutPhoneX from './images/accessibility_shortcut_iphone_x.png'
+import VoiceOverIOSRotorLaunch from './images/voiceoveriosrotorlaunch.png'
+import VoiceOverIOSRotor from './images/voiceoveriosrotor.png'
+
+## Wie man VoiceOver auf iOS startet
+
+Am schnellsten kannst du VoiceOver auf iOS einschalten, indem du die Verknüpfung
+für die Barrierefreiheit auf deinem Gerät erstellst. Wenn du vorhast, viele Tests
+zur Barrierefreiheit durchzuführen, möchtest du wahrscheinlich die Barrierefreiheits-Verknüpfung
+aktivieren, damit du den VoiceOver-Bildschirmleser mit drei kurzen Klicks auf den
+Home-Button (bei iOS-Geräten vor dem iPhone X) oder den Button auf der rechten
+Seite (bei iPhone X und neueren iOS-Geräten, die keinen Home-Button haben) schnell
+ein- und ausschalten kannst.
+
+Du kannst die Verknüpfung für die Barrierefreiheit wie folgt erstellen:
+
+Einstellungen > Allgemein > Barrierefreiheit > Barrierefreiheits-Verknüpfung (ganz unten)
+
+Wähle die Barrierefreiheit aus, die durch die Dreifachklick-Verknüpfung aktiviert
+werden soll; in diesem Fall wähle VoiceOver.
+
+<Picture
+  src={AccessibilityShortcut}
+  formats={['avif', 'webp']}
+  alt='Screenshot der Einstellungen zum Einschalten der Barrierefreiheit mit den oben genannten Optionen'
+/>
+
+Einstellen der Verknüpfung für Barrierefreiheit auf Geräten vor dem iPhone X
+
+<Picture
+  src={AccessibilityShortcutPhoneX}
+  formats={['avif', 'webp']}
+  alt='Screenshot der Einstellungen zum Einschalten der Barrierefreiheit mit den oben genannten
+  Optionen auf dem iPhone X'
+/>
+
+Wenn du die Verknüpfung nicht erstellst, kannst du VoiceOver einschalten, indem du zu
+Einstellungen > Allgemein > Barrierefreiheit > VoiceOver navigierst.
+
+## VoiceOver ersetzt die Standardgesten
+
+Das Erste, was du über VoiceOver und über alle Bildschirmlesegeräte auf Touch-Geräten wissen musst,
+ist, dass es die Standardgesten, an die du gewöhnt bist, vollständig ersetzt. Du kannst nicht mehr
+einfach Tasten berühren, um sie zu aktivieren. Du kannst nicht mehr nach links wischen, um zur
+vorherigen Seite zu gelangen. Du kannst nicht nach unten wischen, um das Ansichtsfenster nach
+unten zu scrollen. Du verlierst diese Funktionen. Anstelle der verlorenen Gesten gibt es eine
+ganze Reihe anderer Gesten, die so konzipiert sind, dass sie funktionieren, ohne dass du auf
+deinen Bildschirm schauen musst. Sie sind für blinde Menschen gedacht.
+
+## Anpassen der VoiceOver iOS-Optionen
+
+### Der Rotor
+
+Die Anpassung von VoiceOver kann ziemlich einfach sein, wenn dir die Optionen im Rotor zur Verfügung
+stehen, aber du musst zuerst die Optionen auswählen, auf die du über den Rotor zugreifen willst. Um
+die Rotoroptionen auszuwählen, gehe zu Einstellungen > Allgemein > Barrierefreiheit > VoiceOver > Rotor.
+Um den Rotor zu bedienen, drehst du zwei Finger auf dem Bildschirm. Du kannst den Rotor entweder nach
+links oder nach rechts drehen, um ihn zu bedienen.
+
+<Picture
+  src={VoiceOverIOSRotorLaunch}
+  formats={['avif', 'webp']}
+  alt='Illustrationen von zwei Fingern, die sich links und rechts drehen'
+/>
+
+<Picture src={VoiceOverIOSRotor} formats={['avif', 'webp']} alt='Der VoiceOver iOS-Rotor' />
+
+### Spracheinstellungen
+
+Es gibt eine Reihe von Optionen, mit denen du die Spracheinstellungen in VoiceOver auf iOS ändern
+kannst. Die Einstellungen für Rate, Tonhöhe und Stimmänderungen findest du unter
+Einstellungen > Allgemein > Barrierefreiheit > VoiceOver. Du kannst auch die Sprechgeschwindigkeit
+und die Lautstärke zum Rotor hinzufügen und die Einstellungen durch Wischen nach oben oder unten
+anpassen.
+
+Du kannst auch ändern, wie viel Satzzeichen VoiceOver spricht. Um die Einstellungen für die
+Zeichensetzung zu bearbeiten, musst du den Rotor auf Zeichensetzung stellen. Nachdem du den Rotor
+auf Interpunktion gestellt hast, kannst du nach oben oder unten wischen, um die Interpunktion
+auszuwählen, die du hören möchtest.

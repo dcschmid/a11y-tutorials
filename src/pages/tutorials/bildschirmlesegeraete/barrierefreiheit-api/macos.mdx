@@ -1,0 +1,50 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'MacOS'
+---
+
+import { Image } from 'astro:assets'
+import XcodeA11Y from './images/xcode-a11y-inspector.png'
+
+## MacOS-API für Barrierefreiheit
+
+MacOS verfügt seit Version 10.2 über eine API für Barrierefreiheit. Für die
+Version 10.10 hat Apple die Barrierefreiheit-API neu geschrieben und mit einer
+methodenbasierten Logik vereinfacht, sodass sie der iOS-API für Barrierefreiheit
+ähnlicher ist. Die neue API für Barrierefreiheit ist abwärtskompatibel mit der
+alten API für Barrierefreiheit.
+
+Weitere Informationen findest du in der <a href="https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/"
+target="_blank">-Referenz der Mac OS X Barrierefreiheit API</a>.
+
+## Überprüfung der Barrierefreiheit-API
+
+Apple stellt eine Reihe von Entwickler-Tools zur Verfügung, die als <a href="https://developer.apple.com/xcode/"
+target="_blank">Xcode</a> bekannt sind. Diese Werkzeuge sind nicht standardmäßig
+installiert. Du kannst Xcode über den Apple Store herunterladen. Nach der
+Installation öffnest du die Anwendung und wählst im Hauptmenü XCode >
+Open Developer Tool > Accessibility Inspector. Um den Inspektor zu verwenden,
+fahre mit der Maus über Objekte und rufe das Panel Accessibility
+Inspector auf, um den Baum der Barrierefreiheit zu sehen.
+
+Im folgenden Screenshot fahre mit der Maus über das Suchfeld auf der Microsoft.com-Seite.
+Der Barrierefreiheits-Inspektor zeigt die folgende Hierarchie an (aus Gründen der
+Übersichtlichkeit wurde das Präfix "AX" in der Liste unten entfernt):
+
+- Webbereich
+
+- Gruppe: Landmark-Banner
+
+- Gruppe
+
+- Gruppe: Landmark Suche
+
+- Gruppe
+
+- Textfeld: Suchfeld
+
+<Image
+  src={XcodeA11Y}
+  alt='Screenshot des Panels zur Barrierefreiheit, wie
+  oben beschrieben'
+/>

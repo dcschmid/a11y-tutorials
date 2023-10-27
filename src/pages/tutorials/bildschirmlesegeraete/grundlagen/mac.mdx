@@ -1,0 +1,122 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Windows-Bildschirmleser auf einem Mac'
+---
+
+import { Image } from 'astro:assets'
+import RightAltStart from './images/right-alt-start.png'
+import RightAltKey from './images/right-alt-key.png'
+import RightAlt from './images/right-alt.png'
+import RightAltDone from './images/right-alt-done.png'
+import KarInstall from './images/kar-install.png'
+import KarSecurity from './images/kar-security.png'
+import KarSetUp from './images/kar-set-up.png'
+import KarAdd from './images/kar-add.png'
+import KarKey from './images/kar-key.png'
+
+Die Standardtastatur eines MacBooks hat keine Einfügetaste. Die Einfügetaste ist
+jedoch die wichtigste Änderungstaste, die von Bildschirmlesern unter Windows
+verwendet wird. Wenn du NVDA oder JAWS auf deinem Mac verwenden möchtest, musst
+du eine virtuelle Maschine installieren. Wenn deine Standardtastatur keine
+Einfügetaste hat (z. B. die Taste Numpad 0), musst du eine der folgenden Methoden
+anwenden, um alle Funktionen dieser Bildschirmleseprogramme nutzen zu können.
+
+Hinweis: Bevor du eine der folgenden Methoden ausprobierst, stelle sicher, dass
+du NVDA im NVDA-Menü (NVDA+n) => Einstellungen => Tastatureinstellungen so
+konfigurierst, dass es das "Laptop"-Tastaturlayout verwendet, da das Desktop-Layout
+auf viele Tasten angewiesen ist, die auf einer Standard-Mac-Tastatur nicht vorhanden
+sind.
+
+## Option 1: Hardware
+
+Verwende eine externe Tastatur, die eine Einfügetaste hat. Es gibt viele externe
+Tastaturen, die du anstecken kannst oder die sich per Bluetooth mit deinem Mac
+verbinden. Diese Option ist zwar teurer, aber auch zuverlässiger. Wenn du häufig
+Windows-Bildschirmleser auf deinem Mac verwendest, ist dies wahrscheinlich die
+beste Option.
+
+## Option 2: Software - SharpKeys
+
+Eine Möglichkeit, einen unbenutzten Schlüssel dem fehlenden Einfügeschlüssel
+zuzuordnen, ist die Verwendung eines Open-Source-Programms namens <a href="https://github.com/randyrants/sharpkeys"
+target="_blank">SharpKeys</a>. SharpKeys ist ein Dienstprogramm, das einen
+Registry-Schlüssel verwaltet, mit dem Windows eine Taste auf eine beliebige
+andere Taste umbelegen kann. Die Anwendung enthält eine Liste der gängigen
+Tastaturtasten und eine Type Key Funktion, die die meisten Tasten automatisch
+erkennt.
+
+- Öffne dein virtuelles Maschinenprogramm und lade SharpKeys herunter und
+  installiere es.
+
+- Starte das SharpKeys Programm und klicke auf die Schaltfläche "Hinzufügen".
+
+  <Image src={RightAltStart} alt='' />
+
+- Klicke auf die Schaltfläche "Taste eingeben" und drücke die Taste, die du
+  ersetzen möchtest. Diese Taste wird in der linken Spalte
+  hervorgehoben.
+
+  <Image src={RightAltKey} alt='' />
+
+- Oder suche die Taste, die du ersetzen willst, manuell in der Liste. Diese Taste
+  wird in der linken Spalte hervorgehoben.
+
+  <Image src={RightAlt} alt='' />
+
+  Hinweis: Du kannst eine beliebige Taste zum Zuordnen wählen, aber es ist sinnvoll,
+  eine Taste zu verwenden, die auf deiner Tastatur doppelt vorhanden ist, damit
+  du keine Funktionen verlierst. Beispiele dafür sind: die linke oder rechte Alt-Taste
+  oder die linke oder rechte Steuerungstaste.
+
+- Wähle in der rechten Spalte die Taste "Spezial: Einfügen", um die aktuelle Taste
+  der virtuellen Taste zuzuordnen.
+
+  <Image src={RightAltDone} alt='' />
+
+- Setze die virtuelle Maschine zurück, bevor du die neu zugewiesenen Tasten testest.
+
+## Option 3: Software - Karabiner Elements
+
+Für einige neuere Macs mit Touch Bar ist SharpKeys möglicherweise nicht die beste
+Lösung. Es gibt jedoch ein alternatives Open-Source-Programm namens <a
+href="https://karabiner-elements.pqrs.org/" target="_blank">Karabiner Elements</a>,
+das ein leistungsstarker und stabiler Tastaturanpasser ist und funktionieren sollte,
+wenn SharpKeys nicht funktioniert.
+
+- Lade das Programm Karabiner Elements auf deinen Mac herunter - nicht auf deine
+  virtuelle Maschine. Achte darauf, dass du die Version auswählst, die zu deinem
+  Mac-Betriebssystem passt. Du findest diese Informationen unter dem Apple-Logo
+  => Über diesen Mac.
+
+- Führe das Installations-Setup durch und öffne das Karabiner Elements
+  Programm - nicht das Karabiner EventViewer Programm.
+
+  <Image src={KarInstall} alt='' />
+
+- Während das Programm läuft, gehe in die Systemeinstellungen => Sicherheit und
+  Datenschutz. Drücke auf die Schaltfläche "Zulassen".
+
+  <Image src={KarSecurity} alt='' />
+
+- Gehe zurück zum Karabiner Elements Programm und durchlaufe den Keyboard Setup
+  Assistant, um die Tastatur deines Computers zu finden.
+
+  <Image src={KarSetUp} alt='' />
+
+- Als Nächstes gehst du auf die Registerkarte "Einfache Änderungen", um einen
+  unbenutzten Schlüssel dem Einfügeschlüssel zuzuordnen.
+
+  <Image src={KarAdd} alt='' />
+
+  <Image src={KarKey} alt='' />
+
+- Öffne deine virtuelle Maschine und teste deinen neuen Einfügeschlüssel.
+
+## Bonus NVDA-Einstellungen
+
+- Installiere das Addon <a href="https://addons.nvda-project.org/addons/focusHighlight.en.html"
+  target="_blank">Fokus-Highlight</a> für NVDA, mit dem du leichter sehen
+  kannst, welches Objekt gerade die verschiedenen Fokusziele von NVDA hat.
+
+- Aktiviere das "Speech Viewer"-Protokollfenster über NVDA Menü => Tools => Speech
+  Viewer, damit du leichter sehen kannst, was NVDA sagt.

@@ -1,0 +1,37 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Virtueller Puffer'
+---
+
+## Bildschirmleser erstellen eine Kopie der Webseite
+
+Die Fähigkeit, durch den Inhalt einer Webseite zu navigieren, wird durch die
+Verwendung eines "virtuellen Puffers" erreicht. Der virtuelle Puffer ermöglicht
+es Bildschirmlesern, HTML auf der Webseite in eine Datenstruktur umzuwandeln, die
+von Bildschirmlesern effektiv analysiert werden kann. Diese Funktion stellt eine
+speicherinterne Kopie der aktuellen Webseite bereit, so dass ein Bildschirmleserbenutzer
+mit Hilfe der Navigationsbefehle des Bildschirmlesers durch die Seite navigieren
+kann.
+
+## Virtueller Puffer kann dynamisches Lesen verlangsamen
+
+Es braucht Zeit, den Webinhalt in den virtuellen Puffer zu kopieren. Normalerweise
+erfolgt die Aktualisierung in einem kleinen Bruchteil einer Sekunde, aber selbst
+dieser kleine Bruchteil einer Sekunde kann das genaue Lesen von dynamischen
+Aktualisierungen beeinträchtigen. Besonders auffällig ist die Verzögerung bei
+AJAX-Ereignissen. Wenn Inhalte über eine AJAX-Anfrage geladen werden, kannst du
+den Fokus nicht sofort an den neu geladenen Inhalt senden. Du musst einen
+JavaScript-Timer einrichten, um eine Verzögerung zwischen dem abgeschlossenen
+AJAX-Ereignis und dem Senden des Fokus einzufügen. Wenn du keine Zeitverzögerung
+einbaust, sendet das JavaScript den Fokus an einen Knoten im DOM, der im virtuellen
+Puffer des Bildschirmlesegeräts noch leer oder nicht vorhanden ist (obwohl der Knoten
+im Browser nicht leer ist), weil das Bildschirmlesegerät noch keine Zeit hatte,
+seinen virtuellen Puffer zu aktualisieren. Das Ergebnis ist, dass der Screenreader
+nichts sagt.
+
+Eine JavaScript-Verzögerung von etwa 0,5 bis 1 Sekunde, nachdem bestätigt wurde,
+dass AJAX abgeschlossen ist, reicht normalerweise aus, bevor der Fokus auf den
+neu geladenen Inhalt gesetzt wird, zumindest bei Desktop-Computern. Für Mobilgeräte
+wird eine Verzögerung von etwa 2 Sekunden empfohlen, da die Prozessoren von
+Mobilgeräten langsamer sind (und der Softwarealgorithmus möglicherweise weniger
+effizient).

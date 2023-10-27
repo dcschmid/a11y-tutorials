@@ -1,0 +1,23 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Screen Reader lesen die Barrierefreiheit-API und/oder des DOM'
+---
+
+Bildschirmlesegeräte lesen nicht den rohen HTML-Quellcode der Webseite. Sie lesen
+den Inhalt, nachdem er vom Browser geparst wurde, d. h. nachdem JavaScript und
+Styles auf die Seite angewendet wurden. Das ist gut, denn viele moderne Webseiten
+benötigen JavaScript und Styles, um überhaupt zu funktionieren. Würden Bildschirmlesegeräte
+nur den ursprünglichen Quellcode ohne JavaScript und Styles lesen, würden blinde
+Nutzerinnen und Nutzer ein sehr kaputtes Web erleben.
+
+Das DOM kann statisch sein, aber die meisten kommerziellen Websites enthalten
+heutzutage dynamische Elemente, die das DOM nach dem Laden der Seite in Echtzeit
+aktualisieren und verändern. Bildschirmlesegeräte können diese Änderungen zwar lesen,
+aber die Änderungen werden nicht automatisch angezeigt. Screenreader lesen einfach
+das, was das aktuelle DOM sagt. Wenn zum Beispiel der unterste Absatz der Webseite
+beim Laden "Hello World" heißt und sich dann in "Hello Universe" ändert, bevor
+der Screenreader so weit kommt, wird der Screenreader beim Lesen dieses Absatzes
+"Hello Universe" (den aktualisierten Text) sagen. Der Screenreader wird nie
+erfahren, dass im letzten Absatz "Hello World" stand. Das kann ein Problem sein
+oder auch nicht, aber der Punkt ist, dass der Screenreader das aktuelle DOM liest,
+nicht unbedingt das ursprüngliche DOM.

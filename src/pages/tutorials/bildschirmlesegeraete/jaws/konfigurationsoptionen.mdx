@@ -1,0 +1,148 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'JAWS Konfigurationsoptionen'
+---
+
+import { Picture } from 'astro:assets'
+import JawsSettingsCenter from './images/jawssettingscenter.png'
+import JawsVoiceSettings from './images/jawsvoicesettings.png'
+
+## JAWS Installation
+
+Um JAWS auf deinem Windows Computer zu installieren, empfiehlt Freedom Scientific,
+dass du die JAWS Version zuerst auf deinen Computer herunterlädst, anstatt die
+ausführbare Datei aus dem Windows Download Dialogfeld zu starten. Die JAWS
+Downloadseite findest du <a href="http://www.freedomscientific.com/products/software/jaws/"
+target="_blank">hier</a>
+
+Auf dem Computer, auf dem du JAWS installierst, musst du mit einem Konto mit
+Administratorrechten angemeldet sein. JAWS erfordert, dass du deinen Computer
+während des Installationsprozesses neu startest. Im Folgenden wird kurz beschrieben,
+wie du eine JAWS Version herunterladen und installieren kannst.
+
+- Wähle den entsprechenden nationalen oder internationalen JAWS Download-Link,
+  der auf der Download-Seite erscheint.
+
+- Wenn sich das Dialogfeld öffnet, wähle Speichern und wähle einen Ort, an dem
+  du die heruntergeladene ausführbare Datei leicht finden kannst.
+
+- Führe die ausführbare Datei aus und folge den Anweisungen des sprechenden
+  Installationsprogramms. Du wirst gefragt, ob du JAWS beim Hochfahren deines
+  Computers starten möchtest. Wenn es sich nicht um einen Computer handelt, auf
+  dem ausschließlich JAWS läuft, möchtest du wahrscheinlich nicht, dass JAWS bei
+  jedem Neustart des Computers gestartet wird.
+
+Der Setup-Assistent führt dich mit einer Sprach- und Brailleausgabe durch die
+Installation. Folge den Aufforderungen und installiere JAWS wie jede andere
+Windows-Software.
+
+## Wie man JAWS startet und ausschaltet
+
+Es gibt drei Möglichkeiten, wie du JAWS nur mit der Tastatur starten kannst:
+
+- Zuerst drückst du die Windows-Taste, um den Windows-Ausführungsdialog aufzurufen.
+  Tippe JAWS16 oder JAWS17 ein, um JAWS 16 bzw. JAWS 17 zu starten. Die neueste
+  Version von JAWS verwendet die vierstellige Jahreszahl, gib also JAWS2019 ein,
+  um sie zu starten.
+
+- Oder du gehst auf den Windows-Desktop und drückst J, um zu JAWS zu gelangen
+  (vorausgesetzt, JAWS ist der erste Eintrag, der mit einem J beginnt), und drückst
+  dann Enter, um JAWS zu starten.
+
+- Die dritte Möglichkeit wäre, eine Tastenkombination für das JAWS Programm auf
+  dem Desktop zu erstellen und diese aufzurufen (zum Beispiel: Alt + Control +
+  J).
+
+Um JAWS auszuschalten, drücke Einfg+F4, wenn das JAWS Fenster geöffnet ist.
+
+## Anpassen der JAWS Optionen
+
+Die JAWS Optionen können entweder über das Einstellungscenter oder die Schnelleinstellungen
+konfiguriert werden. Beide Funktionen enthalten verschiedene Optionen, die auf
+das gerade genutzte Programm angewendet werden können. Der Unterschied besteht
+darin, ob die Änderungen vorübergehend oder dauerhaft angewendet werden.
+
+Mit den Schnelleinstellungen kannst du Änderungen vornehmen, die sich auf die
+Anwendung beziehen, in der du dich gerade befindest. Die Elemente am oberen Rand
+des Dialogfelds Schnelleinstellungen beziehen sich auf die aktuelle Anwendung,
+die Elemente am unteren Ende der Liste sind eher allgemeiner Natur.
+
+In den Schnelleinstellungen kannst du festlegen, wie lange die Änderungen in Kraft
+bleiben sollen. In der Standardeinstellung werden Änderungen dauerhaft gespeichert.
+In den Schnelleinstellungen kannst du jedoch festlegen, dass die Einstellungen
+vorübergehend in Kraft bleiben, bis:
+
+- ein neues Fenster den Fokus erhält, oder
+
+- die JAWS Sitzung beendet ist
+
+Um die Schnelleinstellungen zu öffnen, drücke Einfügen+V.
+
+Im Einstellungscenter kannst du dauerhafte Änderungen vornehmen, die entweder für
+alle Anwendungen oder nur für die ausgewählte Anwendung gelten. Um das Einstellungscenter
+zu öffnen, drücke Einfg+F2 und wähle Einstellungscenter. Die Web-Einstellungen
+werden in Form eines Baummenüs angezeigt.
+
+<Picture src={JawsSettingsCenter} formats={['avif', 'webp']} alt='JAWS Settings Center' />
+
+Navigiere zum Menüpunkt "Web / HTML / PDFs" und erweitere ihn. Du siehst eine
+Reihe von Optionen, die unter den folgenden Unterknoten gruppiert sind:
+
+- Lesen
+
+- Navigation
+
+- Bilder / Grafiken
+
+- Links
+
+- Überschriften und Frames
+
+- Listen und Tabellen
+
+- Sonstiges
+
+Wenn du die einzelnen Unterknoten aufklappst, wird eine neue Liste mit möglichen
+Optionen für jede Kategorie angezeigt. Hier kannst du alle notwendigen Änderungen
+an deinen Einstellungen vornehmen.
+
+Aus Testsicht empfehlen wir nicht, diese Einstellungen zu ändern. In den meisten
+Fällen handelt es sich bei diesen Einstellungen um Präferenzen, die für den
+täglichen Gebrauch von JAWS am besten geeignet sind und die beim Testen wahrscheinlich
+keinen Nutzen bringen.
+
+Du kannst die Stimmen, die für die Sprachausgabe verwendet werden, anpassen, indem
+du verschiedene Stimmen für unterschiedliche Kontexte zuweist:
+
+- PC Cursor oder JAWS Cursor
+
+- Cursor-Meldungen, z. B. die Tastaturstimme oder die Sprachausgabe, die beim
+  Tippen erzeugt wird
+
+- Dialoge und Menüs
+
+- Tutor und Meldungen
+
+Um die Spracheinstellungen zu öffnen, gehst du wie folgt vor:
+
+Drücke Einfg+J, um das JAWS Fenster aktiv zu machen. Drücke Alt+O, um das Menü
+Optionen zu öffnen. Drücke V und dann die Eingabetaste, um den Dialog zur
+Spracheinstellung zu öffnen.
+
+Hinweis: Wenn du die Tasten Einfügen und J drückst, während du dich in einer
+Anwendung befindest, kann das zu anderen Ergebnissen führen als hier beschrieben.
+
+<Picture src={JawsVoiceSettings} formats={['avif', 'webp']} alt='JAWS Voice Settings' />
+
+Hier wählst du ein vorhandenes Sprachprofil oder eine werkseitige Sprachprofilvorlage
+aus und änderst verschiedene Einstellungen wie Sprache, Stimme, Sprechgeschwindigkeit,
+angekündigte Interpunktion und mehr, um die JAWS-Sprachausgabe wie gewünscht zu
+konfigurieren.
+
+In der Praxis ändern die meisten Menschen in den globalen Einstellungen nur die
+Sprechgeschwindigkeit und vielleicht die Interpunktion.
+
+Nachdem du Änderungen vorgenommen hast, kannst du die neuen Einstellungen in einem
+bestehenden Profil speichern, indem du "Anwenden" wählst, oder in einem neuen
+Sprachprofil, indem du "Speichern unter" wählst. Verlasse das Dialogfeld Stimmenanpassung,
+indem du "OK" wählst, um die Änderungen zu speichern, oder "Abbrechen".

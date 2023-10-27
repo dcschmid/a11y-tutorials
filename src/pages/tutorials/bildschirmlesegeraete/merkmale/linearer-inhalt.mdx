@@ -1,0 +1,30 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Keine visuelle Schnittstelle'
+---
+
+import { Image } from 'astro:assets'
+import DomEdge from './images/dom-edge.png'
+
+## Die Lesereihenfolge ist die DOM-Reihenfolge
+
+Wenn Bildschirmlesegeräte die gesamte Seite vorlesen, beginnen sie beim ersten
+Element im DOM (Document Object Model) und gehen bis zum letzten Element im DOM.
+
+Du kannst dir die lineare Abfolge der Inhalte einer Webseite vom Anfang bis zum Ende
+in etwa so vorstellen wie ein automatisches Telefonmenüsystem, das nicht alle Optionen
+auf einmal anzeigt. Die Benutzer müssen sich schrittweise durch solche Systeme bewegen.
+
+<Image src={DomEdge} alt='' />
+
+## Bildschirmlesegeräte erfordern eine logische, lineare Lesereihenfolge im DOM
+
+Wenn du CSS verwendest, um die Elemente auf der Webseite zu positionieren, kannst
+du Attribute wie float, margin, padding, relative Positionierung und absolute
+Positionierung verwenden, um das visuelle Layout drastisch zu verändern. Manchmal
+achten Entwickler nur auf das visuelle Layout und vernachlässigen die zugrunde
+liegende Lesereihenfolge im Quellcode oder DOM. Screenreader ignorieren die visuelle
+Anordnung der Elemente auf der Seite und achten nur auf die Reihenfolge im DOM.
+Überprüfe, ob die Lesereihenfolge im DOM logisch ist, indem du entweder das DOM
+direkt ansiehst, die Stile im Browser deaktivierst oder die Webseite mit einem
+Bildschirmlesegerät durchliest.

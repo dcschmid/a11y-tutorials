@@ -1,0 +1,47 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Keine visuellen Stile'
+---
+
+## Bildschirmleser ignorieren fast alle CSS-Stile
+
+Obwohl es Möglichkeiten gibt, einige Aspekte des Stylings durch die Anpassung der
+Screenreader-Einstellungen offenzulegen, werden Screenreader-Nutzer in der Regel
+keine der folgenden Stile kennen:
+
+- Farbe
+
+- Hintergrundfarbe
+
+- Hintergrundbilder
+
+- Schriftgröße
+
+- Schriftart
+
+- Fett
+
+- Kursiv
+
+- Großbuchstaben (es sei denn, der Nutzer hört sich das Wort Buchstabe für
+  Buchstabe an)
+
+- Visuelle Position
+
+- Visuelle Abstände zwischen Elementen
+
+- Spalten oder schwebende Container
+
+Wenn du CSS verwendest, um eine Bedeutung zu vermitteln - z. B. eine Hintergrundfarbe,
+um Text hervorzuheben -, solltest du das CSS mit echtem Text ergänzen, der die
+gleiche Bedeutung vermittelt. Du könntest dem hervorgehobenen Text zum Beispiel
+das Wort "Wichtig:" voranstellen.
+
+## Bildschirmleser blenden Inhalte aus, die mit display:none gekennzeichnet sind
+
+Eine CSS-Eigenschaft, die von Screenreadern beachtet wird, ist display:none.
+Screenreader ignorieren alles, was als display:none gekennzeichnet ist, und lassen
+die Nutzer/innen nicht darauf zugreifen. Du kannst dies zu deinem Vorteil nutzen,
+wenn du Dinge wie Untermenüs, inaktive Dialoge usw. ausblendest. Du willst nicht,
+dass Screenreader-Nutzer auf diese Elemente zugreifen, wenn sie ausgeblendet oder
+inaktiv sind. In diesen Fällen ist es sinnvoll, sie mit display:none zu markieren.

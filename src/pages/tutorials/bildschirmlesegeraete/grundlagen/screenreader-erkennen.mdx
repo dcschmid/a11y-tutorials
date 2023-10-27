@@ -1,0 +1,80 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Können Websites Screen Readers erkennen?'
+---
+
+## Webserver können Bildschirmleser nicht erkennen
+
+Bildschirmlesegeräte sind keine Webbrowser, d.h. sie interagieren nicht direkt mit
+Webservern; sie interagieren mit dem Browser, aber nicht mit dem Server. Das
+bedeutet, dass es keine Möglichkeit gibt, zu erkennen, ob eine Person einen
+Screenreader benutzt oder nicht, zumindest nicht mit den aktuellen Technologien.
+
+Eine Frage, die sich viele Entwickler/innen oft stellen, ist: Können wir einen
+Code schreiben, der Screenreader erkennt? Es wäre doch toll, wenn wir wissen
+könnten, ob ein Besucher der Website einen Screenreader benutzt, damit wir den
+Code speziell für ihn schreiben und einige Elemente ausblenden können, die mit
+einem Screenreader schwieriger zugänglich oder weniger benutzbar sind, oder?
+
+## Was wäre, wenn du Screenreader erkennen könntest?
+
+Wäre es eine gute Sache, wenn du Screenreader erkennen könntest? Theoretisch könntest
+du eine optimierte Version der Website für Bildschirmleser erstellen, was theoretisch
+eine gute Sache wäre, aber diese Idee hat auch einige Nachteile.
+
+## Getrennt, aber (un)gleich
+
+Eine der größten Befürchtungen in Bezug auf die Erkennung von Bildschirmlesegeräten
+ist, dass dies zu völlig getrennten und ungleichen Designs für sehende Nutzer/innen
+und für Nutzer/innen von Bildschirmlesegeräten führen wird. Bildschirmleser/innen
+befürchten, dass die Designer/innen - auch wenn sie es gut meinen - eine schlechtere
+Erfahrung für Bildschirmleser/innen schaffen werden. Bildschirmleser befürchten,
+dass die Designer zu viele ungerechtfertigte Annahmen darüber treffen, was
+Bildschirmleser wollen. Die Designer/innen könnten das Design zu sehr einschränken
+und wichtige Aspekte der Funktionalität oder des Inhalts weglassen. Oder sie
+ändern die Benutzeroberfläche auf eine Weise, die Bildschirmleser/innen nicht
+erwarten, und verringern so die Benutzerfreundlichkeit, obwohl die Absicht war,
+die Benutzerfreundlichkeit zu erhöhen.
+
+## Mehrere Versionen zu pflegen ist unpraktisch
+
+In der Praxis ist es schwer, zwei verschiedene Ansichten oder Designs zu pflegen.
+Der Aufwand und die zusätzliche Arbeit sind es wahrscheinlich nicht wert, was
+bedeutet, dass einer der Entwürfe wahrscheinlich vernachlässigt wird. Hast du
+eine Vermutung, welches Design am ehesten vernachlässigt wird? Ja, das Design für
+Screenreader-Nutzer. Die Screenreader-Ansicht wird die "andere" Ansicht sein; die
+unsichtbare Ansicht, von der die meisten Nutzer/innen nicht einmal wissen, dass es
+sie gibt. Bald werden die Entwickler sie entweder vergessen oder sie absichtlich
+nicht aktualisieren, weil es einfach zu mühsam ist.
+
+## Die Angst vor absichtlicher Vernachlässigung aufgrund des Marktanteils
+
+Eine weitere Befürchtung von blinden Nutzerinnen und Nutzern ist, dass Website-Betreiber
+die Nutzungsstatistiken gegen Menschen mit Behinderungen verwenden könnten. Wenn
+die Webserverprotokolle zeigen, dass nur ein kleiner Prozentsatz der Nutzer/innen
+Bildschirmlesegeräte verwendet, könnte ein/e Website-Betreiber/in eine geschäftliche
+Entscheidung treffen, Bildschirmlesegeräte nicht zu unterstützen, nur weil er/sie
+glaubt, dass blinde Kund/innen unwichtig sind. Es gibt zwei Hauptprobleme, wenn
+man sich auf die Nutzungsstatistiken verlässt, um eine solche Entscheidung zu
+treffen.
+
+- Wenn die Website unzugänglich ist, werden blinde Nutzer/innen sie wahrscheinlich
+  nicht nutzen, was die Nutzungsstatistiken nach unten zieht.
+
+- Die Entscheidung, keine Screenreader zu unterstützen, ist eine bewusste Diskriminierung
+  von Menschen mit Behinderungen. Nutzungsstatistiken werden manchmal verwendet,
+  um zu entscheiden, wann ein bestimmter Browser oder eine bestimmte Version eines
+  Browsers nicht unterstützt werden soll. Das ist sinnvoll, weil die Nutzer/innen
+  ihre Browser im Zuge des technischen Fortschritts aktualisieren können. Für
+  Nutzer/innen von Bildschirmlesegeräten ist das jedoch anders. Blinde Nutzer
+  können sich nicht aussuchen, nicht blind zu sein. Die Entscheidung, keine
+  Bildschirmleser zu unterstützen, bedeutet, dass eine ganze Bevölkerungsgruppe
+  ausgeschlossen wird, auch wenn es sich um eine Minderheit handelt.
+
+## Zusätzliche Ressourcen
+
+- Blog: <a href="http://www.paciellogroup.com/blog/2008/04/developer-beware-using-flash-to-detect-screen-readers/"
+  target="_blank">Entwickler aufgepasst: Flash zur Erkennung von Screen Readern</a>
+
+- Blog: <a href="http://www.marcozehe.de/2014/02/27/why-screen-reader-detection-on-the-web-is-a-bad-thing/"
+  target="_blank">Warum Screen Reader-Erkennung im Web eine schlechte Sache ist</a>

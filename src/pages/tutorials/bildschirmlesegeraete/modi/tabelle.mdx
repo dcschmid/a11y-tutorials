@@ -1,0 +1,30 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Tabellenmodus'
+---
+
+## Multidirektionale Navigation
+
+Bildschirmlesegeräte ermöglichen es den Nutzern, in jeder Richtung durch Tabellen
+zu navigieren: rechts, unten, links und oben. Wenn du die richtigen Tasten drückst,
+kannst du ähnlich wie in einer Tabellenkalkulation durch die Zellen navigieren.
+Alle Windows-Bildschirmleser verwenden Strg + Alt + Pfeiltasten für die Tabellennavigation;
+unter macOS sind es Strg + Option + Pfeiltasten.
+
+## Tabellenüberschriften
+
+Während du von Zelle zu Zelle navigierst, liest der Screenreader die Tabellenüberschriften
+(falls vorhanden) für diese Zelle. Bei den Überschriften kann es sich um Zeilenköpfe,
+Spaltenköpfe, Zeilengruppenüberschriften oder Spaltengruppenüberschriften handeln.
+Wenn der Bildschirmleser nur den Inhalt der Zelle liest, bedeutet das wahrscheinlich,
+dass das Markup in der Datentabelle nicht korrekt ist.
+
+Beachte:
+
+Bildschirmlesegeräte lesen in der Regel nur die neuen Kopfzeileninformationen.
+Wenn du über eine Zeile navigierst, liest das Lesegerät den Zeilenkopf in der
+ersten Zelle, aber nicht in den folgenden Zellen. Es liest jedoch die entsprechenden
+Spaltenüberschriften, da diese neue Informationen darstellen. Wenn du also hörst,
+dass nur eine der Überschriften gelesen wird, obwohl du denkst, dass es zwei sein
+sollten, ist das wahrscheinlich der Grund dafür (es sei denn, du hast beide
+Überschriften im HTML-Code nicht richtig markiert).

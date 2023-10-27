@@ -1,0 +1,52 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Keine Maus, nur Tastatur'
+---
+
+## Blinde Benutzer von Bildschirmlesegeräten benutzen nur die Tastatur
+
+Von wenigen Ausnahmen abgesehen, benutzen blinde Menschen nur die Tastatur. Warum
+benutzen blinde Menschen keine Maus? Weil sie nicht sehen können, wo der Mauszeiger
+ist. Eine Maus dient der visuellen räumlichen Navigation, und da blinde Menschen
+keine oder nur geringe visuelle Fähigkeiten haben, ist eine Maus für sie einfach
+nicht sehr nützlich. Sie benutzen stattdessen die Tastatur.
+
+Allerdings gibt es Gruppen von Menschen, die eine Maus mit einem Bildschirmlesegerät
+benutzen können, z. B. Menschen mit Sehschwäche oder Leseschwäche. Doch die größte
+Gruppe von Screenreadernutzern - die blinden Nutzer - verwendet ausschließlich eine
+Tastatur.
+
+## Alles muss tastaturtauglich sein
+
+Für Entwickler bedeutet das, dass alle Funktionen und Steuerelemente über die
+Tastatur zugänglich sein müssen. Für die Barrierefreiheit über die Tastatur
+sind mehrere Dinge erforderlich. Hier sind einige der wichtigsten Punkte:
+
+- Die Benutzer/innen müssen mit der Tabulatortaste auf alle Steuerelemente (Links,
+  Schaltflächen, Formularelemente usw.) zugreifen können.
+
+- Die Benutzer müssen alle Links mit der Eingabetaste aktivieren können.
+
+- Die Nutzer müssen alle Schaltflächen mit der Eingabetaste und der Leertaste
+  aktivieren können.
+
+- Für Mausbewegungen müssen entsprechende Tastatur-Ereignis-Handler vorhanden sein.
+
+- Wenn Elemente für sehende Benutzer ausgeblendet sind (z. B. Dropdown-Menüs),
+  dürfen die Benutzer nicht mit der Tabulatortaste zu den ausgeblendeten Elementen
+  wechseln können (sie müssen für die Tastatur nicht verfügbar sein, bis sie vom
+  Benutzer oder vom Skript aktiviert werden).
+
+- Wenn ein Popup-Dialog erscheint, muss der Tastaturfokus auf den Dialog gesetzt
+  werden. Wenn das Dialogfeld geschlossen wird, muss der Fokus wieder auf das
+  ursprüngliche Steuerelement gesetzt werden, das es aktiviert hat (oder auf eine
+  andere logische Position, wenn das Steuerelement nicht mehr verfügbar ist oder
+  nicht die beste Position ist).
+
+- Benutzerdefinierte JavaScript-Widgets sollten sich an die <a href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+  target="_blank">ARIA Authoring Practices</a> für das Tastaturverhalten halten.
+
+- Seiten dürfen keine Tastaturfallen haben (Nutzer/innen müssen in alle
+  JavaScript-Widgets ein- und aussteigen können).
+
+- Die Tabulator-Reihenfolge der Steuerelemente muss logisch sein.

@@ -1,0 +1,64 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Mit der Tabulatortaste durch fokussierbare Elemente navigieren'
+---
+
+## Fokussierbare Elemente
+
+Eine der schnellsten Methoden, um zu den Elementen auf einer Seite zu gelangen,
+ist die Tabulatortaste oder die Tastenkombination Umschalt + Tab, um rückwärts zu
+gehen. Aktionsfähige Elemente sind:
+
+- Links
+
+- Formular-Elemente
+
+- ARIA-Komponenten
+
+- Alle Elemente mit tabindex="0"
+
+Wenn du mit der Tabulatortaste herumfährst, liest der Screenreader den Text für
+jeden Link, die Labels für Formularelemente, die Labels für fokussierbare
+ARIA-Steuerelemente und den Text für alles mit tabindex="0" vor. Achte darauf,
+dass der Linktext und die Labels einen Sinn ergeben, wenn sie aus dem Zusammenhang
+gerissen werden. Links oder Labels, die "mehr", "mehr lesen" oder "hier klicken"
+sagen, ergeben außerhalb des Kontexts keinen Sinn.
+
+Beachte:
+
+Wenn du nur mit der Tabulatortaste durch den Inhalt blätterst, überspringst du
+alle nicht fokussierbaren Inhalte. Benutzer von Bildschirmlesegeräten verwenden
+andere Methoden, um den Rest des Inhalts zu lesen (z. B. die Pfeiltaste nach
+unten bei der Verwendung von JAWS oder NVDA).
+
+## Die Tabulatortaste auf mobilen Geräten
+
+Auf mobilen Geräten gibt es keine exakte Entsprechung für die Navigation mit der
+Tabulatortaste, es sei denn, du schließt eine externe Tastatur an. Das nächste
+Äquivalent zur Navigation mit der Tabulatortaste unter iOS oder Android im Touch-Modus
+ist die Navigation über Links oder über Formularsteuerelemente.
+
+Um in iOS mit VoiceOver über Links zu navigieren, aktivierst du den Rotor, indem
+du zwei Finger auf den Touchscreen legst und sie drehst, bis "Links" ausgewählt
+ist, und dann auf dem Bildschirm nach unten wischst, um zum nächsten Link zu gehen,
+oder nach oben wischst, um zum vorherigen Link zu gehen. Um mit TalkBack durch
+die Links zu navigieren, wischst du auf dem Bildschirm wiederholt nach oben und
+dann nach unten (oder nach unten und dann nach oben), bis "Links" ausgewählt ist,
+und wischst dann nach unten, um zum nächsten Link zu gehen, oder nach oben, um
+zum vorherigen Link zu gehen.
+
+Um in iOS mit VoiceOver durch Formularfelder zu navigieren, aktiviere den Rotor,
+indem du zwei Finger auf den Touchscreen legst und sie drehst, bis "Formularfelder"
+ausgewählt ist. Um mit TalkBack über Links zu navigieren, wische auf dem
+Bildschirm wiederholt nach oben und dann nach unten (oder wische nach unten und dann
+nach oben), um durch die Lesesteuerungen zu gehen, bis "Steuerungen" ausgewählt ist,
+und wische dann nach unten, um zur nächsten Formularsteuerung zu gehen, oder wische
+nach oben, um zur vorherigen Formularsteuerung zu gehen.
+
+Um auf einem mobilen Gerät zu ARIA-Komponenten und anderen fokussierbaren Elementen
+zu navigieren, bei denen es sich nicht um Links oder Formularsteuerelemente handelt,
+musst du durch alle Elemente navigieren (nicht nur durch die fokussierbaren), indem
+du nach rechts wischst, um zum nächsten Element zu gelangen, oder nach links wischst,
+um zum vorherigen Element zu gelangen. Das ist weniger effizient als die Verwendung
+der Tabulatortaste auf einem Gerät mit voller Größe - weil du nicht über Absätze,
+Divs, Spans usw. hinweg springen kannst -, aber es funktioniert.

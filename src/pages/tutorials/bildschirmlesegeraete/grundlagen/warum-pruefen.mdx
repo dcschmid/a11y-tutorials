@@ -1,0 +1,87 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Warum mit Screen Readern testen?'
+---
+
+## Menschen brauchen Zugang zu Bildschirmlesern
+
+Der wichtigste Grund, mit Screenreadern zu testen, ist, dass echte Menschen Zugang
+zu Screenreadern brauchen. Verliere dieses Ziel nicht aus den Augen. Die
+Barrierefreiheit von Bildschirmlesegeräten ist eine technische Anforderung, aber
+wir tun es, um den Menschen zu helfen, die sich darauf verlassen, dass wir unsere
+Arbeit als Entwickler/innen, Designer/innen und Tester/innen machen, damit sie auf
+ihre Computer zugreifen können.
+
+## Automatisierte Tools für Barrierefreiheit können nicht alle Probleme aufspüren
+
+Automatisierte Barrierefreiheits-Tools können viele Barrierefreiheitsprobleme in
+Webinhalten finden, z. B. Bilder ohne Alt-Text, Formulareingabeelemente ohne
+Label und vieles mehr. Automatisierte Werkzeuge für die Barrierefreiheit sind
+ein wertvoller Teil des gesamten Arbeitsablaufs für die Entwicklung und
+Qualitätssicherung von Barrierefreiheit.
+
+Dennoch können automatisierte Tools nicht alle potenziellen Probleme mit der
+Barrierefreiheit aufspüren. Es gibt bestimmte Arten von Problemen, die von
+automatischen Werkzeugen nur schwer erkannt werden können, z. B:
+
+- Qualität und Genauigkeit: Ein ungenauer oder qualitativ schlechter Alt-Text
+  ist nicht besser als ein fehlender Alt-Text. Automatisierte Tools können dir nur
+  sagen, ob ein Bild einen Alt-Text hat. Sie können dir nicht sagen, ob der
+  Alt-Text korrekt oder aussagekräftig ist. Das Gleiche gilt für Text-Labels für
+  Formularelemente, Bildunterschriften in Tabellen, Überschriften in Datentabellen
+  usw.
+
+- Tastaturfokusmuster: Automatisierte Tools können nicht zuverlässig bestimmen,
+  wo der Tastaturfokus zu einem bestimmten Zeitpunkt liegen sollte. Wenn ein
+  Benutzer auf eine Schaltfläche klickt, sollte der Fokus an ein logisches Ziel
+  gehen - z. B. ein Dialogfeld oder eine Fehlermeldung -, aber es ist für ein
+  automatisiertes Werkzeug unmöglich zu wissen, wo der Fokus liegen sollte.
+
+- Benutzerdefinierte Widgets: Bei benutzerdefinierten Widgets wie Dialogen, Karussells
+  und Akkordeon-Menüs gibt es keine Möglichkeit für ein automatisiertes Tool, alle
+  Möglichkeiten zu erkennen, sie falsch zu erstellen, vor allem wenn es um
+  Tastaturinteraktionsmuster geht. Im besten Fall kann ein automatisiertes Tool
+  erkennen, wann ein Widget korrekt erstellt wurde, indem es die Namen, Rollen,
+  Werte und Tastaturfokusmuster des Widgets mit dem Dokument ARIA 1.1 Authoring
+  Practices opens in a new window vergleicht. Selbst das ist schwierig.
+
+Es ist schwierig, den Prozentsatz der Barrierefreiheit zu schätzen, den automatisierte
+Tools finden können - vor allem, weil jede Website anders ist -, aber die Schätzung
+liegt in der Regel zwischen 30% und 50%. Je komplexer die Website in Bezug auf
+Skripte und benutzerdefinierte Widgets ist, desto niedriger fällt die Schätzung
+aus. Automatisierte Tools haben ihre Berechtigung, aber du kannst dich nicht
+darauf verlassen, dass sie dir die ganze Arbeit abnehmen.
+
+## Benutzerdefinierte Widgets mit JavaScript und ARIA erfordern Screenreader-Tests
+
+Der einzige Weg, um herauszufinden, ob ein benutzerdefiniertes Widget mit einem
+Screenreader funktioniert, ist, es mit einem Screenreader zu testen. Das gilt
+vor allem dann, wenn du versuchst, ARIA-Widgets gemäß den ARIA 1.1-Authoring
+Practices zu implementieren Öffnet in einem neuen Fenster. Ein schlecht
+implementiertes ARIA-Widget kann eine Katastrophe für die Barrierefreiheit sein.
+Auch wenn der Zweck von ARIA darin besteht, die Barrierefreiheit zu verbessern,
+bietet ARIA genug Möglichkeiten, um die Barrierefreiheit komplett zu zerstören,
+wenn es unsachgemäß eingesetzt wird. Das wäre zwar etwas übertrieben, aber dennoch
+lassen sich Schwachstellen in deinen ARIA-Techniken am besten durch Tests mit
+einem Screenreader aufdecken.
+
+## Screenreader-Marken sind nicht gleich
+
+Wenn du die Barrierefreiheit von statischem HTML - also Absätze, Listen, Überschriften,
+Orientierungspunkte und Bilder - testest, reicht es in der Regel aus, nur mit
+einem Screenreader zu testen, und es ist egal, welchen Screenreader du wählst.
+Sie alle sind in der Lage, diese Art von Inhalten darzustellen. Manchmal geben
+sie sie unterschiedlich wieder, aber das sind stilistische Unterschiede, die
+nicht viel ausmachen.
+
+Wenn du dynamische Inhalte testest, wie z. B. benutzerdefinierte JavaScript-Widgets
+und Formularvalidierung, ist es wichtig, mit mindestens zwei Screenreadern zu testen,
+denn es kann feine Unterschiede in der Art und Weise geben, wie sie mit den dynamischen
+Inhalten umgehen. Manchmal gibt es sogar drastische Unterschiede oder Fehler in einem
+der Screenreader, die unbedingt berücksichtigt werden müssen. In der Regel handelt
+es sich bei den Unterschieden um die Unterstützung eines bestimmten ARIA-Attributs
+oder einer bestimmten Methode und nicht um echte Fehler, aber auch hier gibt es Bugs.
+
+Die Unterstützung für ARIA in den verschiedenen Screenreadern ist recht gut, aber
+sie entwickelt sich noch weiter. Leider unterstützt keiner der Screenreader die
+ARIA-Spezifikation zu 100 %, aber sie kommen ihr relativ nahe.

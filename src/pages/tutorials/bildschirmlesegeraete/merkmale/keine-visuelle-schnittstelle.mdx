@@ -1,0 +1,123 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Keine visuelle Schnittstelle'
+---
+
+import { Image } from 'astro:assets'
+import VoiceOverCaptions from './images/voiceover-outline-captions.png'
+
+## Bildschirmlesegeräte interagieren unsichtbar mit anderer Software
+
+Bildschirmlesegeräte sind in erster Linie für blinde Nutzerinnen und Nutzer gedacht,
+daher gibt es keinen großen Grund für eine grafische Benutzeroberfläche. Du
+schaltest ein Bildschirmlesegerät ein und es beginnt, den Inhalt und/oder die
+Oberfläche der Anwendung vorzulesen, die gerade im Fokus des Betriebssystems ist.
+Es gibt kein sichtbares Menü mit Aktionen, die du mit dem Bildschirmleser
+durchführen kannst, und keine sichtbaren Schaltflächen, auf die du klicken musst.
+Du interagierst direkt mit der anderen Software - z. B. mit dem Webbrowser - und
+nicht mit einer Schnittstelle, die mit dem Bildschirmlesegerät verbunden ist.
+
+Bildschirmlesegeräte haben Konfigurationsoptionen und Einstellungen, die du ändern
+kannst, und es gibt eine visuelle Schnittstelle, um diese Anpassungen vorzunehmen,
+aber es gibt keine visuelle Schnittstelle für die Interaktion mit einem Webbrowser,
+außer dem Webbrowser selbst.
+
+Das Fehlen einer visuellen Schnittstelle kann für sehende Nutzerinnen und Nutzer
+anfangs verwirrend sein, aber mit ein wenig Übung gewöhnst du dich daran.
+
+## Du musst Tastaturkürzel verwenden
+
+Um ein Bildschirmlesegerät zu benutzen, musst du einige grundlegende Tastenkombinationen
+verwenden. Jedes Bildschirmlesegerät hat andere Tastenkombinationen, und die Liste
+der verfügbaren Tasten ist lang - viel zu lang, um sie auswendig zu lernen. Die
+gute Nachricht ist, dass du für die meisten Dinge mit nur ein paar Tastenkombinationen
+auskommst. Wenn du zum Beispiel Narrator verwendest, solltest du mindestens die
+folgenden Tastenkombinationen kennen:
+
+<table>
+  <caption>Grundlegende Tastaturkürzel für Narrator</caption>
+  <thead>
+    <tr>
+      <th>Aktion</th>
+      <th>Tastendruck</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Aktion'>Ein/Ausschalten</td>
+      <td data-label='Tastendruck'>Windows-Taste + Strg + Enter</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Hör auf zu reden</td>
+      <td data-label='Tastendruck'>Steuerung</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Nächster Eintrag</td>
+      <td data-label='Tastendruck'>Feststelltaste + Pfeil nach rechts</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Vorheriger Eintrag</td>
+      <td data-label='Tastendruck'>Feststelltaste + Pfeil nach links</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Nächstes fokussierbares Element</td>
+      <td data-label='Tastendruck'>Tab</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Vorheriges fokussierbares Element</td>
+      <td data-label='Tastendruck'>Umschalttaste + Tabulator</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Scanmodus ein-/ausschalten</td>
+      <td data-label='Tastendruck'>Feststelltaste + Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Nächste Überschrift</td>
+      <td data-label='Tastendruck'>H (im Scan-Modus)</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Vorherige Überschrift</td>
+      <td data-label='Tastendruck'>Shift + H (im Scan-Modus)</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Nächster Orientierungspunkt/Region</td>
+      <td data-label='Tastendruck'>D (im Scan-Modus)</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Vorheriger Orientierungspunkt/Region</td>
+      <td data-label='Tastendruck'>Shift + D (im Scan-Modus)</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>In Tabellenzellen navigieren</td>
+      <td data-label='Tastendruck'>Strg + Alt + Pfeiltasten</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Aktiviere einen Link</td>
+      <td data-label='Tastendruck'>Enter</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Aktiviere einen Button</td>
+      <td data-label='Tastendruck'>Enter oder Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label='Aktion'>Öffnen und Navigieren in einer Auswahlliste</td>
+      <td data-label='Tastendruck'>Alt + Pfeil nach unten, dann Pfeil nach unten/oben</td>
+    </tr>
+  </tbody>
+</table>
+
+Mit diesen grundlegenden Tastenanschlägen kannst du die meisten wichtigen Dinge
+tun, die du beim Testen der Barrierefreiheit von Webinhalten tun musst.
+
+## Einige Screenreader haben visuelle Hilfen
+
+Obwohl es keine visuellen Menüs gibt, zeigen einige Screenreader - wie Narrator,
+VoiceOver und TalkBack - einen visuellen Umriss um das Element an, das gerade im
+Fokus ist. Der Umriss hilft sehenden Nutzern, vor allem solchen mit Sehschwäche.
+
+VoiceOver unter macOS zeigt auch Bildunterschriften zu dem an, was der Screenreader
+sagt. Die Bildunterschriften ermöglichen es dir, mit einem Bildschirmlesegerät zu
+testen, auch wenn die Lautstärke deines Computers heruntergedreht ist, was besonders
+an öffentlichen Orten praktisch sein kann.
+
+<Image src={VoiceOverCaptions} alt='' />

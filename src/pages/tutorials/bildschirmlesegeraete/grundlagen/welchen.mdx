@@ -1,0 +1,128 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Mit welchen Screenreadern solltest du testen?'
+---
+
+import { Image } from 'astro:assets'
+import SpeechViewer from './images/nvda-speech-viewer.png'
+
+## Kombination 1: Firefox und NVDA, oder Chrome und NVDA, oder Edge und NVDA
+
+Die zweitbeliebteste Kombination aus Screenreader und Browser ist NVDA und Firefox.
+Wenn man die Nutzung von NVDA mit anderen Browsern und von JAWS mit anderen Browsern
+als Chrome mit einbezieht, sind NVDA und JAWS zum Zeitpunkt der Erstellung dieses
+Berichts in etwa gleich häufig als primäres Bildschirmlesegerät verwendet worden.
+Die Nutzung von NVDA hat in den letzten Jahren im Vergleich zu JAWS zugenommen.
+Der zweitbeliebteste Browser, der mit NVDA verwendet wird, ist Chrome, und NVDA
+funktioniert sowohl mit Chrome als auch mit Firefox gut. Da die neueste Version
+des Edge-Browsers auf demselben Chromium-Browser basiert wie Chrome, ist Edge
+auch mit den Bildschirmlesegeräten kompatibel, die für Chrome entwickelt wurden,
+nämlich NVDA und JAWS.
+
+NVDA stellt ein nützliches Tool namens Speech Viewer zur Verfügung, das weiter
+unten auf dieser Seite beschrieben wird und mit dem diejenigen, die die Seite
+testen, die Ausgabe des Bildschirmlesegeräts leicht einsehen und Fehler erkennen
+können. Das macht die Kombination von NVDA mit Firefox oder Chrome sehr nützlich.
+
+## Kombination 2: Chrome und JAWS, oder Edge und JAWS
+
+Die beliebteste Kombination aus Screenreader und Browser ist derzeit JAWS und
+Chrome. Früher funktionierte JAWS am besten mit dem Internet Explorer, der viele
+Jahre lang die beliebteste Kombination war. Inzwischen wurde JAWS so aktualisiert,
+dass es vor allem mit der Barrierefreiheit-API von Chrome zusammenarbeitet, und
+dieser Browser ist jetzt der kompatibelste Browser für JAWS, zusammen mit dem
+Edge-Browser, der jetzt auch mit Chrome kompatibel ist, wie unter Kombinationen
+von NVDA und seinen kompatiblen Browsern beschrieben.
+
+Auch wenn die Kombination aus JAWS und Internet Explorer nicht mehr die am
+häufigsten verwendete ist und die Vorteile der UI-Automatisierung nicht voll
+ausschöpft, ist es dennoch wichtig, sicherzustellen, dass Webinhalte in IE und
+JAWS wie erwartet funktionieren, da ein erheblicher Prozentsatz der Nutzer diese
+Kombination immer noch verwendet.
+
+Beachte: Sei dir darüber im Klaren, dass JAWS manchmal versucht, das Benutzererlebnis
+zu verbessern, indem es bestimmte Dinge errät, wie z. B. Formular-Labels. Wenn bei
+einer Formulareingabe ein programmatisches Label fehlt, aber ein Text daneben steht,
+der als Label interpretiert werden könnte, liest JAWS diesen Text so, als ob es sich
+um ein Label handeln würde. Normalerweise rät JAWS recht gut. Gelegentlich rät JAWS
+falsch, aber die eigentliche Gefahr für die Tester besteht darin, dass sie annehmen,
+dass das Formularfeld ein Label hat, obwohl es in Wirklichkeit keines hat. Wenn es
+sich richtig anhört, kann das bedeuten, dass der Code richtig ist, oder auch nicht,
+und der Prüfer wird den Code wahrscheinlich nicht noch einmal überprüfen.
+
+## Mobil
+
+Es ist wichtig, sowohl mit VoiceOver mit Safari (iOS) als auch mit TalkBack mit
+Chrome (Android) zu testen, da viele Nutzer beide Produkte besitzen und sich die
+beiden Programme in ihrem Umfang und ihren Fähigkeiten unterscheiden. VoiceOver
+hat in der Regel mehr Möglichkeiten als TalkBack, deshalb ist es wichtig, Websites
+für beide Medien zugänglich zu machen.
+
+## Andere Browser und Screenreader
+
+Für die meisten Websites kann man mit ziemlicher Sicherheit sagen, dass das Testen
+und Beheben von Problemen mit der Barrierefreiheit in Firefox/NVDA und Chrome/JAWS
+ausreicht, um die meisten potenziellen Probleme mit der Barrierefreiheit zu finden.
+In der Praxis reicht eine Kombination aus Screenreader und Browser fast immer aus,
+um nicht-interaktive Standardinhalte wie Absätze, Bilder, Tabellen, Überschriften,
+Orientierungspunkte, Formularstrukturen, Links usw. zu testen.
+
+Interaktive Inhalte - wie Formularvalidierung und benutzerdefinierte
+JavaScript/ARIA-Widgets - können schwieriger sein, weil hier die Unterschiede
+zwischen Screenreadern und Browsern (einschließlich Bugs oder fehlender
+Barrierefreiheit für bestimmte Techniken) am ehesten auftreten. Es lohnt sich,
+interaktive Inhalte in mehreren Screenreader- und Browserkombinationen zu testen.
+
+### Verbreitung von Bildschirmlesern
+
+Bei der Entscheidung, mit welchen anderen Screenreadern getestet werden soll,
+kann es hilfreich sein, zu wissen, welche Screenreader am beliebtesten sind.
+Wissenschaftliche Daten über die Nutzung von Screenreadern sind nicht ohne
+Weiteres verfügbar, aber WebAIM veröffentlicht regelmäßig eine Screenreader-Umfrage,
+die zwar nicht wissenschaftlich ist, aber de facto als Maßstab für
+Screenreader-Informationen gilt. Die aktuellste (zum Zeitpunkt der Erstellung
+dieser Seite) ist <a href="https://webaim.org/projects/screenreadersurvey9/"
+target="_blank">WebAIM's screen reader survey #9</a>. Die Ergebnisse der früheren
+Umfragen werden ebenfalls auf der WebAIM-Website veröffentlicht.
+
+Im Folgenden sind die Screenreader und Browser nach ihrer geschätzten Verbreitung
+unter blinden Nutzern aufgelistet:
+
+Desktop-Bildschirmleser: (Wenn nicht anders angegeben, ist das Betriebssystem Windows.)
+
+- JAWS mit Chrome
+
+- NVDA mit Firefox
+
+- NVDA mit Chrome
+
+- JAWS mit IE
+
+- VoiceOver mit Safari (macOS)
+
+- Narrator mit Edge
+
+Mobile Bildschirmleser:
+
+- VoiceOver mit Safari (iOS)
+
+- TalkBack mit Chrome (Android)
+
+Hinweis: Einige Bildschirmlesegeräte unterstützen bis zu einem gewissen Grad
+mehrere Browser, aber alle Bildschirmlesegeräte funktionieren am besten, wenn
+sie mit dem von ihnen bevorzugten Browser gekoppelt sind (gemäß den Listen oben).
+Die Verwendung von JAWS mit Edge funktioniert zum Beispiel für einige Dinge,
+ist aber nicht so stabil wie die Verwendung von JAWS mit Chrome und führt nicht
+zu einem so genauen Test der Barrierefreiheit.
+
+## Erfassen der Bildschirmleserausgabe mit NVDA
+
+Der NVDA Speech Viewer bietet eine einfache Möglichkeit, Ausgaben zu erfassen,
+die kopiert und in Bug-Tickets oder andere Berichte eingefügt werden können. Um
+den Speech Viewer zu aktivieren, aktiviere das NVDA-Symbol in der Taskleiste und
+wähle dann Extras > Speech Viewer.
+
+Der NVDA Speech Viewer ist im folgenden Screenshot zu sehen. Er zeigt die Ausgabe,
+während der Nutzer durch die Microsoft Homepage navigiert.
+
+<Image src={SpeechViewer} alt='' />

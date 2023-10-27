@@ -1,0 +1,218 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Links'
+---
+
+import { Image } from 'astro:assets'
+import JawsLinks from './images/jaws-list-of-links.png'
+import JawsLinksAlpha from './images/jaws-list-of-links-alpha.png'
+
+## Wie Bildschirmleser Links behandeln
+
+- Unbesuchte Links: Screenreader sagen normalerweise "Link" und lesen dann den Linktext.
+
+- Besuchte Links: Wenn der Nutzer das Ziel des Links bereits besucht hat, sagen einige
+  Bildschirmlesegeräte "besuchter Link", gefolgt vom Linktext. Andere sagen nur
+  "Link".
+
+## Gute Praktiken für Linktext
+
+- Links müssen einen Linktext haben. Das kann ein Problem sein, wenn Hintergrundbilder
+  als einziger Inhalt eines Links verwendet werden. Füge in solchen Fällen
+  aria-label="[füge hier deinen Linktext ein]" zum Link-Element hinzu oder verwende
+  CSS, um visuell verborgenen Text hinzuzufügen (z. B. mit der CSS-Clip-Methode).
+
+- Beschreibe den Linktext so, dass er auch ohne Kontext einen Sinn ergibt (vermeide
+  "hier klicken", "hier", "mehr", "mehr lesen" oder ähnliches).
+
+- Sage nicht "Link" im Linktext. Screenreader sagen das bereits!
+
+- Verwende eine einheitliche Benennung der Links. Wenn zwei Links auf der gleichen
+  Seite zum gleichen Ziel führen, sollten sie den gleichen Linktext haben. Ebenso
+  sollten Links, die zu unterschiedlichen Zielen führen, unterschiedliche Linktexte
+  haben.
+
+## Durch alle fokussierbaren Elemente navigieren
+
+Die Tabulatortaste: Die wohl gebräuchlichste Methode, um durch die Links auf der
+Seite zu navigieren, ist die Tabulatortaste (oder Umschalt + Tab, um rückwärts
+zu gehen), wodurch der Fokus auf jedem fokussierbaren Element landet, egal ob es
+sich um einen Link, eine Schaltfläche, ein Formularelement oder ein benutzerdefiniertes
+Steuerelement handelt. Wenn du dich nur für Links interessierst, ist das nicht
+die beste Methode, aber sie funktioniert, wenn du ein paar zusätzliche Tastenanschläge
+in Kauf nimmst, um an den anderen fokussierbaren Elementen vorbeizukommen.
+
+## Alle Links auflisten
+
+<table>
+  <caption>Alle Links auflisten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>Einfügen + F7</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>Einfügen + F7 (um die Elementliste anzuzeigen), dann wähle Links</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>
+        Strg + Option + U (um den Rotor zu öffnen), dann benutze die Pfeile nach links oder rechts,
+        um Links auszuwählen
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Feststelltaste + F7</td>
+    </tr>
+  </tbody>
+</table>
+
+### Beispiel
+
+Mit der Taste Einfügen + F7 in JAWS kannst du eine Liste mit allen Links auf der
+Seite aufrufen.
+
+<Image src={JawsLinks} alt='' />
+
+Die Benutzer können wählen, ob sie alle Links, nur besuchte Links oder nur nicht
+besuchte Links sehen möchten. Diese Liste kann in der Reihenfolge sortiert werden,
+in der sie auf der Seite erscheinen, "In Tab Order", wie JAWS sagt, oder die Liste
+kann alphabetisch sortiert werden.
+
+<Image src={JawsLinksAlpha} alt='' />
+
+## Navigiere von einem Link zum nächsten
+
+<table>
+  <caption>Navigiere von einem Link zum nächsten</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>K</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>
+        Benutze den Rotor, um Links auszuwählen (drehe deine Finger auf dem Bildschirm nach links
+        oder rechts), dann wische mit einem Finger nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>
+        Wische wiederholt nach oben und dann nach unten (oder wische nach unten und dann nach oben),
+        um die Lesekontrollen zu durchlaufen, bis "Links" ausgewählt ist, dann wische nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Befehl + L</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>K (in Scan Mode only)</td>
+    </tr>
+  </tbody>
+</table>
+
+## Navigiere nur durch nicht besuchte Links
+
+<table>
+  <caption>Navigiere nur durch nicht besuchte Links</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>U</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='befehl'>U</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>
+
+## Nur durch besuchte Links navigieren
+
+<table>
+  <caption>Nur durch besuchte Links navigieren</caption>
+  <thead>
+    <tr>
+      <th>Screen Reader & Browser</th>
+      <th>Befehl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Screen Reader & Browser'>JAWS mit Chrome, Edge, Firefox, IE</td>
+      <td data-label='Befehl'>V</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>NVDA mit Firefox, Chrome, Edge</td>
+      <td data-label='Befehl'>V</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (iOS)</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>TalkBack mit Chrome, Firefox</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>VoiceOver mit Safari (macOS)</td>
+      <td data-label='Befehl'>Steuerung + Option + Befehl + V</td>
+    </tr>
+    <tr>
+      <td data-label='Screen Reader & Browser'>Narrator mit Edge</td>
+      <td data-label='Befehl'>Nicht verfügbar</td>
+    </tr>
+  </tbody>
+</table>

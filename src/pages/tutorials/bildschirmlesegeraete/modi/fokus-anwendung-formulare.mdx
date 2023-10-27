@@ -1,0 +1,107 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Fokus, Anwendung und Formularmodus'
+---
+
+## Fokusmodus
+
+Der Fokusmodus in Bildschirmlesegeräten ist ein Modus, der es den Nutzern nur
+erlaubt, zu fokussierbaren Elementen zu navigieren. Die Tastaturkürzel des
+Bildschirmlesegeräts können nicht verwendet werden, um zu semantischen Elementen
+(Überschriften, Orientierungspunkte, Tabellen, Links usw.) zu navigieren. Bei
+Bildschirmlesegeräten wie NVDA und JAWS können die Nutzer/innen zwischen dem
+Fokusmodus und dem Dokument- oder Lesemodus wechseln. Bildschirmlesegeräte schalten
+automatisch in den Fokusmodus um, wenn sie sich in Anwendungsbereichen befinden.
+
+## Anwendungsmodus
+
+Entwickler/innen können den Anwendungsmodus aufrufen, indem sie einem JavaScript-Widget
+die role="application" zuweisen. Der Zweck des Anwendungsmodus ist es, Webentwicklern
+die Möglichkeit zu geben, alle Tastaturfunktionen zu implementieren, die sie benötigen,
+um die Anwendung zum Laufen zu bringen. Der Anwendungsmodus deaktiviert fast alle
+regulären Tastenkombinationen im Screenreader und gibt Webentwicklern eine weiße
+Weste. Sie können nach Belieben neue Tastenkombinationen erstellen und Tastaturtechniken
+für den Zugriff auf und die Nutzung der Anwendung selbst implementieren.
+
+Anwendungsregionen sollten, wenn überhaupt, nur sparsam verwendet werden, da sie
+die normalen Verhaltensweisen und Optionen des Screenreaders außer Kraft setzen.
+
+### Regulärer Text im Anwendungsmodus ist nicht lesbar
+
+Einer der wichtigsten Nachteile des Anwendungsmodus ist, dass normaler (nicht
+fokussierbarer) Text nicht lesbar ist. Nur die fokussierbaren Elemente - und die
+dazugehörigen Labels und Beschreibungen - können gelesen werden. Um sicherzustellen,
+dass der Text innerhalb einer Anwendung für Screenreader-Nutzer lesbar ist, gibt
+es zwei Haupttechniken:
+
+- Verknüpfe den Text mit fokussierbaren Elementen mit aria-label oder aria-describedby
+
+- Der nicht fokussierbare Text wird mit role="document" in einen Dokumentbereich
+  eingeschlossen. Eine verschachtelte Dokumentregion innerhalb einer Anwendungsregion
+  ermöglicht es Screenreadernutzern, ihre gewohnten Tastenkombinationen innerhalb
+  des Dokumentregionsteils des Anwendungs-Widgets zu verwenden.
+
+### Halte die Anwendungsregion klein
+
+Wenn du eine Anwendungsregion verwendest, dann verwende sie nur für ein bestimmtes
+Widget und nur für den Teil des Widgets, der benutzerdefinierte Tastatur-Ereignishandler
+benötigt.
+
+## Formularmodus
+
+In einem Textfeld eines Formulars möchten die Benutzer/innen Text in das Formularfeld
+eingeben können. Bildschirmlesegeräte müssen alle Tastenkombinationen, die mit Buchstaben
+und Zahlen verbunden sind, deaktivieren, damit die Benutzer Text eingeben können.
+Wenn du zum Beispiel JAWS verwendest, führt dich die Taste H normalerweise zur
+nächsten Überschrift. Aber wenn du ein Formularfeld eingibst, willst du nicht zur
+nächsten Überschrift gehen. Um das zu ermöglichen, schaltet JAWS automatisch vom
+Dokument- in den Formularmodus um und deaktiviert die normalen Tastaturkürzel, damit
+du die Buchstaben und Zahlen eingeben kannst.
+
+Wenn du im Formularmodus in ein Textfeld eingibst, spricht das Bildschirmlesegerät
+den eingegebenen Buchstaben (z. B. "H") vor und ermöglicht die Eingabe des Zeichens.
+
+Bildschirmlesegeräte schalten in der Regel automatisch in den Formularmodus um,
+sobald du den Fokus auf ein Formularfeld setzt, indem du mit der Tabulatortaste
+hineinfährst. Der Formularmodus wird nicht aktiviert, wenn du den Inhalt eines
+Formulars im normalen Lesemodus oder im Dokumentmodus durchliest. Mit anderen
+Worten: Das `<form>`-Tag selbst löst den Formularmodus nicht aus. Um den Formularmodus
+auszulösen, musst du den Tastaturfokus auf ein Formularfeld setzen (ein `<input>`,
+ein `<select>`, eine `<textarea>`, ein Optionsfeld usw.).
+
+Bei einigen Bildschirmlesegeräten können die Benutzer/innen manuell zwischen dem
+Formular- und dem Dokumentenmodus umschalten. Bei NVDA zum Beispiel lautet die
+Tastenkombination Einfügen + Leertaste.
+
+### Nur fokussierbare Elemente und Labels sind bei Formulartabulatoren lesbar
+
+In einem Formular werden die meisten Nutzer die Tabulatortaste verwenden, um zwischen
+fokussierbaren Elementen zu navigieren. Wenn du mit der Tabulatortaste navigierst,
+landet der Fokus nicht auf nicht fokussierbarem Text, wie z. B. Absätzen, Span-Elementen,
+Überschriften, Div-Elementen usw. Da der Fokus nicht auf nicht fokussierbarem Text
+landet, können die Benutzer den Text im Formular, der nicht fokussierbar ist,
+komplett überspringen. Das gilt auch für Instruktionen, Formatierungshinweise und
+Überschriften, um Abschnitte des Formulars zu gruppieren. Die Benutzer/innen können
+zwar immer in den Lesemodus wechseln, um diese Dinge zu hören, aber die Wahrscheinlichkeit,
+dass sie das tun, sobald sie sich im Formular befinden, ist sehr gering. Du kannst
+dich nicht darauf verlassen, dass sie jemals nicht fokussierbaren Text in einem
+Formular hören werden.
+
+Die gute Nachricht ist, dass Bildschirmlesegeräte innerhalb von Formularen folgende
+Dinge lesen können:
+
+- Formular-Labels mit dem `<label>`-Tag.
+
+- Formular-Labels mit dem Attribut aria-label.
+
+- Formular-Labels mit dem Attribut aria-labelledby.
+
+- Text, der mit Formularfeldern mit dem Attribut aria-describedby verknüpft ist
+  (allerdings gibt es bei VoiceOver auf dem Mac eine lange Verzögerung, bevor
+  dieser Text gelesen wird).
+
+- Der Text im `<legend>` des `<fieldset>`.
+
+- Der Text innerhalb von Links.
+
+- Der Text in jedem Element mit tabindex="0".

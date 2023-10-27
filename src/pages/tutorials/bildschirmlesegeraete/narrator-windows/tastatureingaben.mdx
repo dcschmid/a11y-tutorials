@@ -1,0 +1,525 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Tastatureingaben und Berührungsgesten des Narrators'
+---
+
+Narrator ist der integrierte Bildschirmleser von Windows. Narrator gibt es schon lange, aber seit der
+Windows 10 Anniversary Edition ist Narrator deutlich ausgereifter und damit für blinde Nutzerinnen und
+Nutzer viel praktikabler als zuvor.
+
+Die wichtigsten Tastenkombinationen für das Navigieren im Web mit Narrator sind in den folgenden
+Tabellen aufgeführt.
+
+Beachte: Narrator funktioniert am besten mit Microsoft Edge. Wenn du versuchst, ihn mit einem anderen
+Browser zu benutzen, kann es sein, dass er für einige Dinge funktioniert, aber nicht so konsequent wie
+mit Edge.
+
+Hinweis: Standard- und Legacy-Tastaturlayouts: Narrator hat eine Standard-Tastaturbelegung, die in
+diesem Leitfaden verwendet wird. Es gibt auch eine Legacy-Tastaturbelegung, die einen anderen Satz von
+Tastenanschlägen verwendet, um die gleichen Aktionen auszuführen, die in der Standard-Tastaturbelegung
+möglich sind. Allerdings gibt es einige Aktionen, die in der neueren Standard-Tastaturbelegung hinzugefügt
+wurden und in der Legacy-Tastaturbelegung nicht verwendet werden können, wenn der für die neue Aktion
+zugewiesene Tastenanschlag mit einem Legacy-Tastenanschlag kollidiert. Im Anhang des <a
+href="https://support.microsoft.com/en-us/help/22806/windows-10-narrator-keyboard-commands-touch-gestures"
+target="_blank">offiziellen Narrator-Handbuchs von Microsoft</a> findest du eine Liste der
+Legacy-Tastaturbelegung.
+
+Narrator-Taste: Standardmäßig kann entweder die Feststelltaste oder die Einfügetaste als Narrator-Taste
+verwendet werden. In diesem Leitfaden wird sie als Feststelltaste bezeichnet.
+
+Narrator-Ansichten: Narrator hat verschiedene Navigationseinstellungen, die als Ansichten bezeichnet
+werden. Zu den Ansichtsarten gehören Elemente (Standard), Zeichen, Wörter, Zeilen, Absätze, Überschriften,
+Links, Tabellen und Orientierungspunkte. Du kannst die Ansichtsart mit Feststelltaste + Bild nach oben
+oder Feststelltaste + Bild nach unten (oder Feststelltaste + Steuerung + Pfeil nach oben oder
+Feststelltaste + Steuerung + Pfeil nach unten) ändern.
+
+Scan-Modus: Der Scan-Modus ermöglicht eine schnelle Navigation durch eine Webseite oder Anwendung und
+ermöglicht bestimmte Tastenanschläge, um nach Elementen wie Überschriften, Links und Orientierungspunkten
+zu navigieren. Er umfasst auch Tastenanschläge für die Tabellennavigation. Aktiviere den Scan-Modus
+mit Feststelltaste + Leertaste.
+
+Entwicklermodus: Der Entwicklermodus blendet den Bildschirm aus und hebt nur die Objekte und den Text
+hervor, die Narrator programmgesteuert angezeigt werden. Dies ermöglicht eine visuelle Darstellung der
+Barrierefreiheit der Informationen auf dem Bildschirm und dessen, was Narrator durch die UI-Automatisierung
+angezeigt wird.
+
+## Die Grundlagen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        An/Aus
+      </td>
+      <td data-label='Aufgabe'>Narrator einschalten</td>
+      <td data-label='Kommando'>Windows-Taste + Steuerung + Eingabe</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Narrator ausschalten</td>
+      <td data-label='Kommando'>Windows-Taste + Strg + Enter oder Feststelltaste + Escape</td>
+    </tr>
+    <tr>
+      <td rowspan='7' data-label='Thema'>
+        Lesen
+      </td>
+      <td data-label='Aufgabe'>Lesen beenden</td>
+      <td data-label='Kommando'>Steuerung</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Lies ab diesem Punkt kontinuierlich weiter</td>
+      <td data-label='Kommando'>
+        Feststelltaste + Pfeil nach unten oder Feststelltaste + Steuerung + R
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Vom Anfang der Seite aus lesen</td>
+      <td data-label='Kommando'>Feststelltaste + Steuerung + I</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes Element lesen</td>
+      <td data-label='Kommando'>Feststelltaste + Rechtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes fokussierbares Element lesen (z. B. Link, Schaltfläche)</td>
+      <td data-label='Kommando'>Tab</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Element lesen</td>
+      <td data-label='Kommando'>Feststelltaste + Tabulator</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Wiederhole die letzte Anweisung</td>
+      <td data-label='Kommando'>Feststelltaste + X</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Aktiviere
+      </td>
+      <td data-label='Aufgabe'>Link</td>
+      <td data-label='Kommando'>Feststelltaste + Eingabe</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Button</td>
+      <td data-label='Kommando'>Feststelltaste + Eingabe</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Überschriften
+      </td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Überschrift*</td>
+      <td data-label='Kommando'>H</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Gehe zur nächsten Überschrift der Ebene [1-6]*.</td>
+      <td data-label='Kommando'>1-6</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Alle Überschriften auflisten</td>
+      <td data-label='Kommando'>Feststelltaste + F6</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Landmarken
+      </td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Landmarke/Region*</td>
+      <td data-label='Kommando'>D</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zum Hauptinhalt der Region gehen*</td>
+      <td data-label='Kommando'>Feststelltaste + N</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Tabellen
+      </td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Tabelle*</td>
+      <td data-label='Kommando'>T</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>In Tabellenzellen navigieren</td>
+      <td data-label='Kommando'>
+        Strg + Alt + Pfeil nach unten oder Pfeil nach oben oder Pfeil nach links oder Pfeil nach
+        rechts
+      </td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Links
+      </td>
+      <td data-label='Aufgabe'>Alle Links auflisten</td>
+      <td data-label='Kommando'>Feststelltaste + F7</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Gehe zum nächsten Link*</td>
+      <td data-label='Kommando'>K</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Navigiere</td>
+      <td data-label='Aufgabe'>
+        Rotiere zwischen: Zeichen, Wörtern, Zeilen, Absätzen, Artikeln, Formularfelder,
+        Orientierungspunkte, Überschriften, Links und Tabellen
+      </td>
+      <td data-label='Kommando'>
+        Feststelltaste + Pfeil nach oben oder Feststelltaste + Pfeil nach unten oder Feststelltaste
+        \+ Steuerung + Pfeil nach oben oder Feststelltaste + Steuerung + Pfeil nach unten
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Toggle</td>
+      <td data-label='Aufgabe'>Entwickler-Modus</td>
+      <td data-label='Kommando'>Feststelltaste + Steuerung + F12</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Lesen</td>
+      <td data-label='Aufgabe'>Titel und Inhalt des FenstersTitel und Inhalt des Fensters</td>
+      <td data-label='Kommando'>Feststelltaste + W</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Geh rückwärts</td>
+      <td data-label='Aufgabe'>
+        Gehe zur vorherigen Überschrift, Landmarke, Tabelle, fokussierbaren Position usw.
+      </td>
+      <td data-label='Kommando'>Shift + [H, D, T, Tab, etc.]</td>
+    </tr>
+  </tbody>
+</table>
+
+## Text lesen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Zeile
+      </td>
+      <td data-label='Aufgabe'>Sprich vorherige Zeile</td>
+      <td data-label='Kommando'>Feststelltaste + U</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelle Zeile sagen</td>
+      <td data-label='Kommando'>Feststelltaste + I oder Feststelltaste + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Zeile sagen</td>
+      <td data-label='Kommando'>Feststelltaste + O</td>
+    </tr>
+    <tr>
+      <td rowspan='2' data-label='Thema'>
+        Dokument
+      </td>
+      <td data-label='Aufgabe'>Zum Anfang des Dokuments gehen</td>
+      <td data-label='Kommando'>Feststelltaste + B oder Feststelltaste + Steuerung + Home</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zum Ende des Dokuments gehen</td>
+      <td data-label='Kommando'>Feststelltaste + E oder Feststelltaste + Steuerung + Ende</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Charakter
+      </td>
+      <td data-label='Aufgabe'>Sprich vorheriges Zeichen</td>
+      <td data-label='Kommando'>Feststelltaste + M</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Zeichen sagen</td>
+      <td data-label='Kommando'>Feststelltaste + , (Komma)</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes Zeichen sagen</td>
+      <td data-label='Kommando'>Feststelltaste + . (Punkt)</td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Wort
+      </td>
+      <td data-label='Aufgabe'>Vorherige Wort sagen</td>
+      <td data-label='Kommando'>Feststelltaste + J oder Feststelltaste + Steuerung + Linkspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Wort sagen</td>
+      <td data-label='Kommando'>Feststelltaste + K oder Feststelltaste + Steuerung + 5 (Numpad)</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes Wort sagen</td>
+      <td data-label='Kommando'>
+        Feststelltaste + L oder Feststelltaste + Steuerung + Rechtspfeil
+      </td>
+    </tr>
+    <tr>
+      <td rowspan='3' data-label='Thema'>
+        Absatz
+      </td>
+      <td data-label='Aufgabe'>Vorherige Absatz</td>
+      <td data-label='Kommando'>Feststelltaste + Steuerung + J</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktueller Absatz</td>
+      <td data-label='Kommando'>Feststelltaste + Steuerung + K</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster Absatz</td>
+      <td data-label='Kommando'>Feststelltaste + Steuerung + L</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Buchstabieren</td>
+      <td data-label='Aufgabe'>Buchstabiere das Wort</td>
+      <td data-label='Kommando'>
+        Zweimal schnell: Feststelltaste + Tabulator oder Feststelltaste + K oder Feststelltaste + 5
+        (Numpad) oder Feststelltaste + Steuerung + 5 (Numpad)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Scan-Modus
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Thema'>Toggle</td>
+      <td data-label='Aufgabe'>Scan-Modus umschalten</td>
+      <td data-label='Kommando'>Feststelltaste + Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Primär</td>
+      <td data-label='Aufgabe'>Primäre Aktion (z. B. einen Gegenstand aktivieren)</td>
+      <td data-label='Kommando'>Eingabe oder Leertaste</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Sekundär</td>
+      <td data-label='Aufgabe'>Sekundäre Aktion (z. B. auswählen oder erweitern)</td>
+      <td data-label='Kommando'>Umschalt + Eingabe oder Umschalttaste + Leertaste</td>
+    </tr>
+    <tr>
+      <td rowspan='11' data-label='Thema'>
+        Nächste
+      </td>
+      <td data-label='Aufgabe'>Nächste/vorherige Zeile</td>
+      <td data-label='Kommando'>Steuerung + Pfeil nach unten / Steuerung + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes/vorheriges Zeichen</td>
+      <td data-label='Kommando'>Rechtspfeil / Linkspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes/vorheriges Wort</td>
+      <td data-label='Kommando'>Steuerung + Pfeil rechts / Steuerung + Pfeil links</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster/vorheriger Absatz</td>
+      <td data-label='Kommando'>P / Umschalttaste + P</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster/vorheriger Text oder Artikel</td>
+      <td data-label='Kommando'>Abwärtspfeil / Aufwärtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Überschrift</td>
+      <td data-label='Kommando'>H</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Überschrift der Ebene [1-6]</td>
+      <td data-label='Kommando'>1 - 6</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Tabelle</td>
+      <td data-label='Kommando'>T</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster Link</td>
+      <td data-label='Kommando'>K</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächste Landmarke</td>
+      <td data-label='Kommando'>D</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächstes Formularfeld</td>
+      <td data-label='Kommando'>F</td>
+    </tr>
+  </tbody>
+</table>
+
+## Tabellen
+
+<table>
+  <thead>
+    <tr>
+      <th>Thema</th>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Thema'>Tabelle</td>
+      <td data-label='Aufgabe'>Gehe zur nächsten Tabelle*</td>
+      <td data-label='Kommando'>T</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Zelle
+      </td>
+      <td data-label='Aufgabe'>Zelle nach rechts</td>
+      <td data-label='Kommando'>Steuerung + Alt + Rechtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle nach links</td>
+      <td data-label='Kommando'>Steuerung + Alt + Pfeil nach links</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle unten</td>
+      <td data-label='Kommando'>Steuerung + Alt + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Zelle oben</td>
+      <td data-label='Kommando'>Steuerung + Alt + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td rowspan='4' data-label='Thema'>
+        Lesen
+      </td>
+      <td data-label='Aufgabe'>Zeilenkopf lesen</td>
+      <td data-label='Kommando'>Strg + Shift + Alt + Pfeil nach links</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelle Zeile lesen</td>
+      <td data-label='Kommando'>Strg + Umschalt + Alt + Rechtspfeil</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Spaltenüberschrift lesen</td>
+      <td data-label='Kommando'>Steuerung + Umschalttaste + Alt + Pfeil nach oben</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelle Spalte lesen</td>
+      <td data-label='Kommando'>Strg + Shift + Alt + Pfeil nach unten</td>
+    </tr>
+    <tr>
+      <td data-label='Thema'>Ankündigen</td>
+      <td data-label='Aufgabe'>Standort in der Tabelle ankündigen</td>
+      <td data-label='Kommando'>
+        Strg + Umschalt + Alt + / (Schrägstrich) oder Strg + Umschalt + Alt + 5 (Numpad)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Touch-Gesten
+
+<table>
+  <thead>
+    <tr>
+      <th>Aufgabe</th>
+      <th>Kommando</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Aufgabe'>Lies, was unter deinem Finger ist</td>
+      <td data-label='Kommando'>Berühre oder ziehe einen einzelnen Finger</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Primäre Aktion aktivieren</td>
+      <td data-label='Kommando'>Doppeltippen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Sekundäre Aktion aktivieren</td>
+      <td data-label='Kommando'>Dreifachtippen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Schnelles doppeltes (oder dreifaches) Antippen</td>
+      <td data-label='Kommando'>
+        Mit einem Finger halten, mit einem anderen Finger irgendwo antippen (oder doppelt tippen)
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Nächster oder vorheriger Artikel</td>
+      <td data-label='Kommando'>Nach rechts oder links wischen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Ansicht ändern</td>
+      <td data-label='Kommando'>Nach oben oder unten streichen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aufhören zu lesen</td>
+      <td data-label='Kommando'>Tippen mit zwei Fingern</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Ändere die Detailliertheit</td>
+      <td data-label='Kommando'>Tippen mit drei Fingern</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Befehle für das aktuelle Element anzeigen</td>
+      <td data-label='Kommando'>Vier-Finger-Tipp</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Kontextmenü anzeigen</td>
+      <td data-label='Kommando'>Doppeltippen mit zwei Fingern</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Textattribute lesen</td>
+      <td data-label='Kommando'>Doppeltippen mit drei Fingern</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Suchmodus öffnen</td>
+      <td data-label='Kommando'>Vier-Finger-Doppeltipp</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Alle Narrator-Befehle anzeigen</td>
+      <td data-label='Kommando'>Vier-Finger-Dreifach-Tap</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Scrollen</td>
+      <td data-label='Kommando'>Wische mit zwei Fingern nach oben, unten, links oder rechts</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Tabulator vorwärts oder rückwärts</td>
+      <td data-label='Kommando'>Mit drei Fingern nach rechts oder links wischen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktuelles Fenster lesen</td>
+      <td data-label='Kommando'>Mit drei Fingern nach oben wischen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Beginn der Lektüre auf erkundbarem Text**</td>
+      <td data-label='Kommando'>Mit drei Fingern nach unten wischen</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Aktiviere (deaktiviere) den semantischen Zoom</td>
+      <td data-label='Kommando'>Wischen mit vier Fingern nach oben (unten)</td>
+    </tr>
+    <tr>
+      <td data-label='Aufgabe'>Bewege den Cursor des Narrators zum Anfang oder Ende der Einheit</td>
+      <td data-label='Kommando'>Wischen mit vier Fingern nach links oder rechts</td>
+    </tr>
+  </tbody>
+</table>
+
+\*Nur Scan-Modus
+
+\*\*Obwohl diese Geste ähnlich funktioniert wie der Tastaturbefehl "Ab diesem Punkt kontinuierlich
+lesen", besteht der Unterschied darin, dass der Fokus, wenn du diese Geste verwendest und dann den
+Tastaturbefehl oder die Geste "Lesen stoppen" verwendest, dort bleibt, wo das Lesen begonnen hat,
+anstatt dorthin zu wandern, wo das Lesen gestoppt wurde.

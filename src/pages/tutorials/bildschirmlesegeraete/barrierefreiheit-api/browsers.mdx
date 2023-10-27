@@ -1,0 +1,104 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Browsers'
+---
+
+## Architektur der Barrierefreiheit im Browser
+
+Zusätzlich zur Barrierefreiheits-API des Betriebssystems müssen Browser ihre
+eigene interne Barrierefreiheit-Architektur haben. Browser bauen einen Baum für
+die Barrierefreiheit auf, der vom Konzept her dem Document Object Model (DOM)
+ähnelt, aber einen spezielleren Zweck hat. Nicht jeder Knoten im DOM ist für die
+Barrierefreiheit von Bedeutung. Ein `<div>`- oder ein `<span>`-Element zum
+Beispiel hat keine semantische Bedeutung und trägt daher nichts zum Baum der
+Barrierefreiheit bei. Semantische Elemente hingegen - wie Überschriften, Tabellen,
+Orientierungspunkte, Listen, Links usw. - sind für Screenreader von Bedeutung und
+werden daher in die Barrierefreiheit aufgenommen. Der Baum der Barrierefreiheit
+enthält unter anderem folgende Informationen zu den Objekten:
+
+### Name
+
+Das Label, mit dem das Element bezeichnet wird. Manchmal ist der Name der Text im
+Element selbst (z. B. Linktext oder Überschriftstext). In anderen Fällen muss
+der Name entweder über eine HTML-Methode (z. B. `<label>`-Elemente für Formularfelder
+oder `<caption>`-Elemente für HTML-Tabellen) oder über ein ARIA-Attribut (z. B.
+aria-label="Dies ist der Name" oder aria-labelledby="someID") zugewiesen werden.
+
+### Beschreibung
+
+Zusätzliche Informationen über ein Element (z. B. wie durch aria-describedby="someID"
+oder durch das title-Attribut definiert, je nach Kontext).
+
+### Rolle
+
+Die semantische Bedeutung des Elements, die von nativen HTML-Elementen (z. B.
+Überschriften, Tabellen, Listen usw.) oder ARIA-Rollen (z. B. role="tablist",
+role="tab", role="tabpanel" usw.) stammen kann.
+
+### Eigenschaft
+
+Eigenschaften eines Elements (z. B. haspopup="true").
+
+### Beziehung
+
+Jede Beziehung folgt im Allgemeinen einem der folgenden Muster:
+
+- Eltern-Kind-Hierarchien, die oft durch die natürliche Hierarchie des DOMs
+  definiert sind. Zum Beispiel muss ein HTML-Listenelement (`<li>`) zu einer Liste
+  (`<ul>` oder `<ol>`) gehören, und ein ARIA-Tab muss zu einer Tablist gehören.
+
+- Die explizite Verknüpfung eines Elements mit dem Element, zu dem es gehört
+  oder das es steuert (z. B. wie durch aria-owns="someID" oder aria-controls="someID"
+  definiert).
+
+### Zustand
+
+Der aktuelle Zustand eines Elements (z. B. aria-expanded="false" oder aria-selected="true").
+
+## Internet Explorer
+
+Der Internet Explorer nutzt hauptsächlich die ältere Barrierefreiheit-API von
+Microsoft, MSAA. MSAA allein liefert nicht alle Informationen, die Screenreader
+brauchen. Deshalb greifen Screenreader oft auf zusätzliche Methoden zurück,
+um den Internet Explorer barrierefrei zu machen. Zu den Bildschirmleseprogrammen,
+die mit dem Internet Explorer kompatibel sind, gehören JAWS und (in geringerem
+Maße) NVDA.
+
+## Firefox
+
+Firefox unter Windows funktioniert gut mit NVDA und JAWS.
+
+Firefox auf Android funktioniert gut mit Talkback.
+
+Firefox unter macOS arbeitet nicht gut mit VoiceOver zusammen. Die Implementierung
+von Funktionen zur Barrierefreiheit ist unter macOS sehr unvollständig.
+
+Weitere Informationen findest du in der <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Architecture"
+target="_blank">Dokumentation über die Barrierefreiheit von Firefox</a>.
+
+## Safari
+
+Safari nutzt sowohl unter macOS als auch unter iOS die Vorteile der macOS-API für
+Barrierefreiheit voll aus.
+
+Verwende den <a href="https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html"
+target="_blank">XCode Accessibility Viewer</a>, um den Baum der Barrierefreiheit
+in macOS sichtbar zu machen. Beachte, dass XCode, eine Suite von Entwicklerwerkzeugen,
+nicht standardmäßig installiert ist.
+
+## Chrome
+
+Chrome bietet eine gute Unterstützung der Barrierefreiheit; unter Windows nutzt
+JAWS die Barrierefreiheits-API von Chrome und NVDA ist ebenfalls mit Chrome
+kompatibel.
+
+## Edge
+
+Der Edge-Browser nutzt die UI Automation API. Der Bildschirmleser Narrator und (in
+geringerem Maße) NVDA unterstützen Edge sehr gut.
+
+Weitere Informationen findest du im Blogeintrag des Microsoft Edge-Teams mit dem
+Titel <a href="https://blogs.windows.com/msedgedev/2015/09/25/accessibility-towards-a-more-inclusive-web-with-microsoft-edge-and-windows-10/#GPdAwhVe0dh7BdSM.97"
+target="_blank">Barrierefreiheit: Towards a more inclusive web with Microsoft Edge
+and Windows 10</a>, oder unter <a href="https://support.microsoft.com/en-us/microsoft-edge/accessibility-features-in-microsoft-edge-4c696192-338e-9465-b2cd-bd9b698ad19a"
+target="_blank">Barrierefreiheit in Microsoft Edge</a>.
