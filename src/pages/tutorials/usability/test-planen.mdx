@@ -1,0 +1,262 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: 'Den Test planen'
+---
+
+## Ziele und Umfang
+
+Der Zweck von Usability-Tests zur Barrierefreiheit ist es, qualitativ zu bestimmen, ob das System:
+
+- Wahrnehmbar - Menschen mit Behinderungen können die Informationen tatsächlich durch Sehen, Hören
+  und Tasten erreichen. Die Informationen werden vom Gehirn der Person wahrgenommen.
+
+- Bedienbar - Menschen mit Behinderungen können tatsächlich mit den Funktionen des Systems interagieren.
+  Sie können Formulare, Steuerelemente und die Navigation nutzen.
+
+- Verständlich - Menschen mit Behinderungen können den Inhalt und die Schnittstelle verstehen. Sie
+  beschreiben das System als nützlich, vorhersehbar und hilfreich.
+
+- Robust - der Inhalt und die Funktionen des Systems funktionieren zuverlässig mit Unterstützungstechnologie.
+
+- Erfolgsquote - Menschen mit Behinderungen waren in der Lage, jede Aufgabe zu erledigen. Die
+  Erfolgsquote wird anhand des Zufriedenheitsgrads der Nutzer auf der folgenden 4-Punkte-Skala
+  ermittelt: (0) zufrieden, (1) neutral, (2) frustriert/ängstlich, (3) nicht in der Lage, die Aufgabe
+  zu erledigen.
+
+## Zielgruppen- und Probandenrekrutierungsplan
+
+Jeder Usability-Test zur Barrierefreiheit sollte die folgenden Behinderungsarten berücksichtigen:
+
+- Visuell - gesetzlich blind und sehbehindert
+
+- Auditiv - rechtlich gehörlos
+
+- Taktil/Motorisch - nicht in der Lage, eine Maus zu benutzen (nur Tastatur) und Tremor
+
+- Kognitiv - Fokus, Gedächtnis, Wahrnehmung, exekutive Funktionen. Die WCAG 2.0 AA verlangen nicht,
+  dass Websites für Menschen nutzbar gemacht werden, die nicht über das Verständnisniveau der 9.
+  Die 9. Klasse, die in den Vereinigten Staaten oft als Erstsemester bezeichnet wird, ist normalerweise
+  ein Schüler im Alter von 13 oder 14 Jahren.
+
+- Sprache - nicht in der Lage, die Stimme zu benutzen (derzeit für ACAA nicht erforderlich).
+
+## Muster für einen Rekrutierungsplan
+
+<table>
+  <thead>
+    <tr>
+      <th>Kategorie</th>
+      <th>Anzahl der Testpersonen</th>
+      <th>Parameter der Testperson</th>
+      <th>Behinderung</th>
+      <th>Anmerkungen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Kategorie'>Visuell (blind)</td>
+      <td data-label='Anzahl der Testpersonen'>3</td>
+      <td data-label='Parameter der Testperson'>
+        Screen-Reader-Benutzer (benutzt nur den Screen-Reader, benutzt kein Sehvermögen für
+        Aufgaben)
+      </td>
+      <td data-label='Behinderung'>
+        - Keine Lichtwahrnehmung
+
+        - Lichtwahrnehmung
+
+        - Gesetzlich blind - Sehschärfe von 20/200 oder weniger auf dem besser sehenden Auge mit
+          bester konventioneller Korrektur. Gesichtsfeld (der gesamte Bereich, den eine Person sehen
+          kann, ohne die Augen von einer Seite zur anderen zu bewegen) von 20 Grad oder weniger (auch
+          Tunnelblick genannt) auf dem besser sehenden Auge
+      </td>
+      <td data-label='Anmerkungen'>
+        Indem wir mit einem Bildschirmleser testen, der sein Sehvermögen nicht für Aufgaben
+        einsetzt, können wir alle drei Anwendungsfälle effizient und effektiv abdecken.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Sehschwäche</td>
+      <td data-label='Anzahl der Testpersonen'>3</td>
+      <td data-label='Parameter der Testperson'>
+        Bildschirmlupen-Nutzer (mit einer Sehschärfe zwischen 20/70 und 20/200), die eine 4- bis
+        6-fache Vergrößerung verwenden.
+      </td>
+      <td data-label='Behinderung'>
+        Eine Sehschärfe zwischen 20/70 und 20/200 auf dem besser sehenden Auge mit bester
+        konventioneller Korrektur.
+      </td>
+      <td data-label='Anmerkungen'>
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Farbenblind</td>
+      <td data-label='Anzahl der Testpersonen'>0</td>
+      <td data-label='Parameter der Testperson'>
+        k. A.
+      </td>
+      <td data-label='Behinderung'>
+        Alle Arten von Farbenblindheit
+      </td>
+      <td data-label='Anmerkungen'>
+        Führe keine Usability-Tests für Menschen durch, die farbenblind sind. Verwende stattdessen
+        vertrauenswürdige wissenschaftliche Methoden/Werkzeuge, um zuverlässig sicherzustellen,
+        dass der Inhalt die Bedürfnisse von Farbenblinden erfüllt.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Auditive</td>
+      <td data-label='Anzahl der Testpersonen'>(3)</td>
+      <td data-label='Parameter der Testperson'>
+        Nutzer/innen, die auf Bildunterschriften/Transkripte (nicht Audio) angewiesen sind.
+      </td>
+      <td data-label='Behinderung'>
+        - Gehörlos - sie hören nicht gut genug, um sich bei der Verarbeitung von Sprache auf das
+          Gehör zu verlassen.
+
+        - Schwerhörig - leichte bis mittlere Hörminderung
+      </td>
+      <td data-label='Anmerkungen'>
+        Nur erforderlich, wenn es Audioinhalte gibt.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Taktil</td>
+      <td data-label='Anzahl der Testpersonen'>3</td>
+      <td data-label='Parameter der Testperson'>
+        - Ein sehbehinderter Nutzer, der entweder nur die Tastatur (keine Maus) und/oder eine Hilfstechnologie
+          verwendet, die denselben Zweck wie eine Tastatur erfüllt.
+
+        - Nutzer mit einer Zitterfrequenz von mehreren Zuckungen pro Sekunde mit dem Körperteil, der
+          zur Interaktion mit der Technologie verwendet wird
+      </td>
+      <td data-label='Behinderung'>
+        - Keine Hände und/oder keine Füße
+
+        - Lähmung
+
+        - Eingeschränkte Geschicklichkeit
+
+        - Zittern
+      </td>
+      <td data-label='Anmerkungen'>
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Kognitiv (Krampfanfall)</td>
+      <td data-label='Anzahl der Testpersonen'>0</td>
+      <td data-label='Parameter der Testperson'>
+        Führe keine Usability-Tests an Menschen mit Anfallsleiden durch. Verwende stattdessen bewährte
+        wissenschaftliche Methoden/Werkzeuge, um zuverlässig sicherzustellen, dass der Inhalt keine
+        Anfälle auslöst.
+      </td>
+      <td data-label='Behinderung'>
+        Anfallsleiden
+      </td>
+      <td data-label='Anmerkungen'>
+        Ein einzelner Nutzer kann mehrere kognitive Behinderungen haben. Diese Person kann als Mitglied
+        mehrerer Kategorien gezählt werden.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Kognitiv (Fokus)</td>
+      <td data-label='Anzahl der Testpersonen'>3</td>
+      <td data-label='Parameter der Testperson'>
+        Nutzer, die einen dokumentierte ärztliche Diagnose für Konzentrationsschwierigkeiten
+        haben/hatten und reguläre Kurse in der K12 oder an einer Hochschule besucht haben. + Der Nutzer
+        verfügt über ein Leseverständnis von mindestens der 9. Klasse
+      </td>
+      <td data-label='Behinderung'>
+        Aufmerksamkeitsstörungen
+      </td>
+      <td data-label='Anmerkungen'>
+        Ein einzelner Nutzer kann mehrere kognitive Behinderungen haben. Diese Person kann als Mitglied
+        mehrerer Kategorien gezählt werden.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Kognitiv (Wahrnehmung)</td>
+      <td data-label='Anzahl der Testpersonen'>3</td>
+      <td data-label='Parameter der Testperson'>
+         Nutzer, die einen dokumentierte eine ärztliche Diagnose für Legasthenie
+         haben/hatten und reguläre Kurse in der K12 oder an einer Hochschule besucht haben. + Der
+         Nutzer verfügt über ein Leseverständnis von mindestens der 9. Klasse.
+      </td>
+      <td data-label='Behinderung'>
+        Legasthenie
+      </td>
+      <td data-label='Anmerkungen'>
+        Ein einzelner Nutzer kann mehrere kognitive Behinderungen haben. Diese Person kann als Mitglied
+        mehrerer Kategorien gezählt werden.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Kognitiv (Gedächtnis)</td>
+      <td data-label='Anzahl der Testpersonen'>0</td>
+      <td data-label='Parameter der Testperson'>
+        Achtung: Es kann zu Panikattacken kommen, wenn du Usability-Tests bei Menschen mit
+        Gedächtnisstörungen durchführst. Wir empfehlen, diese Kategorie zum jetzigen Zeitpunkt nicht
+        zu berücksichtigen. Nutzer, die einen dokumentierte  ärztliche Diagnose für Gedächtnisprobleme
+        haben/hatten und an regulären Kursen in der K12 oder einer Hochschule teilgenommen haben. +
+        Nutzer, die mindestens die 9. Klasse im Lesen beherrschen.
+      </td>
+      <td data-label='Behinderung'>
+        Gedächtnis, Aphasie
+      </td>
+      <td data-label='Anmerkungen'>
+        Ein einzelner Nutzer kann mehrere kognitive Behinderungen haben. Diese Person kann als Mitglied
+        mehrerer Kategorien gezählt werden.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Kognitiv ("Ausführende Tätigkeit")</td>
+      <td data-label='Anzahl der Testpersonen'>0</td>
+      <td data-label='Parameter der Testperson'>
+        Achtung: Es kann zu Panikattacken kommen, wenn du Usability-Tests bei Menschen mit Störungen
+        der exekutiven Funktionen durchführst. empfehlen, diese Kategorie zum jetzigen Zeitpunkt nicht
+        zu berücksichtigen. Verwende stattdessen vertrauenswürdige wissenschaftliche Methoden/Werkzeuge,
+        um zuverlässig sicherzustellen, dass der Inhalt keine Anfälle auslöst Benutzer, die eine
+        ärztliche Diagnose für exekutive Funktionsstörungen haben/hatten, die reguläre Kurse in der
+        K12 oder an einer Hochschule besucht haben. + Nutzer, die mindestens die 9. Klasse im Lesen
+        beherrschen.
+      </td>
+      <td data-label='Behinderung'>
+        Störungen der Exekutivfunktion
+
+        - Es fällt dir schwer, dich zu organisieren und Probleme zu lösen.
+
+        - Hat Schwierigkeiten, seine Emotionen unter Kontrolle zu halten und mag keine Veränderungen.
+      </td>
+      <td data-label='Anmerkungen'>
+        Ein einzelner Nutzer kann mehrere kognitive Behinderungen haben. Diese Person kann als Mitglied
+        mehrerer Kategorien gezählt werden.
+      </td>
+    </tr>
+
+    <tr>
+      <td data-label='Kategorie'>Sprache</td>
+      <td data-label='Anzahl der Testpersonen'>0</td>
+      <td data-label='Parameter der Testperson'>
+        Benutzer, die ihre Stimme nicht zur Interaktion mit einem sprachgesteuerten Computer nutzen können.
+      </td>
+      <td data-label='Behinderung'>
+        Apraxie, Dysarthrie, Stottern
+
+        - Probleme, deutlich zu sprechen.
+      </td>
+      <td data-label='Anmerkungen'>
+        Nur erforderlich, wenn die Sprachsteuerung die einzige Methode der Computerinteraktion ist
+      </td>
+    </tr>
+
+  </tbody>
+</table>
