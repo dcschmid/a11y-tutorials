@@ -1,0 +1,198 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Blind'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { Picture } from 'astro:assets'
+import PersonaBlindTherapist from './images/persona-blind-therapist.jpeg'
+
+## UX-Persönlichkeit: Treffen wir Janice
+
+Janice berät seit über 15 Jahren Menschen. Sie versteht ihre Rolle als Therapeutin – sie konzentriert
+sich auf das Zuhören, um wirklich zu verstehen, wie sich eine Person fühlt, und lehrt die Person
+dann, wie sie die Situation so gestalten kann, dass sie leichter damit umgehen kann. Auf diese Weise
+sieht sie, wie ihre Klienten mit der Zeit wachsen und gestärkt werden.
+
+<Picture
+  src={PersonaBlindTherapist}
+  formats={['avif', 'webp']}
+  alt='Janice in einer Therapiesitzung'
+/>
+
+## Janice' Szenario
+
+Um sich auf die Sitzungen mit ihren Kunden vorzubereiten, öffnet Janice ihre Notizen auf dem Computer
+und hört sie mit ihrem Bildschirmlesegerät ab. Es dauert nur 10 Minuten, die Notizen der letzten
+Sitzungen durchzuhören.
+
+Die Kunden vereinbaren ihre Termine mithilfe einer Online-Terminplanungssoftware. Sie gibt Zeiten vor,
+die sie als „verfügbar“ einstuft, und die Kunden können diese Zeiten dann buchen. Zwischen den einzelnen
+Terminen lässt sie immer 45 Minuten Zeit, um sich Notizen zu machen und sich auf die nächste Person
+vorzubereiten.
+
+Außerdem liest sie Online-Zeitschriften aus dem Bereich der Psychologie, um sich auf dem Laufenden
+zu halten, was Forschung und Beratung auf ihrem Gebiet angeht. Wenn sie eine neue Website öffnet,
+wird automatisch ihr Bildschirmlesegerät gestartet. Sie verwendet ein Bildschirmlesegerät, um online
+auf Forschungsergebnisse zuzugreifen. Der Screenreader liest zunächst den Namen des Webbrowsers und
+den Titel der Webseite. Dies ist der Titel, der in der Titelleiste des Browsers oder in den Registerkarten
+des Browsers angezeigt wird, und wenn die Seite mit einem Lesezeichen versehen wird. Dann liest ihr
+Bildschirmlesegerät die Seite von links nach rechts, wobei je nach Inhalt der Seite Inhalte wie ein
+Logo und ein Slogan, möglicherweise einige einleitende Informationen, ein Suchfeld, ein Navigationsbereich
+wie ein Menü und dann der Hauptinhalt der Seite vorgelesen werden können. Wenn sie das erste Mal auf
+eine Website kommt, hört sie sich das an, aber wenn sie dann eine andere Seite aufruft, möchte sie
+nicht alles noch einmal hören. Deshalb verwendet sie Tastenkombinationen, mit denen sie direkt zum
+Inhalt der jeweiligen Seite gelangen kann. Manchmal navigiert sie anhand von Überschriften,
+Orientierungspunkten und Links.
+
+## Bildschirmleser
+
+Bildschirmlesegeräte wandeln den Text auf einer Webseite in gesprochene Worte um. Blinde Menschen hören
+sich Webseiten an. In dem folgenden Video spricht Rakesh Babu, Assistenzprofessor an der School of
+Information Studies an der University of Wisconsin-Milwaukee, darüber, wie es ist, einen Screenreader
+zu benutzen, und über einige der Herausforderungen, die Websites mit sich bringen können, wenn sie nicht
+barrierefrei gestaltet sind.
+
+Hinweis: Erfahrene Screenreadernutzer stellen oft die Geschwindigkeit ihres Screenreaders höher. Wenn
+du also Schwierigkeiten hast, den Screenreader zu verstehen, ist dies der Grund. Die Standardgeschwindigkeit
+für Bildschirmleser ist viel langsamer, in einem eher unterhaltsamen Tempo.
+
+<YouTube id='qL4shFJHOvc' />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+    (screen reader speaking)
+
+    [Rakesh] As I was growing up and I began to lose my sight, the whole world
+    was shut, because I couldn’t see anything.
+
+    (screen reader speaking)
+
+    I just heard it say “Google.” That means I am on my home page. Screen readers
+    are these software that are designed to translate text into speech.
+
+    (screen reader speaking)
+
+    So, and that’s the primary way or other technology that helps blind people
+    interact with the web and the computers. And this seems like there’s a
+    calendar here, (laughs) but that’s just my guesswork. With a little bit of understanding
+    and compassion, designers can build technologies that are more blind-friendly.
+    People like me who can’t see can, in fact, contribute, participate effectively
+    in every aspect of life, you know, just as other people do.
+
+    End of transcript.
+
+  </AccordionItem>
+</Accordion>
+
+## Designüberlegungen für Blinde
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Alle Inhalte müssen in Textform oder über einen Text äquivalent (z. B. Alt-Text für Bilder
+        oder andere Nicht-Text-Objekte) dargestellt werden.
+      </td>
+      <td data-label='Warum?'>
+        Bildschirmlesegeräte können Nicht-Text-Inhalte (z. B. Bilder) nicht direkt lesen, aber sie
+        können den von Ihnen bereitgestellten Alt-Text lesen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Informationen dürfen nicht allein durch visuelle Attribute vermittelt werden (z. B. Farbe,
+        räumliche Anordnung, Textstärke, Hervorhebung des Hintergrunds usw.).
+      </td>
+      <td data-label='Warum?'>
+        Nicht alle visuellen Informationen sind für Bildschirmleser verfügbar. Selbst die visuellen
+        Attribute, die einigen Bildschirmlesern zur Verfügung stehen, wie z. B. die Textfarbe,
+        werden normalerweise nicht standardmäßig angezeigt.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar sein (Hinweis: Testen Sie
+        unbedingt mit eingeschaltetem Bildschirmlesegerät, da es bei eingeschaltetem
+        Bildschirmlesegerät feine Unterschiede im Tastaturverhalten gibt).
+      </td>
+      <td data-label='Warum?'>
+        Auch wenn die meisten blinden Benutzer eine Maus oder ein Trackpad benutzen können, nützt
+        ihnen das nicht viel, weil sie nicht sehen können, wo sich der Mauszeiger befindet. Für sie
+        ist es effektiver, über die Tastatur zu navigieren.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Der Inhalt muss eine gut strukturierte und semantische Markierung verwenden (Überschriften,
+        Orientierungspunkte, Tabellen, Listen usw.).
+      </td>
+      <td data-label='Warum?'>
+        Benutzer von Bildschirmlesegeräten rufen häufig Listen mit Überschriften,
+        Orientierungspunkten und anderen semantischen Elementen auf, um zu verstehen, was auf der
+        Seite steht. Sie können auch anhand dieser Elemente navigieren (z. B. direkt zum wichtigsten
+        Inhaltspunkt oder zu einer bestimmten Überschrift springen).
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Alle benutzerdefinierten Steuerelemente (z. B. Schaltflächen zum Auf- und Zuklappen,
+        Lautstärkeregler für Mediaplayer, Dialoge usw.) müssen den richtigen Namen/Label, die
+        richtige Rolle (entweder mit HTML oder mit ARIA) und den richtigen Wert haben und den Wert
+        ändern, wenn dies angemessen ist (z. B. ändert sich aria-expanded="false" in
+        aria-expanded="true", nachdem die Schaltfläche aktiviert wurde).
+      </td>
+      <td data-label='Warum?'>
+        Im Gegensatz zu nativen HTML-Elementen haben benutzerdefinierte Steuerelemente von Haus aus
+        keine semantischen Teile, sodass Bildschirmlesegeräte den Benutzern nicht sagen können, was
+        das Widget ist, und die Benutzer nicht über die Eigenschaften des Widgets informieren
+        können, es sei denn, Sie stellen diese Informationen über ARIA-Namen, Rollen, Zustände und
+        Eigenschaften bereit.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Die Nutzer müssen nach jeder Aktion sofort eine Rückmeldung über ihren Screenreader
+        erhalten. Stille nach dem Aktivieren einer Funktion ist immer schlecht!
+      </td>
+      <td data-label='Warum?'>
+        Beispiele für Rückmeldungen: Erweitertes/aufgeklapptes Element, Änderung des Werts eines
+        Steuerelements (z. B. eines Schiebereglers, erfolgreiche/nicht erfolgreiche Übermittlung
+        eines Formulars, Benachrichtigung, dass eine neue “Seite” in einseitigen Anwendungen
+        geladen wurde usw.)
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Videos benötigen Audiodeskriptionen (zusätzliche Erläuterungen zu visuellen Inhalten), wenn
+        die ursprüngliche Tonspur des Videos (Dialoge, Geräusche, Erläuterungen) nicht alles
+        erklärt, was eine blinde Person wissen muss, um das Video zu verstehen.
+      </td>
+      <td data-label='Warum?'>
+        Blinde Benutzer können die Dialoge, Erzählungen und andere Töne in Videos hören, aber sie
+        können die visuellen Teile eines Videos nicht sehen. Wenn also die visuellen Teile wichtige
+        Informationen vermitteln, müssen diese Teile laut beschrieben werden, damit blinde Benutzer
+        sie verstehen können.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Auf mobilen Geräten: Alle Funktionen erfordern eine Klick-Aktion. Die Wischaktionen auf Webseiten
+        funktionieren nicht, wenn der Bildschirmleser aktiviert ist.
+      </td>
+      <td data-label='Warum?'>
+        Wenn ein blinder Benutzer eines Bildschirmlesegeräts ein mobiles Gerät benutzt, werden von
+        der Bildschirmlesesoftware Wischaktionen verwendet. Alle Funktionen (Steuerelemente,
+        Widgets) auf einer mobilen Webseite erfordern einen Klick, um überhaupt zu funktionieren.
+      </td>
+    </tr>
+
+  </tbody>
+</table>

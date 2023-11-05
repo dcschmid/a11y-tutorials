@@ -6,620 +6,6 @@ title: 'Arten von Behinderungen: Personen'
 import { Accordion, AccordionItem } from 'accessible-astro-components'
 import { YouTube } from '@astro-community/astro-embed-youtube'
 
-In diesem Abschnitt werden wir die verschiedenen Arten von Behinderungen kennenlernen
-und erfahren, was wir als Webdesigner, Entwickler, Qualitätsmanager oder
-Projektmanager bei jeder Behinderung berücksichtigen müssen. Darüber hinaus
-werden für Szenarien für einige Behinderungen vorgestellt, die UX-Designern
-helfen, die Anforderungen für Nutzer mit Behinderungen zu verstehen.
-
-## Blind
-
-### UX-Persönlichkeit: Treffen wir Janice
-
-Janice berät seit über 15 Jahren Menschen. Sie versteht ihre Rolle als
-Therapeutin - sie konzentriert sich auf das Zuhören, um wirklich zu verstehen,
-wie sich eine Person fühlt, und lehrt die Person dann, wie sie die Situation so
-gestalten kann, dass sie leichter damit umgehen kann. Auf diese Weise sieht sie,
-wie ihre Klienten mit der Zeit wachsen und gestärkt werden.
-
-![Janice in einer Therapiesitzung](/images/grundlagen/persona-blind-therapist.jpeg)
-
-### Janice' Szenario
-
-Um sich auf die Sitzungen mit ihren Kunden vorzubereiten, öffnet Janice ihre
-Notizen auf dem Computer und hört sie mit ihrem Bildschirmlesegerät ab. Es dauert
-nur 10 Minuten, die Notizen der letzten Sitzungen durchzuhören.
-
-Die Kunden vereinbaren ihre Termine mit Hilfe einer Online-Terminplanungssoftware.
-Sie gibt Zeiten vor, die sie als "verfügbar" einstuft, und die Kunden können diese
-Zeiten dann buchen. Zwischen den einzelnen Terminen lässt sie immer 45 Minuten
-Zeit, um sich Notizen zu machen und sich auf die nächste Person vorzubereiten.
-
-Außerdem liest sie Online-Zeitschriften aus dem Bereich der Psychologie, um sich
-auf dem Laufenden zu halten, was Forschung und Beratung auf ihrem Gebiet angeht.
-Wenn sie eine neue Website öffnet, wird automatisch ihr Bildschirmlesegerät gestartet.
-Sie verwendet ein Bildschirmlesegerät, um online auf Forschungsergebnisse zuzugreifen.
-Der Screenreader liest zunächst den Namen des Webbrowsers und den Titel der Webseite.
-Dies ist der Titel, der in der Titelleiste des Browsers oder in den Registerkarten
-des Browsers angezeigt wird, und wenn die Seite mit einem Lesezeichen versehen wird.
-Dann liest ihr Bildschirmlesegerät die Seite von links nach rechts, wobei je nach
-Inhalt der Seite Inhalte wie ein Logo und ein Slogan, möglicherweise einige
-einleitende Informationen, ein Suchfeld, ein Navigationsbereich wie ein Menü und
-dann der Hauptinhalt der Seite vorgelesen werden können. Wenn sie das erste Mal auf
-eine Website kommt, hört sie sich das an, aber wenn sie dann eine andere Seite
-aufruft, möchte sie nicht alles noch einmal hören. Deshalb verwendet sie
-Tastenkombinationen, mit denen sie direkt zum Inhalt der jeweiligen Seite
-gelangen kann. Manchmal navigiert sie anhand von Überschriften, Orientierungspunkten
-und Links.
-
-### Bildschirmleser
-
-Bildschirmlesegeräte wandeln den Text auf einer Webseite in gesprochene Worte um.
-Blinde Menschen hören sich Webseiten an. In dem folgenden Video spricht Rakesh Babu,
-Assistenzprofessor an der School of Information Studies an der University of
-Wisconsin-Milwaukee, darüber, wie es ist, einen Screenreader zu benutzen,
-und über einige der Herausforderungen, die Websites mit sich bringen können, wenn
-sie nicht barrierefrei gestaltet sind.
-
-**Hinweis:** Erfahrene Screenreadernutzer stellen oft die
-Geschwindigkeit ihres Screenreaders höher. Wenn du also Schwierigkeiten hast
-Schwierigkeiten hast, den Screenreader zu verstehen, ist dies der
-Grund. Die Standardgeschwindigkeit für Bildschirmleser ist viel
-langsamer, in einem eher unterhaltsamen Tempo.
-
-<YouTube id="qL4shFJHOvc" />
-
-<Accordion>
-  <AccordionItem header="Video-Abschrift">
-    (screen reader speaking)
-
-    [Rakesh] As I was growing up and I began to lose my sight, the whole world
-    was shut, because I couldn’t see anything.
-
-    (screen reader speaking)
-
-    I just heard it say “Google.” That means I am on my home page. Screen readers
-    are these software that are designed to translate text into speech.
-
-    (screen reader speaking)
-
-    So, and that’s the primary way or other technology that helps blind people
-    interact with the web and the computers. And this seems like there’s a
-    calendar here, (laughs) but that’s just my guesswork. With a little bit of understanding
-    and compassion, designers can build technologies that are more blind-friendly.
-    People like me who can’t see can, in fact, contribute, participate effectively
-    in every aspect of life, you know, just as other people do.
-
-    End of transcript.
-
-  </AccordionItem>
-</Accordion>
-
-### Designüberlegungen für Blinde
-
-<table>
-  <thead>
-    <tr>
-      <th>Design-Überlegungen</th>
-      <th>Warum?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Alle Inhalte müssen in Textform oder über ein Textäquivalent (z. B.
-        Alt-Text für Bilder oder andere Nicht-Text-Objekte) dargestellt werden.
-      </td>
-      <td data-label="Warum?">
-        Bildschirmlesegeräte können Nicht-Text-Inhalte (z. B. Bilder) nicht
-        direkt lesen, aber sie können den von Ihnen bereitgestellten Alt-Text lesen.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Informationen dürfen nicht allein durch visuelle Attribute vermittelt
-        werden (z. B. Farbe, räumliche Anordnung, Textstärke, Hervorhebung des
-        Hintergrunds usw.).
-      </td>
-      <td data-label="Warum?">
-        Nicht alle visuellen Informationen sind für Bildschirmleser verfügbar.
-        Selbst die visuellen Attribute, die einigen Bildschirmlesern zur Verfügung
-        stehen, wie z. B. die Textfarbe, werden normalerweise nicht standardmäßig
-        angezeigt.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Alle Funktionen müssen ausschließlich über die Tastatur verfügbar
-        sein (Hinweis: Testen Sie unbedingt mit eingeschaltetem Bildschirmlesegerät,
-        da es bei eingeschaltetem Bildschirmlesegerät feine Unterschiede im
-        Tastaturverhalten gibt).
-      </td>
-      <td data-label="Warum?">
-        Auch wenn die meisten blinden Benutzer eine Maus oder ein Trackpad benutzen
-        können, nützt ihnen das nicht viel, weil sie nicht sehen können, wo sich
-        der Mauszeiger befindet. Für sie ist es effektiver, über die Tastatur zu
-        navigieren.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Der Inhalt muss eine gut strukturierte und semantische Markierung verwenden
-        (Überschriften, Orientierungspunkte, Tabellen, Listen usw.).
-      </td>
-      <td data-label="Warum?">
-        Benutzer von Bildschirmlesegeräten rufen häufig Listen mit Überschriften,
-        Orientierungspunkten und anderen semantischen Elementen auf, um zu verstehen,
-        was auf der Seite steht. Sie können auch anhand dieser Elemente navigieren
-        (z. B. direkt zum wichtigsten Inhaltspunkt oder zu einer bestimmten Überschrift
-        springen).
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Alle benutzerdefinierten Steuerelemente (z. B. Schaltflächen zum Auf-
-        und Zuklappen, Lautstärkeregler für Mediaplayer, Dialoge usw.) müssen
-        den richtigen Namen/Label, die richtige Rolle (entweder mit HTML oder mit
-        ARIA) und den richtigen Wert haben und den Wert ändern, wenn dies angemessen
-        ist (z. B. ändert sich aria-expanded="false" in aria-expanded="true",
-        nachdem die Schaltfläche aktiviert wurde).
-      </td>
-      <td data-label="Warum?">
-        Im Gegensatz zu nativen HTML-Elementen haben benutzerdefinierte
-        Steuerelemente von Haus aus keine semantischen Teile, so dass
-        Bildschirmlesegeräte den Benutzern nicht sagen können, was das Widget
-        ist, und die Benutzer nicht über die Eigenschaften des Widgets informieren
-        können, es sei denn, Sie stellen diese Informationen über ARIA-Namen,
-        Rollen, Zustände und Eigenschaften bereit.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Die Nutzer müssen nach jeder Aktion sofort eine Rückmeldung über ihren Screenreader
-        erhalten. Stille nach dem Aktivieren einer Funktion ist immer schlecht!
-      </td>
-      <td data-label="Warum?">
-        Beispiele für Rückmeldungen: Erweitertes/geklapptes Gebiet, Änderung des
-        Werts eines Steuerelements (z. B. eines Schiebereglers, erfolgreiche/nicht
-        erfolgreiche Übermittlung eines Formulars, Benachrichtigung, dass eine neue
-        "Seite" in einseitigen Anwendungen geladen wurde usw.).
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Videos benötigen Audiodeskriptionen (zusätzliche Erläuterungen zu visuellen
-        Inhalten), wenn die ursprüngliche Tonspur des Videos (Dialoge, Geräusche,
-        Erläuterungen) nicht alles erklärt, was eine blinde Person wissen muss, um
-        das Video zu verstehen.
-      </td>
-      <td data-label="Warum?">
-        Blinde Benutzer können die Dialoge, Erzählungen und andere Töne in Videos
-        hören, aber sie können die visuellen Teile eines Videos nicht sehen. Wenn
-        also die visuellen Teile wichtige Informationen vermitteln, müssen diese
-        Teile laut beschrieben werden, damit blinde Benutzer sie verstehen können.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Auf mobilen Geräten: Alle Funktionen erfordern eine Klick-Aktion. Benutzerdefinierte
-        Wischaktionen auf Webseiten funktionieren nicht, wenn der Bildschirmleser
-        aktiviert ist.
-      </td>
-      <td data-label="Warum?">
-        Wenn ein blinder Benutzer eines Bildschirmlesegeräts ein mobiles Gerät benutzt,
-        werden von der Bildschirmlesesoftware Wischaktionen verwendet. Alle Funktionen
-        (Steuerelemente, Widgets) auf einer mobilen Webseite erfordern einen Klick,
-        um überhaupt zu funktionieren.
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-## Sehschwäche
-
-### UX Persona: Treffen wir Edgar
-
-Edgar ist Maschinenbauingenieur und arbeitet an Heiz- und Kühlsystemen.
-Er liebt es, komplexe Probleme bei der Arbeit zu lösen und hat viel
-Verantwortung für den Entwurf großer die Konstruktion großer Heiz- und Kühlsysteme.
-
-![Edgar ist farbenblind](/images/grundlagen/persona-low-vision-engineer.jpeg)
-
-### Edgars Szenario
-
-Bei der Arbeit muss Edgar architektonische Diagramme, Baubeschreibungen und andere
-Unterlagen lesen, damit er seine technische Arbeit erledigen kann. Er benutzt eine
-Maus, um auf seinem Computer und auf Websites zu navigieren, aber da er sehbehindert
-ist, verwendet er eine Software, die die Ansicht auf seinem Computerbildschirm vergrößert.
-Wenn er eine neue Website aufruft, um sich einen allgemeinen Überblick zu verschaffen,
-kann er einfach einige Tasten auf der Tastatur drücken, um die Ansicht zu
-verkleinern, und dann mit Hilfe von Tastenkombinationen heranzoomen, um die
-Informationen zu lesen.
-
-Neben der Maus benutzt Edgar manchmal auch die Tastatur, um durch die Hauptmenüs
-zu navigieren, sofern dies möglich ist. Wenn er dies tut, behält die Software das
-Element, auf das er sich konzentriert, in der Bildschirmansicht, damit er es lesen
-kann. Wenn seine Augen müde sind, kann es vorkommen, dass er die Farben auf dem
-Bildschirm umkehrt, um das Lesen für seine Augen etwas zu erleichtern.
-
-### Übersicht
-
-Menschen mit Sehschwäche können zwar sehen, aber ihre Sehkraft ist selbst mit
-starken Korrekturgläsern noch lange nicht perfekt. Menschen mit Sehschwäche
-können nicht gut genug sehen, um Auto zu fahren oder die meisten gedruckten
-Texte zu lesen, es sei denn, sie vergrößern sie. Sehschwäche ist keine einzelne
-Krankheit. Es handelt sich um eine weit gefasste Kategorie, die viele verschiedene
-Erkrankungen mit unterschiedlichen Graden der Sehbehinderung umfasst. Manche
-Menschen können nicht gut genug sehen, um kleine Schriftarten zu lesen oder Details
-klar zu erkennen, ohne sie zu vergrößern. Es gibt viele verschiedene Arten von
-Sehschwäche, die bei einer Person auftreten können. Hier sind ein paar mögliche
-Arten und Merkmale:
-
-<Accordion>
-
-<AccordionItem header="Unschärfe">
-
-    ![Unschärfe](/images/grundlagen/blur.png)
-
-    Für Menschen mit Sehschwäche erscheinen Gesichter und Gegenstände unscharf.
-    Es ist für sie schwierig, bestimmte Merkmale zu erkennen. Bei der Nutzung
-    von Websites kann es schwierig sein, die Elemente im Vordergrund von denen
-    im Hintergrund zu unterscheiden. In der obigen Abbildung kann eine Person
-    mit verschwommenem Sehen großen Text wie Überschriften erkennen, aber
-    kleinerer Text kann schwer zu lesen sein.
-
-  </AccordionItem>
-  <AccordionItem header="Unschärfe bei geringem Kontrast">
-
-    ![Unschärfe](/images/grundlagen/blurcontrast.png)
-
-    Menschen mit Sehschwäche oder verschwommenem Sehen können auch feststellen, dass
-    dass sie Dinge mit geringem Kontrast sehen, d.h. es gibt nicht sehr viele helle
-    oder dunkle Bereiche. Alles scheint ungefähr gleich hell zu sein, was es schwierig
-    macht Umrisse, Kanten, Ränder und Details zu erkennen. In diesem Bild
-    können die Textfarben und die Hintergrundfarbe für Menschen mit geringem Kontrast
-    schwer zu erkennen sein.
-
-  </AccordionItem>
-  <AccordionItem header="Grauer Star">
-
-    ![Grauer Star](/images/grundlagen/cataracts.png)
-
-    Manche Menschen haben blinde Flecken in ihren Augen, was dazu führen kann,
-    dass sie visuelle Informationen verpassen, wenn sie sich in einem ihrer blinden
-    Flecken befinden. Eine Person, die am Grauen Star erkrankt ist, sieht möglicherweise
-    unzählige dunkle graue Flecken, die ihre Sicht trüben und das Erkennen von
-    Objekten auf einer Website extrem erschweren können.
-
-  </AccordionItem>
-  <AccordionItem header="Diabetische Netzhauterkrankung">
-
-    ![Diabetische Netzhauterkrankung](/images/grundlagen/diabeticretino.png)
-
-    Die diabetische Netzhauterkrankung ist eine weitere Augenerkrankung, bei der
-    die Betroffenen schwimmende dunkle Flecken sehen, ähnlich wie auf dem Bild hier.
-
-  </AccordionItem>
-  <AccordionItem header="Grüner Star">
-
-    ![Grüner Star](/images/grundlagen/glaucoma2.png)
-
-    Manche Menschen können nur einen kleinen Bereich sehen und haben kein
-    peripheres Sehen. Die Ränder sind stark abgedunkelt oder vignettiert.
-    Es ist, als würde man durch eine enge Röhre schauen. Das obige Bild
-    simuliert den Tunnelblick, den jemand mit einem Glaukom hat.
-
-  </AccordionItem>
-  <AccordionItem header="Hemianopie">
-
-    ![Hemianopie](/images/grundlagen/hemianopia.png)
-
-    Hemianopie ist eine weitere Augenerkrankung, bei der das Sehen auf einen
-    kleineren Bereich beschränkt ist. Bei der Hemianopie tritt der Sehverlust
-    entweder auf der rechten oder linken Seite beider Augen auf.
-
-  </AccordionItem>
-  <AccordionItem header="Makuladegeneration">
-
-    ![Makuladegeneration](/images/grundlagen/maculardegen3.png)
-
-    Makuladegeneration ist eine Augenkrankheit, bei der es zu einem Verlust des
-    Sehvermögens im Zentrum des Auges, dem Gesichtsfeld, kommt. Während Menschen
-    mit Makuladegeneration in der Peripherie noch sehen können, kann die
-    Verschlechterung der Makula zu verschwommenem Sehen oder einem blinden Fleck
-    in der Mitte des Auges führen.
-
-  </AccordionItem>
-  <AccordionItem header="Netzhautablösung">
-
-    ![Netzhautablösung](/images/grundlagen/retinaldetach.png)
-
-    Bei Menschen, die eine Netzhautablösung erleiden, kann das Sehvermögen auf
-    verschiedene Weise beeinträchtigt werden. Manche sehen Lichtblitze in ihrem
-    Blickfeld, andere sehen so genannte "Floater", die wie dunkle, vor ihnen
-    schwebende Trümmer erscheinen. Das Bild zeigt ein weiteres wichtiges Symptom
-    der Netzhautablösung, bei dem ein dunkler Schatten einen großen Teil
-    des Gesichtsfeldes bedeckt.
-
-  </AccordionItem>
-</Accordion>
-
-### Barrierefreiheit für Sehbehinderte
-
-#### Bildschirmvergrößerung
-
-Das Lesen von kleinem Text ist für einen sehbehinderten Nutzer eine äußerst
-schwierige Aufgabe. Benutzer mit einer Sehschwäche müssen möglicherweise eine
-Bildschirmvergrößerung wie ZoomText oder MAGic verwenden, die jeweils nur einen
-kleinen Teil des Bildschirms anzeigt. Bei der Bildschirmvergrößerung wird ein
-Teil des Bildschirms herangezoomt und in hoher Auflösung angezeigt.
-
-Spezialisierte Bildschirmvergrößerungsprogramme wie ZoomText und MAGic verfügen
-über eine Vielzahl von Funktionen, die das Seherlebnis für Menschen mit Sehschwäche
-optimieren. Das folgende Video gibt einen Überblick über einige der wichtigsten
-Funktionen von ZoomText.
-
-<YouTube id="ojtiVj78QPw" />
-
-<Accordion>
-  <AccordionItem header="Video-Abschrift">
-
-    One of the most important technologies for people with low vision is a screen
-    magnifier. Screen magnifiers enlarge parts of the screen, just like a magnifying
-    glass would so that the text and the images on the screen are easier to see.
-
-    I'm going to demonstrate some of the features on ZoomText, which is one brand
-    of screen magnifier, so that we can see how they work. When you first start
-    up ZoomText, the default zoom is set to two times normal view, and you can see
-    on the interface it says 2x for the power. ZoomText can go all the way up to
-    36 times normal size, which is quite large.
-
-    I'll step you through some of these enlargements, just so you can see how big
-    it can get. So here we are at the largest setting, and you can see that the text
-    is still easy to read. ZoomText takes over the font smoothing and enhances it
-    quite a bit over the normal operating system font smoothing technology. Now,
-    36 times is really too big for what I want to do, so I'm going to decrease
-    the zoom and go back down to two times, 2x.
-
-    Now, the screen enlargement is only part of what ZoomText can offer. It also
-    offers enhancements of the colors, the pointer for the mouse, and the cursor
-    for the keyboard, as well as the focus when you're navigating around menu
-    systems, around web pages. So, let's take a look at the colors first. We're
-    on the normal color scheme at the moment. I'm going to change that
-    to Invert Brightness, which changes everything to the opposite color, so
-    this is like a photo negative back in the days of film, and what was, you
-    know, black is now white, and the other colors are their opposites as well.
-    Some people find this easier to read.
-
-    Another scheme that we can choose is yellow on black. Now this one is mainly
-    for people who experience difficulty, in fact even can experience pain, when
-    they see bright lights, so looking at a white computer screen with black text
-    is really hard for them; it hurts their eyes, so they change it to a lot of
-    black with yellow text. Now, this particular website, it has a dark background
-    to begin with, so that's what gets converted into the yellow. For the parts that
-    were bright before, those are the ones that are now dark.
-
-    Another option that we have is to convert just to black and white. And we can
-    set it to be a black text on a white background, basically just removing the
-    color but leaving things as they are, and then we can reverse this so that
-    what was black is now white, what was white is now black, and we get variations
-    in the gradations of grey that were the opposite of what they were before.
-
-    Let's turn it back to normal and take a look at some of the options for the
-    pointer. Now, this is referring to the mouse pointer, which is usually in the
-    shape of an arrow, sometimes in the shape of a hand when it's over links. One
-    of the options is to use yellow with a full cross, which converts the pointer
-    to a yellow color with a black outline and then puts a red cross at the point
-    of the pointer, at the very tip of it, and that makes it really easy to see
-    where the mouse pointer is as you're moving across the screen. You could turn
-    off the full cross and just leave the large yellow cursor. Some people find
-    that easier to use.
-
-    Another option is to put a red circle around the cursor, and you could leave
-    it, in this case, a color red. You can also customize these options, but the
-    default color for this particular setting is to leave it red. And a variation
-    on this idea is to use a circle only when moving. So, if I leave the mouse
-    alone, it doesn't have a circle, but if I start moving it, it puts a circle
-    around it. And then, as soon as I stop, the circle goes away. And if you
-    have a really hard time seeing the pointer because it's just too small, you
-    could turn it to the giant green option, which just makes it huge, and as you
-    move across the screen it's very visible. I’m going to put it back to normal.
-
-    The cursor is what you see when you put the focus inside of a form element or
-    when it's in a word processor and you're typing, or an email, or something
-    like that. And the default option, if you just look at the regular cursor,
-    it's just this really small blinking line, and it's really hard for people
-    with low vision to see. We can make it more visible by choosing some of these
-    options. So, one of them is to put a green circle around the focus. So right
-    now, I'm not in a text area; I'm not in a form input or anything like that, so
-    it looks normal. If I click inside the search field, it puts the green circle
-    where the focus is, which makes it immediately obvious. And if I start typing
-    something, the green circle will follow the keystrokes.
-
-    I’m going to go ahead and turn that one off and demonstrate the last category
-    that I'm going to talk about here, which is the focus. The focus can be hard
-    to see on a webpage. If I start tabbing through the web page, it will put an
-    outline or a dotted line around the links, which is great, as long as it shows
-    up. As we tab through things, you notice that it sometimes doesn't show up.
-    Right now, for example, I'm on the login button for Facebook, but there's no
-    outline around it because the designers who put together this site took away
-    the outline for that particular link. If I tab to the next link which is the
-    sign in link, the outline comes back, so we have some inconsistencies here.
-
-    And some of these are really difficult to see, so, for example, on the Send
-    me to Mars! and Hotels link, this can be a bit difficult for someone with low
-    vision to see, so let's go down to ZoomText and make it more visible. I'm
-    going to choose the first option, which is to put a red rectangle around the
-    focus. So, going back to the web page, now I have a really easily visible red
-    outline around the link, and if I tab around to the other options, the red
-    outline follows the focus. And you can change these colors as well, but that's
-    the first option there.
-
-    ZoomText has other options; you can use it to zoom in just on a portion of
-    the screen, or you could leave it as is right now, which is enlarging the
-    whole thing. And you notice also when you move around, the mouse tracks the
-    zoom along with it so that you don't lose your place. You can use a reader as
-    well, a screen reader, and there are several options available for the screen
-    reader. You can change the rate of speech, you can let it follow your typing,
-    and some other options there. And it acts basically like JAWS, or like NVDA,
-    or VoiceOver, some of the other screen readers that are out there reading the
-    text to you.
-
-    So, for someone who has low vision, this is really the best way for them to
-    gain access to their computer and to websites. It allows them to access things
-    that they really couldn't access before, in a way that makes it possible for
-    them to be independent, which is an important aspect of web accessibility overall.
-
-  </AccordionItem>
-</Accordion>
-
-Auch wenn eine starke Vergrößerung dazu beitragen kann, die größten Herausforderungen
-bei Sehbehinderungen zu bewältigen, gibt es immer noch einige Probleme, auf die ein
-Nutzer stoßen kann. Wenn beispielsweise ein Bild besonders groß ist, muss der Benutzer
-möglicherweise um den Bildschirm herum scrollen, um das Ganze zu sehen. Wenn eine
-JavaScript-Warnung neben dem aktuellen Blickfeld erscheint, kann die Warnung für
-den sehbehinderten Benutzer außerhalb des sichtbaren Bereichs liegen, so dass er
-die Warnung möglicherweise gar nicht sieht. Am besten platzieren Sie Popups,
-Warnungen, Fehlermeldungen und ähnliche Meldungen in der Nähe des visuellen Fokus,
-damit der Benutzer sie nicht übersieht.
-
-#### Bildschirmleser für Sehschwache
-
-Die meisten Menschen denken bei Bildschirmlesern an Blinde, aber auch
-Menschen mit geringer Sehkraft können von Bildschirmlesegeräten profitieren. Die
-Hören der Wörter kann helfen, den visuellen Text leichter zu verstehen, besonders
-für Menschen mit extremer Sehschwäche. ZoomText und MAGic haben integrierte
-Bildschirmleser. Bildschirmleser, die mit Bildschirmlupen gebündelt sind
-haben normalerweise nicht so viele Funktionen wie eigenständige Bildschirmleser,
-aber sie sind für die meisten Aufgaben ausreichend.
-
-#### Anpassung der Farbe
-
-Für Menschen mit geringem Kontrast oder Farbsehvermögen können Farben
-nicht gut sichtbar und schwer voneinander zu unterscheiden sein. Text, der sich
-farblich oder in seiner Luminanz (Helligkeit) zu nah am Hintergrund liegt, kann
-schwer zu lesen sein. Manche Menschen empfinden auch Schmerzen, wenn sie auf helle
-Lichter oder helle Bereichen auf Papier oder Computerbildschirmen. Ganz weiße Hintergründe
-können besonders schwierig sein. Um den Auswirkungen von geringem Kontrast und
-hellen Bereichen entgegenzuwirken, können die Nutzer die Farben entweder im
-Betriebssystem oder im Webbrowser ändern.
-
-Farben können im Webdesign verwendet werden, aber es ist wichtig, dass wichtige
-wichtige Informationen nicht allein durch Farben vermittelt werden, denn die Nutzer
-werden die Farben so anpassen, wie es für sie am besten funktioniert. Achte darauf,
-dass die wichtigen Informationen im Text dargestellt werden.
-
-Sieh dir die Simulationen unten an, um zu sehen, wie Bildschirmvergrößerung
-und Farbanpassung von Menschen mit Sehschwäche genutzt werden.
-
-<Accordion>
-  <AccordionItem header="Vergrößerter Text">
-
-    ![Vergrößerter Text](/images/grundlagen/highcontrast4.png)
-
-    Sehbehinderte Menschen können die Bildschirmvergrößerung nutzen, um kleine
-    Texte zu lesen und kleinere Grafiken zu betrachten. Das Bild hier ist eine
-    Simulation einer Textvergrößerung, bei der die Hochkontrasteinstellungen des
-    Betriebssystems verwendet werden, um die Browsereinstellungen außer Kraft zu
-    setzen.
-
-  </AccordionItem>
-  <AccordionItem header="Vergrößerter gelber Text">
-
-    ![Vergrößerter gelber Text](/images/grundlagen/highcontrast2.png)
-
-    Für manche Menschen reicht es jedoch nicht aus, den Text zu vergrößern.
-    Manche Menschen müssen die Farben ändern. Jemand, der Schmerzen hat, wenn er
-    helles Licht sieht, kann das Farbschema umkehren und Schwarz (oder eine
-    andere dunkle Farbe) als Haupthintergrund und Gelb oder Weiß als Haupttextfarbe
-    verwenden. Hier ist Gelb die Haupttextfarbe.
-
-  </AccordionItem>
-  <AccordionItem header="Vergrößerter weißer Text">
-
-    ![Vergrößerter weißer Text](/images/grundlagen/highcontrast1.png)
-
-    Hier wird weißer Text mit schwarzem Hintergrund verwendet, um einen hohen
-    Kontrast zu erzielen und die Lesbarkeit zu erhöhen.
-
-</AccordionItem>
-  <AccordionItem header="Vergrößerter grüner Text">
-
-    ![Vergrößerter grüner Text](/images/grundlagen/highcontrast3.png)
-
-
-    Helles Grün vor schwarzem Hintergrund kann auch verwendet werden, um die
-    Lesbarkeit von Webseiten für sehbehinderte Nutzer zu verbessern.
-
-  </AccordionItem>
-</Accordion>
-
-### Designüberlegungen für Sehbehinderte
-
-<table>
-  <thead>
-    <tr>
-      <th>Design-Überlegungen</th>
-      <th>Warum?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Die Pinch-to-Zoom-Funktion darf nicht deaktiviert werden (vermeide die
-        Verwendung von `<meta name="viewport" content="user-scalable=no">`).
-      </td>
-      <td data-label="Warum?">
-        Wenn das Zoomen auf einer Webseite deaktiviert ist, was bei dem Parameter
-        `user-scalable=no` der Fall ist, können sehbehinderte Nutzer, die
-        Lupen zum Lesen von Inhalten verwenden, die Informationen auf einer
-        Informationen auf einer Webseite nicht richtig sehen.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Der gesamte Text muss den Richtlinien für den Kontrast zum Hintergrund entsprechen
-        entsprechen (überprüfe dies mit der Browsererweiterung Deque's axe DevTools
-        für Barrierefreiheit oder einem ähnlichen Tool).
-      </td>
-      <td data-label="Warum?">
-        Manche Nutzer mit Sehschwäche sehen möglicherweise mit geringem Kontrast.
-        Daher können Text, Ränder und andere Elemente mit der gleichen oder einer
-        ähnlichen Helligkeitsstufe erscheinen. Textelemente, die in ihrer Helligkeit
-        zu nahe an den Hintergrundfarben liegen, können für diese schwer zu lesen
-        sein.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status
-        und :hover-Status haben.
-      </td>
-      <td data-label="Warum?">
-        Einige sehbehinderte Benutzer verwenden eine Tastatur oder eine Maus oder
-        beides als Eingabemethode. Sichtbare :focus- und :hover-Zustände helfen
-        den Benutzern zu wissen, wo sich der Tastatur-/Mausfokus auf einer Webseite
-        befindet. Der standardmäßige :focus-Zustand des Browsers ist nach den
-        WCAG-Richtlinien akzeptabel, aber sehbehinderte Nutzer profitieren sehr von
-        den verbesserten CSS-Zuständen :focus und :hover.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-        Die Benutzeroberfläche muss eine klare visuelle Unterscheidung zwischen
-        Inhalt (z. B. Text) und Steuerelementen (z. B. Schaltflächen, Links usw.)
-        bereitstellen.
-      </td>
-      <td data-label="Warum?">
-        Auch hier können Nutzer, die mit geringem Kontrast sehen, Schwierigkeiten
-        haben zu erkennen, ob Steuerelemente auf einer Webseite aktiviert werden
-        können, da diese Elemente mit dem umgebenden Text und den Hintergrundfarben
-        verschmelzen können.
-      </td>
-    </tr>
-  </tbody>
-</table>
-
 ## Farbenblindheit
 
 ### UX Persona: Treffen wir Randal
@@ -751,26 +137,26 @@ kann, die nur durch Farben vermittelt werden.
   </thead>
   <tbody>
     <tr>
-      <td data-th="Course Title">Angular.js</td>
-      <td style="background:#b83b3b;" data-th=" ">
+      <td data-th='Course Title'>Angular.js</td>
+      <td style='background:#b83b3b;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th="Course Title">Node.js</td>
-      <td style="background:#b83b3b;" data-th=" ">
+      <td data-th='Course Title'>Node.js</td>
+      <td style='background:#b83b3b;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th="Course Title">jQuery</td>
-      <td style="background:#ffff00;" data-th=" ">
+      <td data-th='Course Title'>jQuery</td>
+      <td style='background:#ffff00;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th="Course Title">Introduction to JavaScript</td>
-      <td style="background:#008000;" data-th=" ">
+      <td data-th='Course Title'>Introduction to JavaScript</td>
+      <td style='background:#008000;' data-th=' '>
         &nbsp;
       </td>
     </tr>
@@ -799,26 +185,26 @@ erkennen, da die Kurse für Fortgeschrittene und Anfänger dieselbe Farbe haben.
   </thead>
   <tbody>
     <tr>
-      <td data-th=" ">Angular.js</td>
-      <td style="background:#6c6c36;" data-th=" ">
+      <td data-th=' '>Angular.js</td>
+      <td style='background:#6c6c36;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th=" ">Node.js</td>
-      <td style="background:#6c6c36;" data-th=" ">
+      <td data-th=' '>Node.js</td>
+      <td style='background:#6c6c36;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th=" ">jQuery</td>
-      <td style="background:#ffff00;" data-th=" ">
+      <td data-th=' '>jQuery</td>
+      <td style='background:#ffff00;' data-th=' '>
         &nbsp;
       </td>
     </tr>
     <tr>
-      <td data-th=" ">Introduction to JavaScript</td>
-      <td style="background:#6c6c36;" data-th=" ">
+      <td data-th=' '>Introduction to JavaScript</td>
+      <td style='background:#6c6c36;' data-th=' '>
         &nbsp;
       </td>
     </tr>
@@ -854,17 +240,16 @@ zu vermitteln.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Alle Informationen müssen verständlich sein, ohne dass man zwischen den
-        Farben unterscheiden muss. Rot- und Grüntöne sind besonders problematisch,
-        wenn sie als einziges Mittel zur Vermittlung von Informationen verwendet
-        werden.
+      <td data-label='Design-Überlegungen'>
+        Alle Informationen müssen verständlich sein, ohne dass man zwischen den Farben unterscheiden
+        muss. Rot- und Grüntöne sind besonders problematisch, wenn sie als einziges Mittel zur
+        Vermittlung von Informationen verwendet werden.
       </td>
-      <td data-label="Warum?">
-        Wenn Farben allein die einzige Methode sind, um wichtige Informationen auf
-        einer Webseite zu vermitteln, können Menschen, die farbenblind sind, diese
-        Informationen völlig übersehen. Überlege dir, ob du zusätzlich zu den Farben
-        auch Text und Symbole als Mittel zur Informationsvermittlung verwenden würdest.
+      <td data-label='Warum?'>
+        Wenn Farben allein die einzige Methode sind, um wichtige Informationen auf einer Webseite zu
+        vermitteln, können Menschen, die farbenblind sind, diese Informationen völlig übersehen.
+        Überlege dir, ob du zusätzlich zu den Farben auch Text und Symbole als Mittel zur
+        Informationsvermittlung verwenden würdest.
       </td>
     </tr>
   </tbody>
@@ -924,7 +309,7 @@ die Untertitel nicht automatisch eingeschaltet sind eingeschaltet sind, wähle
 die Schaltfläche Abspielen und dann die Schaltfläche C ("C" steht für "Captions")
 unten links im Video.
 
-<YouTube id="ZpGLy-FyOc0" />
+<YouTube id='ZpGLy-FyOc0' />
 
 <Accordion>
   <AccordionItem header="Video-Abschrift">
@@ -990,34 +375,31 @@ Bildschirmlesegerät in Braille-Schrift umgewandelt werden kann.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Alle Videos müssen mit Untertiteln versehen sein.
-      </td>
-      <td data-label="Warum?">
-        Ohne Bildunterschriften können gehörlose Menschen wichtige Informationen
-        verpassen, die durch Dialoge und Erzählungen vermittelt werden, und sie
-        können wichtige Geräusche verpassen, die dem Video Bedeutung verleihen.
+      <td data-label='Design-Überlegungen'>Alle Videos müssen mit Untertiteln versehen sein.</td>
+      <td data-label='Warum?'>
+        Ohne Bildunterschriften können gehörlose Menschen wichtige Informationen verpassen, die
+        durch Dialoge und Erzählungen vermittelt werden, und sie können wichtige Geräusche
+        verpassen, die dem Video Bedeutung verleihen.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Alle reinen Audio-Inhalte müssen mit Transkriptionen versehen sein.
       </td>
-      <td data-label="Warum?">
-        Transkripte sind notwendig, um alle Informationen zu übermitteln, die per
-        Audio übertragen werden, einschließlich der Dialoge (und der
-        Identifizierung der Sprecher), der Erzählung, der musikalischen Hinweise
-        und der Soundeffekte.
+      <td data-label='Warum?'>
+        Transkripte sind notwendig, um alle Informationen zu übermitteln, die per Audio übertragen
+        werden, einschließlich der Dialoge (und der Identifizierung der Sprecher), der Erzählung,
+        der musikalischen Hinweise und der Soundeffekte.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Die Übersetzung von Videos in Gebärdensprache kann sehr hilfreich sein.
       </td>
-      <td data-label="Warum?">
-        Es gibt einige Gehörlose, deren primäres Kommunikationsmittel die
-        Gebärdensprache ist. Für diese Gruppe kann die Verdolmetschung der
-        Gebärdensprache gegenüber Untertiteln und Abschriften bevorzugt werden.
+      <td data-label='Warum?'>
+        Es gibt einige Gehörlose, deren primäres Kommunikationsmittel die Gebärdensprache ist. Für
+        diese Gruppe kann die Verdolmetschung der Gebärdensprache gegenüber Untertiteln und
+        Abschriften bevorzugt werden.
       </td>
     </tr>
   </tbody>
@@ -1090,37 +472,35 @@ Modelle sind ebenfalls erhältlich.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Es gelten die gleichen Überlegungen wie bei Blindheit.
       </td>
-      <td data-label="Warum?">
-        Wie blinde Menschen verwenden auch taubblinde Menschen ein Bildschirmlesegerät
-        als Ausgabegerät. Doch anstatt sich auf die Audioausgabe zu verlassen, wird
-        ein aktualisierbares Braille-Ausgabegerät verwendet, damit taubblinde Menschen
-        Inhalte durch Berührung lesen können.
+      <td data-label='Warum?'>
+        Wie blinde Menschen verwenden auch taubblinde Menschen ein Bildschirmlesegerät als
+        Ausgabegerät. Doch anstatt sich auf die Audioausgabe zu verlassen, wird ein aktualisierbares
+        Braille-Ausgabegerät verwendet, damit taubblinde Menschen Inhalte durch Berührung lesen
+        können.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Es gelten die gleichen Überlegungen wie bei Taubheit.
       </td>
-      <td data-label="Warum?">
-        Alle Erwägungen für Gehörlose gelten in dem Sinne, dass eine Alternative
-        für den Zugang zu Audioinhalten bereitgestellt werden sollte, insbesondere
-        in einem textbasierten Format.
+      <td data-label='Warum?'>
+        Alle Erwägungen für Gehörlose gelten in dem Sinne, dass eine Alternative für den Zugang zu
+        Audioinhalten bereitgestellt werden sollte, insbesondere in einem textbasierten Format.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Außerdem muss für Audio- und Videoinhalte eine Abschrift erstellt werden.
       </td>
-      <td data-label="Warum?">
-        Abschriften sind die einzige Möglichkeit für taubblinde Menschen, auf alle
-        Informationen zuzugreifen, die in Audio- und Videoformaten übermittelt
-        werden. Einige moderne Braille-Lesegeräte können Videountertitel anzeigen,
-        aber es kann schwierig sein, die Braille-Zeichen so schnell zu lesen, wie
-        die Untertitel angezeigt werden, daher sind Abschriften immer noch die
-        beste Option für taubblinde Nutzer.
+      <td data-label='Warum?'>
+        Abschriften sind die einzige Möglichkeit für taubblinde Menschen, auf alle Informationen
+        zuzugreifen, die in Audio- und Videoformaten übermittelt werden. Einige moderne
+        Braille-Lesegeräte können Videountertitel anzeigen, aber es kann schwierig sein, die
+        Braille-Zeichen so schnell zu lesen, wie die Untertitel angezeigt werden, daher sind
+        Abschriften immer noch die beste Option für taubblinde Nutzer.
       </td>
     </tr>
   </tbody>
@@ -1214,10 +594,10 @@ benutzt, um auf Websites zuzugreifen.
 Eines der denkwürdigen Zitate aus seinem Vortrag (bei etwa 7:45):
 
 > "All my life I have sought to understand the universe and find answers [...] I
-have been very lucky that my disability has not been a serious handicap. Indeed,
-it has probably given me more time than most people to pursue the quest for knowledge."
+> have been very lucky that my disability has not been a serious handicap. Indeed,
+> it has probably given me more time than most people to pursue the quest for knowledge."
 
-<YouTube id="xjBIsp8mS-c" />
+<YouTube id='xjBIsp8mS-c' />
 
 ##### Etwas zum Nachdenken
 
@@ -1246,7 +626,7 @@ sie nur ihren Kiefer bewegt.
 Wenn Sie sich dieses Video ansehen, achten Sie darauf, wie sie spezielle virtuelle
 Tastaturen verwendet, um mit dem Computer zu interagieren.
 
-<YouTube id="ENkjkIypXq4" />
+<YouTube id='ENkjkIypXq4' />
 
 <Accordion>
   <AccordionItem header="Video-Abschrift">
@@ -1388,54 +768,52 @@ target="_blank">Dragon</a>.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
+      <td data-label='Design-Überlegungen'>
         Alle Funktionen müssen ausschließlich über die Tastatur verfügbar sein.
       </td>
-      <td data-label="Warum?">
-        Für sehende Tastaturbenutzer oder solche, die Geräte benutzen, die Tastaturen
-        emulieren, sollte alles, was auf einer Webseite mit der Maus gemacht werden
-        kann, auch mit einer Tastatur möglich sein. Menschen mit motorischen
-        Behinderungen verfügen möglicherweise nicht über die erforderlichen
-        feinmotorischen Fähigkeiten, um eine Maus zu benutzen.
+      <td data-label='Warum?'>
+        Für sehende Tastaturbenutzer oder solche, die Geräte benutzen, die Tastaturen emulieren,
+        sollte alles, was auf einer Webseite mit der Maus gemacht werden kann, auch mit einer
+        Tastatur möglich sein. Menschen mit motorischen Behinderungen verfügen möglicherweise nicht
+        über die erforderlichen feinmotorischen Fähigkeiten, um eine Maus zu benutzen.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status
-        und einen sichtbaren :hover-Status haben.
+      <td data-label='Design-Überlegungen'>
+        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status und einen
+        sichtbaren :hover-Status haben.
       </td>
-      <td data-label="Warum?">
-        Sehende Tastaturbenutzer wissen nur durch den sichtbaren :Fokus-Status, wo
-        sich der Tastaturfokus befindet. Wenn der Fokus ausgeschaltet ist, kann die
-        Interaktion auf einer Webseite für diese Nutzer extrem schwierig oder fast
-        unmöglich sein. Der standardmäßige :focus-Zustand des Browsers ist nach den
-        WCAG-Richtlinien akzeptabel, aber wie sehbehinderte Nutzer können auch sehende
-        Tastaturnutzer von den verbesserten CSS-Zuständen :focus und :hover profitieren.
-      </td>
-    </tr>
-    <tr>
-      <td data-label="Design-Überlegungen">
-         Warne die Nutzer/innen vor Ablauf der Zeit (z. B. durch einen barrierefreien
-         Dialog oder eine Warnung) und gib ihnen die Möglichkeit, die Sitzung zu
-         verlängern. Achte darauf, dass die Warnung selbst langsame Antworten
-         zulässt. Eine empfohlene Mindestantwortzeit ist 2 Minuten.
-      </td>
-      <td data-label="Warum?">
-         Menschen mit motorischen Behinderungen brauchen mehr Zeit, um Informationen
-         auf einer Webseite einzugeben. Deshalb ist es wichtig, dass sie genügend
-         Zeit und Möglichkeiten haben, die Fristen zu verlängern.
+      <td data-label='Warum?'>
+        Sehende Tastaturbenutzer wissen nur durch den sichtbaren :Fokus-Status, wo sich der
+        Tastaturfokus befindet. Wenn der Fokus ausgeschaltet ist, kann die Interaktion auf einer
+        Webseite für diese Nutzer extrem schwierig oder fast unmöglich sein. Der standardmäßige
+        :focus-Zustand des Browsers ist nach den WCAG-Richtlinien akzeptabel, aber wie sehbehinderte
+        Nutzer können auch sehende Tastaturnutzer von den verbesserten CSS-Zuständen :focus und
+        :hover profitieren.
       </td>
     </tr>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Biete große Klickziele (Links, Schaltflächen, Steuerelemente) für Nutzer/innen,
-        deren Bewegungen schwer zu kontrollieren sind.
+      <td data-label='Design-Überlegungen'>
+        Warne die Nutzer/innen vor Ablauf der Zeit (z. B. durch einen barrierefreien Dialog oder
+        eine Warnung) und gib ihnen die Möglichkeit, die Sitzung zu verlängern. Achte darauf, dass
+        die Warnung selbst langsame Antworten zulässt. Eine empfohlene Mindestantwortzeit ist 2
+        Minuten.
       </td>
-      <td data-label="Warum?">
-        Menschen, die unter Zittern oder Spasmen leiden, müssen in der Lage sein,
-        Ziele auf einer Webseite zu aktivieren. Eine Vergrößerung des Zielbereichs
-        für diese Menschen kann dazu beitragen, dass sie das Ziel auf der Webseite
-        möglichst genau auswählen können.
+      <td data-label='Warum?'>
+        Menschen mit motorischen Behinderungen brauchen mehr Zeit, um Informationen auf einer
+        Webseite einzugeben. Deshalb ist es wichtig, dass sie genügend Zeit und Möglichkeiten haben,
+        die Fristen zu verlängern.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Biete große Klickziele (Links, Schaltflächen, Steuerelemente) für Nutzer/innen, deren
+        Bewegungen schwer zu kontrollieren sind.
+      </td>
+      <td data-label='Warum?'>
+        Menschen, die unter Zittern oder Spasmen leiden, müssen in der Lage sein, Ziele auf einer
+        Webseite zu aktivieren. Eine Vergrößerung des Zielbereichs für diese Menschen kann dazu
+        beitragen, dass sie das Ziel auf der Webseite möglichst genau auswählen können.
       </td>
     </tr>
   </tbody>
@@ -1523,7 +901,7 @@ zu speichern und abzurufen.
 Das folgende Video zeigt, wie Hightech-Unterstützte Kommunikation das Leben von
 Rachel Monk beeinflusst hat.
 
-<YouTube id="dEYyuLyovLg" />
+<YouTube id='dEYyuLyovLg' />
 
 <Accordion>
   <AccordionItem header="Video-Abschrift">
@@ -1565,15 +943,14 @@ Rachel Monk beeinflusst hat.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Verlasse dich nicht auf die Spracheingabe (z. B. in mobilen Apps,
-        benutzerdefinierten Widgets, Spielen usw.).
+      <td data-label='Design-Überlegungen'>
+        Verlasse dich nicht auf die Spracheingabe (z. B. in mobilen Apps, benutzerdefinierten
+        Widgets, Spielen usw.).
       </td>
-      <td data-label="Warum?">
-        Menschen mit Sprachbehinderungen haben Schwierigkeiten, Sprachlaute zu
-        erzeugen und ihre Sprachlaute zu erzeugen und ihre Mundmuskeln zu benutzen.
-        Deshalb ist es wichtig, dass alternative Kommunikationsmittel wie Chats,
-        Formulare, E-Mails etc. zur Verfügung stehen.
+      <td data-label='Warum?'>
+        Menschen mit Sprachbehinderungen haben Schwierigkeiten, Sprachlaute zu erzeugen und ihre
+        Sprachlaute zu erzeugen und ihre Mundmuskeln zu benutzen. Deshalb ist es wichtig, dass
+        alternative Kommunikationsmittel wie Chats, Formulare, E-Mails etc. zur Verfügung stehen.
       </td>
     </tr>
   </tbody>
@@ -1801,6 +1178,7 @@ buchstabieren oder zu lesen.
         das Lesen von Text etwas erleichtern.
       </td>
     </tr>
+
   </tbody>
 </table>
 
@@ -1873,13 +1251,13 @@ blinkt, könnte einen photoepileptischen Anfall auslösen.
   </thead>
   <tbody>
     <tr>
-      <td data-label="Design-Überlegungen">
-        Verzichte auf Videos, Animationen oder Übergänge mit blinkenden Lichtsequenzen
-        von 3 Mal oder mehr pro Sekunde.
+      <td data-label='Design-Überlegungen'>
+        Verzichte auf Videos, Animationen oder Übergänge mit blinkenden Lichtsequenzen von 3 Mal
+        oder mehr pro Sekunde.
       </td>
-      <td data-label="Warum?">
-        Blinkende, blinkende und flackernde Inhalte, die länger als drei Mal pro
-        Sekunde andauern, können bei Nutzern photoepileptische Anfälle auslösen.
+      <td data-label='Warum?'>
+        Blinkende, blinkende und flackernde Inhalte, die länger als drei Mal pro Sekunde andauern,
+        können bei Nutzern photoepileptische Anfälle auslösen.
       </td>
     </tr>
   </tbody>

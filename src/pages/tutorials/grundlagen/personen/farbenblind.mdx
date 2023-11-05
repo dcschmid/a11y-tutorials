@@ -1,0 +1,255 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Farbenblind'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { Picture } from 'astro:assets'
+
+import PersonaColorBlindGrandpa from './images/persona-colorblind-grandpa.jpeg'
+
+## UX Persona: Treffen wir Randal
+
+Der 78-jährige Randal ist ein pensionierter Gärtner, der den neuen Computer, den ihm seine Tochter
+gekauft hat (obwohl er sich mit Computern im Allgemeinen nicht gut auskennt) gerne Videochats mit
+seinen Enkeln führt.
+
+<Picture
+  src={PersonaColorBlindGrandpa}
+  formats={['avif', 'webp']}
+  alt='Randal hat eine Farbenblindheit'
+/>
+
+## Randals Szenario
+
+Randal kann oft nicht erkennen, wann seine Enkelkinder „online“ sind, da für ihn der grüne Punkt,
+der anzeigt, dass sie online sind, gleich aussieht wie der rote Punkt, der anzeigt, dass sie
+offline sind. Das ist eine Quelle des Ärgers für ihn, weil er nicht weiß, ob die Person antwortet
+oder nicht, bis er versucht, sie anzurufen.
+
+Eine andere Sache, die Randal gerne am Computer macht, ist das Lesen von Gartenblogs. Manchmal gibt
+es dort Anleitungen zum Pflanzen mit Farbcodes für den besten Zeitpunkt zum Pflanzen, aber die
+Farbcodes sind für ihn nicht lesbar. Er muss manchmal nach anderen Quellen suchen, um diese Informationen
+zu finden. Es gibt eine bestimmte Garten-Website, die er sehr mag, aber er verirrt sich manchmal, weil
+die Registerkarten grün sind, um anzuzeigen, welche Hauptseite ausgewählt ist.
+
+## Überblick
+
+Farbenblindheit bedeutet nicht wörtlich, dass eine Person überhaupt keine Farben sehen kann (außer
+in einmaligen Fällen). Farbenblindheit bezieht sich auf die Unfähigkeit, zwischen verschiedenen
+Farben zu unterscheiden, auch wenn die Farben selbst ganz anders aussehen.
+
+## Arten von Farbenblindheit
+
+Es gibt verschiedene Arten von Farbenblindheit und unterschiedliche Grade innerhalb dieser Arten, daher
+ist es schwierig eine genaue Erklärung dafür zu geben, welche Farbkombinationen für Menschen, die an
+Farbenblindheit leiden, am schlimmsten sind. Die häufigste Form der Farbenblindheit ist jedoch die
+Rot-Grün-Farbenblindheit. Deuteranopie und Protanopie sind zwei häufige Unterformen der
+Rot-Grün-Farbenblindheit. Manche Menschen leiden auch unter der sogenannten Tritanopie oder blau-gelber
+Farbenblindheit. Obwohl einmalig, gibt es Menschen, die eine Unempfindlichkeit für alle Farben geerbt
+haben. Menschen, die unter Achromatopsie leiden, sehen Farben in Grautönen.
+
+Obwohl es schwierig ist, wirklich zu erfassen, wie Menschen Farbenblindheit erleben, simulieren die
+folgenden Tabellen, wie eine Person mit Rot-Grün-Farbenblindheit und Graustufensehen Farben entsprechend
+den Merkmalen dieser Erkrankungen sehen kann.
+
+Wenn du Schwierigkeiten hast, die Zahlen in einem der Bilder zu identifizieren, findest du hier eine
+Erklärung zu den Originalbildern:
+
+Die Zahl sechs erscheint im ersten Kreis (grüne Zahl auf rotem Hintergrund). Im zweiten Kreis (Grüner
+Punkt auf orangefarbenem Grund) ist die Zahl acht zu sehen. Die Zahl fünfundvierzig erscheint im
+dritten Kreis (orangefarbener Text auf grünem Hintergrund). Im vierten Bild erscheint die Zahl
+sechsundfünfzig.
+
+### Rote und grüne Farbenblindheit und Achondroplasie
+
+#### Rote und grüne Farben
+
+![Rote und grüne Farben](/images/grundlagen/redgreennumbers.png)
+
+Die häufigste Form der Farbenblindheit ist die Rot-Grün-Farbenblindheit, bei der
+es schwierig ist, zwischen Rot-, Orange- und Grüntönen zu unterscheiden. Oben
+sind einige Beispiele für Farben, die leicht zu verwechseln sind.
+
+Kannst du die Zahlen in den Kreisen erkennen?
+
+#### Rot-Grün-Farbenblindheit
+
+![Rot/Grün-Farbenblindheit](/images/grundlagen/redgreenblindnessnumbers.png)
+
+Diejenigen, die unter Rot-Grün-Farbenblindheit leiden, können die Bilder so sehen,
+wie sie hier gepostet wurden.
+
+Die Zahlen sind auf diese Weise sehr schwer zu unterscheiden.
+
+#### Alle Farben
+
+![Alle Farben](/images/grundlagen/achromacy.png)
+
+In sehr seltenen Fällen kann das Sehvermögen einer Person für alle Farben unempfindlich
+sein, so dass die Welt in einer Art Graustufe dargestellt wird. Hier sind die
+gleichen Bilder wie in den vorherigen Beispielen, nur in Graustufen dargestellt.
+
+### Rote und schwarze Farbenblindheit
+
+Neben der rot-grünen und blau-gelben Farbenblindheit können auch die Farben Rot
+und Schwarz für manche Menschen schwer zwischen ihnen zu unterscheiden. Die
+folgenden Tabellen zeigen, wie ähnlich die Farben für farbenblinde Menschen sein
+können.
+
+#### Rote und schwarze Farben
+
+![Rote und schwarze Farben](/images/grundlagen/red-baron.png)
+
+Rot und Schwarz können für manche Menschen schwer zu unterscheiden sein. Hier
+kannst du sehen, wie Rot und Schwarz für Menschen aussehen, die nicht farbenblind
+sind.
+
+#### Simulation in Rot und Schwarz
+
+![Simulation in Rot und Schwarz](/images/grundlagen/red-baron-siim.png)
+
+So könnte das gleiche Bild für diejenigen aussehen, die Schwierigkeiten haben,
+Rot und Schwarz zu sehen.
+
+Der rote Text und das Bild verschmelzen fast mit dem schwarzen Hintergrund.
+
+## Verwende nicht nur Farbe, um Informationen zu vermitteln
+
+Da Farben für farbenblinde Menschen ähnlich aussehen können, ist es wichtig,
+dass Farben nicht als einziges Mittel zur Kommunikation oderUnterscheidung von
+Informationen verwendet werden.
+
+Das folgende Beispiel zeigt, wie eine farbenblinde Person Informationen übersehen
+kann, die nur durch Farben vermittelt werden.
+
+### Original-Tabelle
+
+<table>
+  <caption>JavaScript Courses</caption>
+  <thead>
+    <tr>
+      <th>Course Title</th>
+      <th>Level*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th='Course Title'>Angular.js</td>
+      <td style='background:#b83b3b;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th='Course Title'>Node.js</td>
+      <td style='background:#b83b3b;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th='Course Title'>jQuery</td>
+      <td style='background:#ffff00;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th='Course Title'>Introduction to JavaScript</td>
+      <td style='background:#008000;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+\*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
+
+In der Tabelle wird die Farbe nur verwendet, um die Schwierigkeit der Klassen darzustellen.
+Manche Menschen mit Rot-Grün-Farbenblindheit haben möglicherweise Schwierigkeiten,
+die Farben zu unterscheiden.
+
+### Farbenblinde Perspektive
+
+Hier ist die gleiche Tabelle, wie sie für jemanden mit Rot-Grün-Farbenblindheit
+aussehen könnte. Es ist schwer, den Schwierigkeitsgrad allein anhand der Farbe zu
+erkennen, da die Kurse für Fortgeschrittene und Anfänger dieselbe Farbe haben.
+
+<table>
+  <caption>JavaScript Courses</caption>
+  <thead>
+    <tr>
+      <th>Course Title</th>
+      <th>Level*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-th=' '>Angular.js</td>
+      <td style='background:#6c6c36;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=' '>Node.js</td>
+      <td style='background:#6c6c36;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=' '>jQuery</td>
+      <td style='background:#ffff00;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td data-th=' '>Introduction to JavaScript</td>
+      <td style='background:#6c6c36;' data-th=' '>
+        &nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+\*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
+
+## Unterstützende Technologien für Menschen mit Farbenblindheit
+
+Es gibt nicht viele unterstützende Technologien für Menschen mit Farbenblindheit.
+In den meisten Fällen müssen Menschen mit Farbenblindheit Betroffene müssen
+einfach mit ihrem Zustand leben. Ein Unternehmen namens <a href="http://enchroma.com/"
+target="_blank">EnChroma</a> behauptet, eine Brille entwickelt zu haben, die einige
+Arten von Farbenblindheit kompensieren kann. Die Produkte des Unternehmens könnten
+sich für dich lohnen, wenn du unter Farbenblindheit leidest.
+
+## Barrierefreiheit im Internet für Menschen mit Farbenblindheit
+
+Die meisten Menschen, die farbenblind sind, können Farben sehen, aber es gibt
+bestimmte Farben und Farbkombinationen die für sie schwer zu unterscheiden sind.
+Es ist wichtig, sich nicht allein auf die Farbe zu verlassen, um Informationen
+zu vermitteln.
+
+## Designüberlegungen für Farbenblindheit
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Alle Informationen müssen verständlich sein, ohne dass man zwischen den Farben unterscheiden
+        muss. Rot- und Grüntöne sind besonders problematisch, wenn sie als einziges Mittel zur
+        Vermittlung von Informationen verwendet werden.
+      </td>
+      <td data-label='Warum?'>
+        Wenn Farben allein die einzige Methode sind, um wichtige Informationen auf einer Webseite zu
+        vermitteln, können Menschen, die farbenblind sind, diese Informationen völlig übersehen.
+        Überlege dir, ob du zusätzlich zu den Farben auch Text und Symbole als Mittel zur
+        Informationsvermittlung verwenden würdest.
+      </td>
+    </tr>
+  </tbody>
+</table>

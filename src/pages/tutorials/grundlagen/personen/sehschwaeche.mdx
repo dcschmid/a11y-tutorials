@@ -1,0 +1,420 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Sehschwäche'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { Picture } from 'astro:assets'
+
+import PersonaLowVisionEngineer from './images/persona-low-vision-engineer.jpeg'
+import Blur from './images/blur.png'
+import BlurContrast from './images/blurcontrast.png'
+import Cataracts from './images/cataracts.png'
+import Diabeticretino from './images/diabeticretino.png'
+import Glaucoma2 from './images/glaucoma2.png'
+import Hemianopie from './images/hemianopia.png'
+import Makuladegeneration from './images/maculardegen3.png'
+import Retinaldetach from './images/retinaldetach.png'
+import HighContrast4 from './images/highcontrast4.png'
+import HighContrast2 from './images/highcontrast2.png'
+import HighContrast3 from './images/highcontrast3.png'
+import HighContrast from './images/highcontrast1.png'
+
+## UX Persona: Treffen wir Edgar
+
+Edgar ist Maschinenbauingenieur und arbeitet an Heiz- und Kühlsystemen.
+Er liebt es, komplexe Probleme bei der Arbeit zu lösen und hat viel
+Verantwortung für den Entwurf großer, die Konstruktion großer Heiz- und Kühlsysteme.
+
+<Picture src={PersonaLowVisionEngineer} formats={['avif', 'webp']} alt='Edgar ist farbenblind' />
+
+## Edgars Szenario
+
+Bei der Arbeit muss Edgar architektonische Diagramme, Baubeschreibungen und andere
+Unterlagen lesen, damit er seine technische Arbeit erledigen kann. Er benutzt eine
+Maus, um auf seinem Computer und auf Websites zu navigieren, aber da er sehbehindert
+ist, verwendet er eine Software, die die Ansicht auf seinem Computerbildschirm vergrößert.
+Wenn er eine neue Website aufruft, um sich einen allgemeinen Überblick zu verschaffen,
+kann er einfach einige Tasten auf der Tastatur drücken, um die Ansicht zu
+verkleinern, und dann mithilfe von Tastenkombinationen heranzoomen, um die
+Informationen zu lesen.
+
+Neben der Maus benutzt Edgar manchmal auch die Tastatur, um durch die Hauptmenüs
+zu navigieren, sofern dies möglich ist. Wenn er dies tut, behält die Software das
+Element, auf das er sich konzentriert, in der Bildschirmansicht, damit er es lesen
+kann. Wenn seine Augen müde sind, kann es vorkommen, dass er die Farben auf dem
+Bildschirm umkehrt, um das Lesen für seine Augen etwas zu erleichtern.
+
+## Übersicht
+
+Menschen mit Sehschwäche können zwar sehen, aber ihre Sehkraft ist selbst mit
+starken Korrekturgläsern noch lange nicht perfekt. Menschen mit Sehschwäche
+können nicht gut genug sehen, um Auto zu fahren oder die meisten gedruckten
+Texte zu lesen, es sei denn, sie vergrößern sie. Sehschwäche ist keine einzelne
+Krankheit. Es handelt sich um eine weit gefasste Kategorie, die viele verschiedene
+Erkrankungen mit unterschiedlichen Graden der Sehbehinderung umfasst. Manche
+Menschen können nicht gut genug sehen, um kleine Schriftarten zu lesen oder Details
+klar zu erkennen, ohne sie zu vergrößern. Es gibt viele verschiedene Arten von
+Sehschwäche, die bei einer Person auftreten können. Hier sind ein paar mögliche
+Arten und Merkmale:
+
+<Accordion>
+
+<AccordionItem header="Unschärfe">
+
+    <Picture src={Blur} formats={['avif', 'webp']} alt='Unschärfe' />
+
+    Für Menschen mit Sehschwäche erscheinen Gesichter und Gegenstände unscharf.
+    Es ist für sie schwierig, bestimmte Merkmale zu erkennen. Bei der Nutzung
+    von Websites kann es schwierig sein, die Elemente im Vordergrund von denen
+    im Hintergrund zu unterscheiden. In der obigen Abbildung kann eine Person
+    mit verschwommenem Sehen großen Text wie Überschriften erkennen, aber
+    kleinerer Text kann schwer zu lesen sein.
+
+  </AccordionItem>
+  <AccordionItem header="Unschärfe bei geringem Kontrast">
+
+    <Picture src={BlurContrast} formats={['avif', 'webp']} alt='Unschärfe' />
+
+    Menschen mit Sehschwäche oder verschwommenem Sehen können auch feststellen, dass
+    sie Dinge mit geringem Kontrast sehen, d.i h. es gibt nicht sehr viele helle
+    oder dunkle Bereiche. Alles scheint ungefähr gleich hell zu sein, was es schwierig
+    macht Umrisse, Kanten, Ränder und Details zu erkennen. In diesem Bild
+    können die Textfarben und die Hintergrundfarbe für Menschen mit geringem Kontrast
+    schwer zu erkennen sein.
+
+  </AccordionItem>
+  <AccordionItem header="Grauer Star">
+
+    <Picture src={Cataracts} formats={['avif', 'webp']} alt='Grauer Star' />
+
+    Manche Menschen haben blinde Flecken in ihren Augen, was dazu führen kann,
+    dass sie visuelle Informationen verpassen, wenn sie sich in einem ihrer blinden
+    Flecken befinden. Eine Person, die am Grauen Star erkrankt ist, sieht möglicherweise
+    unzählige dunkle graue Flecken, die ihre Sicht trüben und das Erkennen von
+    Objekten auf einer Website extrem erschweren können.
+
+  </AccordionItem>
+  <AccordionItem header="Diabetische Netzhauterkrankung">
+
+    <Picture src={Diabeticretino} formats={['avif', 'webp']} alt='Diabetische Netzhauterkrankung' />
+
+    Die diabetische Netzhauterkrankung ist eine weitere Augenerkrankung, bei der
+    die Betroffenen schwimmende dunkle Flecken sehen, ähnlich wie auf dem Bild hier.
+
+  </AccordionItem>
+  <AccordionItem header="Grüner Star">
+
+    <Picture src={Glaucoma2} formats={['avif', 'webp']} alt='Grüner Star' />
+
+    Manche Menschen können nur einen kleinen Bereich sehen und haben kein
+    peripheres Sehen. Die Ränder sind stark abgedunkelt oder vignettiert.
+    Es ist, als würde man durch eine enge Röhre schauen. Das obige Bild
+    simuliert den Tunnelblick, den jemand mit einem Glaukom hat.
+
+  </AccordionItem>
+  <AccordionItem header="Hemianopie">
+
+    <Picture src={Hemianopie} formats={['avif', 'webp']} alt='Hemianopie' />
+
+    Hemianopie ist eine weitere Augenerkrankung, bei der das Sehen auf einen
+    kleineren Bereich beschränkt ist. Bei der Hemianopie tritt der Sehverlust
+    entweder auf der rechten oder linken Seite beider Augen auf.
+
+  </AccordionItem>
+  <AccordionItem header="Makuladegeneration">
+
+    <Picture src={Makuladegeneration} formats={['avif', 'webp']} alt='Makuladegeneration' />
+
+    Makuladegeneration ist eine Augenkrankheit, bei der es zu einem Verlust des
+    Sehvermögens im Zentrum des Auges, dem Gesichtsfeld, kommt. Während Menschen
+    mit Makuladegeneration in der Peripherie noch sehen können, kann die
+    Verschlechterung der Makula zu verschwommenem Sehen oder einem blinden Fleck
+    in der Mitte des Auges führen.
+
+  </AccordionItem>
+  <AccordionItem header="Netzhautablösung">
+
+    <Picture src={Retinaldetach} formats={['avif', 'webp']} alt='Netzhautablösung' />
+
+    Bei Menschen, die eine Netzhautablösung erleiden, kann das Sehvermögen auf verschiedene Weise
+    beeinträchtigt werden. Manche sehen Lichtblitze in ihrem Blickfeld, andere sehen sogenannte
+    „Floater“, die wie dunkle, vor ihnen schwebende Trümmer erscheinen. Das Bild zeigt ein weiteres
+    wichtiges Symptom der Netzhautablösung, bei dem ein dunkler Schatten einen großen Teil des
+    Gesichtsfeldes bedeckt.
+
+  </AccordionItem>
+</Accordion>
+
+## Barrierefreiheit für Sehbehinderte
+
+### Bildschirmvergrößerung
+
+Das Lesen von kleinem Text ist für einen sehbehinderten Nutzer eine äußerst
+schwierige Aufgabe. Benutzer mit einer Sehschwäche müssen eine
+Bildschirmvergrößerung wie ZoomText oder MAGic verwenden, die jeweils nur einen
+kleinen Teil des Bildschirms anzeigt. Bei der Bildschirmvergrößerung wird ein
+Teil des Bildschirms herangezoomt und in hoher Auflösung angezeigt.
+
+Spezialisierte Bildschirmvergrößerungsprogramme wie ZoomText und MAGic verfügen
+über eine Vielzahl von Funktionen, die das Seherlebnis für Menschen mit Sehschwäche
+optimieren. Das folgende Video gibt einen Überblick über einige der wichtigsten
+Funktionen von ZoomText.
+
+<YouTube id='ojtiVj78QPw' />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+
+    One of the most important technologies for people with low vision is a screen
+    magnifier. Screen magnifiers enlarge parts of the screen, just like a magnifying
+    glass would so that the text and the images on the screen are easier to see.
+
+    I'm going to demonstrate some of the features on ZoomText, which is one brand
+    of screen magnifier, so that we can see how they work. When you first start
+    up ZoomText, the default zoom is set to two times normal view, and you can see
+    on the interface it says 2x for the power. ZoomText can go all the way up to
+    36 times normal size, which is quite large.
+
+    I'll step you through some of these enlargements, just so you can see how big
+    it can get. So here we are at the largest setting, and you can see that the text
+    is still easy to read. ZoomText takes over the font smoothing and enhances it
+    quite a bit over the normal operating system font smoothing technology. Now,
+    36 times is really too big for what I want to do, so I'm going to decrease
+    the zoom and go back down to two times, 2x.
+
+    Now, the screen enlargement is only part of what ZoomText can offer. It also
+    offers enhancements of the colors, the pointer for the mouse, and the cursor
+    for the keyboard, as well as the focus when you're navigating around menu
+    systems, around web pages. So, let's take a look at the colors first. We're
+    on the normal color scheme at the moment. I'm going to change that
+    to Invert Brightness, which changes everything to the opposite color, so
+    this is like a photo negative back in the days of film, and what was, you
+    know, black is now white, and the other colors are their opposites as well.
+    Some people find this easier to read.
+
+    Another scheme that we can choose is yellow on black. Now this one is mainly
+    for people who experience difficulty, in fact even can experience pain, when
+    they see bright lights, so looking at a white computer screen with black text
+    is really hard for them; it hurts their eyes, so they change it to a lot of
+    black with yellow text. Now, this particular website, it has a dark background
+    to begin with, so that's what gets converted into the yellow. For the parts that
+    were bright before, those are the ones that are now dark.
+
+    Another option that we have is to convert just to black and white. And we can
+    set it to be a black text on a white background, basically just removing the
+    color but leaving things as they are, and then we can reverse this so that
+    what was black is now white, what was white is now black, and we get variations
+    in the gradations of grey that were the opposite of what they were before.
+
+    Let's turn it back to normal and take a look at some of the options for the
+    pointer. Now, this is referring to the mouse pointer, which is usually in the
+    shape of an arrow, sometimes in the shape of a hand when it's over links. One
+    of the options is to use yellow with a full cross, which converts the pointer
+    to a yellow color with a black outline and then puts a red cross at the point
+    of the pointer, at the very tip of it, and that makes it really easy to see
+    where the mouse pointer is as you're moving across the screen. You could turn
+    off the full cross and just leave the large yellow cursor. Some people find
+    that easier to use.
+
+    Another option is to put a red circle around the cursor, and you could leave
+    it, in this case, a color red. You can also customize these options, but the
+    default color for this particular setting is to leave it red. And a variation
+    on this idea is to use a circle only when moving. So, if I leave the mouse
+    alone, it doesn't have a circle, but if I start moving it, it puts a circle
+    around it. And then, as soon as I stop, the circle goes away. And if you
+    have a really hard time seeing the pointer because it's just too small, you
+    could turn it to the giant green option, which just makes it huge, and as you
+    move across the screen it's very visible. I’m going to put it back to normal.
+
+    The cursor is what you see when you put the focus inside of a form element or
+    when it's in a word processor and you're typing, or an email, or something
+    like that. And the default option, if you just look at the regular cursor,
+    it's just this really small blinking line, and it's really hard for people
+    with low vision to see. We can make it more visible by choosing some of these
+    options. So, one of them is to put a green circle around the focus. So right
+    now, I'm not in a text area; I'm not in a form input or anything like that, so
+    it looks normal. If I click inside the search field, it puts the green circle
+    where the focus is, which makes it immediately obvious. And if I start typing
+    something, the green circle will follow the keystrokes.
+
+    I’m going to go ahead and turn that one off and demonstrate the last category
+    that I'm going to talk about here, which is the focus. The focus can be hard
+    to see on a webpage. If I start tabbing through the web page, it will put an
+    outline or a dotted line around the links, which is great, as long as it shows
+    up. As we tab through things, you notice that it sometimes doesn't show up.
+    Right now, for example, I'm on the login button for Facebook, but there's no
+    outline around it because the designers who put together this site took away
+    the outline for that particular link. If I tab to the next link which is the
+    sign in link, the outline comes back, so we have some inconsistencies here.
+
+    And some of these are really difficult to see, so, for example, on the Send
+    me to Mars! and Hotels link, this can be a bit difficult for someone with low
+    vision to see, so let's go down to ZoomText and make it more visible. I'm
+    going to choose the first option, which is to put a red rectangle around the
+    focus. So, going back to the web page, now I have a really easily visible red
+    outline around the link, and if I tab around to the other options, the red
+    outline follows the focus. And you can change these colors as well, but that's
+    the first option there.
+
+    ZoomText has other options; you can use it to zoom in just on a portion of
+    the screen, or you could leave it as is right now, which is enlarging the
+    whole thing. And you notice also when you move around, the mouse tracks the
+    zoom along with it so that you don't lose your place. You can use a reader as
+    well, a screen reader, and there are several options available for the screen
+    reader. You can change the rate of speech, you can let it follow your typing,
+    and some other options there. And it acts basically like JAWS, or like NVDA,
+    or VoiceOver, some of the other screen readers that are out there reading the
+    text to you.
+
+    So, for someone who has low vision, this is really the best way for them to
+    gain access to their computer and to websites. It allows them to access things
+    that they really couldn't access before, in a way that makes it possible for
+    them to be independent, which is an important aspect of web accessibility overall.
+
+  </AccordionItem>
+</Accordion>
+
+Auch wenn eine starke Vergrößerung dazu beitragen kann, die größten Herausforderungen bei
+Sehbehinderungen zu bewältigen, gibt es immer noch einige Probleme, auf die ein Nutzer stoßen
+kann. Wenn etwa ein Bild besonders groß ist, muss der Benutzer möglicherweise um den Bildschirm
+herum scrollen, um das Ganze zu sehen. Wenn eine JavaScript-Warnung neben dem aktuellen Blickfeld
+erscheint, kann die Warnung für den sehbehinderten Benutzer außerhalb des sichtbaren Bereichs
+liegen, sodass er die Warnung möglicherweise gar nicht sieht. Am besten platzieren Sie Pop-ups,
+Warnungen, Fehlermeldungen und ähnliche Meldungen in der Nähe des visuellen Fokus, damit der
+Benutzer sie nicht übersieht.
+
+### Bildschirmleser für Sehschwache
+
+Die meisten Menschen denken bei Bildschirmlesern an Blinde, aber auch
+Menschen mit geringer Sehkraft können von Bildschirmlesegeräten profitieren. Die
+Hören der Wörter kann helfen, den visuellen Text leichter zu verstehen, besonders
+für Menschen mit extremer Sehschwäche. ZoomText und MAGic haben integrierte
+Bildschirmleser. Bildschirmleser, die mit Bildschirmlupen gebündelt sind
+haben normalerweise nicht so viele Funktionen wie eigenständige Bildschirmleser,
+aber sie sind für die meisten Aufgaben ausreichend.
+
+### Anpassung der Farbe
+
+Für Menschen mit geringem Kontrast oder Farbsehvermögen können Farben nicht sichtbar und schwer
+voneinander zu unterscheiden sein. Text, der sich farblich oder in seiner Luminanz (Helligkeit)
+zu nah am Hintergrund liegt, kann schwer zu lesen sein. Manche Menschen empfinden auch Schmerzen,
+wenn sie auf helle Lichter oder helle Bereichen auf Papier oder Computerbildschirmen. Ganz weiße
+Hintergründe können besonders schwierig sein. Um den Auswirkungen von geringem Kontrast und hellen
+Bereichen entgegenzuwirken, können die Nutzer die Farben entweder im Betriebssystem oder im
+Webbrowser ändern.
+
+Farben können im Webdesign verwendet werden, aber es ist wichtig, dass wichtige Informationen nicht
+allein durch Farben vermittelt werden, denn die Nutzer werden die Farben so anpassen, wie es für sie
+optimal funktioniert. Achte darauf, dass die wichtigen Informationen im Text dargestellt werden.
+
+Sieh dir die Simulationen unten an, um zu sehen, wie Bildschirmvergrößerung und Farbanpassung von
+Menschen mit Sehschwäche genutzt werden.
+
+<Accordion>
+  <AccordionItem header="Vergrößerter Text">
+
+    <Picture src={HighContrast4} formats={['avif', 'webp']} alt='Vergrößerter Text' />
+
+    Sehbehinderte Menschen können die Bildschirmvergrößerung nutzen, um kleine
+    Texte zu lesen und kleinere Grafiken zu betrachten. Das Bild hier ist eine
+    Simulation einer Textvergrößerung, bei der die Hochkontrasteinstellungen des
+    Betriebssystems verwendet werden, um die Browsereinstellungen außer Kraft zu
+    setzen.
+
+  </AccordionItem>
+  <AccordionItem header="Vergrößerter gelber Text">
+
+    <Picture src={HighContrast2} formats={['avif', 'webp']} alt='Vergrößerter gelber Text' />
+
+    Für manche Menschen reicht es jedoch nicht aus, den Text zu vergrößern.
+    Manche Menschen müssen die Farben ändern. Jemand, der Schmerzen hat, wenn er
+    helles Licht sieht, kann das Farbschema umkehren und Schwarz (oder eine
+    andere dunkle Farbe) als Haupthintergrund und Gelb oder Weiß als Haupttextfarbe
+    verwenden. Hier ist Gelb die Haupttextfarbe.
+
+  </AccordionItem>
+  <AccordionItem header="Vergrößerter weißer Text">
+
+    <Picture src={HighContrast} formats={['avif', 'webp']} alt='Vergrößerter weißer Text' />
+
+    Hier wird weißer Text mit schwarzem Hintergrund verwendet, um einen hohen
+    Kontrast zu erzielen und die Lesbarkeit zu erhöhen.
+
+</AccordionItem>
+  <AccordionItem header="Vergrößerter grüner Text">
+
+    <Picture src={HighContrast3} formats={['avif', 'webp']} alt='Vergrößerter grüner Text' />
+
+    Helles Grün vor schwarzem Hintergrund kann auch verwendet werden, um die
+    Lesbarkeit von Webseiten für sehbehinderte Nutzer zu verbessern.
+
+  </AccordionItem>
+</Accordion>
+
+## Designüberlegungen für Sehbehinderte
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Pinch-to-Zoom-Funktion darf nicht deaktiviert werden (vermeide die
+        Verwendung von `<meta name="viewport" content="user-scalable=no">`).
+      </td>
+      <td data-label="Warum?">
+        Wenn das Zoomen auf einer Webseite deaktiviert ist, was bei dem Parameter
+        `user-scalable=no` der Fall ist, können sehbehinderte Nutzer, die
+        Lupen zum Lesen von Inhalten verwenden, die Informationen auf einer Webseite
+        nicht richtig sehen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Der gesamte Text muss den Richtlinien für den Kontrast zum Hintergrund entsprechen
+        entsprechen (überprüfe dies mit der Browsererweiterung Deque's axe DevTools
+        für Barrierefreiheit oder einem ähnlichen Tool).
+      </td>
+      <td data-label="Warum?">
+        Manche Nutzer mit Sehschwäche sehen möglicherweise mit geringem Kontrast.
+        Daher können Text, Ränder und andere Elemente mit der gleichen oder einer
+        ähnlichen Helligkeitsstufe erscheinen. Textelemente, die in ihrer Helligkeit
+        zu nahe an den Hintergrundfarben liegen, können für diese schwer zu lesen
+        sein.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Links, Schaltflächen und Steuerelemente müssen einen sichtbaren :focus-Status
+        und :hover-Status haben.
+      </td>
+      <td data-label="Warum?">
+        Einige sehbehinderte Benutzer verwenden eine Tastatur oder eine Maus oder
+        beides als Eingabemethode. Sichtbare :focus- und :hover-Zustände helfen
+        den Benutzern zu wissen, wo sich der Tastatur-/Mausfokus auf einer Webseite
+        befindet. Der standardmäßige :focus-Zustand des Browsers ist nach den
+        WCAG-Richtlinien akzeptabel, aber sehbehinderte Nutzer profitieren sehr von
+        den verbesserten CSS-Zuständen :focus und :hover.
+      </td>
+    </tr>
+    <tr>
+      <td data-label="Design-Überlegungen">
+        Die Benutzeroberfläche muss eine klare visuelle Unterscheidung zwischen
+        Inhalt (z. B. Text) und Steuerelementen (z. B. Schaltflächen, Links usw.)
+        bereitstellen.
+      </td>
+      <td data-label="Warum?">
+        Auch hier können Nutzer, die mit geringem Kontrast sehen, Schwierigkeiten
+        haben zu erkennen, ob Steuerelemente auf einer Webseite aktiviert werden
+        können, da diese Elemente mit dem umgebenden Text und den Hintergrundfarben
+        verschmelzen können.
+      </td>
+    </tr>
+  </tbody>
+</table>
