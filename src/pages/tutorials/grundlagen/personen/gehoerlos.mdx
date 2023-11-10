@@ -1,0 +1,156 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Gehörlos'
+---
+
+import { Accordion, AccordionItem } from 'accessible-astro-components'
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { Picture } from 'astro:assets'
+
+import PersonaDeafAttorney from './images/persona-deaf-attorney.jpeg'
+
+## UX-Persönlichkeit: Treffen wir Mark
+
+Mark ist ein Anwalt, der für ein großes Unternehmen arbeitet und dafür sorgt,
+dass die Verträge in Ordnung sind. Er kommt jeden Morgen ins Büro, weil er von
+seinem Büro aus eine tolle Aussicht hat und gerne produktiv ist.
+
+<Picture
+  src={PersonaDeafAttorney}
+  formats={['avif', 'webp']}
+  alt='Mark ist ein Anwalt, der taub ist'
+/>
+
+## Marks Szenario
+
+Mark grüßt die Leute in den Gängen, und wenn jemand mit ihm sprechen will, macht er das Zeichen für
+Chat und weiß, dass er gleich einen Chat beginnen wird, um etwas zu besprechen. Aufgrund seiner
+Gehörlosigkeit nutzt er häufig Online-Chats, um mit seinen Kollegen zu kommunizieren.
+
+Manchmal arbeitet Mark auch mit einem Dolmetscher zusammen, um in Meetings das Gesagte in Gebärdensprache
+wiederzugeben. Wenn er im Internet surft, benutzt er keine Hilfsmittel, außer wenn er sich ein Video
+ansieht. Er verwendet Siri auf seinem Smartphone, um gesprochenen Text zu übersetzen, aber das ist
+nicht immer exakt. Wenn jemand in seinem Büro ein lustiges Video per E-Mail schickt, kann er es leicht
+übersehen, wenn es keine Untertitel oder eine Abschrift gibt.
+
+## Barrierefreiheit für Gehörlose
+
+Der größte Teil des Internets ist für Menschen mit Hörbehinderungen zugänglich,
+weil der Großteil des Internets in einem visuellen oder textlichen Format
+präsentiert wird. Mit der Konvergenz der Technologien finden jedoch immer mehr
+Video-, Audio- und Multimedia-Inhalte ihren Weg ins Internet finden. Filme
+sind online verfügbar, ebenso wie Fernsehsendungen, Nachrichtensendungen,
+Video-Blogs und andere reichhaltige Inhalte.
+
+Das Problem bei Gehörlosigkeit ist die Barrierefreiheit von Audio, entweder in
+reinen Audioformaten oder in Kombination mit Video, wie es oft der Fall ist. Bei
+reinen Audiodateien, die im Voraus aufgezeichnet wurden, ist die beste Lösung in
+der Regel eine Abschrift des Tons. Die Abschrift enthält alle Texte, Dialoge und
+andere wichtige Geräusche wie Applaus, Abstürze, Musik usw.
+
+Videodateien enthalten in der Regel Audio, das mit dem Video selbst synchronisiert
+ist. Zeitabhängige Audio- und Videodateien erfordern Untertitel. Ein Transkript
+reicht nicht aus, denn ohne synchronisierte Untertitel können die Zuschauer nicht
+genau wissen, wo die Abschrift mit dem Video übereinstimmt.
+
+## Bereitstellung von synchronisierten Videountertiteln und einem Transkript
+
+Unten siehst du ein Beispiel für ein Video mit synchronisierten Untertiteln. Wenn die Untertitel
+nicht automatisch eingeschaltet sind, wähle die Schaltfläche Abspielen und dann die Schaltfläche C
+(„C“ steht für „Captions“) unten links im Video.
+
+<YouTube id='ZpGLy-FyOc0' />
+
+<Accordion>
+  <AccordionItem header="Video-Abschrift">
+        (whizzing)
+
+        [Jeff, skiing guide] Turn a left, turn a right. Turn a left, turn a right.
+        Turn a left, turn a right.
+
+        [Erik Weihenmayer, blind skier] I think in a blind person’s daily life,
+        they don’t get speed, and that’s what I think the most exciting part of
+        skiing is when you’re blind, is that you’re really moving fast. When
+        you’re blind, you’re reacting to what you’re feeling under your feet,
+        so you’re literally reacting instantaneously. It’s very exciting or
+        terrifying, depending on how you look at life.
+
+        (guitar music, Jeff and Erik skiing down the hill)
+
+        [Jeff] Turn a left, turn a right. Turn a left, turn a right.
+
+        [Erik] In only eight, simple words, Jeff tells me everything I need to
+        know on the slope. With each syllable, there’s no guesswork. I know
+        exactly where to be.
+
+        (guitar music)
+
+        [Jeff] Go towards me here. Back to the right, to check your speed, and
+        here we go. We’re gonna start to ski to the left. Turn a left.
+
+        [Erik] To become a good blind skier, it takes an investment. You have to
+        have a good guide who you really trust, and you have to build that relationship.
+
+        (guitar and vocal music)
+
+        [Jeff] I have to make sure that somebody up the hill is not running out
+        of control, isn’t gonna take, you know, Erik out or myself out. I cannot
+        mess up. (calling out while skiing) Turn and stop.
+
+        [Erik] You can still, in bumps, get, just get completely hammered every
+        now and then, you know? So, it’s just part of the, I guess, fun. (laughs)
+        (Erik hits a snow bank and falls) Whoa! I really did hit something there.
+
+        [Jeff] Turn a right. Turn a left. (guitar music)
+
+  </AccordionItem>
+</Accordion>
+
+Eine Abschrift ist ebenfalls wichtig. Abschriften ermöglichen es den Nutzern, den
+Inhalt in ihrem eigenen Tempo durchzugehen, und können besonders für Menschen
+hilfreich sein, die nicht schnell lesen können. Abschriften sind auch die einzige
+Möglichkeit für Gehörlose und Blinde, um überhaupt auf Video- oder Audioinhalte
+zugreifen zu können, da weder Video noch Audio für Gehörlose und Blinde direkt
+zugänglich sind. Nur digitaler Text ist zugänglich, weil er von einem
+Bildschirmlesegerät in Braille-Schrift umgewandelt werden kann.
+
+## Designüberlegungen für Taubheit
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Design-Überlegungen'>Alle Videos müssen mit Untertiteln versehen sein.</td>
+      <td data-label='Warum?'>
+        Ohne Bildunterschriften können gehörlose Menschen wichtige Informationen verpassen, die
+        durch Dialoge und Erzählungen vermittelt werden, und sie können wichtige Geräusche
+        verpassen, die dem Video Bedeutung verleihen.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Alle reinen Audio-Inhalte müssen mit Transkriptionen versehen sein.
+      </td>
+      <td data-label='Warum?'>
+        Transkripte sind notwendig, um alle Informationen zu übermitteln, die per Audio übertragen
+        werden, einschließlich der Dialoge (und der Identifizierung der Sprecher), der Erzählung,
+        der musikalischen Hinweise und der Soundeffekte.
+      </td>
+    </tr>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Die Übersetzung von Videos in Gebärdensprache kann sehr hilfreich sein.
+      </td>
+      <td data-label='Warum?'>
+        Es gibt einige Gehörlose, deren primäres Kommunikationsmittel die Gebärdensprache ist. Für
+        diese Gruppe kann das Verdolmetschen der Gebärdensprache gegenüber Untertiteln und
+        Abschriften bevorzugt werden.
+      </td>
+    </tr>
+  </tbody>
+</table>

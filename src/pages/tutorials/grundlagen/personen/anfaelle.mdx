@@ -1,0 +1,93 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: 'Anfälle'
+---
+
+import { Picture } from 'astro:assets'
+
+import PersonaSeizuresMovies from './images/persona-seizures-movies.jpeg'
+import Brain from './images/brain-seizure-500.jpeg'
+import Pokemon from './images/pokemon-seizure.jpeg'
+
+## UX-Persönlichkeit: Treffen Sie Regina
+
+Regina ist eine Friseurin, die in einem Schönheitssalon in der Nachbarschaft arbeitet.
+
+<Picture
+  src={PersonaSeizuresMovies}
+  formats={['avif', 'webp']}
+  alt='Regina leidet under Anfällen'
+/>
+
+## Reginas Szenario
+
+Regina war sich ihrer Empfindlichkeit gegenüber blinkenden Lichtern nicht bewusst,
+bis sie beim Anschauen eines Films einen photoepileptischen Anfall erlitt. Während
+des Films gab es eine Szene mit stark blinkenden Lichtern. Sie spürte, wie ihr
+schwindelig wurde und sie die Orientierung verlor, und ihre Arme und Beine begannen
+zu krampfen. Sie schloss sofort die Augen und atmete tief durch. Danach ging es ihr
+zwar besser, aber es war eine sehr beängstigende und unangenehme Erfahrung. Seitdem
+kann sie nicht mehr Auto fahren, da dies aufgrund ihres Anfalls nicht als sicher
+gilt. Es ist möglich, dass blinkende Lichter aus anderen Quellen denselben Anfall
+erneut auslösen können, z. B. blinkende Fahrradlichter oder ein Stroboskoplicht
+vor einem Club.
+
+## Krampfanfälle
+
+Krampfanfälle sind abnorme oder unregelmäßige elektrische Impulse im Gehirn, die
+die Fähigkeit einer Person beeinträchtigen, Informationen zu verarbeiten oder
+in manchen Fällen willkürliche Muskelbewegungen zu steuern. Manche Anfälle können
+zu heftigen Krämpfen führen, die eine Person in Gefahr bringen können. Krampfanfälle
+können durch eine Vielzahl von Umständen ausgelöst werden, z. B. durch Hirnverletzungen,
+Dehydrierung, Schlafmangel, Infektionen, Fieber, eine Überdosis Drogen, Drogenentzug
+und sogar durch blinkende Lichter. Die letzte Kategorie ist diejenige, die für
+Webentwickler/innen von Interesse ist.
+
+<Picture src={Brain} formats={['avif', 'webp']} alt='' />
+
+## Foto-Epileptische Anfälle
+
+Wenn Videos, Grafiken oder Animationen mit Blink- oder Stroboskop-Effekten versehen
+sind, besteht bei manchen Zuschauern die Gefahr von Krampfanfällen. Anfälle, die
+durch blinkende Lichter ausgelöst werden, werden manchmal als photoepileptische
+Anfälle bezeichnet. Einer der am besten dokumentierten Fälle, in dem blinkende
+Lichter Anfälle auslösten, war ein Pokémon-Cartoon im Jahr 1997, bei dem 685 Kinder
+ins Krankenhaus eingeliefert wurden, weil sie aufgrund einer intensiven Szene mit
+blinkenden Lichtern Anfälle erlitten.
+
+<Picture src={Pokemon} formats={['avif', 'webp']} alt='' />
+
+Nicht alle Menschen mit Anfallsleiden reagieren empfindlich auf blinkende Lichter.
+Krampfanfälle können auch durch andere Ursachen ausgelöst werden, auf die die
+meisten Webdesigner/innen keinen Einfluss haben. Dennoch können Webdesigner/innen
+und Mediengestalter/innen blinkende Lichter vermeiden, um zu verhindern, dass
+Zuschauer/innen, die empfindlich auf solche Reize reagieren, zu Schaden kommen.
+
+## Barrierefreiheit im Internet und Anfallsleiden
+
+Web- und Medienentwicklern wird empfohlen, keine Videos oder Animationen mit stark
+blinkenden Lichtern zu erstellen. Alles, was häufiger als etwa dreimal pro Sekunde
+blinkt, könnte einen photoepileptischen Anfall auslösen.
+
+## Designüberlegungen bei Anfallsleiden
+
+<table>
+  <thead>
+    <tr>
+      <th>Design-Überlegungen</th>
+      <th>Warum?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label='Design-Überlegungen'>
+        Verzichte auf Videos, Animationen oder Übergänge mit blinkenden Lichtsequenzen von dreimal
+        oder mehr pro Sekunde.
+      </td>
+      <td data-label='Warum?'>
+        Blinkende, blinkende und flackernde Inhalte, die länger als dreimal pro Sekunde andauern,
+        können bei Nutzern photoepileptische Anfälle auslösen.
+      </td>
+    </tr>
+  </tbody>
+</table>

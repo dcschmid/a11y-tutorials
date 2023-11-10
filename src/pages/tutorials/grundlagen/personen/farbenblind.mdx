@@ -8,6 +8,11 @@ import { YouTube } from '@astro-community/astro-embed-youtube'
 import { Picture } from 'astro:assets'
 
 import PersonaColorBlindGrandpa from './images/persona-colorblind-grandpa.jpeg'
+import RedGreenNumbers from './images/redgreennumbers.png'
+import RedGreenBlindnessNumbers from './images/redgreenblindnessnumbers.png'
+import Achromacy from './images/achromacy.png'
+import RedBaron from './images/red-baron.png'
+import RedBaronSiim from './images/red-baron-siim.png'
 
 ## UX Persona: Treffen wir Randal
 
@@ -18,7 +23,7 @@ seinen Enkeln führt.
 <Picture
   src={PersonaColorBlindGrandpa}
   formats={['avif', 'webp']}
-  alt='Randal hat eine Farbenblindheit'
+  alt='Randal hat eine Farbblindheit'
 />
 
 ## Randals Szenario
@@ -36,22 +41,22 @@ die Registerkarten grün sind, um anzuzeigen, welche Hauptseite ausgewählt ist.
 
 ## Überblick
 
-Farbenblindheit bedeutet nicht wörtlich, dass eine Person überhaupt keine Farben sehen kann (außer
-in einmaligen Fällen). Farbenblindheit bezieht sich auf die Unfähigkeit, zwischen verschiedenen
+Farbblindheit bedeutet nicht wörtlich, dass eine Person überhaupt keine Farben sehen kann (außer
+in einmaligen Fällen). Farbblindheit bezieht sich auf die Unfähigkeit, zwischen verschiedenen
 Farben zu unterscheiden, auch wenn die Farben selbst ganz anders aussehen.
 
-## Arten von Farbenblindheit
+## Arten von Farbblindheit
 
-Es gibt verschiedene Arten von Farbenblindheit und unterschiedliche Grade innerhalb dieser Arten, daher
+Es gibt verschiedene Arten von Farbblindheit und unterschiedliche Grade innerhalb dieser Arten, daher
 ist es schwierig eine genaue Erklärung dafür zu geben, welche Farbkombinationen für Menschen, die an
-Farbenblindheit leiden, am schlimmsten sind. Die häufigste Form der Farbenblindheit ist jedoch die
-Rot-Grün-Farbenblindheit. Deuteranopie und Protanopie sind zwei häufige Unterformen der
-Rot-Grün-Farbenblindheit. Manche Menschen leiden auch unter der sogenannten Tritanopie oder blau-gelber
-Farbenblindheit. Obwohl einmalig, gibt es Menschen, die eine Unempfindlichkeit für alle Farben geerbt
+Farbblindheit leiden, am schlimmsten sind. Die häufigste Form der Farbblindheit ist jedoch die
+Rot-Grün-Farbblindheit. Deuteranopie und Protanopie sind zwei häufige Unterformen der
+Rot-Grün-Farbblindheit. Manche Menschen leiden auch unter der sogenannten Tritanopie oder blau-gelber
+Farbblindheit. Obwohl einmalig, gibt es Menschen, die eine Unempfindlichkeit für alle Farben geerbt
 haben. Menschen, die unter Achromatopsie leiden, sehen Farben in Grautönen.
 
-Obwohl es schwierig ist, wirklich zu erfassen, wie Menschen Farbenblindheit erleben, simulieren die
-folgenden Tabellen, wie eine Person mit Rot-Grün-Farbenblindheit und Graustufensehen Farben entsprechend
+Obwohl es schwierig ist, wirklich zu erfassen, wie Menschen Farbblindheit erleben, simulieren die
+folgenden Tabellen, wie eine Person mit Rot-Grün-Farbblindheit und Graustufensehen Farben entsprechend
 den Merkmalen dieser Erkrankungen sehen kann.
 
 Wenn du Schwierigkeiten hast, die Zahlen in einem der Bilder zu identifizieren, findest du hier eine
@@ -62,45 +67,44 @@ Punkt auf orangefarbenem Grund) ist die Zahl acht zu sehen. Die Zahl fünfundvie
 dritten Kreis (orangefarbener Text auf grünem Hintergrund). Im vierten Bild erscheint die Zahl
 sechsundfünfzig.
 
-### Rote und grüne Farbenblindheit und Achondroplasie
+### Rote und grüne Farbblindheit und Achondroplasie
 
 #### Rote und grüne Farben
 
-![Rote und grüne Farben](/images/grundlagen/redgreennumbers.png)
+<Picture src={RedGreenNumbers} formats={['avif', 'webp']} alt='Rote und grüne Farben' />
 
-Die häufigste Form der Farbenblindheit ist die Rot-Grün-Farbenblindheit, bei der
+Die häufigste Form der Farbblindheit ist die Rot-Grün-Farbblindheit, bei der
 es schwierig ist, zwischen Rot-, Orange- und Grüntönen zu unterscheiden. Oben
 sind einige Beispiele für Farben, die leicht zu verwechseln sind.
 
 Kannst du die Zahlen in den Kreisen erkennen?
 
-#### Rot-Grün-Farbenblindheit
+#### Rot-Grün-Farbblindheit
 
-![Rot/Grün-Farbenblindheit](/images/grundlagen/redgreenblindnessnumbers.png)
+<Picture src={RedGreenBlindnessNumbers} formats={['avif', 'webp']} alt='Rot/Grün-Farbblindheit' />
 
-Diejenigen, die unter Rot-Grün-Farbenblindheit leiden, können die Bilder so sehen,
+Diejenigen, die unter Rot-Grün-Farbblindheit leiden, können die Bilder so sehen,
 wie sie hier gepostet wurden.
 
-Die Zahlen sind auf diese Weise sehr schwer zu unterscheiden.
+Die Zahlen sind auf diese Weise schwierig zu unterscheiden.
 
 #### Alle Farben
 
-![Alle Farben](/images/grundlagen/achromacy.png)
+<Picture src={Achromacy} formats={['avif', 'webp']} alt='Alle Farben' />
 
-In sehr seltenen Fällen kann das Sehvermögen einer Person für alle Farben unempfindlich
-sein, so dass die Welt in einer Art Graustufe dargestellt wird. Hier sind die
-gleichen Bilder wie in den vorherigen Beispielen, nur in Graustufen dargestellt.
+In seltenen Fällen kann das Sehvermögen einer Person für alle Farben unempfindlich sein, sodass
+die Welt in einer Art Graustufe dargestellt wird. Hier sind die gleichen Bilder wie in den vorherigen
+Beispielen, nur in Graustufen, dargestellt.
 
-### Rote und schwarze Farbenblindheit
+### Rote und schwarze Farbblindheit
 
-Neben der rot-grünen und blau-gelben Farbenblindheit können auch die Farben Rot
-und Schwarz für manche Menschen schwer zwischen ihnen zu unterscheiden. Die
-folgenden Tabellen zeigen, wie ähnlich die Farben für farbenblinde Menschen sein
-können.
+Neben der rot-grünen und blau-gelben Farbblindheit können auch die Farben Rot und Schwarz für
+manche Menschen schwer zwischen ihnen unterscheiden. Die folgenden Tabellen zeigen, wie ähnlich
+die Farben für farbenblinde Menschen sein können.
 
 #### Rote und schwarze Farben
 
-![Rote und schwarze Farben](/images/grundlagen/red-baron.png)
+<Picture src={RedBaron} formats={['avif', 'webp']} alt='Rote und schwarze Farben' />
 
 Rot und Schwarz können für manche Menschen schwer zu unterscheiden sein. Hier
 kannst du sehen, wie Rot und Schwarz für Menschen aussehen, die nicht farbenblind
@@ -108,17 +112,17 @@ sind.
 
 #### Simulation in Rot und Schwarz
 
-![Simulation in Rot und Schwarz](/images/grundlagen/red-baron-siim.png)
+<Picture src={RedBaronSiim} formats={['avif', 'webp']} alt='Simulation in Rot und Schwarz' />
 
-So könnte das gleiche Bild für diejenigen aussehen, die Schwierigkeiten haben,
-Rot und Schwarz zu sehen.
+Dies könnte das gleiche Bild für diejenigen darstellen, die Schwierigkeiten haben, Rot und Schwarz
+zu unterscheiden.
 
 Der rote Text und das Bild verschmelzen fast mit dem schwarzen Hintergrund.
 
 ## Verwende nicht nur Farbe, um Informationen zu vermitteln
 
 Da Farben für farbenblinde Menschen ähnlich aussehen können, ist es wichtig,
-dass Farben nicht als einziges Mittel zur Kommunikation oderUnterscheidung von
+dass Farben nicht als einziges Mittel zur Kommunikation oder Unterscheidung von
 Informationen verwendet werden.
 
 Das folgende Beispiel zeigt, wie eine farbenblinde Person Informationen übersehen
@@ -165,12 +169,12 @@ kann, die nur durch Farben vermittelt werden.
 \*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
 
 In der Tabelle wird die Farbe nur verwendet, um die Schwierigkeit der Klassen darzustellen.
-Manche Menschen mit Rot-Grün-Farbenblindheit haben möglicherweise Schwierigkeiten,
+Manche Menschen mit Rot-Grün-Farbblindheit haben möglicherweise Schwierigkeiten,
 die Farben zu unterscheiden.
 
 ### Farbenblinde Perspektive
 
-Hier ist die gleiche Tabelle, wie sie für jemanden mit Rot-Grün-Farbenblindheit
+Hier ist die gleiche Tabelle, wie sie für jemanden mit Rot-Grün-Farbblindheit
 aussehen könnte. Es ist schwer, den Schwierigkeitsgrad allein anhand der Farbe zu
 erkennen, da die Kurse für Fortgeschrittene und Anfänger dieselbe Farbe haben.
 
@@ -212,23 +216,22 @@ erkennen, da die Kurse für Fortgeschrittene und Anfänger dieselbe Farbe haben.
 
 \*Rot = Fortgeschrittene, Gelb = Mittelstufe, Grün = Anfänger
 
-## Unterstützende Technologien für Menschen mit Farbenblindheit
+## Unterstützende Technologien für Menschen mit Farbblindheit
 
-Es gibt nicht viele unterstützende Technologien für Menschen mit Farbenblindheit.
-In den meisten Fällen müssen Menschen mit Farbenblindheit Betroffene müssen
-einfach mit ihrem Zustand leben. Ein Unternehmen namens <a href="http://enchroma.com/"
-target="_blank">EnChroma</a> behauptet, eine Brille entwickelt zu haben, die einige
-Arten von Farbenblindheit kompensieren kann. Die Produkte des Unternehmens könnten
-sich für dich lohnen, wenn du unter Farbenblindheit leidest.
+Es gibt nicht viele unterstützende Technologien für Menschen mit Farbblindheit.
+In den meisten Fällen sind Menschen mit Farbblindheit betroffen, die einfach mit ihrem Zustand leben.
+Ein Unternehmen namens <a href="http://enchroma.com/" target="_blank">EnChroma</a> behauptet,
+eine Brille entwickelt zu haben, die einige Arten von Farbblindheit kompensieren kann. Die Produkte
+des Unternehmens könnten sich für dich lohnen, wenn du unter Farbblindheit leidest.
 
-## Barrierefreiheit im Internet für Menschen mit Farbenblindheit
+## Barrierefreiheit im Internet für Menschen mit Farbblindheit
 
 Die meisten Menschen, die farbenblind sind, können Farben sehen, aber es gibt
 bestimmte Farben und Farbkombinationen die für sie schwer zu unterscheiden sind.
 Es ist wichtig, sich nicht allein auf die Farbe zu verlassen, um Informationen
 zu vermitteln.
 
-## Designüberlegungen für Farbenblindheit
+## Designüberlegungen für Farbblindheit
 
 <table>
   <thead>
