@@ -1,0 +1,110 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Ineffektive Designs'
+---
+
+import { Picture } from 'astro:assets'
+import FailRampSteep3 from './images/fail-ramp-steep3.jpg'
+import FailRampSteepPushing from './images/fail-ramp-steep-pushing.jpg'
+import FailRampSnow from './images/fail-wheelchair-ramp-snow.jpg'
+
+Manche Entwürfe zur Barrierefreiheit sind schon vor ihrer Fertigstellung eine
+schlechte Idee. Bis zu einem gewissen Grad ist Barrierefreiheit gesunder
+Menschenverstand, aber in anderer Hinsicht erfordert sie umfassendes Fachwissen.
+Wenn du versuchst, eine komplexe, interaktive, moderne Website zu entwerfen,
+ohne Experten für Barrierefreiheit in die Entwurfsphase (und zwar in allen Phasen)
+einzubeziehen, wirst du kein barrierefreies Endergebnis erzielen. Die
+Barrierefreiheit wird scheitern.
+
+Nicht jeder im Team muss ein Experte für Barrierefreiheit sein, aber je mehr die
+Teammitglieder über Barrierefreiheit wissen, desto größer sind die Erfolgschancen
+und desto weniger Arbeit müssen die Experten für Barrierefreiheit leisten. Im
+Idealfall verfügen alle Teammitglieder über Grundkenntnisse der Barrierefreiheit,
+sodass sich die Experten für Barrierefreiheit auf die schwierigeren
+Herausforderungen hochgradig interaktiver Inhalte konzentrieren können und nicht
+auf so einfache Dinge wie das Hinzufügen von Alt-Text für Bilder.
+
+## Entwürfe, die nicht die besten Praktiken berücksichtigen
+
+Wir können einen Vergleich zur Barrierefreiheit in der physischen Welt anstellen,
+wenn es um den Zugang zu Gebäuden für Rollstuhlfahrer geht, insbesondere um die
+Notwendigkeit von Rampen als Ausgleich für die Treppen, die zur Tür führen.
+
+Die meisten Fehler bei der Barrierefreiheit sind Dinge, die wir nicht verstehen. Wir
+hoffen, dass die Menschen sie nicht machen. Aber wir glauben, es ist so, wie wenn man
+das nicht tun würde. Und wir denken, dass es nicht so viele Leute gibt, wie wir wollen!
+
+### Schlechtes Beispiel: Steile Rollstuhlrampen
+
+Rollstuhlrampen sind ein großartiges Merkmal der Barrierefreiheit in der baulichen
+Umwelt, aber wenn sie zu steil sind, sind sie für Rollstuhlfahrer/innen nicht nützlich.
+Und sie sind sogar gefährlich! Schlechte Rollstuhlrampen, wie die unten gezeigten,
+basieren auf einer guten Idee, die der Konstrukteur nicht richtig verstanden hat.
+Oder der Konstrukteur hat die Idee gut genug verstanden, aber er hat sich für eine
+Abkürzung entschieden, vielleicht aus Faulheit oder in der Annahme, dass niemand
+die Rampen tatsächlich benutzen würde.
+
+Eine Person, die versucht, die unten gezeigte steile Rampe mit einem Rollstuhl
+hinunterzufahren, stürzt wahrscheinlich unten ab und kippt mit dem Rollstuhl
+um:
+
+<Picture src={FailRampSteep3} formats={['avif', 'webp']} alt='Eine schlechte Rollstuhlrampe 1' />
+
+Wenn Rollstuhlfahrer Glück haben, bekommen sie vielleicht etwas Hilfe bei der Benutzung
+der steilen Rampen, aber das ist nicht immer der Fall:
+
+<Picture
+  src={FailRampSteepPushing}
+  formats={['avif', 'webp']}
+  alt='Eine schlechte Rollstuhlrampe 2'
+/>
+
+Und wenn die Wetterbedingungen schlecht sind, kann es schwierig werden, auch wenn
+Hilfe verfügbar ist:
+
+<Picture src={FailRampSnow} formats={['avif', 'webp']} alt='Eine schlechte Rollstuhlrampe 3' />
+
+## Ineffektive Designs im Web
+
+Bei der Erstellung von Webinhalten ist es leicht, die Richtlinien und Vorschriften
+zur Barrierefreiheit im Internet zu ignorieren oder sie nur teilweise oder schlecht
+umzusetzen. Schlecht gestaltete Lösungen lösen die Herausforderungen der Barrierefreiheit
+nicht. Es lohnt sich, es richtigzumachen.
+
+Von welchen Richtlinien sprechen wir im Kontext des Webs? In erster Linie
+geht es um die <a href="https://www.w3.org/TR/WCAG21/" target="_blank">Web Content
+Accessibility Guidelines (WCAG) 2.1</a>.
+
+Einige häufige Arten von Designfehlern sind:
+
+- Kein semantisches Markup: Eine Website, die mit einem Framework erstellt wurde,
+  das überall generische `<div>`-, `<span>`- und `<p>`-Elemente anstelle von
+  semantischem Markup verwendet. Die Überschriften sind keine wirklichen
+  Überschriften (`<h1>`, `<h2>` etc.). Sie sind so gestylt, dass sie wie
+  Überschriften aussehen, aber Screenreader erkennen sie nicht als solche, weil
+  das zugrunde liegende Markup keine Bedeutung hat.
+
+- Benutzerdefinierte Widgets ohne ARIA-Markup: Die Widgets sind für Screenreader-Benutzer
+  nicht sinnvoll, wenn sie die Informationen über die Namen, Rollen und Werte der
+  Komponenten nicht gemäß den ARIA-Techniken darstellen.
+
+- Benutzerdefinierte Widgets ohne richtige Verwaltung des Tastaturfokus: Du musst
+  das Benutzererlebnis für die Tastaturinteraktion gestalten. Das geht nicht von
+  allein. Wenn du benutzerdefinierte Widgets hast, die Komponenten ein- und
+  ausblenden, Ankündigungen veröffentlichen oder AJAX-Anfragen stellen, musst du
+  jederzeit wissen, wo sich der Tastaturfokus befindet, und sicherstellen, dass
+  der Fokus auf logische Weise auf Benutzeranfragen und geskriptete Ereignisse
+  reagiert.
+
+- Schlechter Farbkontrast: Wenn du das gesamte Farbschema deiner Website auf blassen
+  Farben mit geringem Kontrast aufbaust, wirst du den Bedürfnissen von Menschen mit
+  Sehschwäche nicht gerecht und musst dein Design ändern, um die Mindestkontrastrichtlinien
+  zu erfüllen.
+
+- Formular-Validierung nur mit visuellen Hinweisen: Wenn nach einer Formular-Validierung
+  Fehler auftreten, musst du mehr tun, als nur das Aussehen zu verändern (z. B.
+  indem du die fehlerhaften Felder rot umrandest). Menschen, die blind sind,
+  können die visuellen Änderungen gar nicht sehen.
+
+Es gibt noch viele andere Arten von Fehlern bei der Gestaltung der Barrierefreiheit,
+aber das sind die häufigsten Ursachen für Fehler bei der Barrierefreiheit.

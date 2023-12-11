@@ -1,0 +1,90 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Schlechtes Nachrüsten'
+---
+
+import { Picture } from 'astro:assets'
+import FailInelegantRamp from './images/fail-inelegant-ramp.jpg'
+import FailRampAvailable from './images/fail-ramp-available.jpg'
+
+## Unelegantes Nachrüstungsdesign
+
+Designer/innen hassen es, die visuellen Aspekte ihres Designs zu ruinieren.
+Schließlich sind sie Designer und stolz auf das Aussehen ihrer Arbeit. Sie werden
+fast alles tun, um zu vermeiden, dass das Aussehen ihres Designs ruiniert wird.
+
+Glücklicherweise verändern die meisten Techniken zur Barrierefreiheit das Aussehen
+des Designs nicht; sie wirken sich auf das unsichtbare Markup und nicht auf die
+sichtbare Webseite aus.
+
+Das ist nicht immer der Fall, wenn das ursprüngliche Design von vornherein
+unzugänglich war. Manchmal ist das ursprüngliche Design so inkompatibel mit den
+Techniken der Barrierefreiheit, dass du Behelfslösungen oder „aufgeschraubte“
+Barrierefreiheitskorrekturen einbauen musst, die völlig unpassend aussehen.
+Oder du musst mit einem völlig neuen Design beginnen.
+
+### Schlechtes Beispiel: Unelegantes Rampendesign
+
+In dem Beispiel auf dem Foto unten hat ein Haus eine Rollstuhlrampe mit Zäunen
+und Geländern auf jeder Seite, die vom Bürgersteig aus den Hügel hinaufführt und
+etwa achtmal im Zickzack fährt, bevor es schließlich die Haustür erreicht. Die
+Rampe füllt den gesamten Vorgarten aus. Das Design ist wahrscheinlich funktional
+und entspricht den Richtlinien für Barrierefreiheit, aber es ist offensichtlich
+eine nachträgliche Entscheidung, die lange nach dem Bau des Hauses getroffen wurde.
+
+<Picture src={FailInelegantRamp} formats={['avif', 'webp']} alt='Unelegantes Rampendesign' />
+
+Wäre das Haus von Anfang an mit Blick auf die Barrierefreiheit entworfen worden,
+wäre eine solch unelegante Lösung nicht nötig gewesen. Das Haus könnte näher an
+die Straße gerückt werden. Der Hügel könnte so abgetragen werden, dass ein direkter
+Weg vom Bürgersteig zur Haustür führt, ohne dass eine Zickzack-Rampe nötig ist.
+Oder das Haus könnte an einer ganz anderen Stelle gebaut werden.
+
+Als das Haus gebaut wurde, war es zu spät, um eine dieser grundlegenden
+Entscheidungen zu treffen. Es ist einfach, diese Entscheidungen zu treffen, bevor
+das Haus gebaut wird, und fast unmöglich, diese Entscheidungen zu treffen (oder
+zumindest unerschwinglich teuer), wenn das Haus bereits gebaut ist.
+
+## Unelegantes Design als vorübergehende Lösung
+
+Wenn du eine schnelle Lösung für ein Problem mit der Barrierefreiheit benötigst,
+ist es manchmal notwendig, eine unelegante Lösung vorübergehend umzusetzen,
+während du eine dauerhaftere Lösung entwirfst. Das Risiko besteht natürlich darin,
+dass die vorübergehende Lösung zum Dauerzustand wird. Es ist viel einfacher, die
+Dinge so zu belassen, wie sie sind, als ein neues Fundament auszuheben und etwas
+völlig neu zu gestalten.
+
+Beim Webdesign musst du eine Entscheidung treffen: Sollst du eine vorübergehende
+Lösung entwerfen und umsetzen und dann eine dauerhafte Lösung entwerfen und
+umsetzen? Oder solltest du die Nachrüstung überspringen und einfach eine echte
+Lösung entwerfen?
+
+Auf diese Frage gibt es nicht die eine richtige Antwort. Trotzdem, es wird
+Zeit benötigen, das Problem zu lösen. Der zweistufige Ansatz behebt den schlimmsten
+Teil des Problems schneller, erfordert aber letztlich mehr Aufwand, weil du insgesamt
+zwei Lösungen entwickeln musst. Wenn das Problem mit der Barrierefreiheit
+schwerwiegend ist, ist es wahrscheinlich eine gute Idee, es schnell zu beheben.
+Wenn das Problem weniger schwerwiegend ist, kann es sich lohnen, nur eine Lösung
+zu entwerfen, auch wenn es länger dauert, sie umzusetzen.
+
+## Platzierung von Barrierefreiheit hinter Barrierefreiheitsbarrieren
+
+Du willst auf keinen Fall eine Situation herbeiführen, in der die Person Hilfe
+benötigt, um die Barrierefreiheit zu nutzen. Du möchtest, dass die Menschen die
+Barrierefreiheit selbstständig nutzen können. Das ist der Sinn der Barrierefreiheit.
+
+### Schlechtes Beispiel: Rollstuhlrampe auf Anfrage erhältlich
+
+Es wäre lächerlich, von einem Rollstuhlfahrer zu erwarten, dass er ein Gebäude
+betritt, um eine Rollstuhlrampe anzufordern, wenn es keine Möglichkeit gibt,
+das Gebäude mit einem Rollstuhl ohne Rollstuhlrampe zu betreten. Aber mehr oder weniger
+hat jemand da draußen gedacht, dass das eine gute Idee wäre.
+
+<Picture
+  src={FailRampAvailable}
+  formats={['avif', 'webp']}
+  alt='Rollstuhlrampe auf Anfrage erhältlich'
+/>
+
+Du kannst deine Barrierefreiheit nicht verstecken oder sie hinter unzugänglichen
+Barrieren verstecken und erwarten, dass die Menschen sie nutzen können.

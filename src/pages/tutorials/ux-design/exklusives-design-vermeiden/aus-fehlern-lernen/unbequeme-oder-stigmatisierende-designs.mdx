@@ -1,0 +1,89 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Unbequeme oder stigmatisierende Designs'
+---
+
+import { Picture } from 'astro:assets'
+import FailGallery from './images/fail-national-gallery.jpg'
+import FailBackDoor from './images/fail-back-door.jpg'
+import ColoredEntrance from './images/colored-entrance.png'
+
+## Unbequeme oder stigmatisierende Designs in der physischen Welt
+
+### Schlechtes Beispiel: Barrierefreiheit am Hintereingang
+
+Viele Gebäude, vorrangig ältere, haben eine Treppe, die zum Vordereingang hinaufführt.
+
+<Picture src={FailGallery} formats={['avif', 'webp']} alt='Altes Gebäude mit Treppe' />
+
+Einige dieser Gebäude wurden mit barrierefreien Eingängen in einem anderen Teil
+des Gebäudes nachgerüstet. Oft befindet sich der barrierefreie Eingang an der Seite,
+um die Ecke, auf der Rückseite, in der Gasse, bei den Mülleimern oder an einem anderen
+Ort, der weniger einladend ist als der Haupteingang.
+
+<Picture src={FailBackDoor} formats={['avif', 'webp']} alt='Rückseitiger Rollstuhleingang' />
+
+Er erinnert an all die negativen Assoziationen von Rassentrennung und Vorurteilen,
+auch wenn sie unbeabsichtigt sind.
+
+<Picture
+  src={ColoredEntrance}
+  formats={['avif', 'webp']}
+  alt='Altes Foto aus der Zeit der Rassentrennung'
+/>
+
+Um fair zu sein: Die Eigentümer von Gebäuden mit barrierefreien Hintereingängen
+haben vielleicht gar keine Vorurteile gegenüber Menschen mit Behinderungen. Es
+gibt praktische Realitäten, wenn du ein gemauertes Gebäude hast, vor allem wenn
+es alt ist und vor der Gesetzgebung für Behindertenrechte gebaut wurde. Getrennte
+Eingänge in der Zeit der Rassentrennung können nicht mit einer solchen Ausrede
+begründet werden. Das war ein reines Vorurteil.
+
+Trotzdem ist es für die Menschen unbequem und möglicherweise stigmatisierend,
+wenn sie an der Rückseite des Gebäudes vorbeigehen müssen, um hineinzukommen.
+Wenn eine Person im Rollstuhl mit einer Gruppe von Freunden unterwegs ist,
+können alle nicht behinderten Freunde durch den Haupteingang gehen, aber die
+Person im Rollstuhl nicht. Die Behinderung der Person wird auf unvorteilhafte
+Weise ins Rampenlicht gerückt. Jeder wird an die Behinderung der Person erinnert
+und die Gruppe muss warten, bis ihr Freund den langen Weg nimmt (oder sie nehmen
+alle zusammen den langen Weg).
+
+## Webdesigns, die unbequem oder stigmatisierend sind
+
+Beispiele für Designentscheidungen, die für Menschen mit Behinderungen unbequem
+oder stigmatisierend sein können, sind
+
+- Eine weniger „barrierefreie Version“. Ein Link auf einer nicht barrierefreien
+  Website zu einer „barrierefreie Version“, die sich als eine abgespeckte
+  Nur-Text-Version mit klobigen, aber technisch zugänglichen Funktionen herausstellt.
+  Es ist unangenehm, die Hauptwebsite nicht nutzen zu können, und stigmatisierend,
+  weil die Person merkt, dass sie ein schlechteres Design hat als der Rest der
+  Bevölkerung.
+
+- Rufen Sie uns an, um Barrierefreiheit zu erleben: Eine unzugängliche Website,
+  auf der Menschen mit Behinderungen eine Telefonnummer angeben, damit sie jemanden
+  anrufen können, der ihnen hilft, das zu tun, was die Website ihnen eigentlich
+  ermöglichen sollte. In diesem Fall muss die Person ihre Behinderung einer anderen
+  Person gegenüber offenlegen (was stigmatisierend sein kann). Wenn die Person nach
+  Geschäftsschluss anruft, geht niemand ans Telefon und die Person kann das, was
+  sie wollte, erst am nächsten Tag oder nach dem Wochenende erledigen (was
+  unangenehm ist).
+
+- Barrierefreie Version „auf Anfrage erhältlich“: Ein nicht barrierefreies
+  PDF-Dokument mit einem Link auf der Webseite zu einer E-Mail-Adresse, auf der
+  steht: „Barrierefreie Version auf Anfrage erhältlich“. Dieses Szenario hat die
+  gleichen Probleme wie das vorherige: Du musst deine Behinderung offenlegen und
+  möglicherweise lange warten.
+
+- Klobige Fallback-Interaktionsmuster in Widgets: Ein Widget, das für die Interaktion
+  mit der Maus entwickelt wurde (z. B. Drag-and-Drop-Funktionalität), verfügt über
+  Barrierefreiheit, aber die Barrierefreiheit ist nicht intuitiv und wurde
+  offensichtlich nur aus Gründen der Barrierefreiheit hinzugefügt, und nicht als
+  Ergebnis eines guten Interaktionsdesigns.
+
+- Nur-Text-Erklärung von Widgets, die nicht barrierefrei sind: Ein komplexes Widget,
+  wie z. B. eine Chemielaborsimulation, das für Menschen mit Behinderungen entwickelt
+  wurde und nur schwer zugänglich gemacht werden kann, bietet eine Textbeschreibung
+  dessen, was du erleben oder lernen sollst, ohne dich das Widget selbst erleben
+  zu lassen. Die Informationen sind technisch zugänglich, aber die Erfahrung ist
+  nicht gleichwertig.

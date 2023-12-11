@@ -1,0 +1,149 @@
+---
+layout: ../../../../../layouts/MarkdownPostLayout.astro
+title: 'Unvollständige Designs'
+---
+
+import { Picture } from 'astro:assets'
+import FailRampDoor from './images/fail-ramp-door.jpg'
+import FailRampDoorStep from './images/fail-ramp-door-step.jpg'
+import FailCurbCut from './images/fail-curbcut-median.png'
+import FailParking from './images/fail-parking-curb.jpg'
+
+## Teillösungen lösen das Problem vielleicht gar nicht
+
+Man sagt, dass „ein wenig Wissen eine gefährliche Sache ist“, was bedeutet, dass
+es manchmal genauso schlimm oder sogar noch schlimmer sein kann, wenn man nur
+wenig über etwas weiß, als wenn man gar nichts darüber weiß. Wenn Menschen anfangen,
+sich mit Barrierefreiheit zu befassen, machen sie oft den Fehler zu denken, dass
+sie einfach ein paar Dinge gelegentlich machen können, ohne viel über Barrierefreiheit
+zu wissen, und das schon reichen wird.
+
+Sie fügen vielleicht ein paar ARIA-Attribute hinzu, die so klingen, als ob sie
+anwendbar wären, machen sich aber nicht die Mühe herauszufinden, wie die ARIA-Attribute
+funktionieren oder wie sie in das Gesamtbild eines funktionierenden ARIA-Widgets
+passen. Oder sie versuchen, die schlechte Tabulatorreihenfolge zu beheben, indem
+sie allen Elementen Tabindex-Werte zuweisen, ohne zu wissen, dass sie damit das
+Problem nur noch schlimmer machen.
+
+Ein Designfehler in einem Bereich kann das schwächste Glied in der Kette der
+Barrierefreiheit sein und dazu führen, dass das gesamte Erlebnis für den Nutzer
+scheitert.
+
+Nicht alle Fehler bei der Barrierefreiheit sind katastrophal, aber wenn du etwas
+entwirfst, solltest du wirklich wissen, was dein Endziel ist und wie du es
+erreichen kannst. Normalerweise bedeutet das, dass mindestens eine Person im
+Team ein Experte für Barrierefreiheit sein muss. Nicht jeder muss ein Experte
+sein, aber sie müssen zuhören, was der Experte sagt, und die Techniken
+vollständig und nicht nur teilweise umsetzen.
+
+## Unvollständige Entwürfe in der physischen Welt, die komplett versagen
+
+Manchmal können die einzelnen Teile eines Entwurfs für sich genommen „richtig“
+sein, aber der Gesamtentwurf kann trotzdem scheitern, weil sich niemand die
+Mühe gemacht hat, einen Schritt zurückzutreten und zu überlegen, wie die
+einzelnen Teile zusammen funktionieren würden. Zwei zugängliche Komponenten,
+die nicht miteinander kompatibel sind, führen trotzdem zu einem unzugänglichen
+Ergebnis.
+
+### Schlechtes Beispiel: Türen, die Rollstuhlrampen blockieren
+
+In dem Beispiel unten öffnet sich die Tür zur Rampe hin so, dass es für einen
+Rollstuhlfahrer praktisch unmöglich ist, die Tür zu öffnen, wenn er oben an der
+Rampe angekommen ist. Derjenige, der dies gebaut hat, wusste, dass der Eingang
+eine Rampe braucht, hat aber nicht das ganze Szenario durchdacht.
+
+Rollstuhlfahrer/innen benötigen oben auf der Rampe Platz, um den Rollstuhl zu
+manövrieren, am Türgriff zu ziehen und zurückzufahren, während sie am Türgriff
+ziehen. Noch besser wäre ein Knopf, der die Tür automatisch öffnet, aber auch
+den erforderten Platz um Manövrieren des Rollstuhls.
+
+Das Versäumnis, die Wechselwirkung zwischen der Tür und dem Rollstuhl zu
+berücksichtigen, ist das schwächste Glied in diesem Entwurf.
+
+<Picture src={FailRampDoor} formats={['avif', 'webp']} alt='Tür die Rollstuhlrampe blockiert' />
+
+Die Rampe auf dem Foto oben ist auch zu steil, aber das ist ein anderes Problem.
+
+### Schlechtes Beispiel: Rampen, die zu Stufen führen
+
+Eine Rollstuhlrampe sollte nirgendwo Stufen haben: nicht vor der Rampe, nicht in
+der Mitte der Rampe und nicht am Ende der Rampe. Die Rampe selbst mag zwar
+barrierefrei sein, aber eine Stufe auf der Rampe macht die Barrierefreiheit
+des gesamten Rampendesigns zunichte.
+
+Das Versäumnis, alle Stufen zu beseitigen, ist das schwächste Glied in diesem Rampendesign.
+
+<Picture src={FailRampDoorStep} formats={['avif', 'webp']} alt='Rampe die zu Stufen führen' />
+
+### Schlechtes Beispiel: Zebrastreifen mit Bordsteinabsenkung am Gehweg, nicht auf Mittelstreifen
+
+Jemand, der mit einem Rollstuhl diese Straße überqueren will, kann zwar problemlos
+vom Bürgersteig auf die Straße fahren, aber er kann nicht über den hohen Mittelstreifen
+in der Mitte der Straße fahren, der den Weg zum Zebrastreifen versperrt. Die
+Bordsteinkanten mögen perfekt sein, aber das Gesamterlebnis für den Rollstuhlfahrer
+ist ein Totalausfall.
+
+Das Versäumnis, den gesamten Prozess des Überquerens der Straße in einem Rollstuhl
+zu berücksichtigen, ist das schwächste Glied in diesem Entwurf.
+
+<Picture
+  src={FailCurbCut}
+  formats={['avif', 'webp']}
+  alt='Zebrastreifen mit einem Bordstein auf dem Gehweg, aber nicht auf dem Mittelstreifen'
+/>
+
+### Schlechtes Beispiel: Behindertenparkplatz ohne Bordsteinkanten
+
+Es ist toll, dass dieser Parkplatz einen so großzügigen Behindertenparkplatz hat.
+Nicht so toll ist, dass es keine Möglichkeit gibt, mit dem Rollstuhl vom Parkplatz
+auf den Gehweg zu gelangen, weil es keine Bordsteinkante gibt.
+
+Auch hier ist das schwächste Glied die Tatsache, dass die gesamte Erfahrung des
+Transports des Rollstuhls von einem Ort (dem Parkplatz) zum nächsten (dem
+Bürgersteig) nicht berücksichtigt wurde.
+
+<Picture
+  src={FailParking}
+  formats={['avif', 'webp']}
+  alt='Behindertenparkplatz ohne Bordsteinkanten'
+/>
+
+## Unvollständige Entwürfe zur Barrierefreiheit, die komplett scheitern
+
+Es gibt mehr Möglichkeiten, bei der Barrierefreiheit zu scheitern, als erfolgreich
+zu sein. Es würde sich also nicht lohnen, eine Liste mit allen möglichen
+Scheitern-Szenarien zu erstellen, aber hier sind ein paar Beispiele:
+
+- Ein unzugänglicher Auslöser für ein zugängliches Widget: Eine Webseite hat
+  einen Dialog, der vollständig barrierefrei ist, mit dem richtigen ARIA-Markup,
+  Tastaturzugänglichkeit usw., aber das Steuerelement zum Öffnen des Dialogs ist
+  eine benutzerdefinierte JavaScript-Schaltfläche, zu der die Benutzer nicht mit
+  der Tabulatortaste wechseln können und die sie auch nicht mit der Eingabetaste
+  oder der Leertaste aktivieren können. Auch wenn der Dialog barrierefrei ist,
+  können Tastaturbenutzer ihn nicht nutzen, weil sie ihn nicht aktivieren können.
+
+- Anwendung von aria-hidden="true" auf ansonsten zugängliche Objekte: Eine
+  Webseite wurde so gestaltet, dass sie vollständig barrierefrei ist, und sie
+  wäre auch barrierefrei, wenn nicht jemand aria-hidden="true" zu einigen Objekten
+  hinzugefügt hätte, sodass Screenreader sie nicht lesen können. Die Benutzer
+  können immer noch mit der Tabulatortaste auf die fokussierbaren Elemente in
+  diesen Objekten zugreifen, aber der Screenreader sagt nichts.
+
+- Hinzufügen von tabindex zu fokussierbaren Elementen, um eine schlechte
+  Tab-Reihenfolge zu korrigieren: Theoretisch würde das Hinzufügen von tabindex
+  zu jedem fokussierbaren Element auf einer Seite funktionieren, um die
+  Tab-Reihenfolge zu korrigieren, aber auch wenn es perfekt gemacht ist, wird
+  es nichts an der schlechten Lesereihenfolge ändern. Die Lesereihenfolge und die
+  Tabulatorreihenfolge werden dadurch nicht mehr synchronisiert. In der Praxis
+  bedeutet das, dass bei einer JavaScript-Manipulation, die neue fokussierbare
+  Elemente zum DOM hinzufügt oder Elemente aus dem DOM entfernt, die tabindex-Werte
+  möglicherweise wieder völlig durcheinander geraten und von JavaScript geändert
+  werden müssen, was sehr kostspielig wäre. Außerdem bringt die Verwendung von
+  Tabindex (mit positiven Zahlen) eine Reihe anderer Probleme mit sich (Werte von
+  "0" und "-1") sind nützlich, vorwiegend bei der Arbeit mit benutzerdefinierten
+  JavaScript-Widgets).
+
+- Ein unzugängliches benutzerdefiniertes JavaScript-Widget: Wenn es notwendig ist,
+  mit einem benutzerdefinierten JavaScript-Widget zu interagieren, um zum nächsten
+  Schritt eines Prozesses zu gelangen, und dieses Widget nicht zugänglich ist, bleiben
+  die Nutzer/innen stecken. Sie können nicht über das defekte Widget hinausgehen.
